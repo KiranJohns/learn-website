@@ -45,7 +45,7 @@ const Header = () => {
                         <div className="header__left d-flex">
                            <div className="logo">
                               <Link href="/">
-                                 <a><img src="assets/img/logo/logo3.png" alt="logo" /></a>
+                                 <a><img src="assets/img/logo/logo5.png" alt="logo" /></a>
                               </Link>
                            </div>
                            <div className="header__category d-none d-lg-block">
