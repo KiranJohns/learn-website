@@ -43,9 +43,9 @@ const Header = () => {
                   <div className="row align-items-center">
                      <div className="col-xxl-3 col-xl-3 col-lg-4 col-md-2 col-sm-4 col-6">
                         <div className="header__left d-flex">
-                           <div className="logo">
+                           <div className="logo ">
                               <Link href="/">
-                                 <a><img className='w-75' src="assets/img/logo/logo7.png" alt="logo" /></a>
+                                 <a><img className='w-75 mt-5 ml-5' src="assets/img/logo/logo7.png" alt="logo" /></a>
                               </Link>
                            </div>
                            <div className="header__category d-none ">
