@@ -48,7 +48,7 @@ const Header = () => {
                                  <a><img src="assets/img/logo/logo5.png" alt="logo" /></a>
                               </Link>
                            </div>
-                           <div className="header__category d-none d-lg-block">
+                           <div className="header__category d-none ">
                               <nav>
                                  <ul>
                                     <li>
@@ -73,13 +73,13 @@ const Header = () => {
                                           <span>Category</span>
                                        </a>
                                        </Link> */}
-                                       <ul className="cat-submenu">
+                                       {/* <ul className="cat-submenu">
                                           <li><Link href="/course-grid"><a>English Learning</a></Link></li>
                                           <li><Link href="/course-grid"><a>Web Development</a></Link></li>
                                           <li><Link href="/course-grid"><a>Logo Design</a></Link></li>
                                           <li><Link href="/course-grid"><a>Motion Graphics</a></Link></li>
                                           <li><Link href="/course-grid"><a>Video Edition</a></Link></li>
-                                       </ul>
+                                       </ul> */}
                                     </li>
                                  </ul>
                               </nav>
