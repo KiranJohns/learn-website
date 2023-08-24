@@ -5,6 +5,9 @@ import { Tab, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import Link from 'next/link';
  
+
+
+
 export default () => (
     <section className="course__area pt-115 pb-120 grey-bg">
         <Tabs variant="enclosed" id="react-tabs-276">
@@ -49,21 +52,27 @@ export default () => (
                               {/* <div className="course__teacher-thumb mr-15">
                                  <img src="assets/img/course/teacher/teacher-6.jpg" alt="img not found"/>
                               </div> */}
-                              <h6><Link href="/instructor-details"><a>Short details</a></Link></h6>
+                              <h6><Link href="/instructor-details"><a>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form</a></Link></h6>
                            </div>
                         </div>
-                        <div className="course__more d-flex justify-content-between align-items-center">
+                        <div className="course__more d-flex justify-content-between ">
                         <div className="course__status d-flex align-items-center">
                               <span className="sky-blue">£6.00</span>
-                              {/* <span className="old-price">$15.00</span> */}
+                              
                            </div>
-                           <div className="course__btn">
-                              <Link href="/course-details"><a className="link-btn">
-                                 Know Details
-                                 <i className="fas fa-arrow-right"></i>
-                                 <i className="fas fa-arrow-right"></i>
-                              </a></Link>
-                           </div>
+                              <span>
+                                   <div className='d-flex'> 
+                                  <button className="cart-minus" ><i className="fas fa-minus"></i></button>
+                                  <p className='p-1'>0</p>
+                                  <button className="cart-plus" ><i className="fas fa-plus"></i></button>
+                                  </div>
+                                  </span>
+                          
+                           <span>
+                           <button className='course__more d-flex justify-content-between align-items-center' type="button" class="btn btn-primary btn-sm">
+                              Add to cart
+                           </button>
+                           </span>
                         </div>
                      </div>
                   </div>
@@ -91,21 +100,27 @@ export default () => (
                               {/* <div className="course__teacher-thumb mr-15">
                                  <img src="assets/img/course/teacher/teacher-6.jpg" alt="img not found"/>
                               </div> */}
-                              <h6><Link href="/instructor-details"><a>Short details</a></Link></h6>
+                              <h6><Link href="/instructor-details"><a>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form</a></Link></h6>
                            </div>
                         </div>
-                        <div className="course__more d-flex justify-content-between align-items-center">
-                           <div className="course__status d-flex align-items-center">
+                              <div className="course__more d-flex justify-content-between ">
+                        <div className="course__status d-flex align-items-center">
                               <span className="sky-blue">£6.00</span>
-                              {/* <span className="old-price">$15.00</span> */}
+                              
                            </div>
-                           <div className="course__btn">
-                              <Link href="/course-details"><a className="link-btn">
-                                 Know Details
-                                 <i className="fas fa-arrow-right"></i>
-                                 <i className="fas fa-arrow-right"></i>
-                              </a></Link>
-                           </div>
+                              <span>
+                                   <div className='d-flex'> 
+                                  <button className="cart-minus" ><i className="fas fa-minus"></i></button>
+                                  <p className='p-1'>0</p>
+                                  <button className="cart-plus" ><i className="fas fa-plus"></i></button>
+                                  </div>
+                                  </span>
+                          
+                           <span>
+                           <button className='course__more d-flex justify-content-between align-items-center' type="button" class="btn btn-primary btn-sm">
+                              Add to cart
+                           </button>
+                           </span>
                         </div>
                      </div>
                   </div>
@@ -126,21 +141,27 @@ export default () => (
                               {/* <div className="course__teacher-thumb mr-15">
                                  <img src="assets/img/course/teacher/teacher-6.jpg" alt="img not found"/>
                               </div> */}
-                              <h6><Link href="/instructor-details"><a>Short details</a></Link></h6>
+                              <h6><Link href="/instructor-details"><a>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form</a></Link></h6>
                            </div>
                         </div>
-                        <div className="course__more d-flex justify-content-between align-items-center">
+                              <div className="course__more d-flex justify-content-between ">
                         <div className="course__status d-flex align-items-center">
                               <span className="sky-blue">£6.00</span>
-                              {/* <span className="old-price">$15.00</span> */}
+                              
                            </div>
-                           <div className="course__btn">
-                              <Link href="/course-details"><a className="link-btn">
-                                 Know Details
-                                 <i className="fas fa-arrow-right"></i>
-                                 <i className="fas fa-arrow-right"></i>
-                              </a></Link>
-                           </div>
+                              <span>
+                                   <div className='d-flex'> 
+                                  <button className="cart-minus" ><i className="fas fa-minus"></i></button>
+                                  <p className='p-1'>0</p>
+                                  <button className="cart-plus" ><i className="fas fa-plus"></i></button>
+                                  </div>
+                                  </span>
+                          
+                           <span>
+                           <button className='course__more d-flex justify-content-between align-items-center' type="button" class="btn btn-primary btn-sm">
+                              Add to cart
+                           </button>
+                           </span>
                         </div>
                      </div>
                   </div>
@@ -164,18 +185,24 @@ export default () => (
                               <h6><Link href="/instructor-details"><a>Short details</a></Link></h6>
                            </div>
                         </div>
-                        <div className="course__more d-flex justify-content-between align-items-center">
+                              <div className="course__more d-flex justify-content-between ">
                         <div className="course__status d-flex align-items-center">
                               <span className="sky-blue">£6.00</span>
-                              {/* <span className="old-price">$15.00</span> */}
+                              
                            </div>
-                           <div className="course__btn">
-                              <Link href="/course-details"><a className="link-btn">
-                                 Know Details
-                                 <i className="fas fa-arrow-right"></i>
-                                 <i className="fas fa-arrow-right"></i>
-                              </a></Link>
-                           </div>
+                              <span>
+                                   <div className='d-flex'> 
+                                  <button className="cart-minus" ><i className="fas fa-minus"></i></button>
+                                  <p className='p-1'>0</p>
+                                  <button className="cart-plus" ><i className="fas fa-plus"></i></button>
+                                  </div>
+                                  </span>
+                          
+                           <span>
+                           <button className='course__more d-flex justify-content-between align-items-center' type="button" class="btn btn-primary btn-sm">
+                              Add to cart
+                           </button>
+                           </span>
                         </div>
                      </div>
                   </div>
@@ -199,18 +226,22 @@ export default () => (
                               <h6><Link href="/instructor-details"><a>Short Details</a></Link></h6>
                            </div>
                         </div>
-                        <div className="course__more d-flex justify-content-between align-items-center">
+                      <div className="course__more d-flex justify-content-between ">
                         <div className="course__status d-flex align-items-center">
                               <span className="sky-blue">£6.00</span>
-                              {/* <span className="old-price">$15.00</span> */}
-                           </div>
-                           <div className="course__btn">
-                              <Link href="/course-details"><a className="link-btn">
-                                 Know Details
-                                 <i className="fas fa-arrow-right"></i>
-                                 <i className="fas fa-arrow-right"></i>
-                              </a></Link>
-                           </div>
+                             </div>
+                              <span>
+                                   <div className='d-flex'> 
+                                  <button className="cart-minus" ><i className="fas fa-minus"></i></button>
+                                  <p className='p-1'>0</p>
+                                  <button className="cart-plus" ><i className="fas fa-plus"></i></button>
+                                  </div>
+                                  </span>
+                           <span>
+                           <button className='course__more d-flex justify-content-between align-items-center' type="button" class="btn btn-primary btn-sm">
+                              Add to cart
+                           </button>
+                           </span>
                         </div>
                      </div>
                   </div>
@@ -234,18 +265,22 @@ export default () => (
                               <h6><Link href="/instructor-details"><a>Short details</a></Link></h6>
                            </div>
                         </div>
-                        <div className="course__more d-flex justify-content-between align-items-center">
+                        <div className="course__more d-flex justify-content-between ">
                         <div className="course__status d-flex align-items-center">
                               <span className="sky-blue">£6.00</span>
-                              {/* <span className="old-price">$15.00</span> */}
-                           </div>
-                           <div className="course__btn">
-                              <Link href="/course-details"><a className="link-btn">
-                                 Know Details
-                                 <i className="fas fa-arrow-right"></i>
-                                 <i className="fas fa-arrow-right"></i>
-                              </a></Link>
-                           </div>
+                             </div>
+                              <span>
+                                   <div className='d-flex'> 
+                                  <button className="cart-minus" ><i className="fas fa-minus"></i></button>
+                                  <p className='p-1'>0</p>
+                                  <button className="cart-plus" ><i className="fas fa-plus"></i></button>
+                                  </div>
+                                  </span>
+                           <span>
+                           <button className='course__more d-flex justify-content-between align-items-center' type="button" class="btn btn-primary btn-sm">
+                              Add to cart
+                           </button>
+                           </span>
                         </div>
                      </div>
                   </div>
@@ -266,21 +301,25 @@ export default () => (
                               {/* <div className="course__teacher-thumb mr-15">
                                  <img src="assets/img/course/teacher/teacher-5.jpg" alt="img not found"/>
                               </div> */}
-                              <h6><Link href="/instructor-details"><a>Short Details</a></Link></h6>
+                              <h6><Link href="/instructor-details"><a>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form</a></Link></h6>
                            </div>
                         </div>
-                        <div className="course__more d-flex justify-content-between align-items-center">
+                         <div className="course__more d-flex justify-content-between ">
                         <div className="course__status d-flex align-items-center">
                               <span className="sky-blue">£6.00</span>
-                              {/* <span className="old-price">$15.00</span> */}
-                           </div>
-                           <div className="course__btn">
-                              <Link href="/course-details"><a className="link-btn">
-                                 Know Details
-                                 <i className="fas fa-arrow-right"></i>
-                                 <i className="fas fa-arrow-right"></i>
-                              </a></Link>
-                           </div>
+                             </div>
+                              <span>
+                                   <div className='d-flex'> 
+                                  <button className="cart-minus" ><i className="fas fa-minus"></i></button>
+                                  <p className='p-1'>0</p>
+                                  <button className="cart-plus" ><i className="fas fa-plus"></i></button>
+                                  </div>
+                                  </span>
+                           <span>
+                           <button className='course__more d-flex justify-content-between align-items-center' type="button" class="btn btn-primary btn-sm">
+                              Add to cart
+                           </button>
+                           </span>
                         </div>
                      </div>
                   </div>
@@ -301,21 +340,25 @@ export default () => (
                               {/* <div className="course__teacher-thumb mr-15">
                                  <img src="assets/img/course/teacher/teacher-5.jpg" alt="img not found"/>
                               </div> */}
-                              <h6><Link href="/instructor-details"><a>Short Details</a></Link></h6>
+                              <h6><Link href="/instructor-details"><a>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form</a></Link></h6>
                            </div>
                         </div>
-                        <div className="course__more d-flex justify-content-between align-items-center">
+                                <div className="course__more d-flex justify-content-between ">
                         <div className="course__status d-flex align-items-center">
                               <span className="sky-blue">£6.00</span>
-                              {/* <span className="old-price">$15.00</span> */}
-                           </div>
-                           <div className="course__btn">
-                              <Link href="/course-details"><a className="link-btn">
-                                 Know Details
-                                 <i className="fas fa-arrow-right"></i>
-                                 <i className="fas fa-arrow-right"></i>
-                              </a></Link>
-                           </div>
+                             </div>
+                              <span>
+                                   <div className='d-flex'> 
+                                  <button className="cart-minus" ><i className="fas fa-minus"></i></button>
+                                  <p className='p-1'>0</p>
+                                  <button className="cart-plus" ><i className="fas fa-plus"></i></button>
+                                  </div>
+                                  </span>
+                           <span>
+                           <button className='course__more d-flex justify-content-between align-items-center' type="button" class="btn btn-primary btn-sm">
+                              Add to cart
+                           </button>
+                           </span>
                         </div>
                      </div>
                   </div>
@@ -336,21 +379,25 @@ export default () => (
                               {/* <div className="course__teacher-thumb mr-15">
                                  <img src="assets/img/course/teacher/teacher-5.jpg" alt="img not found"/>
                               </div> */}
-                              <h6><Link href="/instructor-details"><a>Short Details</a></Link></h6>
+                              <h6><Link href="/instructor-details"><a>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form</a></Link></h6>
                            </div>
                         </div>
-                        <div className="course__more d-flex justify-content-between align-items-center">
+                        <div className="course__more d-flex justify-content-between ">
                         <div className="course__status d-flex align-items-center">
                               <span className="sky-blue">£6.00</span>
-                              {/* <span className="old-price">$15.00</span> */}
-                           </div>
-                           <div className="course__btn">
-                              <Link href="/course-details"><a className="link-btn">
-                                 Know Details
-                                 <i className="fas fa-arrow-right"></i>
-                                 <i className="fas fa-arrow-right"></i>
-                              </a></Link>
-                           </div>
+                             </div>
+                              <span>
+                                   <div className='d-flex'> 
+                                  <button className="cart-minus" ><i className="fas fa-minus"></i></button>
+                                  <p className='p-1'>0</p>
+                                  <button className="cart-plus" ><i className="fas fa-plus"></i></button>
+                                  </div>
+                                  </span>
+                           <span>
+                           <button className='course__more d-flex justify-content-between align-items-center' type="button" class="btn btn-primary btn-sm">
+                              Add to cart
+                           </button>
+                           </span>
                         </div>
                      </div>
                   </div>
