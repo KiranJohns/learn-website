@@ -14,7 +14,7 @@ const Footer = () => {
                            <div className="footer__widget mb-50">
                               <div className="footer__widget-head mb-22">
                                  <div className="footer__logo">
-                                    <Link href="/"><a><img src="assets/img/logo/logo-2.png" alt="img not found"/></a></Link>
+                                    <Link href="/"><a><img src="assets/img/logo/logo2.png" alt="img not found"/></a></Link>
                                  </div>
                               </div>
                               <div className="footer__widget-body">
@@ -24,7 +24,8 @@ const Footer = () => {
                                     <ul>
                                        <li><a href="#"><i className="fab fa-facebook-f"></i></a></li>
                                        <li><a href="#" className="tw"><i className="fab fa-twitter"></i></a></li>
-                                       <li><a href="#" className="pin"><i className="fab fa-pinterest-p"></i></a></li>
+                                       {/* <li><a href="#" className="pin"><i className="fab fa-fa-instagram"></i></a></li> */}
+                                       {/* <FontAwesomeIcon icon="fab fa-instagram" /> */}
                                     </ul>
                                  </div>
                               </div>
@@ -53,17 +54,19 @@ const Footer = () => {
                         <div className="col-xxl-3 col-xl-3 col-lg-3 offset-lg-0 col-md-3 offset-md- col-sm-6">
                            <div className="footer__widget mb-50">
                               <div className="footer__widget-head mb-22">
-                                 <h3 className="footer__widget-title">Platform</h3>
+                                 <h3 className="footer__widget-title">Contact</h3>
                               </div>
                               <div className="footer__widget-body">
                                  <div className="footer__link">
                                     <ul>
-                                       <li><Link href="/instructor"><a>Browse Library</a></Link></li>
+                                       {/* <li><Link href="/instructor"><a>Browse Library</a></Link></li>
                                        <li><Link href="/instructor"><a>Library</a></Link></li>
                                        <li><Link href="/instructor"><a>Partners</a></Link></li>
                                        <li><Link href="/blog"><a>News & Blogs</a></Link></li>
-                                       <li><Link href="/about"><a>FAQs</a></Link></li>
-                                       <li><Link href="/course-grid"><a>Tutorials</a></Link></li>
+                                       <li><Link href="/about"><a>FAQs</a></Link></li> */}
+                                       <li><i className="fas fa-map-marker"></i> 221b Baker Street, London, UK</li>
+                                       <li><i className="fas fa-phone "></i> +44-2451545656</li>
+                                       <li><i className="fas fa-envelope "></i> learnforcar@support.com</li>
                                     </ul>
                                  </div>
                               </div>

@@ -45,7 +45,7 @@ const Header = () => {
                         <div className="header__left d-flex">
                            <div className="logo">
                               <Link href="/">
-                                 <a><img src="assets/img/logo/logo.png" alt="logo" /></a>
+                                 <a><img src="assets/img/logo/logo2.png" alt="logo" /></a>
                               </Link>
                            </div>
                            <div className="header__category d-none d-lg-block">
@@ -103,9 +103,27 @@ const Header = () => {
                                        <Link href="/course-grid"><a>Courses</a></Link>
                                        <ul className="submenu">
                                           <li><Link href="/course-grid"><a>Courses</a></Link></li>
-                                          <li><Link href="/course-list"><a>Courses List</a></Link></li>
+                                          <li><Link href="/course-grid"><a>Courses</a></Link></li>
+                                          <li><Link href="/course-grid"><a>Courses</a></Link></li>
+                                          {/* <li><Link href="/course-list"><a>Courses List</a></Link></li>
                                           <li><Link href="/course-sidebar"><a>Courses Sidebar</a></Link></li>
-                                          <li><Link href="/course-details"><a>Courses Details</a></Link></li>
+                                          <li><Link href="/course-details"><a>Courses Details</a></Link></li> */}
+                                       </ul>
+                                    </li>
+                                  
+                                    <li className="has-dropdown">
+                                       <Link href="/course-grid"><a>Bundles</a></Link>
+                                       <ul className="submenu">
+                                          {/* <li><Link href="/about"><a>About</a></Link></li>
+                                          <li><Link href="/instructor"><a>Instructor</a></Link></li>
+                                          <li><Link href="/instructor-details"><a>Instructor Details</a></Link></li>
+                                          <li><Link href="/event-details"><a>Event Details</a></Link></li>
+                                          <li><Link href="/cart"><a>My Cart</a></Link></li>
+                                          <li><Link href="/wishlist"><a>My Wishlist</a></Link></li>
+                                          <li><Link href="/checkout"><a>Checkout</a></Link></li>
+                                          <li><Link href="/sign-in"><a>Sign In</a></Link></li>
+                                          <li><Link href="/sign-up"><a>Sign Up</a></Link></li>
+                                          <li><Link href="/error"><a>Error</a></Link></li> */}
                                        </ul>
                                     </li>
                                     <li className="has-dropdown">
@@ -115,22 +133,8 @@ const Header = () => {
                                           <li><Link href="/blog-details"><a>Blog Details</a></Link></li>
                                        </ul>
                                     </li>
-                                    <li className="has-dropdown">
-                                       <Link href="/course-grid"><a>Pages</a></Link>
-                                       <ul className="submenu">
-                                          <li><Link href="/about"><a>About</a></Link></li>
-                                          <li><Link href="/instructor"><a>Instructor</a></Link></li>
-                                          <li><Link href="/instructor-details"><a>Instructor Details</a></Link></li>
-                                          <li><Link href="/event-details"><a>Event Details</a></Link></li>
-                                          <li><Link href="/cart"><a>My Cart</a></Link></li>
-                                          <li><Link href="/wishlist"><a>My Wishlist</a></Link></li>
-                                          <li><Link href="/checkout"><a>Checkout</a></Link></li>
-                                          <li><Link href="/sign-in"><a>Sign In</a></Link></li>
-                                          <li><Link href="/sign-up"><a>Sign Up</a></Link></li>
-                                          <li><Link href="/error"><a>Error</a></Link></li>
-                                       </ul>
-                                    </li>
-                                    <li><Link href="/contact"><a>Contact</a></Link></li>
+                                    <li><Link href="/"><a>Contact</a></Link></li>
+                                    {/* <li><Link href="/contact"><a>Contact</a></Link></li> */}
                                  </ul>
                               </nav>
                            </div>
