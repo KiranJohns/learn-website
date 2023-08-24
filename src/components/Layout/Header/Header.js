@@ -91,13 +91,13 @@ const Header = () => {
                            <div className="main-menu d-none d-xl-block">
                               <nav id="mobile-menu">
                                  <ul>
-                                    <li className="has-dropdown">
+                                    <li className="">
                                        <Link href="/"><a>Home</a></Link>
-                                       <ul className="submenu">
+                                       {/* <ul className="submenu">
                                           <li><Link href="/"><a>Home Style 1</a></Link></li>
                                           <li><Link href="/home-2"><a>Home Style 2</a></Link></li>
                                           <li><Link href="/home-3"><a>Home Style 3</a></Link></li>
-                                       </ul>
+                                       </ul> */}
                                     </li>
                                     <li className="has-dropdown">
                                        <Link href="/course-grid"><a>Courses</a></Link>
