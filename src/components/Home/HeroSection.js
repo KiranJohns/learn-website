@@ -19,9 +19,10 @@ class Hero extends Component {
                                 <div className="col-xxl-6 col-xl-6 col-lg-6 col-md-6">
                                     <div className="hero__content p-relative z-index-1">
                                     <h3 className="hero__title">
-                                        {/* <span>Any course £7 only</span> */}
-                                        {/* <span className="yellow-shape">Accredited <img src="assets/img/shape/yellow-bg.png" alt="yellow-shape"/> </span>  */}
-                                        Embark on your learning adventure!          </h3>
+                                        <span></span>
+                                        <span> Embark on your </span>   
+                                         <span className="yellow-shape">learning<img src="assets/img/shape/yellow-bg.png" alt="yellow-shape"/> </span> 
+                                        adventure! </h3>
                                       
                                         <p>Complete your course and earn a certificate of accomplishment.</p>
                                         <Link href="/course-grid"><a className="e-btn">view all course</a></Link>
