@@ -25,7 +25,7 @@ class SignUpMain extends Component {
                             <div className="col-xxl-8 offset-xxl-2 col-xl-8 offset-xl-2">
                                 <div className="section__title-wrapper text-center mb-55">
                                     <h2 className="section__title">Create a free <br/>  Account</h2>
-                                    <p>I'm a subhead that goes with a story.</p>
+                                    {/* <p>I'm a subhead that goes with a story.</p> */}
                                 </div>
                             </div>
                         </div>
@@ -34,8 +34,8 @@ class SignUpMain extends Component {
                                 <div className="sign__wrapper white-bg">
                                     <div className="sign__header mb-35">
                                     <div className="sign__in text-center">
-                                        <a href="#" className="sign__social g-plus text-start mb-15"><i className="fab fa-google"></i>Sign Up with Google</a>
-                                        <p> <span>........</span> Or, <Link href="/sign-up"><a>sign up</a></Link> with your email<span> ........</span> </p>
+                                        {/* <a href="#" className="sign__social g-plus text-start mb-15"><i className="fab fa-google"></i>Sign Up with Google</a> */}
+                                        <p> <span>........</span>  <Link href="/sign-up"><a>sign up</a></Link> with your email<span> ........</span> </p>
                                     </div>
                                     </div>
                                     <div className="sign__form">
@@ -52,6 +52,13 @@ class SignUpMain extends Component {
                                             <div className="sign__input">
                                                 <input type="text" placeholder="e-mail address"/>
                                                 <i className="fas fa-envelope"></i>
+                                            </div>
+                                        </div>
+                                        <div className="sign__input-wrapper mb-25">
+                                            <h5>country</h5>
+                                            <div className="sign__input">
+                                                <input type="text" placeholder="Country"/>
+                                                <i className="fas fa-flag"></i>
                                             </div>
                                         </div>
                                         <div className="sign__input-wrapper mb-25">

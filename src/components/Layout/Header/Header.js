@@ -35,36 +35,29 @@ const Header = () => {
   }
   // Sticky Menu Area End
 
-  return (
-    <React.Fragment>
-      <Head>
-        <title>Learn for care</title>
-        <link
-          href="https://fonts.googleapis.com/css2?family=Hind:wght@300;400;500;600;700&display=swap"
-          rel="stylesheet"
-        />
-      </Head>
-      <header>
-        <div
-          id="header-sticky"
-          className="header__area header__transparent header__padding"
-        >
-          <div className="container-fluid">
-            <div className="row align-items-center">
-              <div className="col-xxl-3 col-xl-3 col-lg-4 col-md-2 col-sm-4 col-6">
-                <div className="header__left d-flex">
-                  <div className="logo">
-                    <Link href="/">
-                      <a>
-                        <img src="assets/img/logo/logo.png" alt="logo" />
-                      </a>
-                    </Link>
-                  </div>
-                  <div className="header__category d-none d-lg-block">
-                    <nav>
-                      <ul>
-                        <li>
-                          {/* <Link href="/course-grid"><a className="cat-menu d-flex align-items-center">
+   return (
+      <React.Fragment>
+         <Head>
+            <title>Learn for care</title>
+            <link href="https://fonts.googleapis.com/css2?family=Hind:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+            <link rel="icon" href="assets/img/favicon.png" type="image/<generated>" sizes="<generated>"/>
+         </Head>
+         <header>
+            <div id="header-sticky" className="header__area header__transparent header__padding">
+               <div className="container-fluid">
+                  <div className="row align-items-center">
+                     <div className="col-xxl-3 col-xl-3 col-lg-4 col-md-2 col-sm-4 col-6">
+                        <div className="header__left d-flex">
+                           <div className="logo ">
+                              <Link href="/">
+                                 <a><img className='w-75 mt-5 ml-5' src="assets/img/logo/logo7.png" alt="logo" /></a>
+                              </Link>
+                           </div>
+                           <div className="header__category d-none ">
+                              <nav>
+                                 <ul>
+                                    <li>
+                                       {/* <Link href="/course-grid"><a className="cat-menu d-flex align-items-center">
                                           <div className="cat-dot-icon d-inline-block">
                                              <svg  viewBox="0 0 276.2 276.2">
                                                 <g>
@@ -85,49 +78,27 @@ const Header = () => {
                                           <span>Category</span>
                                        </a>
                                        </Link> */}
-                          <ul className="cat-submenu">
-                            <li>
-                              <Link href="/course-grid">
-                                <a>English Learning</a>
-                              </Link>
-                            </li>
-                            <li>
-                              <Link href="/course-grid">
-                                <a>Web Development</a>
-                              </Link>
-                            </li>
-                            <li>
-                              <Link href="/course-grid">
-                                <a>Logo Design</a>
-                              </Link>
-                            </li>
-                            <li>
-                              <Link href="/course-grid">
-                                <a>Motion Graphics</a>
-                              </Link>
-                            </li>
-                            <li>
-                              <Link href="/course-grid">
-                                <a>Video Edition</a>
-                              </Link>
-                            </li>
-                          </ul>
-                        </li>
-                      </ul>
-                    </nav>
-                  </div>
-                </div>
-              </div>
-              <div className="col-xxl-9 col-xl-9 col-lg-8 col-md-10 col-sm-8 col-6">
-                <div className="header__right d-flex justify-content-end align-items-center">
-                  <div className="main-menu d-none d-xl-block">
-                    <nav id="mobile-menu">
-                      <ul>
-                        <li className="">
-                          <Link href="/">
-                            <a>Home</a>
-                          </Link>
-                          {/* <ul className="submenu">
+                                       {/* <ul className="cat-submenu">
+                                          <li><Link href="/course-grid"><a>English Learning</a></Link></li>
+                                          <li><Link href="/course-grid"><a>Web Development</a></Link></li>
+                                          <li><Link href="/course-grid"><a>Logo Design</a></Link></li>
+                                          <li><Link href="/course-grid"><a>Motion Graphics</a></Link></li>
+                                          <li><Link href="/course-grid"><a>Video Edition</a></Link></li>
+                                       </ul> */}
+                                    </li>
+                                 </ul>
+                              </nav>
+                           </div>
+                        </div>
+                     </div>
+                     <div className="col-xxl-9 col-xl-9 col-lg-8 col-md-10 col-sm-8 col-6">
+                        <div className="header__right d-flex justify-content-end align-items-center">
+                           <div className="main-menu d-none d-xl-block">
+                              <nav id="mobile-menu">
+                                 <ul>
+                                    <li className="">
+                                       <Link href="/"><a>Home</a></Link>
+                                       {/* <ul className="submenu">
                                           <li><Link href="/"><a>Home Style 1</a></Link></li>
                                           <li><Link href="/home-2"><a>Home Style 2</a></Link></li>
                                           <li><Link href="/home-3"><a>Home Style 3</a></Link></li>
