@@ -1,0 +1,47 @@
+[
+    {
+        "id": 1,
+        "image": "assets/img/course/course-all.webp",
+        "course_tags": "Audio & Music",
+        "heading": "Build your media and Public presence",
+        "description": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form",
+        "price": "6.00",
+        "count": 0
+    },
+    {
+        "id": 2,
+        "image": "assets/img/course/course-all.webp",
+        "course_tags": "Audio & Music",
+        "heading": "Build your media and Public presence",
+        "description": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form",
+        "price": "6.00",
+        "count": 0
+    },
+    {
+        "id": 3,
+        "image": "assets/img/course/course-all.webp",
+        "course_tags": "Audio & Music",
+        "heading": "Build your media and Public presence",
+        "description": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form",
+        "price": "6.00",
+        "count": 0
+    },
+    {
+        "id": 4,
+        "image": "assets/img/course/course-all.webp",
+        "course_tags": "Audio & Music",
+        "heading": "Build your media and Public presence",
+        "description": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form",
+        "price": "6.00",
+        "count": 0
+    },
+    {
+        "id": 5,
+        "image": "assets/img/course/course-all.webp",
+        "course_tags": "Audio & Music",
+        "heading": "Build your media and Public presence",
+        "description": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form",
+        "price": "6.00",
+        "count": 0
+    }
+]
