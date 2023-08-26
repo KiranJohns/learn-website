@@ -39,15 +39,15 @@ export default () => (
                      <div className="course__item white-bg mb-30 fix">
                         <div className="course__thumb w-img p-relative fix">
                               <Link href="/course-details"><a>
-                                    <img src="assets/img/course/course-all.webp" alt="img not found"/>
+                                    <img src="assets/img/course/cn1.webp" alt="img not found"/>
                               </a></Link>
-                              <div className="course__tag">
+                              {/* <div className="course__tag">
                                     <Link href="/course-details"><a>Art & Design</a></Link>
-                              </div>
+                              </div> */}
                         </div>
                         <div className="course__content">
                         
-                           <h3 className="course__title"><Link href="/course-details"><a>Become a product Manager learn the skills & job.</a></Link></h3>
+                           <h3 className="course__title"><Link href="/course-details"><a>ADHD Awareness</a></Link></h3>
                            <div className="course__teacher d-flex align-items-center">
                               {/* <div className="course__teacher-thumb mr-15">
                                  <img src="assets/img/course/teacher/teacher-6.jpg" alt="img not found"/>
@@ -80,11 +80,11 @@ export default () => (
                      <div className="course__item white-bg mb-30 fix">
                         <div className="course__thumb w-img p-relative fix">
                            <Link href="/course-details"><a >
-                                 <img src="assets/img/course/course-all.webp" alt="img not found"/>
+                                 <img src="assets/img/course/cn2.webp" alt="img not found"/>
                            </a></Link>
-                           <div className="course__tag">
+                           {/* <div className="course__tag">
                                  <Link href="/course-details"><a className="sky-blue">Art & Design</a></Link>
-                           </div>
+                           </div> */}
                         </div>
                         <div className="course__content">
                            {/* <div className="course__meta d-flex align-items-center justify-content-between">
@@ -95,7 +95,7 @@ export default () => (
                                  <span><i className="fas fa-star"></i>4.5 (44)</span>
                               </div>
                            </div> */}
-                           <h3 className="course__title"><Link href="/course-details"><a>Fundamentals of music theory Learn new</a></Link></h3>
+                           <h3 className="course__title"><Link href="/course-details"><a>Child Safeguarding</a></Link></h3>
                            <div className="course__teacher d-flex align-items-center">
                               {/* <div className="course__teacher-thumb mr-15">
                                  <img src="assets/img/course/teacher/teacher-6.jpg" alt="img not found"/>
@@ -128,15 +128,15 @@ export default () => (
                      <div className="course__item white-bg mb-30 fix">
                         <div className="course__thumb w-img p-relative fix">
                            <Link href="/course-details"><a >
-                                 <img src="assets/img/course/course-all.webp" alt="img not found"/>
+                                 <img src="assets/img/course/cn3.webp" alt="img not found"/>
                            </a></Link>
-                           <div className="course__tag">
+                           {/* <div className="course__tag">
                                  <Link href="/course-details"><a className="green">Development</a></Link>
-                           </div>
+                           </div> */}
                         </div>
                         <div className="course__content">
                           
-                           <h3 className="course__title"><Link href="/course-details"><a>Strategy law and organization Foundation</a></Link></h3>
+                           <h3 className="course__title"><Link href="/course-details"><a>Child Sexual Exploitation Awareness</a></Link></h3>
                            <div className="course__teacher d-flex align-items-center">
                               {/* <div className="course__teacher-thumb mr-15">
                                  <img src="assets/img/course/teacher/teacher-6.jpg" alt="img not found"/>
@@ -169,15 +169,15 @@ export default () => (
                      <div className="course__item white-bg mb-30 fix">
                         <div className="course__thumb w-img p-relative fix">
                            <Link href="/course-details"><a >
-                                 <img src="assets/img/course/course-all.webp" alt="img not found"/>
+                                 <img src="assets/img/course/cn4.webp" alt="img not found"/>
                            </a></Link>
-                           <div className="course__tag">
+                           {/* <div className="course__tag">
                                  <Link href="/course-details"><a className="blue">Marketing</a></Link>
-                           </div>
+                           </div> */}
                         </div>
                         <div className="course__content">
                       
-                           <h3 className="course__title"><Link href="/course-details"><a>The business Intelligence analyst Course 2022</a></Link></h3>
+                           <h3 className="course__title"><Link href="/course-details"><a>Diabetes awareness</a></Link></h3>
                            <div className="course__teacher d-flex align-items-center">
                               {/* <div className="course__teacher-thumb mr-15">
                                  <img src="assets/img/course/teacher/teacher-6.jpg" alt="img not found"/>
@@ -210,15 +210,15 @@ export default () => (
                      <div className="course__item white-bg mb-30 fix">
                         <div className="course__thumb w-img p-relative fix">
                            <Link href="/course-details"><a >
-                                 <img src="assets/img/course/course-all.webp" alt="img not found"/>
+                                 <img src="assets/img/course/cn5.webp" alt="img not found"/>
                            </a></Link>
-                           <div className="course__tag">
+                           {/* <div className="course__tag">
                                  <Link href="/course-details"><a className="orange">Audio & Music</a></Link>
-                           </div>
+                           </div> */}
                         </div>
                         <div className="course__content">
                  
-                           <h3 className="course__title"><Link href="/course-details"><a>Build your media and Public presence</a></Link></h3>
+                           <h3 className="course__title"><Link href="/course-details"><a>Dimentia awareness</a></Link></h3>
                            <div className="course__teacher d-flex align-items-center">
                               {/* <div className="course__teacher-thumb mr-15">
                                  <img src="assets/img/course/teacher/teacher-5.jpg" alt="img not found"/>
@@ -249,15 +249,15 @@ export default () => (
                      <div className="course__item white-bg mb-30 fix">
                         <div className="course__thumb w-img p-relative fix">
                            <Link href="/course-details"><a >
-                                 <img src="assets/img/course/course-all.webp" alt="img not found"/>
+                                 <img src="assets/img/course/cn6.webp" alt="img not found"/>
                            </a></Link>
-                           <div className="course__tag">
+                           {/* <div className="course__tag">
                                  <Link href="/course-details"><a className="pink">UX Design</a></Link>
-                           </div>
+                           </div> */}
                         </div>
                         <div className="course__content">
                          
-                           <h3 className="course__title"><Link href="/course-details"><a>Creative writing through Storytelling</a></Link></h3>
+                           <h3 className="course__title"><Link href="/course-details"><a>CoSHH</a></Link></h3>
                            <div className="course__teacher d-flex align-items-center">
                               {/* <div className="course__teacher-thumb mr-15">
                                  <img src="assets/img/course/teacher/teacher-6.jpg" alt="img not found"/>
@@ -288,15 +288,15 @@ export default () => (
                      <div className="course__item white-bg mb-30 fix">
                         <div className="course__thumb w-img p-relative fix">
                            <Link href="/course-details"><a >
-                                 <img src="assets/img/course/course-all.webp" alt="img not found"/>
+                                 <img src="assets/img/course/cn7.webp" alt="img not found"/>
                            </a></Link>
-                           <div className="course__tag">
+                           {/* <div className="course__tag">
                                  <Link href="/course-details"><a className="orange">Audio & Music</a></Link>
-                           </div>
+                           </div> */}
                         </div>
                         <div className="course__content">
                  
-                           <h3 className="course__title"><Link href="/course-details"><a>Build your media and Public presence</a></Link></h3>
+                           <h3 className="course__title"><Link href="/course-details"><a>Mental Health</a></Link></h3>
                            <div className="course__teacher d-flex align-items-center">
                               {/* <div className="course__teacher-thumb mr-15">
                                  <img src="assets/img/course/teacher/teacher-5.jpg" alt="img not found"/>
@@ -327,15 +327,15 @@ export default () => (
                      <div className="course__item white-bg mb-30 fix">
                         <div className="course__thumb w-img p-relative fix">
                            <Link href="/course-details"><a >
-                                 <img src="assets/img/course/course-all.webp" alt="img not found"/>
+                                 <img src="assets/img/course/cn8.webp" alt="img not found"/>
                            </a></Link>
-                           <div className="course__tag">
+                           {/* <div className="course__tag">
                                  <Link href="/course-details"><a className="orange">Audio & Music</a></Link>
-                           </div>
+                           </div> */}
                         </div>
                         <div className="course__content">
                  
-                           <h3 className="course__title"><Link href="/course-details"><a>Build your media and Public presence</a></Link></h3>
+                           <h3 className="course__title"><Link href="/course-details"><a>Risk Assement</a></Link></h3>
                            <div className="course__teacher d-flex align-items-center">
                               {/* <div className="course__teacher-thumb mr-15">
                                  <img src="assets/img/course/teacher/teacher-5.jpg" alt="img not found"/>
@@ -366,15 +366,15 @@ export default () => (
                      <div className="course__item white-bg mb-30 fix">
                         <div className="course__thumb w-img p-relative fix">
                            <Link href="/course-details"><a >
-                                 <img src="assets/img/course/course-all.webp" alt="img not found"/>
+                                 <img src="assets/img/course/cn9.webp" alt="img not found"/>
                            </a></Link>
-                           <div className="course__tag">
+                           {/* <div className="course__tag">
                                  <Link href="/course-details"><a className="orange">Audio & Music</a></Link>
-                           </div>
+                           </div> */}
                         </div>
                         <div className="course__content">
                  
-                           <h3 className="course__title"><Link href="/course-details"><a>Build your media and Public presence</a></Link></h3>
+                           <h3 className="course__title"><Link href="/course-details"><a>Mental Capacity Act and Dols</a></Link></h3>
                            <div className="course__teacher d-flex align-items-center">
                               {/* <div className="course__teacher-thumb mr-15">
                                  <img src="assets/img/course/teacher/teacher-5.jpg" alt="img not found"/>
