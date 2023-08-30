@@ -88,11 +88,11 @@ export default () => {
                           <img src={item.image} alt="img not found" />
                         </a>
                       </Link>
-                      <div className="course__tag">
+                      {/* <div className="course__tag">
                         <Link href="/course-details">
                           <a className="orange">{item.course_tags}</a>
                         </Link>
-                      </div>
+                      </div> */}
                     </div>
                     <div className="course__content">
                       <h3 className="course__title">

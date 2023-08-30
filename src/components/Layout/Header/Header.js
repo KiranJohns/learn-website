@@ -115,20 +115,20 @@ const Header = () => {
                               </Link>
                             </li>
                             <li>
-                              <Link href="/course-list">
-                                <a>Courses List</a>
+                              <Link href="/course-grid">
+                                <a>Courses </a>
                               </Link>
                             </li>
                             <li>
-                              <Link href="/course-sidebar">
-                                <a>Courses Sidebar</a>
+                              <Link href="/course-grid">
+                                <a>Courses </a>
                               </Link>
                             </li>
-                            <li>
+                            {/* <li>
                               <Link href="/course-details">
                                 <a>Courses Details</a>
                               </Link>
-                            </li>
+                            </li> */}
                           </ul>
                         </li>
                         <li className="has-dropdown">
@@ -148,7 +148,7 @@ const Header = () => {
                             </li>
                           </ul>
                         </li>
-                        <li className="has-dropdown">
+                        {/* <li className="has-dropdown">
                           <Link href="/course-grid">
                             <a>Pages</a>
                           </Link>
@@ -204,7 +204,7 @@ const Header = () => {
                               </Link>
                             </li>
                           </ul>
-                        </li>
+                        </li> */}
                         <li>
                           <Link href="/contact">
                             <a>Contact</a>
