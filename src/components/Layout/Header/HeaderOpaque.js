@@ -6,7 +6,7 @@ import BurgerMenus from './BurgerMenus'
 import ShopingCart from './ShopingCart'
 import { useSelector } from 'react-redux'
 
-const Header = () => {
+const HeaderOpaque = () => {
   const [menuOpen, setMenuOpen] = useState(false)
   const [shopOpen, setShopOpen] = useState(false)
 
@@ -43,7 +43,7 @@ const Header = () => {
             <link rel="icon" href="assets/img/favicon.png" type="image/<generated>" sizes="<generated>"/>
          </Head>
          <header>
-            <div id="header-sticky" className="header__area header__transparent header__padding">
+            <div id="header-sticky" className="header__area  header__padding">
                <div className="container-fluid">
                   <div className="row align-items-center">
                      <div className="col-xxl-3 col-xl-3 col-lg-4 col-md-2 col-sm-4 col-6">
@@ -141,11 +141,11 @@ const Header = () => {
                                 <a>Blog</a>
                               </Link>
                             </li>
-                            {/* <li>
+                            <li>
                               <Link href="/blog-details">
                                 <a>Blog Details</a>
                               </Link>
-                            </li> */}
+                            </li>
                           </ul>
                         </li>
                         {/* <li className="has-dropdown">
@@ -303,4 +303,4 @@ const Header = () => {
   )
 }
 
-export default Header
+export default HeaderOpaque

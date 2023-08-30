@@ -42,10 +42,10 @@ const HeaderAdmin = () => {
                <div className="container-fluid">
                   <div className="row align-items-center">
                      <div className="col-xxl-3 col-xl-3 col-lg-4 col-md-2 col-sm-4 col-6">
-                        <div className="header__left d-flex">
+                        <div className="header__left d-flex ">
                            <div className="logo">
-                              <Link href="/">
-                                 <a><img src="assets/img/logo/logo.png" alt="logo" /></a>
+                              <Link href="">
+                                 <a><img className='w-100 mt-5 ml-5' src="assets/img/logo/logo7.png" alt="logo" /></a>
                               </Link>
                            </div>
                            <div className="header__category d-none d-lg-block">
@@ -83,7 +83,7 @@ const HeaderAdmin = () => {
                                     </li>
                                  </ul>
                                  <ul>
-                                    <li><h1>Admin</h1></li>
+                                    <li><h2 className=' mt-10 text-primary'>Admin</h2></li>
                                  </ul>
                               </nav>
                            </div>

@@ -54,7 +54,7 @@ const BurgerMenus = ({setMenuOpen, menuOpen}) => {
           </div>
           <div className="sidebar__content">
               <div className="logo mb-40">
-                <Link href="/"><a><img src="assets/img/logo/logo.png" alt="logo"/></a></Link>
+                <Link href="/"><a><img className='w-75 mt-5 ml-5' src="assets/img/logo/logo7.png" alt="logo"/></a></Link>
               </div>
               <div className="mm-menu">
                 <ul>
@@ -82,7 +82,7 @@ const BurgerMenus = ({setMenuOpen, menuOpen}) => {
                       <li><Link href="/blog-details"><a>Blog Details</a></Link></li>
                     </ul>
                   </li>
-                  <li className={pages ? "has-droupdown active" : "has-droupdown"}>
+                  {/* <li className={pages ? "has-droupdown active" : "has-droupdown"}>
                     <a onClick={() => { openMobileMenu('pages'); }}>Pages</a>
                     <ul className={pages ? "sub-menu active" : "sub-menu"}>
                       <li><Link href="/about"><a>About</a></Link></li>
@@ -96,7 +96,7 @@ const BurgerMenus = ({setMenuOpen, menuOpen}) => {
                       <li><Link href="/sign-up"><a>Sign Up</a></Link></li>
                       <li><Link href="/error"><a>Error</a></Link></li>
                   </ul>
-                </li>
+                </li> */}
                 <li><Link href="/contact"><a>Contact</a></Link></li>
               </ul>
             </div>
