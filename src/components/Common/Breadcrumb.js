@@ -11,10 +11,10 @@ const Breadcrumb = (props) => {
                      <div className="page__title-wrapper mt-110">
                         <h3 className="page__title">{ pageTitle ? pageTitle : 'Courses'}</h3>                         
                         <nav aria-label="breadcrumb">
-                           <ol className="breadcrumb">
+                           {/* <ol className="breadcrumb">
                               <li className="breadcrumb-item"><Link href="/" as="/"><a>Home</a></Link></li>
                               <li className="breadcrumb-item active" aria-current="page">{ pageTitle ? pageTitle : 'Courses'}</li>
-                           </ol>
+                           </ol> */}
                         </nav>
                      </div>
                   </div>
