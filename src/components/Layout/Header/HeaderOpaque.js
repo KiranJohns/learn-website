@@ -111,17 +111,25 @@ const HeaderOpaque = () => {
                           <ul className="submenu">
                             <li>
                               <Link href="/course-grid">
-                                <a>Courses</a>
+                                <a>Care Certificate</a>
                               </Link>
                             </li>
                             <li>
                               <Link href="/course-grid">
-                                <a>Courses </a>
+                                <a>Mandatory Care Courses</a>
                               </Link>
                             </li>
                             <li>
                               <Link href="/course-grid">
-                                <a>Courses </a>
+                                <a>Specialised Care Courses</a>
+                              </Link>
+                            </li> <li>
+                              <Link href="/course-grid">
+                                <a>Recovery Care Courses</a>
+                              </Link>
+                            </li> <li>
+                              <Link href="/course-grid">
+                                <a>Child Care Courses</a>
                               </Link>
                             </li>
                             {/* <li>
@@ -141,11 +149,11 @@ const HeaderOpaque = () => {
                                 <a>Blog</a>
                               </Link>
                             </li>
-                            <li>
+                            {/* <li>
                               <Link href="/blog-details">
                                 <a>Blog Details</a>
                               </Link>
-                            </li>
+                            </li> */}
                           </ul>
                         </li>
                         {/* <li className="has-dropdown">

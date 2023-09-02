@@ -111,17 +111,25 @@ const Header = () => {
                           <ul className="submenu">
                             <li>
                               <Link href="/course-grid">
-                                <a>Courses</a>
+                                <a>Care Certificate</a>
                               </Link>
                             </li>
                             <li>
                               <Link href="/course-grid">
-                                <a>Courses </a>
+                                <a>Mandatory Care Courses</a>
                               </Link>
                             </li>
                             <li>
                               <Link href="/course-grid">
-                                <a>Courses </a>
+                                <a>Specialised Care Courses</a>
+                              </Link>
+                            </li> <li>
+                              <Link href="/course-grid">
+                                <a>Recovery Care Courses</a>
+                              </Link>
+                            </li> <li>
+                              <Link href="/course-grid">
+                                <a>Child Care Courses</a>
                               </Link>
                             </li>
                             {/* <li>
