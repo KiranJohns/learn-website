@@ -1,45 +1,54 @@
 [
     {
         "id": 1,
-        "image": "assets/img/course/course-all.webp",
-        "course_tags": "Audio & Music",
-        "heading": "Build your media and Public presence",
+        "image": "assets/img/course/cn1.webp",
+        "course_tags": "",
+        "heading": "ADHD Awareness",
         "description": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form",
         "price": "6.00",
         "count": 0
     },
     {
         "id": 2,
-        "image": "assets/img/course/course-all.webp",
+        "image": "assets/img/course/cn2.webp",
         "course_tags": "Audio & Music",
-        "heading": "Build your media and Public presence",
+        "heading": "Child Safeguarding",
         "description": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form",
         "price": "6.00",
         "count": 0
     },
     {
         "id": 3,
-        "image": "assets/img/course/course-all.webp",
+        "image": "assets/img/course/cn3.webp",
         "course_tags": "Audio & Music",
-        "heading": "Build your media and Public presence",
+        "heading": "Child Sexual Exploitation Awareness",
         "description": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form",
         "price": "6.00",
         "count": 0
     },
     {
         "id": 4,
-        "image": "assets/img/course/course-all.webp",
+        "image": "assets/img/course/cn4.webp",
         "course_tags": "Audio & Music",
-        "heading": "Build your media and Public presence",
+        "heading": "Diabetes Awareness",
         "description": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form",
         "price": "6.00",
         "count": 0
     },
     {
         "id": 5,
-        "image": "assets/img/course/course-all.webp",
+        "image": "assets/img/course/cn5.webp",
         "course_tags": "Audio & Music",
-        "heading": "Build your media and Public presence",
+        "heading": "Dimentia Awareness",
+        "description": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form",
+        "price": "6.00",
+        "count": 0
+    },
+    {
+        "id": 6,
+        "image": "assets/img/course/cn6.webp",
+        "course_tags": "Audio & Music",
+        "heading": "CoSHH",
         "description": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form",
         "price": "6.00",
         "count": 0
