@@ -1,63 +1,96 @@
-import React, { useState, useEffect } from 'react'
-import Link from 'next/link'
-import { useRouter } from 'next/router'
-import Head from 'next/head'
-import BurgerMenus from './BurgerMenus'
-import ShopingCart from './ShopingCart'
-import { useSelector } from 'react-redux'
+import React, { useState, useEffect } from "react";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import Head from "next/head";
+import BurgerMenus from "./BurgerMenus";
+import ShopingCart from "./ShopingCart";
+import { useSelector } from "react-redux";
+
+import allProduct from "../../../../sampleProduct.json";
 
 const Header = () => {
-  const [menuOpen, setMenuOpen] = useState(false)
-  const [shopOpen, setShopOpen] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [shopOpen, setShopOpen] = useState(false);
 
-  const router = useRouter()
-  const [path, setPath] = useState('')
-  const { cart } = useSelector((store) => store.cart)
+  const router = useRouter();
+  const [path, setPath] = useState("");
+  const { cart } = useSelector((store) => store.cart);
+  const [searchProduct, setSearchProduct] = useState([]);
+  const [searchString, setSearchString] = useState("");
 
   useEffect(() => {
-    setPath(router.pathname)
-  }, [router])
+    setPath(router.pathname);
+  }, [router]);
 
+  function handleSearch(e) {
+    setSearchString(() => e.target?.value);
+    setTimeout(() => {
+      setSearchProduct(() => {
+        return allProduct.filter((item) => {
+          if(item.heading.startsWith(searchString)) {
+            return item
+          }
+        })
+      });
+    }, 500);
+  }
   // Sticky Menu Area start
   useEffect(() => {
-    window.addEventListener('scroll', sticky)
+    window.addEventListener("scroll", sticky);
     return () => {
-      window.removeEventListener('scroll', sticky)
-    }
-  })
+      window.removeEventListener("scroll", sticky);
+    };
+  });
 
   const sticky = (e) => {
-    const header = document.querySelector('.header__area')
-    const scrollTop = window.scrollY
+    const header = document.querySelector(".header__area");
+    const scrollTop = window.scrollY;
     scrollTop >= 1
-      ? header.classList.add('sticky')
-      : header.classList.remove('sticky')
-  }
+      ? header.classList.add("sticky")
+      : header.classList.remove("sticky");
+  };
   // Sticky Menu Area End
 
-   return (
-      <React.Fragment>
-         <Head>
-            <title>Learn for care</title>
-            <link href="https://fonts.googleapis.com/css2?family=Hind:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-            <link rel="icon" href="assets/img/favicon.png" type="image/<generated>" sizes="<generated>"/>
-         </Head>
-         <header>
-            <div id="header-sticky" className="header__area header__transparent header__padding">
-               <div className="container-fluid">
-                  <div className="row align-items-center">
-                     <div className="col-xxl-3 col-xl-3 col-lg-4 col-md-2 col-sm-4 col-6">
-                        <div className="header__left d-flex">
-                           <div className="logo ">
-                              <Link href="/">
-                                 <a><img className='w-75 mt-5 ml-5' src="assets/img/logo/logo7.png" alt="logo" /></a>
-                              </Link>
-                           </div>
-                           <div className="header__category d-none ">
-                              <nav>
-                                 <ul>
-                                    <li>
-                                       {/* <Link href="/course-grid"><a className="cat-menu d-flex align-items-center">
+  return (
+    <React.Fragment>
+      <Head>
+        <title>Learn for care</title>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Hind:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet"
+        />
+        <link
+          rel="icon"
+          href="assets/img/favicon.png"
+          type="image/<generated>"
+          sizes="<generated>"
+        />
+      </Head>
+      <header>
+        <div
+          id="header-sticky"
+          className="header__area header__transparent header__padding"
+        >
+          <div className="container-fluid">
+            <div className="row align-items-center">
+              <div className="col-xxl-3 col-xl-3 col-lg-4 col-md-2 col-sm-4 col-6">
+                <div className="header__left d-flex">
+                  <div className="logo ">
+                    <Link href="/">
+                      <a>
+                        <img
+                          className="w-75 mt-5 ml-5"
+                          src="assets/img/logo/logo7.png"
+                          alt="logo"
+                        />
+                      </a>
+                    </Link>
+                  </div>
+                  <div className="header__category d-none ">
+                    <nav>
+                      <ul>
+                        <li>
+                          {/* <Link href="/course-grid"><a className="cat-menu d-flex align-items-center">
                                           <div className="cat-dot-icon d-inline-block">
                                              <svg  viewBox="0 0 276.2 276.2">
                                                 <g>
@@ -78,27 +111,29 @@ const Header = () => {
                                           <span>Category</span>
                                        </a>
                                        </Link> */}
-                                       {/* <ul className="cat-submenu">
+                          {/* <ul className="cat-submenu">
                                           <li><Link href="/course-grid"><a>English Learning</a></Link></li>
                                           <li><Link href="/course-grid"><a>Web Development</a></Link></li>
                                           <li><Link href="/course-grid"><a>Logo Design</a></Link></li>
                                           <li><Link href="/course-grid"><a>Motion Graphics</a></Link></li>
                                           <li><Link href="/course-grid"><a>Video Edition</a></Link></li>
                                        </ul> */}
-                                    </li>
-                                 </ul>
-                              </nav>
-                           </div>
-                        </div>
-                     </div>
-                     <div className="col-xxl-9 col-xl-9 col-lg-8 col-md-10 col-sm-8 col-6">
-                        <div className="header__right d-flex justify-content-end align-items-center">
-                           <div className="main-menu d-none d-xl-block">
-                              <nav id="mobile-menu">
-                                 <ul>
-                                    <li className="">
-                                       <Link href="/"><a>Home</a></Link>
-                                       {/* <ul className="submenu">
+                        </li>
+                      </ul>
+                    </nav>
+                  </div>
+                </div>
+              </div>
+              <div className="col-xxl-9 col-xl-9 col-lg-8 col-md-10 col-sm-8 col-6">
+                <div className="header__right d-flex justify-content-end align-items-center">
+                  <div className="main-menu d-none d-xl-block">
+                    <nav id="mobile-menu">
+                      <ul>
+                        <li className="">
+                          <Link href="/">
+                            <a>Home</a>
+                          </Link>
+                          {/* <ul className="submenu">
                                           <li><Link href="/"><a>Home Style 1</a></Link></li>
                                           <li><Link href="/home-2"><a>Home Style 2</a></Link></li>
                                           <li><Link href="/home-3"><a>Home Style 3</a></Link></li>
@@ -215,7 +250,12 @@ const Header = () => {
                   </div>
                   <div className="header__search p-relative ml-50 d-none d-md-block">
                     <form action="#">
-                      <input type="text" placeholder="Search..." />
+                      <input
+                        type="text"
+                        placeholder="Search..."
+                        value={searchString}
+                        onChange={handleSearch}
+                      />
                       <button type="submit">
                         <i className="fas fa-search"></i>
                       </button>
@@ -224,7 +264,7 @@ const Header = () => {
                       <span
                         className="cart-toggle-btn"
                         onClick={() => {
-                          setShopOpen(!shopOpen)
+                          setShopOpen(!shopOpen);
                         }}
                       >
                         <div className="header__cart-icon">
@@ -242,12 +282,19 @@ const Header = () => {
                         </span>
                       </span>
                     </div>
+                    {searchProduct && (
+                      <div className="search-suggestions position-absolute">
+                        <ul class="list-group">
+                          {searchProduct?.map(item => <li class="list-group-item">{item.heading}</li>)}
+                        </ul>
+                      </div>
+                    )}
                   </div>
                   <div className="header__cart header__cart--responsive">
                     <span
                       className="cart-toggle-btn"
                       onClick={() => {
-                        setShopOpen(!shopOpen)
+                        setShopOpen(!shopOpen);
                       }}
                     >
                       <div className="header__cart-icon">
@@ -273,7 +320,7 @@ const Header = () => {
                       className="sidebar-toggle-btn ml-30"
                       id="sidebar-toggle"
                       onClick={() => {
-                        setMenuOpen(!menuOpen)
+                        setMenuOpen(!menuOpen);
                       }}
                     >
                       <span className="line"></span>
@@ -290,17 +337,17 @@ const Header = () => {
         <BurgerMenus menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
         <div
           onClick={() => setMenuOpen(false)}
-          className={menuOpen ? 'body-overlay show' : 'body-overlay'}
+          className={menuOpen ? "body-overlay show" : "body-overlay"}
         ></div>
 
         <ShopingCart shopOpen={shopOpen} setShopOpen={setShopOpen} />
         <div
           onClick={() => setShopOpen(false)}
-          className={shopOpen ? 'body-overlay show' : 'body-overlay'}
+          className={shopOpen ? "body-overlay show" : "body-overlay"}
         ></div>
       </header>
     </React.Fragment>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;

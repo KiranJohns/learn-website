@@ -76,7 +76,7 @@ const cartReducer = function (state = initialUserState, action) {
       }
       state.cart = state.cart.filter((item) => {
         if (item.id == action.payload) {
-          state.totalPrice -= Number(item.price) * Number(item.count)
+          state.totalPrice -= Number(item.price) * Number(item.count);
           return;
         }
         return item;
