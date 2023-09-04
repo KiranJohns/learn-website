@@ -27,7 +27,7 @@ const Header = () => {
     setTimeout(() => {
       setSearchProduct(() => {
         return allProduct.filter((item) => {
-          if(item.heading.startsWith(searchString)) {
+          if(item.heading.toLowerCase().startsWith(searchString)) {
             return item
           }
         })
