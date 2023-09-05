@@ -292,10 +292,10 @@ const Header = () => {
                       </span>
                     </div>
                     {searchProduct && (
-                      <div className="search-suggestions position-absolute">
-                        <ul class="list-group">
+                      <div className="search-suggestions position-absolute w-100">
+                        <ul class="list-group w-100">
                           {searchProduct?.map((item) => (
-                            <li class="list-group-item">{item.heading}</li>
+                            <li class="list-group-item w-100">{item.heading}</li>
                           ))}
                         </ul>
                       </div>
