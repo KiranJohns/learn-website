@@ -23,16 +23,17 @@ const Header = () => {
   }, [router]);
 
   function handleSearch(e) {
+    e.persist();
     setSearchString(() => e.target?.value);
-    setTimeout(() => {
-      setSearchProduct(() => {
-        return allProduct.filter((item) => {
-          if(item.heading.toLowerCase().startsWith(searchString)) {
-            return item
-          }
-        })
+    setSearchProduct(() => {
+      let product = allProduct.filter((item) => {
+        if (item.heading.toLowerCase().startsWith(e.target?.value)) {
+          return item;
+        }
       });
-    }, 500);
+      if(e.target?.value == '') return []
+      return product;
+    });
   }
   // Sticky Menu Area start
   useEffect(() => {
@@ -293,7 +294,9 @@ const Header = () => {
                     {searchProduct && (
                       <div className="search-suggestions position-absolute">
                         <ul class="list-group">
-                          {searchProduct?.map(item => <li class="list-group-item">{item.heading}</li>)}
+                          {searchProduct?.map((item) => (
+                            <li class="list-group-item">{item.heading}</li>
+                          ))}
                         </ul>
                       </div>
                     )}
