@@ -151,22 +151,20 @@ const Header = () => {
                               </Link>
                             </li>
                             <li>
-                              <Link href="/course-grid">
+                              <Link href="/course-mandatory">
                                 <a>Mandatory Care Courses</a>
                               </Link>
                             </li>
                             <li>
-                              <Link href="/course-grid">
+                              <Link href="/course-specialised">
                                 <a>Specialised Care Courses</a>
                               </Link>
-                            </li>{" "}
-                            <li>
-                              <Link href="/course-grid">
+                            </li> <li>
+                              <Link href="/course-recovery">
                                 <a>Recovery Care Courses</a>
                               </Link>
-                            </li>{" "}
-                            <li>
-                              <Link href="/course-grid">
+                            </li> <li>
+                              <Link href="/course-child">
                                 <a>Child Care Courses</a>
                               </Link>
                             </li>
