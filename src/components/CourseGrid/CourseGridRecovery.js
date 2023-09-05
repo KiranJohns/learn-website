@@ -4,14 +4,14 @@ import CourseGridTab from '../Elements/Tab/CourseGridTab';
 import Cta from '../Home/CtaSection';
 
 
-class CourseGridMain extends Component {
+class CourseGridRecovery extends Component {
 
     render() {
 
         return (
             <main>
 	            {/* breadcrumb-start */}
-				<Breadcrumb pageTitle="Care Courses"/>
+				<Breadcrumb pageTitle="Recovery Care Courses"/>
 				{/* breadcrumb-end */}
 
                 {/* course tab-start */}
@@ -26,4 +26,4 @@ class CourseGridMain extends Component {
     }
 }
 
-export default CourseGridMain;
+export default CourseGridRecovery;

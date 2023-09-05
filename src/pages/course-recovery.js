@@ -1,11 +1,14 @@
 import React from 'react';
-import HeaderThree from '../components/Layout/Header/HeaderStyleThree';
-import FooterThree from '../components/Layout/Footer/FooterStyleThree';
-import BlogMain from '../components/Blog/BlogMain';
-import HeaderOpaque from '../components/Layout/Header/HeaderOpaque';
 import Footer from '../components/Layout/Footer/Footer';
 
-class Blog extends React.Component {
+import HeaderThree from '../components/Layout/Header/HeaderStyleThree';
+import Header from '../components/Layout/Header/Header';
+import HeaderOpaque from '../components/Layout/Header/HeaderOpaque';
+
+import CourseGridRecovery from '../components/CourseGrid/CourseGridRecovery';
+
+
+class CourseRecover extends React.Component {
 
     static getInitialProps({store}) {}
 
@@ -17,7 +20,7 @@ class Blog extends React.Component {
         return (
             <React.Fragment>
             <HeaderOpaque />
-            <BlogMain />
+            <CourseGridRecovery />
             <Footer />
             </React.Fragment>
         );
@@ -25,5 +28,4 @@ class Blog extends React.Component {
 }
 
 
-export default Blog;
-
+export default CourseRecover;
