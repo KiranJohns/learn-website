@@ -11,7 +11,7 @@ class HowItWorks extends Component{
             
             const opts = {
                 height: "520",
-                width: "1000",
+                width: "100%",
                 playerVars: {
                   autoplay: 0,
                 },
@@ -20,7 +20,7 @@ class HowItWorks extends Component{
         return(
             <main>
           <Breadcrumb pageTitle="How it Works" />
-             <div className="container mb-5">
+             <div className="container mt-25 mb-5">
               <div className="row">
                 <div className="col-xxl-12 col-xl-12 col-lg-12">
                 <h3 className='mt-2'>For Company / Managers</h3>
