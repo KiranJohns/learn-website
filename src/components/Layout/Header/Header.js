@@ -185,6 +185,9 @@ const Header = () => {
                                 <a>Blog</a>
                               </Link>
                             </li>
+
+                          
+
                             {/* <li>
                               <Link href="/blog-details">
                                 <a>Blog Details</a>
@@ -249,6 +252,11 @@ const Header = () => {
                             </li>
                           </ul>
                         </li> */}
+                          <li>
+                              <Link href="/how-it">
+                                <a>How it Works</a>
+                              </Link>
+                            </li>
                         <li>
                           <Link href="/contact">
                             <a>Contact</a>
