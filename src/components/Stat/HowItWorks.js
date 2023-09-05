@@ -25,7 +25,7 @@ class HowItWorks extends Component{
                 <div className="col-xxl-12 col-xl-12 col-lg-12">
                 <h3 className='mt-2'>For Company / Managers</h3>
                 
-            <YouTube videoId="sTnm5jvjgjM" 
+            <YouTube videoId="7PIji8OubXU?si=H7CV4YYW9UPF1Jjz" 
              opts={opts} onReady={this._onReady} />
     
             </div>
