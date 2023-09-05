@@ -14,7 +14,7 @@ const Footer = () => {
                            <div className="footer__widget mb-50">
                               <div className="footer__widget-head mb-22">
                                  <div className="footer__logo">
-                                    <Link href="/"><a><img className='w-50' src="assets/img/logo/logo7.png" alt="img not found"/></a></Link>
+                                    <Link href="/"><a><img className='w-50' src="/assets/img/logo/logo7.png" alt="img not found"/></a></Link>
                                  </div>
                               </div>
                               <div className="footer__widget-body footer__widget-body-2">
@@ -34,17 +34,17 @@ const Footer = () => {
                         <div className="col-xxl-4 offset-xxl-1 col-xl-4 offset-xl-1 col-lg-4 offset-lg-0 col-md-2 offset-md-1 col-sm-3 offset-sm-1">
                            <div className="footer__widget mb-50">
                               <div className="footer__widget-head mb-22">
-                                 <h3 className="footer__widget-title footer__widget-title-2">Company</h3>
+                                 <h3 className="footer__widget-title footer__widget-title-2">Links</h3>
                               </div>
                               <div className="footer__widget-body">
                                  <div className="footer__link footer__link-2">
                                     <ul>
                                        <li><Link href="/about"><a>About</a></Link></li>
                                        <li><Link href="/course-grid"><a>Courses</a></Link></li>
-                                       <li><Link href="/event-details"><a>Events</a></Link></li>
-                                       <li><Link href="/instructor"><a>Instructor</a></Link></li>
-                                       <li><Link href="/instructor"><a>Career</a></Link></li>
-                                       <li><Link href="/instructor"><a>Become a Teacher</a></Link></li>
+                                       
+                                       <li><Link href="/"><a>How it Works</a></Link></li>
+                                       <li><Link href="/blogs"><a>Blogs</a></Link></li>
+                                       <li><Link href="/"><a>FAQ</a></Link></li>
                                        <li><Link href="/contact"><a>Contact</a></Link></li>
                                     </ul>
                                  </div>

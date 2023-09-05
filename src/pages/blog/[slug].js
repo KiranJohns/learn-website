@@ -1,11 +1,11 @@
 import React from 'react';
-import HeaderThree from '../components/Layout/Header/HeaderStyleThree';
-import BlogDetailsMain from '../components/BlogDetails/BlogDetailsMain';
-import FooterThree from '../components/Layout/Footer/FooterStyleThree';
-import Footer from '../components/Layout/Footer/Footer';
-import HeaderOpaque from '../components/Layout/Header/HeaderOpaque';
 
-class BlogDetails extends React.Component {
+import BlogDetailsMain from '../../components/BlogDetails/BlogDetailsMain';
+
+import Footer from '../../components/Layout/Footer/Footer';
+import HeaderOpaque from '../../components/Layout/Header/HeaderOpaque';
+
+class BlogDetailss extends React.Component {
 
     static getInitialProps({ store }) { }
 
@@ -29,5 +29,4 @@ class BlogDetails extends React.Component {
 }
 
 
-export default BlogDetails;
-
+export default BlogDetailss

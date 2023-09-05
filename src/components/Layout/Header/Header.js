@@ -81,7 +81,7 @@ const Header = () => {
                       <a>
                         <img
                           className="w-75 mt-5 ml-5"
-                          src="assets/img/logo/logo7.png"
+                          src="/assets/img/logo/logo7.png"
                           alt="logo"
                         />
                       </a>
