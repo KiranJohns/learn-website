@@ -23,20 +23,20 @@ class BlogMain extends Component {
 	            <section className="blog__area pt-120 pb-120">
                     <div className="container">
                         <div className="row">
-                            <div className="col-xxl-8 col-xl-8 col-lg-8">
+                            <div className="col-xxl-12 col-xl-12 col-lg-12">
                             
                                 <div className='row'>
                                     {posts && posts.map((post, i) => (
-                                    <div key={i} className="col-xxl-6 col-xl-6 col-lg-6 col-md-6">
+                                    <div key={i} className="col-xxl-4 col-xl-4 col-lg-4 col-md-4">
                                         <ArticleLayout post={post} />
                                     </div>
                                     ))}
                                 </div>
 
-                                <PaginationSection />
+                                {/* <PaginationSection /> */}
 	                        </div>
 
-	                        <div className="col-xxl-4 col-xl-4 col-lg-4">
+	                        {/* <div className="col-xxl-4 col-xl-4 col-lg-4">
                                 <div className="blog__sidebar pl-70">
 
                                     <Search />
@@ -49,7 +49,7 @@ class BlogMain extends Component {
 
                                     <SidebarBanner />
                                 </div>
-                            </div>
+                            </div> */}
 	                    </div>
 	                </div>
 	            </section>
