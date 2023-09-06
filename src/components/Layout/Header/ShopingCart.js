@@ -56,6 +56,7 @@ const ShopingCart = ({ setShopOpen, shopOpen }) => {
                         <div className="cartmini__thumb">
                           <a href="#">
                             <img src={item.image} alt="img not found" />
+                            
                           </a>
                         </div>
                         <div className="cartmini__content">

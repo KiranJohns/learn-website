@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Link from 'next/link';
 import ReactPlayer from "react-player";
-import Modal from "react-responsive-modal";
+
 import Breadcrumb from '../Common/Breadcrumb';
 import YouTube from "react-youtube";
 
