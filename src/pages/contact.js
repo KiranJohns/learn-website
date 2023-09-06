@@ -3,6 +3,7 @@ import ContactMain from '../components/Contact/ContactMain';
 import HeaderThree from '../components/Layout/Header/HeaderStyleThree';
 import FooterThree from '../components/Layout/Footer/FooterStyleThree';
 import HeaderOpaque from '../components/Layout/Header/HeaderOpaque';
+import Footer from '../components/Layout/Footer/Footer';
 
 class Contact extends React.Component {
 
@@ -17,7 +18,7 @@ class Contact extends React.Component {
             <React.Fragment>
             <HeaderOpaque />
             <ContactMain />
-            <FooterThree />
+            <Footer />
             </React.Fragment>
         );
     }
