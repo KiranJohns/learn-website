@@ -7,8 +7,7 @@ import ShopingCart from './ShopingCart';
 
 const HeaderAdmin = () => {
 
-   const [menuOpen, setMenuOpen] = useState(false)
-   const [shopOpen, setShopOpen] = useState(false)
+
 
    const router = useRouter()
    const [path, setPath] = useState("")

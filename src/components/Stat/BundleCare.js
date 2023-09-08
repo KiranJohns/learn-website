@@ -25,7 +25,7 @@ class BundleCare extends Component {
            </div>  
            <div className="col-xxl-6  col-xl-6 col-md-6 col-sm-6 ">
             <div className='d-flex justify-content-center p-2'>
-            <img src="/assets/img/course/bundle/certificate1.png" height={450}  alt="image not found" />
+            <img src="/assets/img/course/bundle/certificate1.png" height={450}  alt="image " />
             </div> 
            </div>  
 

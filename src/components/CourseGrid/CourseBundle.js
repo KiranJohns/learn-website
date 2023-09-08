@@ -13,13 +13,15 @@ class CourseBundle extends Component {
 	            {/* breadcrumb-start */}
 				<Breadcrumb pageTitle="Care Course Bundle"/>
 				{/* breadcrumb-end */}
+                
                  <BundleCare/>
                 {/* course tab-start */}
 				<CourseGridTab />
 				{/* course tab-end */}
-
+              
                 {/* cta-start */}
 				<Cta />
+                
 				{/* cta-end */}
         	</main>
         );

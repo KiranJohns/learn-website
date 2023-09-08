@@ -140,21 +140,22 @@ const HeaderOpaque = () => {
                           </ul>
                         </li>
                         <li className="has-dropdown">
-                          <Link href="/blog">
-                            <a>Blog</a>
+                          <Link href="/">
+                            <a>Bundles</a>
                           </Link>
                           <ul className="submenu">
                             <li>
-                              <Link href="/blog">
-                                <a>Blog</a>
+                              <Link href="/bundle/care-bundle/">
+                                <a>Care Course Bundle</a>
                               </Link>
                             </li>
-                            {/* <li>
-                              <Link href="/blog-details">
-                                <a>Blog Details</a>
-                              </Link>
-                            </li> */}
                           </ul>
+                        </li>
+                        <li className="">
+                          <Link href="/blog">
+                            <a>Blog</a>
+                          </Link>
+                         
                         </li>
                         {/* <li className="has-dropdown">
                           <Link href="/course-grid">
@@ -213,11 +214,11 @@ const HeaderOpaque = () => {
                             </li>
                           </ul>
                         </li> */}
-                        <li>
-                          <Link href="/contact">
-                            <a>Contact</a>
-                          </Link>
-                        </li>
+                         <li>
+                              <Link href="/how-it">
+                                <a>How it Works</a>
+                              </Link>
+                            </li>
                       </ul>
                     </nav>
                   </div>
