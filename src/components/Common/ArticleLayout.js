@@ -7,7 +7,7 @@ const ArticleLayout = ({ post }) => {
         <div className="blog__wrapper">
             <div className="blog__item white-bg mb-30 transition-3 fix">
                 <div className="blog__thumb w-img fix">
-                    <Link href={post.url}>
+                    <Link href={`/blog/${post.id}`}>
                         <img src={'/'+ post.image} alt="blog image" />
                     </Link>
                 </div>
@@ -18,7 +18,7 @@ const ArticleLayout = ({ post }) => {
                     </Link>
                 </div> */}
                 <h3 className="blog__title">
-                    <Link href={post.url}>
+                    <Link href={`/blog/${post.id}`}>
                         {post.title}
                     </Link>
                 </h3>
