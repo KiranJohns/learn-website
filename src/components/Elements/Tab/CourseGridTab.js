@@ -94,7 +94,7 @@ return(
                   </div>
                   <div className="course__content">
                     <h3 className="course__title">
-                      <Link href="/course-details">
+                      <Link href={`/course/${item.id}`}>
                         <a>{item.heading}</a>
                       </Link>
                     </h3>
@@ -103,7 +103,7 @@ return(
                                <img src="assets/img/course/teacher/teacher-5.jpg" alt="img not found"/>
                             </div> */}
                       <h6>
-                        <Link href="/course-details">
+                        <Link href={`/course/${item.id}`}>
                           <a>{item.description}</a>
                         </Link>
                       </h6>
