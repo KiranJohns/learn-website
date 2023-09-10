@@ -103,7 +103,7 @@ return(
                                <img src="assets/img/course/teacher/teacher-5.jpg" alt="img not found"/>
                             </div> */}
                       <h6>
-                        <Link href="/instructor-details">
+                        <Link href="/course-details">
                           <a>{item.description}</a>
                         </Link>
                       </h6>

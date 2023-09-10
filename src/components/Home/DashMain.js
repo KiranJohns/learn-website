@@ -29,7 +29,7 @@ class DashMain extends Component {
                 </div>
                 <i className='bi bi-cart-plus p-3'></i>
                </div>
-
+      
                
             </div> <div className='col-md-3 '>
                <div className='p-3 bg-white border border-primary shadow-sm d-flex justify-content-around align-items-center rounded'>
