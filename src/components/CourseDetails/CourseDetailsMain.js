@@ -20,9 +20,9 @@ class CourseDetailsMain extends Component {
                 {/* course tab-start */}
 				<section className="page__title-area pt-120 pb-90">
                     <div className="page__title-shape">
-                        <img className="page-title-shape-5 d-none d-sm-block" src="assets/img/page-title/page-title-shape-1.png" alt="img not found"/>
-                        <img className="page-title-shape-6" src="assets/img/page-title/page-title-shape-6.png" alt="img not found"/>
-                        <img className="page-title-shape-7" src="assets/img/page-title/page-title-shape-4.png" alt="img not found"/>
+                        <img className="page-title-shape-5 d-none d-sm-block" src="/assets/img/page-title/page-title-shape-1.png" alt="img not found"/>
+                        <img className="page-title-shape-6" src="/assets/img/page-title/page-title-shape-6.png" alt="img not found"/>
+                        <img className="page-title-shape-7" src="/assets/img/page-title/page-title-shape-4.png" alt="img not found"/>
                     </div>
                     <div className="container">
                         <div className="row">
@@ -70,7 +70,7 @@ class CourseDetailsMain extends Component {
                                     </div>
                                     </div> */}
                                     <div className="course__img w-img mb-30">
-                                        <img src="assets/img/course/cn1.webp" alt="img not found"/>
+                                        <img src="/assets/img/course/cn1.webp" alt="img not found"/>
                                     </div>
                                     <Tabs>
                                         <div className="course__tab-2 mb-45">

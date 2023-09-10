@@ -60,7 +60,7 @@ class CourseSidebar extends Component {
           <div className="course__shape">
             <img
               className="course-dot"
-              src="assets/img/course/course-dot.png"
+              src="/assets/img/course/course-dot.png"
               alt="img not found"
             />
           </div>
@@ -68,7 +68,7 @@ class CourseSidebar extends Component {
             <div className="course__video">
               <div className="course__video-thumb w-img mb-25">
                 <img
-                  src="assets/img/course/video/course-video.jpg"
+                  src="/assets/img/course/video/course-video.jpg"
                   alt="img not found"
                 />
                 <div className="course__video-play">
@@ -147,7 +147,7 @@ class CourseSidebar extends Component {
                 <h3>Payment:</h3>
                 <a href="#">
                   <img
-                    src="assets/img/course/payment/payment-1.png"
+                    src="/assets/img/course/payment/payment-1.png"
                     alt="img not found"
                   />
                 </a>
@@ -171,7 +171,7 @@ class CourseSidebar extends Component {
                       <Link href="/course-grid">
                         <a>
                           <img
-                            src="assets/img/course/sm/course-sm-1.jpg"
+                            src="/assets/img/course/sm/course-sm-1.jpg"
                             alt="img not found"
                           />
                         </a>
@@ -229,7 +229,7 @@ class CourseSidebar extends Component {
                       <Link href="/course-grid">
                         <a>
                           <img
-                            src="assets/img/course/sm/course-sm-2.jpg"
+                            src="/assets/img/course/sm/course-sm-2.jpg"
                             alt="img not found"
                           />
                         </a>
@@ -275,7 +275,7 @@ class CourseSidebar extends Component {
                           <a>Data Science</a>
                         </Link>
                       </h5>
-                      <div className="course__sm-price">
+                      <div className="/course__sm-price">
                         <span>$72.00</span>
                       </div>
                     </div>
