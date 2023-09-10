@@ -11,7 +11,8 @@ class CourseGridMandatory extends Component {
         return (
             <main>
 	            {/* breadcrumb-start */}
-				<Breadcrumb pageTitle="Mandatory Care Courses"/>
+				<Breadcrumb pageTitle="Mandatory Care Courses" />
+				{/* <Breadcrumb pageTitle="Mandatory Care Courses" type=""/> */}
 				{/* breadcrumb-end */}
 
                 {/* course tab-start */}
