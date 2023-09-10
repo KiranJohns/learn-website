@@ -62,7 +62,7 @@ const Header = () => {
         />
         <link
           rel="icon"
-          href="assets/img/favicon.png"
+          href="/assets/img/favicon.png"
           type="image/<generated>"
           sizes="<generated>"
         />
