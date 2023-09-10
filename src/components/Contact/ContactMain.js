@@ -19,7 +19,7 @@ class ContactMain extends Component {
 				{/* Getintouch-end */}
 
                 {/* Getintouch-start */}
-				<Knowledge />
+				{/* <Knowledge /> */}
 				{/* Getintouch-end */}
 
         	</main>

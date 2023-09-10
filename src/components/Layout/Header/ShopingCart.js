@@ -56,6 +56,7 @@ const ShopingCart = ({ setShopOpen, shopOpen }) => {
                         <div className="cartmini__thumb">
                           <a href="#">
                             <img src={item.image} alt="img not found" />
+                            
                           </a>
                         </div>
                         <div className="cartmini__content">
@@ -79,7 +80,7 @@ const ShopingCart = ({ setShopOpen, shopOpen }) => {
                           </div>
                           <div className="product__sm-price-wrapper">
                             <span className="product__sm-price">
-                              ${item.price}
+                            £{item.price}
                             </span>
                           </div>
                         </div>
@@ -94,7 +95,7 @@ const ShopingCart = ({ setShopOpen, shopOpen }) => {
             <div className="cartmini__checkout">
               <div className="cartmini__checkout-title mb-30">
                 <h4>Subtotal:</h4>
-                <span>${totalPrice}</span>
+                <span>£{totalPrice}</span>
               </div>
               <div className="cartmini__checkout-btn">
                 <Link href="/cart">

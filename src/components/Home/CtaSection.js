@@ -11,7 +11,7 @@ class Cta extends Component {
                 <div className="container">
                     <div className="cta__inner blue-bg fix">
                         <div className="cta__shape">
-                            <img src="assets/img/cta/cta-shape.png" alt="img not found"/>
+                            <img src="/assets/img/cta/cta-shape.png" alt="img not found"/>
                         </div>
                         <div className="row align-items-center">
                             <div className="col-xxl-7 col-xl-7 col-lg-8 col-md-8">
