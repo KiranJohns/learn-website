@@ -17,6 +17,7 @@ import Tags from '../Blog/TagsSection';
 import SidebarBanner from '../Blog/SidebarBannerSection';
 import Breadcrumb from '../Common/Breadcrumb';
 
+
 class BlogDetailsMain extends Component {
 
     static async getInitialProps({ query }) {
