@@ -18,7 +18,7 @@ class CompanyDashboard extends React.Component{
                  <HeaderDashboard/>
                  <div className="container-fluid bg-primary"> 
                   <div className="row">
-                   <div className="col-4 col-md-2 bg-white vh-100">
+                   <div className="col-4 col-md-3 bg-white vh-100">
                    <DashboardBar/>
                    </div>
                 <div className="col-8">

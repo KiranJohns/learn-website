@@ -10,7 +10,7 @@ const HeaderDashboard = () => {
     <Head>
        <title>Learn for care</title>
        <link href="https://fonts.googleapis.com/css2?family=Hind:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-       <link rel="icon" href="assets/img/favicon.png" type="image/<generated>" sizes="<generated>"/>
+       <link rel="icon" href="/assets/img/favicon.png" type="image/<generated>" sizes="<generated>"/>
     </Head>
     <nav className="navbar navbar-expand-lg navbar-light bg-">
   <div className="container-fluid">
@@ -27,7 +27,7 @@ const HeaderDashboard = () => {
         <button className="btn btn-outline-success" type="submit">Search</button>
       </form> */}
       <div className="d-flex navheight">
-        <img src="/assets/img/logo/logo7.png" alt="" />
+        <img className="" src="/assets/img/logo/logo7.png" alt="" />
       </div>
     </div>
   </div>

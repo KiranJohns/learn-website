@@ -35,7 +35,7 @@ const HeaderAdmin = () => {
          <Head>
             <title>Learn for care</title>
             <link href="https://fonts.googleapis.com/css2?family=Hind:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-            <link rel="icon" href="assets/img/favicon.png" type="image/<generated>" sizes="<generated>"/>
+            <link rel="icon" href="/assets/img/favicon.png" type="image/<generated>" sizes="<generated>"/>
          </Head>
          <header>
             <div id="header-sticky" className="header__area header__transparent header__padding">
@@ -45,7 +45,7 @@ const HeaderAdmin = () => {
                         <div className="header__left d-flex ">
                            <div className="logo">
                               <Link href="">
-                                 <a><img className='w-100 mt-5 ml-5' src="assets/img/logo/logo7.png" alt="logo" /></a>
+                                 <a><img className='w-100 mt-5 ml-5' src="/assets/img/logo/logo7.png" alt="logo" /></a>
                               </Link>
                            </div>
                            <div className="header__category d-none d-lg-block">

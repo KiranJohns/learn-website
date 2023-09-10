@@ -1,13 +1,12 @@
 import React from 'react';
-import HeaderThree from '../components/Layout/Header/HeaderStyleThree';
-import BlogDetailsMain from '../components/BlogDetails/BlogDetailsMain';
-import FooterThree from '../components/Layout/Footer/FooterStyleThree';
+import ErrorMain from '../components/Error/ErrorMain';
 import Footer from '../components/Layout/Footer/Footer';
-import HeaderOpaque from '../components/Layout/Header/HeaderOpaque';
+import Header from '../components/Layout/Header/Header';
 
-class BlogDetails extends React.Component {
 
-    static getInitialProps({ store }) { }
+class Error extends React.Component {
+
+    static getInitialProps({store}) {}
 
     constructor(props) {
         super(props);
@@ -16,18 +15,13 @@ class BlogDetails extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <HeaderOpaque />
-                <main>
-                    {/* Blog Main */}
-                    <BlogDetailsMain />
-                    {/* Blog Main End */}
-                </main>
-                <Footer/>
+            <Header />
+            <ErrorMain />
+            <Footer />
             </React.Fragment>
         );
     }
 }
 
 
-export default BlogDetails;
-
+export default Error;
