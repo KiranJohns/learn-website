@@ -1,39 +1,41 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import Link from "next/link";
 import ReactPlayer from "react-player";
 import Modal from "react-responsive-modal";
+import { useRouter } from "next/router";
+import products from '../../../sampleProduct.json'
+import store from "../../redux/store";
 
-class CourseSidebar extends Component {
-  state = {
-    open: false,
+function CourseSidebar () {
+  const {
+    query: { slug },
+  } = useRouter();
+
+  const [open, setOpen] = useState(false)
+  const [product, setProduct] = useState(() => {
+    return products.find((item) => item.id == slug)
+  })
+
+  const onOpenModal = () => {
+    setOpen((open) => true)
   };
 
-  onOpenModal = () => {
-    this.setState((prevState) => ({
-      open: !prevState.open,
-    }));
+  const onCloseModal = () => {
+    setOpen((open) => false)
   };
 
-  onCloseModal = () => {
-    this.setState((prevState) => ({
-      open: !prevState.open,
-    }));
-  };
-
-  addToCart(id) {
-    const item = sampleProducts.find((item) => item.id === id)
+  function addToCart(id) {
     store.dispatch({
-      type: 'ADD_TO_CART',
-      payload: item,
-    })
+      type: "ADD_TO_CART",
+      payload: product,
+    });
   }
 
-  render() {
     return (
       <React.Fragment>
         <Modal
-          open={this.state.open}
-          onClose={this.onCloseModal}
+          open={open}
+          onClose={onCloseModal}
           styles={{
             modal: {
               maxWidth: "unset",
@@ -50,7 +52,7 @@ class CourseSidebar extends Component {
           center
         >
           <ReactPlayer
-            url="https://youtu.be/es4x5R-rV9s"
+            url=""
             width="100%"
             height="calc(100vh - 100px)"
           />
@@ -68,11 +70,11 @@ class CourseSidebar extends Component {
             <div className="course__video">
               <div className="course__video-thumb w-img mb-25">
                 <img
-                  src="/assets/img/course/video/course-video.jpg"
+                  src={product.image}
                   alt="img not found"
                 />
                 <div className="course__video-play">
-                  <a href="#!" className="play-btn" onClick={this.onOpenModal}>
+                  <a href="#!" className="play-btn" onClick={onOpenModal}>
                     {" "}
                     <i className="fas fa-play"></i>{" "}
                   </a>
@@ -153,11 +155,10 @@ class CourseSidebar extends Component {
                 </a>
               </div>
               <div className="course__enroll-btn">
-                <Link href="/course-grid">
-                  <a className="e-btn e-btn-7 w-100">
-                    Enroll <i className="fas fa-arrow-right"></i>
-                  </a>
-                </Link>
+                <span role="button" onClick={() => addToCart()} className="pe-auto e-btn e-btn-7 w-100">
+                  add to cart
+                  <i className="fas fa-arrow-right"></i>
+                </span>
               </div>
             </div>
           </div>
@@ -345,7 +346,6 @@ class CourseSidebar extends Component {
         </div>
       </React.Fragment>
     );
-  }
 }
 
 export default CourseSidebar;
