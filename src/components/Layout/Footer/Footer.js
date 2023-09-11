@@ -43,7 +43,7 @@ const Footer = () => {
                                        <li><Link href="/course-grid"><a>Courses</a></Link></li>
                                        
                                        <li><Link href="/"><a>How it Works</a></Link></li>
-                                       <li><Link href="/blogs"><a>Blogs</a></Link></li>
+                                       <li><Link href="/blog"><a>Blogs</a></Link></li>
                                        <li><Link href="/"><a>FAQ</a></Link></li>
                                        <li><Link href="/contact"><a>Contact</a></Link></li>
                                     </ul>
@@ -64,9 +64,9 @@ const Footer = () => {
                                        <li><Link href="/instructor"><a>Partners</a></Link></li>
                                        <li><Link href="/blog"><a>News & Blogs</a></Link></li>
                                        <li><Link href="/about"><a>FAQs</a></Link></li> */}
-                                       <li><i className="fas fa-map-marker"></i> 221b Baker Street, London, UK</li>
-                                       <li><i className="fas fa-phone "></i> +44-2451545656</li>
-                                       <li><i className="fas fa-envelope "></i> learnforcar@support.com</li>
+                                       <li><i className="fas fa-map-marker"></i> Suite 14, Neals Corner, 2 bath road, Hounslow TW3 3HJ</li>
+                                       <li><i className="fas fa-phone "></i> +44-02031483007</li>
+                                       <li><i className="fas fa-envelope "></i> support@learnforcare.com</li>
                                     </ul>
                                  </div>
                               </div>

@@ -22,13 +22,21 @@ class HowItWorks extends Component{
           <Breadcrumb pageTitle="How it Works" />
              <div className="container mt-25 mb-5">
               <div className="row">
-                <div className="col-xxl-12 col-xl-12 col-lg-12">
-                <h3 className='mt-2'>For Company / Managers</h3>
-                
+
+                <div className="col-xxl-12 col-xl-12 col-lg-12 howitspace">
+                <h3 className='mt-2'>For Company / Managers</h3>            
             <YouTube videoId="7PIji8OubXU?si=H7CV4YYW9UPF1Jjz" 
              opts={opts} onReady={this._onReady} />
-    
             </div>
+
+            <div className="col-xxl-12 col-xl-12 col-lg-12 howitspace bottomspace">
+                <h3 className='mt-2'>For Individuals /User</h3>            
+            <YouTube videoId="7PIji8OubXU?si=H7CV4YYW9UPF1Jjz" 
+             opts={opts} onReady={this._onReady} />
+            </div>
+
+          
+            
            </div>
          </div>
             </main>

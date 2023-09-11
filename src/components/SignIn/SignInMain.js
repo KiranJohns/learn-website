@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import Link from 'next/link';
 
+import { Modal } from 'react-responsive-modal';
 
 class SignInMain extends Component {
-    
+   
     render() {
         return (
             <main>
@@ -56,7 +57,7 @@ class SignInMain extends Component {
                                                 <label className="m-check-label"  htmlFor="m-agree">Keep me signed in</label>
                                             </div>
                                             <div className="sign__forgot">
-                                                <a href="#">Forgot your password?</a>
+                                                <a href='#'>Forgot your password?</a>
                                             </div>
                                         </div>
                                         <button className="e-btn  w-100"> <span></span> Sign In</button>

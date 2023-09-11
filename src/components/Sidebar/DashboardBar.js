@@ -5,8 +5,7 @@ import 'bootstrap-icons/font/bootstrap-icons.css'
 class DashboardBar extends Component{
     render(){
         return(
-         <div className='bg-white'>
-            
+         <div className='bg-white'>  
           <div className='px-4'>
             <i className='bi bi-person-circle py-2 px-2'></i>
            <span className='brand-name my-2 fs-5'>Jamie Oliver</span>
@@ -21,8 +20,8 @@ class DashboardBar extends Component{
                   </a> */}
                   
                   <a className='list-group-item py-2 px-2'>
-                    <i className='bi bi-house fs-6 me-2'></i>
-                     <span className='fs-6'>Dashboard</span>
+                    <i className='bi bi-house fs-6 me-2 text-success'></i>
+                     <span className='fs-6 text-primary'>Dashboard</span>
                     
                   </a>
 
