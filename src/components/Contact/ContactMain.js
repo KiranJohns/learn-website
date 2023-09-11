@@ -11,7 +11,7 @@ class ContactMain extends Component {
         return (
             <main>
 	            {/* breadcrumb-start */}
-				<Breadcrumb pageTitle="Contact" />
+				<Breadcrumb pageTitle="Contact Us" />
 				{/* breadcrumb-end */}
 
                 {/* Getintouch-start */}

@@ -55,9 +55,16 @@ class SignUpMain extends Component {
                                             </div>
                                         </div>
                                         <div className="sign__input-wrapper mb-25">
-                                            <h5>country</h5>
+                                            <h5>Country</h5>
                                             <div className="sign__input">
                                                 <input type="text" placeholder="Country"/>
+                                                <i className="fas fa-flag"></i>
+                                            </div>
+                                        </div>
+                                        <div className="sign__input-wrapper mb-25">
+                                            <h5>City</h5>
+                                            <div className="sign__input">
+                                                <input type="text" placeholder="City"/>
                                                 <i className="fas fa-flag"></i>
                                             </div>
                                         </div>
