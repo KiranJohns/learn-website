@@ -2,12 +2,12 @@ import React, {Component} from "react";
 
   
 
-class DashProfile extends Component{
+class DashCreate extends Component{
     render(){
         return(
             <div className=''>
             <div className='row g-3  min-vh-100  d-flex justify-content-end align-items-center '>  
-            <h3 style={{padding:"1.5rem", color: "#142A89"}}>My Profile</h3> 
+            <h3 style={{padding:"1.5rem", color: "#142A89"}}>Create User</h3> 
             <form className="col-sm-10 col-md-8 d-block mx-auto">
   <div className="form-group p-2 mb-4">
     <label className="text-black" for="FormControlInput1">Name</label>
@@ -29,7 +29,7 @@ class DashProfile extends Component{
     <input type="email" className="form-control border border-black" id="country" placeholder="City" value=""/>
   </div>
   <div className="form-group p-2 mb-4">
-  <button type="button" class="btn btn-primary">Save Changes</button>
+  <button  type="button" className="btn btn-primary">Submit</button>
   </div>
   </form>
              </div>
@@ -39,4 +39,4 @@ class DashProfile extends Component{
     }
 }
 
-export default DashProfile
+export default DashCreate

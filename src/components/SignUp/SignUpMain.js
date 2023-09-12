@@ -91,7 +91,7 @@ class SignUpMain extends Component {
                                         </div>
                                         <button className="e-btn w-100"> <span></span> Sign Up</button>
                                         <div className="sign__new text-center mt-20">
-                                            <p>Already in Markit ? <Link href="/sign-in"><a>Sign In</a></Link></p>
+                                            <p>Already in Signed Up ? <Link href="/sign-in"><a>Sign In</a></Link></p>
                                         </div>
                                     </form>
                                     </div>
