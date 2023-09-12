@@ -23,7 +23,7 @@ class DashboardBar extends Component{
                     <i className='bi bi-house fs-6 me-2' style={{color: "#142A89"}}></i>
                   {/* <Link className='fs-6 ' style={{color: "#142A89"}} href="/company/dashboard">Dashboard</Link> */}
                   <span  className='fs-6' style={{color: "#142A89"}}>
-                      <Link href="/">
+                      <Link href="/company/dashboard">
                     Dashboard
                     </Link></span>  
                   </div>
@@ -32,7 +32,7 @@ class DashboardBar extends Component{
                     <i className='bi bi-table fs-6 me-2' style={{color: "#142A89"}}></i>
                     {/* <Link className='fs-6 ' style={{color: "#142A89"}} href="/company/myprofile">My Profile</Link>     */}
                     <span  className='fs-6' style={{color: "#142A89"}}>
-                      <Link href="/">
+                      <Link href="/company/myprofile">
                       My Profile
                       </Link></span>             
                   </div>
@@ -41,7 +41,7 @@ class DashboardBar extends Component{
                     <i className='bi bi-clipboard-data fs-6 me-2' style={{color: "#142A89"}}></i>
                     {/* <span className='fs-6 ' style={{color: "#142A89"}}><Link href="/company/mycourses">My Courses</Link></span>   */}
                     <span  className='fs-6' style={{color: "#142A89"}}>
-                      <Link href="/">
+                      <Link href="/company/mycourses">
                       My Courses
                       </Link></span>                     
                   </div>
@@ -50,7 +50,7 @@ class DashboardBar extends Component{
                     <i className='bi bi bi-file fs-6 me-2' style={{color: "#142A89"}}></i>
                    {/* <Link className='fs-6 ' style={{color: "#142A89"}} href="/company/mycourses">Certificates</Link> */}
                    <span  className='fs-6' style={{color: "#142A89"}}>
-                      <Link href="/">
+                      <Link href="/company/certificates">
                     Certificates
                     </Link></span>  
                   </div>
@@ -59,7 +59,7 @@ class DashboardBar extends Component{
                     <i className='bi bi-card-checklist fs-6 me-2' style={{color: "#142A89"}}></i>
                     {/* <Link className='fs-6 ' style={{color: "#142A89"}} href="/company/availablecourses">Available Courses</Link> */}
                     <span  className='fs-6' style={{color: "#142A89"}}>
-                      <Link href="/">
+                      <Link href="/company/availablecourses">
                       Available Courses
                       </Link></span>  
                   </div>
@@ -68,7 +68,7 @@ class DashboardBar extends Component{
                     <i className='bi bi-person-gear fs-6 me-2' style={{color: "#142A89"}}></i>
                     {/* <Link className='fs-6 ' style={{color: "#142A89"}} href="/company/createuser">Create User</Link> */}
                     <span  className='fs-6' style={{color: "#142A89"}}>
-                      <Link href="/">
+                      <Link href="/company/createuser">
                       Create User
                       </Link></span>  
                   </div>
@@ -77,7 +77,7 @@ class DashboardBar extends Component{
                     <i className='bi bi-person-check fs-6 me-2' style={{color: "#142A89"}}></i>
                       {/* <Link className='fs-6 ' style={{color: "#142A89"}} href="/company/showuser">Show User</Link> */}
                       <span  className='fs-6' style={{color: "#142A89"}}>
-                      <Link href="/">
+                      <Link href="/company/showuser">
                         Show User
                         
                         </Link>
@@ -87,7 +87,7 @@ class DashboardBar extends Component{
                   <div className='list-group-item py-2 px-2'>
                     <i className='bi bi-person-fill-slash fs-6 me-2' style={{color: "#142A89"}}></i>
                      <span  className='fs-6' style={{color: "#142A89"}}>
-                     <Link href="/">
+                     <Link href="/company/archive">
                       Archive User
                       </Link>
                       </span>    
@@ -96,7 +96,7 @@ class DashboardBar extends Component{
                   <div className='list-group-item py-2 px-2'>
                     <i className='bi bi-people fs-6 me-2' style={{color: "#142A89"}}></i>
                      <span  className='fs-6' style={{color: "#142A89"}}>
-                      <Link href="/">
+                      <Link href="/company/assigncourse">
                          Assign Courses
                         </Link>
                          </span> 
