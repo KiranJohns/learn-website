@@ -2,10 +2,10 @@ import React from "react";
 import CourseBundle from "../../components/CourseGrid/CourseBundle";
 import DashboardBar from "../../components/Sidebar/DashboardBar";
 import HeaderDashboard from "../../components/Layout/Header/HeaderDashboard";
-import DashCertificate from "../../components/Home/DashCertificate";
+import DashMain from "../../components/Home/DashMain";
+import DashSUser from "../../components/Home/DashSUser";
 
-
-class CompanyDashboard extends React.Component{
+class showUser extends React.Component{
 
     static getInitialProps({store}) {}
     constructor(props) {
@@ -22,7 +22,8 @@ class CompanyDashboard extends React.Component{
                    <DashboardBar/>
                    </div>
                 <div className="col-7 col-md-10">
-                    <DashCertificate />
+                    
+                    <DashSUser/>
              </div>
          </div>       
       </div>
@@ -32,4 +33,4 @@ class CompanyDashboard extends React.Component{
     }
 }
 
-export default CompanyDashboard
+export default showUser
