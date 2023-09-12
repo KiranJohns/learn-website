@@ -5,7 +5,7 @@ import 'bootstrap-icons/font/bootstrap-icons.css'
 class DashboardBar extends Component{
     render(){
         return(
-         <div className='bg-white'>  
+         <div className='bg-white'>
           <div className='px-4'>
             <i className='bi bi-person-circle py-2 px-2' style={{color: "#142A89"}}></i>
            <span className='brand-name my-2 fs-5' style={{color: "#142A89"}}>Jamie Oliver</span>
@@ -53,55 +53,6 @@ class DashboardBar extends Component{
                     Certificates
                     </Link></span>  
                   </div>
-
-                  <div className='list-group-item py-2 px-2'>
-                    <i className='bi bi-card-checklist fs-6 me-2' style={{color: "#142A89"}}></i>
-                    {/* <Link className='fs-6 ' style={{color: "#142A89"}} href="/company/availablecourses">Available Courses</Link> */}
-                    <span  className='fs-6' style={{color: "#142A89"}}>
-                      <Link href="/company/availablecourses">
-                      Available Courses
-                      </Link></span>  
-                  </div>
-
-                  <div className='list-group-item py-2 px-2'>
-                    <i className='bi bi-person-gear fs-6 me-2' style={{color: "#142A89"}}></i>
-                    {/* <Link className='fs-6 ' style={{color: "#142A89"}} href="/company/createuser">Create User</Link> */}
-                    <span  className='fs-6' style={{color: "#142A89"}}>
-                      <Link href="/company/createuser">
-                      Create User
-                      </Link></span>  
-                  </div>
-
-                  <div className='list-group-item py-2 px-2'>
-                    <i className='bi bi-person-check fs-6 me-2' style={{color: "#142A89"}}></i>
-                      {/* <Link className='fs-6 ' style={{color: "#142A89"}} href="/company/showuser">Show User</Link> */}
-                      <span  className='fs-6' style={{color: "#142A89"}}>
-                      <Link href="/company/showuser">
-                        Show User
-                        
-                        </Link>
-                        </span>    
-                  </div>
-
-                  <div className='list-group-item py-2 px-2'>
-                    <i className='bi bi-person-fill-slash fs-6 me-2' style={{color: "#142A89"}}></i>
-                     <span  className='fs-6' style={{color: "#142A89"}}>
-                     <Link href="/company/archive">
-                      Archive User
-                      </Link>
-                      </span>    
-                  </div>
-
-                  <div className='list-group-item py-2 px-2'>
-                    <i className='bi bi-people fs-6 me-2' style={{color: "#142A89"}}></i>
-                     <span  className='fs-6' style={{color: "#142A89"}}>
-                      <Link href="/company/assigncourse">
-                         Assign Courses
-                        </Link>
-                         </span> 
-                   
-                  </div>
-
                   
                   <div className='list-group-item py-2 px-2'>
                     <i className='bi bi-arrow-left-circle-fill fs-6 me-2' style={{color: "#142A89"}}></i>
