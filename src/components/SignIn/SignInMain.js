@@ -76,9 +76,11 @@ class SignInMain extends Component {
                   onChange={this.handleOnChange}
                   id="otp"
                 />
-                <button type="button" class="my-4 width-100 btn btn-primary">
+             <Link href="/new-password"> 
+             <button type="button" class="my-4 width-100 btn btn-primary">
                   submit
                 </button>
+                </Link>  
               </div>
             </form>
           </div>

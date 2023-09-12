@@ -8,19 +8,11 @@ class DashMain extends Component {
 
         return (
          
-          <div className=''>           
-           <div className='row g-3  min-vh-100  d-flex justify-content-end align-items-center '>
-            <div className='col-md-3'>
-               <div className='p-3 bg-white border border-primary shadow-sm d-flex justify-content-around align-items-center rounded'>
-                <div className='p-2'>
-                    <h3 className='fs-2 d-flex'>230</h3>
-                    <p className='fs-5 mx-auto'>courses</p>
-                </div>
-                <i className='bi bi-cart-plus p-3'></i>
-               </div>        
-            </div>
+          <div className=''>
+            <h3 style={{padding:"1.5rem", color: "#142A89"}}>Dashboard</h3>           
+           <div className=' row g-3  min-vh-100  d-flex justify-content-center align-items-center '>
 
-            <div className='col-md-3'>
+            {/* <div className='col-md-3'>
                <div className='p-3 bg-white border border-primary shadow-sm d-flex justify-content-around align-items-center rounded'>
                 <div className='p-2'>
                     <h3 className='fs-2 d-flex'>230</h3>
@@ -28,27 +20,41 @@ class DashMain extends Component {
                 </div>
                 <i className='bi bi-cart-plus p-3'></i>
                </div>          
-            </div>
+            </div> */}
                
-            <div className='col-md-3'>
-               <div className='p-3 bg-white border border-primary shadow-sm d-flex justify-content-around align-items-center rounded'>
-                <div className='p-2'>
-                    <h3 className='fs-2 d-flex'>230</h3>
-                    <p className='fs-5 mx-auto'>courses</p>
-                </div>
-                <i className='bi bi-cart-plus p-3'></i>
-               </div>                   
-            </div>
+         
            
-   <div className='col-md-3'>
+    <div className='col-sm-2 col-md-3'>
     <div className="card text-white bg-primary mb-3 dash" >
-      <div className="card-header mx-auto">Header</div>
+      <div className="card-header mx-auto">Total Assign Package</div>
        <div className="card-body">
-      <h5 className=" d-flex justify-content-center">Primary card title</h5>
-      <p className="d-flex justify-content-center">Some quick example text.</p>
+      <h5 className=" d-flex fs-3 justify-content-center">0</h5>
+      <p className="d-flex justify-content-center"></p>
     </div>
    </div>
- </div>        
+  </div>        
+
+  <div className='col-sm-2 col-md-3'>
+    <div className="card text-white bg-primary mb-3 dash" >
+      <div className="card-header  mx-auto">Total Assign Single Course</div>
+       <div className="card-body">
+      <h5 className=" d-flex fs-3 justify-content-center">7</h5>
+      <p className="d-flex justify-content-center"></p>
+    </div>
+   </div>
+  </div>     
+
+
+ 
+   <div className='col-sm-2 col-md-3 '>
+    <div className="card text-white bg-primary mb-3 dash" >
+      <div className="card-header mx-auto">Total Individual</div>
+       <div className="card-body">
+      <h5 className=" d-flex fs-3 justify-content-center">2</h5>
+      <p className="d-flex justify-content-center"></p>
+    </div>
+   </div>
+   </div>    
                      
             </div>
            </div>

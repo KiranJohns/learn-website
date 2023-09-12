@@ -3,9 +3,9 @@ import CourseBundle from "../../components/CourseGrid/CourseBundle";
 import DashboardBar from "../../components/Sidebar/DashboardBar";
 import HeaderDashboard from "../../components/Layout/Header/HeaderDashboard";
 import DashMain from "../../components/Home/DashMain";
+import DashCourse from "../../components/Home/DashCourse";
 
-
-class CompanyDashboard extends React.Component{
+class myCourse extends React.Component{
 
     static getInitialProps({store}) {}
     constructor(props) {
@@ -21,8 +21,9 @@ class CompanyDashboard extends React.Component{
                    <div className="col-5 col-md-2 bg-white vh-100 ">
                    <DashboardBar/>
                    </div>
-                <div className="col-7">
-                    <DashMain />
+                <div className="col-7 col-md-10">
+                    
+                    <DashCourse />
              </div>
          </div>       
       </div>
@@ -32,4 +33,4 @@ class CompanyDashboard extends React.Component{
     }
 }
 
-export default CompanyDashboard
+export default myCourse
