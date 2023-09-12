@@ -19,65 +19,96 @@ class DashboardBar extends Component{
                     </i>
                   </a> */}
                   
-                  <a className='list-group-item py-2 px-2'>
+                  <div className='list-group-item py-2 px-2'>
                     <i className='bi bi-house fs-6 me-2' style={{color: "#142A89"}}></i>
                   {/* <Link className='fs-6 ' style={{color: "#142A89"}} href="/company/dashboard">Dashboard</Link> */}
-                  <span  className='fs-6' style={{color: "#142A89"}}>Dashboard</span>  
-                  </a>
+                  <span  className='fs-6' style={{color: "#142A89"}}>
+                      <Link href="/">
+                    Dashboard
+                    </Link></span>  
+                  </div>
 
-                  <a className='list-group-item py-2 px-2'>
+                  <div className='list-group-item py-2 px-2'>
                     <i className='bi bi-table fs-6 me-2' style={{color: "#142A89"}}></i>
                     {/* <Link className='fs-6 ' style={{color: "#142A89"}} href="/company/myprofile">My Profile</Link>     */}
-                    <span  className='fs-6' style={{color: "#142A89"}}>My Profile</span>             
-                  </a>
+                    <span  className='fs-6' style={{color: "#142A89"}}>
+                      <Link href="/">
+                      My Profile
+                      </Link></span>             
+                  </div>
 
-                  <a className='list-group-item py-2 px-2'>
+                  <div className='list-group-item py-2 px-2'>
                     <i className='bi bi-clipboard-data fs-6 me-2' style={{color: "#142A89"}}></i>
                     {/* <span className='fs-6 ' style={{color: "#142A89"}}><Link href="/company/mycourses">My Courses</Link></span>   */}
-                    <span  className='fs-6' style={{color: "#142A89"}}>My Courses</span>                     
-                  </a>
+                    <span  className='fs-6' style={{color: "#142A89"}}>
+                      <Link href="/">
+                      My Courses
+                      </Link></span>                     
+                  </div>
 
-                  <a className='list-group-item py-2 px-2'>
+                  <div className='list-group-item py-2 px-2'>
                     <i className='bi bi bi-file fs-6 me-2' style={{color: "#142A89"}}></i>
                    {/* <Link className='fs-6 ' style={{color: "#142A89"}} href="/company/mycourses">Certificates</Link> */}
-                   <span  className='fs-6' style={{color: "#142A89"}}>Certificates</span>  
-                  </a>
+                   <span  className='fs-6' style={{color: "#142A89"}}>
+                      <Link href="/">
+                    Certificates
+                    </Link></span>  
+                  </div>
 
-                  <a className='list-group-item py-2 px-2'>
+                  <div className='list-group-item py-2 px-2'>
                     <i className='bi bi-card-checklist fs-6 me-2' style={{color: "#142A89"}}></i>
                     {/* <Link className='fs-6 ' style={{color: "#142A89"}} href="/company/availablecourses">Available Courses</Link> */}
-                    <span  className='fs-6' style={{color: "#142A89"}}>Available Courses</span>  
-                  </a>
+                    <span  className='fs-6' style={{color: "#142A89"}}>
+                      <Link href="/">
+                      Available Courses
+                      </Link></span>  
+                  </div>
 
-                  <a className='list-group-item py-2 px-2'>
+                  <div className='list-group-item py-2 px-2'>
                     <i className='bi bi-person-gear fs-6 me-2' style={{color: "#142A89"}}></i>
                     {/* <Link className='fs-6 ' style={{color: "#142A89"}} href="/company/createuser">Create User</Link> */}
-                    <span  className='fs-6' style={{color: "#142A89"}}>Create User</span>  
-                  </a>
+                    <span  className='fs-6' style={{color: "#142A89"}}>
+                      <Link href="/">
+                      Create User
+                      </Link></span>  
+                  </div>
 
-                  <a className='list-group-item py-2 px-2'>
+                  <div className='list-group-item py-2 px-2'>
                     <i className='bi bi-person-check fs-6 me-2' style={{color: "#142A89"}}></i>
                       {/* <Link className='fs-6 ' style={{color: "#142A89"}} href="/company/showuser">Show User</Link> */}
-                      <span  className='fs-6' style={{color: "#142A89"}}>Show User</span>    
-                  </a>
+                      <span  className='fs-6' style={{color: "#142A89"}}>
+                      <Link href="/">
+                        Show User
+                        
+                        </Link>
+                        </span>    
+                  </div>
 
-                  <a className='list-group-item py-2 px-2'>
+                  <div className='list-group-item py-2 px-2'>
                     <i className='bi bi-person-fill-slash fs-6 me-2' style={{color: "#142A89"}}></i>
-                     <span  className='fs-6' style={{color: "#142A89"}}>Archive User</span>    
-                  </a>
+                     <span  className='fs-6' style={{color: "#142A89"}}>
+                     <Link href="/">
+                      Archive User
+                      </Link>
+                      </span>    
+                  </div>
 
-                  <a className='list-group-item py-2 px-2'>
+                  <div className='list-group-item py-2 px-2'>
                     <i className='bi bi-people fs-6 me-2' style={{color: "#142A89"}}></i>
-                     <span  className='fs-6' style={{color: "#142A89"}}>Assign Courses</span> 
+                     <span  className='fs-6' style={{color: "#142A89"}}>
+                      <Link href="/">
+                         Assign Courses
+                        </Link>
+                         </span> 
                    
-                  </a>
+                  </div>
 
                   
-                  <a className='list-group-item py-2 px-2'>
+                  <div className='list-group-item py-2 px-2'>
                     <i className='bi bi-arrow-left-circle-fill fs-6 me-2' style={{color: "#142A89"}}></i>
                      {/* <span  className='fs-6' style={{color: "#142A89"}}>Logout</span>  */}
                      <Link className='fs-6 ' style={{color: "#142A89"}} href="/">Logout</Link>
-                  </a>
+                  </div>
                 </div>
             </div>                 
         )
