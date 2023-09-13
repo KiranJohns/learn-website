@@ -10,13 +10,13 @@ class CompanyDashboard extends React.Component{
 
     static getInitialProps({store}) {}
     constructor(props) {
-        super(props);
+        super(props);       
     }
     render(){    
         return(
             <React.Fragment>
                 <main className="p-2">
-                 <HeaderDashboard/>
+                 <HeaderDashboard />
                  <div className="container-fluid bg-light"> 
                   <div className="row">
                    <div className="col-4 col-md-3 bg-white vh-100">
