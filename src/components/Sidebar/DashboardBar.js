@@ -19,63 +19,63 @@ class DashboardBar extends Component{
                     </i>
                   </a> */}
                   <div className='list-group-item py-2 px-2'>
-                    <i className='bi bi-house fs-6 me-2' style={{color: "#142A89"}}></i>
+                    <i className='bi bi-house txttsml me-2' style={{color: "#142A89"}}></i>
                   {/* <Link className='fs-6 ' style={{color: "#142A89"}} href="/company/dashboard">Dashboard</Link> */}
-                  <span  className='fs-6' style={{color: "#142A89"}}>
+                  <span  className='txttsml' style={{color: "#142A89"}}>
                       <Link href="/company/dashboard">
                     Dashboard
                     </Link></span>  
                   </div>
 
                   <div className='list-group-item py-2 px-2'>
-                    <i className='bi bi-table fs-6 me-2' style={{color: "#142A89"}}></i>
+                    <i className='bi bi-table txttsml me-2' style={{color: "#142A89"}}></i>
                     {/* <Link className='fs-6 ' style={{color: "#142A89"}} href="/company/myprofile">My Profile</Link>     */}
-                    <span  className='fs-6' style={{color: "#142A89"}}>
+                    <span  className='txttsml' style={{color: "#142A89"}}>
                       <Link href="/company/myprofile">
                       My Profile
                       </Link></span>             
                   </div>
 
                   <div className='list-group-item py-2 px-2'>
-                    <i className='bi bi-clipboard-data fs-6 me-2' style={{color: "#142A89"}}></i>
+                    <i className='bi bi-clipboard-data txttsml me-2' style={{color: "#142A89"}}></i>
                     {/* <span className='fs-6 ' style={{color: "#142A89"}}><Link href="/company/mycourses">My Courses</Link></span>   */}
-                    <span  className='fs-6' style={{color: "#142A89"}}>
+                    <span  className='txttsml' style={{color: "#142A89"}}>
                       <Link href="/company/mycourses">
                       My Courses
                       </Link></span>                     
                   </div>
 
                   <div className='list-group-item py-2 px-2'>
-                    <i className='bi bi bi-file fs-6 me-2' style={{color: "#142A89"}}></i>
+                    <i className='bi bi bi-file txttsml me-2' style={{color: "#142A89"}}></i>
                    {/* <Link className='fs-6 ' style={{color: "#142A89"}} href="/company/mycourses">Certificates</Link> */}
-                   <span  className='fs-6' style={{color: "#142A89"}}>
+                   <span  className='txttsml' style={{color: "#142A89"}}>
                       <Link href="/company/certificates">
                     Certificates
                     </Link></span>  
                   </div>
 
                   <div className='list-group-item py-2 px-2'>
-                    <i className='bi bi-card-checklist fs-6 me-2' style={{color: "#142A89"}}></i>
+                    <i className='bi bi-card-checklist txttsml me-2' style={{color: "#142A89"}}></i>
                     {/* <Link className='fs-6 ' style={{color: "#142A89"}} href="/company/availablecourses">Available Courses</Link> */}
-                    <span  className='fs-6' style={{color: "#142A89"}}>
+                    <span  className='txttsml' style={{color: "#142A89"}}>
                       <Link href="/company/availablecourses">
-                      Available Courses
+                      All Courses
                       </Link></span>  
                   </div>
 
                   <div className='list-group-item py-2 px-2'>
-                    <i className='bi bi-person-gear fs-6 me-2' style={{color: "#142A89"}}></i>
+                    <i className='bi bi-person-gear txttsml me-2' style={{color: "#142A89"}}></i>
                     {/* <Link className='fs-6 ' style={{color: "#142A89"}} href="/company/createuser">Create User</Link> */}
-                    <span  className='fs-6' style={{color: "#142A89"}}>
+                    <span  className='txttsml' style={{color: "#142A89"}}>
                       <Link href="/company/createuser">
                       Create User
                       </Link></span>  
                   </div>
 
                   <div className='list-group-item py-2 px-2'>
-                    <i className='bi bi-person-check fs-6 me-2' style={{color: "#142A89"}}></i>
+                    <i className='bi bi-person-check txttsml me-2' style={{color: "#142A89"}}></i>
                       {/* <Link className='fs-6 ' style={{color: "#142A89"}} href="/company/showuser">Show User</Link> */}
-                      <span  className='fs-6' style={{color: "#142A89"}}>
+                      <span  className='txttsml' style={{color: "#142A89"}}>
                       <Link href="/company/showuser">
                         Show User
                         
@@ -84,8 +84,8 @@ class DashboardBar extends Component{
                   </div>
 
                   <div className='list-group-item py-2 px-2'>
-                    <i className='bi bi-person-fill-slash fs-6 me-2' style={{color: "#142A89"}}></i>
-                     <span  className='fs-6' style={{color: "#142A89"}}>
+                    <i className='bi bi-person-fill-slash txttsml me-2' style={{color: "#142A89"}}></i>
+                     <span  className='txttsml' style={{color: "#142A89"}}>
                      <Link href="/company/archive">
                       Archive User
                       </Link>
@@ -93,10 +93,10 @@ class DashboardBar extends Component{
                   </div>
 
                   <div className='list-group-item py-2 px-2'>
-                    <i className='bi bi-people fs-6 me-2' style={{color: "#142A89"}}></i>
-                     <span  className='fs-6' style={{color: "#142A89"}}>
+                    <i className='bi bi-people txttsml me-2' style={{color: "#142A89"}}></i>
+                     <span  className='txttsml' style={{color: "#142A89"}}>
                       <Link href="/company/assigncourse">
-                         Assign Courses
+                         Assign Course
                         </Link>
                          </span> 
                    
@@ -104,9 +104,9 @@ class DashboardBar extends Component{
 
                   
                   <div className='list-group-item py-2 px-2'>
-                    <i className='bi bi-arrow-left-circle-fill fs-6 me-2' style={{color: "#142A89"}}></i>
-                     {/* <span  className='fs-6' style={{color: "#142A89"}}>Logout</span>  */}
-                     <Link className='fs-6 ' style={{color: "#142A89"}} href="/">Logout</Link>
+                    <i className='bi bi-arrow-left-circle-fill txttsml me-2' style={{color: "#142A89"}}></i>
+                      <span  className='txttsml' style={{color: "#142A89"}}>
+                     <Link  href="/">Logout</Link></span>
                   </div>
                 </div>
             </div>                 
