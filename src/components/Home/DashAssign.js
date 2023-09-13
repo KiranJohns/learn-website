@@ -7,7 +7,7 @@ import Link from 'next/link';
 const customStyles = {
   headRow:{
     style:{
-      backgroundColor : '#28a745',
+      backgroundColor : '#142A89',
       color:'white'
     }
   },

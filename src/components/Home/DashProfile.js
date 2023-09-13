@@ -29,7 +29,7 @@ class DashProfile extends Component{
     <input type="email" className="form-control border border-black" id="country" placeholder="City" value=""/>
   </div>
   <div className="form-group p-2 mb-4">
-  <button type="button" class="btn btn-primary">Save Changes</button>
+  <button type="button" class="btn " style={{backgroundColor:'#142A89', color:'white'}}>Save Changes</button>
   </div>
   </form>
              </div>

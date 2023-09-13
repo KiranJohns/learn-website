@@ -25,7 +25,7 @@ class DashMain extends Component {
          
            
     <div className='col-sm-2 col-md-3'>
-    <div className="card text-white bg-primary mb-3 dash" >
+    <div className="card text-white  mb-3 dash" style={{backgroundColor:'#142A89'}}>
       <div className="card-header mx-auto">Total Assign Package</div>
        <div className="card-body">
       <h5 className=" d-flex fs-3 justify-content-center">0</h5>
@@ -35,7 +35,7 @@ class DashMain extends Component {
   </div>        
 
   <div className='col-sm-2 col-md-3'>
-    <div className="card text-white bg-primary mb-3 dash" >
+    <div className="card text-white mb-3 dash" style={{backgroundColor:'#142A89'}}>
       <div className="card-header  mx-auto">Total Assign Single Course</div>
        <div className="card-body">
       <h5 className=" d-flex fs-3 justify-content-center">7</h5>
@@ -47,7 +47,7 @@ class DashMain extends Component {
 
  
    <div className='col-sm-2 col-md-3 '>
-    <div className="card text-white bg-primary mb-3 dash" >
+    <div className="card text-white mb-3 dash" style={{backgroundColor:'#142A89'}}>
       <div className="card-header mx-auto">Total Individual</div>
        <div className="card-body">
       <h5 className=" d-flex fs-3 justify-content-center">2</h5>
