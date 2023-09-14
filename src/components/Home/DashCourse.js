@@ -8,7 +8,7 @@ import Link from 'next/link';
 const customStyles = {
   headRow:{
     style:{
-      backgroundColor : '#142A89',
+      backgroundColor : '#004b55',
       color:'white'
     }
   },
@@ -84,7 +84,7 @@ class DashCourse extends Component {
 
     return (
       <div className=''>
-        <h3 style={{padding:"1.5rem", color: "#142A89"}}>My Courses</h3>
+        <h3 style={{padding:"1.5rem", color: "#004b55"}}>My Courses</h3>
         <div className=' row g-3  min-vh-100  d-flex justify-content-center align-items-center '>
           <div style={{padding:"50px 10%", backgroundColor: ""}}>
             <div className='pb-2 smth'  style={{display:'flex', justifyContent:'left' }}>

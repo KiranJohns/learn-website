@@ -56,7 +56,7 @@ class BlogDetailsMain extends Component {
                     <meta name="og:title" property="og:title" content={article.title}></meta>
                     <meta name="og:description" property="og:description" content={article.text}></meta>
                     <meta name="twitter:card" content={article.title}></meta>
-                    <link rel="canonical" href={'https://educal.bdevs.net'+ article.url}></link>
+                    <link rel="canonical" href={'/'+ article.url}></link>
                     <meta property="og:image" content={article.image} />
                 </Head>
                 ))}
