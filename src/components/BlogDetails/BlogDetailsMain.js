@@ -16,24 +16,30 @@ import Category from '../Blog/CategorySecion';
 import Tags from '../Blog/TagsSection';
 import SidebarBanner from '../Blog/SidebarBannerSection';
 import Breadcrumb from '../Common/Breadcrumb';
+import blogs from '../../sample-data/blog-posts/posts.json'
 
 
 class BlogDetailsMain extends Component {
-
     static async getInitialProps({ query }) {
         const {slug} = query;
         return { slug }
     }
+    state = {
+        newsDetails: blogs.filter(item => {
+            return item.id == this.props.slug ? item : null
+        })
+    }
 
     constructor(props) {
         super(props);
+        console.log('inside', props.slug);
     }
 
     getDetails() {
-        store.dispatch({
-            type: 'NEWS_DETAILS_SUCCESS',
-            newsDetails: articleDetails
-        });
+        // store.dispatch({
+        //     type: 'NEWS_DETAILS_SUCCESS',
+        //     newsDetails: articleDetails
+        // });
     }
 
     componentDidMount() {
@@ -44,12 +50,12 @@ class BlogDetailsMain extends Component {
 
     render() {
 
-        const { slug, newsDetails} = this.props;
+        // const { slug, newsDetails} = this.props;
 
         return (
 
             <main>
-                {newsDetails && newsDetails.map((article, num) => (
+                {this.state.newsDetails && this.state.newsDetails.map((article, num) => (
                 <Head key={num}>
                     <title>{article.title}</title>
                     <meta name={article.title} />
@@ -62,7 +68,7 @@ class BlogDetailsMain extends Component {
                 ))}
 
                 {/* breadcrumb-area-start */}
-                {newsDetails && newsDetails.map((article, num) => (
+                {this.state.newsDetails && this.state.newsDetails.map((article, num) => (
                     <Breadcrumb key={num} pageTitle={article.title} />
                 ))}
                 {/* breadcrumb-area-start */}
@@ -72,11 +78,11 @@ class BlogDetailsMain extends Component {
                     <div className="container">
                         <div className="row">
                             <div className="col-xxl-10 col-xl-10 col-lg-10">
-                                {newsDetails && newsDetails.map((article, num) => (
+                                {this.state.newsDetails && this.state.newsDetails.map((article, num) => (
                                     <div key={num} className="blog__wrapper">
                                         {/* <BlogDesc /> */}
                                         <div className="blog__img w-img mb-45" >
-                                            <img src={article.image} alt={article.title} />
+                                            <img src={"/"+article.image} alt={article.title} />
                                         </div>
                                         <div className="blog__text mb-40">
                                             <h3>{article.title}</h3>
@@ -84,8 +90,6 @@ class BlogDetailsMain extends Component {
                                             <p>{article.textTwo}</p>
                                         </div>
 
-
-                                        
                                         <div className="blog__line"></div>
                                         <BlogMeta />
                                         {/* <BlogAuthor /> */}
