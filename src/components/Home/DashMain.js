@@ -25,7 +25,7 @@ class DashMain extends Component {
          
            
     <div className='col-sm-2 col-md-3'>
-    <div className="card text-white  mb-3 dash" style={{backgroundColor:'#004b55'}}>
+    <div className="card text-white  mb-3 dash " style={{backgroundColor:'#004b55'}}>
       <div className="card-header mx-auto">Total Assign Package</div>
        <div className="card-body">
       <h5 className=" d-flex fs-3 justify-content-center">0</h5>

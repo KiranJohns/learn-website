@@ -14,7 +14,7 @@ class assigncourse extends React.Component{
     render(){    
         return(
             <React.Fragment>
-                <main className="p-2"  style={{ backgroundImage: "linear-gradient(to right, #004b55 , wheat)" }}>
+                <main className="p-2"  style={{ backgroundImage: "linear-gradient(to right, #304bbf , wheat)" }}>
                  <HeaderDashboard/>
                  <div className="container-fluid bg-light"> 
                   <div className="row">

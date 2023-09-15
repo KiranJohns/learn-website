@@ -2,11 +2,10 @@ import React from "react";
 import CourseBundle from "../../components/CourseGrid/CourseBundle";
 import DashboardBar from "../../components/Sidebar/DashboardBar";
 import HeaderDashboard from "../../components/Layout/Header/HeaderDashboard";
-import DashMain from "../../components/Home/DashMain";
-import DashProfile from "../../components/Home/DashProfile";
+import DashTab from "../../components/Home/DashTab";
 
 
-class CompanyDashboard extends React.Component{
+class courseavailable extends React.Component{
 
     static getInitialProps({store}) {}
     constructor(props) {
@@ -15,15 +14,15 @@ class CompanyDashboard extends React.Component{
     render(){    
         return(
             <React.Fragment>
-                <main className="p-2">
+                <main className="p-2"  style={{ backgroundImage: "linear-gradient(to right, #004b55 , wheat)" }}>
                  <HeaderDashboard/>
                  <div className="container-fluid bg-light"> 
                   <div className="row">
-                   <div className="col-4 col-md-3 bg-white vh-100">
+                   <div className="col-5 col-md-2 bg-white vh-100 ">
                    <DashboardBar/>
                    </div>
-                <div className="col-8">
-                    <DashProfile />
+                <div className="col-7 col-md-10">
+                    <DashTab />
              </div>
          </div>       
       </div>
@@ -33,4 +32,4 @@ class CompanyDashboard extends React.Component{
     }
 }
 
-export default CompanyDashboard
+export default courseavailable
