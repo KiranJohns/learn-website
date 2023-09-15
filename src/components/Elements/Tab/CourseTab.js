@@ -83,7 +83,7 @@ export default () => {
                 >
                   <div className="course__item white-bg mb-30 fix">
                     <div className="course__thumb w-img p-relative fix">
-                      <Link href="/course-details">
+                      <Link href={`/course/${item.id}`}>
                         <a>
                           <img src={item.image} alt="img not found" />
                         </a>
@@ -96,7 +96,7 @@ export default () => {
                     </div>
                     <div className="course__content">
                       <h3 className="course__title">
-                        <Link href="/course-details">
+                        <Link href={`/course/${item.id}`}>
                           <a>{item.heading}</a>
                         </Link>
                       </h3>
@@ -105,7 +105,7 @@ export default () => {
                                  <img src="assets/img/course/teacher/teacher-5.jpg" alt="img not found"/>
                               </div> */}
                         <h6>
-                          <Link href="/instructor-details">
+                          <Link href={`/course/${item.id}`}>
                             <a>{item.description}</a>
                           </Link>
                         </h6>

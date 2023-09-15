@@ -6,7 +6,11 @@ import Footer from "../../components/Layout/Footer/Footer";
 import HeaderOpaque from "../../components/Layout/Header/HeaderOpaque";
 
 class BlogDetailss extends React.Component {
-  static getInitialProps({ store }) {}
+
+  static async getInitialProps({ query }) {
+    const {slug} = query;
+    return { slug }
+}
 
   constructor(props) {
     super(props);
@@ -18,7 +22,7 @@ class BlogDetailss extends React.Component {
         <HeaderOpaque />
         <main>
           {/* Blog Main */}
-          <BlogDetailsMain />
+          <BlogDetailsMain slug={this.props.slug} />
           {/* Blog Main End */}
         </main>
         <Footer />
@@ -28,3 +32,8 @@ class BlogDetailss extends React.Component {
 }
 
 export default BlogDetailss;
+
+BlogDetailss.getInitialProps = async ({query}) => {
+  const {slug} = query;
+  return {slug}
+}
