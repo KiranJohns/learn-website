@@ -3,6 +3,7 @@ import CourseBundle from "../../components/CourseGrid/CourseBundle";
 import DashboardBar from "../../components/Sidebar/DashboardBar";
 import HeaderDashboard from "../../components/Layout/Header/HeaderDashboard";
 import DashMain from "../../components/Home/DashMain";
+import Accordion from 'react-bootstrap/Accordion';
 
 class CompanyDashboard extends React.Component {
   static getInitialProps({ store }) {}
@@ -31,3 +32,8 @@ class CompanyDashboard extends React.Component {
 }
 
 export default CompanyDashboard;
+
+
+
+
+
