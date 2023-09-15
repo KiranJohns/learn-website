@@ -14,7 +14,7 @@ class archive extends React.Component{
     render(){    
         return(
             <React.Fragment>
-                <main className="p-2">
+                <main className="p-2"  style={{ backgroundImage: "linear-gradient(to right, #e34da0 , wheat)" }}>
                  <HeaderDashboard/>
                  <div className="container-fluid bg-light"> 
                   <div className="row">

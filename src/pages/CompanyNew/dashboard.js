@@ -3,7 +3,6 @@ import CourseBundle from "../../components/CourseGrid/CourseBundle";
 import DashboardBar from "../../components/Sidebar/DashboardBar";
 import HeaderDashboard from "../../components/Layout/Header/HeaderDashboard";
 import DashMain from "../../components/Home/DashMain";
-import DashCreate from "../../components/Home/DashCreate";
 
 class CompanyDashboard extends React.Component {
   static getInitialProps({ store }) {}
@@ -13,15 +12,15 @@ class CompanyDashboard extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <main className="p-2">
-          <HeaderDashboard />
-          <div className="container-fluid bg-light">
+        <main className="p-2" style={{ backgroundImage: "linear-gradient(to right, #004b55 , wheat)" }}>
+          <HeaderDashboard />  
+          <div className="container-fluid bg-light" >
             <div className="row">
-              <div className="col-4 col-md-3 bg-white vh-100">
+              <div className="col-5 col-md-2  bg-white"style={{}}>
                 <DashboardBar />
               </div>
-              <div className="col-8">
-                <DashCreate />
+              <div className="col-7 col-md-10">
+                <DashMain />
               </div>
             </div>
           </div>
