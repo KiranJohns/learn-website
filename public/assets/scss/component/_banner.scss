@@ -4,6 +4,7 @@
 /*  05. BANNER CSS START
 /*----------------------------------------*/
 
+
 .banner{
     &__item{
         padding: 50px 40px;
@@ -72,11 +73,19 @@
         z-index: 1;
     }
 }
-.list-group a:hover{
-    background-color:antiquewhite;
+.list-group-item:hover{
+    background-color:rgb(253, 231, 190);
     cursor: pointer;
 }
 
 .navheight{
     height: 5rem;
 }
+
+.smth {
+    & input{
+    @media #{$sm}{
+       display: none;
+    }
+}
+  }

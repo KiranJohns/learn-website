@@ -1711,3 +1711,14 @@
     }
 }
 
+.txttsml{
+  font-size: 15px;
+}
+
+@media screen and (min-width: $sm) {
+    .txttsml{
+        font-size: 7px;
+      }
+    }
+
+    

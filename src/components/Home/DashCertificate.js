@@ -7,7 +7,7 @@ import Link from 'next/link';
 const customStyles = {
   headRow:{
     style:{
-      backgroundColor : '#28a745',
+      backgroundColor : '#004b55',
       color:'white'
     }
   },
@@ -83,10 +83,10 @@ class DashCertificate extends Component {
 
     return (
       <div className=''>
-        <h3 style={{padding:"1.5rem", color: "#142A89"}}>Certificates</h3>
+        <h3 style={{padding:"1.5rem", color: "#004b55"}}>Certificates</h3>
         <div className=' row g-3  min-vh-100  d-flex justify-content-center align-items-center '>
           <div style={{padding:"50px 10%", backgroundColor: ""}}>
-            <div className='pb-2' style={{display:'flex', justifyContent:'right' }}>
+            <div className='pb-2' style={{display:'flex', justifyContent:'left' }}>
               <input type="text"  placeholder='Search course...' onChange={this.handleFilter} style={{padding:'6px 10px', borderColor:'transparent'}}/></div>
           <DataTable 
           columns={columns} 
