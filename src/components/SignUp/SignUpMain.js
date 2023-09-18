@@ -11,7 +11,6 @@ const initialValues = {
   country: '',
   city: '',
   password: '',
-  cpassword: ''
 };
 
 function SignUpMain() {
@@ -21,20 +20,25 @@ function SignUpMain() {
     initialValues: initialValues,
     validationSchema: signupValidation,
     onSubmit: (values) => {
-      console.log(values);
-    
+      handleSignUp(values)
     }
   });
 
 
 
+
+
   const handleSignUp = (values) => {
     const method = 'POST'; // Specify the HTTP method
-    const url = '/your-api-endpoint'; // Specify the API endpoint URL
+    const urls = '/user/registration'; // Specify the API endpoint URL
     const data = values; // Send form values as data
 
-    signUpReq(method, url, data);
+    const [loading, response, error ] = signUpReq(method, urls, data);
+    console.log(loading )
+    console.log(response)
+    console.log(error )
   };
+
 
   return (
     <main>
@@ -123,7 +127,7 @@ function SignUpMain() {
                                         <br />
                                         </div>
 
-                                        <div className="sign__input-wrapper mb-10">
+                                        {/* <div className="sign__input-wrapper mb-10">
                                             <h5>Re-Password</h5>
                                             <div className="sign__input">
                                                 <input type="password" name='cpassword' value={values.cpassword} onBlur={handleBlur} onChange={handleChange} placeholder="Re-Password"/>
@@ -132,7 +136,7 @@ function SignUpMain() {
                                             <br />
                                         {errors.cpassword && <small>{errors.cpassword}</small>}
                                         <br />
-                                        </div>
+                                        </div> */}
 
                                         <div className="sign__action d-flex justify-content-between mb-30">
                                             <div className="sign__agree d-flex align-items-center">
@@ -142,7 +146,7 @@ function SignUpMain() {
                                             </div>
                                         </div>
                                         
-                                        <button onClick={handleSubmit} className="e-btn w-100"> <span></span> Sign Up</button>
+                                        <button  onClick={handleSubmit} className="e-btn w-100"> <span></span> Sign Up</button>
                                         <div className="sign__new text-center mt-20">
                                             <p>Already in Signed Up ? <Link href="/sign-in"><a>Sign In</a></Link></p>
                                         </div>

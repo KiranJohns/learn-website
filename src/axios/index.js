@@ -4,45 +4,48 @@ import axios from 'axios'
 
 export default function useFetch() {
 
+  let token = null;
 
     let BASEURL = ""
-    BASEURL = ""
+    BASEURL = "http://13.42.152.69:80/api"
 
+    const [data, setData] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
 
   return function makeRequest(method, url, data = {}){
-
-    const [response, setResponse] = useState({
-        response: null,
-        loading: true,
-        error: null
-    })
-
+   console.log(method);
+    setLoading(true)
+    setData(null);
+    setError(null);
+    console.log(BASEURL,url)
     try {
         axios({
             method,
-            url,
+            url:`${BASEURL}${url}`,
             data: JSON.stringify(data),
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`
             }
         }).then(res => {
-            setResponse(()=>{
-                return{response: res?.data, loading : false, error:null}
-            })
+            setLoading(false)
+            setData(res?.data);
+            setError(null);
         }).catch(error => {
-            setResponse(()=>{
-                return{response: null, loading : false, error:error?.response}
-            })
+            setLoading(false)
+            setData(null);
+            setError(error?.message);
            
         })
     } catch (error) {
 
-        setResponse(()=>{
-            return{response: null, loading : false, error:error?.message}
-        })
+        setLoading(false)
+        setData(null);
+        setError(error?.message);
+
     }
-    return[response.loading, response.response, response.error ]
+    return[loading, response, error ]
     }
  
 }

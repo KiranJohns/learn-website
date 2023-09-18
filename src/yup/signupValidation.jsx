@@ -9,7 +9,7 @@ export const signupValidation= Yup.object({
         /^.*(?=.{8,})((?=.*[!@#$%^&*()\-_=+{};:,<.>]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/,
         "Password must contain at least 8 characters, one uppercase, one number and one special case character"
       ).required("Please Enter Password"),
-    cpassword: Yup.string().required("Please confirm your password").oneOf([Yup.ref("password")],"Password not match")
+    
 })
 
 
