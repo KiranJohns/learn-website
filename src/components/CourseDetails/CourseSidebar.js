@@ -83,7 +83,7 @@ function CourseSidebar () {
               <div className="course__video-meta mb-25 d-flex align-items-center justify-content-between">
                 <div className="course__video-price">
                   <h5>
-                    $74.<span>00</span>{" "}
+                  £6.<span>00</span>{" "}
                   </h5>
                   <h5 className="old-price">$129.00</h5>
                 </div>
@@ -93,7 +93,7 @@ function CourseSidebar () {
               </div>
               <div className="course__video-content mb-35">
                 <ul>
-                  <li className="d-flex align-items-center">
+                  {/* <li className="d-flex align-items-center">
                     <div className="course__video-icon">
                       <i className="fas fa-home"></i>
                     </div>
@@ -102,7 +102,7 @@ function CourseSidebar () {
                         <span>Instructor :</span> Eleanor Fant
                       </h5>
                     </div>
-                  </li>
+                  </li> */}
                   <li className="d-flex align-items-center">
                     <div className="course__video-icon">
                       <i className="fas fa-book"></i>
@@ -162,7 +162,7 @@ function CourseSidebar () {
               </div>
             </div>
           </div>
-          <div className="course__sidebar-widget-2 white-bg mb-20">
+          {/* <div className="course__sidebar-widget-2 white-bg mb-20">
             <div className="course__sidebar-course">
               <h3 className="course__sidebar-title">Related courses</h3>
               <ul>
@@ -342,7 +342,7 @@ function CourseSidebar () {
                 </li>
               </ul>
             </div>
-          </div>
+          </div> */}
         </div>
       </React.Fragment>
     );
