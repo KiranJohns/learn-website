@@ -11,7 +11,7 @@ export default function useFetch() {
 
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
+    const [error, setError] = useState(null);
 
   return function makeRequest(method, url, data = {}){
    console.log(method);
