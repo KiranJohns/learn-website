@@ -27,7 +27,9 @@ export default function useFetch() {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`
-            }
+            }, 
+            withCredentials: true
+
         }).then(res => {
             setLoading(false)
             setData(res?.data);
@@ -45,6 +47,11 @@ export default function useFetch() {
         setError(error?.message);
 
     }
+    // setTimeout(()=>{
+    //     setLoading(false)
+    //     setData("test")
+    //     setError(null)
+    // },2000)
     return[loading, response, error ]
     }
  
