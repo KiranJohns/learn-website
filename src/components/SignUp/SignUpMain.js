@@ -14,6 +14,8 @@ const initialValues = {
 };
 
 function SignUpMain() {
+
+   
   const signUpReq = useFetch();
 
   const {values, handleBlur, handleChange, handleSubmit, errors} = useFormik({
@@ -146,7 +148,7 @@ function SignUpMain() {
                                             </div>
                                         </div>
                                         
-                                        <button  onClick={handleSubmit} className="e-btn w-100"> <span></span> Sign Up</button>
+                                        <button  type='submit' className="e-btn w-100"> <span></span> Sign Up</button>
                                         <div className="sign__new text-center mt-20">
                                             <p>Already in Signed Up ? <Link href="/sign-in"><a>Sign In</a></Link></p>
                                         </div>
