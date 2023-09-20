@@ -13,8 +13,8 @@ const initialValues = {
   country: '',
   city: '',
   password: '',
-  phone:'',
-  type:'company'
+  type:''
+  
 };
 
 function SignUpMain() {
@@ -46,27 +46,15 @@ function SignUpMain() {
     const url = '/user/registration'; // Specify the API endpoint URL
     const data = values; // Send form values as data
   
-    try {
-      const [loading, response, error] =  signUpReq(method, url, data);
+   
+      signUpReq(method, url, data);
   
       // Check for loading state
-      console.log(loading);
+     
   
-      if (error) {
-        
-        console.error('API Error:', error);
-      } else if (response) {
-      
-        console.log('API Response:', response);
-      } else {
-        
-        console.error('Unexpected API Response');
-      }
-    } catch (exception) {
-   
-      console.error('Exception:', exception);
-    }
+     
   };
+
 
 
   return (
@@ -173,16 +161,16 @@ function SignUpMain() {
                                         <br />
                                         </div>
 
-                                        <div className="sign__input-wrapper mb-25">
-                                            <h5>Phone No.</h5>
+                                         <div className="sign__input-wrapper mb-25">
+                                            <h5>Type</h5>
                                             <div className="sign__input">
-                                                <input type="tel" name='phone' value={values.phone} onBlur={handleBlur} onChange={handleChange} placeholder="phone"/>
-                                                <i className="fas fa-phone"></i>
+                                                <input type="text" name='type' value={values.type} onBlur={handleBlur} onChange={handleChange} placeholder="type"/>
+                                                <i className="fas fa-check"></i>
                                             </div>
                                             <br />
-                                        {errors.phone && <small>{errors.phone}</small>}
+                                        {errors.type && <small>{errors.type}</small>}
                                         <br />
-                                        </div>
+                                        </div> 
 
                                         <div className="sign__input-wrapper mb-25">
                                             <h5>Country</h5>
@@ -235,8 +223,8 @@ function SignUpMain() {
                                                 </label>
                                             </div>
                                         </div>
-                                        
-                                        <button  type='submit'  onClick={onOpenModal}  className="e-btn w-100"> <span></span> Sign Up</button>
+                                        <button  type='submit'   className="e-btn w-100"> <span></span> Sign Up</button>
+                                        {/* <button  type='submit'  onClick={onOpenModal}  className="e-btn w-100"> <span></span> Sign Up</button> */}
                                         <div className="sign__new text-center mt-20">
                                             <p>Already in Signed Up ? <Link href="/sign-in"><a>Sign In</a></Link></p>
                                         </div>
