@@ -4,11 +4,12 @@ const initialUserState = {
     error: null,
     loading: false,
   },
-  verifyOtp: {
-    response:null,
-    error : null ,
-    loading  :false
-  }
+
+  loginInfo: {
+    response: null,
+    error: null,
+    loading: false,
+  },
 };
 
 const userReducer = function (state = initialUserState, action) {
@@ -22,6 +23,18 @@ const userReducer = function (state = initialUserState, action) {
         signup: { error: null, response: action.payload, loading: false },
       });
     case "SET_ERROR":
+      return Object.assign({}, state, {
+        signup: { error: action.payload, response: null, loading: false },
+      });
+    case "SET_LOADING_FOR_SIGN_IN":
+      return Object.assign({}, state, {
+        signup: { error: null, response: null, loading: true },
+      });
+    case "SET_RESPONSE_FOR_SIGN_IN":
+      return Object.assign({}, state, {
+        signup: { error: null, response: action.payload, loading: false },
+      });
+    case "SET_ERROR_FOR_SIGN_IN":
       return Object.assign({}, state, {
         signup: { error: action.payload, response: null, loading: false },
       });
