@@ -5,7 +5,7 @@ import store from "../redux/store";
 export default function useFetch() {
   let token = null;
   let BASEURL = "";
-  BASEURL = "http://localhost:3001/api";
+  BASEURL = "https://www.testkiran.online/api";
 
   function makeRequest(method, url, data = {}) {
     return new Promise((resolve, reject) => {
