@@ -7,6 +7,7 @@ import Modal from "react-responsive-modal";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { boolean } from "yup";
+import store from "../../redux/store";
 
 const initialValues = {
   username: "",
@@ -62,8 +63,23 @@ function SignUpMain() {
     const method = "POST"; // Specify the HTTP method
     const url = "/user/registration"; // Specify the API endpoint URL
     const data = values; // Send form values as data
-
-    makeRequest(method, url, data);
+    
+    store.dispatch({
+      type: "SET_LOADING",
+    });
+    
+    makeRequest(method, url, data).then(res => {
+      store.dispatch({
+        type: "SET_RESPONSE",
+        payload: res,
+      });
+    }).catch(err => {
+      store.dispatch({
+        type: "SET_ERROR",
+        payload: error,
+      });
+    });
+  
   };
 
   return (
