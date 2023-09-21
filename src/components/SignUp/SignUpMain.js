@@ -73,7 +73,7 @@ function SignUpMain() {
         type: "SET_RESPONSE",
         payload: res,
       });
-    }).catch(err => {
+    }).catch(error => {
       store.dispatch({
         type: "SET_ERROR",
         payload: error,
@@ -148,7 +148,7 @@ function SignUpMain() {
               <div className="info">
                 An OTP has been sent to your registered email address.
               </div>
-              <form onSubmit={handleOtp} className="py-3">
+              <form  className="py-3">
                 <div className="form-group">
                   <label htmlFor="otp">Enter OTP</label>
                   <input
@@ -161,9 +161,9 @@ function SignUpMain() {
                   />
                 
                       <button
-                        type="submit"
+                        type="button"
                         className="my-4 width-100 btn btn-primary"
-                        
+                        onClick={handleOtp}
                       >
                         submit
                       </button>
