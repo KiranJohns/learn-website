@@ -4,6 +4,11 @@ const initialUserState = {
     error: null,
     loading: false,
   },
+  verifyOtp: {
+    response:null,
+    error : null ,
+    loading  :false
+  }
 };
 
 const userReducer = function (state = initialUserState, action) {
