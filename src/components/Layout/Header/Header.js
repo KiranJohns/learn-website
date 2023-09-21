@@ -6,6 +6,7 @@ import BurgerMenus from "./BurgerMenus";
 import ShopingCart from "./ShopingCart";
 import { useSelector } from "react-redux";
 
+
 import allProduct from "../../../../sampleProduct.json";
 
 const Header = () => {

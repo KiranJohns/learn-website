@@ -1,11 +1,12 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import Link from 'next/link';
 import useFetch from '../../axios';
 import { useFormik } from 'formik';
 import { signupValidation } from '../../yup/signupValidation';
 import Modal from "react-responsive-modal";
 import { useState } from 'react';
+
 
 const initialValues = {
   username: '',
@@ -19,6 +20,8 @@ const initialValues = {
 
 function SignUpMain() {
 
+
+
     const [otp, setOtp] = useState(null);
     const [open, setOpen] = useState(false);
   
@@ -30,8 +33,8 @@ function SignUpMain() {
       setOpen(false);
     };
 
-  const signUpReq = useFetch();
-
+  const [response, error, loading, makeRequest] = useFetch();
+ 
   const {values, handleBlur, handleChange, handleSubmit, errors} = useFormik({
     initialValues: initialValues,
     validationSchema: signupValidation,
@@ -47,9 +50,11 @@ function SignUpMain() {
     const data = values; // Send form values as data
   
    
-      signUpReq(method, url, data);
-  
-      // Check for loading state
+     makeRequest(method, url, data).then(()=>{
+      console.log("success");
+     })
+ 
+     
      
   
      
@@ -109,12 +114,12 @@ function SignUpMain() {
                 id="otp"
               />
               <Link href="/sign-in">
-                <button
+                {<button
                   type="button"
                   className="my-4 width-100 btn btn-primary"
                 >
                   submit
-                </button>
+                </button>}
               </Link>
             </div>
           </form>
@@ -123,7 +128,7 @@ function SignUpMain() {
                         <div className="row">
                             <div className="col-xxl-8 offset-xxl-2 col-xl-8 offset-xl-2">
                                 <div className="section__title-wrapper text-center mb-55">
-                                    <h2 className="section__title">Create a free <br/>  Account</h2>
+                                    <h2 className="section__title">Create a free <br/>  Account </h2>
                                     {/* <p>I'm a subhead that goes with a story.</p> */}
                                 </div>
                             </div>
@@ -224,6 +229,7 @@ function SignUpMain() {
                                             </div>
                                         </div>
                                         <button  type='submit'   className="e-btn w-100"> <span></span> Sign Up</button>
+                                        
                                         {/* <button  type='submit'  onClick={onOpenModal}  className="e-btn w-100"> <span></span> Sign Up</button> */}
                                         <div className="sign__new text-center mt-20">
                                             <p>Already in Signed Up ? <Link href="/sign-in"><a>Sign In</a></Link></p>

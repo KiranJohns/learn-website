@@ -7,16 +7,16 @@ export default function useFetch() {
     let token = null;
 
     let BASEURL = ""
-    BASEURL = "http://3.86.46.94:80/api"
+    BASEURL = "https://www.testkiran.online/api"
 
-    const [data, setData] = useState(null);
+    const [response, setResponse] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
-    return function makeRequest(method, url, data = {}) {
+    function makeRequest(method, url, data = {}) {
         console.log(method);
         setLoading(true)
-        setData(null);
+        setResponse(null);
         setError(null);
         console.log(BASEURL, url)
         try {
@@ -32,19 +32,19 @@ export default function useFetch() {
 
             }).then(res => {
                 setLoading(false)
-                setData(res?.data);
+                setResponse(res?.data);
                 setError(null);
                 console.log(res);
             }).catch(error => {
                 setLoading(false)
-                setData(null);
+                setResponse(null);
                 setError(error?.response?.data);
                 console.log(error?.response?.data);
             })
         } catch (error) {
 
             setLoading(false)
-            setData(null);
+            setResponse(null);
             setError(error?.message);
             console.log(error?.message)
 
@@ -52,5 +52,5 @@ export default function useFetch() {
        
         
     }
-
+    return[response, error, loading, makeRequest]
 }
