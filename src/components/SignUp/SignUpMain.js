@@ -1,216 +1,281 @@
-
-import React, { useEffect } from 'react';
-import Link from 'next/link';
-import useFetch from '../../axios';
-import { useFormik } from 'formik';
-import { signupValidation } from '../../yup/signupValidation';
+import React, { useEffect } from "react";
+import Link from "next/link";
+import useFetch from "../../axios";
+import { useFormik } from "formik";
+import { signupValidation } from "../../yup/signupValidation";
 import Modal from "react-responsive-modal";
-import { useState } from 'react';
-
+import { useState } from "react";
+import { useSelector } from "react-redux";
+import { boolean } from "yup";
 
 const initialValues = {
-  username: '',
-  email: '',
-  country: '',
-  city: '',
-  password: '',
-  type:''
-  
+  username: "",
+  email: "",
+  country: "",
+  city: "",
+  password: "",
+  type: "",
 };
 
 function SignUpMain() {
+  const [otp, setOtp] = useState(null);
+  const [open, setOpen] = useState(false);
+  let signupInfo = useSelector((state) => state.user.signup);
 
+  const onOpenModal = () => {
+    setOpen(true);
+  };
 
+  const onCloseModal = () => {
+    setOpen(false);
+  };
 
-    const [otp, setOtp] = useState(null);
-    const [open, setOpen] = useState(false);
-  
-    const onOpenModal = () => {
-      setOpen(true);
-    };
-  
-    const onCloseModal = () => {
-      setOpen(false);
-    };
+  const makeRequest = useFetch();
 
-  const [response, error, loading, makeRequest] = useFetch();
- 
-  const {values, handleBlur, handleChange, handleSubmit, errors} = useFormik({
+  const { values, handleBlur, handleChange, handleSubmit, errors } = useFormik({
     initialValues: initialValues,
     validationSchema: signupValidation,
     onSubmit: (values) => {
-      handleSignUp(values)
-    }
+      handleSignUp(values);
+    },
   });
 
-
   const handleSignUp = async (values) => {
-    const method = 'POST'; // Specify the HTTP method
-    const url = '/user/registration'; // Specify the API endpoint URL
+    const method = "POST"; // Specify the HTTP method
+    const url = "/user/registration"; // Specify the API endpoint URL
     const data = values; // Send form values as data
-  
-   
-     makeRequest(method, url, data).then(()=>{
-      console.log("success");
-     })
- 
-     
-     
-  
-     
+
+    makeRequest(method, url, data);
   };
-
-
 
   return (
     <main>
-         
       <section className="signup__area po-rel-z1 pt-100 pb-145">
-      <div className="sign__shape">
-                        <img className="man-1" src="assets/img/icon/sign/man-3.png" alt="img not found"/>
-                        <img className="man-2 man-22" src="assets/img/icon/sign/man-2.png" alt="img not found"/>
-                        <img className="circle" src="assets/img/icon/sign/circle.png" alt="img not found"/>
-                        <img className="zigzag" src="assets/img/icon/sign/zigzag.png" alt="img not found"/>
-                        <img className="dot" src="assets/img/icon/sign/dot.png" alt="img not found"/>
-                        <img className="bg" src="assets/img/icon/sign/sign-up.png" alt="img not found"/>
-                        <img className="flower" src="assets/img/icon/sign/flower.png" alt="img not found"/>
-                    </div>
-                    <div className="container">
-         <Modal
-        
-        onClose={onCloseModal}
-        open={open}
-        styles={{
-          modal: {
-            maxWidth: "unset",
-            width: "50%",
-            padding: "unset",
-          },
-          overlay: {
-            background: "rgba(0, 0, 0, 0.5)",
-          },
-          closeButton: {
-            background: "white",
-          },
-        }}
-        center
-      >
-        <div className="main p-5">
-          <div className="heading">
-            <h2>OTP Verification</h2>
-          </div>
-          <div className="info">
-            An OTP has been sent to your registered email address.
-          </div>
-          <form className="py-3">
-            <div className="form-group">
-              <label htmlFor="otp">Enter OTP</label>
-              <input
-                type="text"
-                className="form-control"
-                name="otp"
-                value={otp}
-                onChange={(e) => setOtp(e.target.value)}
-                id="otp"
-              />
-              <Link href="/sign-in">
-                {<button
-                  type="button"
-                  className="my-4 width-100 btn btn-primary"
-                >
-                  submit
-                </button>}
-              </Link>
-            </div>
-          </form>
+        <div className="sign__shape">
+          <img
+            className="man-1"
+            src="assets/img/icon/sign/man-3.png"
+            alt="img not found"
+          />
+          <img
+            className="man-2 man-22"
+            src="assets/img/icon/sign/man-2.png"
+            alt="img not found"
+          />
+          <img
+            className="circle"
+            src="assets/img/icon/sign/circle.png"
+            alt="img not found"
+          />
+          <img
+            className="zigzag"
+            src="assets/img/icon/sign/zigzag.png"
+            alt="img not found"
+          />
+          <img
+            className="dot"
+            src="assets/img/icon/sign/dot.png"
+            alt="img not found"
+          />
+          <img
+            className="bg"
+            src="assets/img/icon/sign/sign-up.png"
+            alt="img not found"
+          />
+          <img
+            className="flower"
+            src="assets/img/icon/sign/flower.png"
+            alt="img not found"
+          />
         </div>
-      </Modal>
-                        <div className="row">
-                            <div className="col-xxl-8 offset-xxl-2 col-xl-8 offset-xl-2">
-                                <div className="section__title-wrapper text-center mb-55">
-                                    <h2 className="section__title">Create a free <br/>  Account </h2>
-                                    {/* <p>I'm a subhead that goes with a story.</p> */}
-                                </div>
-                            </div>
-                        </div>
-                        <div className="row">
-                            <div className="col-xxl-6 offset-xxl-3 col-xl-6 offset-xl-3 col-lg-8 offset-lg-2">
-                                <div className="sign__wrapper white-bg">
-                                    <div className="sign__header mb-35">
-                                    <div className="sign__in text-center">
-                                        {/* <a href="#" className="sign__social g-plus text-start mb-15"><i className="fab fa-google"></i>Sign Up with Google</a> */}
-                                        <p> <span>........</span>  <Link href="/sign-up"><a>sign up</a></Link> with your email<span> ........</span> </p>
-                                    </div>
-                                    </div>
-                                    <div className="sign__form">
-                                    <form onSubmit={handleSubmit}>
-                                        <div className="sign__input-wrapper mb-25">
-                                            <h5>Full Name</h5>
-                                            <div className="sign__input">
-                                                <input type="text" name="username" value={values.username} onBlur={handleBlur} onChange={handleChange} placeholder="Full name"/>
-                                                <i className="fas fa-user"></i>
-                                            </div>
-                                            <br />
-                                        {errors.name && <small>{errors.name}</small>}
-                                        <br />
-                                        </div>
-                                        
-                                        <div className="sign__input-wrapper mb-25">
-                                            <h5>Work email</h5>
-                                            <div className="sign__input">
-                                                <input type="text" name='email' value={values.email} onBlur={handleBlur} onChange={handleChange} placeholder="e-mail "/>
-                                                <i className="fas fa-envelope"></i>
-                                            </div>
-                                            <br />
-                                        {errors.email && <small>{errors.email}</small>}
-                                        <br />
-                                        </div>
+        <div className="container">
+          <Modal
+            onClose={onCloseModal}
+            open={open}
+            styles={{
+              modal: {
+                maxWidth: "unset",
+                width: "50%",
+                padding: "unset",
+              },
+              overlay: {
+                background: "rgba(0, 0, 0, 0.5)",
+              },
+              closeButton: {
+                background: "white",
+              },
+            }}
+            center
+          >
+            <div className="main p-5">
+              <div className="heading">
+                <h2>OTP Verification</h2>
+              </div>
+              <div className="info">
+                An OTP has been sent to your registered email address.
+              </div>
+              <form className="py-3">
+                <div className="form-group">
+                  <label htmlFor="otp">Enter OTP</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    name="otp"
+                    value={otp}
+                    onChange={(e) => setOtp(e.target.value)}
+                    id="otp"
+                  />
+                  <Link href="/sign-in">
+                    {
+                      <button
+                        type="button"
+                        className="my-4 width-100 btn btn-primary"
+                      >
+                        submit
+                      </button>
+                    }
+                  </Link>
+                </div>
+              </form>
+            </div>
+          </Modal>
+          <div className="row">
+            <div className="col-xxl-8 offset-xxl-2 col-xl-8 offset-xl-2">
+              <div className="section__title-wrapper text-center mb-55">
+                <h2 className="section__title">
+                  Create a free <br /> Account{" "}
+                </h2>
+                {/* <p>I'm a subhead that goes with a story.</p> */}
+              </div>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-xxl-6 offset-xxl-3 col-xl-6 offset-xl-3 col-lg-8 offset-lg-2">
+              <div className="sign__wrapper white-bg">
+                <div className="sign__header mb-35">
+                  <div className="sign__in text-center">
+                    {/* <a href="#" className="sign__social g-plus text-start mb-15"><i className="fab fa-google"></i>Sign Up with Google</a> */}
+                    <p>
+                      {" "}
+                      <span>........</span>{" "}
+                      <Link href="/sign-up">
+                        <a>sign up</a>
+                      </Link>{" "}
+                      with your email<span> ........</span>{" "}
+                    </p>
+                  </div>
+                </div>
+                <div className="sign__form">
+                  <form onSubmit={handleSubmit}>
+                    <div className="sign__input-wrapper mb-25">
+                      <h5>Full Name</h5>
+                      <div className="sign__input">
+                        <input
+                          type="text"
+                          name="username"
+                          value={values.username}
+                          onBlur={handleBlur}
+                          onChange={handleChange}
+                          placeholder="Full name"
+                        />
+                        <i className="fas fa-user"></i>
+                      </div>
+                      <br />
+                      {errors.name && <small>{errors.name}</small>}
+                      <br />
+                    </div>
 
-                                         <div className="sign__input-wrapper mb-25">
-                                            <h5>Type</h5>
-                                            <div className="sign__input">
-                                                <input type="text" name='type' value={values.type} onBlur={handleBlur} onChange={handleChange} placeholder="type"/>
-                                                <i className="fas fa-check"></i>
-                                            </div>
-                                            <br />
-                                        {errors.type && <small>{errors.type}</small>}
-                                        <br />
-                                        </div> 
+                    <div className="sign__input-wrapper mb-25">
+                      <h5>Work email</h5>
+                      <div className="sign__input">
+                        <input
+                          type="text"
+                          name="email"
+                          value={values.email}
+                          onBlur={handleBlur}
+                          onChange={handleChange}
+                          placeholder="e-mail "
+                        />
+                        <i className="fas fa-envelope"></i>
+                      </div>
+                      <br />
+                      {errors.email && <small>{errors.email}</small>}
+                      <br />
+                    </div>
 
-                                        <div className="sign__input-wrapper mb-25">
-                                            <h5>Country</h5>
-                                            <div className="sign__input">
-                                                <input type="text" name='country' value={values.country} onBlur={handleBlur} onChange={handleChange} placeholder="Country"/>
-                                                <i className="fas fa-flag"></i>
-                                            </div>
-                                            <br />
-                                        {errors.country && <small>{errors.country}</small>}
-                                        <br />
-                                        </div>
+                    <div className="sign__input-wrapper mb-25">
+                      <h5>Type</h5>
+                      <div className="sign__input">
+                        <input
+                          type="text"
+                          name="type"
+                          value={values.type}
+                          onBlur={handleBlur}
+                          onChange={handleChange}
+                          placeholder="type"
+                        />
+                        <i className="fas fa-check"></i>
+                      </div>
+                      <br />
+                      {errors.type && <small>{errors.type}</small>}
+                      <br />
+                    </div>
 
-                                        <div className="sign__input-wrapper mb-25">
-                                            <h5>City</h5>
-                                            <div className="sign__input">
-                                                <input type="text" name='city' value={values.city} onBlur={handleBlur} onChange={handleChange} placeholder="City"/>
-                                                <i className="fas fa-city"></i>
-                                            </div>
-                                            <br />
-                                        {errors.city && <small>{errors.city}</small>}
-                                        <br />
-                                        </div>
+                    <div className="sign__input-wrapper mb-25">
+                      <h5>Country</h5>
+                      <div className="sign__input">
+                        <input
+                          type="text"
+                          name="country"
+                          value={values.country}
+                          onBlur={handleBlur}
+                          onChange={handleChange}
+                          placeholder="Country"
+                        />
+                        <i className="fas fa-flag"></i>
+                      </div>
+                      <br />
+                      {errors.country && <small>{errors.country}</small>}
+                      <br />
+                    </div>
 
-                                        <div className="sign__input-wrapper mb-25">
-                                            <h5>Password</h5>
-                                            <div className="sign__input">
-                                                <input type="password" name='password' value={values.password} onBlur={handleBlur} onChange={handleChange} placeholder="Password"/>
-                                                <i className="fas fa-lock"></i>
-                                            </div>
-                                            <br />
-                                        {errors.password && <small>{errors.password}</small>}
-                                        <br />
-                                        </div>
+                    <div className="sign__input-wrapper mb-25">
+                      <h5>City</h5>
+                      <div className="sign__input">
+                        <input
+                          type="text"
+                          name="city"
+                          value={values.city}
+                          onBlur={handleBlur}
+                          onChange={handleChange}
+                          placeholder="City"
+                        />
+                        <i className="fas fa-city"></i>
+                      </div>
+                      <br />
+                      {errors.city && <small>{errors.city}</small>}
+                      <br />
+                    </div>
 
-                                        {/* <div className="sign__input-wrapper mb-10">
+                    <div className="sign__input-wrapper mb-25">
+                      <h5>Password</h5>
+                      <div className="sign__input">
+                        <input
+                          type="password"
+                          name="password"
+                          value={values.password}
+                          onBlur={handleBlur}
+                          onChange={handleChange}
+                          placeholder="Password"
+                        />
+                        <i className="fas fa-lock"></i>
+                      </div>
+                      <br />
+                      {errors.password && <small>{errors.password}</small>}
+                      <br />
+                    </div>
+
+                    {/* <div className="sign__input-wrapper mb-10">
                                             <h5>Re-Password</h5>
                                             <div className="sign__input">
                                                 <input type="password" name='cpassword' value={values.cpassword} onBlur={handleBlur} onChange={handleChange} placeholder="Re-Password"/>
@@ -221,178 +286,54 @@ function SignUpMain() {
                                         <br />
                                         </div> */}
 
-                                        <div className="sign__action d-flex justify-content-between mb-30">
-                                            <div className="sign__agree d-flex align-items-center">
-                                                <input className="m-check-input" type="checkbox" id="m-agree"/>
-                                                <label className="m-check-label" htmlFor="m-agree">I agree to the <a href="#">Terms & Conditions</a>
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <button  type='submit'   className="e-btn w-100"> <span></span> Sign Up</button>
-                                        
-                                        {/* <button  type='submit'  onClick={onOpenModal}  className="e-btn w-100"> <span></span> Sign Up</button> */}
-                                        <div className="sign__new text-center mt-20">
-                                            <p>Already in Signed Up ? <Link href="/sign-in"><a>Sign In</a></Link></p>
-                                        </div>
-                                    </form>
-                                    
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <div className="sign__action d-flex justify-content-between mb-30">
+                      <div className="sign__agree d-flex align-items-center">
+                        <input
+                          className="m-check-input"
+                          type="checkbox"
+                          id="m-agree"
+                        />
+                        <label className="m-check-label" htmlFor="m-agree">
+                          I agree to the <a href="#">Terms & Conditions</a>
+                        </label>
+                      </div>
                     </div>
+                    <button type="submit" className="e-btn w-100 disabled">
+                      {" "}
+                      {signupInfo.loading ? (
+                        <>
+                          <span
+                            class="spinner-border spinner-border-sm"
+                            role="status"
+                            aria-hidden="true"
+                          ></span>
+                          <span class="sr-only">Loading...</span>
+                        </>
+                      ) : (
+                        <>
+                          <span>Sign Up</span>
+                        </>
+                      )}
+                    </button>
+
+                    {/* <button  type='submit'  onClick={onOpenModal}  className="e-btn w-100"> <span></span> Sign Up</button> */}
+                    <div className="sign__new text-center mt-20">
+                      <p>
+                        Already in Signed Up ?{" "}
+                        <Link href="/sign-in">
+                          <a>Sign In</a>
+                        </Link>
+                      </p>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
     </main>
   );
 }
 
 export default SignUpMain;
-
-
-
-
-
-
-
-
-
-
-
-
-// import React, { Component } from 'react';
-// import Link from 'next/link';
-// import useFetch from '../../axios';
-// import {useFormik} from 'formik'
-
-// const initialValues ={
-//  name:'',
-//  email:'',
-//  country:'',
-//  city:'',
-//  password:'',
-//  cpassword:''
-// }
-
-// class SignUpMain extends Component {
-
-//        signUpReq = useFetch()
-       
-//        handleSignUp(){
-        
-//         signUpReq(method,url,data)
-
-//        }
-
-
-
-
-//     render() {
-//         const formik =   useFormik({
-//             intialValues: initialValues,
-//             onSubmit: (values)=>{
-//                 console.log(values)
-//             }
-//            })
-//            console.log(formik)
-//         return (
-//             <main>
-//                 <section className="signup__area po-rel-z1 pt-100 pb-145">
-//                     <div className="sign__shape">
-//                         <img className="man-1" src="assets/img/icon/sign/man-3.png" alt="img not found"/>
-//                         <img className="man-2 man-22" src="assets/img/icon/sign/man-2.png" alt="img not found"/>
-//                         <img className="circle" src="assets/img/icon/sign/circle.png" alt="img not found"/>
-//                         <img className="zigzag" src="assets/img/icon/sign/zigzag.png" alt="img not found"/>
-//                         <img className="dot" src="assets/img/icon/sign/dot.png" alt="img not found"/>
-//                         <img className="bg" src="assets/img/icon/sign/sign-up.png" alt="img not found"/>
-//                         <img className="flower" src="assets/img/icon/sign/flower.png" alt="img not found"/>
-//                     </div>
-//                     <div className="container">
-//                         <div className="row">
-//                             <div className="col-xxl-8 offset-xxl-2 col-xl-8 offset-xl-2">
-//                                 <div className="section__title-wrapper text-center mb-55">
-//                                     <h2 className="section__title">Create a free <br/>  Account</h2>
-//                                     {/* <p>I'm a subhead that goes with a story.</p> */}
-//                                 </div>
-//                             </div>
-//                         </div>
-//                         <div className="row">
-//                             <div className="col-xxl-6 offset-xxl-3 col-xl-6 offset-xl-3 col-lg-8 offset-lg-2">
-//                                 <div className="sign__wrapper white-bg">
-//                                     <div className="sign__header mb-35">
-//                                     <div className="sign__in text-center">
-//                                         {/* <a href="#" className="sign__social g-plus text-start mb-15"><i className="fab fa-google"></i>Sign Up with Google</a> */}
-//                                         <p> <span>........</span>  <Link href="/sign-up"><a>sign up</a></Link> with your email<span> ........</span> </p>
-//                                     </div>
-//                                     </div>
-//                                     <div className="sign__form">
-//                                     <form action="#">
-//                                         <div className="sign__input-wrapper mb-25">
-//                                             <h5>Full Name</h5>
-//                                             <div className="sign__input">
-//                                                 <input type="text" name="name" placeholder="Full name"/>
-//                                                 <i className="fas fa-user"></i>
-//                                             </div>
-//                                         </div>
-//                                         <div className="sign__input-wrapper mb-25">
-//                                             <h5>Work email</h5>
-//                                             <div className="sign__input">
-//                                                 <input type="text" name='email' placeholder="e-mail address"/>
-//                                                 <i className="fas fa-envelope"></i>
-//                                             </div>
-//                                         </div>
-//                                         <div className="sign__input-wrapper mb-25">
-//                                             <h5>Country</h5>
-//                                             <div className="sign__input">
-//                                                 <input type="text" name='country' placeholder="Country"/>
-//                                                 <i className="fas fa-flag"></i>
-//                                             </div>
-//                                         </div>
-//                                         <div className="sign__input-wrapper mb-25">
-//                                             <h5>City</h5>
-//                                             <div className="sign__input">
-//                                                 <input type="text" name='city' placeholder="City"/>
-//                                                 <i className="fas fa-flag"></i>
-//                                             </div>
-//                                         </div>
-//                                         <div className="sign__input-wrapper mb-25">
-//                                             <h5>Password</h5>
-//                                             <div className="sign__input">
-//                                                 <input type="text" name='password' placeholder="Password"/>
-//                                                 <i className="fas fa-lock"></i>
-//                                             </div>
-//                                         </div>
-//                                         <div className="sign__input-wrapper mb-10">
-//                                             <h5>Re-Password</h5>
-//                                             <div className="sign__input">
-//                                                 <input type="text" name='cpassword' placeholder="Re-Password"/>
-//                                                 <i className="fas fa-lock"></i>
-//                                             </div>
-//                                         </div>
-//                                         <div className="sign__action d-flex justify-content-between mb-30">
-//                                             <div className="sign__agree d-flex align-items-center">
-//                                                 <input className="m-check-input" type="checkbox" id="m-agree"/>
-//                                                 <label className="m-check-label" htmlFor="m-agree">I agree to the <a href="#">Terms & Conditions</a>
-//                                                 </label>
-//                                             </div>
-//                                         </div>
-//                                         <button className="e-btn w-100"> <span></span> Sign Up</button>
-//                                         <div className="sign__new text-center mt-20">
-//                                             <p>Already in Signed Up ? <Link href="/sign-in"><a>Sign In</a></Link></p>
-//                                         </div>
-//                                     </form>
-//                                     </div>
-//                                 </div>
-//                             </div>
-//                         </div>
-//                     </div>
-//                 </section>
-//         	</main>
-//         );
-//     }
-// }
-
-// export default SignUpMain;
-
-
-
-
