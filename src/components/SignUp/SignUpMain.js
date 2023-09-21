@@ -17,8 +17,13 @@ const initialValues = {
   type: "",
 };
 
+
+
+
 function SignUpMain() {
-  const [otp, setOtp] = useState(null);
+  
+  const [otp, setOtp] = useState('')
+ 
   const [open, setOpen] = useState(false);
   let signupInfo = useSelector((state) => state.user.signup);
 
@@ -29,8 +34,21 @@ function SignUpMain() {
   const onCloseModal = () => {
     setOpen(false);
   };
-
+ useEffect(() => {
+   console.log(signupInfo)
+ 
+   if(signupInfo.response){
+    onOpenModal()
+   }
+ }, [signupInfo.loading])
+ 
   const makeRequest = useFetch();
+
+  const handleOtp = (event) =>{
+    event.preventDefault();
+    makeRequest('POST','/user/validate-otp',{email: values.email ,otp: otp}) 
+    console.log(otp)
+  }
 
   const { values, handleBlur, handleChange, handleSubmit, errors } = useFormik({
     initialValues: initialValues,
@@ -114,7 +132,7 @@ function SignUpMain() {
               <div className="info">
                 An OTP has been sent to your registered email address.
               </div>
-              <form className="py-3">
+              <form onSubmit={handleOtp} className="py-3">
                 <div className="form-group">
                   <label htmlFor="otp">Enter OTP</label>
                   <input
@@ -122,19 +140,18 @@ function SignUpMain() {
                     className="form-control"
                     name="otp"
                     value={otp}
-                    onChange={(e) => setOtp(e.target.value)}
+                    onChange={(e) => setOtp(e.target.value) }
                     id="otp"
                   />
-                  <Link href="/sign-in">
-                    {
+                
                       <button
-                        type="button"
+                        type="submit"
                         className="my-4 width-100 btn btn-primary"
+                        
                       >
                         submit
                       </button>
-                    }
-                  </Link>
+                   
                 </div>
               </form>
             </div>

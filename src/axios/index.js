@@ -6,7 +6,7 @@ export default function useFetch() {
   let token = null;
 
   let BASEURL = "";
-  BASEURL = "http://localhost:3001/api";
+  BASEURL = "https://www.testkiran.online/api";
 
   function makeRequest(method, url, data = {}) {
     console.log(method);
@@ -28,7 +28,7 @@ export default function useFetch() {
         .then((res) => {
             store.dispatch({
                 type: "SET_RESPONSE",
-                payload: res
+                payload: res.data
             })
         })
         .catch((error) => {
