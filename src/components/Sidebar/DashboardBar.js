@@ -23,7 +23,7 @@ class DashboardBar extends Component{
                   {/* <Link className='fs-6 ' style={{color: "#3E001F"}} href="/company/dashboard">Dashboard</Link> */}
                   <span  className='txttsml' style={{color: "#004b55"}}>
                       <Link href="/company/dashboard">
-                    Dashboard
+                    Overview
                     </Link></span>  
                   </div>
 

@@ -1,23 +1,40 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import Link from 'next/link';
 import useFetch from '../../axios';
 import { useFormik } from 'formik';
 import { signupValidation } from '../../yup/signupValidation';
+import Modal from "react-responsive-modal";
+import { useState } from 'react';
+
 
 const initialValues = {
-  name: '',
+  username: '',
   email: '',
   country: '',
   city: '',
   password: '',
+  type:''
+  
 };
 
 function SignUpMain() {
 
-   
-  const signUpReq = useFetch();
 
+
+    const [otp, setOtp] = useState(null);
+    const [open, setOpen] = useState(false);
+  
+    const onOpenModal = () => {
+      setOpen(true);
+    };
+  
+    const onCloseModal = () => {
+      setOpen(false);
+    };
+
+  const [response, error, loading, makeRequest] = useFetch();
+ 
   const {values, handleBlur, handleChange, handleSubmit, errors} = useFormik({
     initialValues: initialValues,
     validationSchema: signupValidation,
@@ -27,23 +44,27 @@ function SignUpMain() {
   });
 
 
-
-
-
-  const handleSignUp = (values) => {
+  const handleSignUp = async (values) => {
     const method = 'POST'; // Specify the HTTP method
-    const urls = '/user/registration'; // Specify the API endpoint URL
+    const url = '/user/registration'; // Specify the API endpoint URL
     const data = values; // Send form values as data
-
-    const [loading, response, error ] = signUpReq(method, urls, data);
-    console.log(loading )
-    console.log(response)
-    console.log(error )
+  
+   
+     makeRequest(method, url, data).then(()=>{
+      console.log("success");
+     })
+ 
+     
+     
+  
+     
   };
+
 
 
   return (
     <main>
+         
       <section className="signup__area po-rel-z1 pt-100 pb-145">
       <div className="sign__shape">
                         <img className="man-1" src="assets/img/icon/sign/man-3.png" alt="img not found"/>
@@ -55,10 +76,59 @@ function SignUpMain() {
                         <img className="flower" src="assets/img/icon/sign/flower.png" alt="img not found"/>
                     </div>
                     <div className="container">
+         <Modal
+        
+        onClose={onCloseModal}
+        open={open}
+        styles={{
+          modal: {
+            maxWidth: "unset",
+            width: "50%",
+            padding: "unset",
+          },
+          overlay: {
+            background: "rgba(0, 0, 0, 0.5)",
+          },
+          closeButton: {
+            background: "white",
+          },
+        }}
+        center
+      >
+        <div className="main p-5">
+          <div className="heading">
+            <h2>OTP Verification</h2>
+          </div>
+          <div className="info">
+            An OTP has been sent to your registered email address.
+          </div>
+          <form className="py-3">
+            <div className="form-group">
+              <label htmlFor="otp">Enter OTP</label>
+              <input
+                type="text"
+                className="form-control"
+                name="otp"
+                value={otp}
+                onChange={(e) => setOtp(e.target.value)}
+                id="otp"
+              />
+              <Link href="/sign-in">
+                {<button
+                  type="button"
+                  className="my-4 width-100 btn btn-primary"
+                >
+                  submit
+                </button>}
+              </Link>
+            </div>
+          </form>
+        </div>
+      </Modal>
                         <div className="row">
                             <div className="col-xxl-8 offset-xxl-2 col-xl-8 offset-xl-2">
                                 <div className="section__title-wrapper text-center mb-55">
-                                    <h2 className="section__title">Create a free <br/>  Account</h2>
+                                    <h2 className="section__title">Create a free <br/>  Account </h2>
                                     {/* <p>I'm a subhead that goes with a story.</p> */}
                                 </div>
                             </div>
@@ -77,7 +147,7 @@ function SignUpMain() {
                                         <div className="sign__input-wrapper mb-25">
                                             <h5>Full Name</h5>
                                             <div className="sign__input">
-                                                <input type="text" name="name" value={values.name} onBlur={handleBlur} onChange={handleChange} placeholder="Full name"/>
+                                                <input type="text" name="username" value={values.username} onBlur={handleBlur} onChange={handleChange} placeholder="Full name"/>
                                                 <i className="fas fa-user"></i>
                                             </div>
                                             <br />
@@ -88,13 +158,24 @@ function SignUpMain() {
                                         <div className="sign__input-wrapper mb-25">
                                             <h5>Work email</h5>
                                             <div className="sign__input">
-                                                <input type="text" name='email' value={values.email} onBlur={handleBlur} onChange={handleChange} placeholder="e-mail address"/>
+                                                <input type="text" name='email' value={values.email} onBlur={handleBlur} onChange={handleChange} placeholder="e-mail "/>
                                                 <i className="fas fa-envelope"></i>
                                             </div>
                                             <br />
                                         {errors.email && <small>{errors.email}</small>}
                                         <br />
                                         </div>
+
+                                         <div className="sign__input-wrapper mb-25">
+                                            <h5>Type</h5>
+                                            <div className="sign__input">
+                                                <input type="text" name='type' value={values.type} onBlur={handleBlur} onChange={handleChange} placeholder="type"/>
+                                                <i className="fas fa-check"></i>
+                                            </div>
+                                            <br />
+                                        {errors.type && <small>{errors.type}</small>}
+                                        <br />
+                                        </div> 
 
                                         <div className="sign__input-wrapper mb-25">
                                             <h5>Country</h5>
@@ -147,12 +228,14 @@ function SignUpMain() {
                                                 </label>
                                             </div>
                                         </div>
+                                        <button  type='submit'   className="e-btn w-100"> <span></span> Sign Up</button>
                                         
-                                        <button  type='submit' className="e-btn w-100"> <span></span> Sign Up</button>
+                                        {/* <button  type='submit'  onClick={onOpenModal}  className="e-btn w-100"> <span></span> Sign Up</button> */}
                                         <div className="sign__new text-center mt-20">
                                             <p>Already in Signed Up ? <Link href="/sign-in"><a>Sign In</a></Link></p>
                                         </div>
                                     </form>
+                                    
                                     </div>
                                 </div>
                             </div>
