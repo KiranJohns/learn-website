@@ -25,7 +25,6 @@ export default function useFetch() {
           })
           .catch((error) => {
             reject(error.response)
-            console.log(error?.response?.data);
           });
       } catch (error) {
         reject(error?.message);
