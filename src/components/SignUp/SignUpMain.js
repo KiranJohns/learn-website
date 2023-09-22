@@ -49,6 +49,7 @@ function SignUpMain() {
     event.preventDefault();
     makeRequest('POST','/user/validate-otp',{email: values.email ,otp: otp}) 
     console.log(otp)
+    console.log(values.email)
   }
 
   const { values, handleBlur, handleChange, handleSubmit, errors } = useFormik({
