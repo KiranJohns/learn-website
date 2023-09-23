@@ -3,11 +3,12 @@ import axios from "axios";
 import store from "../redux/store";
 
 export default function useFetch() {
-  let token = null;
   let BASEURL = "";
   BASEURL = "https://www.testkiran.online/api";
-
-  function makeRequest(method, url, data = {}) {
+  
+ async function makeRequest(method, url, data = {}) {
+    let token = await localStorage.setItem(`learnforcare`, res.jwt);
+    
     return new Promise((resolve, reject) => {
       try {
         axios({

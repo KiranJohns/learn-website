@@ -31,7 +31,7 @@ function SignInMain() {
           payload: res.data,
         });
         console.log(res);
-        await localStorage.setItem(`learnforcare.${loginData.email}`, res.jwt);
+        await localStorage.setItem(`learnforcare`, res.jwt);
         location.pathname = "/";
       })
       .catch((err) => {

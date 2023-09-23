@@ -13,11 +13,11 @@ class CompanyDashboard extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <main className="p-4" style={{backgroundImage: "linear-gradient(to right, #ededed, #ededed)" }}>
+        <main className="p-4" style={{backgroundImage: "linear-gradient(to right, #EDEEF3, #EDEEF3)" }}>
           <HeaderDashboard />  
-          <div className="container-fluid bg-light" style={{borderRadius:'25px'}}>
+          <div className="container-fluid bg-light" style={{borderRadius:'22px'}}>
             <div className="row" >
-              <div className="col-5 col-md-2 bg-white" style={{borderRadius:'25px'}}>
+              <div className="col-5 col-md-2 bg-white" style={{borderRadius:'22px'}}>
                 <DashboardBar />
               </div>
               <div className="col-7 col-md-10 ">
