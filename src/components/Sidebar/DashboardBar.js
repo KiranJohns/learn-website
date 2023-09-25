@@ -6,11 +6,11 @@ class DashboardBar extends Component{
     render(){
         return(
          <div className='bg-white' >  
-          <div className='px-4 mt-4  text-nowrap' style={{overflow:'hidden'}}>
+          {/* <div className='px-4 mt-4  text-nowrap' style={{overflow:'hidden'}}>
             <i className='bi bi-person-circle py-2' style={{color: "#004b55"}}></i>
            <span className='brand-name my-2 fs-5 px-2 ' style={{color: "#004b55",width:'240px'}}>Jamie Oliver</span>
-          </div>
-                <hr className='text-dark'/>
+          </div> */}
+                <hr className='text-white'/>
                 <div className='list-group list-group-flush text-nowrap' style={{overflow:'hidden'}}>
                 
                   {/* <a className='list-group-item py-2'>
@@ -103,11 +103,7 @@ class DashboardBar extends Component{
                   </div>
 
                   
-                  <div className='list-group-item py-2 px-2'>
-                    <i className='bi bi-arrow-left-circle-fill txttsml me-2' style={{color: "#004b55"}}></i>
-                      <span  className='txttsml' style={{color: "#004b55"}}>
-                     <Link  href="/">Logout</Link></span>
-                  </div>
+                
                 </div>
             </div>                 
         )
