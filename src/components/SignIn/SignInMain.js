@@ -24,7 +24,7 @@ function SignInMain() {
       type: "SET_LOADING_FOR_SIGN_IN",
     });
 
-    makeRequest("POST", "/user/login", loginData)
+    makeRequest("POST", "/user/auth/login", loginData)
       .then(async (res) => {
         store.dispatch({
           type: "SET_RESPONSE_FOR_SIGN_IN",
@@ -32,7 +32,7 @@ function SignInMain() {
         });
         console.log(res);
         await localStorage.setItem(`learnforcare`, res.jwt);
-        location.pathname = "/";
+        location.pathname = "/company/dashboard";
       })
       .catch((err) => {
         store.dispatch({
@@ -160,7 +160,7 @@ function SignInMain() {
                       <h5>Password</h5>
                       <div className="sign__input">
                         <input
-                          type="text"
+                          type="password"
                           name="password"
                           placeholder="Password"
                           value={loginData.password}

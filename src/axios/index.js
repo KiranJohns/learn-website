@@ -4,10 +4,10 @@ import store from "../redux/store";
 
 export default function useFetch() {
   let BASEURL = "";
-  BASEURL = "https://www.testkiran.online/api";
+  BASEURL = "https://www.learnforcare.co.uk/api";
   
  async function makeRequest(method, url, data = {}) {
-    let token = await localStorage.setItem(`learnforcare`, res.jwt);
+    let token = await localStorage.getItem(`learnforcare`);
     
     return new Promise((resolve, reject) => {
       try {
@@ -22,12 +22,15 @@ export default function useFetch() {
           withCredentials: true,
         })
           .then((res) => {
+            console.log('care')
             resolve(res.data)
           })
           .catch((error) => {
+            console.log('learn')
             reject(error.response)
           });
       } catch (error) {
+        
         reject(error?.message);
       }
     });

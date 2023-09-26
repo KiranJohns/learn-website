@@ -87,7 +87,11 @@ class DashCAvail extends Component {
         <div className=' row g-3  min-vh-100  d-flex justify-content-center align-items-center '>
           <div style={{padding:"50px 10%", backgroundColor: ""}}>
             <div className='pb-2' style={{display:'flex', justifyContent:'left' }}>
-              <input type="text"  placeholder='Search course...' onChange={this.handleFilter} style={{padding:'6px 10px', borderColor:'transparent', overflow:'hidden'}}/></div>
+              <input type="text"  placeholder='Search course...' onChange={this.handleFilter} style={{padding:'6px 10px', borderColor:'transparent', overflow:'hidden'}}/>
+              <span class="input-group-append">
+               
+            </span>
+              </div>
           <DataTable 
           columns={columns} 
           data={this.state.records} 

@@ -43,7 +43,7 @@ function SignUpMain() {
 
   const handleOtp = (event) => {
     event.preventDefault();
-    makeRequest("POST", "/user/validate-otp", {
+    makeRequest("POST", "/user/auth/validate-otp", {
       email: values.email,
       otp: otp,
     })
@@ -67,21 +67,24 @@ function SignUpMain() {
 
   const handleSignUp = async (values) => {
     const method = "POST"; // Specify the HTTP method
-    const url = "/user/registration"; // Specify the API endpoint URL
+    const url = "/user/auth/registration"; // Specify the API endpoint URL
     const data = values; // Send form values as data
 
     store.dispatch({
       type: "SET_LOADING",
     });
-
+       console.log('Hello');
     makeRequest(method, url, data)
       .then((res) => {
+        console.log(res);
         store.dispatch({
           type: "SET_RESPONSE",
           payload: res,
         });
       })
       .catch((error) => {
+        console.log('Hi');
+        console.log(error);
         store.dispatch({
           type: "SET_ERROR",
           payload: error,
