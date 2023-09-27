@@ -17,7 +17,7 @@ export const signupValidation = Yup.object({
 
   type: Yup.string().min(3).required('Please enter type'),
 
-  terms:Yup.bool().oneOf([true], 'You must accept the terms and conditions'),
+  terms:Yup.boolean().oneOf([false], 'Please accept'),
 
 })
 

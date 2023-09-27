@@ -27,6 +27,21 @@ const initialValues = {
 function SignUpMain() {
   const [otp, setOtp] = useState("");
 
+  const [check, setCheck] = useState(false)
+
+    function  myCheck() {
+    var checkBox = document.getElementById("m-agree");
+    console.log(values.terms)
+    if (checkBox.checked == true){
+      setCheck(true)
+      values.terms=check
+    } else {
+      setCheck(false);
+      values.terms=check
+    }
+  }
+
+
   const [showA, setShowA] = useState(true);
   const toggleShowA = () => setShowA(!showA);
   
@@ -358,18 +373,18 @@ function SignUpMain() {
                           type="checkbox"
                           id="m-agree"
                           name="terms"
+                          onClick={myCheck}
+                          value={check}
                         />
                         <label className="m-check-label" htmlFor="m-agree">
                           I agree to the <a href="#">Terms & Conditions</a>
                         </label>
                       </div>
-                     <div className="row">
-                     <br />
-                      {errors.terms && <small>{errors.terms}</small>}
-                      <br /> 
-                     </div>
+                      <br className="d-block " />
+                      {errors.terms && <small className="text-primary">{errors.terms}</small>}
+                      <br />
                     </div>
-        
+                        
                     <button type="submit" className="e-btn w-100 disabled">
                       {" "}
                       {signupInfo.loading ? (
