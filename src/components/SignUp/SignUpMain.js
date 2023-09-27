@@ -8,6 +8,11 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { boolean } from "yup";
 import store from "../../redux/store";
+import Toast from 'react-bootstrap/Toast';
+import Button from 'react-bootstrap/Button';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+
 
 const initialValues = {
   username: "",
@@ -16,11 +21,15 @@ const initialValues = {
   city: "",
   password: "",
   type: "",
+  terms:false,
 };
 
 function SignUpMain() {
   const [otp, setOtp] = useState("");
 
+  const [showA, setShowA] = useState(true);
+  const toggleShowA = () => setShowA(!showA);
+  
   const [open, setOpen] = useState(false);
   let signupInfo = useSelector((state) => state.user.signup);
 
@@ -94,6 +103,20 @@ function SignUpMain() {
 
   return (
     <main>
+            {/* {errors.email && <Col md={6} className="mb-2" style={{position:'sticky',top:'110px',left:'150px'}}>
+       <Button onClick={toggleShowA} className="mb-2">
+          Toggle Toast <strong>with</strong> Animation
+        </Button> 
+        <Toast show={showA} onClose={toggleShowA}>
+          <Toast.Header>
+           
+            <strong className="mx-auto">Error</strong>
+            <small></small>
+          </Toast.Header>
+          <Toast.Body>you're reading this text in a Toast!</Toast.Body>
+        </Toast>
+      </Col> } */}
+
       <section className="signup__area po-rel-z1 pt-100 pb-145">
         <div className="sign__shape">
           <img
@@ -223,7 +246,7 @@ function SignUpMain() {
                         <i className="fas fa-user"></i>
                       </div>
                       <br />
-                      {errors.name && <small>{errors.name}</small>}
+                      {errors.username && <small>{errors.username}</small>}
                       <br />
                     </div>
 
@@ -334,12 +357,19 @@ function SignUpMain() {
                           className="m-check-input"
                           type="checkbox"
                           id="m-agree"
+                          name="terms"
                         />
                         <label className="m-check-label" htmlFor="m-agree">
                           I agree to the <a href="#">Terms & Conditions</a>
                         </label>
                       </div>
+                     <div className="row">
+                     <br />
+                      {errors.terms && <small>{errors.terms}</small>}
+                      <br /> 
+                     </div>
                     </div>
+        
                     <button type="submit" className="e-btn w-100 disabled">
                       {" "}
                       {signupInfo.loading ? (

@@ -31,7 +31,8 @@ function SignInMain() {
           payload: res.data,
         });
         console.log(res);
-        await localStorage.setItem(`learnforcare`, res.jwt);
+        await localStorage.setItem(`learnforcare_access`, res.data.data.jwt_access_token);
+        await localStorage.setItem(`learnforcare_refresh`, res.data.data.jwt_refresh_token);
         location.pathname = "/company/dashboard";
       })
       .catch((err) => {
