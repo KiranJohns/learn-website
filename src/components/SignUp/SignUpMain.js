@@ -4,7 +4,7 @@ import useFetch from "../../axios";
 import { useFormik } from "formik";
 import { signupValidation } from "../../yup/signupValidation";
 import Modal from "react-responsive-modal";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useSelector } from "react-redux";
 import { boolean } from "yup";
 import store from "../../redux/store";
@@ -12,7 +12,8 @@ import Toast from 'react-bootstrap/Toast';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const initialValues = {
   username: "",
@@ -21,36 +22,67 @@ const initialValues = {
   city: "",
   password: "",
   type: "",
-  terms:false,
+  terms: "",
 };
 
 function SignUpMain() {
   const [otp, setOtp] = useState("");
 
-  const [check, setCheck] = useState(false)
+  const [check, setCheck] = useState(true)
 
-    function  myCheck() {
+  function myCheck() {
     var checkBox = document.getElementById("m-agree");
     console.log(values.terms)
-    if (checkBox.checked == true){
-      setCheck(true)
-      values.terms=check
+    if (checkBox.checked == false) {
+      setCheck(false)
+      values.terms = check
+
     } else {
-      setCheck(false);
-      values.terms=check
+      setCheck(true);
+      values.terms = check
     }
   }
 
+  // const [countdown, setCountdown] = useState(120)
+  // const timerId = useRef()
+
+  // useEffect(()=>{
+  //   timerId.current=setInterval(()=>{
+  //     setCountdown(prev=> prev -1)
+  //   },1000)
+  //   return() =>clearInterval(timerId)
+  // },[])
+
+  function resend() {
+    event.preventDefault();
+    makeRequest("PATCH", "/user/auth/resend-otp", {
+      email: values.email
+    }).then(
+      () =>{
+        toast.success("A new OTP send to your email");
+      }
+    ).catch(
+      (error)=>{
+        toast(error.errors[0].message)
+      }
+    )
+     
+  }
+
+  const [error, setError] = useState(null)
 
   const [showA, setShowA] = useState(true);
   const toggleShowA = () => setShowA(!showA);
-  
+
   const [open, setOpen] = useState(false);
   let signupInfo = useSelector((state) => state.user.signup);
 
   const onOpenModal = () => {
     setOpen(true);
+
   };
+
+ 
 
   const onCloseModal = () => {
     setOpen(false);
@@ -97,7 +129,8 @@ function SignUpMain() {
     store.dispatch({
       type: "SET_LOADING",
     });
-       console.log('Hello');
+    console.log('Hello');
+
     makeRequest(method, url, data)
       .then((res) => {
         console.log(res);
@@ -107,30 +140,34 @@ function SignUpMain() {
         });
       })
       .catch((error) => {
-        console.log('Hi');
-        console.log(error);
+        console.log(error.errors[0].message);
+        setError(error.errors[0].message);
         store.dispatch({
           type: "SET_ERROR",
           payload: error,
         });
-      });
+        toast.info(error.errors[0].message)
+      }
+      );
   };
+
+    
 
   return (
     <main>
-            {/* {errors.email && <Col md={6} className="mb-2" style={{position:'sticky',top:'110px',left:'150px'}}>
-       <Button onClick={toggleShowA} className="mb-2">
-          Toggle Toast <strong>with</strong> Animation
-        </Button> 
-        <Toast show={showA} onClose={toggleShowA}>
-          <Toast.Header>
-           
-            <strong className="mx-auto">Error</strong>
-            <small></small>
-          </Toast.Header>
-          <Toast.Body>you're reading this text in a Toast!</Toast.Body>
-        </Toast>
-      </Col> } */}
+      {error && <div>
+        <ToastContainer
+         position="top-right"
+         autoClose={5000}
+         hideProgressBar={false}
+         newestOnTop={false}
+         closeOnClick={true}
+         rtl={false}
+         pauseOnFocusLoss
+         draggable
+         pauseOnHover
+         theme="light" />
+      </div>}
 
       <section className="signup__area po-rel-z1 pt-100 pb-145">
         <div className="sign__shape">
@@ -207,15 +244,24 @@ function SignUpMain() {
                     onChange={(e) => setOtp(e.target.value)}
                     id="otp"
                   />
+                  <div className="d-flex justify-content-between">
+                    <div className="">
+                      <button
+                        type="button"
+                        className="my-4 width-100 btn btn-primary"
+                        onClick={handleOtp}
+                      >
+                        submit
+                      </button>
+                    </div>
 
-                  <button
-                    type="button"
-                    className="my-4 width-100 btn btn-primary"
-                    onClick={handleOtp}
-                  >
-                    submit
-                  </button>
+                    <div className="mt-4">
+                      {/* <button type="button" className="my-4 width-100 btn btn-primary">Resend OTP</button> */}
+                      <a style={{ cursor: 'pointer' }} onClick={resend} className="text-primary mt-2 width-100">Resend OTP</a>
+                    </div>
+                  </div>
                 </div>
+
               </form>
             </div>
           </Modal>
@@ -384,7 +430,7 @@ function SignUpMain() {
                       {errors.terms && <small className="text-primary">{errors.terms}</small>}
                       <br />
                     </div>
-                        
+
                     <button type="submit" className="e-btn w-100 disabled">
                       {" "}
                       {signupInfo.loading ? (

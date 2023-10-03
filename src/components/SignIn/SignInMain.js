@@ -6,9 +6,13 @@ import store from "../../redux/store";
 import fetchRequest from "../../axios";
 import useFetch from "../../axios";
 
+
 function SignInMain() {
   const [loginData, setLoginData] = useState({ email: "", password: "" });
   const makeRequest = useFetch();
+
+
+
   function handleOnChange(e) {
     e.persist();
     setLoginData((prev) => {
@@ -31,9 +35,10 @@ function SignInMain() {
           payload: res.data,
         });
         console.log(res);
-        await localStorage.setItem(`learnforcare_access`, res.data.data.jwt_access_token);
-        await localStorage.setItem(`learnforcare_refresh`, res.data.data.jwt_refresh_token);
+        await localStorage.setItem(`learnforcare_access`, res.data.jwt_access_token);
+        await localStorage.setItem(`learnforcare_refresh`, res.data.jwt_refresh_token);
         location.pathname = "/company/dashboard";
+        
       })
       .catch((err) => {
         store.dispatch({

@@ -29,7 +29,7 @@ export default function useFetch() {
           })
           .catch((error) => {
             console.log('learn')
-            reject(error.response)
+            reject(error.response.data)
           });
       } catch (error) {
         
