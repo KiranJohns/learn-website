@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import DataTable from 'react-data-table-component';
 import Link from 'next/link';
+import BasicExample from '../About/button1';
 
 const customStyles = {
   headRow:{
@@ -76,15 +77,15 @@ class DashSUser extends Component {
         selector: (row) => row.email,
       },
       {
-        name: 'City',
-        selector: (row) => row.address.city,
+        name: 'Action',
+        cell: row  => <BasicExample/>,
       },
       
     ];
 
     return (
       <div className=''>
-        <h3 style={{padding:"1.5rem", color: "#004b55"}}>Users</h3>
+        <h2 style={{padding:"1.5rem", color: "#004b55"}}>Users</h2>
         <div className=' row g-3  min-vh-100  d-flex justify-content-center align-items-center '>
           <div style={{padding:"50px 10%", backgroundColor: ""}}>
             <div className='pb-2' style={{display:'flex', justifyContent:'left' }}>

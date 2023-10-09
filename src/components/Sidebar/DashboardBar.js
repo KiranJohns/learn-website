@@ -18,6 +18,7 @@ class DashboardBar extends Component{
                      <span>Dashboard</span>
                     </i>
                   </a> */}
+                  
                   <div className='list-group-item py-2 px-2'>
                     <i className='bi bi-house txttsml me-2' style={{color: "#004b55"}}></i>
                   {/* <Link className='fs-6 ' style={{color: "#3E001F"}} href="/company/dashboard">Dashboard</Link> */}
@@ -101,9 +102,10 @@ class DashboardBar extends Component{
                          </span> 
                    
                   </div>
-
+                 
+                  <span  className='txttsml' style={{color: "#004b55"}}>  </span> 
                   
-                
+                      
                 </div>
             </div>                 
         )

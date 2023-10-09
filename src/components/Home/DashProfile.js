@@ -10,9 +10,9 @@ class DashProfile extends Component{
     render(){
         return(
             <div className=''>
-               <h3 style={{padding:"1.5rem", color: "#004b55"}}>My Profile</h3> 
+               <h2 style={{padding:"1.5rem", color: "#004b55"}}>My Profile</h2> 
                <Form>
-      <Row className="mb-3">
+      <Row className="mb-3 mt-4">
         <Form.Group as={Col} controlId="formGridEmail">
           <Form.Label>Email</Form.Label>
           <Form.Control type="email" placeholder="Enter email" />
