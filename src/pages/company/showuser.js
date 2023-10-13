@@ -6,6 +6,7 @@ import DashboardBar from "../../components/Sidebar/DashboardBar";
 import HeaderDashboard from "../../components/Layout/Header/HeaderDashboard";
 import DashMain from "../../components/Home/DashMain";
 import DashSUser from "../../components/Home/DashSUser";
+import Header from '../../components/Layout/Header/Header';
 
 class showUser extends React.Component {
     static getInitialProps({ store }) {}
@@ -19,8 +20,8 @@ class showUser extends React.Component {
         return(
             <React.Fragment>
                 <main className="p-4" style={{backgroundImage: "linear-gradient(to right, #EDEEF3, #EDEEF3)" }}>
-                 <HeaderDashboard />
-                 <div className="container-fluid bg-light " style={{borderRadius:'22px'}}> 
+                 <Header />
+                 <div className="container-fluid bg-light " style={{borderRadius:'22px',marginTop:"120px"}}> 
                   <div className="row">
                  <div className="col-5 col-md-2 bg-white " style={{borderRadius:'22px'}}>
                    <DashboardBar/>

@@ -31,9 +31,11 @@ const HeaderDashboard = ({ Toggle }) => {
       </Head>
       <Navbar  expand=""  className="">
 
-        <Navbar.Brand href="#home"><div className="d-flex navheight">
-          <img className=" p-2" src="/assets/img/logo/logo7.png" alt="image" />
-        </div>   </Navbar.Brand>
+        <Navbar.Brand href="#home">
+        <Nav.Link href="/">
+          <div className="d-flex navheight">
+        <img className=" p-2" src="/assets/img/logo/logo7.png" alt="image" />
+        </div> </Nav.Link>  </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav"/>
         <Navbar.Collapse className="justify-content-end" id="basic-navbar-nav">
         <Navbar.Offcanvas

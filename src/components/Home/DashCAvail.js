@@ -86,7 +86,7 @@ class DashCAvail extends Component {
       <div className=''>
         <h2 style={{padding:"1.5rem", color: "#004b55"}}>All Courses</h2>
         <div className=' row g-3  min-vh-100  d-flex justify-content-center align-items-center '>
-          <div style={{padding:"50px 10%", backgroundColor: ""}}>
+          <div style={{padding:"", backgroundColor: ""}}>
             <div className='pb-2' style={{display:'flex', justifyContent:'left' }}>
               <input type="text"  placeholder='Search course...' onChange={this.handleFilter} style={{padding:'6px 10px', borderColor:'transparent', overflow:'hidden'}}/>
               <span class="input-group-append">

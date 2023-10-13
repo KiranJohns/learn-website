@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import Link from 'next/link';
 import 'bootstrap-icons/font/bootstrap-icons.css'
 
-class DashboardBar extends Component{
+class BarD1 extends Component{
     render(){
         return(
-         <div className='bg-white' >  
+         <div className='bg-white' style={{borderRadius:"22px"}}>  
           {/* <div className='px-4 mt-4  text-nowrap' style={{overflow:'hidden'}}>
             <i className='bi bi-person-circle py-2' style={{color: "#004b55"}}></i>
            <span className='brand-name my-2 fs-5 px-2 ' style={{color: "#004b55",width:'240px'}}>Jamie Oliver</span>
@@ -23,8 +23,8 @@ class DashboardBar extends Component{
                     <i className='bi bi-house txttsml me-2' style={{color: "#004b55"}}></i>
                   {/* <Link className='fs-6 ' style={{color: "#3E001F"}} href="/company/dashboard">Dashboard</Link> */}
                   <span  className='txttsml' style={{color: "#004b55"}}>
-                      <Link href="/company/landingsub">
-                    Dashboard
+                      <Link href="/company/dashboard">
+                    Overview
                     </Link></span>  
                   </div>
 
@@ -111,4 +111,4 @@ class DashboardBar extends Component{
         )
     }
 } 
-export default DashboardBar
+export default BarD1

@@ -10,7 +10,8 @@ class DashMain extends Component {
         return (
          
           <div className='' >
-            <h2 style={{padding:"1.5rem", color: "#004b55"}}>Overview</h2>           
+            <p class="h2" style={{padding:"1rem", color: "#004b55"}}>Overview</p>
+            {/* <h2 style={{padding:"1.5rem", color: "#004b55"}}>Overview</h2>            */}
            <div className=' row g-3  min-vh-100  d-flex justify-content-center align-items-around my-5'>
 
             {/* <div className='col-md-3'>
