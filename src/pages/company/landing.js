@@ -24,15 +24,15 @@ class TestCourse extends React.Component {
                  <Header/>
                  <div className="container-fluid bg-light " style={{borderRadius:'22px'}}> 
                   <div style={{marginTop:'120px'}} className="row">
-                    <div className=" col-md-1  vh-100" style={{background:"#EDEEF3",}}></div>
-                 <div className="col-5 col-md-2 bg-white vh-100">
+                    <div className="col-0 col-md-1  vh-100" style={{background:"#EDEEF3",}}></div>
+                 <div className="col-4 col-md-2 bg-white vh-100">
                    <BarD1/>
                    </div>
                 <div className="col-7 col-md-8 ">
                 {/* <DashTest/> */}
                 <Profilesmall/>
              </div>
-             <div className=" col-md-1  vh-100" style={{background:"#EDEEF3"}}></div>
+             <div className="col-0 col-md-1  vh-100" style={{background:"#EDEEF3"}}></div>
          </div>       
       </div>
       {/* <Footer/>   */}

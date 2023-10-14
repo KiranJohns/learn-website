@@ -148,45 +148,57 @@
 // card start
 
 .ag-format-container {
-  
+    
     margin: 0 auto;
   }
   
-  
-
   .ag-courses_box {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: start;
-    -ms-flex-align: start;
-    align-items: flex-start;
-    -ms-flex-wrap: wrap;
+  display: flex;
+  -ms-flex-wrap: wrap;
     flex-wrap: wrap;
-    padding: 50px 0;
-
-    @media #{$xs}{
-       flex-direction: column;
-       justify-content: center;
-       align-items: center;
-    }
+    justify-content: space-around;
   }
 
   .ag-courses_item {
-        -ms-flex-preferred-size: calc(33.33333% - 30px);
-        flex-basis: calc(33.33333% - 30px);
-        margin: 0 15px 30px;
-        overflow: hidden;
-        border-radius: 28px;    
-  }
+    max-width: 400px;
+    min-width: 300px;
+    margin: 0 15px 45px;
+    overflow: hidden;
+    border-radius: 28px;    
+}
+
+//   .ag-courses_box {
+    
+    // display: -webkit-box;
+    // display: -ms-flexbox;
+    // display: flex;
+    // -webkit-box-align: start;
+    // -ms-flex-align: start;
+    // align-items: flex-start;
+    // -ms-flex-wrap: wrap;
+    // flex-wrap: wrap;
+    // padding: 50px 0;
+    
+    // @media #{$xs}{
+    //    flex-direction: column;
+    //    justify-content: center;
+    //    align-items: center;
+    // }
+//   }
+
+//   .ag-courses_item {
+//         -ms-flex-preferred-size: calc(33.33333% - 30px);
+//         flex-basis: calc(33.33333% - 30px);
+//         margin: 0 15px 30px;
+//         overflow: hidden;
+//         border-radius: 28px;    
+//   }
 
   .ag-courses-item_link {
     display: block;
     padding: 30px 20px;
     background-color: #121212;
-  
     overflow: hidden;
-  
     position: relative;
   }
 
