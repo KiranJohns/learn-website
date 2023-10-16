@@ -86,7 +86,7 @@ class DashAssign extends Component {
 
     return (
       <div className=''>
-      <h2 style={{padding:"1.5rem", color: "#004b55", display:"flex", justifyContent:"center"}}>Assign Course</h2>
+      <h2 style={{padding:"1.5rem", color: "#004b55", display:"flex", justifyContent:"center", marginTop:'20px',fontSize: 46}}>Assign Course</h2>
       <div className=' row g-3  min-vh-100  d-flex justify-content-center '>
         <div style={{padding:"", backgroundColor: ""}}>
           <div className='pb-2 smth'  style={{display:'flex', justifyContent:'left' }}>

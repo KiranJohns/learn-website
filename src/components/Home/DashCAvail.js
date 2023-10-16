@@ -84,10 +84,10 @@ class DashCAvail extends Component {
 
     return (
      <div className=''>
-        <h2 style={{padding:"1.5rem", color: "#004b55", display:"flex", justifyContent:"left"}}>All Courses</h2>
+        <h2 style={{padding:"1.5rem", color: "#004b55", display:"flex", justifyContent:"center", marginTop:'20px',fontSize: 46}}>All Courses</h2>
         <div className=' row g-3  min-vh-100  d-flex justify-content-center '>
           <div style={{padding:"", backgroundColor: ""}}>
-            <div className='pb-2 smth'  style={{display:'flex', justifyContent:'right' }}>
+            <div className='pb-2 smth'  style={{display:'flex', justifyContent:'left' }}>
               <input type="text" className='' placeholder='Search course...' onChange={this.handleFilter} style={{padding:'6px 10px', borderColor:'transparent', overflow:'hidden' }}/>
               </div>
           <DataTable 
