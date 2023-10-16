@@ -84,12 +84,12 @@ class DashCertificate extends Component {
 
     return (
       <div className=''>
-        <h2 style={{padding:"1.5rem", color: "#004b55"}}>Certificates</h2>
-        <div className=' row g-3  min-vh-100  d-flex justify-content-center align-items-center '>
+        <h2 style={{padding:"1.5rem", color: "#004b55", display:"flex", justifyContent:"flex-start"}}>Certificates</h2>
+        <div className=' row g-3  min-vh-100  d-flex justify-content-center '>
           <div style={{padding:"", backgroundColor: ""}}>
-            <div className='pb-2' style={{display:'flex', justifyContent:'left' }}>
-              
-              <input type="text"  placeholder='Search course...' onChange={this.handleFilter} style={{padding:'6px 10px', borderColor:'transparent', overflow:'hidden'}}/></div>
+            <div className='pb-2 smth'  style={{display:'flex', justifyContent:'right' }}>
+              <input type="text" className='' placeholder='Search course...' onChange={this.handleFilter} style={{padding:'6px 10px', borderColor:'transparent', overflow:'hidden' }}/>
+              </div>
           <DataTable 
           columns={columns} 
           data={this.state.records} 

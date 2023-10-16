@@ -6,8 +6,8 @@ class DashCreate extends Component{
     render(){
         return(
             <div className=''>
-              <h2 style={{padding:"1.5rem", color: "#004b55"}}>Create User</h2> 
-            <div className='row g-3  min-vh-100  d-flex justify-content-end align-items-center '>  
+              <h2 style={{padding:"1.5rem", color: "#004b55",display:"flex", justifyContent:"left"}}>Create User</h2> 
+            <div className='row g-3  d-flex justify-content-end  '>  
             
             <form className="col-sm-10 col-md-8 d-block mx-auto">
   <div className="form-group p-2 mb-4">

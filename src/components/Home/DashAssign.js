@@ -86,22 +86,22 @@ class DashAssign extends Component {
 
     return (
       <div className=''>
-        <h2 style={{padding:"1.5rem", color: "#004b55"}}>Assign Course</h2>
-        
-        <div className=' row g-3  min-vh-100  d-flex justify-content-center align-items-center '>
-          <div style={{padding:"", backgroundColor: ""}}>
-            <div className='pb-2' style={{display:'flex', justifyContent:'left' }}>
-              <input type="text"  placeholder='Search course...' onChange={this.handleFilter} style={{padding:'6px 10px', borderColor:'transparent', overflow:'hidden'}}/></div>
-          <DataTable 
-          columns={columns} 
-          data={this.state.records} 
-          customStyles={customStyles}
-          pagination
-          selectableRows
-          />
-          </div>
+      <h2 style={{padding:"1.5rem", color: "#004b55", display:"flex", justifyContent:"center"}}>Assign Course</h2>
+      <div className=' row g-3  min-vh-100  d-flex justify-content-center '>
+        <div style={{padding:"", backgroundColor: ""}}>
+          <div className='pb-2 smth'  style={{display:'flex', justifyContent:'left' }}>
+            <input type="text" className='' placeholder='Search course...' onChange={this.handleFilter} style={{padding:'6px 10px', borderColor:'transparent', overflow:'hidden' }}/>
+            </div>
+        <DataTable 
+        columns={columns} 
+        data={this.state.records} 
+        customStyles={customStyles}
+        pagination
+        selectableRows
+        />
         </div>
       </div>
+    </div>
     );
   }
 }

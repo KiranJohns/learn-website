@@ -18,12 +18,12 @@ class MyProfile extends React.Component{
             <React.Fragment>
                 <main className="p-4" style={{backgroundImage: "linear-gradient(to right, #EDEEF3, #EDEEF3)" }}>
                  <Header />
-                 <div className="container-fluid bg-light" style={{borderRadius:'22px',marginTop:"120px"}}> 
-                  <div className="row">
-                   <div className="col-5 col-md-2 bg-white vh-100" style={{borderRadius:'22px'}}>
+                 <div className="container-fluid " style={{marginTop:"110px"}}> 
+                  <div className="row justify-content-md-center">
+                   <div className="col-sm-2 col-md-auto bg-white " >
                    <DashboardBar/>
                    </div>
-                <div className="col-7 col-md-10">
+                <div className="col-sm col-md-8 vh-100 bg-light" >
                     <DashProfile />
              </div>
          </div>       
