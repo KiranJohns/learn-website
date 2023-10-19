@@ -1,61 +1,70 @@
-import React, { Component } from 'react';
-import ArticleLayout from '../Common/ArticleLayout';
-import posts from '../../sample-data/blog-posts/posts.json';
-import Breadcrumb from '../Common/Breadcrumb';
-import PaginationSection from '../Common/Pagination';
-import Search from './SearchSection';
-import RecentPost from './RecentPostSection';
-import Category from './CategorySecion';
-import Tags from './TagsSection';
-import SidebarBanner from './SidebarBannerSection';
+import React, { Component } from "react";
+import ArticleLayout from "../Common/ArticleLayout";
+import posts from "../../sample-data/blog-posts/posts.json";
+import Breadcrumb from "../Common/Breadcrumb";
+import PaginationSection from "../Common/Pagination";
+import Search from "./SearchSection";
+import RecentPost from "./RecentPostSection";
+import Category from "./CategorySecion";
+import Tags from "./TagsSection";
+import SidebarBanner from "./SidebarBannerSection";
+import fetchData from "../../axios/index";
+import store from "../../redux/store";
 
 class BlogMain extends Component {
+  state = {
+    blogs: [],
+  };
 
-    render() {
+  componentDidMount() {
+    let makeRequest = fetchData();
 
-        return (
-            <main>
+    makeRequest("GET", "/blog/get-all-blog")
+      .then((res) => {
+        this.setState(() => ({
+          blogs: res.data.response,
+        }));
+        store.dispatch({
+          type: "SET_ALL_BLOGS",
+          payload: res.data.blogs,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 
-                {/* breadcrumb-start */}
-				<Breadcrumb pageTitle="Blog" />
-				{/* breadcrumb-end */}
+  render() {
+    console.log(this.state);
 
-	            <section className="blog__area pt-120 pb-120">
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-xxl-12 col-xl-12 col-lg-12">
-                            
-                                <div className='row'>
-                                    {posts && posts.map((post, i) => (
-                                    <div key={i} className="col-xxl-4 col-xl-4 col-lg-4 col-md-4">
-                                        <ArticleLayout post={post} />
-                                    </div>
-                                    ))}
-                                </div>
-
-                                {/* <PaginationSection /> */}
-	                        </div>
-
-	                        {/* <div className="col-xxl-4 col-xl-4 col-lg-4">
-                                <div className="blog__sidebar pl-70">
-
-                                    <Search />
-
-                                    <RecentPost />
-
-                                    <Category />
-
-                                    <Tags />
-
-                                    <SidebarBanner />
-                                </div>
-                            </div> */}
-	                    </div>
-	                </div>
-	            </section>
-        	</main>
-        );
-    }
+    return (
+      <main>
+        <Breadcrumb pageTitle="Blog" />
+        <section className="blog__area pt-120 pb-120">
+          <div className="container">
+            <div className="row">
+              <div className="col-xxl-12 col-xl-12 col-lg-12">
+                <div className="row">
+                  {this.state.blogs &&
+                    this.state.blogs.map((post, i) => {
+                      console.log(post);
+                      return (
+                        <div
+                          key={i}
+                          className="col-xxl-4 col-xl-4 col-lg-4 col-md-4"
+                        >
+                          <ArticleLayout post={post} />
+                        </div>
+                      );
+                    })}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    );
+  }
 }
 
 export default BlogMain;

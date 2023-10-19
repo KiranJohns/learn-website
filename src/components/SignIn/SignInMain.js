@@ -4,12 +4,12 @@ import Link from "next/link";
 import Modal from "react-responsive-modal";
 import store from "../../redux/store";
 import fetchRequest from "../../axios";
-import useFetch from "../../axios";
+import fetchData from "../../axios";
 
 
 function SignInMain() {
   const [loginData, setLoginData] = useState({ email: "", password: "" });
-  const makeRequest = useFetch();
+  const makeRequest = fetchData();
 
 
 
@@ -28,7 +28,7 @@ function SignInMain() {
       type: "SET_LOADING_FOR_SIGN_IN",
     });
 
-    makeRequest("POST", "/user/auth/login", loginData)
+    makeRequest("POST", "/auth/login", loginData)
       .then(async (res) => {
         store.dispatch({
           type: "SET_RESPONSE_FOR_SIGN_IN",
