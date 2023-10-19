@@ -3,9 +3,9 @@ import CourseBundle from "../../components/CourseGrid/CourseBundle";
 import DashboardBar from "../../components/Sidebar/DashboardBar";
 import HeaderDashboard from "../../components/Layout/Header/HeaderDashboard";
 import DashCertificate from "../../components/Home/DashCertificate";
+import Header from '../../components/Layout/Header/Header';
 
-
-class CompanyDashboard extends React.Component{
+class MyCertificate extends React.Component{
 
     static getInitialProps({store}) {}
     constructor(props) {
@@ -14,14 +14,14 @@ class CompanyDashboard extends React.Component{
     render(){    
         return(
             <React.Fragment>
-                <main className="p-2"  style={{ backgroundImage: "linear-gradient(to right, #004b55 , wheat)" }}>
-                 <HeaderDashboard/>
-                 <div className="container-fluid bg-light"> 
-                  <div className="row">
-                   <div className="col-5 col-md-2 bg-white vh-100 ">
+                  <main  className="p-4" style={{backgroundImage: "linear-gradient(to right, #EDEEF3, #EDEEF3)" }}>
+                 <Header/>
+                 <div className="container-fluid " style={{borderRadius:'22px',marginTop:"120px"}}> 
+                  <div className="row justify-content-md-center">
+                   <div className="col-sm-2 col-md-auto bg-white" >
                    <DashboardBar/>
                    </div>
-                <div className="col-7 col-md-10">
+                <div className="col-sm col-md-9  bg-light">
                     <DashCertificate />
              </div>
          </div>       
@@ -32,4 +32,8 @@ class CompanyDashboard extends React.Component{
     }
 }
 
-export default CompanyDashboard
+export default MyCertificate
+
+
+
+

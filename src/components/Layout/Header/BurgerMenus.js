@@ -54,17 +54,17 @@ const BurgerMenus = ({setMenuOpen, menuOpen}) => {
           </div>
           <div className="sidebar__content">
               <div className="logo mb-40">
-                <Link href="/"><a><img className='w-75 mt-5 ml-5' src="assets/img/logo/logo7.png" alt="logo"/></a></Link>
+                <Link href="/"><a><img className='w-75 mt-5 ml-5' src="/assets/img/logo/logo7.png" alt="logo"/></a></Link>
               </div>
               <div className="mm-menu">
                 <ul>
-                  <li className={home ? "has-droupdown active" : "has-droupdown"}>
-                    <a onClick={() => { openMobileMenu('home'); }}>Home</a>
-                    <ul className={home ? "sub-menu active" : "sub-menu"}>
+                  <li className={home }>
+                    <a href='/' onClick={() => { openMobileMenu('home'); }}>Home</a>
+                    {/* <ul className={home ? "sub-menu active" : "sub-menu"}>
                       <li><Link href="/"><a>Home 1</a></Link></li>
                       <li><Link href="/home-2"><a>Home 2</a></Link></li>
                       <li><Link href="/home-3"><a>Home 3</a></Link></li>
-                    </ul>
+                    </ul> */}
                   </li>
                   <li className={courses ? "has-droupdown active" : "has-droupdown"}>
                     <a onClick={() => { openMobileMenu('courses'); }}>Courses</a>

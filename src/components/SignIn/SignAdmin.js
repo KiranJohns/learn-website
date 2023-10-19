@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import store from "../../redux/store";
-import useFetch from "../../axios";
+import fetchData from "../../axios";
 import { useSelector } from "react-redux";
 
 export default function SignInAdmin() {
@@ -17,7 +17,7 @@ export default function SignInAdmin() {
       };
     });
   }
-  const makeRequest = useFetch();
+  const makeRequest = fetchData();
 
   function handleLogin(e) {
     e.preventDefault();

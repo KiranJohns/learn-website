@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import DataTable from 'react-data-table-component';
 import Link from 'next/link';
+import BasicExample from '../About/button1';
 
 const customStyles = {
   headRow:{
@@ -16,12 +17,14 @@ const customStyles = {
     style:{
       fontSize:'16px',
       fontWeight:'600',
-      textTransform:'uppercase'
+      textTransform:'uppercase',
+      justifyContent:"center"
     }
   },
   cells:{
     style:{
       fontSize: "15px",
+      justifyContent:"center"
     }
   }
 }
@@ -76,19 +79,19 @@ class DashCourse extends Component {
         selector: (row) => row.email,
       },
       {
-        name: 'City',
-        selector: (row) => row.address.city,
+        name: 'Actions',
+        cell:() =>  <BasicExample/>,
       },
       
     ];
 
     return (
       <div className=''>
-        <h3 style={{padding:"1.5rem", color: "#004b55"}}>My Courses</h3>
-        <div className=' row g-3  min-vh-100  d-flex justify-content-center align-items-center '>
-          <div style={{padding:"50px 10%", backgroundColor: ""}}>
-            <div className='pb-2 smth'  style={{display:'flex', justifyContent:'left' }}>
-              <input type="text"  placeholder='Search course...' onChange={this.handleFilter} style={{padding:'6px 10px', borderColor:'transparent', }}/>
+        <h2 style={{padding:"1.5rem", color: "#004b55", display:"flex", justifyContent:"flex-start",justifyContent:"center", marginTop:'20px',fontSize: 46}}>My Courses</h2>
+        <div className=' row g-3  min-vh-100  d-flex justify-content-center '>
+          <div style={{padding:"", backgroundColor: ""}}>
+            <div className='pb-2 smth'  style={{display:'flex', justifyContent:'left', }}>
+              <input type="text" className='' placeholder='Search course...' onChange={this.handleFilter} style={{padding:'6px 10px', borderColor:'transparent', overflow:'hidden' }}/>
               </div>
           <DataTable 
           columns={columns} 

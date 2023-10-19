@@ -1,39 +1,30 @@
-import React from "react";
-import CourseBundle from "../../components/CourseGrid/CourseBundle";
-import DashboardBar from "../../components/Sidebar/DashboardBar";
-import HeaderDashboard from "../../components/Layout/Header/HeaderDashboard";
-import DashMain from "../../components/Home/DashMain";
-import Accordion from 'react-bootstrap/Accordion';
+import React from 'react';
+import HeaderOpaque from '../../components/Layout/Header/HeaderOpaque';
+import Header from '../../components/Layout/Header/Header';
+import Footer from '../../components/Layout/Footer/Footer';
+import DashTest from '../../components/Home/DashTest';
 
-class CompanyDashboard extends React.Component {
-  static getInitialProps({ store }) {}
-  constructor(props) {
-    super(props);
-  }
-  render() {
-    return (
-      <React.Fragment>
-        <main className="p-4" style={{backgroundImage: "linear-gradient(to right, #ededed, #ededed)" }}>
-          <HeaderDashboard />  
-          <div className="container-fluid bg-light" style={{borderRadius:'25px'}}>
-            <div className="row" >
-              <div className="col-5 col-md-2 bg-white" style={{borderRadius:'25px'}}>
-                <DashboardBar />
-              </div>
-              <div className="col-7 col-md-10 ">
-                <DashMain />
-              </div>
+
+class Lsub extends React.Component {
+
+    static getInitialProps({store}) {}
+
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        return (
+            <React.Fragment>
+            <Header />
+            <div style={{marginTop:"120px", marginBottom:"60px"}}>
+            <DashTest />
             </div>
-          </div>
-        </main>
-      </React.Fragment>
-    );
-  }
+            <Footer />
+            </React.Fragment>
+        );
+    }
 }
 
-export default CompanyDashboard;
 
-
-
-
-
+export default Lsub;
