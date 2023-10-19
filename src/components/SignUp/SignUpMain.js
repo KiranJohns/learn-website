@@ -82,7 +82,7 @@ function SignUpMain() {
 
   const handleOtp = (event) => {
     event.preventDefault();
-    makeRequest("POST", "/user/auth/validate-otp", {
+    makeRequest("POST", "/auth/validate-otp", {
       email: values.email,
       otp: otp,
     })
