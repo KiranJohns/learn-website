@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import Link from "next/link";
-import useFetch from "../../axios";
+import fetchData from "../../axios";
 import { useFormik } from "formik";
 import { signupValidation } from "../../yup/signupValidation";
 import Modal from "react-responsive-modal";
@@ -8,12 +8,12 @@ import { useState, useRef } from "react";
 import { useSelector } from "react-redux";
 import { boolean } from "yup";
 import store from "../../redux/store";
-import Toast from 'react-bootstrap/Toast';
-import Button from 'react-bootstrap/Button';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import Toast from "react-bootstrap/Toast";
+import Button from "react-bootstrap/Button";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const initialValues = {
   name: "",
@@ -21,55 +21,41 @@ const initialValues = {
   country: "",
   city: "",
   password: "",
-  type: "",
+  type_of_account: "",
   terms: "",
 };
 
 function SignUpMain() {
   const [otp, setOtp] = useState("");
 
-  const [check, setCheck] = useState(true)
+  const [check, setCheck] = useState(true);
 
   function myCheck() {
-    var checkBox = document.getElementById("m-agree");
-    console.log(values.terms)
-    if (checkBox.checked == false) {
-      setCheck(false)
-      values.terms = check
-
-    } else {
-      setCheck(true);
-      values.terms = check
-    }
+    // var checkBox = document.getElementById("m-agree");
+    // console.log(values?.terms);
+    // if (checkBox.checked == false) {
+    //   setCheck(false);
+    //   values.terms = check;
+    // } else {
+    //   setCheck(true);
+    //   values.terms = check;
+    // }
   }
-
-  // const [countdown, setCountdown] = useState(120)
-  // const timerId = useRef()
-
-  // useEffect(()=>{
-  //   timerId.current=setInterval(()=>{
-  //     setCountdown(prev=> prev -1)
-  //   },1000)
-  //   return() =>clearInterval(timerId)
-  // },[])
 
   function resend() {
     event.preventDefault();
     makeRequest("PATCH", "/user/auth/resend-otp", {
-      email: values.email
-    }).then(
-      () =>{
+      email: values.email,
+    })
+      .then(() => {
         toast.success("A new OTP send to your email");
-      }
-    ).catch(
-      (error)=>{
-        toast(error.errors[0].message)
-      }
-    )
-     
+      })
+      .catch((error) => {
+        toast(error.errors[0].message);
+      });
   }
 
-  const [error, setError] = useState(null)
+  const [error, setError] = useState(null);
 
   const [showA, setShowA] = useState(true);
   const toggleShowA = () => setShowA(!showA);
@@ -79,10 +65,7 @@ function SignUpMain() {
 
   const onOpenModal = () => {
     setOpen(true);
-
   };
-
- 
 
   const onCloseModal = () => {
     setOpen(false);
@@ -95,11 +78,11 @@ function SignUpMain() {
     }
   }, [signupInfo.loading]);
 
-  const makeRequest = useFetch();
+  const makeRequest = fetchData();
 
   const handleOtp = (event) => {
     event.preventDefault();
-    makeRequest("POST", "/user/auth/validate-otp", {
+    makeRequest("POST", "/auth/validate-otp", {
       email: values.email,
       otp: otp,
     })
@@ -121,53 +104,59 @@ function SignUpMain() {
     },
   });
 
-  const handleSignUp = async (values) => {
-    const method = "POST"; // Specify the HTTP method
-    const url = "/user/auth/registration"; // Specify the API endpoint URL
-    const data = values; // Send form values as data
+  const handleSignUp = async (e) => {
+    try {
+      e.persist()
+      console.log("Hello");
+      const method = "POST"; // Specify the HTTP method
+      const url = "/user/auth/registration"; // Specify the API endpoint URL
+      const data = values; // Send form values as data
 
-    store.dispatch({
-      type: "SET_LOADING",
-    });
-    console.log('Hello');
+      store.dispatch({
+        type: "SET_LOADING",
+      });
 
-    makeRequest(method, url, data)
-      .then((res) => {
-        console.log(res);
-        store.dispatch({
-          type: "SET_RESPONSE",
-          payload: res,
+
+      makeRequest(method, url, data)
+        .then((res) => {
+          console.log(res);
+          store.dispatch({
+            type: "SET_RESPONSE",
+            payload: res,
+          });
+        })
+        .catch((error) => {
+          console.log(error);
+          setError(error.errors[0].message);
+          store.dispatch({
+            type: "SET_ERROR",
+            payload: error,
+          });
+          toast.info(error.errors[0].message);
         });
-      })
-      .catch((error) => {
-        console.log(error.errors[0].message);
-        setError(error.errors[0].message);
-        store.dispatch({
-          type: "SET_ERROR",
-          payload: error,
-        });
-        toast.info(error.errors[0].message)
-      }
-      );
+    } catch (error) {
+      console.log(error);
+    }
   };
-
-    
 
   return (
     <main>
-      {error && <div>
-        <ToastContainer
-         position="top-right"
-         autoClose={5000}
-         hideProgressBar={false}
-         newestOnTop={false}
-         closeOnClick={true}
-         rtl={false}
-         pauseOnFocusLoss
-         draggable
-         pauseOnHover
-         theme="light" />
-      </div>}
+      {error && (
+        <div>
+          <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick={true}
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+          />
+        </div>
+      )}
 
       <section className="signup__area po-rel-z1 pt-100 pb-145">
         <div className="sign__shape">
@@ -256,12 +245,16 @@ function SignUpMain() {
                     </div>
 
                     <div className="mt-4">
-                      {/* <button type="button" className="my-4 width-100 btn btn-primary">Resend OTP</button> */}
-                      <a style={{ cursor: 'pointer' }} onClick={resend} className="text-primary mt-2 width-100">Resend OTP</a>
+                      <a
+                        style={{ cursor: "pointer" }}
+                        onClick={resend}
+                        className="text-primary mt-2 width-100"
+                      >
+                        Resend OTP
+                      </a>
                     </div>
                   </div>
                 </div>
-
               </form>
             </div>
           </Modal>
@@ -271,7 +264,6 @@ function SignUpMain() {
                 <h2 className="section__title">
                   Create a free <br /> Account{" "}
                 </h2>
-                {/* <p>I'm a subhead that goes with a story.</p> */}
               </div>
             </div>
           </div>
@@ -280,7 +272,6 @@ function SignUpMain() {
               <div className="sign__wrapper white-bg">
                 <div className="sign__header mb-35">
                   <div className="sign__in text-center">
-                    {/* <a href="#" className="sign__social g-plus text-start mb-15"><i className="fab fa-google"></i>Sign Up with Google</a> */}
                     <p>
                       {" "}
                       <span>........</span>{" "}
@@ -292,14 +283,14 @@ function SignUpMain() {
                   </div>
                 </div>
                 <div className="sign__form">
-                  <form onSubmit={handleSubmit}>
+                  <form>
                     <div className="sign__input-wrapper mb-25">
                       <h5>Full Name</h5>
                       <div className="sign__input">
                         <input
                           type="text"
-                          name="username"
-                          value={values.username}
+                          name="name"
+                          value={values.name}
                           onBlur={handleBlur}
                           onChange={handleChange}
                           placeholder="Full name"
@@ -334,8 +325,8 @@ function SignUpMain() {
                       <div className="sign__input">
                         <input
                           type="text"
-                          name="type"
-                          value={values.type}
+                          name="type_of_account"
+                          value={values.type_of_account}
                           onBlur={handleBlur}
                           onChange={handleChange}
                           placeholder="type"
@@ -400,18 +391,6 @@ function SignUpMain() {
                       {errors.password && <small>{errors.password}</small>}
                       <br />
                     </div>
-
-                    {/* <div className="sign__input-wrapper mb-10">
-                                            <h5>Re-Password</h5>
-                                            <div className="sign__input">
-                                                <input type="password" name='cpassword' value={values.cpassword} onBlur={handleBlur} onChange={handleChange} placeholder="Re-Password"/>
-                                                <i className="fas fa-lock"></i>
-                                            </div>
-                                            <br />
-                                        {errors.cpassword && <small>{errors.cpassword}</small>}
-                                        <br />
-                                        </div> */}
-
                     <div className="sign__action d-flex justify-content-between mb-30">
                       <div className="sign__agree d-flex align-items-center">
                         <input
@@ -427,11 +406,13 @@ function SignUpMain() {
                         </label>
                       </div>
                       <br className="d-block " />
-                      {errors.terms && <small className="text-primary">{errors.terms}</small>}
+                      {errors.terms && (
+                        <small className="text-primary">{errors.terms}</small>
+                      )}
                       <br />
                     </div>
 
-                    <button type="submit" className="e-btn w-100 disabled">
+                    <button onClick={handleSignUp} type="button" className="e-btn w-100 disabled">
                       {" "}
                       {signupInfo.loading ? (
                         <>
@@ -448,8 +429,6 @@ function SignUpMain() {
                         </>
                       )}
                     </button>
-
-                    {/* <button  type='submit'  onClick={onOpenModal}  className="e-btn w-100"> <span></span> Sign Up</button> */}
                     <div className="sign__new text-center mt-20">
                       <p>
                         Already in Signed Up ?{" "}

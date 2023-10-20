@@ -6,7 +6,6 @@ import BurgerMenus from "./BurgerMenus";
 import ShopingCart from "./ShopingCart";
 import { useSelector } from "react-redux";
 
-
 import allProduct from "../../../../sampleProduct.json";
 
 const Header = () => {
@@ -18,6 +17,7 @@ const Header = () => {
   const { cart } = useSelector((store) => store.cart);
   const [searchProduct, setSearchProduct] = useState([]);
   const [searchString, setSearchString] = useState("");
+  let logedIn = 'localStorage.getItem("learnforcare_access")';
 
   useEffect(() => {
     setPath(router.pathname);
@@ -32,7 +32,7 @@ const Header = () => {
           return item;
         }
       });
-      if(e.target?.value == '') return []
+      if (e.target?.value == "") return [];
       return product;
     });
   }
@@ -160,11 +160,13 @@ const Header = () => {
                               <Link href="/course-specialised">
                                 <a>Specialised Care Courses</a>
                               </Link>
-                            </li> <li>
+                            </li>{" "}
+                            <li>
                               <Link href="/course-recovery">
                                 <a>Recovery Care Courses</a>
                               </Link>
-                            </li> <li>
+                            </li>{" "}
+                            <li>
                               <Link href="/course-child">
                                 <a>Child Care Courses</a>
                               </Link>
@@ -193,7 +195,6 @@ const Header = () => {
                           <Link href="/blog">
                             <a>Blog</a>
                           </Link>
-                         
                         </li>
                         {/* <li className="has-dropdown">
                           <Link href="/course-grid">
@@ -252,11 +253,11 @@ const Header = () => {
                             </li>
                           </ul>
                         </li> */}
-                          <li>
-                              <Link href="/how-it">
-                                <a>How it Works</a>
-                              </Link>
-                            </li>
+                        <li>
+                          <Link href="/how-it">
+                            <a>How it Works</a>
+                          </Link>
+                        </li>
                         {/* <li>
                           <Link href="/contact">
                             <a>Contact</a>
@@ -303,7 +304,9 @@ const Header = () => {
                       <div className="search-suggestions position-absolute w-100">
                         <ul class="list-group w-100">
                           {searchProduct?.map((item) => (
-                            <li class="list-group-item w-100">{item.heading}</li>
+                            <li class="list-group-item w-100">
+                              {item.heading}
+                            </li>
                           ))}
                         </ul>
                       </div>
@@ -330,9 +333,15 @@ const Header = () => {
                     </span>
                   </div>
                   <div className="header__btn ml-20 d-none d-sm-block">
-                    <Link href="/sign-in">
-                      <a className="e-btn">Sign In</a>
-                    </Link>
+                    {logedIn ? (
+                      <Link href="/company/myprofile">
+                        <a className="e-btn">Profile</a>
+                      </Link>
+                    ) : (
+                      <Link href="/sign-in">
+                        <a className="e-btn">Sign In</a>
+                      </Link>
+                    )}
                   </div>
                   <div className="sidebar__menu d-xl-none">
                     <div

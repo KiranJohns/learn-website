@@ -2,14 +2,15 @@ import React, { useState } from "react";
 import axios from "axios";
 import store from "../redux/store";
 
-export default function useFetch() {
+export default function fetchData() {
   let BASEURL = "";
-  BASEURL = "https://www.testkiran.online/api";
+  BASEURL = "https://www.testkiran.online/api/user";
+  // BASEURL = "http://localhost:3002/api/user";
   
   // /www.learnforcare.co.uk
 
  async function makeRequest(method, url, data = {}) {
-    let token = await localStorage.getItem(`learnforcare`);
+    let token = await localStorage.getItem(`learnforcare_access`);
     
     return new Promise((resolve, reject) => {
       try {
@@ -24,12 +25,10 @@ export default function useFetch() {
           withCredentials: true,
         })
           .then((res) => {
-            console.log('care')
             resolve(res.data)
           })
           .catch((error) => {
-            console.log('learn')
-            reject(error.response.data)
+            reject(error.response)
           });
       } catch (error) {
         
