@@ -16,7 +16,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const initialValues = {
-  username: "",
+  name: "",
   email: "",
   country: "",
   city: "",
