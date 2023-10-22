@@ -26,7 +26,7 @@ class BlogMain extends Component {
         }));
         store.dispatch({
           type: "SET_ALL_BLOGS",
-          payload: res.data.blogs,
+          payload: res.data.response,
         });
       })
       .catch((err) => {
