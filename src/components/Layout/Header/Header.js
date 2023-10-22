@@ -5,10 +5,12 @@ import Head from "next/head";
 import BurgerMenus from "./BurgerMenus";
 import ShopingCart from "./ShopingCart";
 import { useSelector } from "react-redux";
+import NoSSR from 'react-no-ssr';
 
 import allProduct from "../../../../sampleProduct.json";
 
 const Header = () => {
+ 
   const [menuOpen, setMenuOpen] = useState(false);
   const [shopOpen, setShopOpen] = useState(false);
 
@@ -54,6 +56,7 @@ const Header = () => {
   // Sticky Menu Area End
 
   return (
+    <NoSSR>
     <React.Fragment>
       <Head>
         <title>Learn for care</title>
@@ -375,6 +378,7 @@ const Header = () => {
         ></div>
       </header>
     </React.Fragment>
+    </NoSSR>
   );
 };
 
