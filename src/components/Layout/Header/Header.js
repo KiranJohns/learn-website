@@ -6,6 +6,7 @@ import BurgerMenus from "./BurgerMenus";
 import ShopingCart from "./ShopingCart";
 import { useSelector } from "react-redux";
 import NoSSR from 'react-no-ssr';
+import NoSSRWrapper from "../../noSSR"; 
 
 import allProduct from "../../../../sampleProduct.json";
 
@@ -19,8 +20,8 @@ const Header = () => {
   const { cart } = useSelector((store) => store.cart);
   const [searchProduct, setSearchProduct] = useState([]);
   const [searchString, setSearchString] = useState("");
-  let logedIn = 'localStorage.getItem("learnforcare_access")';
-
+  let logedIn = localStorage.getItem('learnforcare_access');
+ 
   useEffect(() => {
     setPath(router.pathname);
   }, [router]);
@@ -47,6 +48,7 @@ const Header = () => {
   });
 
   const sticky = (e) => {
+    console.log(logedIn);
     const header = document.querySelector(".header__area");
     const scrollTop = window.scrollY;
     scrollTop >= 1
