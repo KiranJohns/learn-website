@@ -16,7 +16,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const initialValues = {
-  name: "",
+  first_name: "",
+  last_name: "",
   email: "",
   country: "",
   city: "",
@@ -44,7 +45,7 @@ function SignUpMain() {
 
   function resend() {
     event.preventDefault();
-    makeRequest("PATCH", "/user/auth/resend-otp", {
+    makeRequest("PATCH", "/auth/resend-otp", {
       email: values.email,
     })
       .then(() => {
@@ -105,11 +106,12 @@ function SignUpMain() {
   });
 
   const handleSignUp = async (e) => {
+    console.log(values);
     try {
       e.persist()
       console.log("Hello");
       const method = "POST"; // Specify the HTTP method
-      const url = "/user/auth/registration"; // Specify the API endpoint URL
+      const url = "/auth/registration"; // Specify the API endpoint URL
       const data = values; // Send form values as data
 
       store.dispatch({
@@ -126,13 +128,13 @@ function SignUpMain() {
           });
         })
         .catch((error) => {
-          console.log(error);
-          setError(error.errors[0].message);
+          setError(error.data.errors[0].message);
           store.dispatch({
             type: "SET_ERROR",
             payload: error,
           });
-          toast.info(error.errors[0].message);
+          toast.info(error.data.errors[0].response);
+          console.log(error.data.errors[0]);
         });
     } catch (error) {
       console.log(error);
@@ -285,20 +287,37 @@ function SignUpMain() {
                 <div className="sign__form">
                   <form>
                     <div className="sign__input-wrapper mb-25">
-                      <h5>Full Name</h5>
+                      <h5>first name</h5>
                       <div className="sign__input">
                         <input
                           type="text"
-                          name="name"
-                          value={values.name}
+                          name="first_name"
+                          value={values.first_name}
                           onBlur={handleBlur}
                           onChange={handleChange}
-                          placeholder="Full name"
+                          placeholder="First name"
                         />
                         <i className="fas fa-user"></i>
                       </div>
                       <br />
-                      {errors.username && <small>{errors.username}</small>}
+                      {errors.first_name && <small>{errors.first_name}</small>}
+                      <br />
+                    </div>
+                    <div className="sign__input-wrapper mb-25">
+                      <h5>last name</h5>
+                      <div className="sign__input">
+                        <input
+                          type="text"
+                          name="last_name"
+                          value={values.last_name}
+                          onBlur={handleBlur}
+                          onChange={handleChange}
+                          placeholder="last name"
+                        />
+                        <i className="fas fa-user"></i>
+                      </div>
+                      <br />
+                      {errors.last_name && <small>{errors.last_name}</small>}
                       <br />
                     </div>
 
