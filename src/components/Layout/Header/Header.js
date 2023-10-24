@@ -5,10 +5,15 @@ import Head from "next/head";
 import BurgerMenus from "./BurgerMenus";
 import ShopingCart from "./ShopingCart";
 import { useSelector } from "react-redux";
+import NoSSR from 'react-no-ssr';
+import NoSSRWrapper from "../../noSSR"; 
 
 import allProduct from "../../../../sampleProduct.json";
+import fetchData from "../../../axios";
+import store from "../../../redux/store";
 
 const Header = () => {
+ 
   const [menuOpen, setMenuOpen] = useState(false);
   const [shopOpen, setShopOpen] = useState(false);
 
@@ -17,11 +22,26 @@ const Header = () => {
   const { cart } = useSelector((store) => store.cart);
   const [searchProduct, setSearchProduct] = useState([]);
   const [searchString, setSearchString] = useState("");
-  let logedIn = 'localStorage.getItem("learnforcare_access")';
-
+  let logedIn = localStorage.getItem('learnforcare_access');
+ 
   useEffect(() => {
     setPath(router.pathname);
   }, [router]);
+
+  const makeRequest = fetchData();
+  useEffect(() => {
+    makeRequest("GET", "/cart/get")
+      .then((res) => {
+        console.log(res.data);
+        store.dispatch({
+          type: "SET_CART",
+          payload: res.data.response,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   function handleSearch(e) {
     e.persist();
@@ -45,6 +65,7 @@ const Header = () => {
   });
 
   const sticky = (e) => {
+    console.log(logedIn);
     const header = document.querySelector(".header__area");
     const scrollTop = window.scrollY;
     scrollTop >= 1
@@ -54,6 +75,7 @@ const Header = () => {
   // Sticky Menu Area End
 
   return (
+    <NoSSR>
     <React.Fragment>
       <Head>
         <title>Learn for care</title>
@@ -296,7 +318,7 @@ const Header = () => {
                           </svg>
                         </div>
                         <span className="cart-item">
-                          {cart ? cart?.length : 0}
+                          {cart ? cart.length : 0}
                         </span>
                       </span>
                     </div>
@@ -375,6 +397,7 @@ const Header = () => {
         ></div>
       </header>
     </React.Fragment>
+    </NoSSR>
   );
 };
 

@@ -10,44 +10,94 @@ import "react-tabs/style/react-tabs.css";
 import PaginationSection from "../../Common/Pagination";
 import Link from "next/link";
 import { useSelector } from "react-redux";
-import fetchData from '../../../axios/index'
+import fetchData from "../../../axios/index";
 
 export default () => {
   const { cart } = useSelector((store) => store.cart);
   let makeRequest = fetchData();
 
-  const [course, setCourse] = useState([])
-  function addToCart(id) {
+  const [course, setCourse] = useState([]);
 
-    store.dispatch({
-      type: "ADD_TO_CART",
-      payload: item,
-    });
+  function getCartItem() {
+    makeRequest("GET", "/cart/get")
+      .then((res) => {
+        store.dispatch({
+          type: "SET_CART",
+          payload: res.data.response,
+        });
+      })
+      .catch((err) => {
+        console.log(err.data);
+      });
+  }
+
+  function addToCart(id) {
+    makeRequest("POST", "/cart/add", { course_id: id })
+      .then((res) => {
+        getCartItem();
+        console.log(res.data);
+        store.dispatch({
+          type: "ADD_TO_CART",
+          payload: course.find((item) => item.id === id),
+        });
+      })
+      .catch((err) => {
+        console.log(err?.data?.errors);
+        console.log(err?.data);
+      });
   }
 
   function increment(id) {
-    store.dispatch({
-      type: "INCREMENT_ITEM_CONT",
-      payload: id,
-    });
+    console.log(id);
+    makeRequest("PATCH", "/cart/update-cart-count", {
+      course_id: id,
+      identifier: 1,
+    })
+      .then((res) => {
+        getCartItem();
+        console.log(res.data);
+        store.dispatch({
+          type: "INCREMENT_ITEM_CONT",
+          payload: id,
+        });
+      })
+      .catch((err) => {
+        console.log(err?.data?.errors);
+        console.log(err?.data);
+      });
   }
   function decrement(id) {
-    store.dispatch({
-      type: "DECREMENT_ITEM_CONT",
-      payload: id,
-    });
+    let product = cart.find(item => item.course_id == id)
+
+    if (product && product.product_count > 1) {
+      makeRequest("PATCH", "/cart/update-cart-count", {
+        course_id: id,
+        identifier: -1,
+      })
+        .then((res) => {
+          getCartItem();
+          console.log(res.data);
+          store.dispatch({
+            type: "DECREMENT_ITEM_CONT",
+            payload: id,
+          });
+        })
+        .catch((err) => {
+          console.log(err?.data?.errors);
+          console.log(err?.data);
+        });
+    }
   }
 
   useEffect(() => {
-      makeRequest("GET", "/course/get-all-course")
-    .then((res) => {
-      setCourse(res.data.response);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-  }, [])
-  
+    makeRequest("GET", "/course/get-all-course")
+      .then((res) => {
+        setCourse(res.data.response);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   return (
     <section className="course__area pt-115 pb-120 grey-bg">
@@ -140,8 +190,9 @@ export default () => {
                           </button>
                           <p className="p-1">
                             {(cart &&
-                              cart?.find((cartItem) => cartItem.id === item.id)
-                                ?.count) ||
+                              cart.find(
+                                (cartItem) => cartItem.course_id == item.id
+                              )?.product_count) ||
                               0}
                           </p>
                           <button

@@ -3,7 +3,7 @@ import HeaderOpaque from '../../components/Layout/Header/HeaderOpaque';
 import Header from '../../components/Layout/Header/Header';
 import Footer from '../../components/Layout/Footer/Footer';
 import DashTest from '../../components/Home/DashTest';
-
+import NoSSR from 'react-no-ssr';
 
 class Lsub extends React.Component {
 
@@ -16,7 +16,9 @@ class Lsub extends React.Component {
     render() {
         return (
             <React.Fragment>
+        <NoSSR>
             <Header />
+        </NoSSR>
             <div style={{marginTop:"120px", marginBottom:"60px"}}>
             <DashTest />
             </div>
