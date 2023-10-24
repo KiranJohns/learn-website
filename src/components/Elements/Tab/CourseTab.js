@@ -1,38 +1,101 @@
-import React from 'react'
-import dynamic from 'next/dynamic'
-import store from '../../../redux/store'
+import React, { useState } from "react";
+import dynamic from "next/dynamic";
+import store from "../../../redux/store";
 const Tabs = dynamic(
-  import('react-tabs').then((mod) => mod.Tabs),
-  { ssr: false },
-) // disable ssr
-import { Tab, TabList, TabPanel } from 'react-tabs'
-import 'react-tabs/style/react-tabs.css'
-import Link from 'next/link'
+  import("react-tabs").then((mod) => mod.Tabs),
+  { ssr: false }
+); // disable ssr
+import { Tab, TabList, TabPanel } from "react-tabs";
+import "react-tabs/style/react-tabs.css";
+import Link from "next/link";
 
-import sampleProducts from '../../../../sampleProduct.json'
-import { useSelector } from 'react-redux'
+import { useSelector } from "react-redux";
+import fetchData from "../../../axios";
 
 export default () => {
-  const { cart } = useSelector((store) => store.cart)
+  const { cart } = useSelector((store) => store.cart);
+  const [course, setCourse] = useState([])
+  
+  const makeRequest = fetchData()
+
+  useState(() => {
+    makeRequest("GET", "/course/get-all-course")
+      .then((res) => {
+        setCourse(res.data.response);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  },[])
+
+  function getCartItem() {
+    makeRequest("GET", "/cart/get")
+      .then((res) => {
+        store.dispatch({
+          type: "SET_CART",
+          payload: res.data.response,
+        });
+      })
+      .catch((err) => {
+        console.log(err.data);
+      });
+  }
+
   function addToCart(id) {
-    const item = sampleProducts.find((item) => item.id === id)
-    store.dispatch({
-      type: 'ADD_TO_CART',
-      payload: item,
-    })
+    makeRequest("POST", "/cart/add", { course_id: id })
+      .then((res) => {
+        getCartItem();
+        console.log(res.data);
+        store.dispatch({
+          type: "ADD_TO_CART",
+          payload: course.find((item) => item.id === id),
+        });
+      })
+      .catch((err) => {
+        console.log(err?.data?.errors);
+        console.log(err?.data);
+      });
   }
 
   function increment(id) {
-    store.dispatch({
-      type: 'INCREMENT_ITEM_CONT',
-      payload: id,
+    makeRequest("PATCH", "/cart/update-cart-count", {
+      course_id: id,
+      identifier: 1,
     })
+      .then((res) => {
+        getCartItem();
+        console.log(res.data);
+        store.dispatch({
+          type: "INCREMENT_ITEM_CONT",
+          payload: id,
+        });
+      })
+      .catch((err) => {
+        console.log(err?.data?.errors);
+        console.log(err?.data);
+      });
   }
   function decrement(id) {
-    store.dispatch({
-      type: 'DECREMENT_ITEM_CONT',
-      payload: id,
-    })
+    let product = cart.find(item => item.course_id == id)
+
+    if (product && product.product_count > 1) {
+      makeRequest("PATCH", "/cart/update-cart-count", {
+        course_id: id,
+        identifier: -1,
+      })
+        .then((res) => {
+          getCartItem();
+          console.log(res.data);
+          store.dispatch({
+            type: "DECREMENT_ITEM_CONT",
+            payload: id,
+          });
+        })
+        .catch((err) => {
+          console.log(err?.data?.errors);
+          console.log(err?.data);
+        });
+    }
   }
   return (
     <section className="course__area pt-115 pb-120 grey-bg">
@@ -44,14 +107,14 @@ export default () => {
                 <h2 className="section__title">
                   Find the Right
                   <br />
-                  Online{' '}
+                  Online{" "}
                   <span className="yellow-bg yellow-bg-big">
                     Course
                     <img
                       src="assets/img/shape/yellow-bg.png"
                       alt="img not found"
                     />
-                  </span>{' '}
+                  </span>{" "}
                   for you
                 </h2>
                 <p>
@@ -76,7 +139,7 @@ export default () => {
           </div>
           <TabPanel>
             <div className="row">
-              {sampleProducts.map((item) => (
+              {course.map((item) => (
                 <div
                   key={item.id}
                   className="col-xxl-4 col-xl-4 col-lg-4 col-md-6"
@@ -85,7 +148,7 @@ export default () => {
                     <div className="course__thumb w-img p-relative fix">
                       <Link href={`/course/${item.id}`}>
                         <a>
-                          <img src={item.image} alt="img not found" />
+                          <img src={item.thumbnail} alt="img not found" />
                         </a>
                       </Link>
                       {/* <div className="course__tag">
@@ -124,10 +187,7 @@ export default () => {
                             <i className="fas fa-minus"></i>
                           </button>
                           <p className="p-1">
-                            {(cart &&
-                              cart?.find((cartItem) => cartItem.id === item.id)
-                                ?.count) ||
-                              0}
+                            {cart && cart.find(cartItem => cartItem.course_id == item.id)?.product_count || 0}
                           </p>
                           <button
                             className="cart-plus"
@@ -1227,5 +1287,5 @@ export default () => {
         </div>
       </Tabs>
     </section>
-  )
-}
+  );
+};

@@ -3,25 +3,35 @@ import Link from "next/link";
 import ReactPlayer from "react-player";
 import Modal from "react-responsive-modal";
 import { useRouter } from "next/router";
-import products from '../../../sampleProduct.json'
+// import products from '../../../sampleProduct.json'
 import store from "../../redux/store";
+import fetchData from "../../axios";
 
-function CourseSidebar () {
+function CourseSidebar() {
   const {
     query: { slug },
   } = useRouter();
 
-  const [open, setOpen] = useState(false)
-  const [product, setProduct] = useState(() => {
-    return products.find((item) => item.id == slug)
-  })
+  const [open, setOpen] = useState(false);
+
+  const makeRequest = fetchData();
+
+  const [course, setCourse] = useState(() => {
+    makeRequest("GET", `/course/get-single-course/${slug}`)
+      .then((res) => {
+        setCourse(res.data.response[0]);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  });
 
   const onOpenModal = () => {
-    setOpen((open) => true)
+    setOpen((open) => true);
   };
 
   const onCloseModal = () => {
-    setOpen((open) => false)
+    setOpen((open) => false);
   };
 
   function addToCart(id) {
@@ -31,69 +41,62 @@ function CourseSidebar () {
     });
   }
 
-    return (
-      <React.Fragment>
-        <Modal
-          open={open}
-          onClose={onCloseModal}
-          styles={{
-            modal: {
-              maxWidth: "unset",
-              width: "70%",
-              padding: "unset",
-            },
-            overlay: {
-              background: "rgba(0, 0, 0, 0.5)",
-            },
-            closeButton: {
-              background: "yellow",
-            },
-          }}
-          center
-        >
-          <ReactPlayer
-            url=""
-            width="100%"
-            height="calc(100vh - 100px)"
-          />
-        </Modal>
+  return (
+    <React.Fragment>
+      <Modal
+        open={open}
+        onClose={onCloseModal}
+        styles={{
+          modal: {
+            maxWidth: "unset",
+            width: "70%",
+            padding: "unset",
+          },
+          overlay: {
+            background: "rgba(0, 0, 0, 0.5)",
+          },
+          closeButton: {
+            background: "yellow",
+          },
+        }}
+        center
+      >
+        <ReactPlayer url="" width="100%" height="calc(100vh - 100px)" />
+      </Modal>
 
-        <div className="course__sidebar pl-70 p-relative">
-          <div className="course__shape">
-            <img
-              className="course-dot"
-              src="/assets/img/course/course-dot.png"
-              alt="img not found"
-            />
-          </div>
-          <div className="course__sidebar-widget-2 white-bg mb-20">
-            <div className="course__video">
-              <div className="course__video-thumb w-img mb-25">
-                <img
-                  src={product.image}
-                  alt="img not found"
-                />
-                <div className="course__video-play">
-                  <a href="#!" className="play-btn" onClick={onOpenModal}>
-                    {" "}
-                    <i className="fas fa-play"></i>{" "}
-                  </a>
-                </div>
+      <div className="course__sidebar pl-70 p-relative">
+        <div className="course__shape">
+          <img
+            className="course-dot"
+            src="/assets/img/course/course-dot.png"
+            alt="img not found"
+          />
+        </div>
+        <div className="course__sidebar-widget-2 white-bg mb-20">
+          <div className="course__video">
+            <div className="course__video-thumb w-img mb-25">
+              <img src={course?.thumbnail} alt="img not found" />
+              <div className="course__video-play">
+                <a href="#!" className="play-btn" onClick={onOpenModal}>
+                  {" "}
+                  <i className="fas fa-play"></i>{" "}
+                </a>
               </div>
-              <div className="course__video-meta mb-25 d-flex align-items-center justify-content-between">
-                <div className="course__video-price">
-                  <h5>
-                  £6.<span>00</span>{" "}
-                  </h5>
-                  <h5 className="old-price">$129.00</h5>
-                </div>
-                <div className="course__video-discount">
-                  <span>68% OFF</span>
-                </div>
+            </div>
+            <div className="course__video-meta mb-25 d-flex align-items-center justify-content-between">
+              <div className="course__video-price">
+                <h5>
+                  £{course?.price}.<span>00</span>{" "}
+                </h5>
+                <h5 className="old-price">$129.00</h5>
               </div>
-              <div className="course__video-content mb-35">
-                <ul>
-                  {/* <li className="d-flex align-items-center">
+              <div className="course__video-discount">
+                <span>68% OFF</span>
+              </div>
+            </div>
+            <div className="course__video-content mb-35">
+              <ul>
+                {/* <li className="d-flex align-items-center">
                     <div className="course__video-icon">
                       <i className="fas fa-home"></i>
                     </div>
@@ -103,66 +106,70 @@ function CourseSidebar () {
                       </h5>
                     </div>
                   </li> */}
-                  <li className="d-flex align-items-center">
-                    <div className="course__video-icon">
-                      <i className="fas fa-book"></i>
-                    </div>
-                    <div className="course__video-info">
-                      <h5>
-                        <span>Lectures :</span>14
-                      </h5>
-                    </div>
-                  </li>
-                  <li className="d-flex align-items-center">
-                    <div className="course__video-icon">
-                      <i className="fas fa-clock"></i>
-                    </div>
-                    <div className="course__video-info">
-                      <h5>
-                        <span>Duration :</span>6 weeks
-                      </h5>
-                    </div>
-                  </li>
-                  <li className="d-flex align-items-center">
-                    <div className="course__video-icon">
-                      <i className="fas fa-user"></i>
-                    </div>
-                    <div className="course__video-info">
-                      <h5>
-                        <span>Enrolled :</span>20 students
-                      </h5>
-                    </div>
-                  </li>
-                  <li className="d-flex align-items-center">
-                    <div className="course__video-icon">
-                      <i className="fas fa-globe"></i>
-                    </div>
-                    <div className="course__video-info">
-                      <h5>
-                        <span>Language :</span>English
-                      </h5>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-              <div className="course__payment mb-35">
-                <h3>Payment:</h3>
-                <a href="#">
-                  <img
-                    src="/assets/img/course/payment/payment-1.png"
-                    alt="img not found"
-                  />
-                </a>
-              </div>
-              <div className="course__enroll-btn">
-                <span role="button" onClick={() => addToCart()} className="pe-auto e-btn e-btn-7 w-100">
-                  add to cart
-                  <i className="fas fa-arrow-right"></i>
-                </span>
-              </div>
+                <li className="d-flex align-items-center">
+                  <div className="course__video-icon">
+                    <i className="fas fa-book"></i>
+                  </div>
+                  <div className="course__video-info">
+                    <h5>
+                      <span>Lectures :</span>14
+                    </h5>
+                  </div>
+                </li>
+                <li className="d-flex align-items-center">
+                  <div className="course__video-icon">
+                    <i className="fas fa-clock"></i>
+                  </div>
+                  <div className="course__video-info">
+                    <h5>
+                      <span>Duration :</span>6 weeks
+                    </h5>
+                  </div>
+                </li>
+                <li className="d-flex align-items-center">
+                  <div className="course__video-icon">
+                    <i className="fas fa-user"></i>
+                  </div>
+                  <div className="course__video-info">
+                    <h5>
+                      <span>Enrolled :</span>20 students
+                    </h5>
+                  </div>
+                </li>
+                <li className="d-flex align-items-center">
+                  <div className="course__video-icon">
+                    <i className="fas fa-globe"></i>
+                  </div>
+                  <div className="course__video-info">
+                    <h5>
+                      <span>Language :</span>English
+                    </h5>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div className="course__payment mb-35">
+              <h3>Payment:</h3>
+              <a href="#">
+                <img
+                  src="/assets/img/course/payment/payment-1.png"
+                  alt="img not found"
+                />
+              </a>
+            </div>
+            <div className="course__enroll-btn">
+              <span
+                role="button"
+                onClick={() => addToCart()}
+                className="pe-auto e-btn e-btn-7 w-100"
+              >
+                add to cart
+                <i className="fas fa-arrow-right"></i>
+              </span>
             </div>
           </div>
-          {/* <div className="course__sidebar-widget-2 white-bg mb-20">
+        </div>
+        {/* <div className="course__sidebar-widget-2 white-bg mb-20">
             <div className="course__sidebar-course">
               <h3 className="course__sidebar-title">Related courses</h3>
               <ul>
@@ -343,9 +350,9 @@ function CourseSidebar () {
               </ul>
             </div>
           </div> */}
-        </div>
-      </React.Fragment>
-    );
+      </div>
+    </React.Fragment>
+  );
 }
 
 export default CourseSidebar;

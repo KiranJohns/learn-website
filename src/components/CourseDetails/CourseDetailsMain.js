@@ -21,12 +21,22 @@ const CourseSliderWithNoSSR = dynamic(
 import Link from "next/link";
 import CourseSidebar from "./CourseSidebar";
 import { useRouter } from "next/router";
+import fetchData from "../../axios";
 function CourseDetailsMain() {
   const {
     query: { slug },
   } = useRouter();
 
+  const makeRequest = fetchData()
   const [course, setCourse] = useState(() => {
+    makeRequest("GET", `/course/get-single-course/${slug}`)
+      .then((res) => {
+        setCourse(res.data.response[0]);
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     return products.find((item) => item.id == slug) || {};
   });
 
@@ -67,7 +77,7 @@ function CourseDetailsMain() {
                                             </nav>
                                         </div> */}
                     {/* <span className="page__title-pre">Development</span> */}
-                    <h5 className="page__title-3">{course.heading}</h5>
+                    <h5 className="page__title-3">{course?.heading}</h5>
                   </div>
                   {/* <div className="course__meta-2 d-sm-flex mb-30">
                                     <div className="course__teacher-3 d-flex align-items-center mr-70 mb-30">
@@ -98,7 +108,7 @@ function CourseDetailsMain() {
                                     </div>
                                     </div> */}
                   <div className="course__img w-img mb-30">
-                    <img src={course.image} alt="img not found" />
+                    <img src={course?.thumbnail} alt="img not found" />
                   </div>
                   <Tabs>
                     <div className="course__tab-2 mb-45">
@@ -113,7 +123,7 @@ function CourseDetailsMain() {
                         <TabPanel>
                           <div className="course__description mb-95">
                             <h3>Introduction</h3>
-                            <p className=" mb-45">{course.description}</p>
+                            <p className=" mb-45">{course?.description}</p>
 
                             {/* <div className="course__tag-2 mb-35 mt-35">
                                                         <i className="fas fa-tags"></i>
@@ -124,13 +134,7 @@ function CourseDetailsMain() {
                             <div className="course__description-list mb-45">
                               <h4>Who should attend?</h4>
                               <p className=" mb-45">
-                                This online first-aid course is appropriate for
-                                individuals and businesses who want to learn new
-                                first-aid skills or refresh their existing
-                                first-aid skills. No previous qualifications are
-                                required to take this course as all the
-                                essential first aid techniques are covered
-                                throughout the training.
+                                {course?.description}
                               </p>
                             </div>
                             <div className="course__description-list mb-45">

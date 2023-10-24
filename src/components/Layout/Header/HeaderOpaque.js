@@ -5,6 +5,8 @@ import Head from 'next/head'
 import BurgerMenus from './BurgerMenus'
 import ShopingCart from './ShopingCart'
 import { useSelector } from 'react-redux'
+import fetchData from '../../../axios'
+import store from '../../../redux/store'
 
 const HeaderOpaque = () => {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -25,6 +27,20 @@ const HeaderOpaque = () => {
       window.removeEventListener('scroll', sticky)
     }
   })
+
+  useEffect(() => {
+    const makeRequest = fetchData()
+    makeRequest("GET", "/cart/get")
+      .then((res) => {
+        store.dispatch({
+          type: "SET_CART",
+          payload: res.data.response,
+        });
+      })
+      .catch((err) => {
+        console.log(err.data);
+      });
+  },[])
 
   const sticky = (e) => {
     const header = document.querySelector('.header__area')

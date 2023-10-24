@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import { useSelector } from "react-redux";
 import store from "../../../redux/store";
+import fetchData from "../../../axios";
 
 const ShopingCart = ({ setShopOpen, shopOpen }) => {
   const router = useRouter();
@@ -11,24 +12,72 @@ const ShopingCart = ({ setShopOpen, shopOpen }) => {
     setPath(router.pathname);
   }, [router]);
 
-  const { cart,totalPrice } = useSelector((store) => store.cart);
+  const { cart, totalPrice } = useSelector((store) => store.cart);
+
+  const makeRequest = fetchData()
+  function getCartItem() {
+    makeRequest("GET", "/cart/get")
+      .then((res) => {
+        store.dispatch({
+          type: "SET_CART",
+          payload: res.data.response,
+        });
+      })
+      .catch((err) => {
+        console.log(err.data);
+      });
+  }
   function removeItem(id) {
-   store.dispatch({
-      type: "REMOVE_ITEM",
-      payload: id,
-    });
+    console.log(id);
+    makeRequest("DELETE", "/cart/delete-cart-item", { cart_id: id })
+      .then((res) => {
+        console.log(res.data);
+        getCartItem()
+        store.dispatch({
+          type: "REMOVE_ITEM",
+          payload: id,
+        });
+      })
+      .catch((err) => {
+        console.log(err?.data?.errors);
+        console.log(err?.data);
+      });
   }
   function increment(id) {
-    store.dispatch({
-      type: "INCREMENT_ITEM_CONT",
-      payload: id,
-    });
+    makeRequest("PATCH", "/cart/update-cart-count", {
+      course_id: id,
+      identifier: 1,
+    })
+      .then((res) => {
+        getCartItem()
+        console.log(res.data);
+        store.dispatch({
+          type: "INCREMENT_ITEM_CONT",
+          payload: id,
+        });
+      })
+      .catch((err) => {
+        console.log(err?.data?.errors);
+        console.log(err?.data);
+      });
   }
   function decrement(id) {
-    store.dispatch({
-      type: "DECREMENT_ITEM_CONT",
-      payload: id,
-    });
+    makeRequest("PATCH", "/cart/update-cart-count", {
+      course_id: id,
+      identifier: -1,
+    })
+      .then((res) => {
+        console.log(res.data);
+        getCartItem()
+        store.dispatch({
+          type: "INCREMENT_ITEM_CONT",
+          payload: id,
+        });
+      })
+      .catch((err) => {
+        console.log(err?.data?.errors);
+        console.log(err?.data);
+      });
   }
   return (
     <div className={shopOpen ? "sidebar__areas open" : "sidebar__areas"}>
@@ -51,17 +100,17 @@ const ShopingCart = ({ setShopOpen, shopOpen }) => {
               <ul>
                 {cart &&
                   cart.map((item) => {
+                    console.log(item);
                     return (
                       <li>
                         <div className="cartmini__thumb">
                           <a href="#">
-                            <img src={item.image} alt="img not found" />
-                            
+                            <img src={item.thumbnail} alt="img not found" />
                           </a>
                         </div>
                         <div className="cartmini__content">
                           <h5>
-                            <a href="#">{item.heading} </a>
+                            <a href="#">{item.name} </a>
                           </h5>
                           <div className="product-quantity mt-10 mb-10">
                             <span
@@ -70,7 +119,9 @@ const ShopingCart = ({ setShopOpen, shopOpen }) => {
                             >
                               -
                             </span>
-                            <span className="cart-input">{item.count}</span>
+                            <span className="cart-input">
+                              {item.product_count}
+                            </span>
                             <span
                               className="cart-plus"
                               onClick={() => increment(item.id)}
@@ -80,11 +131,15 @@ const ShopingCart = ({ setShopOpen, shopOpen }) => {
                           </div>
                           <div className="product__sm-price-wrapper">
                             <span className="product__sm-price">
-                            £{item.price}
+                              £{item.amount}
                             </span>
                           </div>
                         </div>
-                        <a href="#" className="cartmini__del" onClick={() => removeItem(item.id)}>
+                        <a
+                          href="#"
+                          className="cartmini__del"
+                          onClick={() => removeItem(item.id)}
+                        >
                           <i className="fas fa-times"></i>
                         </a>
                       </li>

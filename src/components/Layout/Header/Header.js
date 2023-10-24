@@ -7,6 +7,8 @@ import ShopingCart from "./ShopingCart";
 import { useSelector } from "react-redux";
 
 import allProduct from "../../../../sampleProduct.json";
+import fetchData from "../../../axios";
+import store from "../../../redux/store";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -22,6 +24,21 @@ const Header = () => {
   useEffect(() => {
     setPath(router.pathname);
   }, [router]);
+
+  const makeRequest = fetchData();
+  useEffect(() => {
+    makeRequest("GET", "/cart/get")
+      .then((res) => {
+        console.log(res.data);
+        store.dispatch({
+          type: "SET_CART",
+          payload: res.data.response,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   function handleSearch(e) {
     e.persist();
@@ -296,7 +313,7 @@ const Header = () => {
                           </svg>
                         </div>
                         <span className="cart-item">
-                          {cart ? cart?.length : 0}
+                          {cart ? cart.length : 0}
                         </span>
                       </span>
                     </div>

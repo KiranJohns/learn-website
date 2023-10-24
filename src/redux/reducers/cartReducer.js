@@ -2,21 +2,19 @@ const initialUserState = {
   cart:
     typeof window !== "undefined" &&
     JSON.parse(localStorage?.getItem("LEARN_WEB_CART")),
-  totalPrice:
-    typeof window !== "undefined" &&
-    JSON.parse(localStorage?.getItem("LEARN_WEB_CART"))?.reduce(
-      (value, currentValue) => {
-        let total = currentValue.price * currentValue.count;
-        return value + total;
-      },
-      0
-    ),
+  totalPrice: 0,
 };
 
 const cartReducer = function (state = initialUserState, action) {
   switch (action.type) {
-    case "INCREMENT_CART_ITEM_COUNT":
-      return Object.assign({}, state, { newsDetails: action.newsDetails });
+    case "SET_CART":
+      let totalPrice = 0;
+      action.payload?.forEach((item) => {
+        let total = item.amount * item.product_count;
+        totalPrice += total;
+      });
+      return { ...state, totalPrice, cart: action.payload };
+
     case "ADD_TO_CART":
       if (state.cart === null) {
         state.cart = [];
@@ -27,11 +25,11 @@ const cartReducer = function (state = initialUserState, action) {
         return state;
       }
 
+      console.log(state);
       state = {
         cart: [...state.cart, { ...action.payload, count: 1 }],
         totalPrice: Number(state.totalPrice) + Number(action.payload.price),
       };
-      localStorage?.setItem("LEARN_WEB_CART", JSON.stringify(state.cart));
       return { ...state };
     case "INCREMENT_ITEM_CONT":
       if (state.cart === null) {
@@ -48,7 +46,6 @@ const cartReducer = function (state = initialUserState, action) {
           return item;
         }),
       };
-      localStorage?.setItem("LEARN_WEB_CART", JSON.stringify(state.cart));
 
       return { ...state };
 
@@ -67,7 +64,6 @@ const cartReducer = function (state = initialUserState, action) {
         }
         return item;
       });
-      localStorage?.setItem("LEARN_WEB_CART", JSON.stringify(state.cart));
 
       return { ...state };
     case "REMOVE_ITEM":
@@ -75,9 +71,10 @@ const cartReducer = function (state = initialUserState, action) {
         state.cart = [];
       }
       state.cart = state.cart.filter((item) => {
+        console.log(item);
         if (item.id == action.payload) {
           state.totalPrice -= Number(item.price) * Number(item.count);
-          return;
+          return null;
         }
         return item;
       });
