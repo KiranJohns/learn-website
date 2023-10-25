@@ -4,6 +4,7 @@ import HeaderFour from '../components/Layout/Header/HeaderStyleFour';
 import SignUpMain from '../components/SignUp/SignUpMain';
 import Header from '../components/Layout/Header/Header';
 import Footer from '../components/Layout/Footer/Footer';
+import NoSSR from 'react-no-ssr';
 
 class SignIn extends React.Component {
 
@@ -16,7 +17,9 @@ class SignIn extends React.Component {
     render() {
         return (
             <React.Fragment>
+            <NoSSR>
             <Header/>
+            </NoSSR>
             <SignUpMain />
             <Footer />
             </React.Fragment>
