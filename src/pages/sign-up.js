@@ -19,7 +19,7 @@ class SignIn extends React.Component {
             <React.Fragment>
             <NoSSR>
             <Header/>
-            </NoSSR>
+            </NoSSR>  
             <SignUpMain />
             <Footer />
             </React.Fragment>

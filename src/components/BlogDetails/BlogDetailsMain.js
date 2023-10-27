@@ -102,7 +102,7 @@ class BlogDetailsMain extends Component {
                         <p>{article.date}</p>
                         <p>{article.author}</p>
                       </div>
-
+                      
                       <div className="blog__line"></div>
                       <BlogMeta />
                     </div>
