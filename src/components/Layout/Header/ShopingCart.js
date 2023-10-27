@@ -88,10 +88,11 @@ const ShopingCart = ({ setShopOpen, shopOpen }) => {
     e.preventDefault();
     makeRequest("POST", "/cart/checkout")
       .then((res) => {
-        console.log(res);
+        console.log(res.data.response);
+        window.location.href = res.data.response;
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err.data.errors[0]);
       });
   }
   return (
