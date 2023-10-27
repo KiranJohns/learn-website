@@ -14,7 +14,7 @@ const ShopingCart = ({ setShopOpen, shopOpen }) => {
 
   const { cart, totalPrice } = useSelector((store) => store.cart);
 
-  const makeRequest = fetchData()
+  const makeRequest = fetchData();
   function getCartItem() {
     makeRequest("GET", "/cart/get")
       .then((res) => {
@@ -24,7 +24,7 @@ const ShopingCart = ({ setShopOpen, shopOpen }) => {
         });
       })
       .catch((err) => {
-        console.log(err.data);
+        console.log(err);
       });
   }
   function removeItem(id) {
@@ -32,7 +32,7 @@ const ShopingCart = ({ setShopOpen, shopOpen }) => {
     makeRequest("DELETE", "/cart/delete-cart-item", { cart_id: id })
       .then((res) => {
         console.log(res.data);
-        getCartItem()
+        getCartItem();
         store.dispatch({
           type: "REMOVE_ITEM",
           payload: id,
@@ -49,7 +49,7 @@ const ShopingCart = ({ setShopOpen, shopOpen }) => {
       identifier: 1,
     })
       .then((res) => {
-        getCartItem()
+        getCartItem();
         console.log(res.data);
         store.dispatch({
           type: "INCREMENT_ITEM_CONT",
@@ -62,21 +62,36 @@ const ShopingCart = ({ setShopOpen, shopOpen }) => {
       });
   }
   function decrement(id) {
-    makeRequest("PATCH", "/cart/update-cart-count", {
-      course_id: id,
-      identifier: -1,
-    })
-      .then((res) => {
-        console.log(res.data);
-        getCartItem()
-        store.dispatch({
-          type: "INCREMENT_ITEM_CONT",
-          payload: id,
+    let product = cart.find((item) => item.course_id == id);
+
+    if (product && product.product_count > 1) {
+      makeRequest("PATCH", "/cart/update-cart-count", {
+        course_id: id,
+        identifier: -1,
+      })
+        .then((res) => {
+          getCartItem();
+          console.log(res.data);
+          store.dispatch({
+            type: "DECREMENT_ITEM_CONT",
+            payload: id,
+          });
+        })
+        .catch((err) => {
+          console.log(err?.data?.errors);
+          console.log(err?.data);
         });
+    }
+  }
+
+  function handleCheckout(e) {
+    e.preventDefault();
+    makeRequest("POST", "/cart/checkout")
+      .then((res) => {
+        console.log(res);
       })
       .catch((err) => {
-        console.log(err?.data?.errors);
-        console.log(err?.data);
+        console.log(err);
       });
   }
   return (
@@ -115,7 +130,7 @@ const ShopingCart = ({ setShopOpen, shopOpen }) => {
                           <div className="product-quantity mt-10 mb-10">
                             <span
                               className="cart-minus"
-                              onClick={() => decrement(item.id)}
+                              onClick={() => decrement(item.course_id)}
                             >
                               -
                             </span>
@@ -124,7 +139,7 @@ const ShopingCart = ({ setShopOpen, shopOpen }) => {
                             </span>
                             <span
                               className="cart-plus"
-                              onClick={() => increment(item.id)}
+                              onClick={() => increment(item.course_id)}
                             >
                               +
                             </span>
@@ -158,12 +173,15 @@ const ShopingCart = ({ setShopOpen, shopOpen }) => {
                     <span></span> view cart
                   </a>
                 </Link>
-                <Link href="/checkout">
+                {/* <Link href="/checkout">
                   <a className="e-btn w-100">
-                    <span></span> checkout
+                    <span>checkout</span>
                   </a>
-                </Link>
+                </Link> */}
               </div>
+              <button onClick={handleCheckout} className="e-btn w-100">
+                <span>checkout</span>
+              </button>
             </div>
           </div>
         </div>
