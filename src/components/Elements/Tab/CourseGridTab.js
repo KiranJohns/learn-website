@@ -52,10 +52,6 @@ export default () => {
       .then((res) => {
         getCartItem();
         console.log(res.data);
-        store.dispatch({
-          type: "INCREMENT_ITEM_CONT",
-          payload: id,
-        });
       })
       .catch((err) => {
         console.log(err?.data?.errors);
@@ -73,10 +69,6 @@ export default () => {
         .then((res) => {
           getCartItem();
           console.log(res.data);
-          store.dispatch({
-            type: "DECREMENT_ITEM_CONT",
-            payload: id,
-          });
         })
         .catch((err) => {
           console.log(err?.data?.errors);
