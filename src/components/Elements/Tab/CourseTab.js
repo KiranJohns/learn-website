@@ -160,7 +160,7 @@ export default () => {
                     <div className="course__content">
                       <h3 className="course__title">
                         <Link href={`/course/${item.id}`}>
-                          <a>{item.heading}</a>
+                          <a>{item.name}</a>
                         </Link>
                       </h3>
                       <div className="course__teacher d-flex align-items-center">
