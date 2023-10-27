@@ -100,8 +100,8 @@ class BlogDetailsMain extends Component {
             <Breadcrumb key={num} pageTitle={article.title} />
           ))}
 
-        <section className="blog__area pt-120 pb-120">
-          <div className="container">
+        <section className="blog__area pt-120 pb-120 pl-80 pr-80">
+          <div className="container-fluid">
             <div className="row">
               <div className="col-xxl-9 col-xl-7 col-lg-7">
                 {this.state.allBlogs &&
@@ -130,9 +130,9 @@ class BlogDetailsMain extends Component {
               </div>
               <div className="col-xl-3 col-lg-3">
                 <div className="heading">
-                  <h3>Recent Blogs</h3>
+                  <h2>Recent Blogs</h2>
                 </div>
-                <div className="blogs">
+                <div className="blogs" style={{marginTop: '2rem'}}>
                   {this.state.recentBlogs &&
                     this.state.recentBlogs.map((blog,idx) => {
                       console.log(blog);
@@ -141,19 +141,19 @@ class BlogDetailsMain extends Component {
                           <div style={{ margin: "0", display: "flex" }} key={idx}>
                             <img
                               style={{
-                                height: "4rem",
-                                width: "4rem",
-                                padding: "0 0.3rem",
+                                height: "5rem",
+                                width: "5rem",
+                                padding: "0 0.3rem",marginRight: '1rem'
                               }}
                               src={blog.img}
                               alt=""
                             />
                             <div className="info">
-                              <div className="heading">
+                              <div className="heading" style={{marginTop: "0.2rem"}}>
                                 <a href={`/blog/${blog.id}`}>
-                                  <h6 title={blog.header}>
-                                    {blog.header.slice(0, 40)}
-                                  </h6>
+                                  <h4 title={blog.header}>
+                                    {blog.header.slice(0, 20)+"..."}
+                                  </h4>
                                 </a>
                               </div>
                               <div
@@ -161,7 +161,7 @@ class BlogDetailsMain extends Component {
                                 className="content"
                               >
                                 <small style={{ lineHeight: "0.1rem" }}>
-                                  {blog.content.slice(0, 39)}
+                                  {blog.content.slice(0, 100)+"..."}
                                 </small>
                               </div>
                             </div>
