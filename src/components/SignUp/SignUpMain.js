@@ -344,6 +344,7 @@ function SignUpMain() {
                       <div className="sign__input">
                         <select style={{
                           width: '100%', background: "#f6f6f7", border: "none", padding: "1rem", borderRadius: '.2rem', outline: "#2b4eff"}} onChange={handleChange} name="type_of_account">
+                         <option value="">Select</option>
                           <option value="Individual">Individual</option>
                           <option value="Company">Company</option>
                         </select>

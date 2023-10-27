@@ -16,8 +16,8 @@ const ArticleLayout = ({ post }) => {
           </h3>
 
           <div className="blog__meta d-flex flex-column justify-content-between">
-            <div style={{marginBottom: '1rem'}}  className="blog__date d-flex align-items-center justify-content-end">
-              <i className="fas fa-clock"></i>
+            <div style={{marginBottom: '1rem'}}  className="blog__date d-flex align-items-center justify-content-between">
+              
               <span>{new Date(post.date).toLocaleDateString()}</span> <span>{post.author}</span>
             </div>
             <div className="blog__author d-flex">
