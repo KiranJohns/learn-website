@@ -1,7 +1,8 @@
 import React from 'react';
-import HeaderThree from '../components/Layout/Header/HeaderStyleThree';
+import Header from '../components/Layout/Header/Header';
 import FooterThree from '../components/Layout/Footer/FooterStyleThree';
 import AboutMain from '../components/About/AboutMain';
+import NoSSR from 'react-no-ssr';
 
 class AboutPage extends React.Component {
 
@@ -14,7 +15,9 @@ class AboutPage extends React.Component {
     render() {
         return (
             <React.Fragment>
-            <HeaderThree />
+            <NoSSR>
+            <Header/>
+            </NoSSR>
             <AboutMain />
             <FooterThree />
             </React.Fragment>
