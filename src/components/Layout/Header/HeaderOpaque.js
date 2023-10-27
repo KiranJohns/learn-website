@@ -38,7 +38,7 @@ const HeaderOpaque = () => {
         });
       })
       .catch((err) => {
-        console.log(err.data);
+        console.log(err);
       });
   },[])
 

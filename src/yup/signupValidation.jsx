@@ -15,7 +15,7 @@ export const signupValidation = Yup.object({
     "Password must contain at least 8 characters, one uppercase, one number and one special case character"
   ).required("Please Enter Password"),
 
-  type: Yup.string().min(3).required('Please enter type'),
+ 
 
   terms:Yup.bool().required('Please accept'),
 
@@ -23,3 +23,5 @@ export const signupValidation = Yup.object({
 
 
 // terms:Yup.bool().oneOf([false], 'Please accept'),
+
+// type: Yup.string().min(3).required('Please enter type'),
