@@ -46,10 +46,6 @@ export default () => {
       .then((res) => {
         getCartItem();
         console.log(res.data);
-        store.dispatch({
-          type: "ADD_TO_CART",
-          payload: course.find((item) => item.id === id),
-        });
       })
       .catch((err) => {
         console.log(err?.data?.errors);
