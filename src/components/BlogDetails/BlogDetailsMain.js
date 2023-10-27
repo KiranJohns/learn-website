@@ -41,6 +41,7 @@ class BlogDetailsMain extends Component {
   componentDidMount() {
     let makeRequest = fetchData()
     makeRequest("GET",`/blog/get-blog-by-id/${this.props.slug}`).then(res => {
+      console.log(res);
       this.setState(prev => {
         return {
           ...prev,
@@ -99,7 +100,7 @@ class BlogDetailsMain extends Component {
                         <h3>{article.heading}</h3>
                         <p>{article.content}</p>
                         <p>{article.date}</p>
-                        <p>{article.auther}</p>
+                        <p>{article.author}</p>
                       </div>
 
                       <div className="blog__line"></div>

@@ -8,6 +8,7 @@ import DashTest from "../../components/Home/DashTest";
 import Header from "../../components/Layout/Header/Header";
 import Footer from '../../components/Layout/Footer/Footer';
 import Profilesmall from "../../components/Home/profilesmall";
+import NoSSR from 'react-no-ssr';
 
 class TestCourse extends React.Component {
     static getInitialProps({ store }) {}
@@ -21,7 +22,9 @@ class TestCourse extends React.Component {
         return(
             <React.Fragment>
                 <main className="p-4" style={{backgroundImage: "linear-gradient(to right, #EDEEF3, #EDEEF3)", }}>
+                <NoSSR>
                  <Header/>
+                 </NoSSR>
                  <div className="container-fluid bg-light " style={{borderRadius:'22px'}}> 
                   <div style={{marginTop:'120px'}} className="row">
                     <div className="col-0 col-md-1  vh-100" style={{background:"#EDEEF3",}}></div>

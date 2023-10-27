@@ -342,7 +342,13 @@ function SignUpMain() {
                     <div className="sign__input-wrapper mb-25">
                       <h5>Type</h5>
                       <div className="sign__input">
-                        <input
+                        <select style={{
+                          width: '100%', background: "#f6f6f7", border: "none", padding: "1rem", borderRadius: '.2rem', outline: "#2b4eff"}} onChange={handleChange} name="type_of_account">
+                         <option value="">Select</option>
+                          <option value="Individual">Individual</option>
+                          <option value="Company">Company</option>
+                        </select>
+                        {/* <input
                           type="text"
                           name="type_of_account"
                           value={values.type_of_account}
@@ -350,7 +356,7 @@ function SignUpMain() {
                           onChange={handleChange}
                           placeholder="type"
                         />
-                        <i className="fas fa-check"></i>
+                        <i className="fas fa-check"></i> */}
                       </div>
                       <br />
                       {errors.type && <small>{errors.type}</small>}

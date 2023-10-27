@@ -7,6 +7,7 @@ import HeaderDashboard from "../../components/Layout/Header/HeaderDashboard";
 import DashMain from "../../components/Home/DashMain";
 import DashSUser from "../../components/Home/DashSUser";
 import Header from '../../components/Layout/Header/Header';
+import NoSSR from 'react-no-ssr';
 
 class showUser extends React.Component {
     static getInitialProps({ store }) {}
@@ -20,7 +21,9 @@ class showUser extends React.Component {
         return(
             <React.Fragment>
                   <main  className="p-4" style={{backgroundImage: "linear-gradient(to right, #EDEEF3, #EDEEF3)" }}>
+                  <NoSSR>
                  <Header/>
+                 </NoSSR>
                  <div className="container-fluid " style={{borderRadius:'22px',marginTop:"120px"}}> 
                   <div className="row justify-content-md-center">
                    <div className="col-sm-2 col-md-auto bg-white" >
