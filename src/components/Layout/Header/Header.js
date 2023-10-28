@@ -368,11 +368,13 @@ const Header = () => {
                         <Dropdown>
                           <Dropdown.Toggle
                             style={{
-                              padding: ".6rem",
+                              padding: ".7rem",
                               border: "none",
                               outline: "none",
+                              background:"#2b4eff",
+                              color:"white"
                             }}
-                            variant="primary"
+                            variant=""
                             id="dropdown-basic"
                           >
                             Profile
@@ -386,7 +388,7 @@ const Header = () => {
                             >
                               Logout
                             </Dropdown.Item>
-                            <Dropdown.Item className="btn" href="/myprofile">
+                            <Dropdown.Item className="btn" href="/company/myprofile">
                               Profile
                             </Dropdown.Item>
                           </Dropdown.Menu>
