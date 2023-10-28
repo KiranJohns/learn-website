@@ -10,8 +10,8 @@ const cartReducer = function (state = initialUserState, action) {
     case "SET_CART":
       let totalPrice = 0;
       action.payload?.forEach((item) => {
-        let total = item.amount * item.product_count;
-        totalPrice += total;
+        console.log(item);
+        totalPrice += item.amount;
       });
       return { ...state, totalPrice, cart: action.payload };
 
@@ -22,7 +22,7 @@ const cartReducer = function (state = initialUserState, action) {
       if (
         state.cart?.find((item) => item.id === action.payload.id) !== undefined
       ) {
-        return state;
+        return { ...state };
       }
 
       console.log(state);
@@ -41,7 +41,8 @@ const cartReducer = function (state = initialUserState, action) {
         cart: state.cart.filter((item) => {
           if (item.id == action.payload) {
             ++item.count;
-            state.totalPrice = Number(state.totalPrice) + Number(item.price);
+            let amount = Number(item.amount) / Number(item.product_count)
+            state.totalPrice = Number(state.totalPrice) + Number(amount);
           }
           return item;
         }),
@@ -57,7 +58,7 @@ const cartReducer = function (state = initialUserState, action) {
       state.cart = state.cart.filter((item) => {
         if (item.id == action.payload) {
           --item.count;
-          state.totalPrice = Number(state.totalPrice) - Number(item.price);
+          state.totalPrice = Number(state.totalPrice) - Number(item.amount);
           if (item.count <= 0) {
             return;
           }
@@ -71,7 +72,6 @@ const cartReducer = function (state = initialUserState, action) {
         state.cart = [];
       }
       state.cart = state.cart.filter((item) => {
-        console.log(item);
         if (item.id == action.payload) {
           state.totalPrice -= Number(item.price) * Number(item.count);
           return null;

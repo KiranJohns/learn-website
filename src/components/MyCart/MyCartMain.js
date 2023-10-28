@@ -2,45 +2,94 @@ import React, { Component } from 'react';
 import { useState } from 'react';
 import Breadcrumb from '../Common/Breadcrumb';
 import Link from 'next/link';
+import fetchData from '../../axios';
+import { useSelector } from 'react-redux';
+import store from '../../redux/store';
 
 
-class MyCart extends Component {
-    state = {
-        num: 0,
-        numA: 0,
-    }
+const MyCart = () => {
+    const makeRequest = fetchData()
+    const {cart,totalPrice} = useSelector(state => state.cart) 
 
-    handleIncrease = () => {
-        console.log("hello increase")
-        this.setState({
-            num: this.state.num + 1,
+    function getCartItem() {
+      makeRequest("GET", "/cart/get")
+        .then((res) => {
+          store.dispatch({
+            type: "SET_CART",
+            payload: res.data.response,
+          });
         })
-
+        .catch((err) => {
+          console.log(err);
+        });
     }
-
-    handleDecrease = () => {
-        console.log("hello decrease")
-        this.setState({
-            num: this.state.num - 1,
+    function removeItem(id) {
+      console.log(id);
+      makeRequest("DELETE", "/cart/delete-cart-item", { cart_id: id })
+        .then((res) => {
+          console.log(res.data);
+          getCartItem();
+          store.dispatch({
+            type: "REMOVE_ITEM",
+            payload: id,
+          });
         })
+        .catch((err) => {
+          console.log(err?.data?.errors);
+          console.log(err?.data);
+        });
     }
-
-    handleIncreaseA = () => {
-        console.log("hello increase")
-        this.setState({
-            numA: this.state.numA + 1,
+    function increment(id) {
+      makeRequest("PATCH", "/cart/update-cart-count", {
+        course_id: id,
+        identifier: 1,
+      })
+        .then((res) => {
+          getCartItem();
+          console.log(res.data);
+          store.dispatch({
+            type: "INCREMENT_ITEM_CONT",
+            payload: id,
+          });
         })
-
+        .catch((err) => {
+          console.log(err?.data?.errors);
+          console.log(err?.data);
+        });
     }
-
-    handleDecreaseA = () => {
-        console.log("hello decrease")
-        this.setState({
-            numA: this.state.numA - 1,
+    function decrement(id) {
+      let product = cart.find((item) => item.course_id == id);
+  
+      if (product && product.product_count > 1) {
+        makeRequest("PATCH", "/cart/update-cart-count", {
+          course_id: id,
+          identifier: -1,
         })
+          .then((res) => {
+            getCartItem();
+            console.log(res.data);
+            store.dispatch({
+              type: "DECREMENT_ITEM_CONT",
+              payload: id,
+            });
+          })
+          .catch((err) => {
+            console.log(err?.data?.errors);
+            console.log(err?.data);
+          });
+      }
     }
-    render() {
-
+    function handleCheckout(e) {
+        e.preventDefault();
+        makeRequest("POST", "/cart/checkout")
+          .then((res) => {
+            console.log(res.data.response);
+            window.location.href = res.data.response;
+          })
+          .catch((err) => {
+            console.log(err.data.errors[0]);
+          });
+      }
         return (
             <main>
 	            {/* breadcrumb-start */}
@@ -64,40 +113,27 @@ class MyCart extends Component {
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td className="product-thumbnail"><Link href="course-grid"><a><img src="assets/img/course/cn1.webp" alt="img not found"/></a></Link></td>
-                                                <td className="product-name"><Link href="/course-grid"><a>ADHD Awareness</a></Link></td>
-                                                <td className="product-price"><span className="amount">£16.00</span></td>
+                                            {cart && cart.map(item => {
+                                                return (
+                                                    <tr>
+                                                <td className="product-thumbnail"><Link href="course-grid"><a><img src={item.thumbnail} alt="img not found"/></a></Link></td>
+                                                <td className="product-name"><Link href="/course-grid"><a>{item.name}</a></Link></td>
+                                                <td className="product-price"><span className="amount">£{item.amount / item.product_count}</span></td>
                                                 <td className="product-quantity text-center">
                                                 <div className="product-quantity mt-10 mb-10">
                                                     <div className="product-quantity-form">
-                                                        <button className="cart-minus" onClick={this.handleDecrease}><i className="fas fa-minus"></i></button>
-                                                        <p>2</p>
+                                                        <button className="cart-minus" onClick={() => decrement(item.course_id)}><i className="fas fa-minus"></i></button>
+                                                        <p>{item.product_count}</p>
                                                         {/* <p>{this.state.num}</p> */}
-                                                        <button className="cart-plus" onClick={this.handleIncrease}><i className="fas fa-plus"></i></button>
+                                                        <button className="cart-plus" onClick={() => increment(item.course_id)}><i className="fas fa-plus"></i></button>
                                                     </div>
                                                 </div>
                                                 </td>
-                                                <td className="product-subtotal"><span className="amount">£16.00</span></td>
-                                                <td className="product-remove"><a href="#"><i className="fas fa-times"></i></a></td>
+                                                <td className="product-subtotal"><span className="amount">£{item.amount}</span></td>
+                                                <td className="product-remove"><span onClick={() => removeItem(item.course_id)}><i className="fas fa-times"></i></span></td>
                                             </tr>
-                                            <tr>
-                                                <td className="product-thumbnail"><Link href="/course-grid"><a><img src="assets/img/course/cn2.webp"  alt="img not found"/></a></Link></td>
-                                                <td className="product-name"><Link href="/course-grid"><a>Child Sexual Exploitation Awareness</a></Link></td>
-                                                <td className="product-price"><span className="amount">£8.00</span></td>
-                                                <td className="product-quantity text-center">
-                                                <div className="product-quantity mt-10 mb-10">
-                                                    <div className="product-quantity-form">
-                                                        <button className="cart-minus" onClick={this.handleDecreaseA}><i className="fas fa-minus"></i></button>
-                                                        <p>1</p>
-                                                        {/* <p>{this.state.numA}</p> */}
-                                                        <button className="cart-plus" onClick={this.handleIncreaseA}><i className="fas fa-plus"></i></button>
-                                                    </div>
-                                                </div>
-                                                </td>
-                                                <td className="product-subtotal"><span className="amount">£8.00</span></td>
-                                                <td className="product-remove"><a href="#"><i className="fas fa-times"></i></a></td>
-                                            </tr>
+                                                )
+                                            })}
                                         </tbody>
                                     </table>
                                 </div>
@@ -121,10 +157,10 @@ class MyCart extends Component {
                                         <div className="cart-page-total">
                                             <h2>Cart totals</h2>
                                             <ul className="mb-20">
-                                                <li>Subtotal <span>£24.00</span></li>
-                                                <li>Total <span>£24.00</span></li>
+                                                {/* <li>Subtotal <span>£24.00</span></li> */}
+                                                <li>Total <span>£{totalPrice}</span></li>
                                             </ul>
-                                            <Link href="/checkout"><a className="e-btn e-btn-border">Proceed to checkout</a></Link>
+                                            <Link href="/checkout"><span onClick={handleCheckout} className="e-btn e-btn-border">Proceed to checkout</span></Link>
                                         </div>
                                     </div>
                                 </div>
@@ -134,8 +170,7 @@ class MyCart extends Component {
                 </section>
 
         	</main>
-        );
-    }
+        )
 }
 
 export default MyCart;
