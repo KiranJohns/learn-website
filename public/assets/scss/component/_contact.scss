@@ -189,11 +189,19 @@
                         }
                     }
                     &.pin{
-                        color: #d8163f;
-                        background: rgba($color: #d8163f, $alpha: .1);
+                        color: #000;
+                        background: rgba($color: #000, $alpha: .1);
                         &:hover{
                             color: $white;
-                            background: #d8163f;
+                            background: #000;
+                        }
+                    }
+                    &.lin1{
+                        background: #0077b5;
+                        border-color: #0077b5;
+                        &:hover{
+                            background: transparent;
+                            color: #0077b5;
                         }
                     }
                 }

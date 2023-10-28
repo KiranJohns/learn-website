@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import Link from "next/link";
+import { FaUser, FaRegCalendarDays } from "react-icons/fa6";
+
+import {BsCalendarDayFill } from "react-icons/bs";
 
 const ArticleLayout = ({ post }) => {
   return (
@@ -18,7 +21,7 @@ const ArticleLayout = ({ post }) => {
           <div className="blog__meta d-flex flex-column justify-content-between">
             <div style={{marginBottom: '1rem'}}  className="blog__date d-flex align-items-center justify-content-between">
               
-              <span>{new Date(post.date).toLocaleDateString()}</span> <span>{post.author}</span>
+              <span><FaRegCalendarDays style={{marginBottom:".35rem",fontSize:"1rem",color:"#212a50"}}/> {new Date(post.date).toLocaleDateString()}</span> <span><FaUser style={{marginBottom:".3rem",color:"#212a50"}}/> {post.author}</span>
             </div>
             <div className="blog__author d-flex">
               <div className="blog__author-info">

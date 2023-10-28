@@ -18,6 +18,7 @@ import SidebarBanner from "../Blog/SidebarBannerSection";
 import Breadcrumb from "../Common/Breadcrumb";
 import fetchData from "../../axios/index";
 import Link from "next/link";
+import { FaUser, FaRegCalendarDays } from "react-icons/fa6";
 
 class BlogDetailsMain extends Component {
   static async getInitialProps({ query }) {
@@ -115,12 +116,12 @@ class BlogDetailsMain extends Component {
                         <h3>{article.header}</h3>
                         <p>{article.content}</p>
                         <p style={{display: 'inline-block'}}>
-                          {new Date(article.date)
+                        <FaRegCalendarDays style={{fontSize:"1rem", marginBottom:'.4rem',color:"#212a50"}}/> {new Date(article.date)
                             .toLocaleDateString()
                             .split("/")
                             .join("-")}
                         </p>
-                        <p style={{ display: 'block',float: "right" }}>{article.author}</p>
+                        <p style={{ display: 'block',float: "right" }}><FaUser style={{fontSize:".9rem", marginBottom:'.3rem',color:"#212a50"}}/> {article.author}</p>
                       </div>
                       
                       <div className="blog__line"></div>
@@ -138,17 +139,18 @@ class BlogDetailsMain extends Component {
                       console.log(blog);
                       return (
                         <>
-                          <div style={{ margin: "0", display: "flex" }} key={idx}>
+                          <div style={{ margin: "0", display: "flex", alignItems:'center' }} key={idx}>
+                            <div style={{  }}>
                             <img
                               style={{
-                                height: "5.2rem",
-                                width: "5.7rem",
+                               height:"fit-content",
+                                width: "5.2rem",
                                 padding: "0 0.3rem",marginRight: '1rem',
                                 borderRadius:".45rem"
                               }}
                               src={blog.img}
                               alt=""
-                            />
+                            /></div>
                             <div className="info">
                               <div className="heading" style={{marginTop: "0.2rem"}}>
                                 <a href={`/blog/${blog.id}`}>
@@ -162,7 +164,7 @@ class BlogDetailsMain extends Component {
                                 className="content"
                               >
                                 <small style={{ lineHeight: "0.1rem" }}>
-                                  {blog.content.slice(0, 100)+"..."}
+                                  {blog.content.slice(0, 63)+"..."}
                                 </small>
                               </div>
                             </div>

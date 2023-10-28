@@ -11,6 +11,7 @@ import SidebarBanner from "./SidebarBannerSection";
 import fetchData from "../../axios/index";
 import store from "../../redux/store";
 
+
 class BlogMain extends Component {
   state = {
     blogs: [],
