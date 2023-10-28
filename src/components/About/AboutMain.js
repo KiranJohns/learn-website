@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Breadcrumb from '../Common/Breadcrumb';
 import TestimonialThree from '../HomeThree/TestimonialSectionThree';
 import About from '../HomeTwo/AboutSection';
+import AboutUs from '../HomeTwo/AboutUs';
 import WhyChoose from '../HomeTwo/WhyChooseSection';
 import Counter from '../Elements/Counter/CounterStyleTwo';
 import Banner from '../Home/BannerSection';
@@ -23,29 +24,12 @@ class AboutMain extends Component {
 
                 {/* about-start */}
                 <div className='mt-30'>
-                    <About />
+                    <AboutUs />
                 </div>
-				{/* about-end */}
-
-				{/* brand-start */}
-				<BrandWithNoSSR />
-				{/* brand-end */}
-
-                {/* testimonial-start */}
-				<TestimonialThree />
-				{/* testimonial-end */}
-
-                {/* whychoose-start */}
-				<WhyChoose />
-				{/* whychoose-end */}
-
-                {/* counter-start */}
+				
+				<div className='mt-30'>
 				<Counter />
-				{/* counter-end */}
-
-                {/* banner-start */}
-				<Banner />
-				{/* banner-end */}
+				</div>
 
         	</main>
         );
@@ -53,3 +37,24 @@ class AboutMain extends Component {
 }
 
 export default AboutMain;
+
+
+
+{/* <BrandWithNoSSR />
+
+
+testimonial-start 
+<TestimonialThree />
+ testimonial-end 
+
+ whychoose-start 
+<WhyChoose />
+whychoose-end 
+
+
+<Counter />
+
+
+
+<Banner />
+ */}

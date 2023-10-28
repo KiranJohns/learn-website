@@ -1,6 +1,8 @@
 import React from 'react';
 import FooterBottom from './FooterBottom';
 import Link from 'next/link';
+import { FaXTwitter,FaLinkedinIn} from "react-icons/fa6";
+import { BsInstagram } from "react-icons/bs";
 
 const Footer = () => {
 
@@ -23,8 +25,11 @@ const Footer = () => {
                                  <div className="footer__social">
                                     <ul>
                                        <li><a href="#"><i className="fab fa-facebook-f"></i></a></li>
-                                       <li><a href="#" className="tw"><i className="fab fa-twitter"></i></a></li>
-                                       {/* <li><a href="#" className="pin"><i className="fab fa-fa-instagram"></i></a></li> */}
+                                       <li><a href="#" className="tw"><FaXTwitter/></a></li>
+                                       <li><a href="#" className="pin"><BsInstagram/></a></li>
+                                       <li><a href="#" className="lin1"><FaLinkedinIn/></a></li>
+                                       
+                                      
                                        {/* <FontAwesomeIcon icon="fab fa-instagram" /> */}
                                     </ul>
                                  </div>

@@ -20,10 +20,11 @@ class BlogDetailss extends React.Component {
     return (
       <React.Fragment>
         <HeaderOpaque />
-        <main>
+        <main >
           {/* Blog Main */}
           <BlogDetailsMain slug={this.props.slug} />
           {/* Blog Main End */}
+    
         </main>
         <Footer />
       </React.Fragment>

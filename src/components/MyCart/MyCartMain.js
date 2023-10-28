@@ -65,35 +65,37 @@ class MyCart extends Component {
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td className="product-thumbnail"><Link href="/course-details"><a><img src="assets/img/course/sm/cart-1.jpg" alt="img not found"/></a></Link></td>
-                                                <td className="product-name"><Link href="/course-details"><a>Strategy law and organization Foundation</a></Link></td>
-                                                <td className="product-price"><span className="amount">$130.00</span></td>
+                                                <td className="product-thumbnail"><Link href="course-grid"><a><img src="assets/img/course/cn1.webp" alt="img not found"/></a></Link></td>
+                                                <td className="product-name"><Link href="/course-grid"><a>ADHD Awareness</a></Link></td>
+                                                <td className="product-price"><span className="amount">£16.00</span></td>
                                                 <td className="product-quantity text-center">
                                                 <div className="product-quantity mt-10 mb-10">
                                                     <div className="product-quantity-form">
                                                         <button className="cart-minus" onClick={this.handleDecrease}><i className="fas fa-minus"></i></button>
-                                                        <p>{this.state.num}</p>
+                                                        <p>2</p>
+                                                        {/* <p>{this.state.num}</p> */}
                                                         <button className="cart-plus" onClick={this.handleIncrease}><i className="fas fa-plus"></i></button>
                                                     </div>
                                                 </div>
                                                 </td>
-                                                <td className="product-subtotal"><span className="amount">$130.00</span></td>
+                                                <td className="product-subtotal"><span className="amount">£16.00</span></td>
                                                 <td className="product-remove"><a href="#"><i className="fas fa-times"></i></a></td>
                                             </tr>
                                             <tr>
-                                                <td className="product-thumbnail"><Link href="/course-details"><a><img src="assets/img/course/sm/cart-2.jpg"  alt="img not found"/></a></Link></td>
-                                                <td className="product-name"><Link href="/course-details"><a>Fundamentals of music theory Learn new</a></Link></td>
-                                                <td className="product-price"><span className="amount">$120.50</span></td>
+                                                <td className="product-thumbnail"><Link href="/course-grid"><a><img src="assets/img/course/cn2.webp"  alt="img not found"/></a></Link></td>
+                                                <td className="product-name"><Link href="/course-grid"><a>Child Sexual Exploitation Awareness</a></Link></td>
+                                                <td className="product-price"><span className="amount">£8.00</span></td>
                                                 <td className="product-quantity text-center">
                                                 <div className="product-quantity mt-10 mb-10">
                                                     <div className="product-quantity-form">
                                                         <button className="cart-minus" onClick={this.handleDecreaseA}><i className="fas fa-minus"></i></button>
-                                                        <p>{this.state.numA}</p>
+                                                        <p>1</p>
+                                                        {/* <p>{this.state.numA}</p> */}
                                                         <button className="cart-plus" onClick={this.handleIncreaseA}><i className="fas fa-plus"></i></button>
                                                     </div>
                                                 </div>
                                                 </td>
-                                                <td className="product-subtotal"><span className="amount">$120.50</span></td>
+                                                <td className="product-subtotal"><span className="amount">£8.00</span></td>
                                                 <td className="product-remove"><a href="#"><i className="fas fa-times"></i></a></td>
                                             </tr>
                                         </tbody>
@@ -119,8 +121,8 @@ class MyCart extends Component {
                                         <div className="cart-page-total">
                                             <h2>Cart totals</h2>
                                             <ul className="mb-20">
-                                                <li>Subtotal <span>$250.00</span></li>
-                                                <li>Total <span>$250.00</span></li>
+                                                <li>Subtotal <span>£24.00</span></li>
+                                                <li>Total <span>£24.00</span></li>
                                             </ul>
                                             <Link href="/checkout"><a className="e-btn e-btn-border">Proceed to checkout</a></Link>
                                         </div>

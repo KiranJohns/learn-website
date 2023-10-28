@@ -1036,12 +1036,12 @@
                     }
 
                     &.tw {
-                        color: #03a9f4;
-                        background: rgba($color: #03a9f4, $alpha: .1);
+                        color: #000;
+                        background: rgba($color: #000, $alpha: .1);
 
                         &:hover {
                             color: $white;
-                            background: #03a9f4;
+                            background: #000;
                         }
                     }
 
@@ -1052,6 +1052,14 @@
                         &:hover {
                             color: $white;
                             background: #d8163f;
+                        }
+                    }
+                    &.lin1{
+                        background: #0077b5;
+                        border-color: #0077b5;
+                        &:hover{
+                            background: transparent;
+                            color: #0077b5;
                         }
                     }
                 }

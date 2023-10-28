@@ -5,7 +5,7 @@ import BlogMain from '../components/Blog/BlogMain';
 import HeaderOpaque from '../components/Layout/Header/HeaderOpaque';
 import Footer from '../components/Layout/Footer/Footer';
 import Cta from '../components/Home/CtaSection';
-
+import NoSSR from 'react-no-ssr';
 
 class Blog extends React.Component {
 
@@ -18,7 +18,9 @@ class Blog extends React.Component {
     render() {
         return (
             <React.Fragment>
+            <NoSSR>
             <HeaderOpaque />
+            </NoSSR>
             <BlogMain />
             <Cta/>
             <Footer />

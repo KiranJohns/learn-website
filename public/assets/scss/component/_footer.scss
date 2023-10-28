@@ -53,11 +53,11 @@
                         color: #285da1;
                     }
                     &.tw{
-                        background: #03a9f4;
-                        border-color: #03a9f4;
+                        background: #000;
+                        border-color: #000;
                         &:hover{
                             background: transparent;
-                            color: #03a9f4;
+                            color: #000;
                         }
                     }
                     &.pin{
@@ -66,6 +66,14 @@
                         &:hover{
                             background: transparent;
                             color: #d2173f;
+                        }
+                    }
+                    &.lin1{
+                        background: #0077b5;
+                        border-color: #0077b5;
+                        &:hover{
+                            background: transparent;
+                            color: #0077b5;
                         }
                     }
                 }
