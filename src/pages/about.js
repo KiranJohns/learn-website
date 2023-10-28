@@ -1,6 +1,6 @@
 import React from 'react';
-import Header from '../components/Layout/Header/Header';
-import FooterThree from '../components/Layout/Footer/FooterStyleThree';
+import HeaderOpaque from '../components/Layout/Header/HeaderOpaque';
+import Footer from '../components/Layout/Footer/Footer';
 import AboutMain from '../components/About/AboutMain';
 import NoSSR from 'react-no-ssr';
 
@@ -16,10 +16,10 @@ class AboutPage extends React.Component {
         return (
             <React.Fragment>
             <NoSSR>
-            <Header/>
+            <HeaderOpaque/>
             </NoSSR>
             <AboutMain />
-            <FooterThree />
+            <Footer />
             </React.Fragment>
         );
     }

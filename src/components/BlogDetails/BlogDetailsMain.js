@@ -141,9 +141,10 @@ class BlogDetailsMain extends Component {
                           <div style={{ margin: "0", display: "flex" }} key={idx}>
                             <img
                               style={{
-                                height: "5rem",
-                                width: "5rem",
-                                padding: "0 0.3rem",marginRight: '1rem'
+                                height: "5.2rem",
+                                width: "5.7rem",
+                                padding: "0 0.3rem",marginRight: '1rem',
+                                borderRadius:".45rem"
                               }}
                               src={blog.img}
                               alt=""
