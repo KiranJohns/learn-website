@@ -5,16 +5,15 @@ import Head from "next/head";
 import BurgerMenus from "./BurgerMenus";
 import ShopingCart from "./ShopingCart";
 import { useSelector } from "react-redux";
-import NoSSR from 'react-no-ssr';
-import NoSSRWrapper from "../../noSSR"; 
-import Dropdown from 'react-bootstrap/Dropdown';
+import NoSSR from "react-no-ssr";
+import NoSSRWrapper from "../../noSSR";
+import Dropdown from "react-bootstrap/Dropdown";
 
 import allProduct from "../../../../sampleProduct.json";
 import fetchData from "../../../axios";
 import store from "../../../redux/store";
 
 const Header = () => {
- 
   const [menuOpen, setMenuOpen] = useState(false);
   const [shopOpen, setShopOpen] = useState(false);
 
@@ -23,13 +22,13 @@ const Header = () => {
   const { cart } = useSelector((store) => store.cart);
   const [searchProduct, setSearchProduct] = useState([]);
   const [searchString, setSearchString] = useState("");
-  let logedIn = localStorage.getItem('learnforcare_access');
+  let logedIn = localStorage.getItem("learnforcare_access");
 
   const handleLogout = () => {
-    localStorage.clear('learnforcare_access');
-    location.pathname="/"
+    localStorage.clear("learnforcare_access");
+    location.pathname = "/";
   };
- 
+
   useEffect(() => {
     setPath(router.pathname);
   }, [router]);
@@ -82,45 +81,45 @@ const Header = () => {
 
   return (
     <NoSSR>
-    <React.Fragment>
-      <Head>
-        <title>Learn for care</title>
-        <link
-          href="https://fonts.googleapis.com/css2?family=Hind:wght@300;400;500;600;700&display=swap"
-          rel="stylesheet"
-        />
-        <link
-          rel="icon"
-          href="/assets/img/favicon.png"
-          type="image/<generated>"
-          sizes="<generated>"
-        />
-      </Head>
-      <header>
-        <div
-          id="header-sticky"
-          className="header__area header__transparent header__padding"
-        >
-          <div className="container-fluid">
-            <div className="row align-items-center">
-              <div className="col-xxl-3 col-xl-3 col-lg-4 col-md-2 col-sm-4 col-6">
-                <div className="header__left d-flex">
-                  <div className="logo ">
-                    <Link href="/">
-                      <a>
-                        <img
-                          className="w-75 mt-5 ml-5"
-                          src="/assets/img/logo/logo7.png"
-                          alt="logo"
-                        />
-                      </a>
-                    </Link>
-                  </div>
-                  <div className="header__category d-none ">
-                    <nav>
-                      <ul>
-                        <li>
-                          {/* <Link href="/course-grid"><a className="cat-menu d-flex align-items-center">
+      <React.Fragment>
+        <Head>
+          <title>Learn for care</title>
+          <link
+            href="https://fonts.googleapis.com/css2?family=Hind:wght@300;400;500;600;700&display=swap"
+            rel="stylesheet"
+          />
+          <link
+            rel="icon"
+            href="/assets/img/favicon.png"
+            type="image/<generated>"
+            sizes="<generated>"
+          />
+        </Head>
+        <header>
+          <div
+            id="header-sticky"
+            className="header__area header__transparent header__padding"
+          >
+            <div className="container-fluid">
+              <div className="row align-items-center">
+                <div className="col-xxl-3 col-xl-3 col-lg-4 col-md-2 col-sm-4 col-6">
+                  <div className="header__left d-flex">
+                    <div className="logo ">
+                      <Link href="/">
+                        <a>
+                          <img
+                            className="w-75 mt-5 ml-5"
+                            src="/assets/img/logo/logo7.png"
+                            alt="logo"
+                          />
+                        </a>
+                      </Link>
+                    </div>
+                    <div className="header__category d-none ">
+                      <nav>
+                        <ul>
+                          <li>
+                            {/* <Link href="/course-grid"><a className="cat-menu d-flex align-items-center">
                                           <div className="cat-dot-icon d-inline-block">
                                              <svg  viewBox="0 0 276.2 276.2">
                                                 <g>
@@ -141,90 +140,90 @@ const Header = () => {
                                           <span>Category</span>
                                        </a>
                                        </Link> */}
-                          {/* <ul className="cat-submenu">
+                            {/* <ul className="cat-submenu">
                                           <li><Link href="/course-grid"><a>English Learning</a></Link></li>
                                           <li><Link href="/course-grid"><a>Web Development</a></Link></li>
                                           <li><Link href="/course-grid"><a>Logo Design</a></Link></li>
                                           <li><Link href="/course-grid"><a>Motion Graphics</a></Link></li>
                                           <li><Link href="/course-grid"><a>Video Edition</a></Link></li>
                                        </ul> */}
-                        </li>
-                      </ul>
-                    </nav>
+                          </li>
+                        </ul>
+                      </nav>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className="col-xxl-9 col-xl-9 col-lg-8 col-md-10 col-sm-8 col-6">
-                <div className="header__right d-flex justify-content-end align-items-center">
-                  <div className="main-menu d-none d-xl-block">
-                    <nav id="mobile-menu">
-                      <ul>
-                        <li className="">
-                          <Link href="/">
-                            <a>Home</a>
-                          </Link>
-                          {/* <ul className="submenu">
+                <div className="col-xxl-9 col-xl-9 col-lg-8 col-md-10 col-sm-8 col-6">
+                  <div className="header__right d-flex justify-content-end align-items-center">
+                    <div className="main-menu d-none d-xl-block">
+                      <nav id="mobile-menu">
+                        <ul>
+                          <li className="">
+                            <Link href="/">
+                              <a>Home</a>
+                            </Link>
+                            {/* <ul className="submenu">
                                           <li><Link href="/"><a>Home Style 1</a></Link></li>
                                           <li><Link href="/home-2"><a>Home Style 2</a></Link></li>
                                           <li><Link href="/home-3"><a>Home Style 3</a></Link></li>
                                        </ul> */}
-                        </li>
-                        <li className="has-dropdown">
-                          <Link href="/course-grid">
-                            <a>Courses</a>
-                          </Link>
-                          <ul className="submenu">
-                            <li>
-                              <Link href="/course-grid">
-                                <a>Care Certificate</a>
-                              </Link>
-                            </li>
-                            <li>
-                              <Link href="/course-mandatory">
-                                <a>Mandatory Care Courses</a>
-                              </Link>
-                            </li>
-                            <li>
-                              <Link href="/course-specialised">
-                                <a>Specialised Care Courses</a>
-                              </Link>
-                            </li>{" "}
-                            <li>
-                              <Link href="/course-recovery">
-                                <a>Recovery Care Courses</a>
-                              </Link>
-                            </li>{" "}
-                            <li>
-                              <Link href="/course-child">
-                                <a>Child Care Courses</a>
-                              </Link>
-                            </li>
-                            {/* <li>
+                          </li>
+                          <li className="has-dropdown">
+                            <Link href="/course-grid">
+                              <a>Courses</a>
+                            </Link>
+                            <ul className="submenu">
+                              <li>
+                                <Link href="/course-grid">
+                                  <a>Care Certificate</a>
+                                </Link>
+                              </li>
+                              <li>
+                                <Link href="/course-mandatory">
+                                  <a>Mandatory Care Courses</a>
+                                </Link>
+                              </li>
+                              <li>
+                                <Link href="/course-specialised">
+                                  <a>Specialised Care Courses</a>
+                                </Link>
+                              </li>{" "}
+                              <li>
+                                <Link href="/course-recovery">
+                                  <a>Recovery Care Courses</a>
+                                </Link>
+                              </li>{" "}
+                              <li>
+                                <Link href="/course-child">
+                                  <a>Child Care Courses</a>
+                                </Link>
+                              </li>
+                              {/* <li>
                               <Link href="/course-details">
                                 <a>Courses Details</a>
                               </Link>
                             </li> */}
-                          </ul>
-                        </li>
-                        <li className="has-dropdown">
-                          <Link href="/">
-                            <a>Bundles</a>
-                          </Link>
-                          <ul className="submenu">
-                            <li>
-                              <Link href="/bundle/care-bundle/">
-                                <a>Care Course Bundle</a>
-                              </Link>
-                            </li>
-                          </ul>
-                        </li>
+                            </ul>
+                          </li>
+                          <li className="has-dropdown">
+                            <Link href="/">
+                              <a>Bundles</a>
+                            </Link>
+                            <ul className="submenu">
+                              <li>
+                                <Link href="/bundle/care-bundle/">
+                                  <a>Care Course Bundle</a>
+                                </Link>
+                              </li>
+                            </ul>
+                          </li>
 
-                        <li className="">
-                          <Link href="/blog">
-                            <a>Blog</a>
-                          </Link>
-                        </li>
-                        {/* <li className="has-dropdown">
+                          <li className="">
+                            <Link href="/blog">
+                              <a>Blog</a>
+                            </Link>
+                          </li>
+                          {/* <li className="has-dropdown">
                           <Link href="/course-grid">
                             <a>Pages</a>
                           </Link>
@@ -281,32 +280,66 @@ const Header = () => {
                             </li>
                           </ul>
                         </li> */}
-                        <li>
-                          <Link href="/how-it">
-                            <a>How it Works</a>
-                          </Link>
-                        </li>
-                        {/* <li>
+                          <li>
+                            <Link href="/how-it">
+                              <a>How it Works</a>
+                            </Link>
+                          </li>
+                          {/* <li>
                           <Link href="/contact">
                             <a>Contact</a>
                           </Link>
                         </li> */}
-                      </ul>
-                    </nav>
-                  </div>
-                  <div className="header__search p-relative ml-50 d-none d-md-block">
-                    <form action="#">
-                      <input
-                        type="text"
-                        placeholder="Search..."
-                        value={searchString}
-                        onChange={handleSearch}
-                      />
-                      <button type="submit">
-                        <i className="fas fa-search"></i>
-                      </button>
-                    </form>
-                    <div className="header__cart">
+                        </ul>
+                      </nav>
+                    </div>
+                    <div className="header__search p-relative ml-50 d-none d-md-block">
+                      <form action="#">
+                        <input
+                          type="text"
+                          placeholder="Search..."
+                          value={searchString}
+                          onChange={handleSearch}
+                        />
+                        <button type="submit">
+                          <i className="fas fa-search"></i>
+                        </button>
+                      </form>
+                      <div className="header__cart">
+                        <span
+                          className="cart-toggle-btn"
+                          onClick={() => {
+                            setShopOpen(!shopOpen);
+                          }}
+                        >
+                          <div className="header__cart-icon">
+                            <svg viewBox="0 0 24 24">
+                              <circle className="st0" cx="9" cy="21" r="1" />
+                              <circle className="st0" cx="20" cy="21" r="1" />
+                              <path
+                                className="st0"
+                                d="M1,1h4l2.7,13.4c0.2,1,1,1.6,2,1.6h9.7c1,0,1.8-0.7,2-1.6L23,6H6"
+                              />
+                            </svg>
+                          </div>
+                          <span className="cart-item">
+                            {cart ? cart.length : 0}
+                          </span>
+                        </span>
+                      </div>
+                      {searchProduct && (
+                        <div className="search-suggestions position-absolute w-100">
+                          <ul class="list-group w-100">
+                            {searchProduct?.map((item) => (
+                              <li class="list-group-item w-100">
+                                {item.heading}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                    </div>
+                    <div className="header__cart header__cart--responsive">
                       <span
                         className="cart-toggle-btn"
                         onClick={() => {
@@ -323,98 +356,79 @@ const Header = () => {
                             />
                           </svg>
                         </div>
-                        <span className="cart-item">
-                          {cart ? cart.length : 0}
-                        </span>
+                        <span className="cart-item">2</span>
                       </span>
                     </div>
-                    {searchProduct && (
-                      <div className="search-suggestions position-absolute w-100">
-                        <ul class="list-group w-100">
-                          {searchProduct?.map((item) => (
-                            <li class="list-group-item w-100">
-                              {item.heading}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
-                  </div>
-                  <div className="header__cart header__cart--responsive">
-                    <span
-                      className="cart-toggle-btn"
-                      onClick={() => {
-                        setShopOpen(!shopOpen);
-                      }}
-                    >
-                      <div className="header__cart-icon">
-                        <svg viewBox="0 0 24 24">
-                          <circle className="st0" cx="9" cy="21" r="1" />
-                          <circle className="st0" cx="20" cy="21" r="1" />
-                          <path
-                            className="st0"
-                            d="M1,1h4l2.7,13.4c0.2,1,1,1.6,2,1.6h9.7c1,0,1.8-0.7,2-1.6L23,6H6"
-                          />
-                        </svg>
-                      </div>
-                      <span className="cart-item">2</span>
-                    </span>
-                  </div>
-                  <div className="header__btn ml-20 d-none d-sm-block">
-                    {logedIn ? (
-                      // <Link href="/company/myprofile" >
-                      //   <a className="e-btn ">Profile</a>
-                      // </Link> 
+                    <div className="header__btn ml-20 d-none d-sm-block">
+                      {logedIn ? (
+                        // <Link href="/company/myprofile" >
+                        //   <a className="e-btn ">Profile</a>
+                        // </Link>
 
-                          <Dropdown>
-                          <Dropdown.Toggle style={{padding:'.6rem'}} variant="primary" id="dropdown-basic">
-                       Profile 
+                        <Dropdown>
+                          <Dropdown.Toggle
+                            style={{
+                              padding: ".6rem",
+                              border: "none",
+                              outline: "none",
+                            }}
+                            variant="primary"
+                            id="dropdown-basic"
+                          >
+                            Profile
                           </Dropdown.Toggle>
-                    
+
                           <Dropdown.Menu>
-                            <Dropdown.Item className="btn" onClick={handleLogout} href="">Logout</Dropdown.Item>
-                            <Dropdown.Item className="btn" href="/myprofile">Profile</Dropdown.Item>
+                            <Dropdown.Item
+                              className="btn"
+                              onClick={handleLogout}
+                              href=""
+                            >
+                              Logout
+                            </Dropdown.Item>
+                            <Dropdown.Item className="btn" href="/myprofile">
+                              Profile
+                            </Dropdown.Item>
                           </Dropdown.Menu>
                         </Dropdown>
-
-                    ) : (
-                      <Link href="/sign-in">
-                        <a className="e-btn">Sign In</a>
-                      </Link>
-                    )}
-                  </div>
-                  <div className="sidebar__menu d-xl-none">
-                    <div
-                      className="sidebar-toggle-btn ml-30"
-                      id="sidebar-toggle"
-                      onClick={() => {
-                        setMenuOpen(!menuOpen);
-                      }}
-                    >
-                      <span className="line"></span>
-                      <span className="line"></span>
-                      <span className="line"></span>
+                      ) : (
+                        <Link href="/sign-in">
+                          <a className="e-btn">Sign In</a>
+                        </Link>
+                      )}
+                    </div>
+                    <div className="sidebar__menu d-xl-none">
+                      <div
+                        className="sidebar-toggle-btn ml-30"
+                        id="sidebar-toggle"
+                        onClick={() => {
+                          setMenuOpen(!menuOpen);
+                        }}
+                      >
+                        <span className="line"></span>
+                        <span className="line"></span>
+                        <span className="line"></span>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <BurgerMenus menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-        <div
-          onClick={() => setMenuOpen(false)}
-          className={menuOpen ? "body-overlay show" : "body-overlay"}
-        ></div>
+          <BurgerMenus menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+          <div
+            onClick={() => setMenuOpen(false)}
+            className={menuOpen ? "body-overlay show" : "body-overlay"}
+          ></div>
 
-        <ShopingCart shopOpen={shopOpen} setShopOpen={setShopOpen} />
-        <div
-          onClick={() => setShopOpen(false)}
-          className={shopOpen ? "body-overlay show" : "body-overlay"}
-        ></div>
-      </header>
-    </React.Fragment>
+          <ShopingCart shopOpen={shopOpen} setShopOpen={setShopOpen} />
+          <div
+            onClick={() => setShopOpen(false)}
+            className={shopOpen ? "body-overlay show" : "body-overlay"}
+          ></div>
+        </header>
+      </React.Fragment>
     </NoSSR>
   );
 };
