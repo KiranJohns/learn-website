@@ -4,6 +4,7 @@ import BlogDetailsMain from "../../components/BlogDetails/BlogDetailsMain";
 
 import Footer from "../../components/Layout/Footer/Footer";
 import HeaderOpaque from "../../components/Layout/Header/HeaderOpaque";
+import ShareButton from "react-share/lib/ShareButton";
 
 class BlogDetailss extends React.Component {
 
@@ -24,7 +25,7 @@ class BlogDetailss extends React.Component {
           {/* Blog Main */}
           <BlogDetailsMain slug={this.props.slug} />
           {/* Blog Main End */}
-    
+        
         </main>
         <Footer />
       </React.Fragment>

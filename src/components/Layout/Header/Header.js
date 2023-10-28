@@ -7,6 +7,7 @@ import ShopingCart from "./ShopingCart";
 import { useSelector } from "react-redux";
 import NoSSR from 'react-no-ssr';
 import NoSSRWrapper from "../../noSSR"; 
+import Dropdown from 'react-bootstrap/Dropdown';
 
 import allProduct from "../../../../sampleProduct.json";
 import fetchData from "../../../axios";
@@ -23,6 +24,11 @@ const Header = () => {
   const [searchProduct, setSearchProduct] = useState([]);
   const [searchString, setSearchString] = useState("");
   let logedIn = localStorage.getItem('learnforcare_access');
+
+  const handleLogout = () => {
+    localStorage.clear('learnforcare_access');
+    location.pathname="/"
+  };
  
   useEffect(() => {
     setPath(router.pathname);
@@ -356,9 +362,21 @@ const Header = () => {
                   </div>
                   <div className="header__btn ml-20 d-none d-sm-block">
                     {logedIn ? (
-                      <Link href="/company/myprofile">
-                        <a className="e-btn">Profile</a>
-                      </Link>
+                      // <Link href="/company/myprofile" >
+                      //   <a className="e-btn ">Profile</a>
+                      // </Link> 
+
+                          <Dropdown>
+                          <Dropdown.Toggle style={{padding:'.6rem'}} variant="primary" id="dropdown-basic">
+                       Profile 
+                          </Dropdown.Toggle>
+                    
+                          <Dropdown.Menu>
+                            <Dropdown.Item className="btn" onClick={handleLogout} href="">Logout</Dropdown.Item>
+                            <Dropdown.Item className="btn" href="/myprofile">Profile</Dropdown.Item>
+                          </Dropdown.Menu>
+                        </Dropdown>
+
                     ) : (
                       <Link href="/sign-in">
                         <a className="e-btn">Sign In</a>

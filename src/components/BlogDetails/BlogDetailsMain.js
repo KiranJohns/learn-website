@@ -19,6 +19,8 @@ import Breadcrumb from "../Common/Breadcrumb";
 import fetchData from "../../axios/index";
 import Link from "next/link";
 import { FaUser, FaRegCalendarDays } from "react-icons/fa6";
+import { BsTagsFill } from "react-icons/bs";
+
 
 class BlogDetailsMain extends Component {
   static async getInitialProps({ query }) {
@@ -114,6 +116,7 @@ class BlogDetailsMain extends Component {
                       </div>
                       <div className="blog__text mb-40">
                         <h3>{article.header}</h3>
+                       <p><BsTagsFill style={{fontSize:"1rem", marginBottom:'.4rem',color:"#212a50"}}/> #global #education #research</p>
                         <p>{article.content}</p>
                         <p style={{display: 'inline-block'}}>
                         <FaRegCalendarDays style={{fontSize:"1rem", marginBottom:'.4rem',color:"#212a50"}}/> {new Date(article.date)

@@ -10,7 +10,7 @@ import Tags from "./TagsSection";
 import SidebarBanner from "./SidebarBannerSection";
 import fetchData from "../../axios/index";
 import store from "../../redux/store";
-
+import ShareButton from "react-share/lib/ShareButton";
 
 class BlogMain extends Component {
   state = {

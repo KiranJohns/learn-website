@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import Link from "next/link";
 import { FaUser, FaRegCalendarDays } from "react-icons/fa6";
 
-import {BsCalendarDayFill } from "react-icons/bs";
 
 const ArticleLayout = ({ post }) => {
   return (
@@ -16,8 +15,7 @@ const ArticleLayout = ({ post }) => {
         <div className="blog__content">
           <h3 className="blog__title" style={{marginBottom: '1rem'}}>
             <Link href={`/blog/${post.id}`}>{post.header.slice(0, 50) + "..."}</Link>
-          </h3>
-
+          </h3>      
           <div className="blog__meta d-flex flex-column justify-content-between">
             <div style={{marginBottom: '1rem'}}  className="blog__date d-flex align-items-center justify-content-between">
               
