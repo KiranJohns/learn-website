@@ -381,6 +381,9 @@ const Header = () => {
                           </Dropdown.Toggle>
 
                           <Dropdown.Menu>
+                          <Dropdown.Item className="btn" href="/company/myprofile">
+                             My Profile
+                            </Dropdown.Item>
                             <Dropdown.Item
                               className="btn"
                               onClick={handleLogout}
@@ -388,9 +391,7 @@ const Header = () => {
                             >
                               Logout
                             </Dropdown.Item>
-                            <Dropdown.Item className="btn" href="/company/myprofile">
-                             My Profile
-                            </Dropdown.Item>
+                          
                           </Dropdown.Menu>
                         </Dropdown>
                       ) : (
