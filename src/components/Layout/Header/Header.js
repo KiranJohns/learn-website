@@ -389,7 +389,7 @@ const Header = () => {
                               Logout
                             </Dropdown.Item>
                             <Dropdown.Item className="btn" href="/company/myprofile">
-                              Profile
+                             My Profile
                             </Dropdown.Item>
                           </Dropdown.Menu>
                         </Dropdown>
