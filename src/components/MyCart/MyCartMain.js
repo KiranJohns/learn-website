@@ -141,7 +141,6 @@ const MyCart = () => {
                                 <div className="product-quantity-form d-flex flex-column align-items-center">
                                   <button
                                     style={{
-
                                       cursor: "pointer",
                                     }}
                                     className="cart-minus"
@@ -152,6 +151,7 @@ const MyCart = () => {
                                   <p
                                     style={{
                                       padding: "0.8rem",
+                                      marginTop: "0.4rem",
                                     }}
                                   >
                                     {item.product_count}
@@ -159,7 +159,6 @@ const MyCart = () => {
                                   {/* <p>{this.state.num}</p> */}
                                   <button
                                     style={{
-
                                       cursor: "pointer",
                                     }}
                                     className="cart-plus"
