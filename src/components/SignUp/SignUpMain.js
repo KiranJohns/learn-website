@@ -43,7 +43,7 @@ function SignUpMain() {
     // }
   }
 
-  function resend() {
+  function resend(event) {
     event.preventDefault();
     makeRequest("PATCH", "/auth/resend-otp", {
       email: values.email,
@@ -72,8 +72,6 @@ function SignUpMain() {
     setOpen(false);
   };
   useEffect(() => {
-    console.log(signupInfo);
-
     if (signupInfo.response) {
       onOpenModal();
     }
@@ -82,6 +80,7 @@ function SignUpMain() {
   const makeRequest = fetchData();
 
   const handleOtp = (event) => {
+    event.persist()
     event.preventDefault();
     makeRequest("POST", "/auth/validate-otp", {
       email: values.email,
@@ -106,10 +105,8 @@ function SignUpMain() {
   });
 
   const handleSignUp = async (e) => {
-    console.log(values);
     try {
       e.persist()
-      console.log("Hello");
       const method = "POST"; // Specify the HTTP method
       const url = "/auth/registration"; // Specify the API endpoint URL
       const data = values; // Send form values as data
@@ -128,13 +125,14 @@ function SignUpMain() {
           });
         })
         .catch((error) => {
-          setError(error.data.errors[0].message);
+          console.log(error.data.errors[0]);
+          // console.log(error.data);
           store.dispatch({
             type: "SET_ERROR",
             payload: error,
           });
-          toast.info(error.data.errors[0].response);
-          console.log(error.data.errors[0]);
+          // toast.info(error.data.errors[0].response);
+          toast.error(error.data.errors[0]?.error || error.data.errors[0].response);
         });
     } catch (error) {
       console.log(error);
@@ -224,7 +222,7 @@ function SignUpMain() {
               <div className="info">
                 An OTP has been sent to your registered email address.
               </div>
-              <form className="py-3">
+              <div className="py-3">
                 <div className="form-group">
                   <label htmlFor="otp">Enter OTP</label>
                   <input
@@ -232,6 +230,7 @@ function SignUpMain() {
                     className="form-control"
                     name="otp"
                     value={otp}
+                    onKeyUp={(e) => e.key == "Enter" && handleOtp(e)}
                     onChange={(e) => setOtp(e.target.value)}
                     id="otp"
                   />
@@ -257,7 +256,7 @@ function SignUpMain() {
                     </div>
                   </div>
                 </div>
-              </form>
+              </div>
             </div>
           </Modal>
           <div className="row">
