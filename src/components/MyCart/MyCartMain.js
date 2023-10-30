@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useEffect } from "react";
 import { useState } from "react";
 import Breadcrumb from "../Common/Breadcrumb";
 import Link from "next/link";
@@ -10,6 +10,10 @@ const MyCart = () => {
   const makeRequest = fetchData();
   const { cart, totalPrice } = useSelector((state) => state.cart);
 
+  useEffect(() => {
+    getCartItem()
+  }, [])
+  
   function getCartItem() {
     makeRequest("GET", "/cart/get")
       .then((res) => {
