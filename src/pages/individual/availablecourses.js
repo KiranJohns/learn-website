@@ -4,6 +4,7 @@ import DashboardBar from "../../components/Sidebar/DashboardBar";
 import HeaderDashboard from "../../components/Layout/Header/HeaderDashboard";
 import DashCAvail from "../../components/Home/DashCAvail";
 import Header from '../../components/Layout/Header/Header';
+import IndividualBar from "../../components/Sidebar/IndividualBar";
 import NoSSR from 'react-no-ssr';
 
 class courseavailable extends React.Component{
@@ -22,7 +23,7 @@ class courseavailable extends React.Component{
                  <div className="container-fluid " style={{borderRadius:'22px',marginTop:"120px"}}> 
                   <div className="row justify-content-md-center">
                    <div className="col-sm-2 col-md-auto bg-white" >
-                   <DashboardBar/>
+                   <IndividualBar />
                    </div>
                 <div className="col-sm col-md-9  bg-light">
                     <DashCAvail />

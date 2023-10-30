@@ -63,6 +63,24 @@ class IndividualBar extends Component{
                       All Courses
                       </Link></span>  
                   </div>  
+
+                  <div className='list-group-item py-2 px-2'>
+                    <i className='bi bi-envelope txttsml me-2' style={{color: "#004b55"}}></i>
+                    {/* <Link className='fs-6 ' style={{color: "#3E001F"}} href="/company/availablecourses">Available Courses</Link> */}
+                    <span  className='txttsml' style={{color: "#004b55"}}>
+                      <Link href="/individual/availablecourses">
+                      Contact Us
+                      </Link></span>  
+                  </div>  
+
+                  <div className='list-group-item py-2 px-2'>
+                    <i className='bi bi-question txttsml me-2' style={{color: "#004b55"}}></i>
+                    {/* <Link className='fs-6 ' style={{color: "#3E001F"}} href="/company/availablecourses">Available Courses</Link> */}
+                    <span  className='txttsml' style={{color: "#004b55"}}>
+                      <Link href="/individual/availablecourses">
+                      FAQ
+                      </Link></span>  
+                  </div>  
                  
                   <span  className='txttsml' style={{color: "#004b55"}}>  </span> 
                   
