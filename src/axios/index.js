@@ -1,11 +1,9 @@
-import React, { useState } from "react";
 import axios from "axios";
-import store from "../redux/store";
 
 export default function fetchData() {
   let BASEURL = "";
-  BASEURL = "https://www.testkiran.online/api/user";
-  // BASEURL = "http://localhost:3002/api/user";
+  // BASEURL = "https://www.testkiran.online/api/user";
+  BASEURL = "http://localhost:3002/api/user";
   
   // /www.learnforcare.co.uk
 
