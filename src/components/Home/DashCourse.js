@@ -1,35 +1,32 @@
-
-
-import React, { Component } from 'react';
-import axios from 'axios';
-import DataTable from 'react-data-table-component';
-import Link from 'next/link';
-import BasicExample from '../About/button1';
+import React, { Component } from "react";
+import axios from "axios";
+import DataTable from "react-data-table-component";
+import Link from "next/link";
+import BasicExample from "../About/button1";
+import fetchData from "../../axios";
 
 const customStyles = {
-  headRow:{
-    style:{
-      backgroundColor : '#004b55',
-      color:'white'
-    }
+  headRow: {
+    style: {
+      backgroundColor: "#004b55",
+      color: "white",
+    },
   },
-  headCells:{
-    style:{
-      fontSize:'16px',
-      fontWeight:'600',
-      textTransform:'uppercase',
-      justifyContent:"center"
-    }
+  headCells: {
+    style: {
+      fontSize: "16px",
+      fontWeight: "600",
+      textTransform: "uppercase",
+      justifyContent: "center",
+    },
   },
-  cells:{
-    style:{
+  cells: {
+    style: {
       fontSize: "15px",
-      justifyContent:"center"
-    }
-  }
-}
-
-
+      justifyContent: "center",
+    },
+  },
+};
 
 class DashCourse extends Component {
   constructor() {
@@ -42,64 +39,108 @@ class DashCourse extends Component {
 
   handleFilter = (event) => {
     const newData = this.state.filterRecords.filter((row) =>
-    row.name.toLowerCase().includes(event.target.value.toLowerCase())
-  );
+      row.name.toLowerCase().includes(event.target.value.toLowerCase())
+    );
     this.setState({ records: newData });
-  }
+  };
 
   componentDidMount() {
-    this.fetchData();
+    this.getData();
   }
 
-  fetchData = () => {
-    axios
-      .get('https://jsonplaceholder.typicode.com/users')
-      .then((res) =>
-        this.setState({ records: res.data, filterRecords: res.data })
-      )
-      .catch((err) => console.log(err));
+  getData = () => {
+    try {
+      const makeRequest = fetchData();
+      makeRequest("GET","/course/get-bought-course")
+        .then((res) => {
+          console.log(res);
+          this.setState({
+            records: res.data.response,
+            filterRecords: res.data,
+          });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } catch (error) {
+      console.log(error);
+    }
   };
- 
-
 
   render() {
     const columns = [
       {
-        name: 'ID',
-        selector: (row) => row.id,
-        sortable:true
+        name: "ID",
+        selector: (row,idx) => idx+1,
+        sortable: true,
       },
       {
-        name: 'Courses',
-        selector: (row) => row.name,
-        sortable:true
+        name: "Name",
+        selector: (row) => row.Name,
+        sortable: true,
       },
       {
-        name: 'Email',
-        selector: (row) => row.email,
+        name: "description",
+        selector: (row) => row.description.slice(0,25),
       },
       {
-        name: 'Actions',
-        cell:() =>  <BasicExample/>,
+        name: "category",
+        selector: (row) => row.category,
       },
-      
+      {
+        name: "validity",
+        selector: (row) => row.validity,
+      },
+      {
+        name: "",
+        cell: () => (
+          <a href={"#"} className="btn btn-primary">
+            Enroll Course
+          </a>
+        ),
+      },
     ];
 
     return (
-      <div className=''>
-        <h2 style={{padding:"1.5rem", color: "#004b55", display:"flex", justifyContent:"flex-start",justifyContent:"center", marginTop:'20px',fontSize: 46}}>My Courses</h2>
-        <div className=' row g-3  min-vh-100  d-flex justify-content-center '>
-          <div style={{padding:"", backgroundColor: ""}}>
-            <div className='pb-2 smth'  style={{display:'flex', justifyContent:'left', }}>
-              <input type="text" className='' placeholder='Search course...' onChange={this.handleFilter} style={{padding:'6px 10px', borderColor:'transparent', overflow:'hidden' }}/>
-              </div>
-          <DataTable 
-          columns={columns} 
-          data={this.state.records} 
-          customStyles={customStyles}
-          pagination
-          selectableRows
-          />
+      <div className="">
+        <h2
+          style={{
+            padding: "1.5rem",
+            color: "#004b55",
+            display: "flex",
+            justifyContent: "flex-start",
+            justifyContent: "center",
+            marginTop: "20px",
+            fontSize: 46,
+          }}
+        >
+          My Courses
+        </h2>
+        <div className=" row g-3  min-vh-100  d-flex justify-content-center ">
+          <div style={{ padding: "", backgroundColor: "" }}>
+            <div
+              className="pb-2 smth"
+              style={{ display: "flex", justifyContent: "left" }}
+            >
+              <input
+                type="text"
+                className=""
+                placeholder="Search course..."
+                onChange={this.handleFilter}
+                style={{
+                  padding: "6px 10px",
+                  borderColor: "transparent",
+                  overflow: "hidden",
+                }}
+              />
+            </div>
+            <DataTable
+              columns={columns}
+              data={this.state.records}
+              customStyles={customStyles}
+              pagination
+              selectableRows
+            />
           </div>
         </div>
       </div>
@@ -108,9 +149,6 @@ class DashCourse extends Component {
 }
 
 export default DashCourse;
-
-
-
 
 // import React from 'react'
 // import axios from 'axios'
@@ -151,13 +189,13 @@ export default DashCourse;
 //   setRecords(newData);
 // }
 //   return (
-//     <div className=''>           
+//     <div className=''>
 //     <div className=' row g-3  min-vh-100  d-flex justify-content-center align-items-center '>
 
 // <input type="text"  placeholder='Search course...' onChange={this.handleFilter} style={{padding:'6px 10px', borderColor:'transparent'}}/></div>
 // <DataTable
-//  columns={columns} 
-//  data={this.state.records} 
+//  columns={columns}
+//  data={this.state.records}
 //  customStyles={customStyles}
 //  pagination
 //  selectableRows
