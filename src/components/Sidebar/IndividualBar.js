@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Link from 'next/link';
 import 'bootstrap-icons/font/bootstrap-icons.css'
 
-class DashboardBar extends Component{
+class IndividualBar extends Component{
     render(){
         return(
          <div className='bg-white' style={{padding:"16px"}}>  
@@ -23,7 +23,7 @@ class DashboardBar extends Component{
                     <i className='bi bi-house txttsml me-2' style={{color: "#004b55"}}></i>
                   {/* <Link className='fs-6 ' style={{color: "#3E001F"}} href="/company/dashboard">Dashboard</Link> */}
                   <span  className='txttsml' style={{color: "#004b55"}}>
-                      <Link href="/company/dashboard">
+                      <Link href="/individual/dashboard">
                     Dashboard
                     </Link></span>  
                   </div>
@@ -32,7 +32,7 @@ class DashboardBar extends Component{
                     <i className='bi bi-person-circle txttsml me-2' style={{color: "#004b55"}}></i>
                     {/* <Link className='fs-6 ' style={{color: "#3E001F"}} href="/company/myprofile">My Profile</Link>     */}
                     <span  className='txttsml' style={{color: "#004b55"}}>
-                      <Link href="/company/myprofile">
+                      <Link href="/individual/myprofile">
                       My Profile
                       </Link></span>             
                   </div>
@@ -41,7 +41,7 @@ class DashboardBar extends Component{
                     <i className='bi bi-archive txttsml me-2' style={{color: "#004b55"}}></i>
                     {/* <span className='fs-6 ' style={{color: "#3E001F"}}><Link href="/company/mycourses">My Courses</Link></span>   */}
                     <span  className='txttsml' style={{color: "#004b55"}}>
-                      <Link href="/company/mycourses">
+                      <Link href="/individual/mycourses">
                       My Courses
                       </Link></span>                     
                   </div>
@@ -50,7 +50,7 @@ class DashboardBar extends Component{
                     <i className='bi bi-patch-check-fill txttsml me-2' style={{color: "#004b55"}}></i>
                    {/* <Link className='fs-6 ' style={{color: "#3E001F"}} href="/company/mycourses">Certificates</Link> */}
                    <span  className='txttsml' style={{color: "#004b55"}}>
-                      <Link href="/company/certificates">
+                      <Link href="/individual/certificates">
                     Certificates
                     </Link></span>  
                   </div>
@@ -59,48 +59,10 @@ class DashboardBar extends Component{
                     <i className='bi bi-card-checklist txttsml me-2' style={{color: "#004b55"}}></i>
                     {/* <Link className='fs-6 ' style={{color: "#3E001F"}} href="/company/availablecourses">Available Courses</Link> */}
                     <span  className='txttsml' style={{color: "#004b55"}}>
-                      <Link href="/company/availablecourses">
+                      <Link href="/individual/availablecourses">
                       All Courses
                       </Link></span>  
-                  </div>
-
-                  <div className='list-group-item py-2 px-2'>
-                    <i className='bi bi-person-gear txttsml me-2' style={{color: "#004b55"}}></i>
-                    {/* <Link className='fs-6 ' style={{color: "#3E001F"}} href="/company/createuser">Create User</Link> */}
-                    <span  className='txttsml' style={{color: "#004b55"}}>
-                      <Link href="/company/createuser">
-                      Create User
-                      </Link></span>  
-                  </div>
-
-                  <div className='list-group-item py-2 px-2'>
-                    <i className='bi bi-person-check txttsml me-2' style={{color: "#004b55"}}></i>
-                      {/* <Link className='fs-6 ' style={{color: "#3E001F"}} href="/company/showuser">Show User</Link> */}
-                      <span  className='txttsml' style={{color: "#004b55"}}>
-                      <Link href="/company/showuser">
-                        Show User
-                        
-                        </Link>
-                        </span>    
-                  </div>
-
-                  <div className='list-group-item py-2 px-2'>
-                    <i className='bi bi-person-fill-slash txttsml me-2' style={{color: "#004b55"}}></i>
-                     <span  className='txttsml' style={{color: "#004b55"}}>
-                     <Link href="/company/archive">
-                      Archive User
-                      </Link>
-                      </span>    
-                  </div>
-
-                  <div className='list-group-item py-2 px-2'>
-                    <i className='bi bi-people txttsml me-2' style={{color: "#004b55"}}></i>
-                     <span  className='txttsml' style={{color: "#004b55"}}>
-                      <Link href="/company/assigncourse">
-                         Assign Course
-                        </Link>
-                         </span>                   
-                  </div>
+                  </div>  
                  
                   <span  className='txttsml' style={{color: "#004b55"}}>  </span> 
                   
@@ -110,4 +72,4 @@ class DashboardBar extends Component{
         )
     }
 } 
-export default DashboardBar
+export default IndividualBar
