@@ -70,7 +70,7 @@ class DashCourse extends Component {
   render() {
     const columns = [
       {
-        name: "ID",
+        name: "No",
         selector: (row,idx) => idx+1,
         sortable: true,
       },
@@ -95,7 +95,7 @@ class DashCourse extends Component {
         name: "",
         cell: () => (
           <a href={"#"} className="btn btn-primary">
-            Enroll Course
+            Start
           </a>
         ),
       },
