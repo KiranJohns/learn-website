@@ -41,7 +41,7 @@ function SignInMain() {
         
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err.data.errors[0]);
         toast.error(err.data.errors[0].error);
         store.dispatch({
           type: "SET_ERROR_FOR_SIGN_IN",
