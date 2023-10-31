@@ -5,6 +5,7 @@ import Modal from "react-responsive-modal";
 import store from "../../redux/store";
 import fetchRequest from "../../axios";
 import fetchData from "../../axios";
+import { toast } from "react-toastify";
 
 
 function SignInMain() {
@@ -41,6 +42,7 @@ function SignInMain() {
       })
       .catch((err) => {
         console.log(err);
+        toast.error(err.data.errors[0].error);
         store.dispatch({
           type: "SET_ERROR_FOR_SIGN_IN",
           payload: err,
