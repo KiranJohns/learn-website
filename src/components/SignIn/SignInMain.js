@@ -5,14 +5,12 @@ import Modal from "react-responsive-modal";
 import store from "../../redux/store";
 import fetchRequest from "../../axios";
 import fetchData from "../../axios";
-import { toast } from "react-toastify";
-
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 function SignInMain() {
   const [loginData, setLoginData] = useState({ email: "", password: "" });
   const makeRequest = fetchData();
-
-
 
   function handleOnChange(e) {
     e.persist();
@@ -35,13 +33,18 @@ function SignInMain() {
           type: "SET_RESPONSE_FOR_SIGN_IN",
           payload: res.data,
         });
-        await localStorage.setItem(`learnforcare_access`, res.data.jwt_access_token);
-        await localStorage.setItem(`learnforcare_refresh`, res.data.jwt_refresh_token);
+        await localStorage.setItem(
+          `learnforcare_access`,
+          res.data.jwt_access_token
+        );
+        await localStorage.setItem(
+          `learnforcare_refresh`,
+          res.data.jwt_refresh_token
+        );
         location.pathname = "/company/dashboard";
-        
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err.data.errors[0]);
         toast.error(err.data.errors[0].error);
         store.dispatch({
           type: "SET_ERROR_FOR_SIGN_IN",
@@ -130,6 +133,18 @@ function SignInMain() {
           />
         </div>
         <div className="container">
+          <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick={true}
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+          />
           <div className="row">
             <div className="col-xxl-8 offset-xxl-2 col-xl-8 offset-xl-2">
               <div className="section__title-wrapper text-center mb-55">
