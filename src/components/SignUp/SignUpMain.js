@@ -91,7 +91,7 @@ function SignUpMain() {
         window.location.pathname = "/sign-in";
       })
       .catch((err) => {
-        console.log(err);
+        toast.error(err.data.errors[0].error);
       });
     console.log(otp);
   };
