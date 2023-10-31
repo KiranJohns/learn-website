@@ -34,13 +34,13 @@ function SignInMain() {
           type: "SET_RESPONSE_FOR_SIGN_IN",
           payload: res.data,
         });
-        console.log(res);
         await localStorage.setItem(`learnforcare_access`, res.data.jwt_access_token);
         await localStorage.setItem(`learnforcare_refresh`, res.data.jwt_refresh_token);
         location.pathname = "/company/dashboard";
         
       })
       .catch((err) => {
+        console.log(err);
         store.dispatch({
           type: "SET_ERROR_FOR_SIGN_IN",
           payload: err,
