@@ -281,7 +281,7 @@ function SignUpMain() {
                     theme="light"
                   />
                   <form>
-                    <div className="sign__input-wrapper mb-25">
+                    <div className="sign__input-wrapper ">
                       <h5>First name</h5>
                       <div className="sign__input">
                         <input
@@ -298,7 +298,7 @@ function SignUpMain() {
                       {errors.first_name && <small>{errors.first_name}</small>}
                       <br />
                     </div>
-                    <div className="sign__input-wrapper mb-25">
+                    <div className="sign__input-wrapper ">
                       <h5>Last name</h5>
                       <div className="sign__input">
                         <input
@@ -316,7 +316,7 @@ function SignUpMain() {
                       <br />
                     </div>
 
-                    <div className="sign__input-wrapper mb-25">
+                    <div className="sign__input-wrapper ">
                       <h5>Work email</h5>
                       <div className="sign__input">
                         <input
@@ -334,7 +334,7 @@ function SignUpMain() {
                       <br />
                     </div>
 
-                    <div className="sign__input-wrapper mb-25">
+                    <div className="sign__input-wrapper ">
                       <h5>Type</h5>
                       <div className="sign__input">
                         <select
@@ -368,7 +368,7 @@ function SignUpMain() {
                       <br />
                     </div>
 
-                    <div className="sign__input-wrapper mb-25">
+                    <div className="sign__input-wrapper ">
                       <h5>Country</h5>
                       <div className="sign__input">
                         <input
@@ -386,7 +386,7 @@ function SignUpMain() {
                       <br />
                     </div>
 
-                    <div className="sign__input-wrapper mb-25">
+                    <div className="sign__input-wrapper ">
                       <h5>City</h5>
                       <div className="sign__input">
                         <input
@@ -404,7 +404,7 @@ function SignUpMain() {
                       <br />
                     </div>
 
-                    <div className="sign__input-wrapper mb-25">
+                    <div className="sign__input-wrapper ">
                       <h5>Password</h5>
                       <div className="sign__input">
                         <input
