@@ -11,9 +11,9 @@ const MyCart = () => {
   const { cart, totalPrice } = useSelector((state) => state.cart);
 
   useEffect(() => {
-    getCartItem()
-  }, [])
-  
+    getCartItem();
+  }, []);
+
   function getCartItem() {
     makeRequest("GET", "/cart/get")
       .then((res) => {
@@ -23,6 +23,11 @@ const MyCart = () => {
         });
       })
       .catch((err) => {
+        if (err?.data?.errors[0].message === "please login") {
+          store.dispatch({
+            type: "SET_CART",
+          });
+        }
         console.log(err);
       });
   }
@@ -38,6 +43,12 @@ const MyCart = () => {
         });
       })
       .catch((err) => {
+        if (err?.data?.errors[0].message === "please login") {
+          store.dispatch({
+            type: "REMOVE_ITEM",
+            payload: id,
+          });
+        }
         console.log(err?.data?.errors);
         console.log(err?.data);
       });
@@ -56,6 +67,12 @@ const MyCart = () => {
         });
       })
       .catch((err) => {
+        if (err?.data?.errors[0].message === "please login") {
+          store.dispatch({
+            type: "INCREMENT_ITEM_CONT",
+            payload: id,
+          });
+        }
         console.log(err?.data?.errors);
         console.log(err?.data);
       });
@@ -63,24 +80,29 @@ const MyCart = () => {
   function decrement(id) {
     let product = cart.find((item) => item.course_id == id);
 
-    if (product && product.product_count > 1) {
-      makeRequest("PATCH", "/cart/update-cart-count", {
-        course_id: id,
-        identifier: -1,
+    makeRequest("PATCH", "/cart/update-cart-count", {
+      course_id: id,
+      identifier: -1,
+    })
+      .then((res) => {
+        getCartItem();
+        console.log(res.data);
+        store.dispatch({
+          type: "DECREMENT_ITEM_CONT",
+          payload: id,
+        });
       })
-        .then((res) => {
-          getCartItem();
-          console.log(res.data);
+      .catch((err) => {
+        if (err?.data?.errors[0].message === "please login") {
+          console.log('log');
           store.dispatch({
             type: "DECREMENT_ITEM_CONT",
             payload: id,
           });
-        })
-        .catch((err) => {
-          console.log(err?.data?.errors);
-          console.log(err?.data);
-        });
-    }
+        }
+        console.log(err?.data?.errors);
+        console.log(err?.data);
+      });
   }
   function handleCheckout(e) {
     e.preventDefault();

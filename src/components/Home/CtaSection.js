@@ -12,7 +12,6 @@ class Cta extends Component {
 
     makeRequest("GET", "/blog/get-all-blog")
       .then((res) => {
-        console.log(res.data.response[0]);
         this.setState(() => ({
           blog: res.data.response[0],
           id: res.data.response[0].id,

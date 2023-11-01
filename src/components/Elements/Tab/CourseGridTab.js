@@ -27,6 +27,11 @@ export default () => {
         });
       })
       .catch((err) => {
+        if (err?.data?.errors[0].message === "please login") {
+          store.dispatch({
+            type: "SET_CART",
+          });
+        }
         console.log(err.data);
       });
   }
@@ -38,6 +43,12 @@ export default () => {
         console.log(res.data);
       })
       .catch((err) => {
+        if (err?.data?.errors[0].message === "please login") {
+          store.dispatch({
+            type: "ADD_TO_CART",
+            payload: course.find((item) => item.id === id),
+          });
+        }
         console.log(err?.data?.errors);
         console.log(err?.data);
       });
@@ -54,27 +65,37 @@ export default () => {
         console.log(res.data);
       })
       .catch((err) => {
+        if (err?.data?.errors[0].message === "please login") {
+          store.dispatch({
+            type: "INCREMENT_ITEM_CONT",
+            payload: id,
+          });
+        }
         console.log(err?.data?.errors);
         console.log(err?.data);
       });
   }
   function decrement(id) {
-    let product = cart.find(item => item.course_id == id)
+    let product = cart.find((item) => item.course_id == id);
 
-    if (product && product.product_count > 1) {
-      makeRequest("PATCH", "/cart/update-cart-count", {
-        course_id: id,
-        identifier: -1,
+    makeRequest("PATCH", "/cart/update-cart-count", {
+      course_id: id,
+      identifier: -1,
+    })
+      .then((res) => {
+        getCartItem();
+        console.log(res.data);
       })
-        .then((res) => {
-          getCartItem();
-          console.log(res.data);
-        })
-        .catch((err) => {
-          console.log(err?.data?.errors);
-          console.log(err?.data);
-        });
-    }
+      .catch((err) => {
+        if (err?.data?.errors[0].message === "please login") {
+          store.dispatch({
+            type: "DECREMENT_ITEM_CONT",
+            payload: id,
+          });
+        }
+        console.log(err?.data?.errors);
+        console.log(err?.data);
+      });
   }
 
   useEffect(() => {

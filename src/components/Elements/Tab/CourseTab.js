@@ -14,12 +14,11 @@ import fetchData from "../../../axios";
 
 export default () => {
   const { cart } = useSelector((store) => store.cart);
-  const [course, setCourse] = useState([])
-  
-  const makeRequest = fetchData()
+  const [course, setCourse] = useState([]);
+
+  const makeRequest = fetchData();
 
   useState(() => {
-    localStorage?.getItem("LEARN_WEB_CART")
     makeRequest("GET", "/course/get-all-course")
       .then((res) => {
         setCourse(res.data.response);
@@ -27,7 +26,7 @@ export default () => {
       .catch((err) => {
         console.log(err);
       });
-  },[])
+  }, []);
 
   function getCartItem() {
     makeRequest("GET", "/cart/get")
@@ -38,7 +37,11 @@ export default () => {
         });
       })
       .catch((err) => {
-        console.log(err.data);
+        if (err?.data?.errors[0].message === "please login") {
+          store.dispatch({
+            type: "SET_CART",
+          });
+        }
       });
   }
 
@@ -46,11 +49,15 @@ export default () => {
     makeRequest("POST", "/cart/add", { course_id: id })
       .then((res) => {
         getCartItem();
-        console.log(res.data);
+        // console.log(res.data);
       })
       .catch((err) => {
-        console.log(err?.data?.errors);
-        console.log(err?.data);
+        if (err?.data?.errors[0].message === "please login") {
+          store.dispatch({
+            type: "ADD_TO_CART",
+            payload: course.find((item) => item.id === id),
+          });
+        }
       });
   }
 
@@ -64,14 +71,20 @@ export default () => {
         console.log(res.data);
       })
       .catch((err) => {
+        if (err?.data?.errors[0].message === "please login") {
+          store.dispatch({
+            type: "INCREMENT_ITEM_CONT",
+            payload: id,
+          });
+        }
         console.log(err?.data?.errors);
         console.log(err?.data);
       });
   }
   function decrement(id) {
-    let product = cart.find(item => item.course_id == id)
+    let product = cart.find((item) => item.course_id == id);
 
-    if (product && product.product_count > 1) {
+    // if (product && product.product_count > 1) {
       makeRequest("PATCH", "/cart/update-cart-count", {
         course_id: id,
         identifier: -1,
@@ -81,10 +94,16 @@ export default () => {
           console.log(res.data);
         })
         .catch((err) => {
+          if (err?.data?.errors[0].message === "please login") {
+            store.dispatch({
+              type: "DECREMENT_ITEM_CONT",
+              payload: id,
+            });
+          }
           console.log(err?.data?.errors);
           console.log(err?.data);
         });
-    }
+    // }
   }
   return (
     <section className="course__area pt-70 pb-60 grey-bg">
@@ -158,7 +177,7 @@ export default () => {
                               </div> */}
                         <h6>
                           <Link href={`/course/${item.id}`}>
-                            <a>{item.description.slice(0, 150)+"..."}</a>
+                            <a>{item.description.slice(0, 150) + "..."}</a>
                           </Link>
                         </h6>
                       </div>
@@ -176,7 +195,11 @@ export default () => {
                             <i className="fas fa-minus"></i>
                           </button>
                           <p className="p-1">
-                            {cart && cart.find(cartItem => cartItem.course_id == item.id)?.product_count || 0}
+                            {(cart &&
+                              cart.find(
+                                (cartItem) => cartItem.course_id == item.id
+                              )?.product_count) ||
+                              0}
                           </p>
                           <button
                             className="cart-plus"
@@ -193,7 +216,7 @@ export default () => {
                           class="btn btn-primary btn-sm"
                           onClick={() => addToCart(item.id)}
                         >
-                          Add 
+                          Add
                         </button>
                       </span>
                     </div>
@@ -202,7 +225,11 @@ export default () => {
               ))}
             </div>
           </TabPanel>
-       <div className="d-flex justify-content-center "><div className="btn btn-primary"><Link href="/course-all">View More</Link></div></div>
+          <div className="d-flex justify-content-center ">
+            <div className="btn btn-primary">
+              <Link href="/course-all">View More</Link>
+            </div>
+          </div>
           <TabPanel>
             <div className="row">
               <div className="col-xxl-4 col-xl-4 col-lg-4 col-md-6">
