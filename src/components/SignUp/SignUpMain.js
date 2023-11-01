@@ -32,15 +32,15 @@ function SignUpMain() {
   const [check, setCheck] = useState(true);
 
   function myCheck() {
-    // var checkBox = document.getElementById("m-agree");
-    // console.log(values?.terms);
-    // if (checkBox.checked == false) {
-    //   setCheck(false);
-    //   values.terms = check;
-    // } else {
-    //   setCheck(true);
-    //   values.terms = check;
-    // }
+    var checkBox = document.getElementById("m-agree");
+    console.log(values?.terms);
+    if (checkBox.checked == false) {
+      setCheck(false);
+      values.terms = check;
+    } else {
+      setCheck(true);
+      values.terms = check;
+    }
   }
 
   function resend(event) {
@@ -142,7 +142,7 @@ function SignUpMain() {
 
   return (
     <main>
-      <section className="signup__area po-rel-z1 pt-100 pb-145">
+      <section className="signup__area po-rel-z1 pt-80 pb-80">
         <div className="sign__shape">
           <img
             className="man-1"
@@ -295,8 +295,8 @@ function SignUpMain() {
                         <i className="fas fa-user"></i>
                       </div>
                       <br />
-                      {errors.first_name && <small>{errors.first_name}</small>}
-                      <br />
+                      {/* {errors.first_name && <small>{errors.first_name}</small>}
+                      <br /> */}
                     </div>
                     <div className="sign__input-wrapper ">
                       <h5>Last name</h5>
@@ -312,8 +312,8 @@ function SignUpMain() {
                         <i className="fas fa-user"></i>
                       </div>
                       <br />
-                      {errors.last_name && <small>{errors.last_name}</small>}
-                      <br />
+                      {/* {errors.last_name && <small>{errors.last_name}</small>}
+                      <br /> */}
                     </div>
 
                     <div className="sign__input-wrapper ">
@@ -330,8 +330,8 @@ function SignUpMain() {
                         <i className="fas fa-envelope"></i>
                       </div>
                       <br />
-                      {errors.email && <small>{errors.email}</small>}
-                      <br />
+                      {/* {errors.email && <small>{errors.email}</small>}
+                      <br /> */}
                     </div>
 
                     <div className="sign__input-wrapper ">
@@ -364,8 +364,8 @@ function SignUpMain() {
                         <i className="fas fa-check"></i> */}
                       </div>
                       <br />
-                      {errors.type && <small>{errors.type}</small>}
-                      <br />
+                      {/* {errors.type && <small>{errors.type}</small>}
+                      <br /> */}
                     </div>
 
                     
@@ -383,8 +383,8 @@ function SignUpMain() {
                         <i className="fas fa-city"></i>
                       </div>
                       <br />
-                      {errors.city && <small>{errors.city}</small>}
-                      <br />
+                      {/* {errors.city && <small>{errors.city}</small>}
+                      <br /> */}
                     </div>
 
                     <div className="sign__input-wrapper ">
@@ -401,8 +401,8 @@ function SignUpMain() {
                         <i className="fas fa-flag"></i>
                       </div>
                       <br />
-                      {errors.country && <small>{errors.country}</small>}
-                      <br />
+                      {/* {errors.country && <small>{errors.country}</small>}
+                      <br /> */}
                     </div>
 
 
@@ -419,7 +419,7 @@ function SignUpMain() {
                         />
                         <i className="fas fa-lock"></i>
                       </div>
-                      <br />
+                      
                       {errors.password && <small>{errors.password}</small>}
                       <br />
                     </div>
@@ -432,15 +432,16 @@ function SignUpMain() {
                           name="terms"
                           onClick={myCheck}
                           value={check}
+                          required
                         />
                         <label className="m-check-label" htmlFor="m-agree">
                           I agree to the <a href="#">Terms & Conditions</a>
                         </label>
                       </div>
                       <br className="d-block " />
-                      {errors.terms && (
+                      {/* {errors.terms && (
                         <small className="text-primary">{errors.terms}</small>
-                      )}
+                      )} */}
                       <br />
                     </div>
 
@@ -467,7 +468,7 @@ function SignUpMain() {
                     </button>
                     <div className="sign__new text-center mt-20">
                       <p>
-                        Already in Signed Up ?{" "}
+                        Already Signed Up ?{" "}
                         <Link href="/sign-in">
                           <a>Sign In</a>
                         </Link>
