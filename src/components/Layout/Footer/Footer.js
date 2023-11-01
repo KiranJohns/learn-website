@@ -20,7 +20,7 @@ const Footer = () => {
                                  </div>
                               </div>
                               <div className="footer__widget-body footer__widget-body-2">
-                                 <p>Unlock Your Potential, One Click at a Time, Your Journey to Digital Enlightenment Begins Here!</p>
+                                 <p>Enriching lives with unwavering dedication to care services.</p>
 
                                  <div className="footer__social">
                                     <ul>
