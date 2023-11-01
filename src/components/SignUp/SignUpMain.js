@@ -263,7 +263,7 @@ function SignUpMain() {
             <div className="col-xxl-8 offset-xxl-2 col-xl-8 offset-xl-2">
               <div className="section__title-wrapper text-center mb-55">
                 <h2 className="section__title">
-                  Create a free <br /> Account{" "}
+                  Create An <br /> Account{" "}
                 </h2>
               </div>
             </div>
@@ -286,7 +286,7 @@ function SignUpMain() {
                 <div className="sign__form">
                   <form>
                     <div className="sign__input-wrapper mb-25">
-                      <h5>first name</h5>
+                      <h5>First name</h5>
                       <div className="sign__input">
                         <input
                           type="text"
@@ -303,7 +303,7 @@ function SignUpMain() {
                       <br />
                     </div>
                     <div className="sign__input-wrapper mb-25">
-                      <h5>last name</h5>
+                      <h5>Last name</h5>
                       <div className="sign__input">
                         <input
                           type="text"
@@ -408,6 +408,7 @@ function SignUpMain() {
                           onBlur={handleBlur}
                           onChange={handleChange}
                           placeholder="Password"
+                        
                         />
                         <i className="fas fa-lock"></i>
                       </div>

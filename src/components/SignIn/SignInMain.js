@@ -148,14 +148,14 @@ function SignInMain() {
           <div className="row">
             <div className="col-xxl-8 offset-xxl-2 col-xl-8 offset-xl-2">
               <div className="section__title-wrapper text-center mb-55">
-                <h2 className="section__title">
+                <h2 className="section__title ">
                   Sign in
                   <br />{" "}
                 </h2>
                 <p>
-                  if you don't have an account you can use
-                  <Link href="/sign-up">
-                    <a> Sign Up </a>
+                  don't have an account ?
+                  <Link  href="/sign-up">
+                    <a className="text-primary"> Sign Up </a>
                   </Link>
                 </p>
               </div>
@@ -167,7 +167,7 @@ function SignInMain() {
                 <div className="sign__form">
                   <form>
                     <div className="sign__input-wrapper mb-25">
-                      <h5>Work email</h5>
+                      <h5>Email</h5>
                       <div className="sign__input">
                         <input
                           type="text"
@@ -215,14 +215,14 @@ function SignInMain() {
                       {" "}
                       <span></span> Sign In
                     </button>
-                    <div className="sign__new text-center mt-20">
+                    {/* <div className="sign__new text-center mt-20">
                       <p>
                         New here{" "}
                         <Link href="/sign-up">
                           <a>Sign Up</a>
                         </Link>
                       </p>
-                    </div>
+                    </div> */}
                   </form>
                 </div>
               </div>
