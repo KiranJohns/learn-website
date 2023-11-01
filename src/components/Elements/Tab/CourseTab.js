@@ -19,6 +19,7 @@ export default () => {
   const makeRequest = fetchData()
 
   useState(() => {
+    localStorage?.getItem("LEARN_WEB_CART")
     makeRequest("GET", "/course/get-all-course")
       .then((res) => {
         setCourse(res.data.response);
