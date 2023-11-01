@@ -368,6 +368,25 @@ function SignUpMain() {
                       <br />
                     </div>
 
+                    
+                    <div className="sign__input-wrapper ">
+                      <h5>City</h5>
+                      <div className="sign__input">
+                        <input
+                          type="text"
+                          name="city"
+                          value={values.city}
+                          onBlur={handleBlur}
+                          onChange={handleChange}
+                          placeholder="City"
+                        />
+                        <i className="fas fa-city"></i>
+                      </div>
+                      <br />
+                      {errors.city && <small>{errors.city}</small>}
+                      <br />
+                    </div>
+
                     <div className="sign__input-wrapper ">
                       <h5>Country</h5>
                       <div className="sign__input">
@@ -386,23 +405,6 @@ function SignUpMain() {
                       <br />
                     </div>
 
-                    <div className="sign__input-wrapper ">
-                      <h5>City</h5>
-                      <div className="sign__input">
-                        <input
-                          type="text"
-                          name="city"
-                          value={values.city}
-                          onBlur={handleBlur}
-                          onChange={handleChange}
-                          placeholder="City"
-                        />
-                        <i className="fas fa-city"></i>
-                      </div>
-                      <br />
-                      {errors.city && <small>{errors.city}</small>}
-                      <br />
-                    </div>
 
                     <div className="sign__input-wrapper ">
                       <h5>Password</h5>
