@@ -133,18 +133,6 @@ function SignInMain() {
           />
         </div>
         <div className="container">
-          <ToastContainer
-            position="top-right"
-            autoClose={5000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick={true}
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-            theme="light"
-          />
           <div className="row">
             <div className="col-xxl-8 offset-xxl-2 col-xl-8 offset-xl-2">
               <div className="section__title-wrapper text-center mb-55">
@@ -162,6 +150,18 @@ function SignInMain() {
             </div>
           </div>
           <div className="row">
+          <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick={true}
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+          />
             <div className="col-xxl-6 offset-xxl-3 col-xl-6 offset-xl-3 col-lg-8 offset-lg-2">
               <div className="sign__wrapper white-bg">
                 <div className="sign__form">
