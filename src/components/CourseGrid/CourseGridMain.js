@@ -11,7 +11,7 @@ class CourseGridMain extends Component {
         return (
             <main>
 	            {/* breadcrumb-start */}
-				<Breadcrumb pageTitle="Care Courses"/>
+				<Breadcrumb pageTitle="All courses"/>
 				{/* breadcrumb-end */}
 
                 {/* course tab-start */}

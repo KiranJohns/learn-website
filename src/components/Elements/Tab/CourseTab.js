@@ -202,7 +202,7 @@ export default () => {
               ))}
             </div>
           </TabPanel>
-       <div className="d-flex justify-content-center "><div className="btn btn-primary">Courses</div></div>
+       <div className="d-flex justify-content-center "><div className="btn btn-primary"><Link href="/course-all">View More</Link></div></div>
           <TabPanel>
             <div className="row">
               <div className="col-xxl-4 col-xl-4 col-lg-4 col-md-6">

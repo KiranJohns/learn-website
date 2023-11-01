@@ -146,7 +146,7 @@ function SignInMain() {
                   <br />{" "}
                 </h2>
                 <p>
-                  don't have an account ?
+                  Don't have an account ?
                   <Link href="/sign-up">
                     <a className="text-primary"> Sign Up </a>
                   </Link>
