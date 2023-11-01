@@ -6,7 +6,7 @@ import Header from '../components/Layout/Header/Header';
 import HeaderOpaque from '../components/Layout/Header/HeaderOpaque';
 import NoSSR from 'react-no-ssr';
 
-class CourseGrid extends React.Component {
+class CourseAll extends React.Component {
 
     static getInitialProps({store}) {}
 
@@ -28,4 +28,4 @@ class CourseGrid extends React.Component {
 }
 
 
-export default CourseGrid;
+export default CourseAll;
