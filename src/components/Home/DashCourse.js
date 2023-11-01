@@ -89,7 +89,11 @@ class DashCourse extends Component {
       },
       {
         name: "validity",
-        selector: (row) => row.validity,
+        selector: (row) => {
+          let date = row.validity.split("/")
+          let newDate = `${date[1]}/${date[0]}/${date[2]}`
+          return newDate
+        },
       },
       {
         name: "",

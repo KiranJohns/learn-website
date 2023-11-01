@@ -4,6 +4,10 @@ import { FaUser, FaRegCalendarDays } from "react-icons/fa6";
 
 
 const ArticleLayout = ({ post }) => {
+  let date = new Date(post.date).toLocaleDateString()
+  // date = date.split("/")
+  // console.log(date);
+  // let newDate = `${date[1]}/${date[0]}/${date[2]}`
   return (
     <div className="blog__wrapper">
       <div className="blog__item white-bg mb-30 transition-3 fix">
@@ -19,7 +23,7 @@ const ArticleLayout = ({ post }) => {
           <div className="blog__meta d-flex flex-column justify-content-between">
             <div style={{marginBottom: '1rem'}}  className="blog__date d-flex align-items-center justify-content-between">
               
-              <span><FaRegCalendarDays style={{marginBottom:".35rem",fontSize:"1rem",color:"#212a50"}}/> {new Date(post.date).toLocaleDateString()}</span> <span><FaUser style={{marginBottom:".3rem",color:"#212a50"}}/> {post.author}</span>
+              <span><FaRegCalendarDays style={{marginBottom:".35rem",fontSize:"1rem",color:"#212a50"}}/> {date}</span> <span><FaUser style={{marginBottom:".3rem",color:"#212a50"}}/> {post.author}</span>
             </div>
             <div className="blog__author d-flex">
               <div className="blog__author-info">

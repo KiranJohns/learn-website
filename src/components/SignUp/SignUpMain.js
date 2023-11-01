@@ -80,7 +80,7 @@ function SignUpMain() {
   const makeRequest = fetchData();
 
   const handleOtp = (event) => {
-    event.persist()
+    event.persist();
     event.preventDefault();
     makeRequest("POST", "/auth/validate-otp", {
       email: values.email,
@@ -106,7 +106,7 @@ function SignUpMain() {
 
   const handleSignUp = async (e) => {
     try {
-      e.persist()
+      e.persist();
       const method = "POST"; // Specify the HTTP method
       const url = "/auth/registration"; // Specify the API endpoint URL
       const data = values; // Send form values as data
@@ -114,7 +114,6 @@ function SignUpMain() {
       store.dispatch({
         type: "SET_LOADING",
       });
-
 
       makeRequest(method, url, data)
         .then((res) => {
@@ -132,7 +131,9 @@ function SignUpMain() {
             payload: error,
           });
           // toast.info(error.data.errors[0].response);
-          toast.error(error.data.errors[0]?.error || error.data.errors[0].response);
+          toast.error(
+            error.data.errors[0]?.error || error.data.errors[0].response
+          );
         });
     } catch (error) {
       console.log(error);
@@ -141,23 +142,6 @@ function SignUpMain() {
 
   return (
     <main>
-      {error && (
-        <div>
-          <ToastContainer
-            position="top-right"
-            autoClose={5000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick={true}
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-            theme="light"
-          />
-        </div>
-      )}
-
       <section className="signup__area po-rel-z1 pt-100 pb-145">
         <div className="sign__shape">
           <img
@@ -284,6 +268,18 @@ function SignUpMain() {
                   </div>
                 </div>
                 <div className="sign__form">
+                  <ToastContainer
+                    position="top-right"
+                    autoClose={5000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick={true}
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                    theme="light"
+                  />
                   <form>
                     <div className="sign__input-wrapper mb-25">
                       <h5>First name</h5>
@@ -341,9 +337,19 @@ function SignUpMain() {
                     <div className="sign__input-wrapper mb-25">
                       <h5>Type</h5>
                       <div className="sign__input">
-                        <select style={{
-                          width: '100%', background: "#f6f6f7", border: "none", padding: "1rem", borderRadius: '.2rem', outline: "#2b4eff"}} onChange={handleChange} name="type_of_account">
-                         <option value="">Select</option>
+                        <select
+                          style={{
+                            width: "100%",
+                            background: "#f6f6f7",
+                            border: "none",
+                            padding: "1rem",
+                            borderRadius: ".2rem",
+                            outline: "#2b4eff",
+                          }}
+                          onChange={handleChange}
+                          name="type_of_account"
+                        >
+                          <option value="">Select</option>
                           <option value="Individual">Individual</option>
                           <option value="Company">Company</option>
                         </select>
@@ -408,7 +414,6 @@ function SignUpMain() {
                           onBlur={handleBlur}
                           onChange={handleChange}
                           placeholder="Password"
-                        
                         />
                         <i className="fas fa-lock"></i>
                       </div>
@@ -437,7 +442,11 @@ function SignUpMain() {
                       <br />
                     </div>
 
-                    <button onClick={handleSignUp} type="button" className="e-btn w-100 disabled">
+                    <button
+                      onClick={handleSignUp}
+                      type="button"
+                      className="e-btn w-100 disabled"
+                    >
                       {" "}
                       {signupInfo.loading ? (
                         <>

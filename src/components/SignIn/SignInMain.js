@@ -6,9 +6,11 @@ import store from "../../redux/store";
 import fetchRequest from "../../axios";
 import fetchData from "../../axios";
 import { ToastContainer, toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 
 function SignInMain() {
+  const [loading, setLoading] = useState(false);
+
   const [loginData, setLoginData] = useState({ email: "", password: "" });
   const makeRequest = fetchData();
 
@@ -27,12 +29,14 @@ function SignInMain() {
       type: "SET_LOADING_FOR_SIGN_IN",
     });
 
+    setLoading((prev) => true);
     makeRequest("POST", "/auth/login", loginData)
       .then(async (res) => {
         store.dispatch({
           type: "SET_RESPONSE_FOR_SIGN_IN",
           payload: res.data,
         });
+        setLoading((prev) => false);
         await localStorage.setItem(
           `learnforcare_access`,
           res.data.jwt_access_token
@@ -44,6 +48,7 @@ function SignInMain() {
         location.pathname = "/company/dashboard";
       })
       .catch((err) => {
+        setLoading((prev) => false);
         console.log(err.data.errors[0]);
         toast.error(err.data.errors[0].error);
         store.dispatch({
@@ -142,7 +147,7 @@ function SignInMain() {
                 </h2>
                 <p>
                   don't have an account ?
-                  <Link  href="/sign-up">
+                  <Link href="/sign-up">
                     <a className="text-primary"> Sign Up </a>
                   </Link>
                 </p>
@@ -150,18 +155,18 @@ function SignInMain() {
             </div>
           </div>
           <div className="row">
-          <ToastContainer
-            position="top-right"
-            autoClose={5000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick={true}
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-            theme="light"
-          />
+            <ToastContainer
+              position="top-right"
+              autoClose={5000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick={true}
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              theme="light"
+            />
             <div className="col-xxl-6 offset-xxl-3 col-xl-6 offset-xl-3 col-lg-8 offset-lg-2">
               <div className="sign__wrapper white-bg">
                 <div className="sign__form">
@@ -188,6 +193,7 @@ function SignInMain() {
                           placeholder="Password"
                           value={loginData.password}
                           onChange={handleOnChange}
+                          onKeyUp={(e) => e.key === "Enter" && handleLogin(e)}
                         />
                         <i className="fas fa-lock"></i>
                       </div>
@@ -207,13 +213,26 @@ function SignInMain() {
                         <span role="button">Forgot your password?</span>
                       </div>
                     </div>
-                    <button
-                      type="button"
-                      className="e-btn  w-100"
-                      onClick={handleLogin}
-                    >
+                      <button
+                        type="button"
+                        className="e-btn  w-100"
+                        onClick={handleLogin}
+                      >
+                    {loading ? (
+                        <>
+                          <span
+                            class="spinner-border spinner-border-sm"
+                            role="status"
+                            aria-hidden="true"
+                          ></span>
+                          <span class="sr-only">Loading...</span>
+                        </>
+                      ) : (
+                        <>
+                          <span>Sign In</span>
+                        </>
+                      )}
                       {" "}
-                      <span></span> Sign In
                     </button>
                     {/* <div className="sign__new text-center mt-20">
                       <p>

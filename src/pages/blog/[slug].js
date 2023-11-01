@@ -5,6 +5,8 @@ import BlogDetailsMain from "../../components/BlogDetails/BlogDetailsMain";
 import Footer from "../../components/Layout/Footer/Footer";
 import HeaderOpaque from "../../components/Layout/Header/HeaderOpaque";
 import ShareButton from "react-share/lib/ShareButton";
+import NoSSR from 'react-no-ssr';
+
 
 class BlogDetailss extends React.Component {
 
@@ -20,7 +22,9 @@ class BlogDetailss extends React.Component {
   render() {
     return (
       <React.Fragment>
+        <NoSSR>
         <HeaderOpaque />
+        </NoSSR>
         <main >
           {/* Blog Main */}
           <BlogDetailsMain slug={this.props.slug} />
