@@ -12,7 +12,7 @@ const Footer = () => {
                <div className="footer__top pt-190 pb-40">
                   <div className="container">
                      <div className="row">
-                        <div className="col-xxl-4 col-xl-4 col-lg-4 col-md-5 col-sm-4">
+                        <div className="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-4">
                            <div className="footer__widget mb-50">
                               <div className="footer__widget-head mb-22">
                                  <div className="footer__logo">
@@ -36,7 +36,7 @@ const Footer = () => {
                               </div>
                            </div>
                         </div>
-                        <div className="col-xxl-4 offset-xxl-1 col-xl-4 offset-xl-1 col-lg-4 offset-lg-0 col-md-2 offset-md-1 col-sm-3 offset-sm-1">
+                        <div className="col-xxl-2  col-xl-2 offset-xl-1 col-lg-2 offset-lg-0 col-md-2 offset-md-1 col-sm-3 offset-sm-1">
                            <div className="footer__widget mb-50">
                               <div className="footer__widget-head mb-22">
                                  <h3 className="footer__widget-title footer__widget-title-2">Links</h3>
@@ -56,7 +56,31 @@ const Footer = () => {
                               </div>
                            </div>
                         </div>
-                        <div className="col-xxl-3 col-xl-3 col-lg-3 offset-lg-0 col-md-3 offset-md- col-sm-6">
+
+                        <div className="col-xxl-2  col-xl-2 offset-xl-1 col-lg-2 offset-lg-0 col-md-2 offset-md-1 col-sm-3 offset-sm-1">
+                           <div className="footer__widget mb-50">
+                              <div className="footer__widget-head mb-22">
+                                 <h3 className="footer__widget-title footer__widget-title-2">Links</h3>
+                              </div>
+                              <div className="footer__widget-body">
+                                 <div className="footer__link footer__link-2">
+                                    <ul>
+                                       <li><Link href="/"><a>Privacy</a></Link></li>
+                                       <li><Link href="/"><a>Cookies</a></Link></li>
+                                       
+                                       <li><Link href="/"><a>Terms & Conditions</a></Link></li>
+                                       <li><Link href="/bundle/care-bundle"><a>Bundles</a></Link></li>
+                                       <li><Link href="/sign-in"><a>Login</a></Link></li>
+                                       <li><Link href="/sign-up"><a>Sign Up</a></Link></li>
+                                    </ul>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+
+                        
+                        
+                        <div className="col-xxl-3 col-xl-2 col-lg-2 offset-lg-0 col-md-2 offset-md- col-sm-4">
                            <div className="footer__widget mb-50">
                               <div className="footer__widget-head mb-22">
                                  <h3 className="footer__widget-title footer__widget-title-2">Contact</h3>

@@ -400,6 +400,20 @@ const Header = () => {
                         </Link>
                       )}
                     </div>
+
+                    <div className="header__btn ml-20 d-none d-sm-block">
+                      {logedIn ? (
+                        // <Link href="/company/myprofile" >
+                        //   <a className="e-btn ">Profile</a>
+                        // </Link>
+
+                   <div></div>
+                      ) : (
+                        <Link href="/sign-up">
+                          <a className="e-btn">Sign UP</a>
+                        </Link>
+                      )}
+                    </div>
                     <div className="sidebar__menu d-xl-none">
                       <div
                         className="sidebar-toggle-btn ml-30"

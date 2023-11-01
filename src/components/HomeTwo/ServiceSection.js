@@ -6,7 +6,7 @@ class Service extends Component {
     render() {
 
         return (
-        <section className="services__area pt-115 pb-40">
+        <section className="services__area pt-70 pb-55">
             <div className="container">
                <div className="row">
                   <div className="col-xxl-6 offset-xxl-3 col-xl-6 offset-xl-3">

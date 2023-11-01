@@ -86,7 +86,7 @@ export default () => {
     }
   }
   return (
-    <section className="course__area pt-115 pb-120 grey-bg">
+    <section className="course__area pt-70 pb-60 grey-bg">
       <Tabs variant="enclosed" id="react-tabs-276">
         <div className="container">
           <div className="row align-items-end">
@@ -130,7 +130,7 @@ export default () => {
               {course.map((item) => (
                 <div
                   key={item.id}
-                  className="col-xxl-4 col-xl-4 col-lg-4 col-md-6"
+                  className="col-xxl-3 col-xl-3 col-lg-3 col-md-4"
                 >
                   <div className="course__item white-bg mb-30 fix">
                     <div className="course__thumb w-img p-relative fix">
@@ -157,19 +157,19 @@ export default () => {
                               </div> */}
                         <h6>
                           <Link href={`/course/${item.id}`}>
-                            <a>{item.description}</a>
+                            <a>{item.description.slice(0, 150)+"..."}</a>
                           </Link>
                         </h6>
                       </div>
                     </div>
                     <div className="course__more d-flex justify-content-between ">
                       <div className="course__status d-flex align-items-center">
-                        <span className="sky-blue">£{item.price}</span>
+                        <span className="sky-blue mb-1">£{item.price}</span>
                       </div>
                       <span>
-                        <div className="d-flex">
+                        <div className="d-flex ml-1">
                           <button
-                            className="cart-minus"
+                            className="cart-minus "
                             onClick={() => decrement(item.id)}
                           >
                             <i className="fas fa-minus"></i>
@@ -192,7 +192,7 @@ export default () => {
                           class="btn btn-primary btn-sm"
                           onClick={() => addToCart(item.id)}
                         >
-                          Add to cart
+                          Add 
                         </button>
                       </span>
                     </div>
@@ -201,274 +201,7 @@ export default () => {
               ))}
             </div>
           </TabPanel>
-          <TabPanel>
-            <div className="row">
-              <div className="col-xxl-4 col-xl-4 col-lg-4 col-md-6">
-                <div className="course__item white-bg mb-30 fix">
-                  <div className="course__thumb w-img p-relative fix">
-                    <Link href="/course-details">
-                      <a>
-                        <img
-                          src="assets/img/course/course-2.jpg"
-                          alt="img not found"
-                        />
-                      </a>
-                    </Link>
-                    <div className="course__tag">
-                      <Link href="/course-details">
-                        <a className="sky-blue">Art & Design</a>
-                      </Link>
-                    </div>
-                  </div>
-                  <div className="course__content">
-                    <div className="course__meta d-flex align-items-center justify-content-between">
-                      <div className="course__lesson">
-                        <span>
-                          <i className="fas fa-book"></i>72 Lesson
-                        </span>
-                      </div>
-                      <div className="course__rating">
-                        <span>
-                          <i className="fas fa-star"></i>4.5 (44)
-                        </span>
-                      </div>
-                    </div>
-                    <h3 className="course__title">
-                      <Link href="/course-details">
-                        <a>Fundamentals of music theory Learn new</a>
-                      </Link>
-                    </h3>
-                    <div className="course__teacher d-flex align-items-center">
-                      <div className="course__teacher-thumb mr-15">
-                        <img
-                          src="assets/img/course/teacher/teacher-2.jpg"
-                          alt="img not found"
-                        />
-                      </div>
-                      <h6>
-                        <Link href="/instructor-details">
-                          <a>Barry Tone</a>
-                        </Link>
-                      </h6>
-                    </div>
-                  </div>
-                  <div className="course__more d-flex justify-content-between align-items-center">
-                    <div className="course__status d-flex align-items-center">
-                      <span className="sky-blue">$32.00</span>
-                      <span className="old-price">$68.00</span>
-                    </div>
-                    <div className="course__btn">
-                      <Link href="/course-details">
-                        <a className="link-btn">
-                          Know Details
-                          <i className="fas fa-arrow-right"></i>
-                          <i className="fas fa-arrow-right"></i>
-                        </a>
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="col-xxl-4 col-xl-4 col-lg-4 col-md-6">
-                <div className="course__item white-bg mb-30 fix">
-                  <div className="course__thumb w-img p-relative fix">
-                    <Link href="/course-details">
-                      <a>
-                        <img
-                          src="assets/img/course/course-3.jpg"
-                          alt="img not found"
-                        />
-                      </a>
-                    </Link>
-                    <div className="course__tag">
-                      <Link href="/course-details">
-                        <a className="green">Development</a>
-                      </Link>
-                    </div>
-                  </div>
-                  <div className="course__content">
-                    <div className="course__meta d-flex align-items-center justify-content-between">
-                      <div className="course__lesson">
-                        <span>
-                          <i className="fas fa-book"></i>14 Lesson
-                        </span>
-                      </div>
-                      <div className="course__rating">
-                        <span>
-                          <i className="fas fa-star"></i>3.5 (55)
-                        </span>
-                      </div>
-                    </div>
-                    <h3 className="course__title">
-                      <Link href="/course-details">
-                        <a>Strategy law and organization Foundation</a>
-                      </Link>
-                    </h3>
-                    <div className="course__teacher d-flex align-items-center">
-                      <div className="course__teacher-thumb mr-15">
-                        <img
-                          src="assets/img/course/teacher/teacher-3.jpg"
-                          alt="img not found"
-                        />
-                      </div>
-                      <h6>
-                        <Link href="/instructor-details">
-                          <a>Elon Gated</a>
-                        </Link>
-                      </h6>
-                    </div>
-                  </div>
-                  <div className="course__more d-flex justify-content-between align-items-center">
-                    <div className="course__status d-flex align-items-center">
-                      <span className="green">$46.00</span>
-                      <span className="old-price">$68.00</span>
-                    </div>
-                    <div className="course__btn">
-                      <Link href="/course-details">
-                        <a className="link-btn">
-                          Know Details
-                          <i className="fas fa-arrow-right"></i>
-                          <i className="fas fa-arrow-right"></i>
-                        </a>
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="col-xxl-4 col-xl-4 col-lg-4 col-md-6">
-                <div className="course__item white-bg mb-30 fix">
-                  <div className="course__thumb w-img p-relative fix">
-                    <Link href="/course-details">
-                      <a>
-                        <img
-                          src="assets/img/course/course-4.jpg"
-                          alt="img not found"
-                        />
-                      </a>
-                    </Link>
-                    <div className="course__tag">
-                      <Link href="/course-details">
-                        <a className="blue">Marketing</a>
-                      </Link>
-                    </div>
-                  </div>
-                  <div className="course__content">
-                    <div className="course__meta d-flex align-items-center justify-content-between">
-                      <div className="course__lesson">
-                        <span>
-                          <i className="fas fa-book"></i>22 Lesson
-                        </span>
-                      </div>
-                      <div className="course__rating">
-                        <span>
-                          <i className="fas fa-star"></i>4.5 (42)
-                        </span>
-                      </div>
-                    </div>
-                    <h3 className="course__title">
-                      <Link href="/course-details">
-                        <a>The business Intelligence analyst Course 2022</a>
-                      </Link>
-                    </h3>
-                    <div className="course__teacher d-flex align-items-center">
-                      <div className="course__teacher-thumb mr-15">
-                        <img
-                          src="assets/img/course/teacher/teacher-4.jpg"
-                          alt="img not found"
-                        />
-                      </div>
-                      <h6>
-                        <Link href="/instructor-details">
-                          <a>Eleanor Fant</a>
-                        </Link>
-                      </h6>
-                    </div>
-                  </div>
-                  <div className="course__more d-flex justify-content-between align-items-center">
-                    <div className="course__status d-flex align-items-center">
-                      <span className="blue">$62.00</span>
-                      <span className="old-price">$97.00</span>
-                    </div>
-                    <div className="course__btn">
-                      <Link href="/course-details">
-                        <a className="link-btn">
-                          Know Details
-                          <i className="fas fa-arrow-right"></i>
-                          <i className="fas fa-arrow-right"></i>
-                        </a>
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="col-xxl-4 col-xl-4 col-lg-4 col-md-6">
-                <div className="course__item white-bg mb-30 fix">
-                  <div className="course__thumb w-img p-relative fix">
-                    <Link href="/course-details">
-                      <a>
-                        <img
-                          src="assets/img/course/course-5.jpg"
-                          alt="img not found"
-                        />
-                      </a>
-                    </Link>
-                    <div className="course__tag">
-                      <Link href="/course-details">
-                        <a className="orange">Audio & Music</a>
-                      </Link>
-                    </div>
-                  </div>
-                  <div className="course__content">
-                    <div className="course__meta d-flex align-items-center justify-content-between">
-                      <div className="course__lesson">
-                        <span>
-                          <i className="fas fa-book"></i>18 Lesson
-                        </span>
-                      </div>
-                      <div className="course__rating">
-                        <span>
-                          <i className="fas fa-star"></i>4.5 (37)
-                        </span>
-                      </div>
-                    </div>
-                    <h3 className="course__title">
-                      <Link href="/course-details">
-                        <a>Build your media and Public presence</a>
-                      </Link>
-                    </h3>
-                    <div className="course__teacher d-flex align-items-center">
-                      <div className="course__teacher-thumb mr-15">
-                        <img
-                          src="assets/img/course/teacher/teacher-5.jpg"
-                          alt="img not found"
-                        />
-                      </div>
-                      <h6>
-                        <Link href="/instructor-details">
-                          <a>Steve Smith</a>
-                        </Link>
-                      </h6>
-                    </div>
-                  </div>
-                  <div className="course__more d-flex justify-content-between align-items-center">
-                    <div className="course__status d-flex align-items-center">
-                      <span className="orange">$62.00</span>
-                      <span className="old-price">$97.00</span>
-                    </div>
-                    <div className="course__btn">
-                      <Link href="/course-details">
-                        <a className="link-btn">
-                          Know Details
-                          <i className="fas fa-arrow-right"></i>
-                          <i className="fas fa-arrow-right"></i>
-                        </a>
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </TabPanel>
+       <div className="d-flex justify-content-center "><div className="btn btn-primary">Courses</div></div>
           <TabPanel>
             <div className="row">
               <div className="col-xxl-4 col-xl-4 col-lg-4 col-md-6">

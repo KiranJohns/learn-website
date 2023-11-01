@@ -7,10 +7,10 @@
 
 .hero{
     &__height{
-        min-height: 950px;
+        min-height: 750px;
 
         @media #{$lg}{
-            min-height: 850px;
+            min-height: 750px;
         }
         @media #{$md}{
             min-height: 750px;

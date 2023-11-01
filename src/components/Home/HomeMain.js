@@ -27,11 +27,13 @@ class HomeMain extends Component {
 				{/* <Banner /> */}
 				{/* banner-end   */}
               
-                <Service/>
+             
 
 				{/* course-start */}
 				<CourseTab />
 				{/* course-end */}
+
+				<Service/>
 
 				<Testimonial/>
               

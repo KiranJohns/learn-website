@@ -180,6 +180,7 @@
 .cart-plus,
 .cart-minus{
     width: 25px;
+ 
     height: 30px;
     border: 2px solid $border;
     display: inline-block;
@@ -370,9 +371,10 @@
     & .cart-plus,
     & .cart-minus{
         position: absolute;
-        top: 50%;
+      
+        top: 60%;
         left: 0;
-        @include transform(translateY(-50%));
+        @include transform(translateY(-60%));
         width: 45px;
         height: 40px;
         display: inline-block;

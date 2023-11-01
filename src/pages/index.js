@@ -2,6 +2,7 @@ import React from 'react';
 import Header from '../components/Layout/Header/Header';
 import Footer from '../components/Layout/Footer/Footer';
 import HomeMain from '../components/Home/HomeMain';
+import HeaderOpaque from '../components/Layout/Header/HeaderOpaque';
 import NoSSR from 'react-no-ssr';
 import dynamic from 'next/dynamic';
 
@@ -18,7 +19,7 @@ class Index extends React.Component {
             <React.Fragment>
             <NoSSR>
             <Header />
-            </NoSSR>
+            </NoSSR>        
             <HomeMain />
             <Footer />
             </React.Fragment>

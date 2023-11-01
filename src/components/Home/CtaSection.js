@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Link from 'next/link';
+import { FaAngleDoubleRight } from "react-icons/fa";
 
 class Cta extends Component {
 
@@ -14,14 +15,22 @@ class Cta extends Component {
                             <img src="/assets/img/cta/cta-shape.png" alt="img not found"/>
                         </div>
                         <div className="row align-items-center">
-                            <div className="col-xxl-7 col-xl-7 col-lg-8 col-md-8">
+                        <div className="col-xxl-7 col-xl-7 col-lg-8 col-md-8">
                                 <div className="cta__content">
-                                <h3 className="cta__title">Tomorrow belongs to those who prepare for it today</h3>
+                                    
+                                <h3 className="text-white">Recent Blog:</h3>
                                 </div>
                             </div>
+                            <div className="col-xxl-7 col-xl-7 col-lg-8 col-md-8">
+                                <div className="cta__content">
+                                    
+                                <Link href="/blog"><a className=""><h3 className="text-white">{`Tomorrow belongs to those who prepare for it today`}</h3></a></Link>
+                                </div>
+                            </div>
+                            
                             <div className="col-xxl-5 col-xl-5 col-lg-4 col-md-4">
                                 <div className="cta__more d-md-flex justify-content-end p-relative z-index-1">
-                                    <Link href="/course-grid"><a className="e-btn e-btn-white">Get Started</a></Link>
+                                    <Link href="/blog"><a className="e-btn e-btn-white">More Blogs <FaAngleDoubleRight/></a></Link>
                                 </div>
                             </div>
                         </div>
