@@ -5,7 +5,7 @@ import HeaderThree from '../components/Layout/Header/HeaderStyleThree';
 import Header from '../components/Layout/Header/Header';
 import HeaderOpaque from '../components/Layout/Header/HeaderOpaque';
 import CourseGridChild from '../components/CourseGrid/CourseGridChild';
-
+import NoSSR from 'react-no-ssr';
 
 class CourseChild extends React.Component {
 
@@ -18,7 +18,9 @@ class CourseChild extends React.Component {
     render() {
         return (
             <React.Fragment>
+            <NoSSR>
             <HeaderOpaque />
+            </NoSSR>
             <CourseGridChild />
             <Footer />
             </React.Fragment>

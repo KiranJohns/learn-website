@@ -4,7 +4,7 @@ import CourseGridMandatory from '../components/CourseGrid/CourseGridMandatory';
 import HeaderThree from '../components/Layout/Header/HeaderStyleThree';
 import Header from '../components/Layout/Header/Header';
 import HeaderOpaque from '../components/Layout/Header/HeaderOpaque';
-
+import NoSSR from 'react-no-ssr';
 
 class CourseMandatory extends React.Component {
 
@@ -17,7 +17,9 @@ class CourseMandatory extends React.Component {
     render() {
         return (
             <React.Fragment>
+          <NoSSR>
             <HeaderOpaque />
+            </NoSSR>
             <CourseGridMandatory />
             <Footer />
             </React.Fragment>

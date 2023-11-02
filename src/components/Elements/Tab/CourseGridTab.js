@@ -187,10 +187,10 @@ export default () => {
                     </div>
                     <div className="course__more d-flex justify-content-between ">
                       <div className="course__status d-flex align-items-center">
-                        <span className="sky-blue">£{item.price}</span>
+                        <span className="sky-blue " >£{item.price}</span>
                       </div>
                       <span >
-                        <div className="d-flex">
+                        <div className="d-flex ">
                           <button
                             className="cart-minus"
                             onClick={() => decrement(item.id)}

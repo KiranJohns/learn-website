@@ -57,10 +57,10 @@ const Footer = () => {
                            </div>
                         </div>
 
-                        <div className="col-xxl-2  col-xl-2 offset-xl-1 col-lg-2 offset-lg-0 col-md-2 offset-md-1 col-sm-3 offset-sm-1">
+                        <div className="col-xxl-2  col-xl-2  col-lg-2 offset-lg-0 col-md-2 offset-md-1 col-sm-3 offset-sm-1">
                            <div className="footer__widget mb-50">
                               <div className="footer__widget-head mb-22">
-                                 <h3 className="footer__widget-title footer__widget-title-2">Links</h3>
+                                 <h3 className="footer__widget-title footer__widget-title-2">External Links</h3>
                               </div>
                               <div className="footer__widget-body">
                                  <div className="footer__link footer__link-2">
@@ -80,7 +80,7 @@ const Footer = () => {
 
                         
                         
-                        <div className="col-xxl-3 col-xl-2 col-lg-2 offset-lg-0 col-md-2 offset-md- col-sm-4">
+                        <div className="col-xxl-3 col-xl-2 offset-xl-1 col-lg-2 offset-lg-0 col-md-2 offset-md- col-sm-4">
                            <div className="footer__widget mb-50">
                               <div className="footer__widget-head mb-22">
                                  <h3 className="footer__widget-title footer__widget-title-2">Contact</h3>

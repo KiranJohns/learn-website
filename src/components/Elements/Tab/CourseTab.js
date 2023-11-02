@@ -194,9 +194,9 @@ export default () => {
                         </h6>
                       </div>
                     </div>
-                    <div className="course__more d-flex justify-content-between ">
+                    <div className="course__more d-flex justify-content-around" >
                       <div className="course__status d-flex align-items-center">
-                        <span className="sky-blue mb-2">£{item.price}</span>
+                        <span className="sky-blue mb-3" style={{marginBottom:'1px'}}>£{item.price}</span>
                       </div>
                       <span style={{ marginTop: "2px" }}>
                         <div className="d-flex ml-1">

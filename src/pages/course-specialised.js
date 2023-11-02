@@ -1,6 +1,6 @@
 import React from 'react';
 import Footer from '../components/Layout/Footer/Footer';
-
+import NoSSR from 'react-no-ssr';
 import HeaderThree from '../components/Layout/Header/HeaderStyleThree';
 import Header from '../components/Layout/Header/Header';
 import HeaderOpaque from '../components/Layout/Header/HeaderOpaque';
@@ -18,7 +18,9 @@ class CourseSpecial extends React.Component {
     render() {
         return (
             <React.Fragment>
+                 <NoSSR>
             <HeaderOpaque />
+            </NoSSR>
             <CourseGridSpecialised />
             <Footer />
             </React.Fragment>
