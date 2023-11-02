@@ -9,6 +9,7 @@ function CourseCard({ item }) {
   const { cart } = useSelector((state) => state.cart);
   const [fakeCount, setFakeCount] = useState(0);
   const [course, setCourse] = useState([]);
+
   const [count, setCount] = useState(() => {
     let itemCount = cart.find(
       (cartItem) => cartItem.course_id == item.id
@@ -34,17 +35,17 @@ function CourseCard({ item }) {
   }
 
   useEffect(() => {
-    getAllCourse()
-  },[])
+    getAllCourse();
+  }, []);
 
   function getAllCourse() {
     makeRequest("GET", "/course/get-all-course")
-    .then((res) => {
-      setCourse(res.data.response);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+      .then((res) => {
+        setCourse(res.data.response);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   async function handleClick(id) {
@@ -54,13 +55,13 @@ function CourseCard({ item }) {
 
     if (cartItem) {
       setCount(() => {
-        return Number(cartItem) + fakeCount;
+        return Number(cartItem) + Number(fakeCount);
       });
-      updateCount(item.id,Number(cartItem) + fakeCount);
+      updateCount(item.id, Number(cartItem) + Number(fakeCount));
     } else {
       addToCart(item.id);
       await setCount((prev) => {
-        updateCount(item.id,prev + fakeCount);
+        updateCount(item.id, prev + fakeCount);
         return prev + fakeCount;
       });
     }
@@ -82,15 +83,15 @@ function CourseCard({ item }) {
       });
   }
 
-  function updateCount(id,count) {
-    console.log(id);
+  function updateCount(id, count) {
+    console.log(count);
     makeRequest("PATCH", "/cart/update-cart-count", {
       course_id: id,
       identifier: 1,
       count,
     })
       .then((res) => {
-        setFakeCount(() => 0);
+        setFakeCount(0);
         getCartItem();
         store.dispatch({
           type: "INCREMENT_ITEM_CONT",
