@@ -25,7 +25,7 @@ class Hero extends Component {
                                         adventure! </h3>
                                       
                                         <p>Complete your course and earn a certificate of accomplishment.</p>
-                                        <Link href="/course-grid"><a className="e-btn">view all course</a></Link>
+                                        <Link href="/course-all"><a className="e-btn">view all course</a></Link>
                                     </div>
                                 </div>
                                 <div className="col-xxl-6 col-xl-6 col-lg-6 col-md-6">
