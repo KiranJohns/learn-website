@@ -179,14 +179,14 @@
 
 .cart-plus,
 .cart-minus{
-    width: 25px;
+    width: 28px;
  
-    height: 30px;
+    height: 27px;
     border: 2px solid $border;
     display: inline-block;
     vertical-align: middle;
     text-align: center;
-    font-size: 14px;
+    font-size: 13px;
     &:hover{
         cursor: pointer;
         color: $white;

@@ -185,9 +185,9 @@ export default () => {
                     </div>
                     <div className="course__more d-flex justify-content-between ">
                       <div className="course__status d-flex align-items-center">
-                        <span className="sky-blue mb-1">£{item.price}</span>
+                        <span className="sky-blue mb-2">£{item.price}</span>
                       </div>
-                      <span>
+                      <span style={{marginTop:'2px'}}>
                         <div className="d-flex ml-1">
                           <button
                             className="cart-minus "
@@ -210,11 +210,12 @@ export default () => {
                           </button>
                         </div>
                       </span>
-                      <span>
+                      <span style={{marginBottom:'.1rem'}}>
                         <button
-                          className="course__more d-flex justify-content-between align-items-center"
+                          className="btn btn-primary btn-sm mb-2 d-flex justify-content-between align-items-center"
                           type="button"
-                          class="btn btn-primary btn-sm"
+                          // class=""
+                          style={{outline:'none', border: "none"}}
                           onClick={() => addToCart(item.id)}
                         >
                           Add
