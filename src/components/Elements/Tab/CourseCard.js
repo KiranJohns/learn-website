@@ -36,6 +36,7 @@ function CourseCard({ item }) {
   useEffect(() => {
     getAllCourse()
   },[])
+  
   function getAllCourse() {
     makeRequest("GET", "/course/get-all-course")
     .then((res) => {
@@ -54,9 +55,9 @@ function CourseCard({ item }) {
 
     if (cartItem) {
       setCount(() => {
-        updateCount(item.id,cartItem + fakeCount);
         return cartItem + fakeCount;
       });
+      updateCount(item.id,cartItem + fakeCount);
     } else {
       addToCart(item.id);
       await setCount((prev) => {
@@ -96,7 +97,6 @@ function CourseCard({ item }) {
           type: "INCREMENT_ITEM_CONT",
           payload: id,
         });
-        console.log(res);
       })
       .catch((err) => {
         if (err?.data?.errors[0].message === "please login") {
