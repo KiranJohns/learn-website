@@ -23,7 +23,7 @@ export default () => {
       .then((res) => {
         store.dispatch({
           type: "SET_CART",
-          payload: res.data.response,
+          payload: JSON.stringify(res.data.response),
         });
       })
       .catch((err) => {
@@ -37,10 +37,9 @@ export default () => {
   }
 
   function addToCart(id) {
-    makeRequest("POST", "/cart/add", { course_id: id })
+    makeRequest("POST", "/cart/add", { course: [{count: 1, id: id}] })
       .then((res) => {
         getCartItem();
-        console.log(res.data);
       })
       .catch((err) => {
         if (err?.data?.errors[0].message === "please login") {

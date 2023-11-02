@@ -25,6 +25,8 @@ function SignInMain() {
     });
   }
 
+  localStorage.setItem("check-cart",true)
+
   function handleLogin() {
     store.dispatch({
       type: "SET_LOADING_FOR_SIGN_IN",

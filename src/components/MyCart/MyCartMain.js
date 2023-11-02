@@ -19,7 +19,7 @@ const MyCart = () => {
       .then((res) => {
         store.dispatch({
           type: "SET_CART",
-          payload: res.data.response,
+          payload: JSON.stringify(res.data.response),
         });
       })
       .catch((err) => {

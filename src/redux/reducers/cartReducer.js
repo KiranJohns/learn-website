@@ -3,23 +3,31 @@ const initialUserState = {
     typeof window !== "undefined" &&
     JSON.parse(localStorage?.getItem("learnfrocarecart")),
   totalPrice: 0,
+  cartCount: 0,
+  logedIn: typeof window !== "undefined" ? localStorage?.getItem("learnforcare_access") : "",
 };
 
 const cartReducer = function (state = initialUserState, action) {
   switch (action.type) {
     case "SET_CART":
-      let cart = localStorage.getItem("learnfrocarecart");
+      let cart = [];
+      cart = action?.payload
+        ? action?.payload
+        : localStorage.getItem("learnfrocarecart");
+
       let totalPrice = 0;
       if (cart) {
         let newCart = JSON.parse(cart);
-
-        console.log(newCart);
+        console.log("newCart ", newCart);
+        
+        let cartCount = 0
 
         newCart?.forEach((item) => {
           totalPrice += Number(item.amount);
+          cartCount += item.product_count
         });
-        console.log(totalPrice);
-        return { ...state, totalPrice, cart: newCart };
+
+        return { ...state, totalPrice, cart: newCart, cartCount };
       } else {
         return { ...state, totalPrice, cart: [] };
       }
@@ -40,15 +48,18 @@ const cartReducer = function (state = initialUserState, action) {
               ...action.payload,
               product_count: 1,
               course_id: action.payload.id,
-              amount: action.payload.price
+              amount: action.payload.price,
             },
           ],
+          cartCount: state.cartCount + 1,
           totalPrice: Number(state.totalPrice) + Number(action.payload.price),
         };
       }
 
-      localStorage.setItem("learnfrocarecart", JSON.stringify(state.cart));
-      
+      if (!state.logedIn) {
+        localStorage.setItem("learnfrocarecart", JSON.stringify(state.cart));
+      }
+
       return { ...state };
     case "INCREMENT_ITEM_CONT":
       try {
@@ -61,16 +72,19 @@ const cartReducer = function (state = initialUserState, action) {
           cart: state.cart.filter((item) => {
             if (item.id == action.payload) {
               ++item.product_count;
-              item.amount = item.price * item.product_count
+              item.amount = item.price * item.product_count;
               state.totalPrice = Number(state.totalPrice) + Number(item.price);
             }
             return item;
           }),
+          cartCount: state.cartCount + 1
         };
-        
-        localStorage.setItem("learnfrocarecart", JSON.stringify(state.cart));
 
-        return { ...state,cart: [...state.cart] };
+        if (!state.logedIn) {
+          localStorage.setItem("learnfrocarecart", JSON.stringify(state.cart));
+        }
+
+        return { ...state, cart: [...state.cart] };
       } catch (error) {
         console.log(error);
       }
@@ -83,7 +97,7 @@ const cartReducer = function (state = initialUserState, action) {
       state.cart = state.cart.filter((item) => {
         if (item.id == action.payload) {
           --item.product_count;
-          item.amount = item.price * item.product_count
+          item.amount = item.price * item.product_count;
           state.totalPrice = Number(state.totalPrice) - Number(item.price);
         }
 
@@ -92,25 +106,30 @@ const cartReducer = function (state = initialUserState, action) {
         }
       });
 
-      localStorage.setItem("learnfrocarecart", JSON.stringify(state.cart));
+      if (!state.logedIn) {
+        localStorage.setItem("learnfrocarecart", JSON.stringify(state.cart));
+      }
 
-
-      return { ...state };
+      return { ...state,cartCount: state.cartCount - 1 };
     case "REMOVE_ITEM":
       if (state.cart === null) {
         state.cart = [];
       }
+      let product_count= 0
       state.cart = state.cart.filter((item) => {
         if (item.id == action.payload) {
           state.totalPrice -= Number(item.price) * Number(item.product_count);
+          product_count = item.product_count
           return null;
         }
         return item;
       });
 
-      localStorage.setItem("learnfrocarecart", JSON.stringify(state.cart));
+      if (!state.logedIn) {
+        localStorage.setItem("learnfrocarecart", JSON.stringify(state.cart));
+      }
 
-      return { ...state,cart: [...state.cart] };
+      return { ...state, cart: [...state.cart],cartCount: state.cartCount - product_count};
   }
   return state;
 };

@@ -1,31 +1,31 @@
-import React from 'react';
-import FooterThree from '../components/Layout/Footer/FooterStyleThree';
-import SignInMain from '../components/SignIn/SignInMain';
-import HeaderFour from '../components/Layout/Header/HeaderStyleFour';
-import Header from '../components/Layout/Header/Header';
-import Footer from '../components/Layout/Footer/Footer';
-import NoSSR from 'react-no-ssr';
+import React from "react";
+import FooterThree from "../components/Layout/Footer/FooterStyleThree";
+import SignInMain from "../components/SignIn/SignInMain";
+import HeaderFour from "../components/Layout/Header/HeaderStyleFour";
+import Header from "../components/Layout/Header/Header";
+import Footer from "../components/Layout/Footer/Footer";
+import NoSSR from "react-no-ssr";
 
 class SignIn extends React.Component {
+  static getInitialProps({ store }) {}
 
-    static getInitialProps({store}) {}
+  constructor(props) {
+    super(props);
+  }
 
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
-        return (
-            <React.Fragment>
-            <NoSSR>
-            <Header/>
-            </NoSSR>
-            <SignInMain />
-            <Footer />
-            </React.Fragment>
-        );
-    }
+  render() {
+    return (
+      <React.Fragment>
+        <NoSSR>
+          <Header />
+        </NoSSR>
+        <NoSSR>
+          <SignInMain />
+        </NoSSR>
+        <Footer />
+      </React.Fragment>
+    );
+  }
 }
-
 
 export default SignIn;

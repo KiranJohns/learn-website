@@ -19,13 +19,14 @@ const Header = () => {
 
   const router = useRouter();
   const [path, setPath] = useState("");
-  const { cart } = useSelector((store) => store.cart);
+  const { cart, cartCount } = useSelector((store) => store.cart);
   const [searchProduct, setSearchProduct] = useState([]);
   const [searchString, setSearchString] = useState("");
   let logedIn = localStorage.getItem("learnforcare_access");
+  const makeRequest = fetchData();
 
   const handleLogout = () => {
-    localStorage.clear("learnforcare_access");
+    localStorage.removeItem("learnforcare_access");
     location.pathname = "/";
   };
 
@@ -33,19 +34,50 @@ const Header = () => {
     setPath(router.pathname);
   }, [router]);
 
-  const makeRequest = fetchData();
   useEffect(() => {
+    if (localStorage.getItem("check-cart")) {
+      let cartIds = [];
+      let localCart =
+        JSON.parse(localStorage.getItem("learnfrocarecart")) || [];
+      if (localCart) {
+        console.log(localCart);
+        localCart.forEach((item) => {
+          cartIds.push({ count: item.product_count, id: item.id });
+        });
+
+        makeRequest("POST", "/cart/add", { course: cartIds })
+          .then((res) => {
+            getCartItem();
+            localStorage.removeItem("check-cart");
+            localStorage.removeItem("learnfrocarecart");
+          })
+          .catch((err) => {
+            console.log(err.data);
+          });
+      }
+    }
+  }, []);
+
+  function getCartItem() {
+    const makeRequest = fetchData();
     makeRequest("GET", "/cart/get")
       .then((res) => {
-        console.log(res.data);
         store.dispatch({
           type: "SET_CART",
-          payload: res.data.response,
+          payload: JSON.stringify(res.data.response),
         });
       })
       .catch((err) => {
+        if (err?.data?.errors[0].message === "please login") {
+          store.dispatch({
+            type: "SET_CART",
+          });
+        }
         console.log(err);
       });
+  }
+  useEffect(() => {
+    getCartItem();
   }, []);
 
   function handleSearch(e) {
@@ -70,7 +102,6 @@ const Header = () => {
   });
 
   const sticky = (e) => {
-    console.log(logedIn);
     const header = document.querySelector(".header__area");
     const scrollTop = window.scrollY;
     scrollTop >= 1
@@ -323,7 +354,7 @@ const Header = () => {
                             </svg>
                           </div>
                           <span className="cart-item">
-                            {cart ? cart.length : 0}
+                            {cartCount && cartCount}
                           </span>
                         </span>
                       </div>
@@ -371,8 +402,8 @@ const Header = () => {
                               padding: ".7rem",
                               border: "none",
                               outline: "none",
-                              background:"#2b4eff",
-                              color:"white"
+                              background: "#2b4eff",
+                              color: "white",
                             }}
                             variant=""
                             id="dropdown-basic"
@@ -381,8 +412,11 @@ const Header = () => {
                           </Dropdown.Toggle>
 
                           <Dropdown.Menu>
-                          <Dropdown.Item className="btn" href="/company/myprofile">
-                             My Profile
+                            <Dropdown.Item
+                              className="btn"
+                              href="/company/myprofile"
+                            >
+                              My Profile
                             </Dropdown.Item>
                             <Dropdown.Item
                               className="btn"
@@ -391,7 +425,6 @@ const Header = () => {
                             >
                               Logout
                             </Dropdown.Item>
-                          
                           </Dropdown.Menu>
                         </Dropdown>
                       ) : (
@@ -407,7 +440,7 @@ const Header = () => {
                         //   <a className="e-btn ">Profile</a>
                         // </Link>
 
-                   <div></div>
+                        <div></div>
                       ) : (
                         <Link href="/sign-up">
                           <a className="e-btn">Sign UP</a>
