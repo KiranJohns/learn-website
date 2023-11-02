@@ -49,7 +49,7 @@ class Cta extends Component {
                 </div>
 
                 <div className="col-xxl-5 col-xl-5 col-lg-4 col-md-4">
-                  <div className="cta__more d-md-flex justify-content-end p-relative z-index-1">
+                  <div className="cta__more d-md-flex justify-content-end mb-4  p-relative z-index-1">
                     <Link href="/blog">
                       <a className="e-btn e-btn-primary">
                         More Blogs <FaAngleDoubleRight />
