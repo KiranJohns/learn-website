@@ -49,21 +49,17 @@ function CourseCard({ item }) {
   }
 
   async function handleClick(id) {
-    let cartItem = cart.find(
-      (cartItem) => cartItem.course_id == item.id
-    )?.product_count;
+    if (!fakeCount <= 0) {
+      let cartItem = cart.find(
+        (cartItem) => cartItem.course_id == item.id
+      )?.product_count;
 
-    if (cartItem) {
-      setCount(() => {
-        return Number(cartItem) + Number(fakeCount);
-      });
-      updateCount(item.id, Number(cartItem) + Number(fakeCount));
-    } else {
-      addToCart(item.id);
-      setCount((prev) => {
-        updateCount(item.id, Number(prev) + Number(fakeCount));
-        return Number(prev) + Number(fakeCount);
-      });
+      if (cartItem) {
+        updateCount(item.id, Number(fakeCount));
+      } else {
+        addToCart(item.id);
+        updateCount(item.id, Number(fakeCount));
+      }
     }
   }
 
