@@ -17,6 +17,8 @@ const HeaderOpaque = () => {
   const [path, setPath] = useState("");
   const { cart, cartCount } = useSelector((store) => store.cart);
 
+  const makeRequest = fetchData();
+
   let logedIn = localStorage.getItem("learnforcare_access");
 
   const handleLogout = () => {
@@ -58,7 +60,6 @@ const HeaderOpaque = () => {
   });
 
   function getCartItem() {
-    const makeRequest = fetchData();
     makeRequest("GET", "/cart/get")
       .then((res) => {
         store.dispatch({

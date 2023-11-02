@@ -60,7 +60,7 @@ function CourseCard({ item }) {
       updateCount(item.id, Number(cartItem) + Number(fakeCount));
     } else {
       addToCart(item.id);
-      await setCount((prev) => {
+      setCount((prev) => {
         updateCount(item.id, prev + fakeCount);
         return prev + fakeCount;
       });
