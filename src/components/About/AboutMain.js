@@ -21,6 +21,8 @@ class AboutMain extends Component {
 	            {/* breadcrumb-start */}
 				<Breadcrumb pageTitle="About" />
 				{/* breadcrumb-end */}
+                
+                <About/>
 
                 {/* about-start */}
                 <div className='mt-30'>
