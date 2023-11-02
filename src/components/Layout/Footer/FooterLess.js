@@ -19,7 +19,7 @@ const FooterPad = () => {
                            <div className="footer__widget mb-50">
                               <div className="footer__widget-head mb-22">
                                  <div className="footer__logo">
-                                    <Link href="/"><a><img className='w-50' src="/assets/img/logo/logo7.png" alt="img not found"/></a></Link>
+                                    <Link href="/"><a><img className='w-75' src="/assets/img/logo/logo7.png" alt="img not found"/></a></Link>
                                  </div>
                               </div>
                               <div className="footer__widget-body footer__widget-body-2">
