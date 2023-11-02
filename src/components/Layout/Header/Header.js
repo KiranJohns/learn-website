@@ -169,7 +169,7 @@ const Header = () => {
                                        </ul> */}
                           </li>
                           <li className="has-dropdown">
-                            <Link href="/course-grid">
+                            <Link href="/course-all">
                               <a>Courses</a>
                             </Link>
                             <ul className="submenu">

@@ -1,6 +1,7 @@
 import React from 'react';
 import Footer from '../components/Layout/Footer/Footer';
 import CourseGridMain from '../components/CourseGrid/CourseGridMain';
+import CourseAllMain from '../components/CourseGrid/CourseAllMain';
 import HeaderThree from '../components/Layout/Header/HeaderStyleThree';
 import Header from '../components/Layout/Header/Header';
 import HeaderOpaque from '../components/Layout/Header/HeaderOpaque';
@@ -20,7 +21,7 @@ class CourseAll extends React.Component {
             <NoSSR>
             <HeaderOpaque />
             </NoSSR>
-            <CourseGridMain />
+            <CourseAllMain />
             <Footer />
             </React.Fragment>
         );

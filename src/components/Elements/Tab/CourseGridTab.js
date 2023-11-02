@@ -189,7 +189,7 @@ export default () => {
                       <div className="course__status d-flex align-items-center">
                         <span className="sky-blue">£{item.price}</span>
                       </div>
-                      <span>
+                      <span >
                         <div className="d-flex">
                           <button
                             className="cart-minus"
