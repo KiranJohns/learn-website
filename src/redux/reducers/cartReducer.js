@@ -24,7 +24,7 @@ const cartReducer = function (state = initialUserState, action) {
 
         newCart?.forEach((item) => {
           totalPrice += Number(item.amount);
-          cartCount += item.product_count
+          cartCount += Number(item.product_count)
         });
 
         return { ...state, totalPrice, cart: newCart, cartCount };
@@ -51,7 +51,7 @@ const cartReducer = function (state = initialUserState, action) {
               amount: action.payload.price,
             },
           ],
-          cartCount: state.cartCount + 1,
+          cartCount: Number(state.cartCount + 1),
           totalPrice: Number(state.totalPrice) + Number(action.payload.price),
         };
       }
@@ -110,7 +110,7 @@ const cartReducer = function (state = initialUserState, action) {
         localStorage.setItem("learnfrocarecart", JSON.stringify(state.cart));
       }
 
-      return { ...state,cartCount: state.cartCount - 1 };
+      return { ...state,cartCount: Number(state.cartCount - 1) };
     case "REMOVE_ITEM":
       if (state.cart === null) {
         state.cart = [];
@@ -129,7 +129,7 @@ const cartReducer = function (state = initialUserState, action) {
         localStorage.setItem("learnfrocarecart", JSON.stringify(state.cart));
       }
 
-      return { ...state, cart: [...state.cart],cartCount: state.cartCount - product_count};
+      return { ...state, cart: [...state.cart],cartCount: Number(state.cartCount) - Number(product_count)};
   }
   return state;
 };
