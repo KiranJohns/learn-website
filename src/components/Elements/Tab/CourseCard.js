@@ -58,13 +58,12 @@ function CourseCard({ item }) {
         updateCount(item.id, Number(fakeCount));
       } else {
         addToCart(item.id);
-        updateCount(item.id, Number(fakeCount));
       }
     }
   }
 
   function addToCart(id) {
-    makeRequest("POST", "/cart/add", { course: [{ count: 1, id: id }] })
+    makeRequest("POST", "/cart/add", { course: [{ count: fakeCount,id: id }] })
       .then((res) => {
         getCartItem();
         console.log(res.data);
