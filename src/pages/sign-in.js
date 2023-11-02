@@ -4,6 +4,7 @@ import SignInMain from '../components/SignIn/SignInMain';
 import HeaderFour from '../components/Layout/Header/HeaderStyleFour';
 import Header from '../components/Layout/Header/Header';
 import Footer from '../components/Layout/Footer/Footer';
+import FooterPad from '../components/Layout/Footer/FooterLess';
 import NoSSR from 'react-no-ssr';
 
 class SignIn extends React.Component {
@@ -21,7 +22,7 @@ class SignIn extends React.Component {
             <Header/>
             </NoSSR>
             <SignInMain />
-            <Footer />
+            <FooterPad />
             </React.Fragment>
         );
     }

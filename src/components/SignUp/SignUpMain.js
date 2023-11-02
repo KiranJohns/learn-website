@@ -438,7 +438,7 @@ function SignUpMain() {
                       {errors.password && <small>{errors.password}</small>}
                       <br />
                     </div>
-                    <div className="sign__action d-flex justify-content-between mb-30">
+                    <div className="sign__action d-flex justify-content-between mb-10 mr-5">
                       <div className="sign__agree d-flex align-items-center">
                         <input
                           className="m-check-input"
