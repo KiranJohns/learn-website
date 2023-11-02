@@ -149,14 +149,14 @@ function CourseCard({ item }) {
             <div className="d-flex ml-1">
               <button
                 className="cart-minus "
-                onClick={() => setFakeCount((prev) => --prev)}
+                onClick={() => setFakeCount((prev) => 1 - prev)}
               >
                 <i className="fas fa-minus"></i>
               </button>
               <p className="p-1">{fakeCount}</p>
               <button
                 className="cart-plus"
-                onClick={() => setFakeCount((prev) => ++prev)}
+                onClick={() => setFakeCount((prev) => 1 + prev)}
               >
                 <i className="fas fa-plus"></i>
               </button>
