@@ -15,14 +15,35 @@ const HeaderOpaque = () => {
 
   const router = useRouter();
   const [path, setPath] = useState("");
-  const { cart } = useSelector((store) => store.cart);
+  const { cart, cartCount } = useSelector((store) => store.cart);
 
   let logedIn = localStorage.getItem("learnforcare_access");
 
   const handleLogout = () => {
-    localStorage.clear("learnforcare_access");
+    localStorage.removeItem("learnforcare_access");
     location.pathname = "/";
   };
+
+  useEffect(() => {
+    if(localStorage.getItem("check-cart")) {
+      let localCart = JSON.parse(localStorage.getItem('learnfrocarecart'))
+      console.log(localCart);
+      let cartIds = []
+      localCart.forEach(item => {
+        cartIds.push({count: item.product_count, id: item.id});
+      })
+
+      makeRequest("POST", "/cart/add", { course: cartIds })
+      .then((res) => {
+        getCartItem();
+        localStorage.removeItem("check-cart")
+        localStorage.removeItem('learnfrocarecart')
+      })
+      .catch((err) => {
+        console.log(err.data);
+      });
+    }
+  },[])
 
   useEffect(() => {
     setPath(router.pathname);
@@ -36,18 +57,28 @@ const HeaderOpaque = () => {
     };
   });
 
-  useEffect(() => {
+  function getCartItem() {
     const makeRequest = fetchData();
     makeRequest("GET", "/cart/get")
       .then((res) => {
         store.dispatch({
           type: "SET_CART",
-          payload: res.data.response,
+          payload: JSON.stringify(res.data.response),
         });
       })
       .catch((err) => {
+        if (err?.data?.errors[0].message === "please login") {
+          store.dispatch({
+            type: "SET_CART",
+          });
+        }
         console.log(err);
       });
+
+  }
+
+  useEffect(() => {
+    getCartItem()
   }, []);
 
   const sticky = (e) => {
@@ -288,7 +319,7 @@ const HeaderOpaque = () => {
                           </svg>
                         </div>
                         <span className="cart-item">
-                          {cart ? cart?.length : 0}
+                          {cartCount && cartCount}
                         </span>
                       </span>
                     </div>

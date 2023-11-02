@@ -27,9 +27,9 @@ class HomeMain extends Component {
         {/* banner-end   */}
 
         {/* course-start */}
-        {/* <NoSSR> */}
+        <NoSSR>
           <CourseTab />
-        {/* </NoSSR> */}
+        </NoSSR>
         {/* course-end */}
 
         <Service />

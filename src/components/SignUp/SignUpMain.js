@@ -43,6 +43,8 @@ function SignUpMain() {
     }
   }
 
+  localStorage.setItem("check-cart",true)
+
   function resend(event) {
     event.preventDefault();
     makeRequest("PATCH", "/auth/resend-otp", {

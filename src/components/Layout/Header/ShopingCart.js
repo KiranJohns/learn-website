@@ -20,7 +20,7 @@ const ShopingCart = ({ setShopOpen, shopOpen }) => {
       .then((res) => {
         store.dispatch({
           type: "SET_CART",
-          payload: res.data.response,
+          payload: JSON.stringify(res.data.response),
         });
       })
       .catch((err) => {
@@ -33,10 +33,8 @@ const ShopingCart = ({ setShopOpen, shopOpen }) => {
       });
   }
   function removeItem(id) {
-    console.log(id);
     makeRequest("DELETE", "/cart/delete-cart-item", { cart_id: id })
       .then((res) => {
-        console.log(res.data);
         getCartItem();
         store.dispatch({
           type: "REMOVE_ITEM",
@@ -113,7 +111,9 @@ const ShopingCart = ({ setShopOpen, shopOpen }) => {
         window.location.href = res.data.response;
       })
       .catch((err) => {
-        console.log(err.data.errors[0]);
+        if (err?.data?.errors[0].message === "please login") {
+          window.location = "/sign-in"
+        }
       });
   }
   return (

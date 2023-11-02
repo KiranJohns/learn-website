@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import dynamic from "next/dynamic";
 import store from "../../../redux/store";
 const Tabs = dynamic(
-  import("react-tabs").then((mod) => mod.Tabs),
-  { ssr: false }
+  import("react-tabs").then((mod) => mod.Tabs)
 ); // disable ssr
 import { Tab, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
@@ -21,6 +20,7 @@ export default () => {
   useState(() => {
     makeRequest("GET", "/course/get-all-course")
       .then((res) => {
+        console.log("course ",res.data.response);
         setCourse(res.data.response);
       })
       .catch((err) => {
@@ -28,11 +28,13 @@ export default () => {
       });
   }, []);
 
+
   function getCartItem() {
     makeRequest("GET", "/cart/get")
       .then((res) => {
         store.dispatch({
           type: "SET_CART",
+          payload: JSON.stringify(res.data.response),
         });
       })
       .catch((err) => {
@@ -45,10 +47,10 @@ export default () => {
   }
 
   function addToCart(id) {
-    makeRequest("POST", "/cart/add", { course_id: id })
+    makeRequest("POST", "/cart/add", { course: [{count: 1, id: id}] })
       .then((res) => {
         getCartItem();
-        // console.log(res.data);
+        console.log(res.data);
         store.dispatch({
           type: "ADD_TO_CART",
           payload: course.find((item) => item.id === id),
@@ -158,7 +160,8 @@ export default () => {
           </div>
           <TabPanel>
             <div className="row">
-              {course.map((item) => (
+              {course.map((item) => {
+                return (
                 <div
                   key={item.id}
                   className="col-xxl-3 col-xl-3 col-lg-3 col-md-4"
@@ -235,7 +238,7 @@ export default () => {
                     </div>
                   </div>
                 </div>
-              ))}
+              )})}
             </div>
           </TabPanel>
           <div className="d-flex justify-content-center ">

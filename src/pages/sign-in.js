@@ -8,25 +8,25 @@ import FooterPad from '../components/Layout/Footer/FooterLess';
 import NoSSR from 'react-no-ssr';
 
 class SignIn extends React.Component {
+  static getInitialProps({ store }) {}
 
-    static getInitialProps({store}) {}
+  constructor(props) {
+    super(props);
+  }
 
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
-        return (
-            <React.Fragment>
-            <NoSSR>
-            <Header/>
-            </NoSSR>
-            <SignInMain />
-            <FooterPad />
-            </React.Fragment>
-        );
-    }
+  render() {
+    return (
+      <React.Fragment>
+        <NoSSR>
+          <Header />
+        </NoSSR>
+        <NoSSR>
+          <SignInMain />
+        </NoSSR>
+        <Footer />
+      </React.Fragment>
+    );
+  }
 }
-
 
 export default SignIn;
