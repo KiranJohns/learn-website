@@ -1,13 +1,14 @@
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import fetchData from "../../../axios";
 import store from "../../../redux/store";
 
 function CourseCard({ item }) {
-  const { cart } = useSelector((state) => state.cart);
   const makeRequest = fetchData();
+  const { cart } = useSelector((state) => state.cart);
   const [fakeCount, setFakeCount] = useState(0);
+  const [course, setCourse] = useState([]);
   const [count, setCount] = useState(() => {
     let itemCount = cart.find(
       (cartItem) => cartItem.course_id == item.id
@@ -30,6 +31,20 @@ function CourseCard({ item }) {
           });
         }
       });
+  }
+
+  useEffect(() => {
+    getAllCourse()
+  },[])
+  function getAllCourse() {
+    makeRequest("GET", "/course/get-all-course")
+    .then((res) => {
+      console.log("course ", res.data.response);
+      setCourse(res.data.response);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
   }
 
   async function handleClick(id) {
@@ -56,10 +71,6 @@ function CourseCard({ item }) {
       .then((res) => {
         getCartItem();
         console.log(res.data);
-        store.dispatch({
-          type: "ADD_TO_CART",
-          payload: course.find((item) => item.id === id),
-        });
       })
       .catch((err) => {
         if (err?.data?.errors[0].message === "please login") {
