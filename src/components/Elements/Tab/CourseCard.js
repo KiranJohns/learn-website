@@ -36,11 +36,10 @@ function CourseCard({ item }) {
   useEffect(() => {
     getAllCourse()
   },[])
-  
+
   function getAllCourse() {
     makeRequest("GET", "/course/get-all-course")
     .then((res) => {
-      console.log("course ", res.data.response);
       setCourse(res.data.response);
     })
     .catch((err) => {
@@ -55,9 +54,9 @@ function CourseCard({ item }) {
 
     if (cartItem) {
       setCount(() => {
-        return cartItem + fakeCount;
+        return Number(cartItem) + fakeCount;
       });
-      updateCount(item.id,cartItem + fakeCount);
+      updateCount(item.id,Number(cartItem) + fakeCount);
     } else {
       addToCart(item.id);
       await setCount((prev) => {
