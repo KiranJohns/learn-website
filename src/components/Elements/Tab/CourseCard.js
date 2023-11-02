@@ -61,8 +61,8 @@ function CourseCard({ item }) {
     } else {
       addToCart(item.id);
       setCount((prev) => {
-        updateCount(item.id, prev + fakeCount);
-        return prev + fakeCount;
+        updateCount(item.id, Number(prev) + Number(fakeCount));
+        return Number(prev) + Number(fakeCount);
       });
     }
   }
