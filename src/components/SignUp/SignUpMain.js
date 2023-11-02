@@ -317,7 +317,7 @@ function SignUpMain() {
                     </div>
 
                     <div className="sign__input-wrapper ">
-                      <h5>Work email</h5>
+                      <h5>Email</h5>
                       <div className="sign__input">
                         <input
                           type="text"
@@ -325,7 +325,7 @@ function SignUpMain() {
                           value={values.email}
                           onBlur={handleBlur}
                           onChange={handleChange}
-                          placeholder="e-mail "
+                          placeholder="e-mail"
                         />
                         <i className="fas fa-envelope"></i>
                       </div>

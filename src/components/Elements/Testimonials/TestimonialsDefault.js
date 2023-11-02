@@ -12,7 +12,7 @@ class Testimonial extends Component {
     render() {
 
         return (
-            <section className="testimonial__area testimonial__overlay pt-100 pb-100" style={{ backgroundImage:`url(${'assets/img/testimonial/testimonial.webp'})`}}>
+            <section className="testimonial__area testimonial__overlay pt-100 pb-100 mb-75" style={{ backgroundImage:`url(${'assets/img/testimonial/testimonial.webp'})`}}>
             <div className="container">
                <div className="col-xxl-12">
                   <div className="testimonial__slider swiper-container">

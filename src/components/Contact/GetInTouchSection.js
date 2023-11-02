@@ -5,7 +5,7 @@ class GetInTouch extends Component {
     render() {
 
         return (
-            <section className="contact__area pt-115 pb-120">
+            <section className="contact__area pt-80 pb-75">
             <div className="container">
                <div className="row">
                   <div className="col-xxl-7 col-xl-7 col-lg-6">
@@ -101,7 +101,7 @@ class GetInTouch extends Component {
                                     </div>
                                     <div className="contact__info-text">
                                        <h4>Phone</h4>
-                                       <p><a href="tel:+(426)-742-26-44">+(44) 02031483007</a></p>
+                                       <p><a href="tel:+(426)-742-26-44">+(44)-2031483007</a></p>
                                        {/* <p><a href="tel:+(224)-762-442-32">+(44) 762 442 32</a></p> */}
                                     </div>
                                  </div>

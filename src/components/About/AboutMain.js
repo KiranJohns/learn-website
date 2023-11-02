@@ -25,7 +25,7 @@ class AboutMain extends Component {
                 <About/>
 
                 {/* about-start */}
-                <div className='mt-30'>
+                <div className='mt-10'>
                     <AboutUs />
                 </div>
 				
