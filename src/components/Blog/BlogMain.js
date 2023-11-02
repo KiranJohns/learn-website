@@ -41,7 +41,7 @@ class BlogMain extends Component {
     return (
       <main>
         <Breadcrumb pageTitle="Blog" />
-        <section className="blog__area pt-120 pb-120">
+        <section className="blog__area pt-75 pb-60">
           <div className="container">
             <div className="row">
               <div className="col-xxl-12 col-xl-12 col-lg-12">

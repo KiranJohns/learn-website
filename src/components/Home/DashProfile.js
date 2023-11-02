@@ -1,9 +1,12 @@
 import React, { Component } from "react";
 import Button from "react-bootstrap/Button";
-import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import fetchData from "../../axios/index";
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
+import Image from 'react-bootstrap/Image';
+
 
 class DashProfile extends Component {
   state = {
@@ -40,16 +43,25 @@ class DashProfile extends Component {
         >
           My Profile
         </h2>
+        <div> <Container>
+      <Row>
+      
+        <Col xs={6} md={4}>
+          <Image src="/assets/img/testimonial/testimonial-3.jpg" roundedCircle />
+        </Col>
+       
+      </Row>
+    </Container></div>
         <Form style={{ padding: "20px" }}>
           <Row className="mb-3 mt-4">
             <Form.Group as={Col} controlId="formGridEmail">
-              <Form.Label>Email</Form.Label>
-              <Form.Control type="email" placeholder="Enter email" />
+              <Form.Label>Name</Form.Label>
+              <Form.Control type="text" placeholder="Name" />
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridPassword">
-              <Form.Label>Password</Form.Label>
-              <Form.Control type="password" placeholder="Password" />
+              <Form.Label>Email</Form.Label>
+              <Form.Control type="email" placeholder="Email" />
             </Form.Group>
           </Row>
 
@@ -65,7 +77,7 @@ class DashProfile extends Component {
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridState">
-              <Form.Label>State</Form.Label>
+              <Form.Label>Country</Form.Label>
               <Form.Select defaultValue="Choose...">
                 <option>Choose...</option>
                 <option>...</option>

@@ -109,7 +109,7 @@ export default () => {
   }, []);
 
   return (
-    <section className="course__area pt-115 pb-120 grey-bg">
+    <section className="course__area pt-50 pb-60 grey-bg">
       <Tabs variant="enclosed" id="react-tabs-276">
         <div className="container">
           <div className="row align-items-end">

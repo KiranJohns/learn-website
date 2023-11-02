@@ -7,6 +7,7 @@ import fetchRequest from "../../axios";
 import fetchData from "../../axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { BsFillEyeFill } from "react-icons/bs";
 
 
 function SignInMain() {
@@ -197,6 +198,7 @@ function SignInMain() {
                           onKeyUp={(e) => e.key === "Enter" && handleLogin(e)}
                         />
                         <i className="fas fa-lock"></i>
+                        <div id="pasToggle"><BsFillEyeFill/></div>
                       </div>
                     </div>
                     <div className="sign__action d-sm-flex justify-content-between mb-30">
