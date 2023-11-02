@@ -6,7 +6,8 @@ import Footer from "../../components/Layout/Footer/Footer";
 import HeaderOpaque from "../../components/Layout/Header/HeaderOpaque";
 import ShareButton from "react-share/lib/ShareButton";
 import NoSSR from 'react-no-ssr';
-
+import FooterPad from "../../components/Layout/Footer/FooterLess";
+import Cta from "../../components/Home/CtaSection";
 
 class BlogDetailss extends React.Component {
 
@@ -31,7 +32,8 @@ class BlogDetailss extends React.Component {
           {/* Blog Main End */}
         
         </main>
-        <Footer />
+      
+        <FooterPad/>
       </React.Fragment>
     );
   }

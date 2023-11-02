@@ -382,7 +382,7 @@ const Header = () => {
 
                           <Dropdown.Menu>
                           <Dropdown.Item className="btn" href="/company/myprofile">
-                             My Profile
+                             Individual
                             </Dropdown.Item>
                             <Dropdown.Item
                               className="btn"

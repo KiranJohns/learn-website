@@ -22,6 +22,7 @@ import { FaUser, FaRegCalendarDays } from "react-icons/fa6";
 import { BsTagsFill } from "react-icons/bs";
 
 
+
 class BlogDetailsMain extends Component {
   static async getInitialProps({ query }) {
     const { slug } = query;
@@ -103,7 +104,7 @@ class BlogDetailsMain extends Component {
             <Breadcrumb key={num} pageTitle={article.title} />
           ))}
 
-        <section className="blog__area pt-120 pb-120 pl-80 pr-80">
+        <section className="blog__area pt-120 pb-30 pl-80 pr-80">
           <div className="container-fluid">
             <div className="row">
               <div className="col-xxl-9 col-xl-7 col-lg-7">

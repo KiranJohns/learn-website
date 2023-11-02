@@ -245,9 +245,9 @@ function SignUpMain() {
           </Modal>
           <div className="row">
             <div className="col-xxl-8 offset-xxl-2 col-xl-8 offset-xl-2">
-              <div className="section__title-wrapper text-center mb-55">
-                <h2 className="section__title">
-                  Create An <br /> Account{" "}
+              <div className="section__title-wrapper text-center mb-25 mt-25">
+                <h2 className="">
+                  Sign up
                 </h2>
               </div>
             </div>
@@ -260,10 +260,8 @@ function SignUpMain() {
                     <p>
                       {" "}
                       <span>........</span>{" "}
-                      <Link href="/sign-up">
-                        <a>sign up</a>
-                      </Link>{" "}
-                      with your email<span> ........</span>{" "}
+                      
+                      Create an account<span> ........</span>{" "}
                     </p>
                   </div>
                 </div>
@@ -468,7 +466,7 @@ function SignUpMain() {
                     </button>
                     <div className="sign__new text-center mt-20">
                       <p>
-                        Already Signed Up ?{" "}
+                        Already have an account ?{" "}
                         <Link href="/sign-in">
                           <a>Sign In</a>
                         </Link>

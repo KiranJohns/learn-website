@@ -7,12 +7,12 @@ import { IoLocationOutline } from "react-icons/io5";
 import { BsTelephone} from "react-icons/bs";
 import { AiOutlineMail } from "react-icons/ai";
 
-const Footer = () => {
+const FooterPad = () => {
 
     return (
         <footer>
             <div className="footer__area grey-bg-2">
-               <div className="footer__top pt-190 pb-40">
+               <div className="footer__top pt-80 pb-40">
                   <div className="container">
                      <div className="row">
                         <div className="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-4">
@@ -134,4 +134,4 @@ const Footer = () => {
     );
 }
 
-export default Footer;
+export default FooterPad;
