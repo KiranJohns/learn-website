@@ -41,7 +41,7 @@ class Cta extends Component {
                     <a href={`/blog/${Number(this.state.id || 1)}`}>
                       <a className="">
                         <h3 className="text-white">
-                          {this.state.blog && this.state.blog.header?.slice(0,50)}
+                          {this.state.blog && this.state.blog.header?.slice(0,86)}
                         </h3>
                       </a>
                     </a>
