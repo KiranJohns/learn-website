@@ -34,7 +34,7 @@ class About extends Component {
                   <div className="col-xxl-6 col-xl-6 col-lg-6">
                      <div className="about__content pl-70 pr-60 pt-25">
                         <div className="section__title-wrapper mb-25">
-                           <h2 className="section__title">Achieve your <br /><span className="yellow-bg-big">Goals <img src="assets/img/shape/yellow-bg-2.png" alt="img not found" /></span>  with Educal </h2>
+                           <h2 className="section__title">Achieve your <br /><span className="yellow-bg-big">Goals <img src="assets/img/shape/yellow-bg-2.png" alt="img not found" /></span>  with Us </h2>
                            <p>Lost the plot bobby such a fibber bleeding bits and bobs don't get shirty with me bugger all mate chinwag super pukka william barney, horse play buggered.</p>
                         </div>
                         <div className="about__list mb-35">
