@@ -1,18 +1,18 @@
 import Link from "next/link";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
+import fetchData from "../../../axios";
+import store from "../../../redux/store";
 
 function CourseCard({ item }) {
   const { cart } = useSelector((state) => state.cart);
+  const makeRequest = fetchData();
+  const [fakeCount, setFakeCount] = useState(0);
   const [count, setCount] = useState(() => {
-    let count = cart.find(
+    let itemCount = cart.find(
       (cartItem) => cartItem.course_id == item.id
     )?.product_count;
-    if (!count) {
-      return 0;
-    } else {
-      return count;
-    }
+    return itemCount ? itemCount : 0;
   });
 
   function getCartItem() {
@@ -30,6 +30,25 @@ function CourseCard({ item }) {
           });
         }
       });
+  }
+
+  async function handleClick(id) {
+    let cartItem = cart.find(
+      (cartItem) => cartItem.course_id == item.id
+    )?.product_count;
+
+    if (cartItem) {
+      setCount(() => {
+        updateCount(item.id,cartItem + fakeCount);
+        return cartItem + fakeCount;
+      });
+    } else {
+      addToCart(item.id);
+      await setCount((prev) => {
+        updateCount(item.id,prev + fakeCount);
+        return prev + fakeCount;
+      });
+    }
   }
 
   function addToCart(id) {
@@ -52,18 +71,21 @@ function CourseCard({ item }) {
       });
   }
 
-  function increment(id) {
+  function updateCount(id,count) {
+    console.log(id);
     makeRequest("PATCH", "/cart/update-cart-count", {
       course_id: id,
       identifier: 1,
+      count,
     })
       .then((res) => {
+        setFakeCount(() => 0);
         getCartItem();
         store.dispatch({
           type: "INCREMENT_ITEM_CONT",
           payload: id,
         });
-        console.log(res.data);
+        console.log(res);
       })
       .catch((err) => {
         if (err?.data?.errors[0].message === "please login") {
@@ -72,7 +94,7 @@ function CourseCard({ item }) {
             payload: id,
           });
         }
-        console.log(err?.data?.errors);
+        console.log(err);
         console.log(err?.data);
       });
   }
@@ -120,12 +142,15 @@ function CourseCard({ item }) {
             <div className="d-flex ml-1">
               <button
                 className="cart-minus "
-                onClick={() => setCount(prev => --prev)}
+                onClick={() => setFakeCount((prev) => --prev)}
               >
                 <i className="fas fa-minus"></i>
               </button>
-              <p className="p-1">{count}</p>
-              <button className="cart-plus" onClick={() => setCount(prev => ++prev)}>
+              <p className="p-1">{fakeCount}</p>
+              <button
+                className="cart-plus"
+                onClick={() => setFakeCount((prev) => ++prev)}
+              >
                 <i className="fas fa-plus"></i>
               </button>
             </div>
@@ -136,7 +161,7 @@ function CourseCard({ item }) {
               type="button"
               // class=""
               style={{ outline: "none", border: "none" }}
-              onClick={() => addToCart(item.id)}
+              onClick={() => handleClick()}
             >
               Add
             </button>

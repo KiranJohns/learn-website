@@ -57,6 +57,7 @@ const MyCart = () => {
     makeRequest("PATCH", "/cart/update-cart-count", {
       course_id: id,
       identifier: 1,
+      count: 1
     })
       .then((res) => {
         getCartItem();
@@ -83,6 +84,7 @@ const MyCart = () => {
     makeRequest("PATCH", "/cart/update-cart-count", {
       course_id: id,
       identifier: -1,
+      count: 1
     })
       .then((res) => {
         getCartItem();

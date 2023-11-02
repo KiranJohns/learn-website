@@ -52,10 +52,11 @@ const ShopingCart = ({ setShopOpen, shopOpen }) => {
         console.log(err?.data);
       });
   }
-  function increment(id) {
+  function increment(id, count) {
     makeRequest("PATCH", "/cart/update-cart-count", {
       course_id: id,
       identifier: 1,
+      count: count + 1,
     })
       .then((res) => {
         getCartItem();
@@ -76,12 +77,11 @@ const ShopingCart = ({ setShopOpen, shopOpen }) => {
         console.log(err?.data);
       });
   }
-  function decrement(id) {
-    let product = cart.find((item) => item.course_id == id);
-
+  function decrement(id, count) {
     makeRequest("PATCH", "/cart/update-cart-count", {
       course_id: id,
       identifier: -1,
+      count: count + 1,
     })
       .then((res) => {
         getCartItem();
@@ -112,7 +112,7 @@ const ShopingCart = ({ setShopOpen, shopOpen }) => {
       })
       .catch((err) => {
         if (err?.data?.errors[0].message === "please login") {
-          window.location = "/sign-in"
+          window.location = "/sign-in";
         }
       });
   }
@@ -151,7 +151,9 @@ const ShopingCart = ({ setShopOpen, shopOpen }) => {
                           <div className="product-quantity mt-10 mb-10">
                             <span
                               className="cart-minus"
-                              onClick={() => decrement(item.course_id)}
+                              onClick={() =>
+                                decrement(item.course_id, item.product_count)
+                              }
                             >
                               -
                             </span>
@@ -160,7 +162,9 @@ const ShopingCart = ({ setShopOpen, shopOpen }) => {
                             </span>
                             <span
                               className="cart-plus"
-                              onClick={() => increment(item.course_id)}
+                              onClick={() =>
+                                increment(item.course_id, item.product_count)
+                              }
                             >
                               +
                             </span>
