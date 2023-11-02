@@ -33,7 +33,6 @@ export default () => {
       .then((res) => {
         store.dispatch({
           type: "SET_CART",
-          payload: res.data.response,
         });
       })
       .catch((err) => {
@@ -50,6 +49,10 @@ export default () => {
       .then((res) => {
         getCartItem();
         // console.log(res.data);
+        store.dispatch({
+          type: "ADD_TO_CART",
+          payload: course.find((item) => item.id === id),
+        });
       })
       .catch((err) => {
         if (err?.data?.errors[0].message === "please login") {
@@ -68,6 +71,10 @@ export default () => {
     })
       .then((res) => {
         getCartItem();
+        store.dispatch({
+          type: "INCREMENT_ITEM_CONT",
+          payload: id,
+        });
         console.log(res.data);
       })
       .catch((err) => {
@@ -85,24 +92,28 @@ export default () => {
     let product = cart.find((item) => item.course_id == id);
 
     // if (product && product.product_count > 1) {
-      makeRequest("PATCH", "/cart/update-cart-count", {
-        course_id: id,
-        identifier: -1,
-      })
-        .then((res) => {
-          getCartItem();
-          console.log(res.data);
-        })
-        .catch((err) => {
-          if (err?.data?.errors[0].message === "please login") {
-            store.dispatch({
-              type: "DECREMENT_ITEM_CONT",
-              payload: id,
-            });
-          }
-          console.log(err?.data?.errors);
-          console.log(err?.data);
+    makeRequest("PATCH", "/cart/update-cart-count", {
+      course_id: id,
+      identifier: -1,
+    })
+      .then((res) => {
+        getCartItem();
+        store.dispatch({
+          type: "DECREMENT_ITEM_CONT",
+          payload: id,
         });
+        console.log(res.data);
+      })
+      .catch((err) => {
+        if (err?.data?.errors[0].message === "please login") {
+          store.dispatch({
+            type: "DECREMENT_ITEM_CONT",
+            payload: id,
+          });
+        }
+        console.log(err?.data?.errors);
+        console.log(err?.data);
+      });
     // }
   }
   return (
@@ -168,7 +179,7 @@ export default () => {
                     <div className="course__content">
                       <h3 className="homee__title" title={item.name}>
                         <Link href={`/course/${item.id}`}>
-                        <a>{item.name}</a>
+                          <a>{item.name}</a>
                           {/* <a>{item.name.slice(0, 20) + "..."}</a> */}
                         </Link>
                       </h3>
@@ -187,7 +198,7 @@ export default () => {
                       <div className="course__status d-flex align-items-center">
                         <span className="sky-blue mb-3" style={{marginBottom:'1px'}}>£{item.price}</span>
                       </div>
-                      <span style={{marginTop:'2px'}}>
+                      <span style={{ marginTop: "2px" }}>
                         <div className="d-flex ml-1">
                           <button
                             className="cart-minus "
@@ -210,12 +221,12 @@ export default () => {
                           </button>
                         </div>
                       </span>
-                      <span style={{marginBottom:'.1rem'}}>
+                      <span style={{ marginBottom: ".1rem" }}>
                         <button
                           className="btn btn-primary btn-sm mb-2 d-flex justify-content-between align-items-center"
                           type="button"
                           // class=""
-                          style={{outline:'none', border: "none"}}
+                          style={{ outline: "none", border: "none" }}
                           onClick={() => addToCart(item.id)}
                         >
                           Add

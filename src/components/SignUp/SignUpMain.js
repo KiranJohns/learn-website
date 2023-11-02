@@ -421,6 +421,23 @@ function SignUpMain() {
                       {errors.password && <small>{errors.password}</small>}
                       <br />
                     </div>
+                    <div className="sign__input-wrapper ">
+                      <h5>Confirm Password</h5>
+                      <div className="sign__input">
+                        <input
+                          type="password"
+                          name="confirmPassword"
+                          value={values.password}
+                          onBlur={handleBlur}
+                          onChange={handleChange}
+                          placeholder="confirm password"
+                        />
+                        <i className="fas fa-lock"></i>
+                      </div>
+                      
+                      {errors.password && <small>{errors.password}</small>}
+                      <br />
+                    </div>
                     <div className="sign__action d-flex justify-content-between mb-30">
                       <div className="sign__agree d-flex align-items-center">
                         <input
