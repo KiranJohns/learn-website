@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import fetchData from "../../../axios";
 import store from "../../../redux/store";
+import { ToastContainer, toast } from "react-toastify";
 
 function CourseCard({ item }) {
   const makeRequest = fetchData();
@@ -11,7 +12,7 @@ function CourseCard({ item }) {
   const [course, setCourse] = useState([]);
 
   const [count, setCount] = useState(() => {
-    let itemCount = cart.find(
+    let itemCount = cart?.find(
       (cartItem) => cartItem.course_id == item.id
     )?.product_count;
     return itemCount ? itemCount : 0;
@@ -59,7 +60,6 @@ function CourseCard({ item }) {
       } else {
         addToCart(item.id);
       }
-      ` `;
     }
   }
 
@@ -79,12 +79,12 @@ function CourseCard({ item }) {
               count: fakeCount,
             },
           });
+          setFakeCount(0);
         }
       });
   }
 
   function updateCount(id, count) {
-    console.log(count);
     makeRequest("PATCH", "/cart/update-cart-count", {
       course_id: id,
       identifier: 1,
@@ -95,15 +95,16 @@ function CourseCard({ item }) {
         getCartItem();
         store.dispatch({
           type: "INCREMENT_ITEM_CONT",
-          payload: id,
+          payload: { id, count },
         });
       })
       .catch((err) => {
         if (err?.data?.errors[0].message === "please login") {
           store.dispatch({
             type: "INCREMENT_ITEM_CONT",
-            payload: id,
+            payload: { id, count },
           });
+          setFakeCount(0);
         }
         console.log(err);
         console.log(err?.data);
@@ -153,14 +154,23 @@ function CourseCard({ item }) {
             <div className="d-flex ml-1">
               <button
                 className="cart-minus "
-                onClick={() => setFakeCount((prev) => 1 - prev)}
+                onClick={() =>
+                  setFakeCount((prev) => {
+                    if (prev <= 0) {
+                      return 0;
+                    }
+                    return prev - 1;
+                  })
+                }
               >
                 <i className="fas fa-minus"></i>
               </button>
               <p className="p-1">{fakeCount}</p>
               <button
                 className="cart-plus"
-                onClick={() => setFakeCount((prev) => 1 + prev)}
+                onClick={() =>
+                  setFakeCount((prev) => prev + 1)
+                }
               >
                 <i className="fas fa-plus"></i>
               </button>

@@ -63,14 +63,14 @@ const ShopingCart = ({ setShopOpen, shopOpen }) => {
         console.log(res.data);
         store.dispatch({
           type: "INCREMENT_ITEM_CONT",
-          payload: id,
+          payload: {id,count: 1},
         });
       })
       .catch((err) => {
         if (err?.data?.errors[0].message === "please login") {
           store.dispatch({
             type: "INCREMENT_ITEM_CONT",
-            payload: id,
+            payload: {id,count:1},
           });
         }
         console.log(err?.data?.errors);

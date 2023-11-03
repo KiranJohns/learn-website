@@ -18,8 +18,7 @@ const cartReducer = function (state = initialUserState, action) {
       let totalPrice = 0;
       if (cart) {
         let newCart = JSON.parse(cart);
-        console.log("newCart ", newCart);
-        
+
         let cartCount = 0
 
         newCart?.forEach((item) => {
@@ -27,9 +26,11 @@ const cartReducer = function (state = initialUserState, action) {
           cartCount += Number(item.product_count)
         });
 
+        console.log(cartCount);
+
         return { ...state, totalPrice, cart: newCart, cartCount };
       } else {
-        return { ...state, totalPrice, cart: [] };
+        return { ...state, totalPrice: 0, cart: [], cartCount: 0 };
       }
 
     case "ADD_TO_CART":
@@ -46,13 +47,13 @@ const cartReducer = function (state = initialUserState, action) {
             ...state.cart,
             {
               ...action.payload.course,
-              product_count: action.count,
+              product_count: action.payload.count,
               course_id: action.payload.course.id,
               amount: action.payload.course.price,
             },
           ],
-          cartCount: Number(state.cartCount + 1),
-          totalPrice: Number(state.totalPrice) + Number(action.payload.price),
+          cartCount: Number(state.cartCount + Number(action.payload.count)),
+          totalPrice: Number(state.totalPrice) + Number(action.payload.course.price),
         };
       }
 
@@ -67,17 +68,19 @@ const cartReducer = function (state = initialUserState, action) {
           state.cart = [];
         }
 
+        console.log(action.payload);
+
         state = {
           ...state,
           cart: state.cart.filter((item) => {
-            if (item.id == action.payload) {
-              ++item.product_count;
+            if (item.id == action.payload.id) {
+              item.product_count += action.payload.count;
               item.amount = item.price * item.product_count;
               state.totalPrice = Number(state.totalPrice) + Number(item.price);
             }
             return item;
           }),
-          cartCount: state.cartCount + 1
+          cartCount: state.cartCount + action.payload.count
         };
 
         if (!state.logedIn) {
