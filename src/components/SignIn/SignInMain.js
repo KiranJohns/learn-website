@@ -12,7 +12,8 @@ import { BsFillEyeFill } from "react-icons/bs";
 
 function SignInMain() {
   const [loading, setLoading] = useState(false);
-
+  const [showPassword, setShowPassword] = useState(false);
+  
   const [loginData, setLoginData] = useState({ email: "", password: "" });
   const makeRequest = fetchData();
 
@@ -192,7 +193,7 @@ function SignInMain() {
                       <h5>Password</h5>
                       <div className="sign__input">
                         <input
-                          type="password"
+                          type={showPassword ? "text" : "password"}
                           name="password"
                           placeholder="Password"
                           value={loginData.password}
@@ -200,7 +201,7 @@ function SignInMain() {
                           onKeyUp={(e) => e.key === "Enter" && handleLogin(e)}
                         />
                         <i className="fas fa-lock"></i>
-                        <div id="pasToggle"><BsFillEyeFill/></div>
+                        <div id="pasToggle" style={{cursor: "pointer"}} onClick={() => setShowPassword(prev => !prev)}><BsFillEyeFill/></div>
                       </div>
                     </div>
                     <div className="sign__action d-sm-flex justify-content-between mb-30">

@@ -11,13 +11,6 @@ function CourseCard({ item }) {
   const [fakeCount, setFakeCount] = useState(0);
   const [course, setCourse] = useState([]);
 
-  const [count, setCount] = useState(() => {
-    let itemCount = cart?.find(
-      (cartItem) => cartItem.course_id == item.id
-    )?.product_count;
-    return itemCount ? itemCount : 0;
-  });
-
   function getCartItem() {
     makeRequest("GET", "/cart/get")
       .then((res) => {

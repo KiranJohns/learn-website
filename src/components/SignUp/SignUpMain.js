@@ -14,6 +14,7 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { BsFillEyeFill } from "react-icons/bs";
 
 const initialValues = {
   first_name: "",
@@ -28,6 +29,7 @@ const initialValues = {
 
 function SignUpMain() {
   const [otp, setOtp] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const [check, setCheck] = useState(true);
 
@@ -43,7 +45,7 @@ function SignUpMain() {
     }
   }
 
-  localStorage.setItem("check-cart",true)
+  localStorage.setItem("check-cart", true);
 
   function resend(event) {
     event.preventDefault();
@@ -248,9 +250,7 @@ function SignUpMain() {
           <div className="row">
             <div className="col-xxl-8 offset-xxl-2 col-xl-8 offset-xl-2">
               <div className="section__title-wrapper text-center mb-25 mt-25">
-                <h2 className="">
-                  Sign up
-                </h2>
+                <h2 className="">Sign up</h2>
               </div>
             </div>
           </div>
@@ -261,9 +261,8 @@ function SignUpMain() {
                   <div className="sign__in text-center">
                     <p>
                       {" "}
-                      <span>........</span>{" "}
-                      
-                      Create an account<span> ........</span>{" "}
+                      <span>........</span> Create an account
+                      <span> ........</span>{" "}
                     </p>
                   </div>
                 </div>
@@ -368,7 +367,6 @@ function SignUpMain() {
                       <br /> */}
                     </div>
 
-                    
                     <div className="sign__input-wrapper ">
                       <h5>City</h5>
                       <div className="sign__input">
@@ -405,12 +403,11 @@ function SignUpMain() {
                       <br /> */}
                     </div>
 
-
                     <div className="sign__input-wrapper ">
                       <h5>Password</h5>
                       <div className="sign__input">
                         <input
-                          type="password"
+                          type={showPassword ? "text" : "password"}
                           name="password"
                           value={values.password}
                           onBlur={handleBlur}
@@ -418,8 +415,15 @@ function SignUpMain() {
                           placeholder="Password"
                         />
                         <i className="fas fa-lock"></i>
+                        <div
+                          id="pasToggle"
+                          style={{ cursor: "pointer" }}
+                          onClick={() => setShowPassword((prev) => !prev)}
+                        >
+                          <BsFillEyeFill />
+                        </div>
                       </div>
-                      
+
                       {errors.password && <small>{errors.password}</small>}
                       <br />
                     </div>
@@ -427,7 +431,7 @@ function SignUpMain() {
                       <h5>Confirm Password</h5>
                       <div className="sign__input">
                         <input
-                          type="password"
+                          type={showPassword ? "text" : "password"}
                           name="confirmPassword"
                           value={values.password}
                           onBlur={handleBlur}
@@ -436,7 +440,7 @@ function SignUpMain() {
                         />
                         <i className="fas fa-lock"></i>
                       </div>
-                      
+
                       {errors.password && <small>{errors.password}</small>}
                       <br />
                     </div>
