@@ -52,11 +52,11 @@ const ShopingCart = ({ setShopOpen, shopOpen }) => {
         console.log(err?.data);
       });
   }
-  function increment(id, count) {
+  function increment(id) {
     makeRequest("PATCH", "/cart/update-cart-count", {
       course_id: id,
       identifier: 1,
-      count: count + 1,
+      count: 1,
     })
       .then((res) => {
         getCartItem();
@@ -77,11 +77,11 @@ const ShopingCart = ({ setShopOpen, shopOpen }) => {
         console.log(err?.data);
       });
   }
-  function decrement(id, count) {
+  function decrement(id) {
     makeRequest("PATCH", "/cart/update-cart-count", {
       course_id: id,
       identifier: -1,
-      count: count + 1,
+      count: -1,
     })
       .then((res) => {
         getCartItem();
@@ -152,7 +152,7 @@ const ShopingCart = ({ setShopOpen, shopOpen }) => {
                             <span
                               className="cart-minus"
                               onClick={() =>
-                                decrement(item.course_id, item.product_count)
+                                decrement(item.course_id)
                               }
                             >
                               -
@@ -163,7 +163,7 @@ const ShopingCart = ({ setShopOpen, shopOpen }) => {
                             <span
                               className="cart-plus"
                               onClick={() =>
-                                increment(item.course_id, item.product_count)
+                                increment(item.course_id)
                               }
                             >
                               +

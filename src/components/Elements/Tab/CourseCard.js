@@ -59,20 +59,25 @@ function CourseCard({ item }) {
       } else {
         addToCart(item.id);
       }
+      ` `;
     }
   }
 
   function addToCart(id) {
-    makeRequest("POST", "/cart/add", { course: [{ count: fakeCount,id: id }] })
+    makeRequest("POST", "/cart/add", { course: [{ count: fakeCount, id: id }] })
       .then((res) => {
         getCartItem();
+        setFakeCount(0);
         console.log(res.data);
       })
       .catch((err) => {
         if (err?.data?.errors[0].message === "please login") {
           store.dispatch({
             type: "ADD_TO_CART",
-            payload: course.find((item) => item.id === id),
+            payload: {
+              course: course.find((item) => item.id === id),
+              count: fakeCount,
+            },
           });
         }
       });

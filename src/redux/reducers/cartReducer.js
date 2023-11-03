@@ -37,7 +37,7 @@ const cartReducer = function (state = initialUserState, action) {
         state.cart = [];
       }
       if (
-        state.cart?.find((item) => item.id === action.payload.id) !== undefined
+        state.cart?.find((item) => item.id === action.payload.course.id) !== undefined
       ) {
         return { ...state };
       } else {
@@ -45,10 +45,10 @@ const cartReducer = function (state = initialUserState, action) {
           cart: [
             ...state.cart,
             {
-              ...action.payload,
-              product_count: 1,
-              course_id: action.payload.id,
-              amount: action.payload.price,
+              ...action.payload.course,
+              product_count: action.count,
+              course_id: action.payload.course.id,
+              amount: action.payload.course.price,
             },
           ],
           cartCount: Number(state.cartCount + 1),

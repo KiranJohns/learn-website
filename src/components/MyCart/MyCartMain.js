@@ -79,12 +79,10 @@ const MyCart = () => {
       });
   }
   function decrement(id) {
-    let product = cart.find((item) => item.course_id == id);
-
     makeRequest("PATCH", "/cart/update-cart-count", {
       course_id: id,
       identifier: -1,
-      count: 1
+      count: -1
     })
       .then((res) => {
         getCartItem();
