@@ -101,7 +101,7 @@ class DashTest extends Component {
         <div className="bi bi-file-earmark-spreadsheet ag-courses-item_date-box">
           {/* Start:
           <span className="ag-courses-item_date">
-            04.11.2022
+            04.11.202
           </span> */}
         </div>
       </a>
