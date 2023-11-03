@@ -23,6 +23,7 @@ const initialValues = {
   country: "",
   city: "",
   password: "",
+  confirmPassword: "",
   type_of_account: "",
   terms: "",
 };
@@ -114,6 +115,11 @@ function SignUpMain() {
       const method = "POST"; // Specify the HTTP method
       const url = "/auth/registration"; // Specify the API endpoint URL
       const data = values; // Send form values as data
+
+      if(values.password !== values.confirmPassword) {
+        toast.error("password is not matching")
+        return
+      }
 
       store.dispatch({
         type: "SET_LOADING",
@@ -424,7 +430,7 @@ function SignUpMain() {
                         </div>
                       </div>
 
-                      {errors.password && <small>{errors.password}</small>}
+                      {errors.confirmPassword && <small>{errors.confirmPassword}</small>}
                       <br />
                     </div>
                     <div className="sign__input-wrapper ">
@@ -433,7 +439,7 @@ function SignUpMain() {
                         <input
                           type={showPassword ? "text" : "password"}
                           name="confirmPassword"
-                          value={values.password}
+                          value={values.confirmPassword}
                           onBlur={handleBlur}
                           onChange={handleChange}
                           placeholder="confirm password"
