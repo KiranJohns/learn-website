@@ -25,9 +25,6 @@ const cartReducer = function (state = initialUserState, action) {
           totalPrice += Number(item.amount);
           cartCount += Number(item.product_count)
         });
-
-        console.log(cartCount);
-
         return { ...state, totalPrice, cart: newCart, cartCount };
       } else {
         return { ...state, totalPrice: 0, cart: [], cartCount: 0 };
@@ -49,7 +46,7 @@ const cartReducer = function (state = initialUserState, action) {
               ...action.payload.course,
               product_count: action.payload.count,
               course_id: action.payload.course.id,
-              amount: action.payload.course.price,
+              amount: Number(action.payload.course.price) * Number(action.payload.count),
             },
           ],
           cartCount: Number(state.cartCount + Number(action.payload.count)),
@@ -67,8 +64,6 @@ const cartReducer = function (state = initialUserState, action) {
         if (state.cart === null) {
           state.cart = [];
         }
-
-        console.log(action.payload);
 
         state = {
           ...state,
