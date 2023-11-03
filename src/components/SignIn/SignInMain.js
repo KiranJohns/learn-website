@@ -8,12 +8,12 @@ import fetchData from "../../axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { BsFillEyeFill } from "react-icons/bs";
-
+import axios from "axios";
 
 function SignInMain() {
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  
+
   const [loginData, setLoginData] = useState({ email: "", password: "" });
   const makeRequest = fetchData();
 
@@ -27,7 +27,7 @@ function SignInMain() {
     });
   }
 
-  localStorage.setItem("check-cart",true)
+  localStorage.setItem("check-cart", true);
 
   function handleLogin() {
     store.dispatch({
@@ -42,11 +42,8 @@ function SignInMain() {
           payload: res.data,
         });
         setLoading((prev) => false);
-        await localStorage.setItem(
-          `learnforcare_access`,
-          res.data.jwt_access_token
-        );
-        await localStorage.setItem(
+        localStorage.setItem(`learnforcare_access`, res.data.jwt_access_token);
+        localStorage.setItem(
           `learnforcare_refresh`,
           res.data.jwt_refresh_token
         );
@@ -201,7 +198,13 @@ function SignInMain() {
                           onKeyUp={(e) => e.key === "Enter" && handleLogin(e)}
                         />
                         <i className="fas fa-lock"></i>
-                        <div id="pasToggle" style={{cursor: "pointer"}} onClick={() => setShowPassword(prev => !prev)}><BsFillEyeFill/></div>
+                        <div
+                          id="pasToggle"
+                          style={{ cursor: "pointer" }}
+                          onClick={() => setShowPassword((prev) => !prev)}
+                        >
+                          <BsFillEyeFill />
+                        </div>
                       </div>
                     </div>
                     <div className="sign__action d-sm-flex justify-content-between mb-30">
@@ -219,12 +222,12 @@ function SignInMain() {
                         <span role="button">Forgot your password?</span>
                       </div>
                     </div>
-                      <button
-                        type="button"
-                        className="e-btn  w-100"
-                        onClick={handleLogin}
-                      >
-                    {loading ? (
+                    <button
+                      type="button"
+                      className="e-btn  w-100"
+                      onClick={handleLogin}
+                    >
+                      {loading ? (
                         <>
                           <span
                             class="spinner-border spinner-border-sm"
@@ -237,8 +240,7 @@ function SignInMain() {
                         <>
                           <span>Sign In</span>
                         </>
-                      )}
-                      {" "}
+                      )}{" "}
                     </button>
                     {/* <div className="sign__new text-center mt-20">
                       <p>
