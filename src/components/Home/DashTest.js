@@ -36,8 +36,9 @@ class DashTest extends Component {
     </div>    */}
 
          <div className="ag-format-container">
+          <div className='d-flex justify-content-center' style={{padding:'12px',margin:'1rem 0rem' }}><h2 style={{color:'#5a9676'}}>Dashboard</h2></div>
   <div className="ag-courses_box">
-
+   
     <div className="ag-courses_item">
       <a href="/company/myprofile" className="ag-courses-item_link">
         <div className="ag-courses-item_bg"></div>
