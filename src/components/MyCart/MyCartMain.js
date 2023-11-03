@@ -254,6 +254,7 @@ const MyCart = () => {
                       <span
                         onClick={handleCheckout}
                         className="e-btn e-btn-border"
+                        style={{cursor:'pointer'}}
                       >
                         Proceed to checkout
                       </span>
