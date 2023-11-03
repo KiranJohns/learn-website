@@ -53,7 +53,7 @@ const cartReducer = function (state = initialUserState, action) {
             },
           ],
           cartCount: Number(state.cartCount + Number(action.payload.count)),
-          totalPrice: Number(state.totalPrice) + Number(action.payload.course.price),
+          totalPrice: Number(state.totalPrice) + (Number(action.payload.course.price) * Number(action.payload.count)),
         };
       }
 
