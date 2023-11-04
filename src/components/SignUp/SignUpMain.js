@@ -14,7 +14,7 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { BsFillEyeFill } from "react-icons/bs";
+import { BsFillEyeFill, BsEyeSlashFill } from "react-icons/bs";
 
 const initialValues = {
   first_name: "",
@@ -426,7 +426,7 @@ function SignUpMain() {
                           style={{ cursor: "pointer" }}
                           onClick={() => setShowPassword((prev) => !prev)}
                         >
-                          <BsFillEyeFill />
+                           {showPassword ? <BsEyeSlashFill/>:<BsFillEyeFill /> }
                         </div>
                       </div>
 

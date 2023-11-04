@@ -26,7 +26,6 @@ class myCourse extends React.Component{
                    <DashboardBar/>
                    </div>
                 <div className="col-sm col-md-9  bg-light">
-                    
                     <DashCourse />
              </div>
          </div>       

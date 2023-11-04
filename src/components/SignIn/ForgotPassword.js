@@ -10,11 +10,11 @@ import "react-toastify/dist/ReactToastify.css";
 import { BsFillEyeFill, BsEyeSlashFill } from "react-icons/bs";
 import axios from "axios";
 
-function SignInMain() {
+function ForgotPass() {
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
-  const [loginData, setLoginData] = useState({ email: "", password: "" });
+  const [loginData, setLoginData] = useState({confirmPass: "", password: "" });
   const makeRequest = fetchData();
 
   function handleOnChange(e) {
@@ -106,53 +106,48 @@ function SignInMain() {
             </form>
           </div>
         </Modal> */}
-      <section className="signup__area po-rel-z1 pt-100 pb-145">
+      <section className="signup__area po-rel-z1 pt-125 pb-145">
         <div className="sign__shape">
           <img
             className="man-1"
-            src="assets/img/icon/sign/man-1.png"
+            src="../../assets/img/icon/sign/man-1.png"
             alt="img not found"
           />
           <img
             className="man-2"
-            src="assets/img/icon/sign/man-2.png"
+            src="../../assets/img/icon/sign/man-2.png"
             alt="img not found"
           />
           <img
             className="circle"
-            src="assets/img/icon/sign/circle.png"
+            src="../../assets/img/icon/sign/circle.png"
             alt="img not found"
           />
           <img
             className="zigzag"
-            src="assets/img/icon/sign/zigzag.png"
+            src="../../assets/img/icon/sign/zigzag.png"
             alt="img not found"
           />
           <img
             className="dot"
-            src="assets/img/icon/sign/dot.png"
+            src="../../assets/img/icon/sign/dot.png"
             alt="img not found"
           />
           <img
             className="bg"
-            src="assets/img/icon/sign/sign-up.png"
+            src="../../assets/img/icon/sign/sign-up.png"
             alt="img not found"
           />
         </div>
         <div className="container">
           <div className="row">
             <div className="col-xxl-8 offset-xxl-2 col-xl-8 offset-xl-2">
-              <div className="section__title-wrapper text-center mb-55">
+              <div className="section__title-wrapper text-center mb-20">
                 <h2 className="section__title ">
-                  Sign in
+                  Forgot Password
                   <br />{" "}
                 </h2>
-                <p>
-                  Don't have an account ?
-                  <Link href="/sign-up">
-                    <a className="text-primary"> Sign Up </a>
-                  </Link>
-                </p>
+              
               </div>
             </div>
           </div>
@@ -174,19 +169,6 @@ function SignInMain() {
                 <div className="sign__form">
                   <form>
                     <div className="sign__input-wrapper mb-25">
-                      <h5>Email</h5>
-                      <div className="sign__input">
-                        <input
-                          type="text"
-                          name="email"
-                          value={loginData.email}
-                          onChange={handleOnChange}
-                          placeholder="e-mail address"
-                        />
-                        <i className="fas fa-envelope"></i>
-                      </div>
-                    </div>
-                    <div className="sign__input-wrapper mb-10">
                       <h5>Password</h5>
                       <div className="sign__input">
                         <input
@@ -204,28 +186,30 @@ function SignInMain() {
                           onClick={() => setShowPassword((prev) => !prev)}
                         >
                           {showPassword ? <BsEyeSlashFill/>:<BsFillEyeFill /> }
+                      
                         </div>
                       </div>
                     </div>
-                    <div className="sign__action d-sm-flex justify-content-between mb-30">
-                      <div className="sign__agree d-flex align-items-center">
+                    <div className="sign__input-wrapper mb-10">
+                      <h5>Confirm password</h5>
+                      <div className="sign__input">
                         <input
-                          className="m-check-input"
-                          type="checkbox"
-                          id="m-agree"
+                          type='text'
+                          name="confirm"
+                          placeholder="Confirm password"
+                          value={loginData.confirmPass}
+                          onChange={handleOnChange}
+                          onKeyUp={(e) => e.key === "Enter" && handleLogin(e)}
                         />
-                        <label className="m-check-label" htmlFor="m-agree">
-                          Keep me signed in
-                        </label>
-                      </div>
-                      <div className="sign__forgot">
-                        <span role="button">Forgot your password?</span>
+                        <i className="fas fa-lock"></i>
+                       
                       </div>
                     </div>
+                   
                     <button
                       type="button"
-                      className="e-btn  w-100"
-                      onClick={handleLogin}
+                      className="e-btn  w-100 mt-20"
+                    //   onClick={handleLogin}
                     >
                       {loading ? (
                         <>
@@ -238,7 +222,7 @@ function SignInMain() {
                         </>
                       ) : (
                         <>
-                          <span>Sign In</span>
+                          <span>Change Password</span>
                         </>
                       )}{" "}
                     </button>
@@ -261,4 +245,4 @@ function SignInMain() {
   );
 }
 
-export default SignInMain;
+export default ForgotPass;
