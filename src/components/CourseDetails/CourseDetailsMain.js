@@ -11,6 +11,7 @@ import sampleProducts from "./../../../sampleProduct.json";
 import CourseAccordion from "../Elements/Accordion/CourseAccordion";
 import products from "../../../sampleProduct.json";
 
+
 const CourseSliderWithNoSSR = dynamic(
   () => import("../Elements/Slider/CourseSliderSection"),
   {
