@@ -22,6 +22,7 @@ function SignInMain() {
     e.preventDefault();
     makeRequest("POST", "/auth/forgot-password", { email })
       .then((res) => {
+        toast.info("link sent to your email")
         console.log(res);
       })
       .catch((err) => {
