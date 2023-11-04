@@ -10429,7 +10429,7 @@ var createModule = function() {
             doCallback(null);
           }
         }
-        mounts.forEach(function(mount) {
+        mounts?.forEach(function(mount) {
           if (!mount.type.syncfs) {
             return done(null);
           }
@@ -10480,7 +10480,7 @@ var createModule = function() {
         var node = lookup.node;
         var mount = node.mounted;
         var mounts = FS.getMounts(mount);
-        Object.keys(FS.nameTable).forEach(function(hash) {
+        Object.keys(FS.nameTable)?.forEach(function(hash) {
           var current = FS.nameTable[hash];
           while (current) {
             var next = current.name_next;
@@ -11253,7 +11253,7 @@ var createModule = function() {
         };
         FS.ErrnoError.prototype = new Error();
         FS.ErrnoError.prototype.constructor = FS.ErrnoError;
-        [44].forEach(function(code) {
+        [44]?.forEach(function(code) {
           FS.genericErrors[code] = new FS.ErrnoError(code);
           FS.genericErrors[code].stack = "<generic error, no stack>";
         });
@@ -11474,7 +11474,7 @@ var createModule = function() {
         });
         var stream_ops = {};
         var keys = Object.keys(node.stream_ops);
-        keys.forEach(function(key2) {
+        keys?.forEach(function(key2) {
           var fn = node.stream_ops[key2];
           stream_ops[key2] = function forceLoadLazyFile() {
             FS.forceLoadFile(node);
@@ -11586,7 +11586,7 @@ var createModule = function() {
             else
               onerror();
           }
-          paths.forEach(function(path) {
+          paths?.forEach(function(path) {
             var putRequest = files.put(
               FS.analyzePath(path).object.contents,
               path
@@ -11634,7 +11634,7 @@ var createModule = function() {
             else
               onerror();
           }
-          paths.forEach(function(path) {
+          paths?.forEach(function(path) {
             var getRequest = files.get(path);
             getRequest.onsuccess = function getRequest_onsuccess() {
               if (FS.analyzePath(path).exists) {

@@ -31,7 +31,7 @@ const HeaderOpaque = () => {
       let localCart = JSON.parse(localStorage.getItem('learnfrocarecart'))
       console.log(localCart);
       let cartIds = []
-      localCart.forEach(item => {
+      localCart?.forEach(item => {
         cartIds.push({count: item.product_count, id: item.id});
       })
 
