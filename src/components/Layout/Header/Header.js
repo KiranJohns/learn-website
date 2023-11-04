@@ -63,7 +63,7 @@ const Header = () => {
             localStorage.removeItem("learnfrocarecart");
           })
           .catch((err) => {
-            console.log(err.data);
+            console.log(err?.data);
           });
       }
     }

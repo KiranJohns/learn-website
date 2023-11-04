@@ -9,17 +9,22 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { BsFillEyeFill, BsEyeSlashFill } from "react-icons/bs";
 import axios from "axios";
+import { useRouter } from "next/router";
 
 function ForgotPass() {
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
-  const [loginData, setLoginData] = useState({confirmPass: "", password: "" });
+  const [userData, setUserData] = useState({ confirmPass: "", password: "" });
+  let route = useRouter();
+  const [token, setToken] = useState(() => {
+    return route?.query?.slug || "";
+  });
   const makeRequest = fetchData();
 
   function handleOnChange(e) {
     e.persist();
-    setLoginData((prev) => {
+    setUserData((prev) => {
       return {
         ...prev,
         [e.target.name]: e.target.value,
@@ -29,83 +34,30 @@ function ForgotPass() {
 
   localStorage.setItem("check-cart", true);
 
-  function handleLogin() {
-    store.dispatch({
-      type: "SET_LOADING_FOR_SIGN_IN",
-    });
-
+  function handleClick() {
     setLoading((prev) => true);
-    makeRequest("POST", "/auth/login", loginData)
+    if (userData.password !== userData.confirmPass) {
+      toast.error("password not match");
+      return;
+    }
+    makeRequest("POST", "/auth/change-password", {
+      password: userData.password,
+      token,
+    })
       .then(async (res) => {
-        store.dispatch({
-          type: "SET_RESPONSE_FOR_SIGN_IN",
-          payload: res.data,
-        });
         setLoading((prev) => false);
-        localStorage.setItem(`learnforcare_access`, res.data.jwt_access_token);
-        localStorage.setItem(
-          `learnforcare_refresh`,
-          res.data.jwt_refresh_token
-        );
-        location.pathname = "/company/dashboard";
+        console.log(res);
+        location.pathname = "/sign-in";
       })
       .catch((err) => {
+        console.log(err);
         setLoading((prev) => false);
-        console.log(err.data.errors[0]);
-        toast.error(err.data.errors[0].error);
-        store.dispatch({
-          type: "SET_ERROR_FOR_SIGN_IN",
-          payload: err,
-        });
+        // console.log(err.data.errors[0]);
+        // toast.error(err.data.errors[0].error);
       });
   }
   return (
     <main>
-      {/* <Modal
-          open={false}
-          onClose={this.onCloseModal}
-          styles={{
-            modal: {
-              maxWidth: "unset",
-              width: "50%",
-              padding: "unset",
-            },
-            overlay: {
-              background: "rgba(0, 0, 0, 0.5)",
-            },
-            closeButton: {
-              background: "white",
-            },
-          }}
-          center
-        >
-          <div className="main p-5">
-            <div className="heading">
-              <h2>Forgot Password</h2>
-            </div>
-            <div className="info">
-              An OTP has been sent to your registered email address.
-            </div>
-            <form className="py-3">
-              <div className="form-group">
-                <label htmlFor="otp">Enter OTP</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  name="otp"
-                  value={this.state.otp}
-                  onChange={this.handleOnChange}
-                  id="otp"
-                />
-                <Link href="/new-password">
-                  <button type="button" class="my-4 width-100 btn btn-primary">
-                    submit
-                  </button>
-                </Link>
-              </div>
-            </form>
-          </div>
-        </Modal> */}
       <section className="signup__area po-rel-z1 pt-125 pb-145">
         <div className="sign__shape">
           <img
@@ -147,7 +99,6 @@ function ForgotPass() {
                   Forgot Password
                   <br />{" "}
                 </h2>
-              
               </div>
             </div>
           </div>
@@ -175,7 +126,7 @@ function ForgotPass() {
                           type={showPassword ? "text" : "password"}
                           name="password"
                           placeholder="Password"
-                          value={loginData.password}
+                          value={userData.password}
                           onChange={handleOnChange}
                           onKeyUp={(e) => e.key === "Enter" && handleLogin(e)}
                         />
@@ -185,8 +136,11 @@ function ForgotPass() {
                           style={{ cursor: "pointer" }}
                           onClick={() => setShowPassword((prev) => !prev)}
                         >
-                          {showPassword ? <BsEyeSlashFill/>:<BsFillEyeFill /> }
-                      
+                          {showPassword ? (
+                            <BsFillEyeFill />
+                          ) : (
+                            <BsEyeSlashFill />
+                          )}
                         </div>
                       </div>
                     </div>
@@ -194,22 +148,22 @@ function ForgotPass() {
                       <h5>Confirm password</h5>
                       <div className="sign__input">
                         <input
-                          type='text'
-                          name="confirm"
+                          type="text"
+                          name="confirmPass"
                           placeholder="Confirm password"
-                          value={loginData.confirmPass}
+                          value={userData.confirmPass}
                           onChange={handleOnChange}
-                          onKeyUp={(e) => e.key === "Enter" && handleLogin(e)}
+                          onKeyUp={(e) => e.key === "Enter" && handleClick(e)}
                         />
                         <i className="fas fa-lock"></i>
-                       
                       </div>
                     </div>
-                   
+
                     <button
+                    onClick={handleClick}
                       type="button"
                       className="e-btn  w-100 mt-20"
-                    //   onClick={handleLogin}
+                      //   onClick={handleLogin}
                     >
                       {loading ? (
                         <>

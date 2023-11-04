@@ -112,6 +112,9 @@ const MyCart = () => {
         window.location.href = res.data.response;
       })
       .catch((err) => {
+        if (err?.data?.errors[0].message === "please login") {
+          location.pathname = "/sign-in"
+        }
         console.log(err.data.errors[0]);
       });
   }

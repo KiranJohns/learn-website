@@ -8,15 +8,26 @@ import fetchData from "../../axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { BsFillEyeFill, BsEyeSlashFill } from "react-icons/bs";
-import axios from "axios";
 
 function SignInMain() {
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [showEmailModal, setShowEmailModal] = useState(false);
+  const [email, setEmail] = useState("");
 
   const [loginData, setLoginData] = useState({ email: "", password: "" });
   const makeRequest = fetchData();
 
+  function handleForgotPassword(e) {
+    e.preventDefault();
+    makeRequest("POST", "/auth/forgot-password", { email })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
   function handleOnChange(e) {
     e.persist();
     setLoginData((prev) => {
@@ -106,6 +117,53 @@ function SignInMain() {
             </form>
           </div>
         </Modal> */}
+
+      <Modal
+        open={showEmailModal}
+        onClose={() => setShowEmailModal(false)}
+        styles={{
+          modal: {
+            maxWidth: "unset",
+            width: "50%",
+            padding: "unset",
+          },
+          overlay: {
+            background: "rgba(0, 0, 0, 0.5)",
+          },
+          closeButton: {
+            background: "white",
+          },
+        }}
+        center
+      >
+        <div className="main p-5">
+          <div className="heading">
+            <h3>Forgot Password</h3>
+          </div>
+          <div className="info">Enter your registered email</div>
+          <div className="form-group">
+            <label htmlFor="otp">Email</label>
+            <input
+              type="text"
+              className="form-control"
+              name="otp"
+              id="otp"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              onKeyUp={(e) => e.key == "Enter" && handleForgotPassword(e)}
+            />
+            <Link href="/new-password">
+              <button
+                type="button"
+                class="my-4 width-100 btn btn-primary"
+                onClick={handleForgotPassword}
+              >
+                submit
+              </button>
+            </Link>
+          </div>
+        </div>
+      </Modal>
       <section className="signup__area po-rel-z1 pt-100 pb-145">
         <div className="sign__shape">
           <img
@@ -203,7 +261,11 @@ function SignInMain() {
                           style={{ cursor: "pointer" }}
                           onClick={() => setShowPassword((prev) => !prev)}
                         >
-                          {showPassword ? <BsEyeSlashFill/>:<BsFillEyeFill /> }
+                          {showPassword ? (
+                            <BsEyeSlashFill />
+                          ) : (
+                            <BsFillEyeFill />
+                          )}
                         </div>
                       </div>
                     </div>
@@ -219,7 +281,12 @@ function SignInMain() {
                         </label>
                       </div>
                       <div className="sign__forgot">
-                        <span role="button">Forgot your password?</span>
+                        <span
+                          role="button"
+                          onClick={() => setShowEmailModal((prev) => !prev)}
+                        >
+                          Forgot your password?
+                        </span>
                       </div>
                     </div>
                     <button
