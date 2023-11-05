@@ -15,7 +15,7 @@ class CourseGridMain extends Component {
 				{/* breadcrumb-end */}
 
                 {/* course tab-start */}
-				<CourseGridTab />
+				<CourseGridTab category="Care Courses" />
 				{/* course tab-end */}
 
                 {/* cta-start */}

@@ -15,7 +15,7 @@ class CourseGridChild extends Component {
 				{/* breadcrumb-end */}
 
                 {/* course tab-start */}
-				<CourseGridTab />
+				<CourseGridTab category="Child Care Courses" />
 				{/* course tab-end */}
 
                 {/* cta-start */}

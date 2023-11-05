@@ -12,40 +12,17 @@ import Link from "next/link";
 import { useSelector } from "react-redux";
 import fetchData from "../../../axios/index";
 import CourseCard from "./CourseCard";
-import ResponsivePagination from "react-responsive-pagination";
 
-export default () => {
+export default ({ category }) => {
   const { cart } = useSelector((store) => store.cart);
   let makeRequest = fetchData();
 
   const [course, setCourse] = useState([]);
-  const [count, setCount] = useState(0);
-  const [selectedCount, setSelectedCount] = useState(1);
-
-  function getCourse(limit) {
-    selectedCount(limit)
-    makeRequest("GET", `/course/get-course-by-limit/${limit}`)
-      .then((res) => {
-        setCourse(res.data.response.courses);
-        setCount(res.data.response.count);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
-
-  function handleClick(val) {
-    getCourse(val)
-  }
-
-
 
   useEffect(() => {
-    makeRequest("GET", `/course/get-course-by-limit/${count}`)
+    makeRequest("GET", "/course/get-all-course")
       .then((res) => {
-        console.log(res);
-        setCourse(res.data.response.courses);
-        setCount(res.data.response.count);
+        setCourse(res.data.response);
       })
       .catch((err) => {
         console.log(err);
@@ -94,11 +71,11 @@ export default () => {
           </div>
           <TabPanel>
             <div className="row">
-              {course.map((item) => (
-                <CourseCard item={item} />
-              ))}
+              {course.map((item) => {
+                if (category === item.category)
+                  return <CourseCard item={item} />;
+              })}
             </div>
-            
           </TabPanel>
         </div>
       </Tabs>

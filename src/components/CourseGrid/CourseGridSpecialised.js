@@ -11,11 +11,11 @@ class CourseGridSpecialised extends Component {
         return (
             <main>
 	            {/* breadcrumb-start */}
-				<Breadcrumb pageTitle="Specialised Care Courses"/>
+				<Breadcrumb pageTitle="Specialized Care Courses"/>
 				{/* breadcrumb-end */}
 
                 {/* course tab-start */}
-				<CourseGridTab />
+				<CourseGridTab category="Specialized Care Courses" />
 				{/* course tab-end */}
 
                 {/* cta-start */}

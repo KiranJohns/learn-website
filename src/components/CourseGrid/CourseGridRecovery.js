@@ -15,7 +15,7 @@ class CourseGridRecovery extends Component {
 				{/* breadcrumb-end */}
 
                 {/* course tab-start */}
-				<CourseGridTab />
+				<CourseGridTab category="Recovery Care Courses"/>
 				{/* course tab-end */}
 
                 {/* cta-start */}

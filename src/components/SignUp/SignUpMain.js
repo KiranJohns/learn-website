@@ -23,6 +23,7 @@ const initialValues = {
   country: "",
   city: "",
   password: "",
+  phone: "",
   confirmPassword: "",
   type_of_account: "",
   terms: "",
@@ -134,8 +135,8 @@ function SignUpMain() {
           });
         })
         .catch((error) => {
-          console.log(error.data.errors[0]);
-          // console.log(error.data);
+          console.log(error?.data?.errors[0]);
+          console.log(error);
           store.dispatch({
             type: "SET_ERROR",
             payload: error,
@@ -340,6 +341,24 @@ function SignUpMain() {
                     </div>
 
                     <div className="sign__input-wrapper ">
+                      <h5>Phone</h5>
+                      <div className="sign__input">
+                        <input
+                          type="text"
+                          name="phone"
+                          value={values.phone}
+                          onBlur={handleBlur}
+                          onChange={handleChange}
+                          placeholder="phone"
+                        />
+                        <i className="fas fa-phone fa-fw"></i>
+                      </div>
+                      <br />
+                      {/* {errors.email && <small>{errors.email}</small>}
+                      <br /> */}
+                    </div>
+
+                    <div className="sign__input-wrapper ">
                       <h5>Type</h5>
                       <div className="sign__input">
                         <select
@@ -394,18 +413,33 @@ function SignUpMain() {
                     <div className="sign__input-wrapper ">
                       <h5>Country</h5>
                       <div className="sign__input">
-                        <input
-                          type="text"
+                        <select
+                          style={{
+                            width: "100%",
+                            background: "#f6f6f7",
+                            border: "none",
+                            padding: "1rem",
+                            borderRadius: ".2rem",
+                            outline: "#2b4eff",
+                          }}
+                          onChange={handleChange}
                           name="country"
-                          value={values.country}
+                        >
+                          <option value="">Select</option>
+                          <option value="UK">UK</option>
+                        </select>
+                        {/* <input
+                          type="text"
+                          name="type_of_account"
+                          value={values.type_of_account}
                           onBlur={handleBlur}
                           onChange={handleChange}
-                          placeholder="Country"
+                          placeholder="type"
                         />
-                        <i className="fas fa-flag"></i>
+                        <i className="fas fa-check"></i> */}
                       </div>
                       <br />
-                      {/* {errors.country && <small>{errors.country}</small>}
+                      {/* {errors.type && <small>{errors.type}</small>}
                       <br /> */}
                     </div>
 
