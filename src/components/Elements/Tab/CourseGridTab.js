@@ -12,18 +12,40 @@ import Link from "next/link";
 import { useSelector } from "react-redux";
 import fetchData from "../../../axios/index";
 import CourseCard from "./CourseCard";
-import Pagination from "react-bootstrap/Pagination";
+import ResponsivePagination from "react-responsive-pagination";
 
 export default () => {
   const { cart } = useSelector((store) => store.cart);
   let makeRequest = fetchData();
 
   const [course, setCourse] = useState([]);
+  const [count, setCount] = useState(0);
+  const [selectedCount, setSelectedCount] = useState(1);
+
+  function getCourse(limit) {
+    selectedCount(limit)
+    makeRequest("GET", `/course/get-course-by-limit/${limit}`)
+      .then((res) => {
+        setCourse(res.data.response.courses);
+        setCount(res.data.response.count);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  function handleClick(val) {
+    getCourse(val)
+  }
+
+
 
   useEffect(() => {
-    makeRequest("GET", "/course/get-all-course")
+    makeRequest("GET", `/course/get-course-by-limit/${count}`)
       .then((res) => {
-        setCourse(res.data.response);
+        console.log(res);
+        setCourse(res.data.response.courses);
+        setCount(res.data.response.count);
       })
       .catch((err) => {
         console.log(err);
@@ -77,17 +99,11 @@ export default () => {
               ))}
             </div>
             <div className="d-flex justify-content-end">
-              <Pagination>
-                <Pagination.First />
-                <Pagination.Prev />
-                <Pagination.Item>{1}</Pagination.Item>
-                <Pagination.Item>{2}</Pagination.Item>
-                <Pagination.Item>{3}</Pagination.Item>
-                <Pagination.Item active>{4}</Pagination.Item>
-                <Pagination.Item>{5}</Pagination.Item>
-                <Pagination.Next />
-                <Pagination.Last />
-              </Pagination>
+              <ResponsivePagination
+                current={selectedCount}
+                total={Math.floor(count/12)}
+                onPageChange={handleClick}
+              />
             </div>
           </TabPanel>
         </div>
