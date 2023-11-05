@@ -12,8 +12,7 @@ import Link from "next/link";
 import { useSelector } from "react-redux";
 import fetchData from "../../../axios/index";
 import CourseCard from "./CourseCard";
-import Pagination from 'react-bootstrap/Pagination';
-
+import Pagination from "react-bootstrap/Pagination";
 
 export default () => {
   const { cart } = useSelector((store) => store.cart);
@@ -73,12 +72,13 @@ export default () => {
           </div>
           <TabPanel>
             <div className="row">
-              {course.map((item) => (<CourseCard item={item} />))}
+              {course.map((item) => (
+                <CourseCard item={item} />
+              ))}
             </div>
             
           </TabPanel>
         </div>
-       
       </Tabs>
     </section>
   );
