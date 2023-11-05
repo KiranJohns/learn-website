@@ -75,7 +75,7 @@ export default () => {
             <div className="row">
               {course.map((item) => (<CourseCard item={item} />))}
             </div>
-            
+          
           </TabPanel>
         </div>
        

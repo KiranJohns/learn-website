@@ -9,6 +9,7 @@ import CourseTab from "../Elements/Tab/CourseTab";
 import Service from "../HomeTwo/ServiceSection";
 import Testimonial from "../Elements/Testimonials/TestimonialsDefault";
 import NoSSR from "react-no-ssr";
+import ServiceBundle from "../HomeTwo/ServiceBundle";
 
 class HomeMain extends Component {
   render() {
@@ -25,6 +26,8 @@ class HomeMain extends Component {
         {/* banner-start */}
         {/* <Banner /> */}
         {/* banner-end   */}
+        
+        <ServiceBundle/>
 
         {/* course-start */}
         <NoSSR>

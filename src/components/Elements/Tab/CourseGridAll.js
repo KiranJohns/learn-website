@@ -75,7 +75,22 @@ export default () => {
             <div className="row">
               {course.map((item) => (<CourseCard item={item} />))}
             </div>
-            
+            <div className="d-flex justify-content-end">
+        <Pagination>
+      <Pagination.First />
+      <Pagination.Prev />
+      <Pagination.Item>{1}</Pagination.Item>
+      
+
+      <Pagination.Item>{2}</Pagination.Item>
+      <Pagination.Item>{3}</Pagination.Item>
+      <Pagination.Item active>{4}</Pagination.Item>
+      <Pagination.Item>{5}</Pagination.Item>
+     
+      <Pagination.Next />
+      <Pagination.Last />
+    </Pagination>
+    </div>
           </TabPanel>
         </div>
        
