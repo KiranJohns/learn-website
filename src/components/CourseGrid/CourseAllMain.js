@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Breadcrumb from '../Common/Breadcrumb';
 import CourseGridTab from '../Elements/Tab/CourseGridTab';
 import Cta from '../Home/CtaSection';
-
+import CourseGridAll from '../Elements/Tab/CourseGridAll';
 
 class CourseAllMain extends Component {
 
@@ -15,7 +15,7 @@ class CourseAllMain extends Component {
 				{/* breadcrumb-end */}
 
                 {/* course tab-start */}
-				<CourseGridTab />
+				<CourseGridAll/>
 				{/* course tab-end */}
 
                 {/* cta-start */}

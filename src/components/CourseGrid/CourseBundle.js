@@ -3,7 +3,7 @@ import Breadcrumb from '../Common/Breadcrumb';
 import CourseGridTab from '../Elements/Tab/CourseGridTab';
 import Cta from '../Home/CtaSection';
 import BundleCare from "../../components/Stat/BundleCare";
-
+import CourseGridBundle from '../Elements/Tab/CourseGridBundle';
 class CourseBundle extends Component {
 
     render() {
@@ -16,7 +16,7 @@ class CourseBundle extends Component {
                 
                  <BundleCare/>
                 {/* course tab-start */}
-				<CourseGridTab />
+				<CourseGridBundle/>
 				{/* course tab-end */}
               
                 {/* cta-start */}

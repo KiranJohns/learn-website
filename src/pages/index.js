@@ -6,6 +6,7 @@ import HeaderOpaque from '../components/Layout/Header/HeaderOpaque';
 import NoSSR from 'react-no-ssr';
 import dynamic from 'next/dynamic';
 
+
 class Index extends React.Component {
 
     static getInitialProps({store}) {}
