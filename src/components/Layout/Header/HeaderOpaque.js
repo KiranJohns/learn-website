@@ -371,7 +371,7 @@ const HeaderOpaque = () => {
                             className="btn"
                             href="/company/myprofile"
                           >
-                            My Profile
+                            Dashboard
                           </Dropdown.Item>
                           <Dropdown.Item
                             className="btn"

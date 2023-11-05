@@ -429,9 +429,9 @@ const Header = () => {
                           <Dropdown.Menu>
                             <Dropdown.Item
                               className="btn"
-                              href="/company/myprofile"
+                              href="/company/dashboard"
                             >
-                              Individual
+                              Dashboard
                             </Dropdown.Item>
                             <Dropdown.Item
                               className="btn"

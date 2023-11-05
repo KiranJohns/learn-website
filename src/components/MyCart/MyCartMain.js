@@ -212,7 +212,7 @@ const MyCart = () => {
                   </tbody>
                 </table>
               </div>
-              {/* <div className="row">
+              <div className="row">
                 <div className="col-12">
                   <div className="coupon-all">
                     <div className="coupon d-sm-flex align-items-center">
@@ -231,7 +231,7 @@ const MyCart = () => {
                         Apply coupon
                       </button>
                     </div>
-                    <div className="coupon2">
+                    {/* <div className="coupon2">
                       <button
                         className="e-btn"
                         name="update_cart"
@@ -239,10 +239,10 @@ const MyCart = () => {
                       >
                         Update cart
                       </button>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
-              </div> */}
+              </div>
               <div className="row">
                 <div className="col-md-5 ml-auto">
                   <div className="cart-page-total">
