@@ -7,8 +7,9 @@ import DashCourse from "../../components/Home/DashCourse";
 import Header from '../../components/Layout/Header/Header';
 import NoSSR from 'react-no-ssr';
 import DashTest from '../../components/Home/DashTest';
+import DashMatrix from "../../components/Home/DashMatrix";
 
-class dashboard extends React.Component{
+class matrix extends React.Component{
 
     static getInitialProps({store}) {}
     constructor(props) {
@@ -27,7 +28,7 @@ class dashboard extends React.Component{
                    <DashboardBar/>
                    </div>
                 <div className="col-sm col-md-9  bg-light">
-                    <DashTest />
+                    <DashMatrix />
              </div>
          </div>       
       </div>
@@ -37,4 +38,4 @@ class dashboard extends React.Component{
     }
 }
 
-export default dashboard
+export default matrix

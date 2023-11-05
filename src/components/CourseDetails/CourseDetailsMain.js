@@ -78,7 +78,7 @@ function CourseDetailsMain() {
                                             </nav>
                                         </div> */}
                     {/* <span className="page__title-pre">Development</span> */}
-                    <h5 className="page__title-3">{course?.heading}</h5>
+                    <h5 className="page__title-3">{course?.name}</h5>
                   </div>
                   {/* <div className="course__meta-2 d-sm-flex mb-30">
                                     <div className="course__teacher-3 d-flex align-items-center mr-70 mb-30">

@@ -52,7 +52,8 @@ const Footer = () => {
                                        
                                        <li><Link href="/"><a>How it Works</a></Link></li>
                                        <li><Link href="/blog"><a>Blogs</a></Link></li>
-                                       <li><Link href="/"><a>FAQ</a></Link></li>
+                                       <li><Link href="/bundle/care-bundle"><a>Bundles</a></Link></li>
+                                      
                                        <li><Link href="/contact"><a>Contact</a></Link></li>
                                     </ul>
                                  </div>
@@ -63,7 +64,7 @@ const Footer = () => {
                         <div className="col-xxl-2  col-xl-2  col-lg-2 offset-lg-0 col-md-2 offset-md-1 col-sm-3 offset-sm-1">
                            <div className="footer__widget mb-50">
                               <div className="footer__widget-head mb-22">
-                                 <h3 className="footer__widget-title footer__widget-title-2">External Links</h3>
+                                 <h3 style={{visibility:'hidden'}} className="footer__widget-title footer__widget-title-2">External Links</h3>
                               </div>
                               <div className="footer__widget-body">
                                  <div className="footer__link footer__link-2">
@@ -72,7 +73,7 @@ const Footer = () => {
                                        <li><Link href="/"><a>Cookies</a></Link></li>
                                        
                                        <li><Link href="/"><a>Terms & Conditions</a></Link></li>
-                                       <li><Link href="/bundle/care-bundle"><a>Bundles</a></Link></li>
+                                       <li><Link href="/"><a>FAQ</a></Link></li>
                                        <li><Link href="/sign-in"><a>Login</a></Link></li>
                                        <li><Link href="/sign-up"><a>Sign Up</a></Link></li>
                                     </ul>
@@ -98,7 +99,7 @@ const Footer = () => {
                                        <li><Link href="/about"><a>FAQs</a></Link></li> */}
                                        <li><IoLocationOutline style={{marginBottom:'.2rem',}}/> Suite 14, Neals Corner, 2 bath road, <IoLocationOutline style={{visibility:'hidden'}}/> Hounslow TW3 3HJ</li>
                                        <li><BsTelephone/> +44-2031483007</li>
-                                       <li><AiOutlineMail/> <span style={{visibility:'hidden'}}>''</span>info@learnforcare.co.uk</li>
+                                       <li><Link href="mailto:info@learnforcare.co.uk"><a><AiOutlineMail/> <span style={{visibility:'hidden'}}>''</span>info@learnforcare.co.uk</a></Link></li>
                                     </ul>
                                  </div>
                               </div>
