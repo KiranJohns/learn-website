@@ -120,7 +120,7 @@ export default () => {
               {course.map((item) => {
                 if (searchText) {
                   return (
-                    item?.name?.toLowerCase().startsWith(searchText) && (
+                    item?.name?.toLowerCase().startsWith(searchText.toLowerCase()) && (
                       <CourseCard item={item} />
                     )
                   );
