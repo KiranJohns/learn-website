@@ -19,11 +19,13 @@ export default () => {
   let makeRequest = fetchData();
 
   const [course, setCourse] = useState([]);
+  const [filteredCourse, setFilteredCourse] = useState([]);
 
   const [count, setCount] = useState(0);
   const [selectedCount, setSelectedCount] = useState(1);
 
   const [searchText, setSearchText] = useState("");
+  const [categoryFilter, setCategoryFilter] = useState("");
 
   function getCourse(limit) {
     if (limit == 1) {
@@ -34,7 +36,6 @@ export default () => {
       --limit;
     }
 
-    useEffect(() => {}, [searchText]);
     makeRequest("GET", `/course/get-course-by-limit/${limit}`)
       .then((res) => {
         setCourse(res.data.response.courses);
