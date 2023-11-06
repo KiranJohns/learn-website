@@ -44,7 +44,7 @@ class Hero extends Component {
                                         </div>
                                     </div>
                                     <div className="hero__thumb-sm mt-50 d-none d-lg-block">
-                                        <img src="assets/img/hero/Home 2.webp" alt="img not found"/>
+                                        <img src="assets/img/hero/Home2.webp" alt="img not found"/>
                                     </div>
                                     </div>
                                 </div>

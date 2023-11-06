@@ -20,7 +20,7 @@ class ServiceBundle extends Component {
                </div>
                <div className="row">
                   <div className="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6" style={{cursor:"pointer"}}>
-                  <Link href="/course-grid">
+                  <Link href="/bundle/care-bundle">
                      <div className="services__item mb-30"  style={{background:'#212a50'}}>
                         <div className="services__icon">
                         <GoStack/>
@@ -38,7 +38,7 @@ class ServiceBundle extends Component {
                     </Link>
                   </div>
                   <div className="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6" style={{cursor:"pointer"}}>
-                  <Link href="/course-grid">
+                  <Link href="/bundle/mandatory-bundle">
                      <div className="services__item  mb-30" style={{background:'#e04c4c'}}>
                         <div className="services__icon">
                         <GoStack/>
@@ -57,7 +57,7 @@ class ServiceBundle extends Component {
                   </div>
 
                   <div className="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6" style={{cursor:"pointer"}}>
-                  <Link href="/course-grid">
+                  <Link href="/bundle/special-bundle">
                      <div className="services__item  mb-30" style={{background:'#e05fa6'}}>
                         <div className="services__icon">
                         <GoStack/>
@@ -75,7 +75,7 @@ class ServiceBundle extends Component {
                      </Link>
                   </div>
                   <div className="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6" style={{cursor:"pointer"}}>
-                  <Link href="/course-grid">
+                  <Link href="/bundle/recovery-bundle">
                      <div className="services__item mb-30"  style={{background:'#5a9676'}}>
                         <div className="services__icon">
                         <GoStack/>
@@ -93,6 +93,11 @@ class ServiceBundle extends Component {
                      </Link>
                   </div>
                </div>
+               <div className="d-flex justify-content-center mt-2">
+            <div className="btn btn-primary">
+              <Link href="/bundle/bundle-all">View More</Link>
+            </div>
+          </div>
             </div>
          </section>
         );
