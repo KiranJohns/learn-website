@@ -133,7 +133,7 @@ class BlogDetailsMain extends Component {
                     </div>
                   ))}
               </div>
-              <div className="col-xl-3 col-lg-3">
+              <div className="col-xl-3 col-lg-3 blog-box-s">
                 <div className="heading">
                   <h2>Recent Blogs</h2>
                 </div>

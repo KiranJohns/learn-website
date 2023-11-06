@@ -243,6 +243,11 @@ const HeaderOpaque = () => {
                                   <a>Child Care Course Bundle</a>
                                 </Link>
                               </li>
+                              <li>
+                                <Link href="/bundle/bundle-Online">
+                                  <a>Online Care Course Bundle Package</a>
+                                </Link>
+                              </li>
                             </ul>
                             
                           </li>
