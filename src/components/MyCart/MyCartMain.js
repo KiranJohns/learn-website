@@ -53,48 +53,42 @@ const MyCart = () => {
         console.log(err?.data);
       });
   }
-  function increment(id) {
+  function increment(courseId, id, type) {
     makeRequest("PATCH", "/cart/update-cart-count", {
-      course_id: id,
-      identifier: 1,
-      count: 1
+      count: 1,
+      id,
+      type,
+      courseId,
     })
       .then((res) => {
         getCartItem();
         console.log(res.data);
-        store.dispatch({
-          type: "INCREMENT_ITEM_CONT",
-          payload: {id,count: 1},
-        });
       })
       .catch((err) => {
         if (err?.data?.errors[0].message === "please login") {
           store.dispatch({
             type: "INCREMENT_ITEM_CONT",
-            payload: {id,count: 1},
+            payload: { id, count: 1 },
           });
         }
         console.log(err?.data?.errors);
         console.log(err?.data);
       });
   }
-  function decrement(id) {
+  function decrement(courseId, id, type) {
     makeRequest("PATCH", "/cart/update-cart-count", {
-      course_id: id,
-      identifier: -1,
-      count: -1
+      count: -1,
+      id,
+      type,
+      courseId,
     })
       .then((res) => {
         getCartItem();
         console.log(res.data);
-        store.dispatch({
-          type: "DECREMENT_ITEM_CONT",
-          payload: id,
-        });
       })
       .catch((err) => {
         if (err?.data?.errors[0].message === "please login") {
-          console.log('log');
+          console.log("log");
           store.dispatch({
             type: "DECREMENT_ITEM_CONT",
             payload: id,
@@ -113,7 +107,7 @@ const MyCart = () => {
       })
       .catch((err) => {
         if (err?.data?.errors[0].message === "please login") {
-          location.pathname = "/sign-in"
+          location.pathname = "/sign-in";
         }
         console.log(err.data.errors[0]);
       });
@@ -173,7 +167,13 @@ const MyCart = () => {
                                       cursor: "pointer",
                                     }}
                                     className="cart-minus"
-                                    onClick={() => decrement(item.course_id)}
+                                    onClick={() =>
+                                      decrement(
+                                        item.course_id,
+                                        item.id,
+                                        item.item_type
+                                      )
+                                    }
                                   >
                                     <i className="fas fa-minus"></i>
                                   </button>
@@ -191,7 +191,13 @@ const MyCart = () => {
                                       cursor: "pointer",
                                     }}
                                     className="cart-plus"
-                                    onClick={() => increment(item.course_id)}
+                                    onClick={() =>
+                                      increment(
+                                        item.course_id,
+                                        item.id,
+                                        item.item_type
+                                      )
+                                    }
                                   >
                                     <i className="fas fa-plus"></i>
                                   </button>
@@ -257,7 +263,7 @@ const MyCart = () => {
                       <span
                         onClick={handleCheckout}
                         className="e-btn e-btn-border"
-                        style={{cursor:'pointer'}}
+                        style={{ cursor: "pointer" }}
                       >
                         Proceed to checkout
                       </span>

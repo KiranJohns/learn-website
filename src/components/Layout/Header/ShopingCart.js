@@ -13,7 +13,7 @@ const ShopingCart = ({ setShopOpen, shopOpen }) => {
   }, [router]);
 
   const { cart, totalPrice } = useSelector((store) => store.cart);
-  
+
   const makeRequest = fetchData();
   function getCartItem() {
     makeRequest("GET", "/cart/get")
@@ -52,19 +52,20 @@ const ShopingCart = ({ setShopOpen, shopOpen }) => {
         console.log(err?.data);
       });
   }
-  function increment(id) {
+  function increment(id, type, courseId) {
     makeRequest("PATCH", "/cart/update-cart-count", {
-      course_id: id,
-      identifier: 1,
+      id,
+      type,
       count: 1,
+      courseId
     })
       .then((res) => {
         getCartItem();
         console.log(res.data);
-        store.dispatch({
-          type: "INCREMENT_ITEM_CONT",
-          payload: { id, count: 1 },
-        });
+        // store.dispatch({
+        //   type: "INCREMENT_ITEM_CONT",
+        //   payload: { id, count: 1 },
+        // });
       })
       .catch((err) => {
         if (err?.data?.errors[0].message === "please login") {
@@ -77,19 +78,20 @@ const ShopingCart = ({ setShopOpen, shopOpen }) => {
         console.log(err?.data);
       });
   }
-  function decrement(id) {
+  function decrement(id, type, courseId) {
     makeRequest("PATCH", "/cart/update-cart-count", {
-      course_id: id,
-      identifier: -1,
+      id,
+      type,
       count: -1,
+      courseId
     })
       .then((res) => {
         getCartItem();
         console.log(res.data);
-        store.dispatch({
-          type: "DECREMENT_ITEM_CONT",
-          payload: id,
-        });
+        // store.dispatch({
+        //   type: "DECREMENT_ITEM_CONT",
+        //   payload: id,
+        // });
       })
       .catch((err) => {
         if (err?.data?.errors[0].message === "please login") {
@@ -139,8 +141,8 @@ const ShopingCart = ({ setShopOpen, shopOpen }) => {
                   cart.map((item) => {
                     return (
                       <li>
-                        <div  className="cartmini__thumb">
-                          <a  href={`/course/${item.id}`}>
+                        <div className="cartmini__thumb">
+                          <a href={`/course/${item.id}`}>
                             <img src={item.thumbnail} alt="img not found" />
                           </a>
                         </div>
@@ -151,7 +153,13 @@ const ShopingCart = ({ setShopOpen, shopOpen }) => {
                           <div className="product-quantity mt-10 mb-10">
                             <span
                               className="cart-minus"
-                              onClick={() => decrement(item.course_id)}
+                              onClick={() =>
+                                decrement(
+                                  item.id,
+                                  item.item_type,
+                                  item.course_id
+                                )
+                              }
                             >
                               -
                             </span>
@@ -160,7 +168,13 @@ const ShopingCart = ({ setShopOpen, shopOpen }) => {
                             </span>
                             <span
                               className="cart-plus"
-                              onClick={() => increment(item.course_id)}
+                              onClick={() =>
+                                increment(
+                                  item.id,
+                                  item.item_type,
+                                  item.course_id
+                                )
+                              }
                             >
                               +
                             </span>
