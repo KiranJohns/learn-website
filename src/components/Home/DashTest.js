@@ -138,7 +138,7 @@ class DashTest extends Component {
 
          <div className="ag-format-container">
          <h2 style={{padding:"1.5rem", color: "#004b55", display:"flex", justifyContent:"flex-start",justifyContent:"center", marginTop:'20px',fontSize: 46}}>Dashboard</h2>
-  <div className="ag-courses_box">
+  <div className="ag-courses_box dash-shadow">
    
     <div className="ag-courses_item">
       <a href="/company/myprofile" className="ag-courses-item_link">
@@ -196,7 +196,7 @@ class DashTest extends Component {
 
 
   </div>
-  <div className="">
+  <div className="dash-shadow">
         <h4
           style={{
             padding: "1rem",
@@ -225,17 +225,18 @@ class DashTest extends Component {
                   padding: "6px 10px",
                   borderColor: "gray",
                   overflow: "hidden",
-                
+                  marginRight:'.2rem'
                 }}
               />
             </div>
-            <DataTable
+            <div style={{padding:'.2rem'}}>
+            <DataTable 
               columns={columns}
               data={this.state.records}
               customStyles={customStyles}
               pagination
               selectableRows
-            />
+            /></div>
           </div>
         </div>
       </div>

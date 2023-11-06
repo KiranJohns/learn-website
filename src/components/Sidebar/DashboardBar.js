@@ -9,6 +9,11 @@ function DashboardBar() {
     inputRef.current.click();
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem("learnforcare_access");
+    location.pathname = "/";
+  };
+
   return (
     <div className='bg-primary' style={{ padding: '16px' }}>
         <div  style={{backgroundColor:'white',padding:'1rem',borderRadius:'.5rem'}}>
@@ -87,6 +92,13 @@ function DashboardBar() {
           <i className='bi bi-people txttsml me-2' style={{ color: '#fff' }}></i>
           <span className='txttsml' style={{ color: '#fff' }}>
             <Link href="/company/assigncourse">Assign Course</Link>
+          </span>
+        </div>
+
+        <div  onClick={handleLogout} className='list-group-item py-2 px-2'>
+          <i className='bi bi-box-arrow-left txttsml me-2' style={{ color: '#fff' }}></i>
+          <span className='txttsml' style={{ color: '#fff' }}>
+            <Link href="">Logout</Link>
           </span>
         </div>
         <span className=' py-2 px-2'></span>
