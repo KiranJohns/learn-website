@@ -6,7 +6,7 @@ class About extends Component {
     render() {
 
         return (
-        <section className="about__area pt-90 pb-150">
+        <section className="about__area pt-90 ">
             <div className="container">
                <div className="row">
                   <div className="col-xxl-5 offset-xxl-1 col-xl-6 col-lg-6">
@@ -32,10 +32,18 @@ class About extends Component {
                      </div>
                   </div>
                   <div className="col-xxl-6 col-xl-6 col-lg-6">
-                     <div className="about__content pl-70 pr-60 pt-25">
+                     <div className="about__content pl-70 pr-60 mt-50 pt-">
                         <div className="section__title-wrapper mb-25">
                            {/* <h2 className="section__title">Achieve your <br /><span className="yellow-bg-big">Goals <img src="assets/img/shape/yellow-bg-2.png" alt="img not found" /></span>  with Us </h2> */}
-                           <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown </p>
+                           <p>At Learn for Care, we provide you with a comprehensive and enriching learning experience in the
+field of care. Our online course is designed to equip you with the knowledge, skills, and insights
+needed to excel in various aspects of caregiving. Whether you&#39;re looking to enhance your personal
+caregiving skills or pursuing a professional career in healthcare, our course has something valuable
+to offer.</p>
+
+<p>Who We Are: <br/>
+We are a team of experienced professionals and educators who are passionate about care and its significance in improving the quality of life for individuals. Our course has been meticulously crafted to combine theoretical foundations with practical applications, ensuring that you understand the concepts and how to apply them effectively in real-world scenarios.</p>
+
                         </div>
                         {/* <div className="about__list mb-35">
                            <ul>

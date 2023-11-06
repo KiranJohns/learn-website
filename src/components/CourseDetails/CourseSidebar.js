@@ -74,7 +74,7 @@ function CourseSidebar() {
         </div>
         <div className="course__sidebar-widget-2 white-bg mb-20">
           <div className="course__video">
-            <div className="course__video-thumb w-img mb-25">
+            {/* <div className="course__video-thumb w-img mb-25">
               <img src={course?.thumbnail} alt="img not found" />
               <div className="course__video-play">
                 <a href="#!" className="play-btn" onClick={onOpenModal}>
@@ -82,7 +82,7 @@ function CourseSidebar() {
                   <i className="fas fa-play"></i>{" "}
                 </a>
               </div>
-            </div>
+            </div> */}
             <div className="course__video-meta mb-25 d-flex align-items-center justify-content-between">
               <div className="course__video-price">
                 <h5>
@@ -112,7 +112,8 @@ function CourseSidebar() {
                   </div>
                   <div className="course__video-info">
                     <h5>
-                      <span>Lectures :</span>14
+                      {/* <span>Typ :</span>14 */}
+                      Online
                     </h5>
                   </div>
                 </li>
@@ -122,7 +123,7 @@ function CourseSidebar() {
                   </div>
                   <div className="course__video-info">
                     <h5>
-                      <span>Duration :</span>6 weeks
+                      Variable
                     </h5>
                   </div>
                 </li>
@@ -132,7 +133,7 @@ function CourseSidebar() {
                   </div>
                   <div className="course__video-info">
                     <h5>
-                      <span>Enrolled :</span>20 students
+                      Intermediate, Advanced
                     </h5>
                   </div>
                 </li>
@@ -142,7 +143,7 @@ function CourseSidebar() {
                   </div>
                   <div className="course__video-info">
                     <h5>
-                      <span>Language :</span>English
+                    Certificate of completion
                     </h5>
                   </div>
                 </li>

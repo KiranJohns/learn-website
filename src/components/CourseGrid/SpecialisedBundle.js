@@ -5,14 +5,15 @@ import Cta from '../Home/CtaSection';
 import BundleCare from "../../components/Stat/BundleCare";
 import CourseGridBundle from '../Elements/Tab/CourseGridBundle';
 import BundleSample from '../Elements/Tab/BundleSample';
-class CourseBundle extends Component {
+
+class SpecialisedBundle extends Component {
 
     render() {
 
         return (
             <main>
 	            {/* breadcrumb-start */}
-				<Breadcrumb pageTitle=" All Course Bundles"/>
+				<Breadcrumb pageTitle="Specialised Care Course Bundle"/>
 				{/* breadcrumb-end */}
                 
                  <BundleCare/>
@@ -29,4 +30,4 @@ class CourseBundle extends Component {
     }
 }
 
-export default CourseBundle
+export default SpecialisedBundle;

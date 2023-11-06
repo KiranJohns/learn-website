@@ -3,9 +3,9 @@ import HeaderOpaque from "../../components/Layout/Header/HeaderOpaque";
 import Footer from "../../components/Layout/Footer/Footer";
 import CourseBundle from "../../components/CourseGrid/CourseBundle";
 import NoSSR from "react-no-ssr";
-import CourseCareBundle from "../../components/CourseGrid/CourseCareBunble";
+import MandatoryBundle from "../../components/CourseGrid/MandatoryBundle";
 
-class CareBundle extends React.Component {
+class MandateBundle extends React.Component {
     static getInitialProps({store}) {}
 
     constructor(props) {
@@ -17,11 +17,11 @@ class CareBundle extends React.Component {
             <NoSSR>
             <HeaderOpaque/>
             </NoSSR>
-            <CourseCareBundle/>
+            <MandatoryBundle/>
             <Footer />
             </React.Fragment>
         );
     }
 }
 
-export default CareBundle;
+export default MandateBundle;

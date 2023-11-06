@@ -214,17 +214,38 @@ const HeaderOpaque = () => {
                           </ul>
                         </li>
                         <li className="has-dropdown">
-                          <Link href="/">
-                            <a>Bundles</a>
-                          </Link>
-                          <ul className="submenu">
-                            <li>
-                              <Link href="/bundle/care-bundle/">
-                                <a>Care Course Bundle</a>
-                              </Link>
-                            </li>
-                          </ul>
-                        </li>
+                            <Link href="/bundle/bundle-all">
+                              <a>Bundles</a>
+                            </Link>
+                            <ul className="submenu">
+                              <li>
+                                <Link href="/bundle/care-bundle">
+                                  <a>Care Course Bundle</a>
+                                </Link>
+                              </li>
+                              <li>
+                                <Link href="/bundle/mandatory-bundle">
+                                  <a>Mandatory Care Course Bundle</a>
+                                </Link>
+                              </li>
+                              <li>
+                                <Link href="/bundle/special-bundle">
+                                  <a>Specialised Care Course Bundle</a>
+                                </Link>
+                              </li>
+                              <li>
+                                <Link href="/bundle/recovery-bundle">
+                                  <a>Recovery Care Course Bundle</a>
+                                </Link>
+                              </li>
+                              <li>
+                                <Link href="/bundle/child-bundle">
+                                  <a>Child Care Course Bundle</a>
+                                </Link>
+                              </li>
+                            </ul>
+                            
+                          </li>
                         <li className="">
                           <Link href="/blog">
                             <a>Blog</a>
@@ -352,19 +373,19 @@ const HeaderOpaque = () => {
                       // </Link>
 
                       <Dropdown>
-                        <Dropdown.Toggle
-                          style={{
-                            padding: ".7rem",
-                            border: "none",
-                            outline: "none",
-                            background: "#2b4eff",
-                            color: "white",
-                          }}
-                          variant=""
-                          id="dropdown-basic"
-                        >
-                          Profile
-                        </Dropdown.Toggle>
+                      <Dropdown.Toggle
+                         style={{
+                           padding: ".7rem",
+                           border: "none",
+                           outline: "none",
+                           background: "#2b4eff",
+                           color: "white",
+                         }}
+                         variant=""
+                         id="dropdown-basic"
+                       >
+                       <a href="/company/dashboard">  Dashboard</a>
+                       </Dropdown.Toggle>
 
                         <Dropdown.Menu>
                           <Dropdown.Item

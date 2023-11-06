@@ -63,8 +63,9 @@ function SignInMain() {
       })
       .catch((err) => {
         setLoading((prev) => false);
-        console.log(err.data.errors[0]);
-        toast.error(err.data.errors[0].error);
+        console.log(err?.data?.errors[0]);
+       
+        toast.error(err?.data?.errors[0].error);
         store.dispatch({
           type: "SET_ERROR_FOR_SIGN_IN",
           payload: err,

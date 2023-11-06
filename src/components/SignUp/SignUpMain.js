@@ -359,7 +359,7 @@ function SignUpMain() {
                     </div>
 
                     <div className="sign__input-wrapper ">
-                      <h5>Type</h5>
+                      <h5>Type of user</h5>
                       <div className="sign__input">
                         <select
                           style={{
@@ -426,7 +426,7 @@ function SignUpMain() {
                           name="country"
                         >
                           <option value="">Select</option>
-                          <option value="UK">UK</option>
+                          <option value="UK">United Kingdom</option>
                         </select>
                         {/* <input
                           type="text"
