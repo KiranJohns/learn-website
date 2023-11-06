@@ -33,7 +33,11 @@ const Header = () => {
   const { cart, cartCount } = useSelector((store) => store.cart);
   const [searchProduct, setSearchProduct] = useState([]);
   const [searchString, setSearchString] = useState("");
-  let logedIn = localStorage.getItem("learnforcare_access");
+
+  let logedIn = null;
+  if(typeof window == "object") {
+    logedIn = localStorage.getItem("learnforcare_access");
+  }
   const makeRequest = fetchData();
 
   const handleLogout = () => {
