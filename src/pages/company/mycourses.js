@@ -16,16 +16,16 @@ class myCourse extends React.Component{
     render(){    
         return(
             <React.Fragment>
-                <main  className="p-4" style={{backgroundImage: "linear-gradient(to right, #EDEEF3, #EDEEF3)" }}>
+                <main  className="p-4 bg-light" style={{ }}>
                 <NoSSR>
                  <Header/>
                  </NoSSR>
                  <div className="container-fluid " style={{borderRadius:'22px',marginTop:"120px"}}> 
                   <div className="row justify-content-md-center">
-                   <div className="col-sm-2 col-md-auto bg-white" >
+                   <div className="col-sm-2 col-md-auto bg-primary" >
                    <DashboardBar/>
                    </div>
-                <div className="col-sm col-md-9  bg-light">
+                <div className="col-sm col-md-9  bg-white">
                     <DashCourse />
              </div>
          </div>       

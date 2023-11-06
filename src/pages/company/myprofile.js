@@ -22,10 +22,10 @@ class MyProfile extends React.Component{
              </NoSSR>
                  <div className="container-fluid " style={{marginTop:"110px"}}> 
                   <div className="row justify-content-md-center">
-                   <div className="col-sm-2 col-md-auto bg-white " >
+                   <div className="col-sm-2 col-md-auto bg-primary " >
                    <DashboardBar/>
                    </div>
-                <div className="col-sm col-md-8 vh-100 bg-light" >
+                <div className="col-sm col-md-8 vh-100 bg-white" >
                     <DashProfile />
              </div>
          </div>       

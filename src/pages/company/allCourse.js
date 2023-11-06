@@ -14,13 +14,13 @@ class courseavailable extends React.Component{
     render(){    
         return(
             <React.Fragment>
-                <main className="p-4" style={{backgroundImage: "linear-gradient(to right, #EDEEF3, #EDEEF3)" }}>
+                <main className="p-4 bg-light" style={{}}>
                     <NoSSR>
                  <HeaderDashboard/>
                  </NoSSR>
                  <div className="container-fluid bg-light"> 
                   <div className="row">
-                   <div className="col-5 col-md-2 bg-white vh-100 ">
+                   <div className="col-5 col-md-2 bg-primary vh-100 ">
                    <DashboardBar/>
                    </div>
                 <div className="col-7 col-md-10">
