@@ -4,11 +4,110 @@ import DashboardBar from '../Sidebar/DashboardBar';
 import Accordion from 'react-bootstrap/Accordion';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
+import fetchData from "../../axios";
+import DataTable from "react-data-table-component";
 
+const customStyles = {
+  headRow: {
+    style: {
+      backgroundColor: "#004b55",
+      color: "white",
+    },
+  },
+  headCells: {
+    style: {
+      fontSize: "16px",
+      fontWeight: "600",
+      textTransform: "uppercase",
+      justifyContent: "center",
+    },
+  },
+  cells: {
+    style: {
+      fontSize: "15px",
+      justifyContent: "center",
+    },
+  },
+};
 
 class DashTest extends Component {
 
-    render() {
+  constructor() {
+    super();
+    this.state = {
+      records: [],
+      filterRecords: [],
+    };
+  }
+
+  handleFilter = (event) => {
+    const newData = this.state.filterRecords.filter((row) =>
+      row.name.toLowerCase().includes(event.target.value.toLowerCase())
+    );
+    this.setState({ records: newData });
+  };
+
+  componentDidMount() {
+    this.getData();
+  }
+
+  getData = () => {
+    try {
+      const makeRequest = fetchData();
+      makeRequest("GET","/course/get-bought-course")
+        .then((res) => {
+          console.log(res);
+          this.setState({
+            records: res.data.response,
+            filterRecords: res.data,
+          });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+   
+      render() {
+        const columns = [
+          {
+            name: "No",
+            selector: (row,idx) => idx+1,
+            sortable: true,
+          },
+          {
+            name: "Name",
+            selector: (row) => row.Name,
+            sortable: true,
+          },
+          {
+            name: "description",
+            selector: (row) => row.description.slice(0,25),
+          },
+          {
+            name: "category",
+            selector: (row) => row.category,
+          },
+          {
+            name: "validity",
+            selector: (row) => {
+              let date = row.validity.split("/")
+              let newDate = `${date[1]}/${date[0]}/${date[2]}`
+              return newDate
+            },
+          },
+          {
+            name: "",
+            cell: () => (
+              <a href={"#"} className="btn btn-success">
+                Start
+              </a>
+            ),
+          },
+        ];
 
         return (
 
@@ -38,7 +137,7 @@ class DashTest extends Component {
            
 
          <div className="ag-format-container">
-          <div className='d-flex justify-content-center' style={{padding:'px',margin:'1rem 0rem' }}><h2 style={{color:'#004B55'}}>Dashboard</h2></div>
+         <h2 style={{padding:"1.5rem", color: "#004b55", display:"flex", justifyContent:"flex-start",justifyContent:"center", marginTop:'20px',fontSize: 46}}>Dashboard</h2>
   <div className="ag-courses_box">
    
     <div className="ag-courses_item">
@@ -97,6 +196,50 @@ class DashTest extends Component {
 
 
   </div>
+  <div className="">
+        <h4
+          style={{
+            padding: "1rem",
+            color: "#004b55",
+            display: "flex",
+            justifyContent: "flex-start",
+            justifyContent: "center",
+            marginTop: "2.5rem",
+            fontSize: 35,
+          }}
+        >
+          Courses to do
+        </h4>
+        <div className=" row g-3  min-vh-100  d-flex justify-content-center ">
+          <div style={{ padding: "", backgroundColor: "" }}>
+            <div
+              className="pb-2 smth"
+              style={{ display: "flex", justifyContent: "right" }}
+            >
+              <input
+                type="text"
+                className=""
+                placeholder="Search course..."
+                onChange={this.handleFilter}
+                style={{
+                  padding: "6px 10px",
+                  borderColor: "gray",
+                  overflow: "hidden",
+                
+                }}
+              />
+            </div>
+            <DataTable
+              columns={columns}
+              data={this.state.records}
+              customStyles={customStyles}
+              pagination
+              selectableRows
+            />
+          </div>
+        </div>
+      </div>
+  
 </div>
 
           

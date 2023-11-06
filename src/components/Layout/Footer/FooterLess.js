@@ -48,11 +48,11 @@ const FooterPad = () => {
                                  <div className="footer__link footer__link-2">
                                     <ul>
                                        <li><Link href="/about"><a>About</a></Link></li>
-                                       <li><Link href="/course-grid"><a>Courses</a></Link></li>
+                                       <li><Link href="/course-all"><a>Courses</a></Link></li>
                                        
                                        <li><Link href="/"><a>How it Works</a></Link></li>
                                        <li><Link href="/blog"><a>Blogs</a></Link></li>
-                                       <li><Link href="/bundle/care-bundle"><a>Bundles</a></Link></li>
+                                       <li><Link href="/bundle/bundle-all"><a>Bundles</a></Link></li>
                                       
                                        <li><Link href="/contact"><a>Contact</a></Link></li>
                                     </ul>

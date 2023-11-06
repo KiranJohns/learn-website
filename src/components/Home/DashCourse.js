@@ -98,7 +98,7 @@ class DashCourse extends Component {
       {
         name: "",
         cell: () => (
-          <a href={"#"} className="btn btn-primary">
+          <a href={"#"} className="btn btn-success">
             Start
           </a>
         ),

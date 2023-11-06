@@ -496,7 +496,7 @@ function SignUpMain() {
                           required
                         />
                         <label className="m-check-label" htmlFor="m-agree">
-                          I agree to the <a href="#">Terms & Conditions</a>
+                          I agree to the <a href="#">Terms & Conditions & privacy policy</a>
                         </label>
                       </div>
                       <br className="d-block " />
