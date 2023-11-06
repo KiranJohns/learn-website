@@ -16,7 +16,7 @@ class CourseGridMandatory extends Component {
 				{/* breadcrumb-end */}
 
                 {/* course tab-start */}
-				<CourseGridTab />
+				<CourseGridTab category="Mandatory Care Courses"/>
 				{/* course tab-end */}
 
                 {/* cta-start */}

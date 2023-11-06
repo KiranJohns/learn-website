@@ -46,6 +46,15 @@ export default () => {
       });
   }
 
+  useEffect(() => {
+    if(categoryFilter) {
+      setFilteredCourse(() => {
+        console.log(filteredCourse);
+        return course.filter((item) => item.category.toLowerCase() === categoryFilter.toLowerCase());
+      })
+    }
+  },[categoryFilter])
+
   function handleClick(val) {
     getCourse(val);
   }
@@ -53,8 +62,6 @@ export default () => {
   useEffect(() => {
     makeRequest("GET", `/course/get-course-by-limit/${count}`)
       .then((res) => {
-        console.log(res);
-        console.log(res.data.response.courses);
         setCourse(res.data.response.courses);
         setCount(res.data.response.count);
       })
@@ -67,16 +74,30 @@ export default () => {
     <section className="course__area pt-50 pb-60 grey-bg">
       <Tabs variant="enclosed" id="react-tabs-276">
         <div className="container">
-          <div class="input-group">
-            <div class="form-outline">
+          <div className="row">
+            <div className="form-outline col-3">
               <input
                 placeholder="Search..."
                 type="search"
                 value={searchText}
                 onChange={(e) => setSearchText(e.target.value)}
                 id="form1"
-                class="form-control"
+                className="form-control"
               />
+            </div>
+            <div className="col-3">
+              <select
+                className="form-control"
+                aria-label="Default select example"
+                onChange={(e) => setCategoryFilter(e.target.value)}
+              >
+                <option value="">select category</option>
+                <option value="Care Certificate">Care Certificate</option>
+                <option value="Mandatory Care Courses">Mandatory Care Courses</option>
+                <option value="Specialized Care Courses">Specialized Care Courses</option>
+                <option value="Recovery Care Courses">Recovery Care Courses</option>
+                <option value="Child Care Courses">Child Care Courses</option>
+              </select>
             </div>
           </div>
           <div className="row align-items-end">
@@ -117,10 +138,12 @@ export default () => {
           </div>
           <TabPanel>
             <div className="row">
-              {course.map((item) => {
+              {(categoryFilter ? filteredCourse : course).map((item) => {
                 if (searchText) {
                   return (
-                    item?.name?.toLowerCase().startsWith(searchText.toLowerCase()) && (
+                    item?.name
+                      ?.toLowerCase()
+                      .startsWith(searchText.toLowerCase()) && (
                       <CourseCard item={item} />
                     )
                   );

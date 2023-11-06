@@ -33,9 +33,9 @@ const Header = () => {
   const { cart, cartCount } = useSelector((store) => store.cart);
   const [searchProduct, setSearchProduct] = useState([]);
   const [searchString, setSearchString] = useState("");
-
+  const [course, setCourse] = useState([]);
   let logedIn = null;
-  if(typeof window == "object") {
+  if (typeof window == "object") {
     logedIn = localStorage.getItem("learnforcare_access");
   }
   const makeRequest = fetchData();
@@ -87,7 +87,6 @@ const Header = () => {
           if (paths.includes(location.pathname)) {
             location.pathname = "/sign-in";
           }
-          console.log(location.pathname);
           store.dispatch({
             type: "SET_CART",
           });
@@ -97,20 +96,27 @@ const Header = () => {
   }
   useEffect(() => {
     getCartItem();
+    getAllCourse();
   }, []);
+
+  function getAllCourse() {
+    makeRequest("GET", "/course/get-all-course")
+      .then((res) => {
+        setCourse(res.data.response);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 
   function handleSearch(e) {
     e.persist();
     setSearchString(() => e.target?.value);
-    setSearchProduct(() => {
-      let product = allProduct.filter((item) => {
-        if (item.heading.toLowerCase().startsWith(e.target?.value)) {
-          return item;
-        }
-      });
-      if (e.target?.value == "") return [];
-      return product;
-    });
+    setSearchProduct(() =>
+      course.filter((item) =>
+        item?.name?.toLowerCase()?.startsWith(e.target?.value?.toLowerCase())
+      )
+    );
   }
   // Sticky Menu Area start
   useEffect(() => {
@@ -286,7 +292,6 @@ const Header = () => {
                                 </Link>
                               </li>
                             </ul>
-                            
                           </li>
 
                           <li className="">
@@ -398,16 +403,20 @@ const Header = () => {
                           </span>
                         </span>
                       </div>
-                      {searchProduct && (
+                      {searchString ? (
                         <div className="search-suggestions position-absolute w-100">
                           <ul class="list-group w-100">
                             {searchProduct?.map((item) => (
-                              <li class="list-group-item w-100">
-                                {item.heading}
-                              </li>
+                              <a href={`/course/${item.id}`}>
+                                <li class="list-group-item w-100 bg-white">
+                                  {item.name}
+                                </li>
+                              </a>
                             ))}
                           </ul>
                         </div>
+                      ) : (
+                        <></>
                       )}
                     </div>
                     <div className="header__cart header__cart--responsive">
@@ -437,7 +446,7 @@ const Header = () => {
                         // </Link>
 
                         <Dropdown>
-                         <Dropdown.Toggle
+                          <Dropdown.Toggle
                             style={{
                               padding: ".7rem",
                               border: "none",
@@ -448,7 +457,7 @@ const Header = () => {
                             variant=""
                             id="dropdown-basic"
                           >
-                          <a href="/company/dashboard">  Dashboard</a>
+                            <a href="/company/dashboard"> Dashboard</a>
                           </Dropdown.Toggle>
 
                           <Dropdown.Menu>

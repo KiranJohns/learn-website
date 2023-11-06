@@ -22,7 +22,10 @@ export default ({ category }) => {
   useEffect(() => {
     makeRequest("GET", "/course/get-all-course")
       .then((res) => {
-        setCourse(res.data.response);
+        setCourse(() => {
+          console.log(res.data.response[0]);
+          return res.data.response.filter(course => course.category.toLowerCase() === category.toLowerCase())
+        });
       })
       .catch((err) => {
         console.log(err);
