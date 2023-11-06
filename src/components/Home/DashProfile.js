@@ -74,8 +74,8 @@ function DashProfile() {
           <Form.Control type="text" placeholder="Email" />
         </Form.Group>
         <Form.Group as={Col} className="mb-3" controlId="formGridEmail">
-          <Form.Label>Email</Form.Label>
-          <Form.Control type="text" placeholder="Email" />
+          <Form.Label>Phone</Form.Label>
+          <Form.Control type="text" placeholder="Phone" />
         </Form.Group>
         </Row>
 
