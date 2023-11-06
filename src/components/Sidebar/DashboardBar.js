@@ -16,7 +16,7 @@ function DashboardBar() {
 
   return (
     <div className='bg-primary' style={{ padding: '16px' }}>
-        <div  style={{backgroundColor:'white',padding:'1rem',borderRadius:'.5rem'}}>
+        <div  style={{backgroundColor:'white',padding:'2rem',borderRadius:'.5rem'}}>
       <div style={{display:'flex', justifyContent:'center' }} onClick={handleImage}>
         <img
           style={{ width: '70px', height: '70px', borderRadius: '70px', cursor: 'pointer' }}
@@ -25,7 +25,7 @@ function DashboardBar() {
         />
         <input type="file" ref={inputRef} style={{ display: 'none' }} />
       </div>
-    <div className='mt-4 ' style={{display:'flex', justifyContent:'center' }}><h6 style={{color:"#004b55"}}>Company Name</h6>
+    <div className='mt-4 ' style={{display:'flex', justifyContent:'center' }}><h6 style={{color:"#004b55"}}>Company Name<br/>Company</h6>
    
     </div>
     </div>
