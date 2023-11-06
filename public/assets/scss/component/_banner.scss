@@ -73,8 +73,12 @@
         z-index: 1;
     }
 }
+.list-group-item{
+    background-color:#0d6efd;
+}
+
 .list-group-item:hover{
-    background-color:#d7d7d7;
+    background-color:#6ea6fa;
     cursor: pointer;
 }
 

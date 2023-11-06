@@ -20,11 +20,11 @@ class Hero extends Component {
                                     <div className="hero__content p-relative z-index-1">
                                     <h3 className="hero__title">
                                         <span></span>
-                                        <span> Embark on your </span>   
-                                         <span className="yellow-shape">learning<img src="assets/img/shape/yellow-bg.png" alt="yellow-shape"/> </span> 
-                                        adventure! </h3>
+                                        <span>Empowering </span>   
+                                         <span className="yellow-shape">Caregivers<img src="assets/img/shape/yellow-bg.png" alt="yellow-shape"/> </span> 
+                                         through Education</h3>
                                       
-                                        <p>Complete your course and earn a certificate of accomplishment.</p>
+                                        <p>Unlocking Knowledge, Enhancing Compassion, and Improving Care</p>
                                         <Link href="/course-all"><a className="e-btn">view all course</a></Link>
                                     </div>
                                 </div>
@@ -39,8 +39,8 @@ class Hero extends Component {
                                         <img src="assets/img/hero/Home1.webp" alt="img not found"/>
                                         {/* <img src="https://images.pexels.com/photos/5088181/pexels-photo-5088181.jpeg?auto=compress&cs=tinysrgb&w=600" alt="not found" /> */}
                                         <div className="hero__quote hero__quote-animation">
-                                            <span>Believe you can and you're halfway there.</span>
-                                            <h4> Theodore Roosevelt</h4>
+                                            <span style={{fontWeight:"bold"}}>Nurturing Knowledge, Elevating<br/>Compassion in Caregiving</span>
+                                            <h4></h4>
                                         </div>
                                     </div>
                                     <div className="hero__thumb-sm mt-50 d-none d-lg-block">

@@ -423,15 +423,15 @@ const Header = () => {
                             variant=""
                             id="dropdown-basic"
                           >
-                            Profile
+                           Dashboard
                           </Dropdown.Toggle>
 
                           <Dropdown.Menu>
                             <Dropdown.Item
                               className="btn"
-                              href="/company/dashboard"
+                              href="/company/myprofile"
                             >
-                              Dashboard
+                              My Profile
                             </Dropdown.Item>
                             <Dropdown.Item
                               className="btn"

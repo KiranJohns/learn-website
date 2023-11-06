@@ -51,29 +51,35 @@ function DashProfile() {
       >
         My Profile
       </h2>
-      <div style={{ padding: "0 20px" }} onClick={handleImage}>
+      {/* <div style={{ padding: "0 20px" }} onClick={handleImage}>
         <img style={{width:'70px',height:'70px',borderRadius:'70px',cursor:'pointer'}} src="/assets/img/testimonial/profilePic.webp" alt="" />
         <input type="file" ref={inputRef} style={{display:'none'}}/>
-      </div>
-      <Form style={{ padding: "0px 20px" }}>
-        <Row className="mb-3 mt-3">
+      </div> */}
+      <Form style={{ padding: "10px 20px", marginTop:'2rem'}}>
+        <Row className="mb-4 mt-3">
           <Form.Group as={Col} controlId="formGridEmail">
-            {/* <Form.Label>Name</Form.Label> */}
+            <Form.Label>First Name</Form.Label>
             <Form.Control type="text" placeholder="First name" />
           </Form.Group>
 
           <Form.Group as={Col} controlId="formGridPassword">
-            {/* <Form.Label>Email</Form.Label> */}
+            <Form.Label>Last Name</Form.Label>
             <Form.Control type="email" placeholder="Last name" />
           </Form.Group>
-        </Row>
 
-        <Form.Group className="mb-3" controlId="formGridAddress1">
+        </Row>
+       <Row className=" mt-3">
+        <Form.Group as={Col} className="mb-3" controlId="formGridEmail">
           <Form.Label>Email</Form.Label>
           <Form.Control type="text" placeholder="Email" />
         </Form.Group>
+        <Form.Group as={Col} className="mb-3" controlId="formGridEmail">
+          <Form.Label>Email</Form.Label>
+          <Form.Control type="text" placeholder="Email" />
+        </Form.Group>
+        </Row>
 
-        <Row className="mb-3">
+        <Row className="mt-3 mb-4">
           <Form.Group as={Col} controlId="formGridCity">
             <Form.Label>City</Form.Label>
             <Form.Control />
@@ -89,10 +95,11 @@ function DashProfile() {
             <Form.Control type="password"/>
           </Form.Group>
         </Row>
-
-        <Button variant="primary" type="submit">
-          Update
+         <div style={{display:'flex', justifyContent:"center"}}>
+        <Button variant="primary" type="submit" >
+          Save changes
         </Button>
+        </div>
       </Form>
     </div>
   );

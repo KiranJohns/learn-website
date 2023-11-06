@@ -35,8 +35,10 @@ class DashTest extends Component {
     </Card>
     </div>    */}
 
+           
+
          <div className="ag-format-container">
-          <div className='d-flex justify-content-center' style={{padding:'12px',margin:'1rem 0rem' }}><h2 style={{color:'#004B55'}}>Dashboard</h2></div>
+          <div className='d-flex justify-content-center' style={{padding:'px',margin:'1rem 0rem' }}><h2 style={{color:'#004B55'}}>Dashboard</h2></div>
   <div className="ag-courses_box">
    
     <div className="ag-courses_item">
@@ -73,22 +75,7 @@ class DashTest extends Component {
       </a>
     </div>
 
-    <div className="ag-courses_item">
-      <a href="/company/certificates" className="ag-courses-item_link">
-        <div className="ag-courses-item_bg"></div>
-
-        <div className="ag-courses-item_title">
-        Certificates
-        </div>
-
-        <div className="bi bi-patch-check-fill ag-courses-item_date-box">
-          {/* Start:
-          <span className="ag-courses-item_date">
-            04.11.2022
-          </span> */}
-        </div>
-      </a>
-    </div>
+    
 
     <div className="ag-courses_item">
       <a href="#" className="ag-courses-item_link">

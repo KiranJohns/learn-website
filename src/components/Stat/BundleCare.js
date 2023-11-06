@@ -7,7 +7,7 @@ class BundleCare extends Component {
         <div className="container mt-100">
            <div className="row">
            <div className="col-xxl-6  col-xl-6 col-lg-12 col-md-6 col-sm-6">
-            <h1>Bundle Care</h1>
+            <h1></h1>
              <p>
              In our “Online Care Course – Bundle Package”, Learning Connect offers 30+ CPD accredited online care courses, which staff can do at their own pace. 
              All courses also linked to requirements for Regulated Qualifications Framework units.
