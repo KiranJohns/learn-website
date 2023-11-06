@@ -16,7 +16,7 @@ function DashboardBar() {
 
   return (
     <div className='bg-primary' style={{ padding: '16px' }}>
-        <div  style={{backgroundColor:'white',padding:'2rem',borderRadius:'.5rem'}}>
+        <div  style={{backgroundColor:'white',padding:'1rem',borderRadius:'.5rem',height:'12rem', width:"11rem"}}>
       <div style={{display:'flex', justifyContent:'center' }} onClick={handleImage}>
         <img
           style={{ width: '70px', height: '70px', borderRadius: '70px', cursor: 'pointer' }}
@@ -25,82 +25,86 @@ function DashboardBar() {
         />
         <input type="file" ref={inputRef} style={{ display: 'none' }} />
       </div>
-    <div className='mt-4 ' style={{display:'flex', justifyContent:'center' }}><h6 style={{color:"#004b55"}}>Company Name<br/>Company</h6>
-   
+    <div className='mt-4 ' style={{display:'flex',flexDirection:'column' }}>
+      
+      <h6 style={{color:"#004b55", textAlign:'center'}}>User Name<br/></h6>
+      <h6 style={{color:"#004b55", textAlign:'center'}}>Company Name<br/></h6>
+     
     </div>
     </div>
       <hr className='text-white' />
       <div className='list-group list-group-flush text-nowrap' style={{ overflow: 'hidden' }}>
 
-        <div className='list-group-item  py-2 px-2'>
-          <i className='bi bi-house txttsml me-2' style={{ color: '#fff' }}></i>
+        <a style={{textDecoration:'none'}} href="/company/dashboard"><div className='list-group-item  py-2 px-2 text-center' >
+          <i className='bi bi-house txttsml me-1' style={{ color: '#fff' }}></i>
           <span className='txttsml' style={{ color: '#fff' }}>
-            <Link href="/company/dashboard">Dashboard</Link>
+            Dashboard
           </span>
-        </div>
+        </div></a>
 
-        <div className='list-group-item py-2 px-2'>
-          <i className='bi bi-person-circle txttsml me-2' style={{ color: '#fff' }}></i>
+       <a href="/company/myprofile"><div className='list-group-item py-2 px-2 text-center'>
+          <i className='bi bi-person-circle txttsml me-1' style={{ color: '#fff' }}></i>
           <span className='txttsml' style={{ color: '#fff' }}>
-            <Link href="/company/myprofile">My Profile</Link>
+          My Profile
           </span>
-        </div>
+        </div></a> 
 
-        <div className='list-group-item py-2 px-2'>
-          <i className='bi bi-archive txttsml me-2' style={{ color: '#fff' }}></i>
+        <a href="/company/mycourses"><div className='list-group-item py-2 px-2 text-center'>
+          <i className='bi bi-archive txttsml me-1' style={{ color: '#fff' }}></i>
           <span className='txttsml' style={{ color: '#fff' }}>
-            <Link href="/company/mycourses">My Courses</Link>
+           My Courses
           </span>
-        </div>
+        </div></a>
 
-        <div className='list-group-item py-2 px-2'>
-          <i className='bi bi-patch-check-fill txttsml me-2' style={{ color: '#fff' }}></i>
+       <a href="/company/certificates"><div className='list-group-item py-2 px-2 text-center'>
+          <i className='bi bi-patch-check-fill txttsml me-1' style={{ color: '#fff' }}></i>
           <span className='txttsml' style={{ color: '#fff' }}>
-            <Link href="/company/certificates">Certificates</Link>
+            Certificates
           </span>
-        </div>
+        </div></a> 
 
-        <div className='list-group-item py-2 px-2'>
-          <i className='bi bi-card-checklist txttsml me-2' style={{ color: '#fff' }}></i>
+       <a href="/company/availablecourses"><div className='list-group-item py-2 px-2 text-center'>
+          <i className='bi bi-card-checklist txttsml me-1' style={{ color: '#fff' }}></i>
           <span className='txttsml' style={{ color: '#fff' }}>
-            <Link href="/company/availablecourses">All Courses</Link>
+           All Courses
           </span>
-        </div>
+        </div></a> 
 
-        <div className='list-group-item py-2 px-2'>
-          <i className='bi bi-person-gear txttsml me-2' style={{ color: '#fff' }}></i>
+       <a href="/company/createuser"> <div className='list-group-item py-2 px-2 text-center'>
+          <i className='bi bi-person-gear txttsml me-1' style={{ color: '#fff' }}></i>
           <span className='txttsml' style={{ color: '#fff' }}>
-            <Link href="/company/createuser">Create User</Link>
+          Create User
           </span>
-        </div>
+        </div></a>
 
-        <div className='list-group-item py-2 px-2'>
-          <i className='bi bi-person-check txttsml me-2' style={{ color: '#fff' }}></i>
+       <a href="/company/showuser"><div className='list-group-item py-2 px-2 text-center'>
+          <i className='bi bi-person-check txttsml me-1' style={{ color: '#fff' }}></i>
           <span className='txttsml' style={{ color: '#fff' }}>
-            <Link href="/company/showuser">Show User</Link>
+           Show User
           </span>
-        </div>
+        </div></a> 
 
-        <div className='list-group-item py-2 px-2'>
-          <i className='bi bi-person-fill-slash txttsml me-2' style={{ color: '#fff' }}></i>
+      <a href="/company/archive"><div className='list-group-item py-2 px-2 text-center'>
+          <i className='bi bi-person-fill-slash txttsml me-1' style={{ color: '#fff' }}></i>
           <span className='txttsml' style={{ color: '#fff' }}>
-            <Link href="/company/archive">Archive User</Link>
+           Archive User
           </span>
-        </div>
+        </div></a>  
 
-        <div className='list-group-item py-2 px-2'>
+      <a href="/company/assigncourse"> <div className='list-group-item py-2 px-2 text-center'>
           <i className='bi bi-people txttsml me-2' style={{ color: '#fff' }}></i>
           <span className='txttsml' style={{ color: '#fff' }}>
-            <Link href="/company/assigncourse">Assign Course</Link>
+            Assign Course
           </span>
-        </div>
+        </div></a> 
 
-        <div  onClick={handleLogout} className='list-group-item py-2 px-2'>
+       <a ><div  onClick={handleLogout} className='list-group-item py-2 px-2 text-center'>
           <i className='bi bi-box-arrow-left txttsml me-2' style={{ color: '#fff' }}></i>
           <span className='txttsml' style={{ color: '#fff' }}>
-            <Link href="">Logout</Link>
+            Logout
           </span>
-        </div>
+        </div></a> 
+
         <span className=' py-2 px-2'></span>
  
 
