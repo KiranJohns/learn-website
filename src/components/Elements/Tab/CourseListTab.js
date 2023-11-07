@@ -673,7 +673,7 @@ export default () => (
                                         <span><i className="fas fa-star"></i>4.5 (37)</span>
                                         </div>
                                     </div>
-                                    <h3 className="course__title"><Link href="/course-details"><a>Build your media and Public presence</a></Link></h3>
+                                    <h3 className="course__title"><Link href="/course-details"><a>Build your media and Public presence</a></></h3>
                                     <div className="course__teacher d-flex align-items-center">
                                         <div className="course__teacher-thumb mr-15">
                                         <img src="assets/img/course/teacher/teacher-5.jpg" alt="img not found"/>

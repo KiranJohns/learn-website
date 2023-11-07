@@ -3,7 +3,7 @@ import Dropdown from 'react-bootstrap/Dropdown';
 function BasicExample() {
   return (
     <Dropdown>
-      <Dropdown.Toggle variant="success" id="dropdown-basic">
+      <Dropdown.Toggle  id="dropdown-basic" style={{background:"#212450"}}>
         Action 
       </Dropdown.Toggle>
 

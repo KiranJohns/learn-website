@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@cyntler/react-doc-viewer": "^1.14.1",
     "@nextui-org/react": "^2.1.12",
     "@nextui-org/table": "^2.0.22",
     "@radix-ui/react-tabs": "^1.0.4",
