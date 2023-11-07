@@ -21,7 +21,7 @@ class DashCAvail extends Component {
   customStyles = {
     headRow: {
       style: {
-        backgroundColor: '#004b55',
+        backgroundColor: '#212450',
         color: 'white',
       },
     },
@@ -140,7 +140,7 @@ export default DashCAvail;
 // const customStyles = {
 //   headRow:{
 //     style:{
-//       backgroundColor : '#004b55',
+//       backgroundColor : '#212450',
 //       color:'white'
 //     }
 //   },
@@ -216,7 +216,7 @@ export default DashCAvail;
 
 //     return (
     //   <div className=''>
-    //     <h3 style={{padding:"1.5rem", color: "#004b55"}}>All Courses</h3>
+    //     <h3 style={{padding:"1.5rem", color: "#212450"}}>All Courses</h3>
     //     <div className=' row g-3  min-vh-100  d-flex justify-content-center align-items-center '>
     //       <div style={{padding:"50px 10%", backgroundColor: ""}}>
     //         <div className='pb-2' style={{display:'flex', justifyContent:'left' }}>

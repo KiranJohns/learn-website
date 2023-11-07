@@ -8,7 +8,7 @@ import fetchData from "../../axios";
 const customStyles = {
   headRow: {
     style: {
-      backgroundColor: "#004b55",
+      backgroundColor: "#212450",
       color: "white",
     },
   },
@@ -110,7 +110,7 @@ class DashCourse extends Component {
         <h2
           style={{
             padding: "1.5rem",
-            color: "#004b55",
+            color: "#212450",
             display: "flex",
             justifyContent: "flex-start",
             justifyContent: "center",

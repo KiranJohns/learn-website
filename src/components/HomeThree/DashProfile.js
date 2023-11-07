@@ -22,7 +22,7 @@ class DashMain extends Component {
             <Tab eventKey="home" title="Home">
                
           <div className=''>
-            <h3 style={{padding:"1.5rem", color: "#004b55"}}>Dashboard</h3>           
+            <h3 style={{padding:"1.5rem", color: "#212450"}}>Dashboard</h3>           
            <div className=' row g-3  min-vh-100  d-flex justify-content-center align-items-around my-5'>
 
             {/* <div className='col-md-3'>
@@ -38,7 +38,7 @@ class DashMain extends Component {
          
            
     <div className='col-sm-2 col-md-3'>
-    <div className="card text-white  mb-3 dash " style={{backgroundColor:'#004b55'}}>
+    <div className="card text-white  mb-3 dash " style={{backgroundColor:'#212450'}}>
       <div className="card-header mx-auto">Total Assign Package</div>
        <div className="card-body">
       <h5 className=" d-flex fs-3 justify-content-center">0</h5>
@@ -48,7 +48,7 @@ class DashMain extends Component {
   </div>        
 
   <div className='col-sm-2 col-md-3'>
-    <div className="card text-white mb-3 dash" style={{backgroundColor:'#004b55'}}>
+    <div className="card text-white mb-3 dash" style={{backgroundColor:'#212450'}}>
       <div className="card-header  mx-auto">Total Assign Single Course</div>
        <div className="card-body">
       <h5 className=" d-flex fs-3 justify-content-center">7</h5>
@@ -60,7 +60,7 @@ class DashMain extends Component {
 
  
    <div className='col-sm-2 col-md-3 '>
-    <div className="card text-white mb-3 dash" style={{backgroundColor:'#004b55'}}>
+    <div className="card text-white mb-3 dash" style={{backgroundColor:'#212450'}}>
       <div className="card-header mx-auto">Total Individual</div>
        <div className="card-body">
       <h5 className=" d-flex fs-3 justify-content-center">2</h5>

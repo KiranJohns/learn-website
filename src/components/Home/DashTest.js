@@ -10,7 +10,7 @@ import DataTable from "react-data-table-component";
 const customStyles = {
   headRow: {
     style: {
-      backgroundColor: "#004b55",
+      backgroundColor: "#212450",
       color: "white",
     },
   },
@@ -137,7 +137,7 @@ class DashTest extends Component {
            
 
          <div className="ag-format-container">
-         <h2 style={{padding:"1.5rem", color: "#004b55", display:"flex", justifyContent:"flex-start",justifyContent:"center", marginTop:'20px',fontSize: 46}}>Dashboard</h2>
+         <h2 style={{padding:"1.5rem", color: "#212450", display:"flex", justifyContent:"flex-start",justifyContent:"center", marginTop:'20px',fontSize: 46}}>Dashboard</h2>
   <div className="ag-courses_box dash-shadow">
    
     <div className="ag-courses_item">
@@ -200,7 +200,7 @@ class DashTest extends Component {
         <h4
           style={{
             padding: "1rem",
-            color: "#004b55",
+            color: "#212450",
             display: "flex",
             justifyContent: "flex-start",
             justifyContent: "center",

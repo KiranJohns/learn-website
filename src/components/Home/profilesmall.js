@@ -14,7 +14,7 @@ class Profilesmall extends Component {
         return (
 
          <div className='container' style={{padding:'10px'}}>
-                     <h2 style={{padding:"1.5rem", color: "#004b55"}}>My Profile</h2> 
+                     <h2 style={{padding:"1.5rem", color: "#212450"}}>My Profile</h2> 
                <Form>
       <Row className="mb-3 mt-4">
         <Form.Group as={Col} controlId="formGridEmail">

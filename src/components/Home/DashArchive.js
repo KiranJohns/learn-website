@@ -8,7 +8,7 @@ import BasicExample from '../About/button1';
 const customStyles = {
   headRow:{
     style:{
-      backgroundColor : '#004b55',
+      backgroundColor : '#212450',
       color:'white'
     }
   },
@@ -84,7 +84,7 @@ class DashArchive extends Component {
 
     return (
       <div className=''>
-      <h2 style={{padding:"1.5rem", color: "#004b55", display:"flex", justifyContent:"center", marginTop:'20px',fontSize: 46}}>Archive Users</h2>
+      <h2 style={{padding:"1.5rem", color: "#212450", display:"flex", justifyContent:"center", marginTop:'20px',fontSize: 46}}>Archive Users</h2>
       <div className=' row g-3  min-vh-100  d-flex justify-content-center '>
         <div style={{padding:"", backgroundColor: ""}}>
           <div className='pb-2 smth'  style={{display:'flex', justifyContent:'left' }}>

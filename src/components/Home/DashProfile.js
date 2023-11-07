@@ -42,7 +42,7 @@ function DashProfile() {
       <h2
         style={{
           padding: "1.5rem",
-          color: "#004b55",
+          color: "#212450",
           display: "flex",
           justifyContent: "center",
           marginTop: "20px",
@@ -112,7 +112,7 @@ export default DashProfile;
 //     render(){
 //         return(
 //             <div className=''>
-//                <h3 style={{padding:"1.5rem", color: "#004b55"}}>My Profile</h3>
+//                <h3 style={{padding:"1.5rem", color: "#212450"}}>My Profile</h3>
 //             <div className='row g-3  min-vh-100  d-flex justify-content-end align-items-center '>
 //             <form className="col-sm-10 col-md-8 d-block mx-auto">
 //   <div className="form-group p-2 mb-4">
@@ -135,7 +135,7 @@ export default DashProfile;
 //     <input type="email" className="form-control border border-black" id="country" placeholder="City" value=""/>
 //   </div>
 //   <div className="form-group p-2 mb-4">
-//   <button type="button" class="btn " style={{backgroundColor:'#004b55', color:'white'}}>Save Changes</button>
+//   <button type="button" class="btn " style={{backgroundColor:'#212450', color:'white'}}>Save Changes</button>
 //   </div>
 //   </form>
 //              </div>

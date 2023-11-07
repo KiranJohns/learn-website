@@ -7,8 +7,8 @@ class BarD1 extends Component{
         return(
          <div className='bg-white' style={{borderRadius:"22px"}}>  
           {/* <div className='px-4 mt-4  text-nowrap' style={{overflow:'hidden'}}>
-            <i className='bi bi-person-circle py-2' style={{color: "#004b55"}}></i>
-           <span className='brand-name my-2 fs-5 px-2 ' style={{color: "#004b55",width:'240px'}}>Jamie Oliver</span>
+            <i className='bi bi-person-circle py-2' style={{color: "#212450"}}></i>
+           <span className='brand-name my-2 fs-5 px-2 ' style={{color: "#212450",width:'240px'}}>Jamie Oliver</span>
           </div> */}
                 <hr className='text-white'/>
                 <div className='list-group list-group-flush text-nowrap' style={{overflow:'hidden'}}>
@@ -20,63 +20,63 @@ class BarD1 extends Component{
                   </a> */}
                   
                   <div className='list-group-item py-2 px-2'>
-                    <i className='bi bi-house txttsml me-2' style={{color: "#004b55"}}></i>
+                    <i className='bi bi-house txttsml me-2' style={{color: "#212450"}}></i>
                   {/* <Link className='fs-6 ' style={{color: "#3E001F"}} href="/company/dashboard">Dashboard</Link> */}
-                  <span  className='txttsml' style={{color: "#004b55"}}>
+                  <span  className='txttsml' style={{color: "#212450"}}>
                       <Link href="/company/dashboard">
                     Overview
                     </Link></span>  
                   </div>
 
                   <div className='list-group-item py-2 px-2'>
-                    <i className='bi bi-person-circle txttsml me-2' style={{color: "#004b55"}}></i>
+                    <i className='bi bi-person-circle txttsml me-2' style={{color: "#212450"}}></i>
                     {/* <Link className='fs-6 ' style={{color: "#3E001F"}} href="/company/myprofile">My Profile</Link>     */}
-                    <span  className='txttsml' style={{color: "#004b55"}}>
+                    <span  className='txttsml' style={{color: "#212450"}}>
                       <Link href="/company/myprofile">
                       My Profile
                       </Link></span>             
                   </div>
 
                   <div className='list-group-item py-2 px-2'>
-                    <i className='bi bi-archive txttsml me-2' style={{color: "#004b55"}}></i>
+                    <i className='bi bi-archive txttsml me-2' style={{color: "#212450"}}></i>
                     {/* <span className='fs-6 ' style={{color: "#3E001F"}}><Link href="/company/mycourses">My Courses</Link></span>   */}
-                    <span  className='txttsml' style={{color: "#004b55"}}>
+                    <span  className='txttsml' style={{color: "#212450"}}>
                       <Link href="/company/mycourses">
                       My Courses
                       </Link></span>                     
                   </div>
 
                   <div className='list-group-item py-2 px-2'>
-                    <i className='bi bi-patch-check-fill txttsml me-2' style={{color: "#004b55"}}></i>
+                    <i className='bi bi-patch-check-fill txttsml me-2' style={{color: "#212450"}}></i>
                    {/* <Link className='fs-6 ' style={{color: "#3E001F"}} href="/company/mycourses">Certificates</Link> */}
-                   <span  className='txttsml' style={{color: "#004b55"}}>
+                   <span  className='txttsml' style={{color: "#212450"}}>
                       <Link href="/company/certificates">
                     Certificates
                     </Link></span>  
                   </div>
 
                   <div className='list-group-item py-2 px-2'>
-                    <i className='bi bi-card-checklist txttsml me-2' style={{color: "#004b55"}}></i>
+                    <i className='bi bi-card-checklist txttsml me-2' style={{color: "#212450"}}></i>
                     {/* <Link className='fs-6 ' style={{color: "#3E001F"}} href="/company/availablecourses">Available Courses</Link> */}
-                    <span  className='txttsml' style={{color: "#004b55"}}>
+                    <span  className='txttsml' style={{color: "#212450"}}>
                       <Link href="/company/availablecourses">
                       All Courses
                       </Link></span>  
                   </div>
 
                   <div className='list-group-item py-2 px-2'>
-                    <i className='bi bi-person-gear txttsml me-2' style={{color: "#004b55"}}></i>
+                    <i className='bi bi-person-gear txttsml me-2' style={{color: "#212450"}}></i>
                     {/* <Link className='fs-6 ' style={{color: "#3E001F"}} href="/company/createuser">Create User</Link> */}
-                    <span  className='txttsml' style={{color: "#004b55"}}>
+                    <span  className='txttsml' style={{color: "#212450"}}>
                       <Link href="/company/createuser">
                       Create User
                       </Link></span>  
                   </div>
 
                   <div className='list-group-item py-2 px-2'>
-                    <i className='bi bi-person-check txttsml me-2' style={{color: "#004b55"}}></i>
+                    <i className='bi bi-person-check txttsml me-2' style={{color: "#212450"}}></i>
                       {/* <Link className='fs-6 ' style={{color: "#3E001F"}} href="/company/showuser">Show User</Link> */}
-                      <span  className='txttsml' style={{color: "#004b55"}}>
+                      <span  className='txttsml' style={{color: "#212450"}}>
                       <Link href="/company/showuser">
                         Show User
                         
@@ -85,8 +85,8 @@ class BarD1 extends Component{
                   </div>
 
                   <div className='list-group-item py-2 px-2'>
-                    <i className='bi bi-person-fill-slash txttsml me-2' style={{color: "#004b55"}}></i>
-                     <span  className='txttsml' style={{color: "#004b55"}}>
+                    <i className='bi bi-person-fill-slash txttsml me-2' style={{color: "#212450"}}></i>
+                     <span  className='txttsml' style={{color: "#212450"}}>
                      <Link href="/company/archive">
                       Archive User
                       </Link>
@@ -94,8 +94,8 @@ class BarD1 extends Component{
                   </div>
 
                   <div className='list-group-item py-2 px-2'>
-                    <i className='bi bi-people txttsml me-2' style={{color: "#004b55"}}></i>
-                     <span  className='txttsml' style={{color: "#004b55"}}>
+                    <i className='bi bi-people txttsml me-2' style={{color: "#212450"}}></i>
+                     <span  className='txttsml' style={{color: "#212450"}}>
                       <Link href="/company/assigncourse">
                          Assign Course
                         </Link>
@@ -103,7 +103,7 @@ class BarD1 extends Component{
                    
                   </div>
                  
-                  <span  className='txttsml' style={{color: "#004b55"}}>  </span> 
+                  <span  className='txttsml' style={{color: "#212450"}}>  </span> 
                   
                       
                 </div>
