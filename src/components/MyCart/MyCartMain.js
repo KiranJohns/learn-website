@@ -107,6 +107,7 @@ const MyCart = () => {
       })
       .catch((err) => {
         if (err?.data?.errors[0].message === "please login") {
+          localStorage.setItem("from-checkout",true)
           location.pathname = "/sign-in";
         }
         console.log(err.data.errors[0]);
