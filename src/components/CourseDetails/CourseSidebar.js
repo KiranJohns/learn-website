@@ -16,6 +16,24 @@ function CourseSidebar() {
 
   const makeRequest = fetchData();
 
+
+
+  function getCartItem() {
+    makeRequest("GET", "/cart/get")
+      .then((res) => {
+        store.dispatch({
+          type: "SET_CART",
+          payload: JSON.stringify(res.data.response),
+        });
+      })
+      .catch((err) => {
+        if (err?.data?.errors[0].message === "please login") {
+          store.dispatch({
+            type: "SET_CART",
+          });
+        }
+      });
+  }
   const [course, setCourse] = useState(() => {
     makeRequest("GET", `/course/get-single-course/${slug}`)
       .then((res) => {
@@ -26,6 +44,25 @@ function CourseSidebar() {
       });
   });
 
+  function addToCart(id) {
+    makeRequest("POST", "/cart/add", { course: [{ count: 1, id: id }] })
+      .then((res) => {
+        getCartItem();
+        console.log(res.data);
+      })
+      .catch((err) => {
+        if (err?.data?.errors[0].message === "please login") {
+          store.dispatch({
+            type: "ADD_TO_CART",
+            payload: {
+              course: course.find((item) => item.id === id),
+              count: 1,
+            },
+          });
+        }
+      });
+  }
+
   const onOpenModal = () => {
     setOpen((open) => true);
   };
@@ -33,13 +70,6 @@ function CourseSidebar() {
   const onCloseModal = () => {
     setOpen((open) => false);
   };
-
-  function addToCart(id) {
-    store.dispatch({
-      type: "ADD_TO_CART",
-      payload: product,
-    });
-  }
 
   return (
     <React.Fragment>
@@ -122,9 +152,7 @@ function CourseSidebar() {
                     <i className="fas fa-clock"></i>
                   </div>
                   <div className="course__video-info">
-                    <h5>
-                      Variable
-                    </h5>
+                    <h5>Variable</h5>
                   </div>
                 </li>
                 <li className="d-flex align-items-center">
@@ -132,9 +160,7 @@ function CourseSidebar() {
                     <i className="fas fa-user"></i>
                   </div>
                   <div className="course__video-info">
-                    <h5>
-                      Intermediate, Advanced
-                    </h5>
+                    <h5>Intermediate, Advanced</h5>
                   </div>
                 </li>
                 <li className="d-flex align-items-center">
@@ -142,9 +168,7 @@ function CourseSidebar() {
                     <i className="fas fa-globe"></i>
                   </div>
                   <div className="course__video-info">
-                    <h5>
-                    Certificate of completion
-                    </h5>
+                    <h5>Certificate of completion</h5>
                   </div>
                 </li>
               </ul>
@@ -161,7 +185,7 @@ function CourseSidebar() {
             <div className="course__enroll-btn">
               <span
                 role="button"
-                onClick={() => addToCart()}
+                onClick={() => addToCart(course.id)}
                 className="pe-auto e-btn e-btn-7 w-100"
               >
                 add to cart
