@@ -22,7 +22,7 @@ function SignInMain() {
     e.preventDefault();
     makeRequest("POST", "/auth/forgot-password", { email })
       .then((res) => {
-        toast.info("link sent to your email")
+        toast.info("link sent to your email");
         console.log(res);
       })
       .catch((err) => {
@@ -59,17 +59,26 @@ function SignInMain() {
           `learnforcare_refresh`,
           res.data.jwt_refresh_token
         );
-        localStorage.setItem("userType",res.data.userType)
-        if(localStorage.setItem == "company") {
-          location.pathname = "/company/dashboard";
+        localStorage.setItem("userType", res.data.userType);
+        let from = localStorage.getItem("from-checkout", true);
+        if (localStorage.setItem == "company") {
+          if (from) {
+            location.pathname = "/cart";
+          } else {
+            location.pathname = "/company/dashboard";
+          }
         } else {
-          location.pathname = "/individual/dashboard";
+          if (from) {
+            location.pathname = "/cart";
+          } else {
+            location.pathname = "/individual/dashboard";
+          }
         }
       })
       .catch((err) => {
         setLoading((prev) => false);
         console.log(err?.data?.errors[0]);
-       
+
         toast.error(err?.data?.errors[0].error);
         store.dispatch({
           type: "SET_ERROR_FOR_SIGN_IN",

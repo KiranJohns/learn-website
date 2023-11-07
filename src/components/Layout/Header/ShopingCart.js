@@ -114,6 +114,7 @@ const ShopingCart = ({ setShopOpen, shopOpen }) => {
       })
       .catch((err) => {
         if (err?.data?.errors[0].message === "please login") {
+          localStorage.setItem("from-checkout",true)
           window.location = "/sign-in";
         }
       });
