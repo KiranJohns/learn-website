@@ -245,7 +245,7 @@ const HeaderOpaque = () => {
                               </li>
                               <li>
                                 <Link href="/bundle/bundle-Online">
-                                  <a>Online Care Bundle Package</a>
+                                  <a>Online Care Bundle </a>
                                 </Link>
                               </li>
                             </ul>

@@ -16,7 +16,7 @@ class CourseGridMandatory extends Component {
 				{/* <Breadcrumb pageTitle="Mandatory Care Courses" type=""/> */}
 				{/* breadcrumb-end */}
 
-				<BundleCare name="Mandatory Care Courses"/>
+				<BundleCare  name="Mandatory Care Bundle"/>
 
                 {/* course tab-start */}
 				<CourseGridTab category="Mandatory Care Courses"/>

@@ -15,7 +15,7 @@ class CourseGridChild extends Component {
 				<Breadcrumb pageTitle="Child Care Courses"/>
 				{/* breadcrumb-end */}
 
-				<BundleCare name="Child Care Courses"/>
+				<BundleCare name="Child Care Bundle"/>
                 {/* course tab-start */}
 				<CourseGridTab category="Child Care Courses" />
 				{/* course tab-end */}

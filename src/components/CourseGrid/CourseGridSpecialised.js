@@ -15,7 +15,7 @@ class CourseGridSpecialised extends Component {
 				<Breadcrumb pageTitle="Specialized Care Courses"/>
 				{/* breadcrumb-end */}
 
-				<BundleCare name="Specialized Care Courses"/>
+				<BundleCare name="Specialized Care Bundle"/>
 
                 {/* course tab-start */}
 				<CourseGridTab category="Specialized Care Courses" />

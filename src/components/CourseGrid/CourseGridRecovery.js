@@ -15,7 +15,7 @@ class CourseGridRecovery extends Component {
 				<Breadcrumb pageTitle="Recovery Care Courses"/>
 				{/* breadcrumb-end */}
 
-				<BundleCare name="Recovery Care Courses"/>
+				<BundleCare name="Recovery Care Bundle"/>
 
                 {/* course tab-start */}
 				<CourseGridTab category="Recovery Care Courses"/>
