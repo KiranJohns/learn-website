@@ -15,8 +15,8 @@ class CourseBundle extends Component {
 				<Breadcrumb pageTitle=" All Bundles"/>
 				{/* breadcrumb-end */}
                 
-                 <BundleCare/>
                 {/* course tab-start */}
+
 				<BundleAll/>
 				{/* course tab-end */}
               

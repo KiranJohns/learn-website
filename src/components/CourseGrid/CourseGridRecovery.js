@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Breadcrumb from '../Common/Breadcrumb';
 import CourseGridTab from '../Elements/Tab/CourseGridTab';
 import Cta from '../Home/CtaSection';
+import BundleCare from '../Stat/BundleCare';
 
 
 class CourseGridRecovery extends Component {
@@ -13,6 +14,8 @@ class CourseGridRecovery extends Component {
 	            {/* breadcrumb-start */}
 				<Breadcrumb pageTitle="Recovery Care Courses"/>
 				{/* breadcrumb-end */}
+
+				<BundleCare name="Recovery Care Courses"/>
 
                 {/* course tab-start */}
 				<CourseGridTab category="Recovery Care Courses"/>

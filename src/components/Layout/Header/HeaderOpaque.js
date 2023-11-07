@@ -220,32 +220,32 @@ const HeaderOpaque = () => {
                             <ul className="submenu">
                               <li>
                                 <Link href="/bundle/care-bundle">
-                                  <a>Care Course Bundle</a>
+                                  <a>Care Bundle</a>
                                 </Link>
                               </li>
                               <li>
                                 <Link href="/bundle/mandatory-bundle">
-                                  <a>Mandatory Care Course Bundle</a>
+                                  <a>Mandatory Care Bundle</a>
                                 </Link>
                               </li>
                               <li>
                                 <Link href="/bundle/special-bundle">
-                                  <a>Specialised Care Course Bundle</a>
+                                  <a>Specialised Care Bundle</a>
                                 </Link>
                               </li>
                               <li>
                                 <Link href="/bundle/recovery-bundle">
-                                  <a>Recovery Care Course Bundle</a>
+                                  <a>Recovery Care Bundle</a>
                                 </Link>
                               </li>
                               <li>
                                 <Link href="/bundle/child-bundle">
-                                  <a>Child Care Course Bundle</a>
+                                  <a>Child Care Bundle</a>
                                 </Link>
                               </li>
                               <li>
                                 <Link href="/bundle/bundle-Online">
-                                  <a>Online Care Course Bundle Package</a>
+                                  <a>Online Care Bundle Package</a>
                                 </Link>
                               </li>
                             </ul>

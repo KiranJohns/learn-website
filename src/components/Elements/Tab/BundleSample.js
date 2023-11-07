@@ -12,8 +12,6 @@ import Link from "next/link";
 import { useSelector } from "react-redux";
 import fetchData from "../../../axios/index";
 import CourseCard from "./CourseCard";
-import Pagination from 'react-bootstrap/Pagination';
-
 
 export default () => {
   const { cart } = useSelector((store) => store.cart);
@@ -31,6 +29,62 @@ export default () => {
       });
   }, []);
 
+  const bundle = [
+    {
+      id: 1,
+      name: "Care Bundle",
+      thumbnail: "/assets/img/course/cn1.webp",
+      description: `I was experiencing the same error but with a custom server.js file.
+The solution was to copy the example code from the docs here.
+It seems like the docs were updated recently`,
+      price: 123,
+    },
+    {
+      id: 2,
+      name: "Mandatory Care Bundle",
+      thumbnail: "/assets/img/course/cn2.webp",
+      description: `I was experiencing the same error but with a custom server.js file.
+The solution was to copy the example code from the docs here.
+It seems like the docs were updated recently`,
+      price: 123,
+    },
+    {
+      id: 3,
+      name: "Specialised Care Bundle",
+      thumbnail: "/assets/img/course/cn3.webp",
+      description: `I was experiencing the same error but with a custom server.js file.
+The solution was to copy the example code from the docs here.
+It seems like the docs were updated recently`,
+      price: 123,
+    },
+    {
+      id: 4,
+      name: "Recovery Care Bundle",
+      thumbnail: "/assets/img/course/cn4.webp",
+      description: `I was experiencing the same error but with a custom server.js file.
+The solution was to copy the example code from the docs here.
+It seems like the docs were updated recently`,
+      price: 123,
+    },
+    {
+      id: 5,
+      name: "Child Care Bundle",
+      thumbnail: "/assets/img/course/cn5.webp",
+      description: `I was experiencing the same error but with a custom server.js file.
+The solution was to copy the example code from the docs here.
+It seems like the docs were updated recently`,
+      price: 123,
+    },
+    {
+      id: 6,
+      name: "Online Care Bundle Package",
+      thumbnail: "/assets/img/course/cn6.webp",
+      description: `I was experiencing the same error but with a custom server.js file.
+The solution was to copy the example code from the docs here.
+It seems like the docs were updated recently`,
+      price: 123,
+    },
+  ];
   return (
     <section className="course__area pt-50 pb-60 grey-bg">
       <Tabs variant="enclosed" id="react-tabs-276">
@@ -73,12 +127,12 @@ export default () => {
           </div>
           <TabPanel>
             <div className="row">
-              {course.map((item) => (<CourseCard item={item} />))}
+              {bundle.map((item) => (
+                <CourseCard item={item} />
+              ))}
             </div>
-          
           </TabPanel>
         </div>
-       
       </Tabs>
     </section>
   );
