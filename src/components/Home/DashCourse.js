@@ -51,7 +51,7 @@ class DashCourse extends Component {
   getData = () => {
     try {
       const makeRequest = fetchData();
-      makeRequest("GET","/course/get-bought-course")
+      makeRequest("GET", "/course/get-bought-course")
         .then((res) => {
           console.log(res);
           this.setState({
@@ -71,7 +71,7 @@ class DashCourse extends Component {
     const columns = [
       {
         name: "No",
-        selector: (row,idx) => idx+1,
+        selector: (row, idx) => idx + 1,
         sortable: true,
       },
       {
@@ -81,7 +81,7 @@ class DashCourse extends Component {
       },
       {
         name: "description",
-        selector: (row) => row.description.slice(0,25),
+        selector: (row) => row.description.slice(0, 25),
       },
       {
         name: "category",
@@ -90,9 +90,11 @@ class DashCourse extends Component {
       {
         name: "validity",
         selector: (row) => {
-          let date = row.validity.split("/")
-          let newDate = `${date[1]}/${date[0]}/${date[2]}`
-          return newDate
+          let date = row.validity
+            .split("/")
+            .map((d) => d.length <= 1 ? "0" + d : d);
+          let newDate = `${date[1]}/${date[0]}/${date[2]}`;
+          return newDate;
         },
       },
       {
