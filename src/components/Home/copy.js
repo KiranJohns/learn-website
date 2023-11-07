@@ -1,216 +1,113 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useRef } from 'react';
 import Link from 'next/link';
-import DashboardBar from '../Sidebar/DashboardBar';
-import Accordion from 'react-bootstrap/Accordion';
-import Card from 'react-bootstrap/Card';
-import ListGroup from 'react-bootstrap/ListGroup';
-import fetchData from '../../axios';
-import DataTable from 'react-data-table-component';
+import 'bootstrap-icons/font/bootstrap-icons.css';
 
-const customStyles = {
-  headRow: {
-    style: {
-      backgroundColor: '#212450',
-      color: 'white',
-    },
-  },
-  headCells: {
-    style: {
-      fontSize: '16px',
-      fontWeight: '600',
-      textTransform: 'uppercase',
-      justifyContent: 'center',
-    },
-  },
-  cells: {
-    style: {
-      fontSize: '15px',
-      justifyContent: 'center',
-    },
-  },
-};
+function IndividualBar() {
+  const inputRef = useRef(null);
 
-function DashIndividual() {
-  const [records, setRecords] = useState([]);
-  const [filterRecords, setFilterRecords] = useState([]);
-
-  const handleFilter = (event) => {
-    const newData = filterRecords.filter((row) =>
-      row.name.toLowerCase().includes(event.target.value.toLowerCase())
-    );
-    setRecords(newData);
+  const handleImage = () => {
+    inputRef.current.click();
   };
 
-  const getData = () => {
-    try {
-      const makeRequest = fetchData();
-      makeRequest('GET', '/course/get-bought-course')
-        .then((res) => {
-          console.log(res);
-          setRecords(res.data.response);
-          setFilterRecords(res.data);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    } catch (error) {
-      console.log(error);
-    }
+  const handleLogout = () => {
+    localStorage.removeItem("learnforcare_access");
+    location.pathname = "/";
   };
-
-  useEffect(() => {
-    getData();
-  }, []);
-
-  const columns = [
-    {
-      name: 'No',
-      selector: (row, idx) => idx + 1,
-      sortable: true,
-    },
-    {
-      name: 'Name',
-      selector: (row) => row.Name,
-      sortable: true,
-    },
-    {
-      name: 'description',
-      selector: (row) => row.description.slice(0, 25),
-    },
-    {
-      name: 'category',
-      selector: (row) => row.category,
-    },
-    {
-      name: 'validity',
-      selector: (row) => {
-        let date = row.validity.split('/');
-        let newDate = `${date[1]}/${date[0]}/${date[2]}`;
-        return newDate;
-      },
-    },
-    {
-      name: '',
-      cell: () => (
-        <a href={'#'} className="btn btn-success">
-          Start
-        </a>
-      ),
-    },
-  ];
 
   return (
-    <div className="container" style={{ padding: '10px' }}>
-      {/* Your JSX content here */}
-      <div className="ag-format-container">
-        <h2
-          style={{
-            padding: '1.5rem',
-            color: '#212450',
-            display: 'flex',
-            justifyContent: 'flex-start',
-            justifyContent: 'center',
-            marginTop: '20px',
-            fontSize: 46,
-          }}
-        >
-          Dashboard
-        </h2>
-        <div className="ag-courses_box dash-shadow">
-          <div className="ag-courses_item">
-            <a href="/individual/myprofile" className="ag-courses-item_link">
-              <div className="ag-courses-item_bg"></div>
+    <div className='' style={{ padding: '16px', backgroundColor:'#212450' }}>
+        <div  style={{backgroundColor:'white',padding:'1rem',borderRadius:'.5rem',height:'12rem', width:"11rem"}}>
+      <div style={{display:'flex', justifyContent:'center' }} onClick={handleImage}>
+        <img
+          style={{ width: '70px', height: '70px', borderRadius: '70px', cursor: 'pointer' }}
+          src="/assets/img/testimonial/profilePic.webp"
+          alt=""
+        />
+        <input type="file" ref={inputRef} style={{ display: 'none' }} />
+      </div>
+    <div className='mt-4 ' style={{display:'flex',flexDirection:'column' }}>
+      
+      <h6 style={{color:"#212450", textAlign:'center'}}>User Name<br/></h6>
+      <h6 style={{color:"#212450", textAlign:'center'}}>Company Name<br/></h6>
+     
+    </div>
+    </div>
+      <hr className='text-white' />
+      <div className='list-group list-group-flush text-nowrap' style={{ overflow: 'hidden' }}>
 
-              <div className="ag-courses-item_title">My Profile</div>
+        <Link href="/individual/dashboard"><div className='list-group-item  py-2 px-2 text-center' >
+          <i className='bi bi-house txttsml me-1' style={{ color: '#fff' }}></i>
+          <span className='txttsml' style={{ color: '#fff' }}>
+            Dashboard
+          </span>
+        </div></Link>
 
-              <div className="bi bi-person-circle ag-courses-item_date-box">
-                {/* Start:
-                <span className="ag-courses-item_date">
-                  04.11.2022
-                </span> */}
-              </div>
-            </a>
-          </div>
+       <Link href="/individual/myprofile"><div className='list-group-item py-2 px-2 text-center'>
+          <i className='bi bi-person-circle txttsml me-1' style={{ color: '#fff' }}></i>
+          <span className='txttsml' style={{ color: '#fff' }}>
+          My Profile
+          </span>
+        </div></Link> 
 
-          <div className="ag-courses_item">
-            <a href="/individual/mycourses" className="ag-courses-item_link">
-              <div className="ag-courses-item_bg"></div>
+        <Link href="/individual/mycourses"><div className='list-group-item py-2 px-2 text-center'>
+          <i className='bi bi-archive txttsml me-1' style={{ color: '#fff' }}></i>
+          <span className='txttsml' style={{ color: '#fff' }}>
+           My Courses
+          </span>
+        </div></Link>
 
-              <div className="ag-courses-item_title">My Course</div>
+       <Link href="/individual/certificates"><div className='list-group-item py-2 px-2 text-center'>
+          <i className='bi bi-patch-check-fill txttsml me-1' style={{ color: '#fff' }}></i>
+          <span className='txttsml' style={{ color: '#fff' }}>
+            Certificates
+          </span>
+        </div></Link> 
 
-              <div className="bi bi-archive ag-courses-item_date-box">
-                {/* Start:
-                <span className="ag-courses-item_date">
-                  04.11.2022
-                </span> */}
-              </div>
-            </a>
-          </div>
+       <Link href="/company/availablecourses"><div className='list-group-item py-2 px-2 text-center'>
+          <i className='bi bi-card-checklist txttsml me-1' style={{ color: '#fff' }}></i>
+          <span className='txttsml' style={{ color: '#fff' }}>
+           All Courses
+          </span>
+        </div></Link> 
 
-          <div className="ag-courses_item">
-            <a href="/individual/certificates" className="ag-courses-item_link">
-              <div className="ag-courses-item_bg"></div>
-              <div className="ag-courses-item_title">
-                My Certificate
-              </div>
-              <div className="bi bi-patch-check-fill ag-courses-item_date-box">
-                {/* Start:
-                <span className="ag-courses-item_date">
-                  04.11.2022
-                </span> */}
-              </div>
-            </a>
-          </div>
-          
+        
+
+       <Link href="/individual/availablecourses"><div className='list-group-item py-2 px-2 text-center'>
+          <i className='bi bi-person-check txttsml me-1' style={{ color: '#fff' }}></i>
+          <span className='txttsml' style={{ color: '#fff' }}>
+          All Courses
+          </span>
+        </div></Link> 
+
+      <Link href=""><div className='list-group-item py-2 px-2 text-center'>
+          <i className='bi bi-person-fill-slash txttsml me-1' style={{ color: '#fff' }}></i>
+          <span className='txttsml' style={{ color: '#fff' }}>
+          Contact Us
+          </span>
+        </div></Link>  
+
+        <Link href=""><div className='list-group-item py-2 px-2 text-center'>
+          <i className='bi bi-person-fill-slash txttsml me-1' style={{ color: '#fff' }}></i>
+          <span className='txttsml' style={{ color: '#fff' }}>
+         FAQ
+          </span>
+        </div></Link>  
+
+  
+
+       <div  onClick={handleLogout} className='list-group-item py-2 px-2 text-center'>
+          <i className='bi bi-box-arrow-left txttsml me-2' style={{ color: '#fff' }}></i>
+          <span className='txttsml' style={{ color: '#fff' }}>
+            Logout
+          </span>
         </div>
-        <div className="dash-shadow">
-          <h4
-            style={{
-              padding: '1rem',
-              color: '#212450',
-              display: 'flex',
-              justifyContent: 'flex-start',
-              justifyContent: 'center',
-              marginTop: '2.5rem',
-              fontSize: 35,
-            }}
-          >
-            Courses to do
-          </h4>
-          <div className=" row g-3  min-vh-100  d-flex justify-content-center ">
-            <div style={{ padding: '', backgroundColor: '' }}>
-              <div
-                className="pb-2 smth"
-                style={{ display: 'flex', justifyContent: 'right' }}
-              >
-                <input
-                  type="text"
-                  className=""
-                  placeholder="Search course..."
-                  onChange={handleFilter}
-                  style={{
-                    padding: '6px 10px',
-                    borderColor: 'gray',
-                    overflow: 'hidden',
-                    marginRight: '.2rem',
-                  }}
-                />
-              </div>
-              <div style={{ padding: '.2rem' }}>
-                <DataTable
-                  columns={columns}
-                  data={records}
-                  customStyles={customStyles}
-                  pagination
-                  selectableRows
-                />
-              </div>
-            </div>
-          </div>
-        </div>
+
+        <span  className='txttsml' style={{color: "#212450"}}>  </span> 
+ 
+
       </div>
     </div>
   );
 }
 
-export default DashIndividual;
+export default IndividualBar;

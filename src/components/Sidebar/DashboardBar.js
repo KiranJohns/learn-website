@@ -107,7 +107,7 @@ function DashboardBar() {
           </span>
         </div>
 
-        <span className=' py-2 px-2'></span>
+        <span  className='txttsml' style={{color: "#212450"}}>  </span> 
  
 
       </div>

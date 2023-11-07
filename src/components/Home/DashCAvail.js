@@ -9,7 +9,8 @@ const customStyles = {
   headRow:{
     style:{
       backgroundColor : '#212450',
-      color:'white'
+      color:'white',
+    
     }
   },
   headCells:{
@@ -22,6 +23,7 @@ const customStyles = {
   cells:{
     style:{
       fontSize: "15px",
+     
     }
   }
 }

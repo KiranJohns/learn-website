@@ -22,10 +22,10 @@ class courseavailable extends React.Component{
                  </NoSSR>
                  <div className="container-fluid " style={{borderRadius:'22px',marginTop:"120px"}}> 
                   <div className="row justify-content-md-center">
-                   <div className="col-sm-2 col-md-auto bg-white" >
+                   <div className="col-sm-2 col-md-auto " style={{backgroundColor:'#212450'}}>
                    <IndividualBar />
                    </div>
-                <div className="col-sm col-md-9  bg-light">
+                <div className="col-sm col-md-9  bg-white">
                     <DashCAvail />
              </div>
          </div>       
