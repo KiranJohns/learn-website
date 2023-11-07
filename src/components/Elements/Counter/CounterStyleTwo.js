@@ -37,7 +37,7 @@ const Counter = () => {
     ];
 
     return(
-    <section className="counter__area pt-145 pb-100">
+    <section className="counter__area pt-75 pb-100">
         <div className="container">
             <div className="row">
                 <div className="col-xxl-6 offset-xl-3 col-xl-6 offset-xl-3">

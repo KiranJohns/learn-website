@@ -26,6 +26,7 @@ export default function fetchData() {
             resolve(res.data)
           })
           .catch((error) => {
+            console.log(error.response);
             reject(error.response)
           });
       } catch (error) {

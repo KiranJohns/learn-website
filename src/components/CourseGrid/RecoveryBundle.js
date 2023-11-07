@@ -13,7 +13,7 @@ class RecoverBundle extends Component {
         return (
             <main>
 	            {/* breadcrumb-start */}
-				<Breadcrumb pageTitle="Recovery Care Course Bundle"/>
+				<Breadcrumb pageTitle="Recovery Care Bundle"/>
 				{/* breadcrumb-end */}
                 
                  <BundleCare/>

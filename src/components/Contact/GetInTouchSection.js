@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
-
+import { BsInstagram } from "react-icons/bs";
+import { IoLocationOutline } from "react-icons/io5";
+import { BsTelephone} from "react-icons/bs";
+import { AiOutlineMail } from "react-icons/ai";
+import {FaXTwitter, FaLinkedinIn, FaFacebookF} from "react-icons/fa6";
+import { BiLogoFacebook } from "react-icons/bi";
 class GetInTouch extends Component {
 
     render() {
@@ -37,12 +42,7 @@ class GetInTouch extends Component {
                                        <textarea placeholder="Enter Your Message" name="message"></textarea>
                                     </div>
                                  </div>
-                                 <div className="col-xxl-12">
-                                    <div className="contact__form-agree  d-flex align-items-center mb-20">
-                                       <input className="e-check-input" type="checkbox" id="e-agree"/>
-                                       <label className="e-check-label" htmlFor="e-agree">I agree to the<a href="#">Terms & Conditions</a></label>
-                                    </div>
-                                 </div>
+                                 
                                  <div className="col-xxl-12">
                                     <div className="contact__btn">
                                        <button type="submit" className="e-btn">Send your message</button>
@@ -107,12 +107,13 @@ class GetInTouch extends Component {
                                  </div>
                               </li>
                            </ul>
-                           <div className="contact__social pl-30">
+                           <div className="footer__social pl-30">
                               <h4>Follow Us</h4>
                               <ul>
-                                <li><a href="#" className="fb"><i className="fab fa-facebook-f"></i></a></li>
-                                <li><a href="#" className="tw"><i className="fab fa-twitter"></i></a></li>
-                                <li><a href="#" className="pin"><i className="fab fa-pinterest-p"></i></a></li>
+                              <li><a href="#"><FaFacebookF/></a></li>
+                                       <li><a href="#" className="tw"><FaXTwitter/></a></li>
+                                       <li><a href="#" className="pin"><BsInstagram/></a></li>
+                                       <li><a href="#" className="lin1"><FaLinkedinIn/></a></li>
                               </ul>
                            </div>
                         </div>

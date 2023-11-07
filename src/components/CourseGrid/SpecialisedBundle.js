@@ -13,7 +13,7 @@ class SpecialisedBundle extends Component {
         return (
             <main>
 	            {/* breadcrumb-start */}
-				<Breadcrumb pageTitle="Specialised Care Course Bundle"/>
+				<Breadcrumb pageTitle="Specialised Care Bundle"/>
 				{/* breadcrumb-end */}
                 
                  <BundleCare/>

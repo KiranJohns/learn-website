@@ -13,7 +13,7 @@ class MandateBundle extends Component {
         return (
             <main>
 	            {/* breadcrumb-start */}
-				<Breadcrumb pageTitle="Mandatory Care Course Bundle"/>
+				<Breadcrumb pageTitle="Mandatory Care Bundle"/>
 				{/* breadcrumb-end */}
                 
                  <BundleCare/>

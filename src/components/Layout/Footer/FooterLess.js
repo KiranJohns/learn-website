@@ -1,7 +1,7 @@
 import React from 'react';
 import FooterBottom from './FooterBottom';
 import Link from 'next/link';
-import { FaXTwitter,FaLinkedinIn} from "react-icons/fa6";
+import {FaXTwitter, FaLinkedinIn, FaFacebookF} from "react-icons/fa6";
 import { BsInstagram } from "react-icons/bs";
 import { IoLocationOutline } from "react-icons/io5";
 import { BsTelephone} from "react-icons/bs";
@@ -27,7 +27,7 @@ const FooterPad = () => {
 
                                  <div className="footer__social">
                                     <ul>
-                                       <li><a href="#"><i className="fab fa-facebook-f"></i></a></li>
+                                       <li><a href="#"><FaFacebookF/></a></li>
                                        <li><a href="#" className="tw"><FaXTwitter/></a></li>
                                        <li><a href="#" className="pin"><BsInstagram/></a></li>
                                        <li><a href="#" className="lin1"><FaLinkedinIn/></a></li>

@@ -13,7 +13,7 @@ class CourseBundle extends Component {
         return (
             <main>
 	            {/* breadcrumb-start */}
-				<Breadcrumb pageTitle=" Care Course Bundle"/>
+				<Breadcrumb pageTitle=" Care Bundle"/>
 				{/* breadcrumb-end */}
                 
                  <BundleCare/>

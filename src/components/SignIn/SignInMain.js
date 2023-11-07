@@ -59,7 +59,12 @@ function SignInMain() {
           `learnforcare_refresh`,
           res.data.jwt_refresh_token
         );
-        location.pathname = "/company/dashboard";
+        localStorage.setItem("userType",res.data.userType)
+        if(localStorage.setItem == "company") {
+          location.pathname = "/company/dashboard";
+        } else {
+          location.pathname = "/individual/dashboard";
+        }
       })
       .catch((err) => {
         setLoading((prev) => false);

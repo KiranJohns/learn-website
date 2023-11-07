@@ -29,7 +29,7 @@ class AboutMain extends Component {
                     <AboutUs />
                 </div>
 				
-				<div className='mt-30'>
+				<div className='mt-10'>
 				<Counter />
 				</div>
 
