@@ -131,21 +131,22 @@ class DashTest extends Component {
       </Card.Body>
     </Card>
     </div>    */}
-       <h3 style={{color:'#212450'}}>Hello 'Name'</h3>
-        <div className="ag-format-container">
-          <h2
+     <span style={{display:'inline'}}><h3 style={{color:'#212450', marginTop:'.3rem' }}>Hello 'Name'</h3>
+       <h2
             style={{
-              padding: "1.5rem",
+              padding: "0",
               color: "#212450",
               display: "flex",
-              justifyContent: "flex-start",
+              
               justifyContent: "center",
-              marginTop: ".5rem",
+              margin:".3rem",
               fontSize: 46,
             }}
           >
             Dashboard
-          </h2>
+          </h2> </span>
+        <div className="ag-format-container" style={{marginTop:'1rem'}}>
+         
           <div className="ag-courses_box dash-shadow">
             <div className="ag-courses_item">
               <a href="/company/myprofile" className="ag-courses-item_link">
@@ -196,11 +197,12 @@ class DashTest extends Component {
             <div style={{ display: "flex", marginTop: "2.5rem", justifyContent: 'space-between', alignItems: 'center' }}>
               <h4
                 style={{
-                  padding: "1rem",
+                  padding: "1.5rem",
+                  marginTop:".7rem",
                   color: "#212450",
                   display: "flex",
                   justifyContent: "flex-start",
-
+                   
                   fontSize: 35,
                 }}
               >

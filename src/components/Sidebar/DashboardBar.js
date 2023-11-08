@@ -5,10 +5,11 @@ import { BiSolidDashboard } from "react-icons/bs";
 import { NavLink } from "react-router-dom";
 import { useRouter } from "next/router";
 import { MdVerifiedUser } from "react-icons/md";
+
 // import {imgg} from '../../../public/assets/img'
 
 const arr = [
-  { name: "Dashboard", link: "/company/dashboard", icon: "bi bi-speedometer2" },
+  { name: "Dashboard", link: "/company/dashboard", icon: "bi bi-ui-checks-grid" },
   {
     name: "My Profile",
     link: "/company/myprofile",
@@ -127,8 +128,8 @@ function DashboardBar() {
                 router.pathname.startsWith(link.link) ? "activate-sidebar" : ""
               }  py-3 px-2 text-center`}
             >
-              <i className={`${link.icon} txttsml me-1`}></i>
-              <span className="txttsml">{link.name}</span>
+              <i className={`${link.icon} txttsml me-1`} ></i>
+              <span className="txttsml">{' '}{link.name}</span>
             </div>
           </Link>
         ))}
@@ -194,7 +195,7 @@ function DashboardBar() {
           className="list-group-item py-3 px-2 text-center"
         >
           <i className="bi bi-box-arrow-left txttsml me-2"></i>
-          <span className="txttsml">Logout</span>
+          <span className="txttsml">{' '}Logout</span>
         </div>
 
         <span className="txttsml" style={{ color: "#212450" }}>
