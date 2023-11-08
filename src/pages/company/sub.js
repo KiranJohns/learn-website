@@ -23,7 +23,9 @@ class CompanyDashboard extends React.Component {
           <div className="container-fluid bg-light" style={{borderRadius:'22px',marginTop:'100px'}}>
             <div className="row" >
               <div className="col-5 col-md-2 bg-white" style={{borderRadius:'22px'}}>
+                <NoSSR>
                 <DashboardBar />
+                </NoSSR>
               </div>
               <div className="col-7 col-md-10 ">
                 <DashMain />

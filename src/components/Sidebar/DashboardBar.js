@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import Link from 'next/link';
 import 'bootstrap-icons/font/bootstrap-icons.css';
+import { BiSolidDashboard } from "react-icons/bs";
 
 function DashboardBar() {
   const inputRef = useRef(null);
@@ -15,8 +16,8 @@ function DashboardBar() {
   };
 
   return (
-    <div className='' style={{ padding: '16px', backgroundColor:'#212450' }}>
-        <div  style={{backgroundColor:'white',padding:'1rem',borderRadius:'.5rem',height:'12rem', width:"11rem"}}>
+    <div className='' style={{ padding: '16px', backgroundColor:'#fff' }}>
+        <div  style={{backgroundColor:'white',padding:'1rem',borderRadius:'',height:'12rem', width:"11rem"}}>
       <div style={{display:'flex', justifyContent:'center' }} onClick={handleImage}>
         <img
           style={{ width: '70px', height: '70px', borderRadius: '70px', cursor: 'pointer' }}
@@ -33,10 +34,10 @@ function DashboardBar() {
     </div>
     </div>
       <hr className='text-white' />
-      <div className='list-group list-group-flush text-nowrap' style={{ overflow: 'hidden' }}>
+      <div className=' list-group-flush text-nowrap' style={{ overflow: 'hidden' }}>
 
         <Link href="/company/dashboard"><div className='list-group-item  py-2 px-2 text-center' >
-          <i className='bi bi-house txttsml me-1' style={{ color: '#fff' }}></i>
+          <i className='bi bi-speedometer2 txttsml me-1' style={{ color: '#fff' }}></i>
           <span className='txttsml' style={{ color: '#fff' }}>
             Dashboard
           </span>
@@ -50,7 +51,7 @@ function DashboardBar() {
         </div></Link> 
 
         <Link href="/company/mycourses"><div className='list-group-item py-2 px-2 text-center'>
-          <i className='bi bi-archive txttsml me-1' style={{ color: '#fff' }}></i>
+          <i className='bi bi-book txttsml me-1' style={{ color: '#fff' }}></i>
           <span className='txttsml' style={{ color: '#fff' }}>
            My Courses
           </span>
@@ -92,7 +93,7 @@ function DashboardBar() {
         </div></Link>  
 
         <Link href="/company/assigncourse"><div className='list-group-item py-2 px-2 text-center'>
-          <i className='bi bi-person-fill-slash txttsml me-1' style={{ color: '#fff' }}></i>
+          <i className='bi bi-person-check-fill txttsml me-1' style={{ color: '#fff' }}></i>
           <span className='txttsml' style={{ color: '#fff' }}>
           Assign Course
           </span>
