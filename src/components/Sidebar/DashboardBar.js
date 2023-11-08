@@ -4,6 +4,7 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import { BiSolidDashboard } from "react-icons/bs";
 import {NavLink} from 'react-router-dom';
 import { useRouter } from 'next/router';
+// import {imgg} from '../../../public/assets/img/course/'
 
 const arr=[{name:'Dashboard',link:'/company/dashboard',icon:"bi bi-speedometer2"},
 {name:'My Profile',link:'/company/myprofile',icon:"bi bi-person-circle"},
@@ -34,11 +35,15 @@ function DashboardBar() {
         <div  style={{backgroundColor:'white',height:'12rem', width:"100%",display:'flex', flexDirection:'column', justifyContent:'center',padding:'1rem'}}>
          
       <div style={{display:'flex', justifyContent:'center',marginTop:"1rem" }} onClick={handleImage}>
-       <span style={{padding:'.8rem',borderRadius:'3.2rem',  backgroundImage:'linear-gradient(to left, #EDEEF3, #EDEEF3)'}}><img
-          style={{ width: '70px', height: '70px', borderRadius: '70px', cursor: 'pointer' }}
-          src="/assets/img/testimonial/profilePic.webp"
+       <span style={{}}><img
+          style={{ width: '70px', height: '70px', borderRadius: '70px', cursor: 'pointer',position:'absolute',marginTop:'1rem' }}
+          src="/assets/img/testimonial/profilePic.webp "
           alt=""
-        /></span> 
+        /><img
+        style={{ width: '', height: '', borderRadius: '70px', cursor: 'pointer', }}
+        src="/assets/img/course/bmg.png"
+        alt=""
+      /></span> 
         <input type="file" ref={inputRef} style={{ display: 'none' }} />
       </div>
     <div className='mt-4 ' style={{display:'flex',flexDirection:'column' }}>
