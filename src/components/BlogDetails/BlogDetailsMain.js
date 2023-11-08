@@ -135,10 +135,10 @@ class BlogDetailsMain extends Component {
               </div>
               <div className="col-xl-3 col-lg-3 ">
                 <div className="blog-box-shadow p-2">
-                <div className="heading">
+                <div style={{display:'flex', justifyContent:'center'}} className="heading" >
                   <h2>Recent Blogs</h2>
                 </div>
-                <div className="blogs" style={{marginTop: '2rem'}}>
+                <div className="blogs" style={{marginTop: '.5rem'}}>
                   {this.state.recentBlogs &&
                     this.state.recentBlogs.map((blog,idx) => {
                       console.log(blog);
@@ -174,7 +174,7 @@ class BlogDetailsMain extends Component {
                               </div>
                             </div>
                           </div>
-                          <hr />
+                           <div style={{marginTop:'1.7rem'}}></div>
                         </>
                       );
                     })}
