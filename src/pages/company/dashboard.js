@@ -23,7 +23,7 @@ class dashboard extends React.Component{
                  </NoSSR>
                  <div className="container-fluid " style={{borderRadius:'22px',marginTop:"120px"}}> 
                   <div className="row justify-content-md-center">
-                   <div className="col-sm-12 col-md-12 col-lg-2 p-0" style={{backgroundColor:'black'}}>
+                   <div className="col-sm-12 col-md-12 col-lg-2 p-0" style={{backgroundColor:'#212450'}}>
                    <DashboardBar/>
                    </div>
                 <div className="col-sm col-md-9  bg-white">
