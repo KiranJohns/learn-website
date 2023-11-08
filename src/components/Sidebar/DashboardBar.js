@@ -3,6 +3,7 @@ import Link from 'next/link';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import { BiSolidDashboard } from "react-icons/bs";
 import {NavLink} from 'react-router-dom';
+import { useRouter } from 'next/router';
 
 const arr=[{name:'Dashboard',link:'/company/dashboard',icon:"bi bi-speedometer2"},
 {name:'My Profile',link:'/company/myprofile',icon:"bi bi-person-circle"},
@@ -16,6 +17,7 @@ const arr=[{name:'Dashboard',link:'/company/dashboard',icon:"bi bi-speedometer2"
 
 ]
 function DashboardBar() {
+  const router = useRouter();
   const inputRef = useRef(null);
 
   const handleImage = () => {
@@ -49,7 +51,7 @@ function DashboardBar() {
       <hr className='text-white' />
       <div className=' text-nowrap' style={{ overflow: 'hidden' }}>
 
-        {arr.map((link)=><Link href={link.link}><div className={`list-group-item ${location.pathname.startsWith(link.link)?'activate-sidebar':''}  py-3 px-2 text-center`} >
+        {arr.map((link)=><Link href={link.link}><div className={`list-group-item ${router.pathname.startsWith(link.link)?'activate-sidebar':''}  py-3 px-2 text-center`} >
           <i className ={`${link.icon} txttsml me-1`} style={{ color: '#fff' }}></i>
           <span className='txttsml' style={{ color: '#fff' }}>
             {link.name}

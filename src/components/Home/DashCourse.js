@@ -69,8 +69,9 @@ class DashCourse extends Component {
   };
 
   handleCourseStart(id) {
-    // href={`/company/course-learn/${row.course_id}`}
+    console.log(id);
     this.makeRequest("GET",`/course/start-course/${id}`).then(res => {
+      // location.pathname = `/company/course-learn/${id}`
       console.log(res);
     }).catch(err => {
       console.log(err);
@@ -134,7 +135,7 @@ class DashCourse extends Component {
         </h2>
         <div className=" row g-3  min-vh-100  d-flex justify-content-center ">
           <div style={{ padding: "", backgroundColor: "" }}>
-            <div
+            {/* <div
               className="pb-2 smth"
               style={{ display: "flex", justifyContent: "left" }}
             >
@@ -149,6 +150,20 @@ class DashCourse extends Component {
                   overflow: "hidden",
                 }}
               />
+            </div> */}
+            <div className="p-relative d-inline header__search">
+              <form action="">
+                <input
+                  className="d-block mr-30"
+                  type="text"
+                  placeholder="Search..."
+                  // value={searchString}
+                  // onChange={handleSearch}
+                />
+                <button type="submit">
+                  <i className="fas fa-search"></i>
+                </button>
+              </form>
             </div>
             <DataTable
               columns={columns}
