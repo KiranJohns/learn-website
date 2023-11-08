@@ -6,7 +6,9 @@ class DashCreate extends Component{
     render(){
         return(
             <div className=''>
-              <h2 style={{padding:"1.5rem", color: "#212450",display:"flex", justifyContent:"center", marginTop:'20px',fontSize: 46}}>Create User</h2> 
+              <h2 style={{padding:"1.5rem", color: "#212450",display:"flex", justifyContent:"center",fontSize: 46}}>Create User</h2> 
+              
+              <div className="dash-shadow">
             <div className='row g-3  d-flex justify-content-end  '>  
             
             <form className="col-sm-10 col-md-8 d-block mx-auto">
@@ -43,7 +45,7 @@ class DashCreate extends Component{
   <button  type="button" className="btn btn-primary" style={{}}>Submit</button>
   </div>
   </form>
-             </div>
+             </div></div>
             </div>
            
         )

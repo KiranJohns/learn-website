@@ -33,7 +33,7 @@ const arr = [
   },
   { name: "Show user", link: "/company/showuser", icon: "bi bi-person-check" },
   {
-    name: "Archive User",
+    name: " Archive User",
     link: "/company/archive",
     icon: "bi bi-person-fill-slash",
   },
@@ -93,9 +93,10 @@ function DashboardBar() {
           >
             <img
               style={{
-                width: "83px",
+                width: "88px",
                marginRight:'.15rem',
-                borderRadius: "83px",
+
+                borderRadius: "88px",
                 
               }}
               src="/assets/img/testimonial/profilePic.webp"
@@ -108,12 +109,12 @@ function DashboardBar() {
           className="mt-4 "
           style={{ display: "flex", flexDirection: "column" }}
         >
-          <h6 style={{ color: "#212450", textAlign: "center", marginLeft: "" }}>
-            User Name <MdVerifiedUser color="green"/>
+          <h5 style={{ color: "#212450", textAlign: "center", marginLeft: "" }}>
+            User Name <MdVerifiedUser color="green" style={{height:'1rem'}}/>
             <br />
-          </h6>
+          </h5>
           <h6 style={{ color: "#212450", textAlign: "center", marginLeft: "" }}>
-            Company
+            Company Name
             <br />
           </h6>
         </div>
@@ -123,13 +124,13 @@ function DashboardBar() {
         {arr.map((link) => (
           <Link href={link.link}>
             <div
-            style={{margin: ".8rem",borderRadius: '8px'}}
-              className={`list-group-item ${
+            style={{margin: ".8rem",borderRadius: '8px ', }}
+              className={`list-group-item  ${
                 router.pathname.startsWith(link.link) ? "activate-sidebar" : ""
-              }  py-3 px-2 text-center`}
+              }  py-3 px-2`}
             >
-              <i className={`${link.icon} txttsml me-1`} ></i>
-              <span className="txttsml">{' '}{link.name}</span>
+              <i  className={`${link.icon} txttsml me-2 ml-50`} ></i>
+              <span className="txttsml ">{" "}&nbsp;{link.name}</span>
             </div>
           </Link>
         ))}
@@ -191,11 +192,11 @@ function DashboardBar() {
         </div></Link>   */}
 
         <div
-          onClick={handleLogout}  style={{margin: "1rem",borderRadius: '8px'}}
-          className="list-group-item py-3 px-2 text-center"
+          onClick={handleLogout}  style={{margin: ".8rem",borderRadius: '8px'}}
+          className="list-group-item py-3 px-2 "
         >
-          <i className="bi bi-box-arrow-left txttsml me-2"></i>
-          <span className="txttsml">{' '}Logout</span>
+          <i className="bi bi-box-arrow-left txttsml me-2 ml-50"></i>
+          <span className="txttsml">{'  '}&nbsp;Logout</span>
         </div>
 
         <span className="txttsml" style={{ color: "#212450" }}>
