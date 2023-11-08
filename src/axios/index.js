@@ -8,7 +8,7 @@ export default function fetchData() {
   // /www.learnforcare.co.uk
 
  async function makeRequest(method, url, data = {}) {
-    let token = await localStorage.getItem(`learnforcare_access`);
+    let token = localStorage.getItem(`learnforcare_access`);
     
     return new Promise((resolve, reject) => {
       try {

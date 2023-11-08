@@ -48,10 +48,10 @@ class DashCourse extends Component {
     this.getData();
   }
 
+  makeRequest = fetchData();
   getData = () => {
     try {
-      const makeRequest = fetchData();
-      makeRequest("GET", "/course/get-bought-course")
+      this.makeRequest("GET", "/course/get-bought-course")
         .then((res) => {
           console.log(res);
           this.setState({
@@ -66,6 +66,15 @@ class DashCourse extends Component {
       console.log(error);
     }
   };
+
+  handleCourseStart() {
+    // href={`/company/course-learn/${row.course_id}`}
+    this.makeRequest("GET","/course/start-course/1").then(res => {
+      console.log(res);
+    }).catch(err => {
+      console.log(err);
+    })
+  }
 
   render() {
     const columns = [
@@ -99,8 +108,8 @@ class DashCourse extends Component {
       },
       {
         name: "",
-        cell: () => (
-          <a href={"#"} className="btn btn-success">
+        cell: (row) => (
+          <a onClick={this.handleCourseStart} className="btn btn-success">
             Start
           </a>
         ),

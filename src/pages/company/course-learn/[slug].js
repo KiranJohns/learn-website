@@ -1,11 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import DashboardBar from "../../../components/Sidebar/DashboardBar";
 import Header from "../../../components/Layout/Header/Header";
 import NoSSR from "react-no-ssr";
 import { useRouter } from "next/router";
 import SingleCourse from "../../../components/CourseDetails/SingleCourse";
+import fetchData from "../../../axios";
 
 function CourseDetails() {
+    const router = useRouter();
+    console.log(router.query.slug)
+    const makeRequest = fetchData()
+    useEffect(() => {
+        // TODO: start course
+        // makeRequest("GET","")
+    },[])
   return (
     <main
       className="p-4"
