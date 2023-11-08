@@ -140,7 +140,7 @@ class DashTest extends Component {
               display: "flex",
               justifyContent: "flex-start",
               justifyContent: "center",
-              marginTop: "20px",
+              marginTop: ".5rem",
               fontSize: 46,
             }}
           >
