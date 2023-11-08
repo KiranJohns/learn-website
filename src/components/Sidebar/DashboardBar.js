@@ -1,21 +1,45 @@
-import React, { useState, useRef } from 'react';
-import Link from 'next/link';
-import 'bootstrap-icons/font/bootstrap-icons.css';
+import React, { useState, useRef } from "react";
+import Link from "next/link";
+import "bootstrap-icons/font/bootstrap-icons.css";
 import { BiSolidDashboard } from "react-icons/bs";
-import {NavLink} from 'react-router-dom';
-import { useRouter } from 'next/router';
+import { NavLink } from "react-router-dom";
+import { useRouter } from "next/router";
 
-const arr=[{name:'Dashboard',link:'/company/dashboard',icon:"bi bi-speedometer2"},
-{name:'My Profile',link:'/company/myprofile',icon:"bi bi-person-circle"},
-{name:'My Course',link:'/company/mycourses',icon:"bi bi-book"},
-{name:'Certificates',link:'/company/certificates',icon:"bi bi-patch-check-fill"},
-{name:'All Courses',link:'/company/availablecourses',icon:"bi bi-card-checklist"},
-{name:'Create User',link:'/company/createuser',icon:"bi bi-person-check "},
-{name:'Show user',link:'/company/showuser',icon:"bi bi-person-check"},
-{name:'Archive User',link:'/company/archive',icon:"bi bi-person-fill-slash"},
-{name:'Assign Course',link:'/company/assigncourse',icon:"bi bi-person-check-fill"},
-
-]
+const arr = [
+  { name: "Dashboard", link: "/company/dashboard", icon: "bi bi-speedometer2" },
+  {
+    name: "My Profile",
+    link: "/company/myprofile",
+    icon: "bi bi-person-circle",
+  },
+  { name: "My Course", link: "/company/mycourses", icon: "bi bi-book" },
+  {
+    name: "Certificates",
+    link: "/company/certificates",
+    icon: "bi bi-patch-check-fill",
+  },
+  {
+    name: "All Courses",
+    link: "/company/availablecourses",
+    icon: "bi bi-card-checklist",
+  },
+  {
+    name: "Create User",
+    link: "/company/createuser",
+    icon: "bi bi-person-check ",
+  },
+  { name: "Show user", link: "/company/showuser", icon: "bi bi-person-check" },
+  {
+    name: "Archive User",
+    link: "/company/archive",
+    icon: "bi bi-person-fill-slash",
+  },
+  {
+    name: "Assign Course",
+    link: "/company/assigncourse",
+    icon: "bi bi-person-check-fill",
+  },
+];
 function DashboardBar() {
   const router = useRouter();
   const inputRef = useRef(null);
@@ -30,35 +54,80 @@ function DashboardBar() {
   };
 
   return (
-    <div className='' style={{ padding: '', backgroundColor:'' }}>
-        <div  style={{backgroundColor:'white',height:'12rem', width:"100%",display:'flex', flexDirection:'column', justifyContent:'center',padding:'1rem'}}>
-         
-      <div style={{display:'flex', justifyContent:'center',marginTop:"1rem" }} onClick={handleImage}>
-       <span style={{padding:'.8rem',borderRadius:'3.2rem',  backgroundImage:'linear-gradient(to left, #EDEEF3, #EDEEF3)'}}><img
-          style={{ width: '70px', height: '70px', borderRadius: '70px', cursor: 'pointer' }}
-          src="/assets/img/testimonial/profilePic.webp"
-          alt=""
-        /></span> 
-        <input type="file" ref={inputRef} style={{ display: 'none' }} />
-      </div>
-    <div className='mt-4 ' style={{display:'flex',flexDirection:'column' }}>
-      
-      <h6 style={{color:"#212450", textAlign:'center',marginLeft:''}}>User Name<br/></h6>
-      <h6 style={{color:"#212450", textAlign:'center',marginLeft:''}}>Company Name<br/></h6>
-     
-    </div>
-    </div>
-      <hr className='' />
-      <div className=' text-nowrap' style={{ overflow: 'hidden' }}>
-
-        {arr.map((link)=><Link href={link.link}><div className={`list-group-item ${router.pathname.startsWith(link.link)?'activate-sidebar':''}  py-3 px-2 text-center`} >
-          <i className ={`${link.icon} txttsml me-1`} ></i>
-          <span className='txttsml' >
-            {link.name}
+    <div className="" style={{ padding: "", backgroundColor: "#212450" }}>
+      <div
+        style={{
+          boxSizing: "border-box !important",
+          backgroundColor: "white",
+          height: "",
+          margin: "0.6rem",
+          width: "",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          padding: "2.6rem 1rem",
+          // borderRadius: '10px'
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            marginTop: "1rem",
+          }}
+          onClick={handleImage}
+        >
+          <span
+            style={{
+              padding: ".8rem",
+              borderRadius: "3.2rem",
+              backgroundImage: "linear-gradient(to left, #EDEEF3, #EDEEF3)",
+            }}
+          >
+            <img
+              style={{
+                width: "70px",
+                height: "70px",
+                borderRadius: "70px",
+                cursor: "pointer",
+              }}
+              src="/assets/img/testimonial/profilePic.webp"
+              alt=""
+            />
           </span>
-        </div></Link>)}
+          <input type="file" ref={inputRef} style={{ display: "none" }} />
+        </div>
+        <div
+          className="mt-4 "
+          style={{ display: "flex", flexDirection: "column" }}
+        >
+          <h6 style={{ color: "#212450", textAlign: "center", marginLeft: "" }}>
+            User Name
+            <br />
+          </h6>
+          <h6 style={{ color: "#212450", textAlign: "center", marginLeft: "" }}>
+            Company
+            <br />
+          </h6>
+        </div>
+      </div>
+      {/* <hr className="" /> */}
+      <div className=" text-nowrap" style={{ overflow: "hidden" }}>
+        {arr.map((link) => (
+          <Link href={link.link}>
+            <div
+            style={{margin: "1rem",borderRadius: '8px'}}
+              className={`list-group-item ${
+                router.pathname.startsWith(link.link) ? "activate-sidebar" : ""
+              }  py-3 px-2 text-center`}
+            >
+              <i className={`${link.icon} txttsml me-1`}></i>
+              <span className="txttsml">{link.name}</span>
+            </div>
+          </Link>
+        ))}
 
-       {/* <Link href="/company/myprofile"><div className='list-group-item py-3 px-2 text-center'>
+        {/* <Link href="/company/myprofile"><div className='list-group-item py-3 px-2 text-center'>
           <i className='bi bi-person-circle txttsml me-1' style={{ color: '#fff' }}></i>
           <span className='txttsml' style={{ color: '#fff' }}>
           My Profile
@@ -114,18 +183,17 @@ function DashboardBar() {
           </span>
         </div></Link>   */}
 
-  
-
-       <div  onClick={handleLogout} className='list-group-item py-3 px-2 text-center'>
-          <i className='bi bi-box-arrow-left txttsml me-2' ></i>
-          <span className='txttsml'>
-            Logout
-          </span>
+        <div
+          onClick={handleLogout}
+          className="list-group-item py-3 px-2 text-center"
+        >
+          <i className="bi bi-box-arrow-left txttsml me-2"></i>
+          <span className="txttsml">Logout</span>
         </div>
 
-        <span  className='txttsml' style={{color: "#212450"}}>  </span> 
- 
-
+        <span className="txttsml" style={{ color: "#212450" }}>
+          {" "}
+        </span>
       </div>
     </div>
   );
