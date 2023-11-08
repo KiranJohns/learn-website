@@ -193,26 +193,41 @@ class DashTest extends Component {
             </div>
           </div>
           <div className="dash-shadow">
-            <h4
-              style={{
-                padding: "1rem",
-                color: "#212450",
-                display: "flex",
-                justifyContent: "flex-start",
-               
-                marginTop: "2.5rem",
-                fontSize: 35,
-              }}
-            >
-              Courses to do
-            </h4>
+            <div style={{ display: "flex", marginTop: "2.5rem", justifyContent: 'space-between', alignItems: 'center' }}>
+              <h4
+                style={{
+                  padding: "1rem",
+                  color: "#212450",
+                  display: "flex",
+                  justifyContent: "flex-start",
+
+                  fontSize: 35,
+                }}
+              >
+                Courses to do
+              </h4>
+              <div className="p-relative d-inline header__search">
+                <form action="">
+                  <input
+                    className="d-block mr-30"
+                    type="text"
+                    placeholder="Search..."
+                    // value={searchString}
+                    // onChange={handleSearch}
+                  />
+                  <button type="submit">
+                    <i className="fas fa-search"></i>
+                  </button>
+                </form>
+              </div>
+            </div>
             <div className=" row g-3  min-vh-100  d-flex justify-content-center ">
-              <div style={{ padding: "", backgroundColor: "" }}>
+              <div style={{}}>
                 <div
-                  className="pb-2 smth"
+                  className="pb-2"
                   style={{ display: "flex", justifyContent: "right" }}
                 >
-                  <input
+                  {/* <input
                     type="text"
                     className=""
                     placeholder="Search course"
@@ -220,13 +235,12 @@ class DashTest extends Component {
                     style={{
                       padding: "6px 10px",
                       border: "blue",
-                      borderRadius:".15rem",
+                      borderRadius: ".15rem",
                       overflow: "hidden",
                       marginRight: ".4rem",
-                      background:'#EDEEF3'
+                      background: "#EDEEF3",
                     }}
-                  />
-                 
+                  /> */}
                 </div>
                 <div style={{ padding: ".2rem" }}>
                   <DataTable

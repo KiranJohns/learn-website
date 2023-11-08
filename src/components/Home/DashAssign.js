@@ -1,34 +1,31 @@
-
-import React, { Component } from 'react';
-import axios from 'axios';
-import DataTable from 'react-data-table-component';
-import Link from 'next/link';
-import Dropdown from 'react-bootstrap/Dropdown';
-import DropdownButton from 'react-bootstrap/DropdownButton';
-import BasicExample from '../About/button1';
+import React, { Component } from "react";
+import axios from "axios";
+import DataTable from "react-data-table-component";
+import Link from "next/link";
+import Dropdown from "react-bootstrap/Dropdown";
+import DropdownButton from "react-bootstrap/DropdownButton";
+import BasicExample from "../About/button1";
 
 const customStyles = {
-  headRow:{
-    style:{
-      backgroundColor : '#212450',
-      color:'white'
-    }
+  headRow: {
+    style: {
+      backgroundColor: "#212450",
+      color: "white",
+    },
   },
-  headCells:{
-    style:{
-      fontSize:'16px',
-      fontWeight:'600',
-      textTransform:'uppercase'
-    }
+  headCells: {
+    style: {
+      fontSize: "16px",
+      fontWeight: "600",
+      textTransform: "uppercase",
+    },
   },
-  cells:{
-    style:{
+  cells: {
+    style: {
       fontSize: "15px",
-    }
-  }
-}
-
-
+    },
+  },
+};
 
 class DashAssign extends Component {
   constructor() {
@@ -41,10 +38,10 @@ class DashAssign extends Component {
 
   handleFilter = (event) => {
     const newData = this.state.filterRecords.filter((row) =>
-    row.name.toLowerCase().includes(event.target.value.toLowerCase())
-  );
+      row.name.toLowerCase().includes(event.target.value.toLowerCase())
+    );
     this.setState({ records: newData });
-  }
+  };
 
   componentDidMount() {
     this.fetchData();
@@ -52,56 +49,91 @@ class DashAssign extends Component {
 
   fetchData = () => {
     axios
-      .get('https://jsonplaceholder.typicode.com/users')
+      .get("https://jsonplaceholder.typicode.com/users")
       .then((res) =>
         this.setState({ records: res.data, filterRecords: res.data })
       )
       .catch((err) => console.log(err));
   };
- 
-
 
   render() {
     const columns = [
       {
-        name: 'ID',
+        name: "ID",
         selector: (row) => row.id,
-        sortable:true
+        sortable: true,
       },
       {
-        name: 'Courses',
+        name: "Courses",
         selector: (row) => row.name,
-        sortable:true
+        sortable: true,
       },
       {
-        name: 'Email',
+        name: "Email",
         selector: (row) => row.email,
       },
       {
-        name: 'Actions',
-        cell:() =>  <BasicExample/>,
+        name: "Actions",
+        cell: () => <BasicExample />,
       },
-      
     ];
 
     return (
-      <div className=''>
-      <h2 style={{padding:"1.5rem", color: "#212450", display:"flex", justifyContent:"center", marginTop:'20px',fontSize: 46}}>Assign Course</h2>
-      <div className=' row g-3  min-vh-100  d-flex justify-content-center '>
-        <div style={{padding:"", backgroundColor: ""}}>
-          <div className='pb-2 smth'  style={{display:'flex', justifyContent:'left' }}>
-            <input type="text" className='' placeholder='Search course...' onChange={this.handleFilter} style={{padding:'6px 10px', borderColor:'transparent', overflow:'hidden' }}/>
+      <div className="">
+        <h2
+          style={{
+            padding: "1.5rem",
+            color: "#212450",
+            display: "flex",
+            justifyContent: "center",
+            marginTop: "20px",
+            fontSize: 46,
+          }}
+        >
+          Assign Course
+        </h2>
+        <div className=" row g-3  min-vh-100  d-flex justify-content-center ">
+          <div style={{ padding: "", backgroundColor: "" }}>
+            {/* <div
+              className="pb-2 smth"
+              style={{ display: "flex", justifyContent: "left" }}
+            >
+              <input
+                type="text"
+                className=""
+                placeholder="Search course..."
+                onChange={this.handleFilter}
+                style={{
+                  padding: "6px 10px",
+                  borderColor: "transparent",
+                  overflow: "hidden",
+                }}
+              />
+            </div> */}
+            <div className="p-relative d-inline header__search">
+              <form action="">
+                <input
+                  className="d-block mr-30"
+                  type="text"
+                  placeholder="Search..."
+                  // value={searchString}
+                  // onChange={handleSearch}
+                />
+                <button type="submit">
+                  <i className="fas fa-search"></i>
+                </button>
+              </form>
             </div>
-        <DataTable 
-        columns={columns} 
-        data={this.state.records} 
-        customStyles={customStyles}
-        pagination
-        selectableRows
-        />
+            <DataTable
+              columns={columns}
+              data={this.state.records}
+              customStyles={customStyles}
+              pagination
+              selectableRows
+            />
+          </div>
         </div>
       </div>
-    </div>
     );
   }
 }
