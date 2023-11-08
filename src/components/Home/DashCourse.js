@@ -44,14 +44,15 @@ class DashCourse extends Component {
     this.setState({ records: newData });
   };
 
+  
   componentDidMount() {
     this.getData();
   }
-
-  makeRequest = fetchData();
+  
   getData = () => {
+    let makeRequest = fetchData();
     try {
-      this.makeRequest("GET", "/course/get-bought-course")
+      makeRequest("GET", "/course/get-bought-course")
         .then((res) => {
           console.log(res);
           this.setState({
@@ -67,9 +68,12 @@ class DashCourse extends Component {
     }
   };
 
-  handleCourseStart() {
+  handleCourseStart(id) {
+    console.log(id);
+    let makeRequest = fetchData();
+
     // href={`/company/course-learn/${row.course_id}`}
-    this.makeRequest("GET","/course/start-course/1").then(res => {
+    makeRequest("GET",`/course/start-course/${id}`).then(res => {
       console.log(res);
     }).catch(err => {
       console.log(err);
@@ -109,7 +113,7 @@ class DashCourse extends Component {
       {
         name: "",
         cell: (row) => (
-          <a onClick={this.handleCourseStart} className="btn btn-success">
+          <a onClick={() => this.handleCourseStart(row.id)} className="btn btn-success">
             Start
           </a>
         ),
