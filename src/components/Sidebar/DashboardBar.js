@@ -34,7 +34,7 @@ function DashboardBar() {
         <div  style={{backgroundColor:'white',height:'12rem', width:"100%",display:'flex', flexDirection:'column', justifyContent:'center'}}>
          
       <div style={{display:'flex', justifyContent:'center',marginTop:"1rem" }} onClick={handleImage}>
-       <span style={{padding:'.8rem',borderRadius:'3.2rem',  backgroundImage: 'linear-gradient(to right, rgba(255,0,0,0),#f3a02)'}}><img
+       <span style={{padding:'.8rem',borderRadius:'3.2rem',  backgroundImage:'linear-gradient(#f3a024, white)'}}><img
           style={{ width: '70px', height: '70px', borderRadius: '70px', cursor: 'pointer' }}
           src="/assets/img/testimonial/profilePic.webp"
           alt=""
