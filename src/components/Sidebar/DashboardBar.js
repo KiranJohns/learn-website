@@ -30,8 +30,8 @@ function DashboardBar() {
   };
 
   return (
-    <div className='' style={{ padding: '', backgroundColor:'#fff' }}>
-        <div  style={{backgroundColor:'white',height:'12rem', width:"100%",display:'flex', flexDirection:'column', justifyContent:'center'}}>
+    <div className='' style={{ padding: '', backgroundColor:'' }}>
+        <div  style={{backgroundColor:'white',height:'12rem', width:"100%",display:'flex', flexDirection:'column', justifyContent:'center',padding:'1rem'}}>
          
       <div style={{display:'flex', justifyContent:'center',marginTop:"1rem" }} onClick={handleImage}>
        <span style={{padding:'.8rem',borderRadius:'3.2rem',  backgroundImage:'linear-gradient(to left, #EDEEF3, #EDEEF3)'}}><img
@@ -48,7 +48,7 @@ function DashboardBar() {
      
     </div>
     </div>
-      <hr className='text-white' />
+      <hr className='' />
       <div className=' text-nowrap' style={{ overflow: 'hidden' }}>
 
         {arr.map((link)=><Link href={link.link}><div className={`list-group-item ${router.pathname.startsWith(link.link)?'activate-sidebar':''}  py-3 px-2 text-center`} >
