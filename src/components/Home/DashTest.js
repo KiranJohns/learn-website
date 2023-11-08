@@ -214,6 +214,7 @@ class DashTest extends Component {
                     placeholder="Search..."
                     // value={searchString}
                     // onChange={handleSearch}
+                    style={{background:'#edeef3'}}
                   />
                   <button type="submit">
                     <i className="fas fa-search"></i>

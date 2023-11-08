@@ -117,8 +117,8 @@ function DashboardBar() {
   
 
        <div  onClick={handleLogout} className='list-group-item py-3 px-2 text-center'>
-          <i className='bi bi-box-arrow-left txttsml me-2' style={{ color: '#fff' }}></i>
-          <span className='txttsml' style={{ color: '#fff' }}>
+          <i className='bi bi-box-arrow-left txttsml me-2' ></i>
+          <span className='txttsml'>
             Logout
           </span>
         </div>
