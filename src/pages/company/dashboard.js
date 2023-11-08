@@ -17,13 +17,13 @@ class dashboard extends React.Component{
     render(){    
         return(
             <React.Fragment>
-                <main  className="p-1 " style={{backgroundImage: "linear-gradient(to right, #EDEEF3, #EDEEF3)" }}>
+                <main  className="p-1" style={{backgroundImage: "linear-gradient(to right, #EDEEF3, #EDEEF3)" }}>
                 <NoSSR>
                  <Header/>
                  </NoSSR>
                  <div className="container-fluid " style={{borderRadius:'22px',marginTop:"120px"}}> 
                   <div className="row justify-content-md-center">
-                   <div className="col-sm-2 col-md-auto " style={{backgroundColor:'#fff'}}>
+                   <div className="col-sm-12 col-md-12 col-lg-2 p-0" style={{backgroundColor:'black'}}>
                    <DashboardBar/>
                    </div>
                 <div className="col-sm col-md-9  bg-white">
