@@ -375,7 +375,7 @@ const Header = () => {
                       </nav>
                     </div>
                     <div className="header__search p-relative ml-50 d-none d-md-block">
-                      <form action="#">
+                      <form action="">
                         <input
                           type="text"
                           placeholder="Search..."

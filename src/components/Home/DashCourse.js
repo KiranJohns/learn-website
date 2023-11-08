@@ -35,6 +35,7 @@ class DashCourse extends Component {
       records: [],
       filterRecords: [],
     };
+    this.makeRequest = fetchData();
   }
 
   handleFilter = (event) => {
@@ -44,14 +45,14 @@ class DashCourse extends Component {
     this.setState({ records: newData });
   };
 
+  
   componentDidMount() {
     this.getData();
   }
-
+  
   getData = () => {
     try {
-      const makeRequest = fetchData();
-      makeRequest("GET","/course/get-bought-course")
+      this.makeRequest("GET", "/course/get-bought-course")
         .then((res) => {
           console.log(res);
           this.setState({
@@ -67,11 +68,20 @@ class DashCourse extends Component {
     }
   };
 
+  handleCourseStart(id) {
+    // href={`/company/course-learn/${row.course_id}`}
+    this.makeRequest("GET",`/course/start-course/${id}`).then(res => {
+      console.log(res);
+    }).catch(err => {
+      console.log(err);
+    })
+  }
+
   render() {
     const columns = [
       {
         name: "No",
-        selector: (row,idx) => idx+1,
+        selector: (row, idx) => idx + 1,
         sortable: true,
       },
       {
@@ -81,7 +91,7 @@ class DashCourse extends Component {
       },
       {
         name: "description",
-        selector: (row) => row.description.slice(0,25),
+        selector: (row) => row.description.slice(0, 25),
       },
       {
         name: "category",
@@ -90,15 +100,17 @@ class DashCourse extends Component {
       {
         name: "validity",
         selector: (row) => {
-          let date = row.validity.split("/")
-          let newDate = `${date[1]}/${date[0]}/${date[2]}`
-          return newDate
+          let date = row.validity
+            .split("/")
+            .map((d) => d.length <= 1 ? "0" + d : d);
+          let newDate = `${date[1]}/${date[0]}/${date[2]}`;
+          return newDate;
         },
       },
       {
         name: "",
-        cell: () => (
-          <a href={"#"} className="btn btn-success">
+        cell: (row) => (
+          <a onClick={() => this.handleCourseStart(row.id)} className="btn btn-success">
             Start
           </a>
         ),

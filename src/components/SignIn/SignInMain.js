@@ -61,7 +61,7 @@ function SignInMain() {
         );
         localStorage.setItem("userType", res.data.userType);
         let from = localStorage.getItem("from-checkout", true);
-        if (localStorage.setItem == "company") {
+        if (res.data.userType == "company") {
           if (from) {
             location.pathname = "/cart";
           } else {
