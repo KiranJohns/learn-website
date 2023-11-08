@@ -33,7 +33,7 @@ function DashboardBar() {
     <div className='' style={{ padding: '', backgroundColor:'#fff' }}>
         <div  style={{backgroundColor:'white',height:'12rem', width:"100%",display:'flex', flexDirection:'column', justifyContent:'center'}}>
          
-      <div style={{display:'flex', justifyContent:'center',marginTop:"1rem", padding:' .1rem', backgroundColor:"red",borderRadius:'1rem' }} onClick={handleImage}>
+      <div style={{display:'flex', justifyContent:'center',marginTop:"1rem", padding:' .1rem', backgroundColor:"#f3a024",borderRadius:'1rem' }} onClick={handleImage}>
         <img
           style={{ width: '70px', height: '70px', borderRadius: '70px', cursor: 'pointer' }}
           src="/assets/img/testimonial/profilePic.webp"
