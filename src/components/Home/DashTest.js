@@ -243,7 +243,7 @@ class DashTest extends Component {
                     }}
                   /> */}
                 </div>
-                <div style={{ padding: ".2rem" }}>
+                <div >
                   <DataTable
                     columns={columns}
                     data={this.state.records}
