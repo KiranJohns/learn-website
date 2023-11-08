@@ -18,7 +18,7 @@ class dashboard extends React.Component{
     render(){    
         return(
             <React.Fragment>
-                <main  className="p-1" style={{backgroundImage: "linear-gradient(to right, #EDEEF3, #EDEEF3)" }}>
+                <main  className="p-1" style={{backgroundImage: "linear-gradient(to left, #EDEEF3, #EDEEF3)" }}>
                 <NoSSR>
                  <Header/>
                  </NoSSR>
