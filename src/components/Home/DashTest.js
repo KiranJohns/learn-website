@@ -131,7 +131,7 @@ class DashTest extends Component {
       </Card.Body>
     </Card>
     </div>    */}
-
+       <h3 style={{color:'#212450'}}>Hello 'Name'</h3>
         <div className="ag-format-container">
           <h2
             style={{

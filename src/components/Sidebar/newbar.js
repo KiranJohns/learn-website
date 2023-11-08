@@ -16,9 +16,9 @@ function DashboardBar() {
   };
 
   return (
-    <div className='' style={{ padding: '', backgroundColor:'#fff' }}>
-        <div  style={{backgroundColor:'white',height:'12rem', width:"12rem",display:'flex', flexDirection:'column', justifyContent:'center'}}>
-      <div style={{display:'flex', justifyContent:'center',marginTop:"1rem",marginLeft:'3rem' }} onClick={handleImage}>
+    <div className='' style={{ padding: '16px', backgroundColor:'#fff' }}>
+        <div  style={{backgroundColor:'white',padding:'1rem',borderRadius:'',height:'12rem', width:"11rem"}}>
+      <div style={{display:'flex', justifyContent:'center' }} onClick={handleImage}>
         <img
           style={{ width: '70px', height: '70px', borderRadius: '70px', cursor: 'pointer' }}
           src="/assets/img/testimonial/profilePic.webp"
@@ -28,13 +28,13 @@ function DashboardBar() {
       </div>
     <div className='mt-4 ' style={{display:'flex',flexDirection:'column' }}>
       
-      <h6 style={{color:"#212450", textAlign:'center',marginLeft:'3rem'}}>User Name<br/></h6>
-      <h6 style={{color:"#212450", textAlign:'center',marginLeft:'3rem'}}>Company Name<br/></h6>
+      <h6 style={{color:"#212450", textAlign:'center'}}>User Name<br/></h6>
+      <h6 style={{color:"#212450", textAlign:'center'}}>Company Name<br/></h6>
      
     </div>
     </div>
       <hr className='text-white' />
-      <div className=' list-group list-group-flush text-nowrap' style={{ overflow: 'hidden' }}>
+      <div className=' list-group-flush text-nowrap' style={{ overflow: 'hidden' }}>
 
         <Link href="/company/dashboard"><div className='list-group-item  py-2 px-2 text-center' >
           <i className='bi bi-speedometer2 txttsml me-1' style={{ color: '#fff' }}></i>
