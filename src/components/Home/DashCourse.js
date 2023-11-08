@@ -50,9 +50,9 @@ class DashCourse extends Component {
   }
   
   getData = () => {
-    let makeRequest = fetchData();
+    this.makeRequest = fetchData();
     try {
-      makeRequest("GET", "/course/get-bought-course")
+      this.makeRequest("GET", "/course/get-bought-course")
         .then((res) => {
           console.log(res);
           this.setState({
@@ -70,10 +70,10 @@ class DashCourse extends Component {
 
   handleCourseStart(id) {
     console.log(id);
-    let makeRequest = fetchData();
+    this.makeRequest = fetchData();
 
     // href={`/company/course-learn/${row.course_id}`}
-    makeRequest("GET",`/course/start-course/${id}`).then(res => {
+    this.makeRequest("GET",`/course/start-course/${id}`).then(res => {
       console.log(res);
     }).catch(err => {
       console.log(err);
