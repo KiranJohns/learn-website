@@ -209,7 +209,7 @@ class DashTest extends Component {
               <div className="p-relative d-inline header__search">
                 <form action="">
                   <input
-                    className="d-block mr-30"
+                    className="d-block mr-25"
                     type="text"
                     placeholder="Search..."
                     // value={searchString}

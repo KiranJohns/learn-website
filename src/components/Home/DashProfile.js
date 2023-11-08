@@ -59,40 +59,44 @@ function DashProfile() {
         <Row className="mb-4 mt-3">
           <Form.Group as={Col} controlId="formGridEmail">
             <Form.Label>First Name</Form.Label>
-            <Form.Control type="text" placeholder="First name" />
+            <Form.Control className="bg-light" type="text" placeholder="First name" />
           </Form.Group>
 
           <Form.Group as={Col} controlId="formGridPassword">
             <Form.Label>Last Name</Form.Label>
-            <Form.Control type="email" placeholder="Last name" />
+            <Form.Control className="bg-light" type="email" placeholder="Last name" />
           </Form.Group>
 
         </Row>
        <Row className=" mt-3">
         <Form.Group as={Col} className="mb-3" controlId="formGridEmail">
           <Form.Label>Email</Form.Label>
-          <Form.Control type="text" placeholder="Email" />
+          <Form.Control className="bg-light" type="text" placeholder="Email" />
         </Form.Group>
         <Form.Group as={Col} className="mb-3" controlId="formGridEmail">
           <Form.Label>Phone</Form.Label>
-          <Form.Control type="text" placeholder="Phone" />
+          <Form.Control className="bg-light" type="text" placeholder="Phone" />
         </Form.Group>
         </Row>
 
         <Row className="mt-3 mb-4">
           <Form.Group as={Col} controlId="formGridCity">
             <Form.Label>City</Form.Label>
-            <Form.Control />
+            <Form.Control className="bg-light" type="text" placeholder="City"/>
           </Form.Group>
 
-          <Form.Group as={Col} controlId="formGridCity">
+          <Form.Group as={Col} controlId="formGridCountry">
             <Form.Label>Country</Form.Label>
-            <Form.Control />
+            <Form.Select className="bg-light" aria-label="Default select example">
+      <option style={{color:"gray"}}>...</option>
+      <option value="uk">United Kingdom</option>
+ 
+    </Form.Select>
           </Form.Group>
 
           <Form.Group as={Col} controlId="formGridZip">
             <Form.Label>Password</Form.Label>
-            <Form.Control type="password"/>
+            <Form.Control className="bg-light" type="password" placeholder="Password"/>
           </Form.Group>
         </Row>
          <div style={{display:'flex', justifyContent:"center"}}>
