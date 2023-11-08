@@ -35,6 +35,7 @@ class DashCourse extends Component {
       records: [],
       filterRecords: [],
     };
+    this.makeRequest = fetchData();
   }
 
   handleFilter = (event) => {
@@ -50,7 +51,6 @@ class DashCourse extends Component {
   }
   
   getData = () => {
-    this.makeRequest = fetchData();
     try {
       this.makeRequest("GET", "/course/get-bought-course")
         .then((res) => {
@@ -69,9 +69,6 @@ class DashCourse extends Component {
   };
 
   handleCourseStart(id) {
-    console.log(id);
-    this.makeRequest = fetchData();
-
     // href={`/company/course-learn/${row.course_id}`}
     this.makeRequest("GET",`/course/start-course/${id}`).then(res => {
       console.log(res);
