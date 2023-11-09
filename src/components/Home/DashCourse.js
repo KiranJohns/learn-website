@@ -71,8 +71,7 @@ class DashCourse extends Component {
   handleCourseStart(id) {
     console.log(id);
     this.makeRequest("GET",`/course/start-course/${id}`).then(res => {
-      // location.pathname = `/company/course-learn/${id}`
-      console.log(res);
+      location.pathname = `/company/course-learn/${res.data.response.id}`
     }).catch(err => {
       console.log(err);
     })
