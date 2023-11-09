@@ -20,4 +20,4 @@ const Auth = ({ Children }) => {
   return <>{logedIn && <Children />}</>;
 };
 
-export { Auth };
+export default Auth;
