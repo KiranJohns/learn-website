@@ -120,21 +120,19 @@ class DashCourse extends Component {
 
     return (
       <div className="">
-        <h2
+       
+        <div  className=" row g-3  min-vh-100  d-flex justify-content-center dash-shadow mt-10">
+          <div style={{ padding: "", backgroundColor: "" }}>
+     <h2
           style={{
-            padding: "1.5rem",
+            padding: "",
             color: "#212450",
-            display: "flex",
-            justifyContent: "flex-start",
-            justifyContent: "center",
-            
+           textAlign:"center",
             fontSize: 46,
           }}
         >
           My Courses
         </h2>
-        <div  className=" row g-3  min-vh-100  d-flex justify-content-center dash-shadow ">
-          <div style={{ padding: "", backgroundColor: "" }}>
             {/* <div
               className="pb-2 smth"
               style={{ display: "flex", justifyContent: "left" }}
@@ -151,6 +149,7 @@ class DashCourse extends Component {
                 }}
               />
             </div> */}
+            
             <div style={{float:'right',marginBottom:'1.4rem'}} className="p-relative d-inline header__search">
               <form action="" >
                 <input
@@ -165,7 +164,7 @@ class DashCourse extends Component {
                   <i className="fas fa-search"></i>
                 </button>
               </form>
-            </div>
+            </div>  
             <DataTable
               columns={columns}
               data={this.state.records}

@@ -156,7 +156,7 @@
   display: flex;
   -ms-flex-wrap: wrap;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-between;
   }
 
   .ag-courses_item {
@@ -282,3 +282,8 @@
     color: #212a50;
 }
 
+.dash-neww{
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: .6rem;
+    display: flex;
+  }
