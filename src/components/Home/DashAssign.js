@@ -89,8 +89,7 @@ class DashAssign extends Component {
           display: "flex",
           justifyContent: "center",
           position:'absolute',
-          marginLeft:'.5rem',
-          fontSize: 46,
+          fontSize: 42,
         }}
       >
         Assign Course

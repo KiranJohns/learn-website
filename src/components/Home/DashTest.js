@@ -104,7 +104,7 @@ class DashTest extends Component {
         name: "",
         cell: () => (
           <a href={"#"} className="btn btn-success">
-            Start
+            Start Course
           </a>
         ),
       },
@@ -143,7 +143,7 @@ class DashTest extends Component {
                 display: "flex",
                 justifyContent: "center",
                 margin: ".3rem",
-                fontSize: 46,
+                fontSize: 42,
               }}
             >
               Dashboard

@@ -46,7 +46,7 @@ function DashProfile() {
           display: "flex",
           justifyContent: "center",
           marginTop: "",
-          fontSize: 46,
+          fontSize: 42,
         }}
       >
         My Profile

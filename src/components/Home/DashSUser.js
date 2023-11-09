@@ -87,7 +87,7 @@ class DashSUser extends Component {
           display: "flex",
           justifyContent: "center",
           position:'absolute',
-          fontSize: 46,
+          fontSize: 42,
         }}
       >
         Users

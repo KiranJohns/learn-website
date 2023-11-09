@@ -90,7 +90,7 @@ class DashArchive extends Component {
             justifyContent: "center",
             position:'absolute',
             marginLeft:'.5rem',
-            fontSize: 46,
+            fontSize: 42,
           }}
         >
           Archive Users
