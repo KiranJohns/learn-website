@@ -21,8 +21,8 @@ function courseavailable() {
   //   }
 
   return (
-    <Auth>
-      <React.Fragment>
+    <React.Fragment>
+      <Auth>
         <main
           className="p-1"
           style={{
@@ -49,8 +49,8 @@ function courseavailable() {
             </div>
           </div>
         </main>
-      </React.Fragment>
-    </Auth>
+      </Auth>
+    </React.Fragment>
   );
 }
 
