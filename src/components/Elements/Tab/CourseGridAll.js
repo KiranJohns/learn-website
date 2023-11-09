@@ -77,16 +77,6 @@ export default () => {
       <Tabs variant="enclosed" id="react-tabs-276">
         <div className="container">
           <div className="row">
-            <div className="form-outline col-3">
-              <input
-                placeholder="Search..."
-                type="search"
-                value={searchText}
-                onChange={(e) => setSearchText(e.target.value)}
-                id="form1"
-                className="form-control"
-              />
-            </div>
             <div className="col-3">
               <select
                 className="form-control"
@@ -117,8 +107,8 @@ export default () => {
                   className="d-block mr-30"
                   type="text"
                   placeholder="Search..."
-                  // value={searchString}
-                  // onChange={handleSearch}
+                  value={searchText}
+                  onChange={(e) => setSearchText(e.target.value)}
                 />
                 <button type="submit">
                   <i className="fas fa-search"></i>
