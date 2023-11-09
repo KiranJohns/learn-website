@@ -57,6 +57,7 @@ function CourseCard({ item }) {
   }
 
   function addToCart(id) {
+    console.log(fakeCount, id);
     makeRequest("POST", "/cart/add", { course: [{ count: fakeCount, id: id }] })
       .then((res) => {
         getCartItem();
