@@ -32,7 +32,6 @@ function ForgotPass() {
     });
   }
 
-  localStorage.setItem("check-cart", true);
 
   function handleClick() {
     setLoading((prev) => true);

@@ -47,7 +47,6 @@ function SignUpMain() {
     }
   }
 
-  localStorage.setItem("check-cart", true);
 
   function resend(event) {
     event.preventDefault();
