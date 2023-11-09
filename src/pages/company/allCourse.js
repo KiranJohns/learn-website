@@ -4,31 +4,46 @@ import DashboardBar from "../../components/Sidebar/DashboardBar";
 import HeaderDashboard from "../../components/Layout/Header/HeaderDashboard";
 import DashTab from "../../components/Home/DashTab";
 import NoSSR from "react-no-ssr";
+import fetchData, { getToken } from "../../axios";
 
 class courseavailable extends React.Component {
   static getInitialProps({ store }) {}
   constructor(props) {
     super(props);
+    this.state = {
+      logedIn: getToken(),
+    };
+  }
+  componentDidMount() {
+    let token = getToken()
+    this.setState({ logedIn: token });
+    if(!token) {
+        console.log('not logdein');
+        location.pathname = "/sign-in"
+    }
+    console.log('logdein');
   }
   render() {
     return (
-      <React.Fragment>
-        <main className="p-4 bg-light" style={{}}>
-          <NoSSR>
-            <HeaderDashboard />
-          </NoSSR>
-          <div className="container-fluid bg-light">
-            <div className="row">
-              <div className="col-5 col-md-2 bg-primary vh-100 ">
-                <DashboardBar />
-              </div>
-              <div className="col-7 col-md-10">
-                <DashTab />
+      <>
+        <React.Fragment>
+          <main className="p-4 bg-light" style={{}}>
+            <NoSSR>
+              <HeaderDashboard />
+            </NoSSR>
+            <div className="container-fluid bg-light">
+              <div className="row">
+                <div className="col-5 col-md-2 bg-primary vh-100 ">
+                  <DashboardBar />
+                </div>
+                <div className="col-7 col-md-10">
+                  <DashTab />
+                </div>
               </div>
             </div>
-          </div>
-        </main>
-      </React.Fragment>
+          </main>
+        </React.Fragment>
+      </>
     );
   }
 }
