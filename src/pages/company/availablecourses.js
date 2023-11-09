@@ -12,17 +12,22 @@ import { useEffect } from "react";
 import { Auth } from "../auth";
 
 function courseavailable() {
-  //   static getInitialProps({ store }) {}
-  //   constructor(props) {
-  //     super(props);
-  //     this.state = {
-  //       logedIn: getToken(),
-  //     };
-  //   }
+    const [logedIn, setlogedIn] = useState(() => {
+        return getToken() ? true : false;
+      });
+    
+      const router = useRouter();
+    
+      console.log(logedIn);
+      useEffect(() => {
+        if (!logedIn) {
+          router.push("/sign-in");
+        }
+      }, []);
 
   return (
-    <React.Fragment>
-      {/* <Auth> */}
+    <>
+      {logedIn && <React.Fragment>
         <main
           className="p-1"
           style={{
@@ -49,8 +54,8 @@ function courseavailable() {
             </div>
           </div>
         </main>
-      {/* </Auth> */}
-    </React.Fragment>
+      </React.Fragment>}
+    </>
   );
 }
 
