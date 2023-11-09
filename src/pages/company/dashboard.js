@@ -17,32 +17,34 @@ class dashboard extends React.Component {
   render() {
     return (
       <Auth>
-        <main
-          className="p-1"
-          style={{
-            backgroundImage: "linear-gradient(to left, #EDEEF3, #EDEEF3)",
-          }}
-        >
-          <NoSSR>
-            <Header />
-          </NoSSR>
-          <div
-            className="container-fluid "
-            style={{ borderRadius: "22px", marginTop: "120px" }}
+        <React.Fragment>
+          <main
+            className="p-1"
+            style={{
+              backgroundImage: "linear-gradient(to left, #EDEEF3, #EDEEF3)",
+            }}
           >
-            <div className="row justify-content-md-center">
-              <div
-                className="col-sm-12 col-md-12 col-lg-2 p-0"
-                style={{ backgroundColor: "#212450" }}
-              >
-                <DashboardBar />
-              </div>
-              <div className="col-sm col-md-9 bg-white">
-                <DashTest />
+            <NoSSR>
+              <Header />
+            </NoSSR>
+            <div
+              className="container-fluid "
+              style={{ borderRadius: "22px", marginTop: "120px" }}
+            >
+              <div className="row justify-content-md-center">
+                <div
+                  className="col-sm-12 col-md-12 col-lg-2 p-0"
+                  style={{ backgroundColor: "#212450" }}
+                >
+                  <DashboardBar />
+                </div>
+                <div className="col-sm col-md-9 bg-white">
+                  <DashTest />
+                </div>
               </div>
             </div>
-          </div>
-        </main>
+          </main>
+        </React.Fragment>
       </Auth>
     );
   }
