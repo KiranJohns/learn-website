@@ -85,13 +85,14 @@ class DashAssign extends Component {
             padding: "1.5rem",
             color: "#212450",
             display: "flex",
+            justifyContent: "flex-start",
             justifyContent: "center",
-            marginTop: "20px",
             fontSize: 46,
           }}
         >
           Assign Course
         </h2>
+        <div className="dash-shadow">
         <div className=" row g-3  min-vh-100  d-flex justify-content-center ">
           <div style={{ padding: "", backgroundColor: "" }}>
             {/* <div
@@ -110,14 +111,14 @@ class DashAssign extends Component {
                 }}
               />
             </div> */}
-            <div className="p-relative d-inline header__search">
+            <div style={{float:'right',marginBottom:'1.4rem'}} className="p-relative d-inline header__search">
               <form action="">
-                <input
+                <input style={{ background:'#edeef3',}}
                   className="d-block mr-30"
                   type="text"
                   placeholder="Search..."
-                  // value={searchString}
-                  // onChange={handleSearch}
+                // value={searchString}
+                // onChange={handleSearch}
                 />
                 <button type="submit">
                   <i className="fas fa-search"></i>
@@ -132,7 +133,7 @@ class DashAssign extends Component {
               selectableRows
             />
           </div>
-        </div>
+        </div></div>
       </div>
     );
   }

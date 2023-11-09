@@ -126,13 +126,13 @@ class DashCourse extends Component {
             display: "flex",
             justifyContent: "flex-start",
             justifyContent: "center",
-            marginTop: "20px",
+            
             fontSize: 46,
           }}
         >
           My Courses
         </h2>
-        <div className=" row g-3  min-vh-100  d-flex justify-content-center ">
+        <div  className=" row g-3  min-vh-100  d-flex justify-content-center dash-shadow ">
           <div style={{ padding: "", backgroundColor: "" }}>
             {/* <div
               className="pb-2 smth"
@@ -150,10 +150,11 @@ class DashCourse extends Component {
                 }}
               />
             </div> */}
-            <div className="p-relative d-inline header__search">
-              <form action="">
+            <div style={{float:'right',marginBottom:'1.4rem'}} className="p-relative d-inline header__search">
+              <form action="" >
                 <input
-                  className="d-block mr-30"
+                style={{ background:'#edeef3',}}
+                  className="d-block  "
                   type="text"
                   placeholder="Search..."
                   // value={searchString}

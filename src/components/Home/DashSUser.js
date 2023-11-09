@@ -84,12 +84,13 @@ class DashSUser extends Component {
             color: "#212450",
             display: "flex",
             justifyContent: "center",
-            marginTop: "20px",
+          
             fontSize: 46,
           }}
         >
           Users
         </h2>
+        <div className="dash-shadow">
         <div className=" row g-3  min-vh-100  d-flex justify-content-center ">
           <div style={{ padding: "", backgroundColor: "" }}>
             {/* <div
@@ -108,9 +109,9 @@ class DashSUser extends Component {
                 }}
               />
             </div> */}
-            <div className="p-relative d-inline header__search">
+            <div style={{float:'right',marginBottom:'1.4rem'}} className="p-relative d-inline header__search">
               <form action="">
-                <input
+                <input style={{ background:'#edeef3',}}
                   className="d-block mr-30"
                   type="text"
                   placeholder="Search..."
@@ -130,7 +131,7 @@ class DashSUser extends Component {
               selectableRows
             />
           </div>
-        </div>
+        </div></div>
       </div>
     );
   }

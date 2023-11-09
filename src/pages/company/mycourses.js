@@ -15,7 +15,7 @@ class myCourse extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <main className="p-4 bg-light" style={{}}>
+        <main className="p-1" style={{backgroundImage: "linear-gradient(to left, #EDEEF3, #EDEEF3)",}}>
           <NoSSR>
             <Header />
           </NoSSR>
@@ -25,7 +25,7 @@ class myCourse extends React.Component {
           >
             <div className="row justify-content-md-center">
               <div
-                className="col-sm-2 col-md-auto"
+                className="col-sm-12 col-md-12 col-lg-2 p-0"
                 style={{ backgroundColor: "#212450" }}
               >
                 <DashboardBar />

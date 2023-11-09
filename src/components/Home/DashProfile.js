@@ -45,7 +45,7 @@ function DashProfile() {
           color: "#212450",
           display: "flex",
           justifyContent: "center",
-          marginTop: "20px",
+          marginTop: "",
           fontSize: 46,
         }}
       >
@@ -55,7 +55,7 @@ function DashProfile() {
         <img style={{width:'70px',height:'70px',borderRadius:'70px',cursor:'pointer'}} src="/assets/img/testimonial/profilePic.webp" alt="" />
         <input type="file" ref={inputRef} style={{display:'none'}}/>
       </div> */}
-      <Form style={{ padding: "10px 20px", marginTop:'2rem'}}>
+      <Form className="courseBox-shadow" style={{ padding: "2rem",borderRadius:'.7rem'}}>
         <Row className="mb-4 mt-3">
           <Form.Group as={Col} controlId="formGridEmail">
             <Form.Label>First Name</Form.Label>
