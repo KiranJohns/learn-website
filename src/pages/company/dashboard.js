@@ -7,7 +7,7 @@ import DashCourse from "../../components/Home/DashCourse";
 import Header from "../../components/Layout/Header/Header";
 import NoSSR from "react-no-ssr";
 import DashTest from "../../components/Home/DashTest";
-import { Auth } from "../auth";
+
 
 class dashboard extends React.Component {
   static getInitialProps({ store }) {}

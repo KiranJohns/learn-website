@@ -89,7 +89,8 @@ class DashCAvail extends Component {
         display: "flex",
     
         justifyContent: "center",
-        
+        position:'absolute',
+        marginLeft:'.5rem',
         fontSize: 46,
       }}
         >

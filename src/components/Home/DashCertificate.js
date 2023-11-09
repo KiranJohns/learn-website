@@ -87,10 +87,10 @@ class DashCertificate extends Component {
           style={{
            
             color: "#212450",
-            display: "flex",
-           
+            display: "flex",    
             justifyContent: "center",
-            
+            position:'absolute',
+            marginLeft:'.5rem',
             fontSize: 46,
           }}
         >

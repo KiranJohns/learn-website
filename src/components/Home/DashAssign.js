@@ -80,62 +80,62 @@ class DashAssign extends Component {
 
     return (
       <div className="">
-      
-        <div className="dash-shadow">
-        <div className=" row g-3  min-vh-100  d-flex justify-content-center mt-20">
-        <h2
-          style={{
-          
-            color: "#212450",
-            display: "flex",
-           
-            justifyContent: "center",
-            fontSize: 46,
-          }}
-        >
-          Assign Course
-        </h2>
-          <div style={{ padding: "", backgroundColor: "" }}>
-            {/* <div
-              className="pb-2 smth"
-              style={{ display: "flex", justifyContent: "left" }}
-            >
-              <input
+       
+      <div className="dash-shadow">
+      <div className=" row g-3  min-vh-100  d-flex justify-content-center mt-20">
+      <h2
+        style={{  
+          color: "#212450",
+          display: "flex",
+          justifyContent: "center",
+          position:'absolute',
+          marginLeft:'.5rem',
+          fontSize: 46,
+        }}
+      >
+        Assign Course
+      </h2>
+        <div style={{ padding: "", backgroundColor: "" }}>
+          {/* <div
+            className="pb-2 smth"
+            style={{ display: "flex", justifyContent: "left" }}
+          >
+            <input
+              type="text"
+              className=""
+              placeholder="Search course..."
+              onChange={this.handleFilter}
+              style={{
+                padding: "6px 10px",
+                borderColor: "transparent",
+                overflow: "hidden",
+              }}
+            />
+          </div> */}
+          <div style={{float:'right',marginBottom:'1.4rem'}} className="p-relative d-inline header__search">
+            <form action="">
+              <input style={{ background:'#edeef3',}}
+                className="d-block mr-10"
                 type="text"
-                className=""
-                placeholder="Search course..."
-                onChange={this.handleFilter}
-                style={{
-                  padding: "6px 10px",
-                  borderColor: "transparent",
-                  overflow: "hidden",
-                }}
-              />
-            </div> */}
-            <div style={{float:'right',marginBottom:'1.4rem'}} className="p-relative d-inline header__search">
-              <form action="">
-                <input style={{ background:'#edeef3',}}
-                  className="d-block mr-10"
-                  type="text"
-                  placeholder="Search..."
+                placeholder="Search..."
                 // value={searchString}
                 // onChange={handleSearch}
-                />
-                <button type="submit">
-                  <i className="fas fa-search"></i>
-                </button>
-              </form>
-            </div>
-            <DataTable
-              columns={columns}
-              data={this.state.records}
-              customStyles={customStyles}
-              pagination
-              selectableRows
-            />
+              />
+              <button type="submit">
+                <i className="fas fa-search"></i>
+              </button>
+            </form>
           </div>
-        </div></div>
-      </div>
+          <DataTable
+            columns={columns}
+            data={this.state.records}
+            customStyles={customStyles}
+            pagination
+            selectableRows
+          />
+        </div>
+      </div> </div>
+    </div>
     );
   }
 }

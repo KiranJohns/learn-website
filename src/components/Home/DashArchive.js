@@ -86,9 +86,10 @@ class DashArchive extends Component {
          
             color: "#212450",
             display: "flex",
-            justifyContent: "flex-start",
+         
             justifyContent: "center",
-            
+            position:'absolute',
+            marginLeft:'.5rem',
             fontSize: 46,
           }}
         >
