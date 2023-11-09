@@ -23,7 +23,7 @@ class Cta extends Component {
   }
   render() {
     return (
-      <main style={{background:'#ffffff'}}>
+      <main style={{ background: '#ffffff' }}>
         <section className="cta__area mb--120">
           <div className="container">
             <div className="cta__inner blue-bg fix">
@@ -40,8 +40,8 @@ class Cta extends Component {
                   <div className="cta__content">
                     <a href={`/blog/${Number(this.state.id || 1)}`}>
                       <a className="">
-                        <h3 className="text-white" style={{textOverflow:"ellipsis"}}>
-                          {this.state.blog && this.state.blog.header?.slice(0,85)}
+                        <h3 className="text-white" style={{ textOverflow: "ellipsis" }}>
+                          {this.state.blog && this.state.blog.header?.slice(0, 85)}
                         </h3>
                       </a>
                     </a>

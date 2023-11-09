@@ -9,7 +9,7 @@ import CourseGridSpecialised from '../components/CourseGrid/CourseGridSpecialise
 
 class CourseSpecial extends React.Component {
 
-    static getInitialProps({store}) {}
+    static getInitialProps({ store }) { }
 
     constructor(props) {
         super(props);
@@ -18,11 +18,11 @@ class CourseSpecial extends React.Component {
     render() {
         return (
             <React.Fragment>
-                 <NoSSR>
-            <HeaderOpaque />
-            </NoSSR>
-            <CourseGridSpecialised />
-            <Footer />
+                <NoSSR>
+                    <HeaderOpaque />
+                </NoSSR>
+                <CourseGridSpecialised />
+                <Footer />
             </React.Fragment>
         );
     }
