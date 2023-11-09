@@ -79,6 +79,7 @@ const ShopingCart = ({ setShopOpen, shopOpen }) => {
       });
   }
   function decrement(id, type, courseId) {
+    console.log('hi');
     makeRequest("PATCH", "/cart/update-cart-count", {
       id,
       type,

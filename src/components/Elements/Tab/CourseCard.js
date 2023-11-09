@@ -44,12 +44,11 @@ function CourseCard({ item }) {
 
   async function handleClick(id) {
     if (!fakeCount <= 0) {
-      let cartItem = cart.find(
-        (cartItem) => cartItem.course_id == item.id
-      )?.product_count;
+      let cartItem = cart.find((cartItem) => cartItem.course_id == item.id);
 
       if (cartItem) {
-        updateCount(item.id, Number(fakeCount));
+        console.log(cartItem);
+        updateCount(Number(cartItem.id), Number(item.id), Number(fakeCount),cartItem.item_type);
       } else {
         addToCart(item.id);
       }
@@ -78,11 +77,12 @@ function CourseCard({ item }) {
       });
   }
 
-  function updateCount(id, count) {
+  function updateCount(id, courseId, count,type) {
     makeRequest("PATCH", "/cart/update-cart-count", {
-      course_id: id,
-      identifier: 1,
+      id,
+      type,
       count,
+      courseId,
     })
       .then((res) => {
         setFakeCount(0);
@@ -162,9 +162,7 @@ function CourseCard({ item }) {
               <p className="p-1">{fakeCount}</p>
               <button
                 className="cart-plus"
-                onClick={() =>
-                  setFakeCount((prev) => prev + 1)
-                }
+                onClick={() => setFakeCount((prev) => prev + 1)}
               >
                 <i className="fas fa-plus"></i>
               </button>
