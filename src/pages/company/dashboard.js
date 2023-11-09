@@ -7,47 +7,56 @@ import DashCourse from "../../components/Home/DashCourse";
 import Header from "../../components/Layout/Header/Header";
 import NoSSR from "react-no-ssr";
 import DashTest from "../../components/Home/DashTest";
+import { Auth } from "../auth";
+import { useState } from "react";
+import { getToken } from "../../axios";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 
+function dashboard() {
+  const [logedIn, setlogedIn] = useState(() => {
+    return getToken() ? true : false;
+  });
 
-class dashboard extends React.Component {
-  static getInitialProps({ store }) {}
-  constructor(props) {
-    super(props);
-  }
-  render() {
-    return (
-      // <Auth>
-        <React.Fragment>
-          <main
-            className="p-1"
-            style={{
-              backgroundImage: "linear-gradient(to left, #EDEEF3, #EDEEF3)",
-            }}
-          >
-            <NoSSR>
-              <Header />
-            </NoSSR>
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!logedIn) {
+      router.push("/sign-in");
+    }
+  }, []);
+  return (
+    <>
+    {logedIn && <React.Fragment>
+      <main
+        className="p-1"
+        style={{
+          backgroundImage: "linear-gradient(to left, #EDEEF3, #EDEEF3)",
+        }}
+      >
+        <NoSSR>
+          <Header />
+        </NoSSR>
+        <div
+          className="container-fluid "
+          style={{ borderRadius: "22px", marginTop: "120px" }}
+        >
+          <div className="row justify-content-md-center">
             <div
-              className="container-fluid "
-              style={{ borderRadius: "22px", marginTop: "120px" }}
+              className="col-sm-12 col-md-12 col-lg-2 p-0"
+              style={{ backgroundColor: "#212450" }}
             >
-              <div className="row justify-content-md-center">
-                <div
-                  className="col-sm-12 col-md-12 col-lg-2 p-0"
-                  style={{ backgroundColor: "#212450" }}
-                >
-                  <DashboardBar />
-                </div>
-                <div className="col-sm col-md-9 bg-white">
-                  <DashTest />
-                </div>
-              </div>
+              <DashboardBar />
             </div>
-          </main>
-        </React.Fragment>
-      // </Auth>
-    );
-  }
+            <div className="col-sm col-md-9 bg-white">
+              <DashTest />
+            </div>
+          </div>
+        </div>
+      </main>
+    </React.Fragment>}
+    </>
+  );
 }
 
 export default dashboard;

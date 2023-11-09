@@ -16,7 +16,7 @@ const Auth = ({ Children }) => {
     }
   }, []);
   
-  return <>{logedIn && <Children />}</>;
+  return <Children />
 };
 
 export default Auth;
