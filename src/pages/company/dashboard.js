@@ -17,7 +17,7 @@ class dashboard extends React.Component {
   render() {
     return (
       <React.Fragment>
-        {/* <Auth> */}
+        <Auth>
           <main
             className="p-1"
             style={{
@@ -44,7 +44,7 @@ class dashboard extends React.Component {
               </div>
             </div>
           </main>
-        {/* </Auth> */}
+        </Auth>
       </React.Fragment>
     );
   }
