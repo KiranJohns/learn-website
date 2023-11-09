@@ -86,10 +86,11 @@ class DashArchive extends Component {
          
             color: "#212450",
             display: "flex",
-            justifyContent: "flex-start",
+         
             justifyContent: "center",
-            
-            fontSize: 46,
+            position:'absolute',
+            marginLeft:'.5rem',
+            fontSize: 42,
           }}
         >
           Archive Users

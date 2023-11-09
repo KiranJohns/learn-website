@@ -122,12 +122,13 @@ class DashCourse extends Component {
        
         <div  className=" row g-3  min-vh-100  d-flex justify-content-center dash-shadow mt-10">
           <div style={{ padding: "", backgroundColor: "" }}>
-     <h2
+      <h2 className="dash-head-center"
           style={{
             padding: "",
             color: "#212450",
-           textAlign:"center",
-            fontSize: 46,
+        
+            fontSize: 42,
+            
           }}
         >
           My Courses
