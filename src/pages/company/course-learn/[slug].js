@@ -5,15 +5,9 @@ import NoSSR from "react-no-ssr";
 import { useRouter } from "next/router";
 import SingleCourse from "../../../components/CourseDetails/SingleCourse";
 import fetchData from "../../../axios";
+import { useState } from "react";
 
 function CourseDetails() {
-    const router = useRouter();
-    console.log(router.query.slug)
-    const makeRequest = fetchData()
-    useEffect(() => {
-        // TODO: start course
-        // makeRequest("GET","")
-    },[])
   return (
     <main
       className="p-4"
@@ -31,7 +25,7 @@ function CourseDetails() {
             <DashboardBar />
           </div>
           <div className="col-sm col-md-9  bg-light">
-            <SingleCourse />
+            <SingleCourse  />
           </div>
         </div>
       </div>

@@ -5,42 +5,64 @@ import HeaderDashboard from "../../components/Layout/Header/HeaderDashboard";
 import DashCAvail from "../../components/Home/DashCAvail";
 import Header from "../../components/Layout/Header/Header";
 import NoSSR from "react-no-ssr";
+import { getToken } from "../../axios";
+import { useRouter } from "next/router";
+import { useState } from "react";
+import { useEffect } from "react";
 
-class courseavailable extends React.Component {
-  static getInitialProps({ store }) {}
-  constructor(props) {
-    super(props);
-  }
-  render() {
-    return (
-      <React.Fragment>
-        <main className="p-1"
-          style={{
-            backgroundImage: "linear-gradient(to left, #EDEEF3, #EDEEF3)",
-          }}>
-          <NoSSR>
-            <Header />
-          </NoSSR>
-          <div
-            className="container-fluid "
-            style={{ borderRadius: "22px", marginTop: "120px" }}
+function courseavailable() {
+  //   static getInitialProps({ store }) {}
+  //   constructor(props) {
+  //     super(props);
+  //     this.state = {
+  //       logedIn: getToken(),
+  //     };
+  //   }
+  const [logedIn, setlogedIn] = useState(() => {
+    return getToken() ? true : false;
+  });
+
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!logedIn) {
+      router.push("/sign-in");
+    }
+  }, []);
+  return (
+    <>
+      {logedIn && (
+        <React.Fragment>
+          <main
+            className="p-1"
+            style={{
+              backgroundImage: "linear-gradient(to left, #EDEEF3, #EDEEF3)",
+            }}
           >
-            <div className="row justify-content-md-center">
-              <div
-                className="col-sm-12 col-md-12 col-lg-2 p-0"
-                style={{ backgroundColor: "#212450" }}
-              >
-                <DashboardBar />
-              </div>
-              <div className="col-sm col-md-9  bg-white">
-                <DashCAvail />
+            <NoSSR>
+              <Header />
+            </NoSSR>
+            <div
+              className="container-fluid "
+              style={{ borderRadius: "22px", marginTop: "120px" }}
+            >
+              <div className="row justify-content-md-center">
+                <div
+                  className="col-sm-12 col-md-12 col-lg-2 p-0"
+                  style={{ backgroundColor: "#212450" }}
+                >
+                  <DashboardBar />
+                </div>
+                <div className="col-sm col-md-9  bg-white">
+                  <DashCAvail />
+                </div>
               </div>
             </div>
-          </div>
-        </main>
-      </React.Fragment>
-    );
-  }
+          </main>
+        </React.Fragment>
+      )}
+    </>
+  );
 }
 
 export default courseavailable;

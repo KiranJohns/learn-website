@@ -16,17 +16,17 @@ import store from "../../../redux/store";
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [shopOpen, setShopOpen] = useState(false);
-  const [paths, setPaths] = useState([
-    "/company/dashboard",
-    "/company/myprofile",
-    "/company/MyCourses",
-    "/company/certificates",
-    "/company/availablecourses",
-    "/company/createuser",
-    "/company/showuser",
-    "/company/archive",
-    "/company/archive",
-  ]);
+  // const [paths, setPaths] = useState([
+  //   "/company/dashboard",
+  //   "/company/myprofile",
+  //   "/company/MyCourses",
+  //   "/company/certificates",
+  //   "/company/availablecourses",
+  //   "/company/createuser",
+  //   "/company/showuser",
+  //   "/company/archive",
+  //   "/company/archive",
+  // ]);
 
   const router = useRouter();
   const [path, setPath] = useState("");
@@ -84,9 +84,9 @@ const Header = () => {
       })
       .catch((err) => {
         if (err?.data?.errors[0].message === "please login") {
-          if (paths.includes(location.pathname)) {
-            location.pathname = "/sign-in";
-          }
+          // if (paths.includes(location.pathname)) {
+          //   location.pathname = "/sign-in";
+          // }
           store.dispatch({
             type: "SET_CART",
           });

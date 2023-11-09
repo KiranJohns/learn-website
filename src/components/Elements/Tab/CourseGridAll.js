@@ -47,13 +47,15 @@ export default () => {
   }
 
   useEffect(() => {
-    if(categoryFilter) {
+    if (categoryFilter) {
       setFilteredCourse(() => {
         console.log(filteredCourse);
-        return course.filter((item) => item.category.toLowerCase() === categoryFilter.toLowerCase());
-      })
+        return course.filter(
+          (item) => item.category.toLowerCase() === categoryFilter.toLowerCase()
+        );
+      });
     }
-  },[categoryFilter])
+  }, [categoryFilter]);
 
   function handleClick(val) {
     getCourse(val);
@@ -93,11 +95,35 @@ export default () => {
               >
                 <option value="">select category</option>
                 <option value="Care Certificate">Care Certificate</option>
-                <option value="Mandatory Care Courses">Mandatory Care Courses</option>
-                <option value="Specialized Care Courses">Specialized Care Courses</option>
-                <option value="Recovery Care Courses">Recovery Care Courses</option>
+                <option value="Mandatory Care Courses">
+                  Mandatory Care Courses
+                </option>
+                <option value="Specialized Care Courses">
+                  Specialized Care Courses
+                </option>
+                <option value="Recovery Care Courses">
+                  Recovery Care Courses
+                </option>
                 <option value="Child Care Courses">Child Care Courses</option>
               </select>
+            </div>
+            <div
+              style={{ float: "left", marginBottom: "1.4rem" }}
+              className="p-relative d-inline header__search col-3"
+            >
+              <form action="">
+                <input
+                  style={{ background: "#edeef3" }}
+                  className="d-block mr-30"
+                  type="text"
+                  placeholder="Search..."
+                  // value={searchString}
+                  // onChange={handleSearch}
+                />
+                <button type="submit">
+                  <i className="fas fa-search"></i>
+                </button>
+              </form>
             </div>
           </div>
           <div className="row align-items-end">
