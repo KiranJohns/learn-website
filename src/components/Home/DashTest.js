@@ -7,6 +7,7 @@ import ListGroup from "react-bootstrap/ListGroup";
 import fetchData from "../../axios";
 import DataTable from "react-data-table-component";
 import { BsSearch } from "react-icons/bs";
+import { IoHandLeft } from "react-icons/io5";
 const customStyles = {
   headRow: {
     style: {
@@ -131,23 +132,29 @@ class DashTest extends Component {
       </Card.Body>
     </Card>
     </div>    */}
-     <span style={{display:'inline'}}><h3 style={{color:'#212450', marginTop:'.3rem' }}>Hello 'Name'</h3>
-       <h2
-            style={{
-              padding: "0",
-              color: "#212450",
-              display: "flex",
-              
-              justifyContent: "center",
-              margin:".3rem",
-              fontSize: 46,
-            }}
-          >
-            Dashboard
-          </h2> </span>
-        <div className="ag-format-container" style={{marginTop:'1rem'}}>
-         
-          <div className="ag-courses_box dash-shadow">
+        <div style={{display:'flex', alignItems:'center', justifyContent:'space-between'}}>
+          <h3 style={{ color: '#212450', marginTop: '.3rem',display:'inline' }}>Hello 'Name' <IoHandLeft style={{ color: '#f1c27d', marginBottom: '.5rem' }} />
+          </h3>
+          <div style={{marginRight:"28rem"}}>
+            <h2
+              style={{
+                padding: "0",
+                color: "#212450",
+                display: "flex",
+                justifyContent: "center",
+                margin: ".3rem",
+                fontSize: 46,
+              }}
+            >
+              Dashboard
+            </h2>
+          </div>
+        </div>
+
+        <div className="ag-format-container" style={{ marginTop: '1rem' }}>
+
+          <div className="ag-courses_box dash-neww">
+
             <div className="ag-courses_item">
               <a href="/company/myprofile" className="ag-courses-item_link">
                 <div className="ag-courses-item_bg"></div>
@@ -169,10 +176,25 @@ class DashTest extends Component {
 
                 <div className="ag-courses-item_title">My Course</div>
 
-                <div className="bi bi-archive ag-courses-item_date-box">
+                <div className="bi bi-book ag-courses-item_date-box">
                   {/* Start:
           <span className="ag-courses-item_date">
             04.11.2022
+          </span> */}
+                </div>
+              </a>
+            </div>
+
+            <div className="ag-courses_item">
+              <a href="/company/certificates" className="ag-courses-item_link">
+                <div className="ag-courses-item_bg"></div>
+
+                <div className="ag-courses-item_title">Certificates</div>
+
+                <div className="bi bi-patch-check-fill ag-courses-item_date-box">
+                  {/* Start:
+          <span className="ag-courses-item_date">
+            04.11.202
           </span> */}
                 </div>
               </a>
@@ -198,11 +220,11 @@ class DashTest extends Component {
               <h4
                 style={{
                   padding: "1.5rem",
-                  marginTop:".7rem",
+                  marginTop: ".7rem",
                   color: "#212450",
                   display: "flex",
                   justifyContent: "flex-start",
-                   
+
                   fontSize: 35,
                 }}
               >
@@ -216,7 +238,7 @@ class DashTest extends Component {
                     placeholder="Search..."
                     // value={searchString}
                     // onChange={handleSearch}
-                    style={{background:'#edeef3'}}
+                    style={{ background: '#edeef3' }}
                   />
                   <button type="submit">
                     <i className="fas fa-search"></i>

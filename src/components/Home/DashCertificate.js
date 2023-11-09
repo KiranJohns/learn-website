@@ -79,12 +79,16 @@ class DashCertificate extends Component {
 
     return (
       <div className="">
-        <h2
+       
+        <div className="">
+        <div className="   row g-3  min-vh-100  d-flex justify-content-center dash-shadow mt-10 ">
+          <div style={{ padding: "", backgroundColor: "" }}>
+          <h2
           style={{
-            padding: "1.5rem",
+           
             color: "#212450",
             display: "flex",
-            justifyContent: "flex-start",
+           
             justifyContent: "center",
             
             fontSize: 46,
@@ -92,9 +96,6 @@ class DashCertificate extends Component {
         >
           Certificates
         </h2>
-        <div className="dash-shadow">
-        <div className="   row g-3  min-vh-100  d-flex justify-content-center  ">
-          <div style={{ padding: "", backgroundColor: "" }}>
             {/* <div
               className="pb-2 smth"
               style={{ display: "flex", justifyContent: "left" }}
@@ -114,7 +115,7 @@ class DashCertificate extends Component {
             <div style={{float:'right',marginBottom:'1.4rem'}} className="p-relative d-inline header__search">
               <form action="">
                 <input style={{ background:'#edeef3',}}
-                  className="d-block mr-30"
+                  className="d-block "
                   type="text"
                   placeholder="Search..."
                   // value={searchString}

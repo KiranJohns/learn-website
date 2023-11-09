@@ -37,7 +37,7 @@ class dashboard extends React.Component {
               >
                 <DashboardBar />
               </div>
-              <div className="col-sm col-md-9  bg-white">
+              <div className="col-sm col-md-9 bg-white">
                 <DashTest />
               </div>
             </div>

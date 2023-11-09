@@ -78,21 +78,20 @@ class DashSUser extends Component {
 
     return (
       <div className="">
-        <h2
-          style={{
-            padding: "1.5rem",
+      
+        <div className="dash-shadow">
+        <div className=" row g-3  min-vh-100  d-flex justify-content-center mt-20">
+          <div style={{ padding: "", backgroundColor: "" }}>
+          <h2
+          style={{      
             color: "#212450",
             display: "flex",
             justifyContent: "center",
-          
             fontSize: 46,
           }}
         >
           Users
         </h2>
-        <div className="dash-shadow">
-        <div className=" row g-3  min-vh-100  d-flex justify-content-center ">
-          <div style={{ padding: "", backgroundColor: "" }}>
             {/* <div
               className="pb-2 smth"
               style={{ display: "flex", justifyContent: "left" }}
@@ -112,7 +111,7 @@ class DashSUser extends Component {
             <div style={{float:'right',marginBottom:'1.4rem'}} className="p-relative d-inline header__search">
               <form action="">
                 <input style={{ background:'#edeef3',}}
-                  className="d-block mr-30"
+                  className="d-block mr-10"
                   type="text"
                   placeholder="Search..."
                   // value={searchString}
