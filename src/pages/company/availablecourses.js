@@ -22,7 +22,7 @@ function courseavailable() {
 
   return (
     <React.Fragment>
-      <Auth>
+      {/* <Auth> */}
         <main
           className="p-1"
           style={{
@@ -49,7 +49,7 @@ function courseavailable() {
             </div>
           </div>
         </main>
-      </Auth>
+      {/* </Auth> */}
     </React.Fragment>
   );
 }
