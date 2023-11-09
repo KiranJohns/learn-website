@@ -151,47 +151,41 @@ class DashTest extends Component {
           </div>
         </div>
 
-        <div className="ag-format-container" style={{ marginTop: '1rem' }}>
+        <div className="ag-format-container" style={{ marginTop: '1rem',  }}>
 
           <div className="ag-courses_box dash-neww">
 
-            <div className="ag-courses_item">
+            <div className="ag-courses_item" style={{marginLeft:'.5rem'}}>
               <a href="/company/myprofile" className="ag-courses-item_link">
                 <div className="ag-courses-item_bg"></div>
+                <div className="bi bi-person-circle ag-courses-item_date-box" style={{fontSize:'2rem'}}>
+            
+            </div>
+                <div className="ag-courses-item_title" style={{display:'flex', justifyContent:'center', alignItems:'center'}}>My Profile</div>
 
-                <div className="ag-courses-item_title">My Profile</div>
-
-                <div className="bi bi-person-circle ag-courses-item_date-box">
-                  {/* Start:
-          <span className="ag-courses-item_date">
-            04.11.2022
-          </span> */}
-                </div>
+               
               </a>
             </div>
 
             <div className="ag-courses_item">
               <a href="/company/mycourses" className="ag-courses-item_link">
                 <div className="ag-courses-item_bg"></div>
+                <div className="bi bi-book ag-courses-item_date-box" style={{fontSize:'2rem'}}>
+         
+                  </div>
+                <div className="ag-courses-item_title" style={{display:'flex', justifyContent:'center', alignItems:'center'}}>My Course</div>
 
-                <div className="ag-courses-item_title">My Course</div>
-
-                <div className="bi bi-book ag-courses-item_date-box">
-                  {/* Start:
-          <span className="ag-courses-item_date">
-            04.11.2022
-          </span> */}
-                </div>
+              
               </a>
             </div>
 
             <div className="ag-courses_item">
               <a href="/company/certificates" className="ag-courses-item_link">
                 <div className="ag-courses-item_bg"></div>
+                <div className="bi bi-patch-check-fill ag-courses-item_date-box" style={{fontSize:'2rem'}}>
+                <div className="ag-courses-item_title" style={{display:'flex', justifyContent:'center', alignItems:'center'}}>Certificates</div>
 
-                <div className="ag-courses-item_title">Certificates</div>
-
-                <div className="bi bi-patch-check-fill ag-courses-item_date-box">
+             
                   {/* Start:
           <span className="ag-courses-item_date">
             04.11.202
@@ -200,13 +194,13 @@ class DashTest extends Component {
               </a>
             </div>
 
-            <div className="ag-courses_item">
+            <div className="ag-courses_item" style={{marginRight:'.5rem'}}>
               <a href="#" className="ag-courses-item_link">
                 <div className="ag-courses-item_bg"></div>
+                <div className="bi bi-file-earmark-spreadsheet ag-courses-item_date-box" style={{fontSize:'2rem'}}>
+                <div className="ag-courses-item_title" style={{display:'flex', justifyContent:'center', alignItems:'center'}}>Training Matrix</div>
 
-                <div className="ag-courses-item_title">Training Matrix</div>
-
-                <div className="bi bi-file-earmark-spreadsheet ag-courses-item_date-box">
+               
                   {/* Start:
           <span className="ag-courses-item_date">
             04.11.202
