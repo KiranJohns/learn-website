@@ -39,7 +39,6 @@ function SignInMain() {
     });
   }
 
-  localStorage.setItem("check-cart", true);
 
   function handleLogin() {
     store.dispatch({
@@ -63,12 +62,14 @@ function SignInMain() {
         let from = localStorage.getItem("from-checkout", true);
         if (res.data.userType == "company") {
           if (from) {
+            localStorage.removeItem("from-checkout");
             location.pathname = "/cart";
           } else {
             location.pathname = "/company/dashboard";
           }
         } else {
           if (from) {
+            localStorage.removeItem("from-checkout");
             location.pathname = "/cart";
           } else {
             location.pathname = "/individual/dashboard";

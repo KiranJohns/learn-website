@@ -4,7 +4,6 @@ import { useEffect } from "react";
 import { getToken } from "../axios";
 
 const Auth = ({ Children }) => {
-  // Check if the user is authenticated, if not, redirect to login page
   const [logedIn, setlogedIn] = useState(() => {
     return getToken() ? true : false;
   });

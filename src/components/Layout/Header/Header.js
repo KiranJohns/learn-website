@@ -55,7 +55,6 @@ const Header = () => {
       let localCart =
         JSON.parse(localStorage.getItem("learnfrocarecart")) || [];
       if (localCart) {
-        console.log(localCart);
         localCart?.forEach((item) => {
           cartIds.push({ count: item.product_count, id: item.id });
         });
