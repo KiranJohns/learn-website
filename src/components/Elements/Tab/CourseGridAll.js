@@ -77,6 +77,24 @@ export default () => {
       <Tabs variant="enclosed" id="react-tabs-276">
         <div className="container">
           <div className="" style={{display: "flex",justifyContent: "space-between"}}>
+            <div
+              style={{ float: "left", marginBottom: "1.4rem" }}
+              className="p-relative d-inline header__search"
+            >
+              <form action="">
+                <input
+                  style={{ background: "#edeef3" }}
+                  className="d-block"
+                  type="text"
+                  placeholder="Search..."
+                  value={searchText}
+                  onChange={(e) => setSearchText(e.target.value)}
+                />
+                <button type="submit">
+                  <i className="fas fa-search"></i>
+                </button>
+              </form>
+            </div>
             <div className="">
               <select
                 style={{ background: "#edeef3", paddingBottom: "1rem" , width: "18rem" }}
@@ -97,24 +115,6 @@ export default () => {
                 </option>
                 <option value="Child Care Courses">Child Care Courses</option>
               </select>
-            </div>
-            <div
-              style={{ float: "left", marginBottom: "1.4rem" }}
-              className="p-relative d-inline header__search"
-            >
-              <form action="">
-                <input
-                  style={{ background: "#edeef3" }}
-                  className="d-block"
-                  type="text"
-                  placeholder="Search..."
-                  value={searchText}
-                  onChange={(e) => setSearchText(e.target.value)}
-                />
-                <button type="submit">
-                  <i className="fas fa-search"></i>
-                </button>
-              </form>
             </div>
           </div>
           <div className="row align-items-end">
