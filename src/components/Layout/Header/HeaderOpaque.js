@@ -22,7 +22,9 @@ const HeaderOpaque = () => {
   let logedIn = localStorage.getItem("learnforcare_access");
 
   const handleLogout = () => {
-    localStorage.removeItem("learnforcare_access");
+    localStorage.removeItem(`learnforcare_access`);
+    localStorage.removeItem(`learnforcare_refresh`);
+    localStorage.removeItem("userType");
     location.pathname = "/";
   };
 

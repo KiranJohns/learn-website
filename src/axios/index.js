@@ -1,6 +1,7 @@
 import axios from "axios";
 
 export const getToken = () => localStorage.getItem(`learnforcare_access`);
+export const getUserType = () => localStorage.getItem("userType");
 export default function fetchData() {
   let BASEURL = "";
   BASEURL = "https://www.testkiran.online/api/user";

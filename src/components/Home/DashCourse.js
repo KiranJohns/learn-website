@@ -34,6 +34,7 @@ class DashCourse extends Component {
     this.state = {
       records: [],
       filterRecords: [],
+      searchData: "",
     };
     this.makeRequest = fetchData();
   }
@@ -45,11 +46,10 @@ class DashCourse extends Component {
     this.setState({ records: newData });
   };
 
-  
   componentDidMount() {
     this.getData();
   }
-  
+
   getData = () => {
     try {
       this.makeRequest("GET", "/course/get-bought-course")
@@ -70,11 +70,13 @@ class DashCourse extends Component {
 
   handleCourseStart(id) {
     console.log(id);
-    this.makeRequest("GET",`/course/start-course/${id}`).then(res => {
-      location.pathname = `/company/course-learn/${res.data.response.id}`
-    }).catch(err => {
-      console.log(err);
-    })
+    this.makeRequest("GET", `/course/start-course/${id}`)
+      .then((res) => {
+        location.pathname = `/company/course-learn/${res.data.response.id}`;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   render() {
@@ -102,7 +104,7 @@ class DashCourse extends Component {
         selector: (row) => {
           let date = row.validity
             .split("/")
-            .map((d) => d.length <= 1 ? "0" + d : d);
+            .map((d) => (d.length <= 1 ? "0" + d : d));
           let newDate = `${date[1]}/${date[0]}/${date[2]}`;
           return newDate;
         },
@@ -110,7 +112,10 @@ class DashCourse extends Component {
       {
         name: "",
         cell: (row) => (
-          <a onClick={() => this.handleCourseStart(row.id)} className="btn btn-success">
+          <a
+            onClick={() => this.handleCourseStart(row.id)}
+            className="btn btn-success"
+          >
             Start
           </a>
         ),
@@ -119,20 +124,19 @@ class DashCourse extends Component {
 
     return (
       <div className="">
-       
-        <div  className=" row g-3  min-vh-100  d-flex justify-content-center dash-shadow mt-10">
+        <div className=" row g-3  min-vh-100  d-flex justify-content-center dash-shadow mt-10">
           <div style={{ padding: "", backgroundColor: "" }}>
-      <h2 className="dash-head-center"
-          style={{
-            padding: "",
-            color: "#212450",
-        
-            fontSize: 42,
-            
-          }}
-        >
-          My Courses
-        </h2>
+            <h2
+              className="dash-head-center"
+              style={{
+                padding: "",
+                color: "#212450",
+
+                fontSize: 42,
+              }}
+            >
+              My Courses
+            </h2>
             {/* <div
               className="pb-2 smth"
               style={{ display: "flex", justifyContent: "left" }}
@@ -149,25 +153,38 @@ class DashCourse extends Component {
                 }}
               />
             </div> */}
-            
-            <div style={{float:'right',marginBottom:'1.4rem'}} className="p-relative d-inline header__search">
-              <form action="" >
+
+            <div
+              style={{ float: "right", marginBottom: "1.4rem" }}
+              className="p-relative d-inline header__search"
+            >
+              <form action="">
                 <input
-                style={{ background:'#edeef3',}}
+                  style={{ background: "#edeef3" }}
                   className="d-block  "
                   type="text"
                   placeholder="Search..."
                   // value={searchString}
-                  // onChange={handleSearch}
+                  onChange={(e) =>
+                    this.setState({ ...this.state, searchData: e.target.value })
+                  }
                 />
                 <button type="submit">
                   <i className="fas fa-search"></i>
                 </button>
               </form>
-            </div>  
+            </div>
             <DataTable
               columns={columns}
-              data={this.state.records}
+              data={
+                this.state.searchData
+                  ? this.state.records.filter((item) =>
+                      item.name
+                        .toLowerCase()
+                        .includes(this.state.searchData.toLowerCase())
+                    )
+                  : this.state.records
+              }
               customStyles={customStyles}
               pagination
               selectableRows

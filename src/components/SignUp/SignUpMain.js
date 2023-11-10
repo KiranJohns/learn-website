@@ -373,8 +373,8 @@ function SignUpMain() {
                           name="type_of_account"
                         >
                           <option value="">Select</option>
-                          <option value="Individual">Individual</option>
-                          <option value="Company">Company</option>
+                          <option value="individual">Individual</option>
+                          <option value="company">Company</option>
                         </select>
                         {/* <input
                           type="text"

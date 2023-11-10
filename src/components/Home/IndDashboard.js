@@ -1,37 +1,38 @@
-import React, { useEffect, useState } from 'react';
-import Link from 'next/link';
-import DashboardBar from '../Sidebar/DashboardBar';
-import Accordion from 'react-bootstrap/Accordion';
-import Card from 'react-bootstrap/Card';
-import ListGroup from 'react-bootstrap/ListGroup';
-import fetchData from '../../axios';
-import DataTable from 'react-data-table-component';
+import React, { useEffect, useState } from "react";
+import Link from "next/link";
+import DashboardBar from "../Sidebar/DashboardBar";
+import Accordion from "react-bootstrap/Accordion";
+import Card from "react-bootstrap/Card";
+import ListGroup from "react-bootstrap/ListGroup";
+import fetchData from "../../axios";
+import DataTable from "react-data-table-component";
 
 const customStyles = {
   headRow: {
     style: {
-      backgroundColor: '#212450',
-      color: 'white',
+      backgroundColor: "#212450",
+      color: "white",
     },
   },
   headCells: {
     style: {
-      fontSize: '16px',
-      fontWeight: '600',
-      textTransform: 'uppercase',
-      justifyContent: 'center',
+      fontSize: "16px",
+      fontWeight: "600",
+      textTransform: "uppercase",
+      justifyContent: "center",
     },
   },
   cells: {
     style: {
-      fontSize: '15px',
-      justifyContent: 'center',
+      fontSize: "15px",
+      justifyContent: "center",
     },
   },
 };
 
 function DashIndividual() {
   const [records, setRecords] = useState([]);
+  const [searchString, setSearchString] = useState("");
   const [filterRecords, setFilterRecords] = useState([]);
 
   const handleFilter = (event) => {
@@ -41,10 +42,12 @@ function DashIndividual() {
     setRecords(newData);
   };
 
+  function handleSearch() {}
+
   const getData = () => {
     try {
       const makeRequest = fetchData();
-      makeRequest('GET', '/course/get-bought-course')
+      makeRequest("GET", "/course/get-bought-course")
         .then((res) => {
           console.log(res);
           setRecords(res.data.response);
@@ -62,37 +65,47 @@ function DashIndividual() {
     getData();
   }, []);
 
+  // useEffect(() => {
+  //   if(searchString) {
+  //     setRecords((prev) => {
+  //       return 
+  //     })
+  //   }
+  // }, [searchString]);
+
   const columns = [
     {
-      name: 'No',
+      name: "No",
       selector: (row, idx) => idx + 1,
       sortable: true,
     },
     {
-      name: 'Name',
+      name: "Name",
       selector: (row) => row.Name,
       sortable: true,
     },
     {
-      name: 'description',
+      name: "description",
       selector: (row) => row.description.slice(0, 25),
     },
     {
-      name: 'category',
+      name: "category",
       selector: (row) => row.category,
     },
     {
-      name: 'validity',
+      name: "validity",
       selector: (row) => {
-        let date = row.validity.split('/');
+        let date = row.validity
+          .split("/")
+          .map((d) => (d.length <= 1 ? "0" + d : d));
         let newDate = `${date[1]}/${date[0]}/${date[2]}`;
         return newDate;
       },
     },
     {
-      name: '',
+      name: "",
       cell: () => (
-        <a href={'#'} className="btn btn-success">
+        <a href={"#"} className="btn btn-success">
           Start
         </a>
       ),
@@ -100,78 +113,115 @@ function DashIndividual() {
   ];
 
   return (
-    <div className="container" style={{ padding: '10px' }}>
+    <div className="container" style={{ padding: "10px" }}>
       {/* Your JSX content here */}
       <div className="ag-format-container">
         <h2
           style={{
-            padding: '1.5rem',
-            color: '#212450',
-            display: 'flex',
-            justifyContent: 'flex-start',
-            justifyContent: 'center',
-            marginTop: '20px',
+            padding: "1.5rem",
+            color: "#212450",
+            display: "flex",
+            justifyContent: "flex-start",
+            justifyContent: "center",
+            marginTop: "20px",
             fontSize: 46,
           }}
         >
           Dashboard
         </h2>
         <div className="ag-courses_box dash-neww">
+          <div className="ag-courses_item" style={{ marginLeft: ".5rem" }}>
+            <a href="/individual/myprofile" className="ag-courses-item_link">
+              <div className="ag-courses-item_bg"></div>
+              <div
+                className="bi bi-person-circle ag-courses-item_date-box"
+                style={{ fontSize: "2rem" }}
+              ></div>
+              <div
+                className="ag-courses-item_title"
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                My Profile
+              </div>
+            </a>
+          </div>
 
-<div className="ag-courses_item" style={{marginLeft:'.5rem'}}>
-  <a href="/individual/myprofile" className="ag-courses-item_link">
-    <div className="ag-courses-item_bg"></div>
-    <div className="bi bi-person-circle ag-courses-item_date-box" style={{fontSize:'2rem'}}>
+          <div className="ag-courses_item">
+            <a href="/individual/mycourses" className="ag-courses-item_link">
+              <div className="ag-courses-item_bg"></div>
+              <div
+                className="bi bi-book ag-courses-item_date-box"
+                style={{ fontSize: "2rem" }}
+              ></div>
+              <div
+                className="ag-courses-item_title"
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                My Course
+              </div>
+            </a>
+          </div>
 
-</div>
-    <div className="ag-courses-item_title" style={{display:'flex', justifyContent:'center', alignItems:'center'}}>My Profile</div>
+          <div className="ag-courses_item">
+            <a href="/individual/certificates" className="ag-courses-item_link">
+              <div className="ag-courses-item_bg"></div>
+              <div
+                className="bi bi-patch-check-fill ag-courses-item_date-box"
+                style={{ fontSize: "2rem" }}
+              >
+                <div
+                  className="ag-courses-item_title"
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  Certificates
+                </div>
 
-   
-  </a>
-</div>
-
-<div className="ag-courses_item">
-  <a href="/individual/mycourses" className="ag-courses-item_link">
-    <div className="ag-courses-item_bg"></div>
-    <div className="bi bi-book ag-courses-item_date-box" style={{fontSize:'2rem'}}>
-
-      </div>
-    <div className="ag-courses-item_title" style={{display:'flex', justifyContent:'center', alignItems:'center'}}>My Course</div>
-
-  
-  </a>
-</div>
-
-<div className="ag-courses_item">
-  <a href="/individual/certificates" className="ag-courses-item_link">
-    <div className="ag-courses-item_bg"></div>
-    <div className="bi bi-patch-check-fill ag-courses-item_date-box" style={{fontSize:'2rem'}}>
-    <div className="ag-courses-item_title" style={{display:'flex', justifyContent:'center', alignItems:'center'}}>Certificates</div>
-
- 
-      {/* Start:
+                {/* Start:
 <span className="ag-courses-item_date">
 04.11.202
 </span> */}
-    </div>
-  </a>
-</div>
+              </div>
+            </a>
+          </div>
 
-<div className="ag-courses_item" style={{marginRight:'.5rem'}}>
-  <a href="#" className="ag-courses-item_link">
-    <div className="ag-courses-item_bg"></div>
-    <div className="bi bi-envelope ag-courses-item_date-box" style={{fontSize:'2rem'}}>
-    <div className="ag-courses-item_title" style={{display:'flex', justifyContent:'center', alignItems:'center'}}>Contact Us</div>
+          <div className="ag-courses_item" style={{ marginRight: ".5rem" }}>
+            <a href="#" className="ag-courses-item_link">
+              <div className="ag-courses-item_bg"></div>
+              <div
+                className="bi bi-envelope ag-courses-item_date-box"
+                style={{ fontSize: "2rem" }}
+              >
+                <div
+                  className="ag-courses-item_title"
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  Contact Us
+                </div>
 
-   
-      {/* Start:
+                {/* Start:
 <span className="ag-courses-item_date">
 04.11.202
 </span> */}
-    </div>
-  </a>
-</div>
-</div>
+              </div>
+            </a>
+          </div>
+        </div>
         {/* <div className="ag-courses_box dash-shadow">
           <div className="ag-courses_item">
             <a href="/individual/myprofile" className="ag-courses-item_link">
@@ -211,42 +261,46 @@ function DashIndividual() {
           
         </div> */}
         <div className="dash-shadow">
-          <h4
-            style={{
-              padding: '1rem',
-              color: '#212450',
-              display: 'flex',
-              justifyContent: 'flex-start',
-              justifyContent: 'center',
-              marginTop: '2.5rem',
-              fontSize: 35,
-            }}
-          >
-            Courses to do
-          </h4>
-          <div className=" row g-3  min-vh-100  d-flex justify-content-center ">
-            <div style={{ padding: '', backgroundColor: '' }}>
+          <div className=" row g-3  min-vh-100  d-flex justify-content-center mt-30">
+            <div style={{}}>
               <div
-                className="pb-2 smth"
-                style={{ display: 'flex', justifyContent: 'right' }}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  margin: "1rem 2rem",
+                }}
               >
-                <input
-                  type="text"
-                  className=""
-                  placeholder="Search course..."
-                  onChange={handleFilter}
+                <h4
                   style={{
-                    padding: '6px 10px',
-                    borderColor: 'gray',
-                    overflow: 'hidden',
-                    marginRight: '.2rem',
+                    margin: 0,
+                    color: "#212450",
+                    fontSize: 35,
                   }}
-                />
+                >
+                  Courses to do
+                </h4>
+                <div style={{}} className="p-relative d-inline header__search">
+                  <form action="">
+                    <input
+                      style={{ background: "#edeef3" }}
+                      className="d-block  "
+                      type="text"
+                      placeholder="Search..."
+                      value={searchString}
+                      onChange={(e) => setSearchString(e.target.value
+                      )}
+                    />
+                    <button type="submit">
+                      <i className="fas fa-search"></i>
+                    </button>
+                  </form>
+                </div>
               </div>
-              <div style={{ padding: '.2rem' }}>
+              <div style={{ padding: ".2rem" }}>
                 <DataTable
                   columns={columns}
-                  data={records}
+                  data={searchString ? records.filter(item => item.Name.toLowerCase().includes(searchString.toLowerCase())) : records}
                   customStyles={customStyles}
                   pagination
                   selectableRows

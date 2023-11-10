@@ -32,6 +32,7 @@ class DashCertificate extends Component {
     this.state = {
       records: [],
       filterRecords: [],
+      searchData: "",
     };
   }
 
@@ -49,9 +50,10 @@ class DashCertificate extends Component {
   fetchData = () => {
     axios
       .get("https://jsonplaceholder.typicode.com/users")
-      .then((res) =>
-        this.setState({ records: res.data, filterRecords: res.data })
-      )
+      .then((res) => {
+        // console.log(res.data);
+        this.setState({ records: res.data, filterRecords: res.data });
+      })
       .catch((err) => console.log(err));
   };
 
@@ -79,22 +81,21 @@ class DashCertificate extends Component {
 
     return (
       <div className="">
-       
-      <div className="dash-shadow">
-      <div className=" row g-3  min-vh-100  d-flex justify-content-center mt-20">
-      <h2
-        style={{  
-          color: "#212450",
-          display: "flex",
-          justifyContent: "center",
-          position:'absolute',
-          fontSize: 42,
-        }}
-      >
-        Certificates
-      </h2>
-        <div style={{ padding: "", backgroundColor: "" }}>
-          {/* <div
+        <div className="dash-shadow">
+          <div className=" row g-3  min-vh-100  d-flex justify-content-center mt-20">
+            <h2
+              style={{
+                color: "#212450",
+                display: "flex",
+                justifyContent: "center",
+                position: "absolute",
+                fontSize: 42,
+              }}
+            >
+              Certificates
+            </h2>
+            <div style={{ padding: "", backgroundColor: "" }}>
+              {/* <div
             className="pb-2 smth"
             style={{ display: "flex", justifyContent: "left" }}
           >
@@ -110,30 +111,49 @@ class DashCertificate extends Component {
               }}
             />
           </div> */}
-          <div style={{float:'right',marginBottom:'1.4rem'}} className="p-relative d-inline header__search">
-            <form action="">
-              <input style={{ background:'#edeef3',}}
-                className="d-block mr-10"
-                type="text"
-                placeholder="Search..."
-                // value={searchString}
-                // onChange={handleSearch}
+              <div
+                style={{ float: "right", marginBottom: "1.4rem" }}
+                className="p-relative d-inline header__search"
+              >
+                <form action="">
+                  <input
+                    style={{ background: "#edeef3" }}
+                    className="d-block mr-10"
+                    type="text"
+                    onChange={(e) =>
+                      this.setState({
+                        ...this.state,
+                        searchData: e.target.value,
+                      })
+                    }
+                    placeholder="Search..."
+                    // value={searchString}
+                    // onChange={handleSearch}
+                  />
+                  <button type="submit">
+                    <i className="fas fa-search"></i>
+                  </button>
+                </form>
+              </div>
+              <DataTable
+                columns={columns}
+                data={
+                  this.state.searchData
+                    ? this.state.records.filter((item) =>
+                        item.name
+                          .toLowerCase()
+                          .includes(this.state.searchData.toLowerCase())
+                      )
+                    : this.state.records
+                }
+                customStyles={customStyles}
+                pagination
+                selectableRows
               />
-              <button type="submit">
-                <i className="fas fa-search"></i>
-              </button>
-            </form>
-          </div>
-          <DataTable
-            columns={columns}
-            data={this.state.records}
-            customStyles={customStyles}
-            pagination
-            selectableRows
-          />
+            </div>
+          </div>{" "}
         </div>
-      </div> </div>
-    </div>
+      </div>
     );
   }
 }

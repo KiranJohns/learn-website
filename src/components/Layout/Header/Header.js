@@ -41,7 +41,9 @@ const Header = () => {
   const makeRequest = fetchData();
 
   const handleLogout = () => {
-    localStorage.removeItem("learnforcare_access");
+    localStorage.removeItem(`learnforcare_access`);
+    localStorage.removeItem(`learnforcare_refresh`);
+    localStorage.removeItem("userType");
     location.pathname = "/";
   };
 
