@@ -8,6 +8,8 @@ import Header from '../../components/Layout/Header/Header';
 import Footer from '../../components/Layout/Footer/Footer';
 import IndividualBar from "../../components/Sidebar/IndividualBar";
 import NoSSR from 'react-no-ssr';
+import NewInDash from "../../components/Sidebar/BarDummy";
+
 class MyProfile extends React.Component{
 
     static getInitialProps({store}) {}
@@ -17,16 +19,16 @@ class MyProfile extends React.Component{
     render(){    
         return(
             <React.Fragment>
-                <main className="p-4" style={{backgroundImage: "linear-gradient(to right, #EDEEF3, #EDEEF3)" }}>
+                <main className="p-1" style={{backgroundImage: "linear-gradient(to right, #EDEEF3, #EDEEF3)" }}>
             <NoSSR>
                  <Header />
              </NoSSR>
                  <div className="container-fluid " style={{marginTop:"110px"}}> 
                   <div className="row justify-content-md-center">
-                   <div className="col-sm-2 col-md-auto " style={{backgroundColor:'#212450'}}>
-                   <IndividualBar/>
+                   <div className="col-sm-12 col-md-12 col-lg-2 p-0" style={{backgroundColor:'#212450'}}>
+                   <NewInDash/>
                    </div>
-                <div className="col-sm col-md-8 vh-100 bg-white" >
+                <div className="col-sm col-md-9 bg-white" >
                     <DashProfile />
              </div>
          </div>       
