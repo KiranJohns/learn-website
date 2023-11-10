@@ -19,7 +19,7 @@ class Testimonial extends Component {
                      <div className="testimonial__slider-inner swiper-wrapper">
                      <Swiper
                             // install Swiper modules
-                            modules={[Navigation, Pagination, Scrollbar, A11y,]}
+                            modules={[Navigation, Pagination, Scrollbar, A11y]}
                             spaceBetween={30}
                             slidesPerView={1}
                             autoplaydisableoninteraction={"false"}
