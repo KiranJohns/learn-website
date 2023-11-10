@@ -76,14 +76,17 @@ export default () => {
     <section className="course__area pt-50 pb-60 grey-bg">
       <Tabs variant="enclosed" id="react-tabs-276">
         <div className="container">
-          <div className="row">
-            <div className="col-3">
-              <select
-                className="form-control"
+          <div className="row" >
+            <div className="form-outline col-3">
+         
+            </div>
+            <div  className="col-3">
+              <select style={{background:'#edeef3',paddingBottom:"1rem"}}
+                className="form-control text-secondary "
                 aria-label="Default select example"
                 onChange={(e) => setCategoryFilter(e.target.value)}
               >
-                <option value="">select category</option>
+                <option  value="">filter</option>
                 <option value="Care Certificate">Care Certificate</option>
                 <option value="Mandatory Care Courses">
                   Mandatory Care Courses
