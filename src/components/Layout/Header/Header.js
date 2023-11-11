@@ -414,7 +414,7 @@ const Header = () => {
                           <ul class="list-group w-100">
                             {searchProduct?.map((item) => (
                               <a href={`/course/${item.id}`}>
-                                <li class="list-group-item w-100 bg-white">
+                                <li class="list-group-item w-100 bg-white text-black">
                                   {item.name}
                                 </li>
                               </a>

@@ -13,23 +13,20 @@ import { Auth } from "../auth";
 
 function courseavailable() {
   const [logedIn, setlogedIn] = useState(() => {
-    return getToken() ? true : false;
+    return getUserType();
   });
 
   const router = useRouter();
 
   useEffect(() => {
-    if (!logedIn) {
-      router.push("/sign-in");
-    }
-    if (getUserType() !== "company") {
+    if (logedIn !== "company") {
       router.push("/sign-in");
     }
   }, []);
 
   return (
     <>
-      {logedIn && (
+      {logedIn === "company" && (
         <React.Fragment>
           <main
             className="p-1"

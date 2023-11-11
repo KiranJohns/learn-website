@@ -37,6 +37,7 @@ class DashTest extends Component {
     this.state = {
       records: [],
       filterRecords: [],
+      searchString: "",
     };
   }
 
@@ -132,10 +133,20 @@ class DashTest extends Component {
       </Card.Body>
     </Card>
     </div>    */}
-        <div style={{display:'flex', alignItems:'center', justifyContent:'space-between'}}>
-          <h3 style={{ color: '#212450', marginTop: '.3rem',display:'inline' }}>Hello 'Name' <IoHandLeft style={{ color: '#f1c27d', marginBottom: '.5rem' }} />
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+          }}
+        >
+          <h3
+            style={{ color: "#212450", marginTop: ".3rem", display: "inline" }}
+          >
+            Hello 'Name'{" "}
+            <IoHandLeft style={{ color: "#f1c27d", marginBottom: ".5rem" }} />
           </h3>
-          <div style={{marginRight:"28rem"}}>
+          <div style={{ marginRight: "28rem" }}>
             <h2
               style={{
                 padding: "0",
@@ -151,41 +162,66 @@ class DashTest extends Component {
           </div>
         </div>
 
-        <div className="ag-format-container" style={{ marginTop: '1rem',  }}>
-
+        <div className="ag-format-container" style={{ marginTop: "1rem" }}>
           <div className="ag-courses_box dash-neww">
-
-            <div className="ag-courses_item" style={{marginLeft:'.5rem'}}>
+            <div className="ag-courses_item" style={{ marginLeft: ".5rem" }}>
               <a href="/company/myprofile" className="ag-courses-item_link">
                 <div className="ag-courses-item_bg"></div>
-                <div className="bi bi-person-circle ag-courses-item_date-box" style={{fontSize:'2rem'}}>
-            
-            </div>
-                <div className="ag-courses-item_title" style={{display:'flex', justifyContent:'center', alignItems:'center'}}>My Profile</div>
-
-               
+                <div
+                  className="bi bi-person-circle ag-courses-item_date-box"
+                  style={{ fontSize: "2rem" }}
+                ></div>
+                <div
+                  className="ag-courses-item_title"
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  My Profile
+                </div>
               </a>
             </div>
 
             <div className="ag-courses_item">
               <a href="/company/mycourses" className="ag-courses-item_link">
                 <div className="ag-courses-item_bg"></div>
-                <div className="bi bi-book ag-courses-item_date-box" style={{fontSize:'2rem'}}>
-         
-                  </div>
-                <div className="ag-courses-item_title" style={{display:'flex', justifyContent:'center', alignItems:'center'}}>My Course</div>
-
-              
+                <div
+                  className="bi bi-book ag-courses-item_date-box"
+                  style={{ fontSize: "2rem" }}
+                ></div>
+                <div
+                  className="ag-courses-item_title"
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  My Course
+                </div>
               </a>
             </div>
 
             <div className="ag-courses_item">
               <a href="/company/certificates" className="ag-courses-item_link">
                 <div className="ag-courses-item_bg"></div>
-                <div className="bi bi-patch-check-fill ag-courses-item_date-box" style={{fontSize:'2rem'}}>
-                <div className="ag-courses-item_title" style={{display:'flex', justifyContent:'center', alignItems:'center'}}>Certificates</div>
+                <div
+                  className="bi bi-patch-check-fill ag-courses-item_date-box"
+                  style={{ fontSize: "2rem" }}
+                >
+                  <div
+                    className="ag-courses-item_title"
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    Certificates
+                  </div>
 
-             
                   {/* Start:
           <span className="ag-courses-item_date">
             04.11.202
@@ -194,13 +230,24 @@ class DashTest extends Component {
               </a>
             </div>
 
-            <div className="ag-courses_item" style={{marginRight:'.5rem'}}>
+            <div className="ag-courses_item" style={{ marginRight: ".5rem" }}>
               <a href="#" className="ag-courses-item_link">
                 <div className="ag-courses-item_bg"></div>
-                <div className="bi bi-file-earmark-spreadsheet ag-courses-item_date-box" style={{fontSize:'2rem'}}>
-                <div className="ag-courses-item_title" style={{display:'flex', justifyContent:'center', alignItems:'center'}}>Training Matrix</div>
+                <div
+                  className="bi bi-file-earmark-spreadsheet ag-courses-item_date-box"
+                  style={{ fontSize: "2rem" }}
+                >
+                  <div
+                    className="ag-courses-item_title"
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    Training Matrix
+                  </div>
 
-               
                   {/* Start:
           <span className="ag-courses-item_date">
             04.11.202
@@ -210,7 +257,14 @@ class DashTest extends Component {
             </div>
           </div>
           <div className="dash-shadow">
-            <div style={{ display: "flex", marginTop: "2.5rem", justifyContent: 'space-between', alignItems: 'center' }}>
+            <div
+              style={{
+                display: "flex",
+                marginTop: "2.5rem",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}
+            >
               <h4
                 style={{
                   padding: "1.5rem",
@@ -230,9 +284,14 @@ class DashTest extends Component {
                     className="d-block mr-25"
                     type="text"
                     placeholder="Search..."
-                    // value={searchString}
-                    // onChange={handleSearch}
-                    style={{ background: '#edeef3' }}
+                    value={this.state.searchString}
+                    onChange={(e) =>
+                      this.setState({
+                        ...this.state,
+                        searchString: e.target.value,
+                      })
+                    }
+                    style={{ background: "#edeef3" }}
                   />
                   <button type="submit">
                     <i className="fas fa-search"></i>
@@ -261,10 +320,18 @@ class DashTest extends Component {
                     }}
                   /> */}
                 </div>
-                <div >
+                <div>
                   <DataTable
                     columns={columns}
-                    data={this.state.records}
+                    data={
+                      this.state.searchString
+                        ? this.state.records.filter((item) =>
+                            item.Name.toLowerCase().includes(
+                              this.state.searchString.toLowerCase()
+                            )
+                          )
+                        : this.state.records
+                    }
                     customStyles={customStyles}
                     pagination
                     selectableRows

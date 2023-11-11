@@ -9,52 +9,54 @@ import NoSSR from "react-no-ssr";
 import DashTest from "../../components/Home/DashTest";
 import { Auth } from "../auth";
 import { useState } from "react";
-import { getToken } from "../../axios";
+import { getToken, getUserType } from "../../axios";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 
 function dashboard() {
   const [logedIn, setlogedIn] = useState(() => {
-    return getToken() ? true : false;
+    return getUserType();
   });
 
   const router = useRouter();
 
   useEffect(() => {
-    if (!logedIn) {
+    if (logedIn !== "company") {
       router.push("/sign-in");
     }
   }, []);
   return (
     <>
-    {logedIn && <React.Fragment>
-      <main
-        className="p-1"
-        style={{
-          backgroundImage: "linear-gradient(to left, #EDEEF3, #EDEEF3)",
-        }}
-      >
-        <NoSSR>
-          <Header />
-        </NoSSR>
-        <div
-          className="container-fluid "
-          style={{ borderRadius: "22px", marginTop: "120px" }}
-        >
-          <div className="row justify-content-md-center">
+      {logedIn === "company" && (
+        <React.Fragment>
+          <main
+            className="p-1"
+            style={{
+              backgroundImage: "linear-gradient(to left, #EDEEF3, #EDEEF3)",
+            }}
+          >
+            <NoSSR>
+              <Header />
+            </NoSSR>
             <div
-              className="col-sm-12 col-md-12 col-lg-2 p-0"
-              style={{ backgroundColor: "#212450" }}
+              className="container-fluid "
+              style={{ borderRadius: "22px", marginTop: "120px" }}
             >
-              <DashboardBar />
+              <div className="row justify-content-md-center">
+                <div
+                  className="col-sm-12 col-md-12 col-lg-2 p-0"
+                  style={{ backgroundColor: "#212450" }}
+                >
+                  <DashboardBar />
+                </div>
+                <div className="col-sm col-md-9 bg-white">
+                  <DashTest />
+                </div>
+              </div>
             </div>
-            <div className="col-sm col-md-9 bg-white">
-              <DashTest />
-            </div>
-          </div>
-        </div>
-      </main>
-    </React.Fragment>}
+          </main>
+        </React.Fragment>
+      )}
     </>
   );
 }

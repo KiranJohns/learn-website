@@ -3,51 +3,68 @@ import CourseBundle from "../../components/CourseGrid/CourseBundle";
 import DashboardBar from "../../components/Sidebar/DashboardBar";
 import HeaderDashboard from "../../components/Layout/Header/HeaderDashboard";
 import DashAssign from "../../components/Home/DashAssign";
-import Header from '../../components/Layout/Header/Header';
-import NoSSR from 'react-no-ssr';
+import Header from "../../components/Layout/Header/Header";
+import NoSSR from "react-no-ssr";
+import { useState } from "react";
+import { getUserType } from "../../axios";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 
-class assigncourse extends React.Component {
+function assigncourse() {
+  const [logedIn, setlogedIn] = useState(() => {
+    return getUserType();
+  });
 
-    static getInitialProps({ store }) { }
-    constructor(props) {
-        super(props);
+  const router = useRouter();
+
+  useEffect(() => {
+    if (logedIn !== "company") {
+      router.push("/sign-in");
     }
-    render() {
-        return (
-            <React.Fragment>
-                <main className="p-1"
-                    style={{
-                        backgroundImage: "linear-gradient(to left, #EDEEF3, #EDEEF3)",
-                    }}>
-                    <NoSSR>
-                        <Header />
-                    </NoSSR>
-                    <div className="container-fluid " style={{ borderRadius: '22px', marginTop: "120px" }}>
-                        <div className="row justify-content-md-center">
-                            <div className="col-sm-12 col-md-12 col-lg-2 p-0" style={{ backgroundColor: '#212450' }}>
-                                <DashboardBar />
-                            </div>
-                            <div className="col-sm col-md-9  bg-white">
-                                <DashAssign />
-                            </div>
-                        </div>
-                    </div>
-                </main>
-            </React.Fragment>
-        )
-    }
+  }, []);
+  return (
+    <>
+      {logedIn === "company" && (
+        <React.Fragment>
+          <main
+            className="p-1"
+            style={{
+              backgroundImage: "linear-gradient(to left, #EDEEF3, #EDEEF3)",
+            }}
+          >
+            <NoSSR>
+              <Header />
+            </NoSSR>
+            <div
+              className="container-fluid "
+              style={{ borderRadius: "22px", marginTop: "120px" }}
+            >
+              <div className="row justify-content-md-center">
+                <div
+                  className="col-sm-12 col-md-12 col-lg-2 p-0"
+                  style={{ backgroundColor: "#212450" }}
+                >
+                  <DashboardBar />
+                </div>
+                <div className="col-sm col-md-9  bg-white">
+                  <DashAssign />
+                </div>
+              </div>
+            </div>
+          </main>
+        </React.Fragment>
+      )}
+    </>
+  );
 }
 
-export default assigncourse
-
-
+export default assigncourse;
 
 // import React from "react";
 // import CourseBundle from "../../components/CourseGrid/CourseBundle";
 // import DashboardBar from "../../components/Sidebar/DashboardBar";
 // import HeaderDashboard from "../../components/Layout/Header/HeaderDashboard";
 // import DashCertificate from "../../components/Home/DashCertificate";
-
 
 // class MyCertificate extends React.Component{
 

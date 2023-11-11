@@ -3,6 +3,7 @@ import axios from "axios";
 import DataTable from "react-data-table-component";
 import Link from "next/link";
 import BasicExample from "../About/button1";
+import fetchData from "../../axios";
 
 const customStyles = {
   headRow: {
@@ -32,6 +33,7 @@ class DashCAvail extends Component {
       records: [],
       filterRecords: [],
     };
+    this.makeRequest = fetchData();
   }
 
   handleFilter = (event) => {
@@ -42,33 +44,42 @@ class DashCAvail extends Component {
   };
 
   componentDidMount() {
-    this.fetchData();
+    this.getData();
   }
 
-  fetchData = () => {
-    axios
-      .get("https://jsonplaceholder.typicode.com/users")
-      .then((res) =>
-        this.setState({ records: res.data, filterRecords: res.data })
-      )
-      .catch((err) => console.log(err));
+  getData = () => {
+    this.makeRequest("GET", "/course/get-all-bought-course")
+        .then((res) => {
+          console.log(res);
+          this.setState({
+            records: res.data.response,
+            filterRecords: res.data,
+          });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
   };
 
   render() {
     const columns = [
       {
         name: "ID",
-        selector: (row) => row.id,
+        selector: (row,idx) => ++idx,
         sortable: true,
       },
       {
         name: "Courses",
-        selector: (row) => row.name,
+        selector: (row) => row.Name,
         sortable: true,
       },
       {
-        name: "Email",
-        selector: (row) => row.email,
+        name: "validity",
+        selector: (row) => row.validity,
+      },
+      {
+        name: "count",
+        selector: (row) => row.course_count,
       },
       {
         name: "Actions",

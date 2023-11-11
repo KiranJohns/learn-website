@@ -1,6 +1,9 @@
 import Dropdown from 'react-bootstrap/Dropdown';
 
-function BasicExample() {
+function BasicExample({user}) {
+  function handleBlock() {
+    
+  }
   return (
     <Dropdown>
       <Dropdown.Toggle  id="dropdown-basic" style={{background:"#212450"}}>
