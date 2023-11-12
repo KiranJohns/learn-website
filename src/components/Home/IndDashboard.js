@@ -6,6 +6,7 @@ import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 import fetchData, { getUserType } from "../../axios";
 import DataTable from "react-data-table-component";
+import { useRouter } from "next/router";
 
 const customStyles = {
   headRow: {
@@ -34,6 +35,7 @@ function DashIndividual() {
   const [records, setRecords] = useState([]);
   const [searchString, setSearchString] = useState("");
   const [filterRecords, setFilterRecords] = useState([]);
+  const route = useRouter()
 
   const handleFilter = (event) => {
     const newData = filterRecords.filter((row) =>
@@ -44,19 +46,28 @@ function DashIndividual() {
 
   function handleSearch() {}
 
+  const makeRequest = fetchData();
+
   const getData = () => {
     try {
-      let url = ''
-      if(getUserType() === "individual") {
-        url = "/course/get-bought-course"
+      let url = "";
+      if (getUserType() === "individual") {
+        url = "/course/get-bought-course";
       } else {
-        url = "/sub-user/course/get-assigned-course"
+        url = "/sub-user/course/get-assigned-course";
       }
-      const makeRequest = fetchData();
       makeRequest("GET", url)
         .then((res) => {
           console.log(res);
-          setRecords(res.data.response);
+          setRecords(
+            res.data.response.filter((course) => {
+              if (course?.progress == 0 || course?.course_count > 0) {
+                return course;
+              } else {
+                return null;
+              }
+            })
+          );
           setFilterRecords(res.data);
         })
         .catch((err) => {
@@ -67,6 +78,17 @@ function DashIndividual() {
     }
   };
 
+  function startCourse(id) {
+    console.log(id);
+    makeRequest("GET", `/course/start-course/${id}`)
+      .then((res) => {
+        route.push(`/course-learn/${id}`)
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
   useEffect(() => {
     getData();
   }, []);
@@ -74,7 +96,7 @@ function DashIndividual() {
   // useEffect(() => {
   //   if(searchString) {
   //     setRecords((prev) => {
-  //       return 
+  //       return
   //     })
   //   }
   // }, [searchString]);
@@ -110,8 +132,8 @@ function DashIndividual() {
     },
     {
       name: "",
-      cell: () => (
-        <a href={"#"} className="btn btn-success">
+      cell: (row) => (
+        <a onClick={() => startCourse(row.id)} className="btn btn-success">
           Start
         </a>
       ),
@@ -294,8 +316,7 @@ function DashIndividual() {
                       type="text"
                       placeholder="Search..."
                       value={searchString}
-                      onChange={(e) => setSearchString(e.target.value
-                      )}
+                      onChange={(e) => setSearchString(e.target.value)}
                     />
                     <button type="submit">
                       <i className="fas fa-search"></i>
@@ -306,7 +327,15 @@ function DashIndividual() {
               <div style={{ padding: ".2rem" }}>
                 <DataTable
                   columns={columns}
-                  data={searchString ? records.filter(item => item.Name.toLowerCase().includes(searchString.toLowerCase())) : records}
+                  data={
+                    searchString
+                      ? records.filter((item) =>
+                          item.Name.toLowerCase().includes(
+                            searchString.toLowerCase()
+                          )
+                        )
+                      : records
+                  }
                   customStyles={customStyles}
                   pagination
                   selectableRows

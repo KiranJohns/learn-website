@@ -16,18 +16,19 @@ function MyCertificate() {
   const [logedIn, setlogedIn] = useState(() => {
     return getUserType();
   });
+  let routes = ["individual", "sub_user"]
 
   const router = useRouter();
 
   useEffect(() => {
-    if (logedIn !== "individual" && logedIn !== "sub_user") {
+    if (!routes.includes(logedIn)) {
       router.push("/sign-in");
     }
   }, []);
   return (
     <>
       {
-        logedIn === "individual" || logedIn === "sub_user" &&
+        routes.includes(logedIn) &&
         <React.Fragment>
           <main
             className="p-1"

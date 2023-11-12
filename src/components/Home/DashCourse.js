@@ -5,6 +5,8 @@ import Link from "next/link";
 import BasicExample from "../About/button1";
 import fetchData from "../../axios";
 import Modal from "react-responsive-modal";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from "react-toastify";
 
 const customStyles = {
   headRow: {
@@ -97,6 +99,7 @@ class DashCourse extends Component {
       purchased_course_id: this.purchased_course_id,
     })
       .then((res) => {
+        toast.success("course assigned")
         this.getData();
         this.setState({
           ...this.state,
@@ -175,6 +178,18 @@ class DashCourse extends Component {
 
     return (
       <div className="">
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick={true}
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
         <Modal open={this.state.openModal} onClose={this.handleShowModal}>
           <div style={{ padding: "", width: "40rem", height: "20rem" }}>
             <h3>Sub Users</h3>
