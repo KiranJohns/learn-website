@@ -4,6 +4,7 @@ import { useState } from "react";
 import ReactPlayer from "react-player";
 import fetchData from "../../axios";
 import { useEffect } from "react";
+// import html from "../../html/sample.html";
 import DocViewer, { DocViewerRenderers } from "react-doc-viewer";
 
 const SingleCourse = () => {
@@ -12,6 +13,7 @@ const SingleCourse = () => {
   const router = useRouter();
   console.log(router.query.slug);
   const makeRequest = fetchData();
+  // let docs = [{uri: '../../html/sample.html'}]
   useEffect(() => {
     makeRequest(
       "GET",
@@ -53,19 +55,19 @@ const SingleCourse = () => {
         {/* <ReactPlayer controls  className='course-player' url='https://www.youtube.com/watch?v=LXb3EKWsInQ' /> */}
       </div>
       <div tyle={{ display: "flex", justifyContent: "center" }}>
-        <iframe
+        {/* <iframe
           src="https://onedrive.live.com/embed?resid=F5F394858BB1213E%214405&authkey=!AIJnHcKPEcZ66uQ&em=2"
           width="402"
           height="327"
           frameborder="0"
           scrolling="no"
-        ></iframe>
+        ></iframe> */}
         {/* <iframe src={doc}/> */}
-        {/* <DocViewer
-          documents={docs}
-          // initialActiveDocument={docs[1]}
+        <DocViewer
+          documents={[{uri: course?.ppt}]}
+          initialActiveDocument={[{uri: course?.ppt}]}
           pluginRenderers={DocViewerRenderers}
-        /> */}
+        />
       </div>
     </div>
   );
