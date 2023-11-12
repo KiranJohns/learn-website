@@ -19,13 +19,13 @@ function myCourse() {
   const router = useRouter();
 
   useEffect(() => {
-    if (logedIn !== "individual") {
+    if (logedIn !== "individual" && logedIn !== "sub_user") {
       router.push("/sign-in");
     }
   }, []);
   return (
     <>
-      {logedIn === "individual" && <React.Fragment>
+      {logedIn === "individual" || logedIn === "sub_user" && <React.Fragment>
         <main
           className="p-1"
           style={{
