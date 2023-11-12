@@ -53,7 +53,14 @@ const SingleCourse = () => {
         {/* <ReactPlayer controls  className='course-player' url='https://www.youtube.com/watch?v=LXb3EKWsInQ' /> */}
       </div>
       <div tyle={{ display: "flex", justifyContent: "center" }}>
-        <iframe src={doc}/>
+        <iframe
+          src="https://onedrive.live.com/embed?resid=F5F394858BB1213E%214405&authkey=!AIJnHcKPEcZ66uQ&em=2"
+          width="402"
+          height="327"
+          frameborder="0"
+          scrolling="no"
+        ></iframe>
+        {/* <iframe src={doc}/> */}
         {/* <DocViewer
           documents={docs}
           // initialActiveDocument={docs[1]}

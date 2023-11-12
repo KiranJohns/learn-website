@@ -10,7 +10,7 @@ import NoSSRWrapper from "../../noSSR";
 import Dropdown from "react-bootstrap/Dropdown";
 
 import allProduct from "../../../../sampleProduct.json";
-import fetchData from "../../../axios";
+import fetchData, { getUserType } from "../../../axios";
 import store from "../../../redux/store";
 
 const Header = () => {
@@ -463,13 +463,30 @@ const Header = () => {
                             variant=""
                             id="dropdown-basic"
                           >
-                            <a href="/company/dashboard"> Dashboard</a>
+                            <a
+                              onClick={() => {
+                                if (getUserType() === "company") {
+                                  router.push("/company/dashboard");
+                                } else {
+                                  router.push("/individual/dashboard");
+                                }
+                              }}
+                            >
+                              {" "}
+                              Dashboard
+                            </a>
                           </Dropdown.Toggle>
 
                           <Dropdown.Menu>
                             <Dropdown.Item
                               className="btn"
-                              href="/company/myprofile"
+                              onClick={() => {
+                                if (getUserType() === "company") {
+                                  router.push("/company/myprofile");
+                                } else {
+                                  router.push("/individual/myprofile");
+                                }
+                              }}
                             >
                               My Profile
                             </Dropdown.Item>

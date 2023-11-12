@@ -29,25 +29,25 @@ const HeaderOpaque = () => {
   };
 
   useEffect(() => {
-    if(localStorage.getItem("check-cart")) {
-      let localCart = JSON.parse(localStorage.getItem('learnfrocarecart'))
+    if (localStorage.getItem("check-cart")) {
+      let localCart = JSON.parse(localStorage.getItem("learnfrocarecart"));
       console.log(localCart);
-      let cartIds = []
-      localCart?.forEach(item => {
-        cartIds.push({count: item.product_count, id: item.id});
-      })
+      let cartIds = [];
+      localCart?.forEach((item) => {
+        cartIds.push({ count: item.product_count, id: item.id });
+      });
 
       makeRequest("POST", "/cart/add", { course: cartIds })
-      .then((res) => {
-        getCartItem();
-        localStorage.removeItem("check-cart")
-        localStorage.removeItem('learnfrocarecart')
-      })
-      .catch((err) => {
-        console.log(err.data);
-      });
+        .then((res) => {
+          getCartItem();
+          localStorage.removeItem("check-cart");
+          localStorage.removeItem("learnfrocarecart");
+        })
+        .catch((err) => {
+          console.log(err.data);
+        });
     }
-  },[])
+  }, []);
 
   useEffect(() => {
     setPath(router.pathname);
@@ -77,11 +77,10 @@ const HeaderOpaque = () => {
         }
         console.log(err);
       });
-
   }
 
   useEffect(() => {
-    getCartItem()
+    getCartItem();
   }, []);
 
   const sticky = (e) => {
@@ -216,43 +215,42 @@ const HeaderOpaque = () => {
                           </ul>
                         </li>
                         <li className="has-dropdown">
-                            <Link href="/bundle/bundle-all">
-                              <a>Bundles</a>
-                            </Link>
-                            <ul className="submenu">
-                              <li>
-                                <Link href="/bundle/care-bundle">
-                                  <a>Care Bundle</a>
-                                </Link>
-                              </li>
-                              <li>
-                                <Link href="/bundle/mandatory-bundle">
-                                  <a>Mandatory Care Bundle</a>
-                                </Link>
-                              </li>
-                              <li>
-                                <Link href="/bundle/special-bundle">
-                                  <a>Specialised Care Bundle</a>
-                                </Link>
-                              </li>
-                              <li>
-                                <Link href="/bundle/recovery-bundle">
-                                  <a>Recovery Care Bundle</a>
-                                </Link>
-                              </li>
-                              <li>
-                                <Link href="/bundle/child-bundle">
-                                  <a>Child Care Bundle</a>
-                                </Link>
-                              </li>
-                              <li>
-                                <Link href="/bundle/bundle-Online">
-                                  <a>Online Care Bundle </a>
-                                </Link>
-                              </li>
-                            </ul>
-                            
-                          </li>
+                          <Link href="/bundle/bundle-all">
+                            <a>Bundles</a>
+                          </Link>
+                          <ul className="submenu">
+                            <li>
+                              <Link href="/bundle/care-bundle">
+                                <a>Care Bundle</a>
+                              </Link>
+                            </li>
+                            <li>
+                              <Link href="/bundle/mandatory-bundle">
+                                <a>Mandatory Care Bundle</a>
+                              </Link>
+                            </li>
+                            <li>
+                              <Link href="/bundle/special-bundle">
+                                <a>Specialised Care Bundle</a>
+                              </Link>
+                            </li>
+                            <li>
+                              <Link href="/bundle/recovery-bundle">
+                                <a>Recovery Care Bundle</a>
+                              </Link>
+                            </li>
+                            <li>
+                              <Link href="/bundle/child-bundle">
+                                <a>Child Care Bundle</a>
+                              </Link>
+                            </li>
+                            <li>
+                              <Link href="/bundle/bundle-Online">
+                                <a>Online Care Bundle </a>
+                              </Link>
+                            </li>
+                          </ul>
+                        </li>
                         <li className="">
                           <Link href="/blog">
                             <a>Blog</a>
@@ -380,24 +378,41 @@ const HeaderOpaque = () => {
                       // </Link>
 
                       <Dropdown>
-                      <Dropdown.Toggle
-                         style={{
-                           padding: ".7rem",
-                           border: "none",
-                           outline: "none",
-                           background: "#2b4eff",
-                           color: "white",
-                         }}
-                         variant=""
-                         id="dropdown-basic"
-                       >
-                       <a href="/company/dashboard">  Dashboard</a>
-                       </Dropdown.Toggle>
+                        <Dropdown.Toggle
+                          style={{
+                            padding: ".7rem",
+                            border: "none",
+                            outline: "none",
+                            background: "#2b4eff",
+                            color: "white",
+                          }}
+                          variant=""
+                          id="dropdown-basic"
+                        >
+                          <a
+                            onClick={() => {
+                              if (getUserType() === "company") {
+                                router.push("/company/dashboard");
+                              } else {
+                                router.push("/individual/dashboard");
+                              }
+                            }}
+                          >
+                            {" "}
+                            Dashboard
+                          </a>
+                        </Dropdown.Toggle>
 
                         <Dropdown.Menu>
                           <Dropdown.Item
                             className="btn"
-                            href="/company/myprofile"
+                            onClick={() => {
+                              if (getUserType() === "company") {
+                                router.push("/company/myprofile");
+                              } else {
+                                router.push("/individual/myprofile");
+                              }
+                            }}
                           >
                             Dashboard
                           </Dropdown.Item>
@@ -417,18 +432,18 @@ const HeaderOpaque = () => {
                     )}
                   </div>
                   <div className="header__btn ml-20 d-none d-sm-block">
-                      {logedIn ? (
-                        // <Link href="/company/myprofile" >
-                        //   <a className="e-btn ">Profile</a>
-                        // </Link>
+                    {logedIn ? (
+                      // <Link href="/company/myprofile" >
+                      //   <a className="e-btn ">Profile</a>
+                      // </Link>
 
-                   <div></div>
-                      ) : (
-                        <Link href="/sign-up">
-                          <a className="e-btn">Sign UP</a>
-                        </Link>
-                      )}
-                    </div>
+                      <div></div>
+                    ) : (
+                      <Link href="/sign-up">
+                        <a className="e-btn">Sign UP</a>
+                      </Link>
+                    )}
+                  </div>
                   <div className="sidebar__menu d-xl-none">
                     <div
                       className="sidebar-toggle-btn ml-30"
