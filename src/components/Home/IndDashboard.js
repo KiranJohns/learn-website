@@ -4,7 +4,7 @@ import DashboardBar from "../Sidebar/DashboardBar";
 import Accordion from "react-bootstrap/Accordion";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
-import fetchData from "../../axios";
+import fetchData, { getUserType } from "../../axios";
 import DataTable from "react-data-table-component";
 
 const customStyles = {
@@ -46,8 +46,14 @@ function DashIndividual() {
 
   const getData = () => {
     try {
+      let url = ''
+      if(getUserType() === "individual") {
+        url = "/course/get-bought-course"
+      } else {
+        url = "/sub-user/course/get-assigned-course"
+      }
       const makeRequest = fetchData();
-      makeRequest("GET", "/course/get-bought-course")
+      makeRequest("GET", url)
         .then((res) => {
           console.log(res);
           setRecords(res.data.response);
@@ -81,7 +87,7 @@ function DashIndividual() {
     },
     {
       name: "Name",
-      selector: (row) => row.Name,
+      selector: (row) => row.name,
       sortable: true,
     },
     {

@@ -118,19 +118,19 @@ class DashCreate extends Component {
                 />
               </div>
 
-              <div className="form-group p-2 mb-4">
+              <div class="form-group p-2 mb-4">
                 <label className="text-black" for="FormControlInput1">
-                  Country
+                  Type of user
                 </label>
-                <input
+                <select
                   onChange={this.handleOnchange}
-                  type="text"
                   className="form-control border border-black"
-                  id="Country"
+                  id="exampleFormControlSelect1"
                   name="country"
-                  placeholder="Country"
-                  value={this.state.userData.country}
-                />
+                >
+                  <option>Select</option>
+                  <option value="UK">UK</option>
+                </select>
               </div>
 
               <div className="form-group p-2 mb-4">

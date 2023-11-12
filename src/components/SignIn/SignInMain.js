@@ -13,6 +13,7 @@ function SignInMain() {
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showEmailModal, setShowEmailModal] = useState(false);
+  const [loginUser, setLoginUser] = useState(false);
   const [email, setEmail] = useState("");
 
   const [loginData, setLoginData] = useState({ email: "", password: "" });
@@ -39,15 +40,21 @@ function SignInMain() {
     });
   }
 
-
   function handleLogin() {
+    let url = "";
+    if(!loginUser) {
+      url = "/auth/login"
+    } else {
+      url = "/sub-user/login"
+    }
     store.dispatch({
       type: "SET_LOADING_FOR_SIGN_IN",
     });
 
     setLoading((prev) => true);
-    makeRequest("POST", "/auth/login", loginData)
+    makeRequest("POST", url, loginData)
       .then(async (res) => {
+        console.log(res);
         store.dispatch({
           type: "SET_RESPONSE_FOR_SIGN_IN",
           payload: res.data,
@@ -56,23 +63,23 @@ function SignInMain() {
         localStorage.setItem(`learnforcare_access`, res.data.jwt_access_token);
         localStorage.setItem(
           `learnforcare_refresh`,
-          res.data.jwt_refresh_token
+          res.data.jwt_re_fresh_token
         );
         localStorage.setItem("userType", res.data.userType);
         let from = localStorage.getItem("from-checkout", true);
-        if (res.data.userType == "company") {
+        if (res.data.userType == "individual" || res.data.userType === "sub_user") {
           if (from) {
             localStorage.removeItem("from-checkout");
             location.pathname = "/cart";
           } else {
-            location.pathname = "/company/dashboard";
+            location.pathname = "/individual/dashboard";
           }
         } else {
           if (from) {
             localStorage.removeItem("from-checkout");
             location.pathname = "/cart";
           } else {
-            location.pathname = "/individual/dashboard";
+            location.pathname = "/company/dashboard";
           }
         }
       })
@@ -292,9 +299,11 @@ function SignInMain() {
                           className="m-check-input"
                           type="checkbox"
                           id="m-agree"
+                          onClick={() => setLoginUser((prev) => !prev)}
+                          checked={loginUser}
                         />
                         <label className="m-check-label" htmlFor="m-agree">
-                          Keep me signed in
+                          company individual
                         </label>
                       </div>
                       <div className="sign__forgot">
