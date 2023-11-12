@@ -26,7 +26,7 @@ function myCourse() {
   }, []);
   return (
     <>
-      {logedIn === "individual" || logedIn === "sub_user" && <React.Fragment>
+      {routes.includes(logedIn)&& <React.Fragment>
         <main
           className="p-1"
           style={{

@@ -28,7 +28,7 @@ function dummy() {
   }, []);
   return (
     <>
-      {logedIn === "individual" || logedIn === "sub_user" && (
+      {routes.includes(logedIn) && (
         <React.Fragment>
           <main
             className="p-1"
