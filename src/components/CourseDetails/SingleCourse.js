@@ -60,7 +60,7 @@ const SingleCourse = () => {
           frameborder="0"
           scrolling="no"
         ></iframe>
-        {/* <iframe src={doc}/> */}
+        <iframe src={doc}/>
         {/* <DocViewer
           documents={docs}
           // initialActiveDocument={docs[1]}
