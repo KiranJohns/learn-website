@@ -92,6 +92,10 @@ class DashTest extends Component {
         selector: (row) => row.category,
       },
       {
+        name: "count",
+        selector: (row) => row.course_count,
+      },
+      {
         name: "validity",
         selector: (row) => {
           let date = row.validity

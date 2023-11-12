@@ -7,6 +7,7 @@ import ListGroup from "react-bootstrap/ListGroup";
 import fetchData, { getUserType } from "../../axios";
 import DataTable from "react-data-table-component";
 import { useRouter } from "next/router";
+import { decryptData} from "../../utils/crtyper";
 
 const customStyles = {
   headRow: {
@@ -35,7 +36,7 @@ function DashIndividual() {
   const [records, setRecords] = useState([]);
   const [searchString, setSearchString] = useState("");
   const [filterRecords, setFilterRecords] = useState([]);
-  const route = useRouter()
+  const route = useRouter();
 
   const handleFilter = (event) => {
     const newData = filterRecords.filter((row) =>
@@ -78,13 +79,13 @@ function DashIndividual() {
 
   function startCourse(id) {
     console.log(id);
-    makeRequest("GET", `/course/start-course/${id}`)
-      .then((res) => {
-        route.push(`/individual/course-learn/${id}`)
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    // makeRequest("GET", `/course/start-course/${id}`)
+    //   .then((res) => {
+    //     route.push(`/company/course-learn/${res.data.response.id}`);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
   }
 
   useEffect(() => {
@@ -107,7 +108,7 @@ function DashIndividual() {
     },
     {
       name: "Name",
-      selector: (row) => row.name,
+      selector: (row) => row.name ? row.name : row.Name,
       sortable: true,
     },
     {
@@ -130,11 +131,25 @@ function DashIndividual() {
     },
     {
       name: "",
-      cell: (row) => (
-        <a onClick={() => startCourse(row.assigned_course_id)} className="btn btn-success">
-          Start
-        </a>
-      ),
+      cell: (row) => {
+        if (getUserType() === "individual") {
+          return (
+            <a
+              onClick={() => startCourse(row)}
+              className="btn btn-success"
+            >
+              start
+            </a>
+          );
+        } else {
+          return <a
+            onClick={() => startCourse(row)}
+            className="btn btn-success"
+          >
+            start
+          </a>;
+        }
+      },
     },
   ];
 

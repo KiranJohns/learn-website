@@ -44,6 +44,7 @@ class DashCAvail extends Component {
   };
 
   componentDidMount() {
+    console.log('');
     this.getData();
   }
 
