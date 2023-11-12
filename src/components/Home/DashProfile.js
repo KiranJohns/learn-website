@@ -2,13 +2,12 @@ import React, { useState, useEffect, useRef } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
-import fetchData from "../../axios/index";
+import fetchData, { getUserType } from "../../axios/index";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Image from "react-bootstrap/Image";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
 
 function DashProfile() {
   const handleImage = () => {
@@ -30,14 +29,24 @@ function DashProfile() {
 
   const makeRequest = fetchData();
   useEffect(() => {
-    makeRequest("GET", "/info/data")
+    getData()
+  }, []);
+
+  function getData() {
+    let url = ''
+      if(getUserType() === "individual") {
+        url = "/course/get-bought-course"
+      } else {
+        url = "/sub-user/info/get-info"
+      }
+    makeRequest("GET", url)
       .then((res) => {
         setInfo(res.data.response[0]);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }
 
   function handleOnChange(e) {
     e.persist();
