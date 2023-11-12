@@ -2,7 +2,7 @@ import React from "react";
 import CourseBundle from "../../components/CourseGrid/CourseBundle";
 import DashboardBar from "../../components/Sidebar/DashboardBar";
 import HeaderDashboard from "../../components/Layout/Header/HeaderDashboard";
-import DashCertificate from "../../components/Home/DashCertificate";
+import IndCertificate from "../../components/Home/IndCertificate";
 import Header from "../../components/Layout/Header/Header";
 import NoSSR from "react-no-ssr";
 import IndividualBar from "../../components/Sidebar/IndividualBar";
@@ -51,7 +51,7 @@ function MyCertificate() {
                   <NewInDash />
                 </div>
                 <div className="col-sm col-md-9  bg-white">
-                  <DashCertificate />
+                  <IndCertificate />
                 </div>
               </div>
             </div>

@@ -3,7 +3,7 @@ import CourseBundle from "../../components/CourseGrid/CourseBundle";
 import DashboardBar from "../../components/Sidebar/DashboardBar";
 import HeaderDashboard from "../../components/Layout/Header/HeaderDashboard";
 import DashMain from "../../components/Home/DashMain";
-import DashCourse from "../../components/Home/DashCourse";
+import IndCourse from "../../components/Home/IndCourse";
 import Header from "../../components/Layout/Header/Header";
 import IndividualBar from "../../components/Sidebar/IndividualBar";
 import NoSSR from "react-no-ssr";
@@ -48,7 +48,7 @@ function myCourse() {
                 <NewInDash />
               </div>
               <div className="col-sm col-md-9 bg-white">
-                <DashCourse />
+                <IndCourse />
               </div>
             </div>
           </div>

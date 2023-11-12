@@ -7,6 +7,7 @@ import DashProfile from "../../components/Home/DashProfile";
 import Header from "../../components/Layout/Header/Header";
 import Footer from "../../components/Layout/Footer/Footer";
 import IndividualBar from "../../components/Sidebar/IndividualBar";
+import IndProfile from "../../components/Home/IndProfile";
 import NoSSR from "react-no-ssr";
 import NewInDash from "../../components/Sidebar/BarDummy";
 import { getUserType } from "../../axios";
@@ -46,7 +47,7 @@ function MyProfile() {
                 <NewInDash />
               </div>
               <div className="col-sm col-md-9 bg-white">
-                <DashProfile />
+                <IndProfile />
               </div>
             </div>
           </div>

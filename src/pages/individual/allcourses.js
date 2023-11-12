@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import CourseBundle from "../../components/CourseGrid/CourseBundle";
 import DashboardBar from "../../components/Sidebar/DashboardBar";
 import HeaderDashboard from "../../components/Layout/Header/HeaderDashboard";
-import DashCAvail from "../../components/Home/DashCAvail";
+import IndCAvail from "../../components/Home/IndCAvail";
 import Header from "../../components/Layout/Header/Header";
 import IndividualBar from "../../components/Sidebar/IndividualBar";
 import NoSSR from "react-no-ssr";
@@ -48,7 +48,7 @@ function courseavailable() {
                   <NewInDash />
                 </div>
                 <div className="col-sm col-md-9  bg-white">
-                  <DashCAvail />
+                  <IndCAvail />
                 </div>
               </div>
             </div>

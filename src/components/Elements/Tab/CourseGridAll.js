@@ -102,7 +102,7 @@ export default () => {
                 aria-label="Default select example"
                 onChange={(e) => setCategoryFilter(e.target.value)}
               >
-                <option value="">filter</option>
+                <option  value="">filter</option>
                 <option value="Care Certificate">Care Certificate</option>
                 <option value="Mandatory Care Courses">
                   Mandatory Care Courses
