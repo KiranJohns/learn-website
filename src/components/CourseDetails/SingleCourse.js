@@ -64,12 +64,12 @@ const SingleCourse = () => {
           controls="0"
         ></iframe>
         {/* <iframe src={doc}/> */}
-        <DocViewer
+        {/* <DocViewer
         // documents={docs}
           documents={[{uri: course?.ppt}]}
           initialActiveDocument={[{uri: course?.ppt}]}
           pluginRenderers={DocViewerRenderers}
-        />
+        /> */}
       </div>
     </div>
   );

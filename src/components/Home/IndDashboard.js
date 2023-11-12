@@ -135,7 +135,7 @@ function DashIndividual() {
         if (getUserType() === "individual") {
           return (
             <a
-              onClick={() => startCourse(row)}
+              onClick={() => startCourse(row.purchased_course_id)}
               className="btn btn-success"
             >
               start
@@ -143,7 +143,7 @@ function DashIndividual() {
           );
         } else {
           return <a
-            onClick={() => startCourse(row)}
+            onClick={() => startCourse(row.assigned_course_id)}
             className="btn btn-success"
           >
             start
