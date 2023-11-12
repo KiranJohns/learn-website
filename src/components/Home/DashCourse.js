@@ -91,14 +91,17 @@ class DashCourse extends Component {
   }
   assignCourse(e, subUser) {
     e.persist();
-    // console.log(this.course_id,this.purchased_course_id);
-    // console.log(subUser);
-    this.makeRequest("POST", "/info/assign-course-to-sub-user",{
+    this.makeRequest("POST", "/info/assign-course-to-sub-user", {
       sub_user_id: subUser.id,
       course_id: this.course_id,
-      purchased_course_id: this.purchased_course_id
+      purchased_course_id: this.purchased_course_id,
     })
       .then((res) => {
+        this.getData();
+        this.setState({
+          ...this.state,
+          openModal: !this.state.openModal,
+        });
         console.log(res);
       })
       .catch((err) => console.log(err));
