@@ -58,13 +58,11 @@ function DashIndividual() {
       }
       makeRequest("GET", url)
         .then((res) => {
-          console.log(res);
           setRecords(
             res.data.response.filter((course) => {
-              if (course?.progress == 0 || course?.course_count > 0) {
+              if (course?.course_count > 0) {
+                console.log(course);
                 return course;
-              } else {
-                return null;
               }
             })
           );
@@ -82,7 +80,7 @@ function DashIndividual() {
     console.log(id);
     makeRequest("GET", `/course/start-course/${id}`)
       .then((res) => {
-        route.push(`/course-learn/${id}`)
+        route.push(`/individual/course-learn/${id}`)
       })
       .catch((err) => {
         console.log(err);
@@ -133,7 +131,7 @@ function DashIndividual() {
     {
       name: "",
       cell: (row) => (
-        <a onClick={() => startCourse(row.id)} className="btn btn-success">
+        <a onClick={() => startCourse(row.assigned_course_id)} className="btn btn-success">
           Start
         </a>
       ),
