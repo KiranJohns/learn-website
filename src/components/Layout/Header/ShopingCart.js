@@ -144,13 +144,13 @@ const ShopingCart = ({ setShopOpen, shopOpen }) => {
                     return (
                       <li>
                         <div className="cartmini__thumb">
-                          <a href={`/course/${item.id}`}>
+                          <a href={`/course/${item.course_id}`}>
                             <img src={item.thumbnail} alt="img not found" />
                           </a>
                         </div>
                         <div className="cartmini__content">
                           <h5>
-                            <a href={`/course/${item.id}`}>{item.name} </a>
+                            <a href={`/course/${item.course_id}`}>{item.name} </a>
                           </h5>
                           <div className="product-quantity mt-10 mb-10">
                             <span
