@@ -23,8 +23,6 @@ function IndProfile() {
     phone: "",
     first_name: "",
     last_name: "",
-    // phone: "",
-    // city: "",
   });
 
   const makeRequest = fetchData();
@@ -35,7 +33,7 @@ function IndProfile() {
   function getData() {
     let url = ''
       if(getUserType() === "individual") {
-        url = "/course/get-bought-course"
+        url = "/info/data"
       } else {
         url = "/sub-user/info/get-info"
       }

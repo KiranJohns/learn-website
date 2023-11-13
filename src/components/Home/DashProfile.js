@@ -33,14 +33,10 @@ function DashProfile() {
   }, []);
 
   function getData() {
-    let url = ''
-      if(getUserType() === "individual") {
-        url = "/course/get-bought-course"
-      } else {
-        url = "/sub-user/info/get-info"
-      }
+    let url = "/info/data"
     makeRequest("GET", url)
       .then((res) => {
+        // console.log(res.data.response[0]);
         setInfo(res.data.response[0]);
       })
       .catch((err) => {
@@ -117,7 +113,7 @@ function DashProfile() {
               type="text"
               name="first_name"
               placeholder="First name"
-              value={info.first_name}
+              value={info?.first_name}
               onChange={handleOnChange}
             />
           </Form.Group>
@@ -129,7 +125,7 @@ function DashProfile() {
               type="text"
               name="last_name"
               placeholder="Last name"
-              value={info.last_name}
+              value={info?.last_name}
               onChange={handleOnChange}
             />
           </Form.Group>
@@ -142,7 +138,7 @@ function DashProfile() {
               className="bg-light"
               type="text"
               placeholder="Email"
-              value={info.email}
+              value={info?.email}
             />
           </Form.Group>
           <Form.Group as={Col} className="mb-3" controlId="formGridEmail">
@@ -152,7 +148,7 @@ function DashProfile() {
               type="text"
               name="phone"
               placeholder="Phone"
-              value={info.phone}
+              value={info?.phone}
               onChange={handleOnChange}
             />
           </Form.Group>
@@ -166,7 +162,7 @@ function DashProfile() {
               type="text"
               name="city"
               placeholder="City"
-              value={info.city}
+              value={info?.city}
               onChange={handleOnChange}
             />
           </Form.Group>
@@ -177,7 +173,7 @@ function DashProfile() {
               className="bg-light"
               aria-label="Default select example"
             >
-              <option style={{ color: "gray" }}>{info.country}</option>
+              <option style={{ color: "gray" }}>{info?.country}</option>
               <option value="uk">United Kingdom</option>
             </Form.Select>
           </Form.Group>

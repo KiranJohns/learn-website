@@ -2,13 +2,14 @@ import React, { useEffect, useState } from "react";
 import CourseBundle from "../../components/CourseGrid/CourseBundle";
 import DashboardBar from "../../components/Sidebar/DashboardBar";
 import HeaderDashboard from "../../components/Layout/Header/HeaderDashboard";
-import IndCAvail from "../../components/Home/IndCAvail";
+import DashCAvail from "../../components/Home/DashCAvail";
 import Header from "../../components/Layout/Header/Header";
 import IndividualBar from "../../components/Sidebar/IndividualBar";
 import NoSSR from "react-no-ssr";
 import NewInDash from "../../components/Sidebar/BarDummy";
 import { getUserType } from "../../axios";
 import { useRouter } from "next/router";
+import IndCAvail from "../../components/Home/IndCAvail";
 
 function courseavailable() {
   const [logedIn, setlogedIn] = useState(() => {

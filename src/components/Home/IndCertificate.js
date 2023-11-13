@@ -48,11 +48,12 @@ class IndCertificate extends Component {
   }
 
   fetchData = () => {
+    console.log('ertyuiop');
     axios
       .get("https://jsonplaceholder.typicode.com/users")
       .then((res) => {
         // console.log(res.data);
-        this.setState({ records: res.data, filterRecords: res.data });
+        this.setState({ records: [...res.data,...res.data], filterRecords: res.data });
       })
       .catch((err) => console.log(err));
   };

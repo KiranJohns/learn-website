@@ -3,7 +3,7 @@ import axios from "axios";
 import DataTable from "react-data-table-component";
 import Link from "next/link";
 import BasicExample from "../About/button1";
-import fetchData from "../../axios";
+import fetchData, { getUserType } from "../../axios";
 import Modal from "react-responsive-modal";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
@@ -43,7 +43,7 @@ class IndCourse extends Component {
     };
     this.makeRequest = fetchData();
     this.handleShowModal = this.handleShowModal.bind(this);
-    this.assignCourse = this.assignCourse.bind(this);
+    // this.assignCourse = this.assignCourse.bind(this);
     this.sub_user_id = null;
     this.course_id = null;
     this.purchased_course_id = null;
@@ -62,9 +62,11 @@ class IndCourse extends Component {
 
   getData = () => {
     try {
-      this.makeRequest("GET", "/course/get-bought-course")
+      let url = "/on-going-course/get-all-on-going-courses"
+      
+      this.makeRequest("GET", url)
         .then((res) => {
-          console.log(res);
+          console.log('res',res);
           this.setState({
             records: res.data.response,
             filterRecords: res.data,
@@ -73,16 +75,15 @@ class IndCourse extends Component {
         .catch((err) => {
           console.log(err);
         });
+
+      // if (getUserType() === "individual") {
+        
+      // } else {
+
+      // }
     } catch (error) {
       console.log(error);
     }
-
-    this.makeRequest("GET", "/info/get-all-sub-users")
-      .then((res) => {
-        console.log(res.data.response);
-        this.setState({ ...this.state, subUsers: res.data.response });
-      })
-      .catch((err) => console.log(err));
   };
 
   handleShowModal() {
@@ -91,24 +92,23 @@ class IndCourse extends Component {
       openModal: !this.state.openModal,
     });
   }
-  assignCourse(e, subUser) {
-    e.persist();
-    this.makeRequest("POST", "/info/assign-course-to-sub-user", {
-      sub_user_id: subUser.id,
-      course_id: this.course_id,
-      purchased_course_id: this.purchased_course_id,
-    })
-      .then((res) => {
-        toast.success("course assigned")
-        this.getData();
-        this.setState({
-          ...this.state,
-          openModal: !this.state.openModal,
-        });
-        console.log(res);
-      })
-      .catch((err) => console.log(err));
-  }
+  // assignCourse(e, subUser) {
+  //   e.persist();
+  //   this.makeRequest("POST", "/info/assign-course-to-sub-user", {
+  //     sub_user_id: subUser.id,
+  //     course_id: this.course_id,
+  //     purchased_course_id: this.purchased_course_id,
+  //   })
+  //     .then((res) => {
+  //       toast.success("course assigned");
+  //       this.getData();
+  //       this.setState({
+  //         ...this.state,
+  //         openModal: !this.state.openModal,
+  //       });
+  //     })
+  //     .catch((err) => console.log(err));
+  // }
 
   // handleCourseStart(id) {
   //   console.log(id);
@@ -129,8 +129,8 @@ class IndCourse extends Component {
         sortable: true,
       },
       {
-        name: "Name",
-        selector: (row) => row.Name,
+        name: "name",
+        selector: (row) => row.name,
         sortable: true,
       },
       {
@@ -152,24 +152,17 @@ class IndCourse extends Component {
         },
       },
       {
-        name: "count",
-        selector: (row) => row.course_count,
-      },
-      {
         name: "",
         cell: (row) => {
           return (
             <a
               onClick={() => {
-                console.log(row.course_id, row.purchased_course_id);
-                this.course_id = row.course_id;
-                this.purchased_course_id = row.purchased_course_id;
-                // Other state updates if needed
-                this.handleShowModal();
+                console.log(row);
+                location.pathname = `/company/course-learn/${row.on_going_course_id}`
               }}
               className="btn btn-success"
             >
-              Assign To
+              continue
             </a>
           );
         },
@@ -190,7 +183,7 @@ class IndCourse extends Component {
           pauseOnHover
           theme="light"
         />
-        <Modal open={this.state.openModal} onClose={this.handleShowModal}>
+        {/* <Modal open={this.state.openModal} onClose={this.handleShowModal}>
           <div style={{ padding: "", width: "40rem", height: "20rem" }}>
             <h3>Sub Users</h3>
             <ul class="list-group bg-white" style={{}}>
@@ -212,7 +205,7 @@ class IndCourse extends Component {
                 })}
             </ul>
           </div>
-        </Modal>
+        </Modal> */}
         <div className=" row g-3  min-vh-100  d-flex justify-content-center dash-shadow mt-10">
           <div style={{ padding: "", backgroundColor: "" }}>
             <h2
