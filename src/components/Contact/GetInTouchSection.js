@@ -87,8 +87,8 @@ class GetInTouch extends Component {
                                     </div>
                                     <div className="contact__info-text">
                                        <h4>Email us directly</h4>
-                                       <p><a href="mailto:support@educal.com">support@learnforcare.com</a></p>
-                                       <p><a href="mailto:info@educal.com"> info@learnforcare.com</a></p>
+                                       <p><a href="mailto:support@educal.com">support@learnforcare.co.uk</a></p>
+                                       <p><a href="mailto:info@educal.com"> info@learnforcare.co.uk</a></p>
                                     </div>
                                  </div>
                               </li>

@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import Link from 'next/link';
+import  { getUserType } from "../../axios";
+import { useRouter } from "next/router";
 
+const Service = () => {
+ 
 
-
-class Service extends Component {
-
-    render() {
-
+      const router = useRouter();
         return (
         <section className="services__area pt-70 pb-55">
             <div className="container">
@@ -65,7 +65,13 @@ class Service extends Component {
                   </div>
 
                   <div className="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6" style={{cursor:"pointer"}}>
-                  <Link href="/company/dashboard">
+                  <div   onClick={() => {
+                                if (getUserType() === "company") {
+                                  router.push("/company/dashboard");
+                                } else {
+                                  router.push("/individual/dashboard");
+                                }
+                              }}>
                      <div className="services__item purple-bg mb-30">
                         <div className="services__icon">
                            <svg viewBox="0 0 24 24">
@@ -85,7 +91,7 @@ class Service extends Component {
                            </a></Link> */}
                         </div>
                      </div>
-                     </Link>
+                     </div>
                   </div>
                   <div className="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6" style={{cursor:"pointer"}}>
                   <Link href="/course-all">
@@ -114,6 +120,6 @@ class Service extends Component {
          </section>
         );
     }
-}
+
 
 export default Service;
