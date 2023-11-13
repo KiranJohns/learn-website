@@ -5,8 +5,8 @@ import Head from "next/head";
 import BurgerMenus from "./BurgerMenus";
 import ShopingCart from "./ShopingCart";
 import { useSelector } from "react-redux";
-import fetchData from "../../../axios";
 import store from "../../../redux/store";
+import fetchData, { getUserType } from "../../../axios";
 import Dropdown from "react-bootstrap/Dropdown";
 
 const HeaderOpaque = () => {
@@ -404,18 +404,18 @@ const HeaderOpaque = () => {
                         </Dropdown.Toggle>
 
                         <Dropdown.Menu>
-                          <Dropdown.Item
-                            className="btn"
-                            onClick={() => {
-                              if (getUserType() === "company") {
-                                router.push("/company/myprofile");
-                              } else {
-                                router.push("/individual/myprofile");
-                              }
-                            }}
-                          >
-                            Dashboard
-                          </Dropdown.Item>
+                        <Dropdown.Item
+                              className="btn"
+                              onClick={() => {
+                                if (getUserType() === "company") {
+                                  router.push("/company/myprofile");
+                                } else {
+                                  router.push("/individual/myprofile");
+                                }
+                              }}
+                            >
+                              My Profile
+                            </Dropdown.Item>
                           <Dropdown.Item
                             className="btn"
                             onClick={handleLogout}

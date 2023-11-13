@@ -7,6 +7,7 @@ import { useEffect } from "react";
 // import html from "../../html/sample.html";
 import DocViewer, { DocViewerRenderers } from "react-doc-viewer";
 
+
 const SingleCourse = () => {
   const [course, setCourse] = useState({});
   const [doc, setDocs] = useState([]);
@@ -54,7 +55,7 @@ const SingleCourse = () => {
 
         {/* <ReactPlayer controls  className='course-player' url='https://www.youtube.com/watch?v=LXb3EKWsInQ' /> */}
       </div>
-      <div tyle={{ display: "flex", justifyContent: "center" }}>
+      <div style={{ display: "flex", justifyContent: "center", marginTop:"3rem" }}>
         <iframe
           src="https://onedrive.live.com/embed?resid=F5F394858BB1213E%214405&authkey=!AIJnHcKPEcZ66uQ&em=2"
           width="402"
