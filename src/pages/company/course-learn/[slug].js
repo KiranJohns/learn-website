@@ -25,7 +25,9 @@ function CourseDetails() {
             <DashboardBar />
           </div>
           <div className="col-sm col-md-9  bg-light">
+      
             <SingleCourse  />
+          
           </div>
         </div>
       </div>

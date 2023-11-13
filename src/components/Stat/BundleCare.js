@@ -1,5 +1,6 @@
 import React, { Component, useState } from "react";
 
+
 function BundleCare({name}) {
   const [fakeCount, setFakeCount] = useState(0);
   function handleClick() {}
@@ -73,6 +74,7 @@ function BundleCare({name}) {
               alt="image "
             />
           </div>
+          
         </div>
       </div>
     </div>

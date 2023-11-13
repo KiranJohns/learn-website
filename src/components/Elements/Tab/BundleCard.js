@@ -188,36 +188,3 @@ function BundleCard({ item }) {
 export default BundleCard;
 
 
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import DataTable from "react-data-table-component";
-import BasicExample from "../About/button1";
-import fetchData, { getUserType } from "../../axios";
-
-const customStyles = {
-  headRow: {
-    style: {
-      backgroundColor: "#212450",
-      color: "white",
-      display: "flex",
-      justifyContent: "center",
-    },
-  },
-  headCells: {
-    style: {
-      fontSize: "16px",
-      fontWeight: "600",
-      textTransform: "uppercase",
-      display: "flex",
-      justifyContent: "center",
-    },
-  },
-  cells: {
-    style: {
-      fontSize: "15px",
-      display: "flex",
-      justifyContent: "center",
-    },
-  },
-};
-
