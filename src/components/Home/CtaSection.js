@@ -14,7 +14,7 @@ class Cta extends Component {
       .then((res) => {
         this.setState(() => ({
           blog: res.data.response[0],
-          id: res.data.response[0].id,
+          id: res?.data?.response[0]?.id,
         }));
       })
       .catch((err) => {
