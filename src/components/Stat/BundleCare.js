@@ -1,5 +1,6 @@
 import React, { Component, useState } from "react";
-
+import Link from "next/link";
+import SingleCourseBundle from "../Elements/Tab/SingleCourseBundle";
 
 function BundleCare({name}) {
   const [fakeCount, setFakeCount] = useState(0);
@@ -7,7 +8,7 @@ function BundleCare({name}) {
   return (
     <div className="container mt-100">
       <div className="row">
-        <div className="col-xxl-6  col-xl-6 col-lg-12 col-md-6 col-sm-6 text-center">
+        <div className="col-xxl-5  col-xl-4 col-lg-4 col-md-4 col-sm-0 text-center">
           <h1 style={{marginBottom: "1rem"}} >{name}</h1>
           <h1></h1>
           <p>
@@ -66,15 +67,24 @@ function BundleCare({name}) {
             </div>
           </div>
         </div>
-        <div className="col-xxl-6  col-xl-6 col-md-6 col-sm-6 ">
+        <div className="col-xxl-4  col-xl-4 col-md-4 col-sm-6">
           <div className="d-flex justify-content-center p-2">
             <img
               src="/assets/img/course/bundle/certificate1.png"
-              height={450}
+              height={350}
               alt="image "
             />
           </div>
-          
+         
+        </div>
+        <div className="col-xxl-3  col-xl-3 col-md-3 col-sm-6">
+        <div className="d-flex justify-content-center p-2">
+            <img
+              src="/assets/img/course/bundle/certificate1.png"
+              height={350}
+              alt="image "
+            />
+          </div>
         </div>
       </div>
     </div>

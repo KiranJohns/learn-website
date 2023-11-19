@@ -1,6 +1,7 @@
 import React, { Component, useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import store from "../../../redux/store";
+import { FaFilter } from "react-icons/fa";
 const Tabs = dynamic(
   import("react-tabs").then((mod) => mod.Tabs),
   { ssr: false }
@@ -95,14 +96,30 @@ export default () => {
                 </button>
               </form>
             </div>
-            <div className="">
-              <select
-                style={{ background: "#edeef3", paddingBottom: "1rem" , width: "18rem" }}
-                className="form-control text-secondary "
+         
+
+             {/* <div className="select-menu">
+                <div className="select-btn">
+                <FaFilter className="ic-fil"/>
+                 <span className="sBtn-text"> Filter..</span>
+                </div>
+                <ul className="fi-options">
+                  <li className="fi-option">
+                    <span className="option-text">Github</span>
+                  </li>
+                </ul>
+             </div> */}
+
+            <div className="select media-select">
+            <FaFilter className="ic-fil" style={{position:'absolute',zIndex:'1',  marginTop:'15.6px',marginLeft:'.7rem',marginRight:'.5rem',color:"#8c8faa",fontSize:'1rem' }}/>  
+             <select
+                style={{ background: "#edeef3", paddingBottom: "1rem" , width: "18rem", textAlign:'justify',position:'relative',padding:'.8rem 2rem',width:'280px',height:'50px' }}
+                className="form-select text-secondary"
                 aria-label="Default select example"
                 onChange={(e) => setCategoryFilter(e.target.value)}
               >
-                <option  value="">filter</option>
+                 
+                <option   style={{fontSize:'1rem'}}  value="">Filter</option>
                 <option value="Care Certificate">Care Certificate</option>
                 <option value="Mandatory Care Courses">
                   Mandatory Care Courses

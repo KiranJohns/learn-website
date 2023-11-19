@@ -297,3 +297,11 @@ display: flex;
 justify-content: center;
 margin-left: 12rem;
   }
+
+
+
+  .media-select {
+    @media #{$xs}{
+        visibility: hidden;
+    }
+}
