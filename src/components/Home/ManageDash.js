@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Link from "next/link";
-import DashboardBar from "../Sidebar/DashboardBar";
+import ManageBar from "../Sidebar/ManagerBar";
 import Accordion from "react-bootstrap/Accordion";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
@@ -31,7 +31,7 @@ const customStyles = {
   },
 };
 
-class DashTest extends Component {
+class ManageDash extends Component {
   constructor() {
     super();
     this.state = {
@@ -223,7 +223,7 @@ class DashTest extends Component {
                       alignItems: "center",
                     }}
                   >
-                    Managers
+                    My Courses
                   </div>
 
                   {/* Start:
@@ -249,7 +249,7 @@ class DashTest extends Component {
                       alignItems: "center",
                     }}
                   >
-                   Individuals
+                    My Bundles
                   </div>
 
                   {/* Start:
@@ -266,7 +266,7 @@ class DashTest extends Component {
           <div className="col p-2 m-2"> 
              <div className="data-box" style={{padding:'3.4rem', borderRadius:'.6rem',cursor:'none', }}>
                <div style={{display:"flex", justifyContent:"center"}}>
-                <h2 style={{color:'#fff',cursor:'none'}}>Managers : 0</h2>
+                <h2 style={{color:'#fff',cursor:'none'}}>Individuals : 0</h2>
                </div>
              </div>
           </div>
@@ -274,7 +274,7 @@ class DashTest extends Component {
           <div className="col p-2 m-2"> 
              <div  className="data-box" style={{padding:'3.4rem', borderRadius:'.6rem',cursor:'none',}}>
                <div style={{display:"flex", justifyContent:"center"}}>
-                <h2 style={{color:'#fff', cursor:'none' }}>Individuals : 0</h2>
+                <h2 style={{color:'#fff', cursor:'none' }}>Certificates : 0</h2>
                </div>
              </div>
           </div>
@@ -374,4 +374,4 @@ class DashTest extends Component {
     );
   }
 }
-export default DashTest;
+export default ManageDash;

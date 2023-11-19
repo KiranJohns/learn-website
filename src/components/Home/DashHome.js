@@ -116,7 +116,7 @@ class DashTest extends Component {
     ];
 
     return (
-      <div className="container " style={{ padding: "10px" }}>
+      <div className="container" style={{ padding: "10px" }}>
         {/* <div>  
                 <Card style={{ width: '18rem', marginTop:'50px'}}>
       <Card.Img variant="top" src="holder.js/100px180?text=Image cap" />
@@ -167,7 +167,7 @@ class DashTest extends Component {
         </div>
 
         <div className="ag-format-container" style={{ marginTop: "1rem" }}>
-          <div  className="ag-courses_box dash-neww">
+          <div className="ag-courses_box dash-neww">
             <div className="ag-courses_item" style={{ marginLeft: ".5rem" }}>
               <a href="/company/myprofile" className="ag-courses-item_link">
                 <div className="ag-courses-item_bg"></div>
@@ -183,7 +183,7 @@ class DashTest extends Component {
                     alignItems: "center",
                   }}
                 >
-                  Buy Bundles
+                  My Profile
                 </div>
               </a>
             </div>
@@ -203,7 +203,7 @@ class DashTest extends Component {
                     alignItems: "center",
                   }}
                 >
-                  Buy Course
+                  My Course
                 </div>
               </a>
             </div>
@@ -223,7 +223,7 @@ class DashTest extends Component {
                       alignItems: "center",
                     }}
                   >
-                    Managers
+                    Certificates
                   </div>
 
                   {/* Start:
@@ -249,7 +249,7 @@ class DashTest extends Component {
                       alignItems: "center",
                     }}
                   >
-                   Individuals
+                    Training Matrix
                   </div>
 
                   {/* Start:
@@ -260,29 +260,7 @@ class DashTest extends Component {
               </a>
             </div>
           </div>
-
-         <div style={{padding:'.8rem'}}  className=" mt-4 row "  >
-          <div className="dash-neww">
-          <div className="col p-2 m-2"> 
-             <div className="data-box" style={{padding:'3.4rem', borderRadius:'.6rem',cursor:'none', }}>
-               <div style={{display:"flex", justifyContent:"center"}}>
-                <h2 style={{color:'#fff',cursor:'none'}}>Managers : 0</h2>
-               </div>
-             </div>
-          </div>
-
-          <div className="col p-2 m-2"> 
-             <div  className="data-box" style={{padding:'3.4rem', borderRadius:'.6rem',cursor:'none',}}>
-               <div style={{display:"flex", justifyContent:"center"}}>
-                <h2 style={{color:'#fff', cursor:'none' }}>Individuals : 0</h2>
-               </div>
-             </div>
-          </div>
-          
-          </div>
-            </div>
-
-          <div className="dash-shadow">
+          <div className="dash-shadow ">
             <div
               style={{
                 display: "flex",
@@ -302,9 +280,9 @@ class DashTest extends Component {
                   fontSize: 35,
                 }}
               >
-                Courses 
+                Courses to do
               </h4>
-              <div style={{display:'none'}} className="p-relative d-inline header__search">
+              <div  className="p-relative d-inline header__search">
                 <form action="">
                   <input
                     className="d-block mr-25"
@@ -325,10 +303,7 @@ class DashTest extends Component {
                 </form>
               </div>
             </div>
-
-            
-
-            <div className=" row g-3  min-vh-100   ag-format-container">
+            <div className=" row g-3  min-vh-100  d-flex justify-content-center ">
               <div style={{}}>
                 <div
                   className="pb-2"
