@@ -27,19 +27,12 @@ function IndProfile() {
 
   const makeRequest = fetchData();
   useEffect(() => {
-    getData()
+    getData();
   }, []);
 
   function getData() {
-    let url = ''
-      if(getUserType() === "individual") {
-        url = "/info/data"
-      } else {
-        url = "/sub-user/info/get-info"
-      }
-    makeRequest("GET", url)
+    makeRequest("GET", "/info/data")
       .then((res) => {
-        
         setInfo(res.data.response[0]);
       })
       .catch((err) => {

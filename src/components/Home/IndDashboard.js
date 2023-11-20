@@ -8,7 +8,7 @@ import fetchData, { getUserType } from "../../axios";
 import DataTable from "react-data-table-component";
 import { useRouter } from "next/router";
 import { IoHandLeft } from "react-icons/io5";
-import { decryptData} from "../../utils/crtyper";
+import { decryptData } from "../../utils/crtyper";
 
 const customStyles = {
   headRow: {
@@ -37,6 +37,7 @@ function DashIndividual() {
   const [records, setRecords] = useState([]);
   const [searchString, setSearchString] = useState("");
   const [filterRecords, setFilterRecords] = useState([]);
+  const [info, setInfo] = useState({});
   const route = useRouter();
 
   const handleFilter = (event) => {
@@ -45,7 +46,16 @@ function DashIndividual() {
     );
     setRecords(newData);
   };
-
+  
+  useEffect(()=> {
+    makeRequest("GET", "/info/data")
+    .then((res) => {
+      setInfo(res.data.response[0]);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  },[])
   function handleSearch() {}
 
   const makeRequest = fetchData();
@@ -109,7 +119,7 @@ function DashIndividual() {
     },
     {
       name: "Name",
-      selector: (row) => row.name ? row.name : row.Name,
+      selector: (row) => (row.name ? row.name : row.Name),
       sortable: true,
     },
     {
@@ -143,12 +153,14 @@ function DashIndividual() {
             </a>
           );
         } else {
-          return <a
-            onClick={() => startCourse(row.assigned_course_id)}
-            className="btn btn-success"
-          >
-            start
-          </a>;
+          return (
+            <a
+              onClick={() => startCourse(row.assigned_course_id)}
+              className="btn btn-success"
+            >
+              start
+            </a>
+          );
         }
       },
     },
@@ -158,7 +170,7 @@ function DashIndividual() {
     <div className="container" style={{ padding: "10px" }}>
       {/* Your JSX content here */}
       <div className="ag-format-container">
-      <div
+        <div
           style={{
             display: "flex",
             alignItems: "center",
@@ -168,10 +180,10 @@ function DashIndividual() {
           <h3
             style={{ color: "#212450", marginTop: ".3rem", display: "inline" }}
           >
-            Hello 'Name'{" "}
+            Hello {info.first_name+" "+info.last_name}{" "}
             <IoHandLeft style={{ color: "#f1c27d", marginBottom: ".5rem" }} />
           </h3>
-          <div style={{ }}>
+          <div style={{}}>
             <h2
               style={{
                 padding: "0",
@@ -179,7 +191,6 @@ function DashIndividual() {
                 display: "flex",
                 justifyContent: "center",
                 margin: ".3rem",
-              
               }}
             >
               Dashboard
@@ -187,11 +198,19 @@ function DashIndividual() {
           </div>
         </div>
         <div className="team-shadow">
-
-          <div className="" style={{padding:'.7rem', display:"flex", justifyContent:"space-between"}}>
-           
-         <div className="ag-courses_item-comp " style={{ marginLeft: "" }}>
-              <a href="/bundle/bundle-all" className="ag-courses-item_link-comp">
+          <div
+            className=""
+            style={{
+              padding: ".7rem",
+              display: "flex",
+              justifyContent: "space-between",
+            }}
+          >
+            <div className="ag-courses_item-comp " style={{ marginLeft: "" }}>
+              <a
+                href="/bundle/bundle-all"
+                className="ag-courses-item_link-comp"
+              >
                 <div className="ag-courses-item_bg-comp"></div>
                 <div
                   className="bi bi-person-circle ag-courses-item_date-box-new"
@@ -202,17 +221,19 @@ function DashIndividual() {
                   style={{
                     display: "flex",
                     justifyContent: "center",
-                    alignItems: "", 
-                    marginTop:"1rem"
+                    alignItems: "",
+                    marginTop: "1rem",
                   }}
                 >
-                 Buy Bundles
-                
+                  Buy Bundles
                 </div>
               </a>
             </div>
 
-            <div className="ag-courses_item-comp" style={{ marginLeft: ".5rem" }}>
+            <div
+              className="ag-courses_item-comp"
+              style={{ marginLeft: ".5rem" }}
+            >
               <a href="/course-all" className="ag-courses-item_link-comp">
                 <div className="ag-courses-item_bg-comp"></div>
                 <div
@@ -224,18 +245,23 @@ function DashIndividual() {
                   style={{
                     display: "flex",
                     justifyContent: "center",
-                    alignItems: "", 
-                    marginTop:"1rem"
+                    alignItems: "",
+                    marginTop: "1rem",
                   }}
                 >
                   Buy Courses
-                
                 </div>
               </a>
             </div>
 
-            <div className="ag-courses_item-comp" style={{ marginLeft: ".5rem" }}>
-              <a href="/individual/certificates" className="ag-courses-item_link-comp">
+            <div
+              className="ag-courses_item-comp"
+              style={{ marginLeft: ".5rem" }}
+            >
+              <a
+                href="/individual/certificates"
+                className="ag-courses-item_link-comp"
+              >
                 <div className="ag-courses-item_bg-comp"></div>
                 <div
                   className="bi bi-person-circle ag-courses-item_date-box-new"
@@ -246,66 +272,71 @@ function DashIndividual() {
                   style={{
                     display: "flex",
                     justifyContent: "center",
-                    alignItems: "", 
-                    marginTop:"1rem"
+                    alignItems: "",
+                    marginTop: "1rem",
                   }}
                 >
-                 My Certificates
-                
+                  My Certificates
+                </div>
+              </a>
+            </div>
+          </div>
+          <div
+            className=""
+            style={{
+              padding: ".7rem",
+              display: "flex",
+              justifyContent: "center",
+              flexWrap: "nowrap",
+            }}
+          >
+            <div className="ag-courses_item-comp " style={{ marginLeft: "" }}>
+              <a href="" className="ag-courses-item_link-comp">
+                <div className="ag-courses-item_bg-comp"></div>
+                <div
+                  className="bi bi-person-circle ag-courses-item_date-box-new"
+                  style={{ fontSize: "2rem" }}
+                ></div>
+                <div
+                  className="ag-courses-item_title-comp"
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "",
+                    marginTop: "1rem",
+                  }}
+                >
+                  My Courses
                 </div>
               </a>
             </div>
 
-            </div>
-            <div className="" style={{padding:'.7rem', display:"flex", justifyContent:"center" , flexWrap:'nowrap'}}>
-           
-           <div className="ag-courses_item-comp " style={{ marginLeft: "" }}>
-                <a href="" className="ag-courses-item_link-comp">
-                  <div className="ag-courses-item_bg-comp"></div>
-                  <div
-                    className="bi bi-person-circle ag-courses-item_date-box-new"
-                    style={{ fontSize: "2rem" }}
-                  ></div>
-                  <div
-                    className="ag-courses-item_title-comp"
-                    style={{
-                      display: "flex",
+            <div
+              className="ag-courses_item-comp "
+              style={{ marginLeft: "3.2rem" }}
+            >
+              <a href="" className="ag-courses-item_link-comp">
+                <div className="ag-courses-item_bg-comp"></div>
+                <div
+                  className="bi bi-person-circle ag-courses-item_date-box-new"
+                  style={{ fontSize: "2rem" }}
+                ></div>
+                <div
+                  className="ag-courses-item_title-comp"
+                  style={{
+                    display: "flex",
                     justifyContent: "center",
-                    alignItems: "", 
-                    marginTop:"1rem"
-                    }}
-                  >
-                    My Courses
-                  
-                  </div>
-                </a>
-              </div>
+                    alignItems: "",
+                    marginTop: "1rem",
+                  }}
+                >
+                  My Bundles
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
 
-              <div className="ag-courses_item-comp " style={{ marginLeft: "3.2rem" }}>
-                <a href="" className="ag-courses-item_link-comp">
-                  <div className="ag-courses-item_bg-comp"></div>
-                  <div
-                    className="bi bi-person-circle ag-courses-item_date-box-new"
-                    style={{ fontSize: "2rem" }}
-                  ></div>
-                  <div
-                    className="ag-courses-item_title-comp"
-                    style={{
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "", 
-                      marginTop:"1rem"
-                    }}
-                  >
-                    My Bundles
-                  
-                  </div>
-                </a>
-              </div>
-
-              </div>
-         </div>
-         
         {/* <div className="ag-courses_box dash-shadow">
           <div className="ag-courses_item">
             <a href="/individual/myprofile" className="ag-courses-item_link">
@@ -406,5 +437,3 @@ function DashIndividual() {
 }
 
 export default DashIndividual;
-
-
