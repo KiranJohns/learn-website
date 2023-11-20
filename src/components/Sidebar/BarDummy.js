@@ -132,7 +132,7 @@ function NewInDash() {
           <input type="file" ref={inputRef} onChange={(e) => setInfo({...info,profile_image: e.target.files[0]})} style={{ display: "none" }} />
         </div>
         <div
-          className="mt-4 "
+          className="mt-2 "
           style={{ display: "flex", flexDirection: "column" }}
         >
           <h5 style={{ color: "#212450", textAlign: "center", marginLeft: "" }}>

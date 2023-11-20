@@ -143,7 +143,7 @@ class DashTest extends Component {
             <h2
               style={{
                 padding: "0",
-                color: "#212450",
+                color:"#212a50",
                 display: "flex",
                 justifyContent: "center",
                 margin: ".3rem",
@@ -156,7 +156,7 @@ class DashTest extends Component {
 
         <div className="team-shadow">
           <div style={{ display: "flex", justifyContent: "center" }}>
-            <h3 style={{ marginTop: ".6rem" }}>My Team</h3>
+            <h3 style={{ marginTop: ".6rem", color:"#212a50" }}>My Team</h3>
           </div>
           <div
             className=""
@@ -167,7 +167,7 @@ class DashTest extends Component {
             }}
           >
             <div className="ag-courses_item-new" style={{ marginLeft: "" }}>
-              <a href="/company/myprofile" className="ag-courses-item_link-new">
+              <a className="ag-courses-item_link-new">
                 <div className="ag-courses-item_bg-new"></div>
                 {/* <div
                   className="bi bi-person-circle ag-courses-item_date-box-new"
@@ -184,10 +184,10 @@ class DashTest extends Component {
                   Managers
                   <span
                     style={{
-                      background: "white",
+                      background: "",
                       marginLeft: "1rem",
                       padding: "5px 2.5px 1px 2.5px",
-                      color: "#212a50",
+                      color: "#fff",
                       borderRadius: ".5rem",
                     }}
                   >
@@ -201,7 +201,7 @@ class DashTest extends Component {
               className="ag-courses_item-new"
               style={{ marginLeft: ".5rem" }}
             >
-              <a href="/company/myprofile" className="ag-courses-item_link-new">
+              <a  className="ag-courses-item_link-new">
                 <div className="ag-courses-item_bg-new"></div>
                 {/* <div
                   className="bi bi-person-circle ag-courses-item_date-box-new"
@@ -218,10 +218,10 @@ class DashTest extends Component {
                   Individuals
                   <span
                     style={{
-                      background: "white",
+                      background: "",
                       marginLeft: "1rem",
                       padding: "5px 2.5px 1px 2.5px",
-                      color: "#212a50",
+                      color: "#fff",
                       borderRadius: ".5rem",
                     }}
                   >
@@ -310,6 +310,7 @@ class DashTest extends Component {
                     justifyContent: "center",
                     alignItems: "",
                     marginTop: "1rem",
+                    
                   }}
                 >
                   Certificates
