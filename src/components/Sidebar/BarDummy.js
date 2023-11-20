@@ -5,7 +5,7 @@ import { BiSolidDashboard } from "react-icons/bs";
 import { NavLink } from "react-router-dom";
 import { useRouter } from "next/router";
 import { MdVerifiedUser } from "react-icons/md";
-import fetchData from "../../axios";
+import fetchData, { getUserType } from "../../axios";
 
 // import {imgg} from '../../../public/assets/img'
 
@@ -139,6 +139,9 @@ function NewInDash() {
             {info.first_name + " " + info.last_name}{" "}
             <MdVerifiedUser color="green" style={{ height: "1rem" }} />
             <br />
+            <span className="mt-2">
+            {getUserType() == "individual" ? "Individual" : "Company Individual"}
+            </span>
           </h5>
         </div>
       </div>

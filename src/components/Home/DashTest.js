@@ -38,6 +38,7 @@ class DashTest extends Component {
     this.state = {
       records: [],
       filterRecords: [],
+      user: {},
       searchString: "",
     };
   }
@@ -53,11 +54,16 @@ class DashTest extends Component {
     this.getData();
   }
 
-  
-
   getData = () => {
     try {
       const makeRequest = fetchData();
+      makeRequest("GET", "/info/data")
+        .then((res) => {
+          this.setState({ ...this.state, user: res.data.response[0] });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
       makeRequest("GET", "/course/get-bought-course")
         .then((res) => {
           console.log(res);
@@ -120,7 +126,6 @@ class DashTest extends Component {
 
     return (
       <div className="container " style={{ padding: "10px" }}>
-       
         <div
           style={{
             display: "flex",
@@ -131,10 +136,10 @@ class DashTest extends Component {
           <h3
             style={{ color: "#212450", marginTop: ".3rem", display: "inline" }}
           >
-            Hello 'Name'{" "}
+            Hello {this.state.user.first_name + " " + this.state.user.last_name}{" "}
             <IoHandLeft style={{ color: "#f1c27d", marginBottom: ".5rem" }} />
           </h3>
-          <div style={{ }}>
+          <div style={{}}>
             <h2
               style={{
                 padding: "0",
@@ -142,7 +147,6 @@ class DashTest extends Component {
                 display: "flex",
                 justifyContent: "center",
                 margin: ".3rem",
-             
               }}
             >
               Dashboard
@@ -150,12 +154,19 @@ class DashTest extends Component {
           </div>
         </div>
 
-  
-         <div className="team-shadow">
-          <div style={{display:'flex', justifyContent:'center', }}><h3 style={{marginTop:'.6rem'}}>My Team</h3></div>
-          <div className="" style={{padding:'.7rem', display:"flex", justifyContent:"space-around"}}>
-           
-         <div className="ag-courses_item-new" style={{ marginLeft: "" }}>
+        <div className="team-shadow">
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <h3 style={{ marginTop: ".6rem" }}>My Team</h3>
+          </div>
+          <div
+            className=""
+            style={{
+              padding: ".7rem",
+              display: "flex",
+              justifyContent: "space-around",
+            }}
+          >
+            <div className="ag-courses_item-new" style={{ marginLeft: "" }}>
               <a href="/company/myprofile" className="ag-courses-item_link-new">
                 <div className="ag-courses-item_bg-new"></div>
                 {/* <div
@@ -171,12 +182,25 @@ class DashTest extends Component {
                   }}
                 >
                   Managers
-                  <span style={{background:"white",marginLeft:"1rem", padding:"5px 2.5px 1px 2.5px",color:'#212a50',borderRadius:'.5rem' }}>0</span>
+                  <span
+                    style={{
+                      background: "white",
+                      marginLeft: "1rem",
+                      padding: "5px 2.5px 1px 2.5px",
+                      color: "#212a50",
+                      borderRadius: ".5rem",
+                    }}
+                  >
+                    0
+                  </span>
                 </div>
               </a>
             </div>
 
-            <div className="ag-courses_item-new" style={{ marginLeft: ".5rem" }}>
+            <div
+              className="ag-courses_item-new"
+              style={{ marginLeft: ".5rem" }}
+            >
               <a href="/company/myprofile" className="ag-courses-item_link-new">
                 <div className="ag-courses-item_bg-new"></div>
                 {/* <div
@@ -192,21 +216,37 @@ class DashTest extends Component {
                   }}
                 >
                   Individuals
-                  <span style={{background:"white",marginLeft:"1rem", padding:"5px 2.5px 1px 2.5px",color:'#212a50',borderRadius:'.5rem' }}>0</span>
+                  <span
+                    style={{
+                      background: "white",
+                      marginLeft: "1rem",
+                      padding: "5px 2.5px 1px 2.5px",
+                      color: "#212a50",
+                      borderRadius: ".5rem",
+                    }}
+                  >
+                    0
+                  </span>
                 </div>
               </a>
             </div>
-  
-            </div>
-         </div>
+          </div>
+        </div>
 
-
-         <div style={{marginTop:'2.5rem'}} className="team-shadow ">
-
-          <div className="" style={{padding:'.7rem', display:"flex", justifyContent:"space-between"}}>
-           
-         <div className="ag-courses_item-comp " style={{ marginLeft: "" }}>
-              <a href="/bundle/bundle-all" className="ag-courses-item_link-comp">
+        <div style={{ marginTop: "2.5rem" }} className="team-shadow ">
+          <div
+            className=""
+            style={{
+              padding: ".7rem",
+              display: "flex",
+              justifyContent: "space-between",
+            }}
+          >
+            <div className="ag-courses_item-comp " style={{ marginLeft: "" }}>
+              <a
+                href="/bundle/bundle-all"
+                className="ag-courses-item_link-comp"
+              >
                 <div className="ag-courses-item_bg-comp"></div>
                 <div
                   className="bi bi-person-circle ag-courses-item_date-box-new"
@@ -217,17 +257,19 @@ class DashTest extends Component {
                   style={{
                     display: "flex",
                     justifyContent: "center",
-                    alignItems: "", 
-                    marginTop:"1rem"
+                    alignItems: "",
+                    marginTop: "1rem",
                   }}
                 >
-                 Buy Bundles
-                
+                  Buy Bundles
                 </div>
               </a>
             </div>
 
-            <div className="ag-courses_item-comp" style={{ marginLeft: ".5rem" }}>
+            <div
+              className="ag-courses_item-comp"
+              style={{ marginLeft: ".5rem" }}
+            >
               <a href="/course-all" className="ag-courses-item_link-comp">
                 <div className="ag-courses-item_bg-comp"></div>
                 <div
@@ -239,17 +281,23 @@ class DashTest extends Component {
                   style={{
                     display: "flex",
                     justifyContent: "center",
-                    alignItems: "", 
-                    marginTop:"1rem"
+                    alignItems: "",
+                    marginTop: "1rem",
                   }}
                 >
-                  Buy Courses      
+                  Buy Courses
                 </div>
               </a>
             </div>
 
-            <div className="ag-courses_item-comp" style={{ marginLeft: ".5rem" }}>
-              <a href="/company/certificates" className="ag-courses-item_link-comp">
+            <div
+              className="ag-courses_item-comp"
+              style={{ marginLeft: ".5rem" }}
+            >
+              <a
+                href="/company/certificates"
+                className="ag-courses-item_link-comp"
+              >
                 <div className="ag-courses-item_bg-comp"></div>
                 <div
                   className="bi bi-person-circle ag-courses-item_date-box-new"
@@ -260,73 +308,75 @@ class DashTest extends Component {
                   style={{
                     display: "flex",
                     justifyContent: "center",
-                    alignItems: "", 
-                    marginTop:"1rem"
+                    alignItems: "",
+                    marginTop: "1rem",
                   }}
                 >
                   Certificates
-                
+                </div>
+              </a>
+            </div>
+          </div>
+          <div
+            className=""
+            style={{
+              padding: ".7rem",
+              display: "flex",
+              justifyContent: "center",
+              flexWrap: "nowrap",
+            }}
+          >
+            <div className="ag-courses_item-comp " style={{ marginLeft: "" }}>
+              <a
+                href="/company/mycourses"
+                className="ag-courses-item_link-comp"
+              >
+                <div className="ag-courses-item_bg-comp"></div>
+                <div
+                  className="bi bi-person-circle ag-courses-item_date-box-new"
+                  style={{ fontSize: "2rem" }}
+                ></div>
+                <div
+                  className="ag-courses-item_title-comp"
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "",
+                    marginTop: "1rem",
+                  }}
+                >
+                  My Courses
                 </div>
               </a>
             </div>
 
+            <div
+              className="ag-courses_item-comp "
+              style={{ marginLeft: "3.5rem" }}
+            >
+              <a href="" className="ag-courses-item_link-comp">
+                <div className="ag-courses-item_bg-comp"></div>
+                <div
+                  className="bi bi-person-circle ag-courses-item_date-box-new"
+                  style={{ fontSize: "2rem" }}
+                ></div>
+                <div
+                  className="ag-courses-item_title-comp"
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "",
+                    marginTop: "1rem",
+                  }}
+                >
+                  My Bundles
+                </div>
+              </a>
             </div>
-            <div className="" style={{padding:'.7rem', display:"flex", justifyContent:"center" , flexWrap:'nowrap'}}>
-           
-           <div className="ag-courses_item-comp " style={{ marginLeft: "" }}>
-                <a href="/company/mycourses" className="ag-courses-item_link-comp">
-                  <div className="ag-courses-item_bg-comp"></div>
-                  <div
-                    className="bi bi-person-circle ag-courses-item_date-box-new"
-                    style={{ fontSize: "2rem" }}
-                  ></div>
-                  <div
-                    className="ag-courses-item_title-comp"
-                    style={{
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "", 
-                      marginTop:"1rem"
-                    }}
-                  >
-                    My Courses
-                  
-                  </div>
-                </a>
-              </div>
-
-              <div className="ag-courses_item-comp " style={{ marginLeft: "3.5rem" }}>
-                <a href="" className="ag-courses-item_link-comp">
-                  <div className="ag-courses-item_bg-comp"></div>
-                  <div
-                    className="bi bi-person-circle ag-courses-item_date-box-new"
-                    style={{ fontSize: "2rem" }}
-                  ></div>
-                  <div
-                    className="ag-courses-item_title-comp"
-                    style={{
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "", 
-                      marginTop:"1rem"
-                    }}
-                  >
-                   My Bundles 
-                  
-                  </div>
-                </a>
-              </div>
-
-              </div>
-         </div>
-
-         
+          </div>
+        </div>
 
         <div className="ag-format-container" style={{ marginTop: "1rem" }}>
-       
-
-     
-
           <div className="dash-shadow">
             <div
               style={{
@@ -334,7 +384,7 @@ class DashTest extends Component {
                 marginTop: "2.5rem",
                 justifyContent: "space-between",
                 alignItems: "center",
-                flexWrap:"nowrap"
+                flexWrap: "nowrap",
               }}
             >
               <h4
@@ -351,7 +401,7 @@ class DashTest extends Component {
                 My Courses
               </h4>
               <div className="p-relative d-inline header__search">
-                <form  action="">
+                <form action="">
                   <input
                     className="d-block mr-25"
                     type="text"
@@ -371,8 +421,6 @@ class DashTest extends Component {
                 </form>
               </div>
             </div>
-
-            
 
             <div className=" row g-3  min-vh-100   ag-format-container">
               <div style={{}}>
@@ -422,9 +470,8 @@ class DashTest extends Component {
 }
 export default DashTest;
 
-
-
- {/* <div>  
+{
+  /* <div>  
                 <Card style={{ width: '18rem', marginTop:'50px'}}>
       <Card.Img variant="top" src="holder.js/100px180?text=Image cap" />
       <Card.Body>
@@ -468,9 +515,8 @@ export default DashTest;
             </div>
   
   
-  */}
-
-
+  */
+}
 
 //   <div  className="ag-courses_box dash-neww">
 //   <div className="ag-courses_item" style={{ marginLeft: ".5rem" }}>
@@ -531,7 +577,6 @@ export default DashTest;
 //           Managers
 //         </div>
 
- 
 //       </div>
 //     </a>
 //   </div>

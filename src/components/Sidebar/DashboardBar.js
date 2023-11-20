@@ -10,14 +10,18 @@ import fetchData from "../../axios";
 // import {imgg} from '../../../public/assets/img'
 
 const arr = [
-  { name: "Dashboard", link: "/company/dashboard", icon: "bi bi-ui-checks-grid" },
+  {
+    name: "Dashboard",
+    link: "/company/dashboard",
+    icon: "bi bi-ui-checks-grid",
+  },
   {
     name: "My Profile",
     link: "/company/myprofile",
     icon: "bi bi-person-circle",
     // subLinks: [{
     //   name: "Profile Information",
-    // }, 
+    // },
     // {
     //   name: "sdfgsg"
     // }]
@@ -54,7 +58,7 @@ function DashboardBar() {
   const router = useRouter();
   const inputRef = useRef(null);
   const [info, setInfo] = useState({});
-  const makeRequest = fetchData()
+  const makeRequest = fetchData();
 
   const handleImage = () => {
     inputRef.current.click();
@@ -65,19 +69,18 @@ function DashboardBar() {
     location.pathname = "/";
   };
 
-  useEffect(()=> {
+  useEffect(() => {
     makeRequest("GET", "/info/data")
-    .then((res) => {
-      setInfo(res.data.response[0]);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-  },[])
+      .then((res) => {
+        setInfo(res.data.response[0]);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   return (
     <div className="" style={{ padding: "", backgroundColor: "#212450" }}>
-
       <div
         style={{
           boxSizing: "border-box !important",
@@ -90,51 +93,79 @@ function DashboardBar() {
           justifyContent: "center",
           padding: "0 1rem",
           height: "20rem",
-          position: 'relative'
+          position: "relative",
           // borderRadius: '10px'
         }}
       >
-        <div onClick={handleImage} style={{
-          background: 'url(/assets/img/course/updat.png)', position: "absolute", top: '0px', left: '0px',
-          backgroundRepeat: 'no-repeat', height: '4rem', width: '4rem', margin: '1rem', cursor: 'pointer'
-        }}></div>
+        <div
+          onClick={handleImage}
+          style={{
+            background: "url(/assets/img/course/updat.png)",
+            position: "absolute",
+            top: "0px",
+            left: "0px",
+            backgroundRepeat: "no-repeat",
+            height: "4rem",
+            width: "4rem",
+            margin: "1rem",
+            cursor: "pointer",
+          }}
+        ></div>
         <div
           style={{
             display: "flex",
             justifyContent: "center",
             marginTop: "1rem",
           }}
-
         >
           <div
             style={{
-              background: 'url(/assets/img/course/bmg.png)', height: '6.5rem', width: '6.5rem',
-              backgroundRepeat: 'no-repeat', display: 'flex', justifyContent: 'center', alignItems: 'center'
+              background: "url(/assets/img/course/bmg.png)",
+              height: "6.5rem",
+              width: "6.5rem",
+              backgroundRepeat: "no-repeat",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
             }}
           >
-<img
+            <img
               style={{
                 width: "88px",
                 height: "88px",
                 marginRight: ".15rem",
                 borderRadius: "88px",
               }}
-              src={info.profile_image ? (typeof info.profile_image === "string" ? typeof info.profile_image : URL.createObjectURL(info.profile_image)) : "/assets/img/testimonial/profilePic.webp"}
+              src={
+                info.profile_image
+                  ? typeof info.profile_image === "string"
+                    ? typeof info.profile_image
+                    : URL.createObjectURL(info.profile_image)
+                  : "/assets/img/testimonial/profilePic.webp"
+              }
               alt=""
             />
           </div>
-          <input type="file" ref={inputRef} onChange={(e) => setInfo({...info,profile_image: e.target.files[0]})} style={{ display: "none" }} />
+          <input
+            type="file"
+            ref={inputRef}
+            onChange={(e) =>
+              setInfo({ ...info, profile_image: e.target.files[0] })
+            }
+            style={{ display: "none" }}
+          />
         </div>
         <div
           className="mt-4 "
           style={{ display: "flex", flexDirection: "column" }}
         >
           <h5 style={{ color: "#212450", textAlign: "center", marginLeft: "" }}>
-          {info.first_name+" "+info.last_name}{" "} <MdVerifiedUser color="green" style={{ height: '1rem' }} />
+            {info.first_name + " " + info.last_name}{" "}
+            <MdVerifiedUser color="green" style={{ height: "1rem" }} />
             <br />
           </h5>
           <h6 style={{ color: "#212450", textAlign: "center", marginLeft: "" }}>
-            Company Name
+            Company
             <br />
           </h6>
         </div>
@@ -145,21 +176,28 @@ function DashboardBar() {
           <>
             <Link href={link.link}>
               <div
-                style={{ margin: ".8rem", borderRadius: '8px ', }}
-                className={`list-group-item  ${router.pathname.startsWith(link.link) ? "activate-sidebar" : ""
-                  }  py-3 px-2`}
+                style={{ margin: ".8rem", borderRadius: "8px " }}
+                className={`list-group-item  ${
+                  router.pathname.startsWith(link.link)
+                    ? "activate-sidebar"
+                    : ""
+                }  py-3 px-2`}
               >
-                <i className={`${link.icon} txttsml me-2 ml-50`} ></i>
-                <span className="txttsml ">{" "}&nbsp;{link.name}</span>
+                <i className={`${link.icon} txttsml me-2 ml-50`}></i>
+                <span className="txttsml "> &nbsp;{link.name}</span>
               </div>
             </Link>
-            {
-              link?.subLinks?.map((item, id) => {
-                return (
-                  <a style={{ width: "4rem", height: '2rem' }} key={id} href={item.name}>{item.name}</a>
-                )
-              })
-            }
+            {link?.subLinks?.map((item, id) => {
+              return (
+                <a
+                  style={{ width: "4rem", height: "2rem" }}
+                  key={id}
+                  href={item.name}
+                >
+                  {item.name}
+                </a>
+              );
+            })}
           </>
         ))}
 
@@ -220,11 +258,12 @@ function DashboardBar() {
         </div></Link>   */}
 
         <div
-          onClick={handleLogout} style={{ margin: ".8rem", borderRadius: '8px' }}
+          onClick={handleLogout}
+          style={{ margin: ".8rem", borderRadius: "8px" }}
           className="list-group-item py-3 px-2 "
         >
           <i className="bi bi-box-arrow-left txttsml me-2 ml-50"></i>
-          <span className="txttsml">{'  '}&nbsp;Logout</span>
+          <span className="txttsml">{"  "}&nbsp;Logout</span>
         </div>
 
         <span className="txttsml" style={{ color: "#212450" }}>
