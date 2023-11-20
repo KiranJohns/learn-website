@@ -117,27 +117,8 @@ class ManageDash extends Component {
 
     return (
       <div className="container " style={{ padding: "10px" }}>
-        {/* <div>  
-                <Card style={{ width: '18rem', marginTop:'50px'}}>
-      <Card.Img variant="top" src="holder.js/100px180?text=Image cap" />
-      <Card.Body>
-        <Card.Title>Card Title</Card.Title>
-        <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </Card.Text>
-      </Card.Body>
-      <ListGroup className="list-group-flush">
-        <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
-        <ListGroup.Item>Vestibulum at eros</ListGroup.Item>
-      </ListGroup>
-      <Card.Body>
-        <Card.Link href="#">Card Link</Card.Link>
-        <Card.Link href="#">Another Link</Card.Link>
-      </Card.Body>
-    </Card>
-    </div>    */}
-        <div
+
+<div
           style={{
             display: "flex",
             alignItems: "center",
@@ -150,7 +131,7 @@ class ManageDash extends Component {
             Hello 'Name'{" "}
             <IoHandLeft style={{ color: "#f1c27d", marginBottom: ".5rem" }} />
           </h3>
-          <div style={{ marginRight: "28rem" }}>
+          <div style={{ }}>
             <h2
               style={{
                 padding: "0",
@@ -158,7 +139,7 @@ class ManageDash extends Component {
                 display: "flex",
                 justifyContent: "center",
                 margin: ".3rem",
-                fontSize: 42,
+              
               }}
             >
               Dashboard
@@ -167,120 +148,148 @@ class ManageDash extends Component {
         </div>
 
         <div className="ag-format-container" style={{ marginTop: "1rem" }}>
-          <div  className="ag-courses_box dash-neww">
-            <div className="ag-courses_item" style={{ marginLeft: ".5rem" }}>
-              <a href="/company/myprofile" className="ag-courses-item_link">
-                <div className="ag-courses-item_bg"></div>
-                <div
-                  className="bi bi-person-circle ag-courses-item_date-box"
-                  style={{ fontSize: "2rem" }}
-                ></div>
-                <div
-                  className="ag-courses-item_title"
-                  style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                  }}
-                >
-                  Buy Bundles
-                </div>
-              </a>
-            </div>
+  
+        <div className="team-shadow">
 
-            <div className="ag-courses_item">
-              <a href="/company/mycourses" className="ag-courses-item_link">
-                <div className="ag-courses-item_bg"></div>
-                <div
-                  className="bi bi-book ag-courses-item_date-box"
-                  style={{ fontSize: "2rem" }}
-                ></div>
-                <div
-                  className="ag-courses-item_title"
-                  style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                  }}
-                >
-                  Buy Course
-                </div>
-              </a>
-            </div>
+<div className="" style={{padding:'.7rem', display:"flex", justifyContent:"space-between"}}>
+ 
+<div className="ag-courses_item-comp " style={{ marginLeft: "" }}>
+    <a href="/bundle/bundle-all" className="ag-courses-item_link-comp">
+      <div className="ag-courses-item_bg-comp"></div>
+      <div
+        className="bi bi-person-circle ag-courses-item_date-box-new"
+        style={{ fontSize: "2rem" }}
+      ></div>
+      <div
+        className="ag-courses-item_title-comp"
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "", 
+          marginTop:"1rem"
+        }}
+      >
+       Buy Bundles
+      
+      </div>
+    </a>
+  </div>
 
-            <div className="ag-courses_item">
-              <a href="/company/certificates" className="ag-courses-item_link">
-                <div className="ag-courses-item_bg"></div>
-                <div
-                  className="bi bi-patch-check-fill ag-courses-item_date-box"
-                  style={{ fontSize: "2rem" }}
-                >
-                  <div
-                    className="ag-courses-item_title"
-                    style={{
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                    }}
-                  >
-                    My Courses
-                  </div>
+  <div className="ag-courses_item-comp" style={{ marginLeft: ".5rem" }}>
+    <a href="/course-all" className="ag-courses-item_link-comp">
+      <div className="ag-courses-item_bg-comp"></div>
+      <div
+        className="bi bi-person-circle ag-courses-item_date-box-new"
+        style={{ fontSize: "2rem" }}
+      ></div>
+      <div
+        className="ag-courses-item_title-comp"
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "", 
+          marginTop:"1rem"
+        }}
+      >
+        Buy Courses
+      
+      </div>
+    </a>
+  </div>
 
-                  {/* Start:
-          <span className="ag-courses-item_date">
-            04.11.202
-          </span> */}
-                </div>
-              </a>
-            </div>
+  <div className="ag-courses_item-comp" style={{ marginLeft: ".5rem" }}>
+    <a href="" className="ag-courses-item_link-comp">
+      <div className="ag-courses-item_bg-comp"></div>
+      <div
+        className="bi bi-person-circle ag-courses-item_date-box-new"
+        style={{ fontSize: "2rem" }}
+      ></div>
+      <div
+        className="ag-courses-item_title-comp"
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "", 
+          marginTop:"1rem"
+        }}
+      >
+       Individuals
+      </div>
+    </a>
+  </div>
 
-            <div className="ag-courses_item" style={{ marginRight: ".5rem" }}>
-              <a href="#" className="ag-courses-item_link">
-                <div className="ag-courses-item_bg"></div>
-                <div
-                  className="bi bi-file-earmark-spreadsheet ag-courses-item_date-box"
-                  style={{ fontSize: "2rem" }}
-                >
-                  <div
-                    className="ag-courses-item_title"
-                    style={{
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                    }}
-                  >
-                    My Bundles
-                  </div>
+  </div>
+  <div className="" style={{padding:'.7rem', display:"flex", justifyContent:"space-between"}}>
+ 
+ <div className="ag-courses_item-comp " style={{ marginLeft: "" }}>
+      <a href="" className="ag-courses-item_link-comp">
+        <div className="ag-courses-item_bg-comp"></div>
+        <div
+          className="bi bi-person-circle ag-courses-item_date-box-new"
+          style={{ fontSize: "2rem" }}
+        ></div>
+        <div
+          className="ag-courses-item_title-comp"
+          style={{
+            display: "flex",
+          justifyContent: "center",
+          alignItems: "", 
+          marginTop:"1rem"
+          }}
+        >
+           Certificates
+        
+        </div>
+      </a>
+    </div>
 
-                  {/* Start:
-          <span className="ag-courses-item_date">
-            04.11.202
-          </span> */}
-                </div>
-              </a>
-            </div>
-          </div>
+    <div className="ag-courses_item-comp " style={{ marginLeft: "" }}>
+      <a href="" className="ag-courses-item_link-comp">
+        <div className="ag-courses-item_bg-comp"></div>
+        <div
+          className="bi bi-person-circle ag-courses-item_date-box-new"
+          style={{ fontSize: "2rem" }}
+        ></div>
+        <div
+          className="ag-courses-item_title-comp"
+          style={{
+            display: "flex",
+          justifyContent: "center",
+          alignItems: "", 
+          marginTop:"1rem"
+          }}
+        >
+          My Courses
+        
+        </div>
+      </a>
+    </div>
 
-         <div style={{padding:'.8rem'}}  className=" mt-4 row "  >
-          <div className="dash-neww">
-          <div className="col p-2 m-2"> 
-             <div className="data-box" style={{padding:'3.4rem', borderRadius:'.6rem',cursor:'none', }}>
-               <div style={{display:"flex", justifyContent:"center"}}>
-                <h2 style={{color:'#fff',cursor:'none'}}>Individuals : 0</h2>
-               </div>
-             </div>
-          </div>
+    <div className="ag-courses_item-comp " style={{ }}>
+      <a href="" className="ag-courses-item_link-comp">
+        <div className="ag-courses-item_bg-comp"></div>
+        <div
+          className="bi bi-person-circle ag-courses-item_date-box-new"
+          style={{ fontSize: "2rem" }}
+        ></div>
+        <div
+          className="ag-courses-item_title-comp"
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "", 
+            marginTop:"1rem"
+          }}
+        >
+          My Bundles
+        
+        </div>
+      </a>
+    </div>
 
-          <div className="col p-2 m-2"> 
-             <div  className="data-box" style={{padding:'3.4rem', borderRadius:'.6rem',cursor:'none',}}>
-               <div style={{display:"flex", justifyContent:"center"}}>
-                <h2 style={{color:'#fff', cursor:'none' }}>Certificates : 0</h2>
-               </div>
-             </div>
-          </div>
-          
-          </div>
-            </div>
+    </div>
+</div>
+       
 
           <div className="dash-shadow">
             <div
@@ -375,3 +384,93 @@ class ManageDash extends Component {
   }
 }
 export default ManageDash;
+
+
+
+// <div  className="ag-courses_box dash-neww">
+// <div className="ag-courses_item" style={{ marginLeft: ".5rem" }}>
+//   <a href="/company/myprofile" className="ag-courses-item_link">
+//     <div className="ag-courses-item_bg"></div>
+//     <div
+//       className="bi bi-person-circle ag-courses-item_date-box"
+//       style={{ fontSize: "2rem" }}
+//     ></div>
+//     <div
+//       className="ag-courses-item_title"
+//       style={{
+//         display: "flex",
+//         justifyContent: "center",
+//         alignItems: "center",
+//       }}
+//     >
+//       Buy Bundles
+//     </div>
+//   </a>
+// </div>
+
+// <div className="ag-courses_item">
+//   <a href="/company/mycourses" className="ag-courses-item_link">
+//     <div className="ag-courses-item_bg"></div>
+//     <div
+//       className="bi bi-book ag-courses-item_date-box"
+//       style={{ fontSize: "2rem" }}
+//     ></div>
+//     <div
+//       className="ag-courses-item_title"
+//       style={{
+//         display: "flex",
+//         justifyContent: "center",
+//         alignItems: "center",
+//       }}
+//     >
+//       Buy Course
+//     </div>
+//   </a>
+// </div>
+
+// <div className="ag-courses_item">
+//   <a href="/company/certificates" className="ag-courses-item_link">
+//     <div className="ag-courses-item_bg"></div>
+//     <div
+//       className="bi bi-patch-check-fill ag-courses-item_date-box"
+//       style={{ fontSize: "2rem" }}
+//     >
+//       <div
+//         className="ag-courses-item_title"
+//         style={{
+//           display: "flex",
+//           justifyContent: "center",
+//           alignItems: "center",
+//         }}
+//       >
+//         My Courses
+//       </div>
+
+
+//     </div>
+//   </a>
+// </div>
+
+// <div className="ag-courses_item" style={{ marginRight: ".5rem" }}>
+//   <a href="#" className="ag-courses-item_link">
+//     <div className="ag-courses-item_bg"></div>
+//     <div
+//       className="bi bi-file-earmark-spreadsheet ag-courses-item_date-box"
+//       style={{ fontSize: "2rem" }}
+//     >
+//       <div
+//         className="ag-courses-item_title"
+//         style={{
+//           display: "flex",
+//           justifyContent: "center",
+//           alignItems: "center",
+//         }}
+//       >
+//         My Bundles
+//       </div>
+
+
+//     </div>
+//   </a>
+// </div>
+// </div>

@@ -17,21 +17,21 @@ import { useEffect } from "react";
 import Sidebar from "../../components/Sidebar/SampleSidebar";
 
 function dashboard() {
-  const [logedIn, setlogedIn] = useState(() => {
-    return getUserType();
-  });
-  let routes = ["manager"]
+  // const [logedIn, setlogedIn] = useState(() => {
+  //   return getUserType();
+  // });
+  // let routes = ["manager"]
 
-  const router = useRouter();
+  // const router = useRouter();
 
-  useEffect(() => {
-    if (!routes.includes(logedIn)) {
-      router.push("/sign-in");
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (!routes.includes(logedIn)) {
+  //     router.push("/sign-in");
+  //   }
+  // }, []);
   return (
     <>
-      {routes.includes(logedIn) && (
+      {/* {routes.includes(logedIn) && ( */}
         <React.Fragment>
           <main
             className="p-1"
@@ -60,7 +60,7 @@ function dashboard() {
             </div>
           </main>
         </React.Fragment>
-      )}
+      {/* )} */}
     </>
   );
 }

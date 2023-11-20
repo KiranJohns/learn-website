@@ -7,6 +7,7 @@ import ListGroup from "react-bootstrap/ListGroup";
 import fetchData, { getUserType } from "../../axios";
 import DataTable from "react-data-table-component";
 import { useRouter } from "next/router";
+import { IoHandLeft } from "react-icons/io5";
 import { decryptData} from "../../utils/crtyper";
 
 const customStyles = {
@@ -157,19 +158,34 @@ function DashIndividual() {
     <div className="container" style={{ padding: "10px" }}>
       {/* Your JSX content here */}
       <div className="ag-format-container">
-        <h2
+      <div
           style={{
-            padding: "1.5rem",
-            color: "#212450",
             display: "flex",
-            justifyContent: "flex-start",
-            justifyContent: "center",
-            marginTop: "20px",
-            fontSize: 38,
+            alignItems: "center",
+            justifyContent: "space-between",
           }}
         >
-          Dashboard
-        </h2>
+          <h3
+            style={{ color: "#212450", marginTop: ".3rem", display: "inline" }}
+          >
+            Hello 'Name'{" "}
+            <IoHandLeft style={{ color: "#f1c27d", marginBottom: ".5rem" }} />
+          </h3>
+          <div style={{ }}>
+            <h2
+              style={{
+                padding: "0",
+                color: "#212450",
+                display: "flex",
+                justifyContent: "center",
+                margin: ".3rem",
+              
+              }}
+            >
+              Dashboard
+            </h2>
+          </div>
+        </div>
         <div className="team-shadow">
 
           <div className="" style={{padding:'.7rem', display:"flex", justifyContent:"space-between"}}>
@@ -186,7 +202,8 @@ function DashIndividual() {
                   style={{
                     display: "flex",
                     justifyContent: "center",
-                    alignItems: "center",
+                    alignItems: "", 
+                    marginTop:"1rem"
                   }}
                 >
                  Buy Bundles
@@ -207,7 +224,8 @@ function DashIndividual() {
                   style={{
                     display: "flex",
                     justifyContent: "center",
-                    alignItems: "center",
+                    alignItems: "", 
+                    marginTop:"1rem"
                   }}
                 >
                   Buy Courses
@@ -228,7 +246,8 @@ function DashIndividual() {
                   style={{
                     display: "flex",
                     justifyContent: "center",
-                    alignItems: "center",
+                    alignItems: "", 
+                    marginTop:"1rem"
                   }}
                 >
                  My Certificates
@@ -238,7 +257,7 @@ function DashIndividual() {
             </div>
 
             </div>
-            <div className="" style={{padding:'.7rem', display:"flex", justifyContent:"space-around" , flexWrap:'nowrap'}}>
+            <div className="" style={{padding:'.7rem', display:"flex", justifyContent:"center" , flexWrap:'nowrap'}}>
            
            <div className="ag-courses_item-comp " style={{ marginLeft: "" }}>
                 <a href="" className="ag-courses-item_link-comp">
@@ -251,8 +270,9 @@ function DashIndividual() {
                     className="ag-courses-item_title-comp"
                     style={{
                       display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
+                    justifyContent: "center",
+                    alignItems: "", 
+                    marginTop:"1rem"
                     }}
                   >
                     My Courses
@@ -261,7 +281,7 @@ function DashIndividual() {
                 </a>
               </div>
 
-              <div className="ag-courses_item-comp " style={{ marginLeft: "" }}>
+              <div className="ag-courses_item-comp " style={{ marginLeft: "3.2rem" }}>
                 <a href="" className="ag-courses-item_link-comp">
                   <div className="ag-courses-item_bg-comp"></div>
                   <div
@@ -273,7 +293,8 @@ function DashIndividual() {
                     style={{
                       display: "flex",
                       justifyContent: "center",
-                      alignItems: "center",
+                      alignItems: "", 
+                      marginTop:"1rem"
                     }}
                   >
                     My Bundles

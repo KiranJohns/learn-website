@@ -53,6 +53,8 @@ class DashTest extends Component {
     this.getData();
   }
 
+  
+
   getData = () => {
     try {
       const makeRequest = fetchData();
@@ -134,14 +136,14 @@ class DashTest extends Component {
           </h3>
           <div style={{ }}>
             <h2
-              // style={{
-              //   padding: "0",
-              //   color: "#212450",
-              //   display: "flex",
-              //   justifyContent: "center",
-              //   margin: ".3rem",
-              //   fontSize: 42,
-              // }}
+              style={{
+                padding: "0",
+                color: "#212450",
+                display: "flex",
+                justifyContent: "center",
+                margin: ".3rem",
+             
+              }}
             >
               Dashboard
             </h2>
@@ -199,7 +201,7 @@ class DashTest extends Component {
          </div>
 
 
-         <div className="team-shadow">
+         <div style={{marginTop:'2.5rem'}} className="team-shadow ">
 
           <div className="" style={{padding:'.7rem', display:"flex", justifyContent:"space-between"}}>
            
@@ -215,7 +217,8 @@ class DashTest extends Component {
                   style={{
                     display: "flex",
                     justifyContent: "center",
-                    alignItems: "center",
+                    alignItems: "", 
+                    marginTop:"1rem"
                   }}
                 >
                  Buy Bundles
@@ -236,11 +239,11 @@ class DashTest extends Component {
                   style={{
                     display: "flex",
                     justifyContent: "center",
-                    alignItems: "center",
+                    alignItems: "", 
+                    marginTop:"1rem"
                   }}
                 >
-                  Buy Courses
-                
+                  Buy Courses      
                 </div>
               </a>
             </div>
@@ -257,7 +260,8 @@ class DashTest extends Component {
                   style={{
                     display: "flex",
                     justifyContent: "center",
-                    alignItems: "center",
+                    alignItems: "", 
+                    marginTop:"1rem"
                   }}
                 >
                   Certificates
@@ -267,7 +271,7 @@ class DashTest extends Component {
             </div>
 
             </div>
-            <div className="" style={{padding:'.7rem', display:"flex", justifyContent:"space-around" , flexWrap:'nowrap'}}>
+            <div className="" style={{padding:'.7rem', display:"flex", justifyContent:"center" , flexWrap:'nowrap'}}>
            
            <div className="ag-courses_item-comp " style={{ marginLeft: "" }}>
                 <a href="/company/mycourses" className="ag-courses-item_link-comp">
@@ -281,7 +285,8 @@ class DashTest extends Component {
                     style={{
                       display: "flex",
                       justifyContent: "center",
-                      alignItems: "center",
+                      alignItems: "", 
+                      marginTop:"1rem"
                     }}
                   >
                     My Courses
@@ -290,7 +295,7 @@ class DashTest extends Component {
                 </a>
               </div>
 
-              <div className="ag-courses_item-comp " style={{ marginLeft: "" }}>
+              <div className="ag-courses_item-comp " style={{ marginLeft: "3.5rem" }}>
                 <a href="" className="ag-courses-item_link-comp">
                   <div className="ag-courses-item_bg-comp"></div>
                   <div
@@ -302,7 +307,8 @@ class DashTest extends Component {
                     style={{
                       display: "flex",
                       justifyContent: "center",
-                      alignItems: "center",
+                      alignItems: "", 
+                      marginTop:"1rem"
                     }}
                   >
                    My Bundles 
