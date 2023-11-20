@@ -121,15 +121,15 @@ function NewInDash() {
             <img
               style={{
                 width: "88px",
+                height: "88px",
                 marginRight: ".15rem",
-
                 borderRadius: "88px",
               }}
-              src="/assets/img/testimonial/profilePic.webp"
+              src={info.profile_image ? (typeof info.profile_image === "string" ? typeof info.profile_image : URL.createObjectURL(info.profile_image)) : "/assets/img/testimonial/profilePic.webp"}
               alt=""
             />
           </div>
-          <input type="file" ref={inputRef} style={{ display: "none" }} />
+          <input type="file" ref={inputRef} onChange={(e) => setInfo({...info,profile_image: e.target.files[0]})} style={{ display: "none" }} />
         </div>
         <div
           className="mt-4 "

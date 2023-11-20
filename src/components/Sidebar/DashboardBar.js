@@ -1,10 +1,11 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import { BiSolidDashboard } from "react-icons/bs";
 import { NavLink } from "react-router-dom";
 import { useRouter } from "next/router";
 import { MdVerifiedUser } from "react-icons/md";
+import fetchData from "../../axios";
 
 // import {imgg} from '../../../public/assets/img'
 
@@ -52,6 +53,8 @@ const arr = [
 function DashboardBar() {
   const router = useRouter();
   const inputRef = useRef(null);
+  const [info, setInfo] = useState({});
+  const makeRequest = fetchData()
 
   const handleImage = () => {
     inputRef.current.click();
@@ -61,6 +64,16 @@ function DashboardBar() {
     localStorage.removeItem("learnforcare_access");
     location.pathname = "/";
   };
+
+  useEffect(()=> {
+    makeRequest("GET", "/info/data")
+    .then((res) => {
+      setInfo(res.data.response[0]);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  },[])
 
   return (
     <div className="" style={{ padding: "", backgroundColor: "#212450" }}>
@@ -99,26 +112,25 @@ function DashboardBar() {
               backgroundRepeat: 'no-repeat', display: 'flex', justifyContent: 'center', alignItems: 'center'
             }}
           >
-            <img
+<img
               style={{
                 width: "88px",
-                marginRight: '.15rem',
-
+                height: "88px",
+                marginRight: ".15rem",
                 borderRadius: "88px",
-
               }}
-              src="/assets/img/testimonial/profilePic.webp"
+              src={info.profile_image ? (typeof info.profile_image === "string" ? typeof info.profile_image : URL.createObjectURL(info.profile_image)) : "/assets/img/testimonial/profilePic.webp"}
               alt=""
             />
           </div>
-          <input type="file" ref={inputRef} style={{ display: "none" }} />
+          <input type="file" ref={inputRef} onChange={(e) => setInfo({...info,profile_image: e.target.files[0]})} style={{ display: "none" }} />
         </div>
         <div
           className="mt-4 "
           style={{ display: "flex", flexDirection: "column" }}
         >
           <h5 style={{ color: "#212450", textAlign: "center", marginLeft: "" }}>
-            User Name <MdVerifiedUser color="green" style={{ height: '1rem' }} />
+          {info.first_name+" "+info.last_name}{" "} <MdVerifiedUser color="green" style={{ height: '1rem' }} />
             <br />
           </h5>
           <h6 style={{ color: "#212450", textAlign: "center", marginLeft: "" }}>
