@@ -20,7 +20,7 @@ function dashboard() {
   const [logedIn, setlogedIn] = useState(() => {
     return getUserType();
   });
-  let routes = ["individual", "sub_user"]
+  let routes = ["manager"]
 
   const router = useRouter();
 

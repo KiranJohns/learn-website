@@ -17,7 +17,7 @@ function dummy() {
   const [logedIn, setlogedIn] = useState(() => {
     return getUserType();
   });
-  let routes = ["individual", "sub_user"]
+  let routes = ["individual"]
 
   const router = useRouter();
 
@@ -57,7 +57,7 @@ function dummy() {
             </div>
           </main>
         </React.Fragment>
-      )}
+       )} 
     </>
   );
 }

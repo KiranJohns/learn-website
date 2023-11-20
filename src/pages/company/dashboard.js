@@ -12,6 +12,8 @@ import { useState } from "react";
 import { getToken, getUserType } from "../../axios";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
+import SampleSidebar from "../../components/Sidebar/SampleSidebar";
+
 
 function dashboard() {
   const [logedIn, setlogedIn] = useState(() => {

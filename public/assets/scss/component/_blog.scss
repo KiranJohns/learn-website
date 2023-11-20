@@ -668,3 +668,115 @@
         }
     }
 }
+
+.ag-format-container-new {
+    
+    margin: 0 auto;
+  }
+  
+  .ag-courses_box-new {
+  display: flex;
+  -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .ag-courses_item-new {
+   width: 30rem;
+    max-height: 8rem;
+    min-height: 5rem;
+    margin:  15px 0px;
+    overflow: hidden;
+    border-radius: 28px;    
+}
+
+
+  .ag-courses-item_link-new {
+    display: block;
+    padding: 30px 20px;
+    background-color: #212a50;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .ag-courses-item_link-new:hover,
+  .ag-courses-item_link-new:hover .ag-courses-item_date-new {
+    text-decoration: none;
+    color: #FFF;
+  }
+
+  .ag-courses-item_link-new:hover .ag-courses-item_bg-new {
+    -webkit-transform: scale(10);
+    -ms-transform: scale(10);
+    transform: scale(10);
+  }
+
+  .ag-courses-item_title-new {
+   
+    
+  
+    overflow: hidden;
+  
+    font-weight: bold;
+    font-size: 30px;
+    color: #FFF;
+  
+    z-index: 2;
+    position: relative;
+  }
+
+  .ag-courses-item_date-box-new {
+    font-size: 18px;
+    color: #FFF;
+  
+    z-index: 2;
+    position: relative;
+  }
+
+  .ag-courses-item_date-new {
+    font-weight: bold;
+    color: #f9b234;
+  
+    -webkit-transition: color .5s ease;
+    -o-transition: color .5s ease;
+    transition: color .5s ease
+  }
+
+  .ag-courses-item_bg-new {
+    height: 128px;
+    width: 128px;
+    background-color: #e07051;
+  
+    z-index: 1;
+    position: absolute;
+    top: -75px;
+    right: -75px;
+  
+    border-radius: 50%;
+  
+    -webkit-transition: all .5s ease;
+    -o-transition: all .5s ease;
+    transition: all .5s ease;
+  }
+  
+  .ag-courses_item-new:nth-child(2n) .ag-courses-item_bg-new {
+    background-color: #5a9676;
+  }
+  .ag-courses_item-new:nth-child(3n) .ag-courses-item_bg-new {
+    background-color: #e04c4c;
+  }
+  .ag-courses_item-new:nth-child(4n) .ag-courses-item_bg-new {
+    background-color: #e05fa6;
+  }
+  .ag-courses_item-new:nth-child(5n) .ag-courses-item_bg-new {
+    background-color: #e07051;
+  }
+  .ag-courses_item-new:nth-child(6n) .ag-courses-item_bg-new {
+    background-color: #212a50;
+  }
+
+  .team-shadow{
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: .6rem;
+   
+  }
