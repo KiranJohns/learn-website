@@ -15,6 +15,7 @@ class DashCreate extends Component {
         country: "",
         password: "",
         phone: "",
+        user_type: "",
       },
     };
 
@@ -36,13 +37,21 @@ class DashCreate extends Component {
 
   handleSubmit(e) {
     e.persist();
-    console.log(this.state.userData);
-    this.mackRequest("POST","/info/create-sub-user",{...this.state.userData,phone: Number(this.state.userData.phone)}).then(res => {
-      toast.success("user created")
-    }).catch(err => {
-      // console.log(err.data);
-      toast.error(err.data.data.response)
-    })
+    if(this.state.userData.user_type === "individual") {
+      this.mackRequest("POST","/info/create-manager-individual",{...this.state.userData,phone: Number(this.state.userData.phone)}).then(res => {
+        toast.success("user created")
+      }).catch(err => {
+        // console.log(err.data);
+        toast.error(err.data)
+      })
+    } else if (this.state.userData.user_type === "manager") {
+      this.mackRequest("POST","/info/create-manager",{...this.state.userData,phone: Number(this.state.userData.phone)}).then(res => {
+        toast.success("manager created")
+      }).catch(err => {
+        console.log(err.data);
+        toast.error(err.data.data.response)
+      })
+    }
   }
 
   render() {
@@ -120,7 +129,7 @@ class DashCreate extends Component {
 
               <div class="form-group p-2 mb-4">
                 <label className="text-black" for="FormControlInput1">
-                  Type of user
+                  Country
                 </label>
                 <select
                   onChange={this.handleOnchange}
@@ -129,7 +138,7 @@ class DashCreate extends Component {
                   name="country"
                 >
                   <option>Select</option>
-                  <option value="UK">UK</option>
+                  <option value="United Kingdom">United Kingdom</option>
                 </select>
               </div>
 
@@ -184,6 +193,7 @@ class DashCreate extends Component {
                   onChange={this.handleOnchange}
                   className="form-control border border-black"
                   id="exampleFormControlSelect1"
+                  name="user_type"
                 >
                   <option>Select</option>
                   <option value="individual">individual</option>
