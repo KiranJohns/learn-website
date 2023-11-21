@@ -19,22 +19,22 @@ const arr = [
     name: "My Profile",
     link: "/company/myprofile",
     icon: "bi bi-person-circle",
-   display: false,
-    show:function (link) { 
-      if(localStorage.getItem('openSublinks')== link){
-        localStorage.removeItem('openSublinks')
-      }
-      else{
-        localStorage.removeItem('openSublinks')
-        localStorage.setItem('openSublinks',link);
-      }
-    },
-    subLinks: [{
-      name: "Profile Information",
-    },
-    {
-      name: "New Profile"
-    }]
+  //  display: false,
+  //   show:function (link) { 
+  //     if(localStorage.getItem('openSublinks')== link){
+  //       localStorage.removeItem('openSublinks')
+  //     }
+  //     else{
+  //       localStorage.removeItem('openSublinks')
+  //       localStorage.setItem('openSublinks',link);
+  //     }
+  //   },
+  //   subLinks: [{
+  //     name: "Profile Information",
+  //   },
+  //   {
+  //     name: "New Profile"
+  //   }]
   },
   { name: "My Course", link: "/company/mycourses", icon: "bi bi-book" },
   {
