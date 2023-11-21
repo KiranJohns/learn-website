@@ -48,7 +48,12 @@ function CourseCard({ item }) {
 
       if (cartItem) {
         console.log(cartItem);
-        updateCount(Number(cartItem.id), Number(item.id), Number(fakeCount),cartItem.item_type);
+        updateCount(
+          Number(cartItem.id),
+          Number(item.id),
+          Number(fakeCount),
+          cartItem.item_type
+        );
       } else {
         addToCart(item.id);
       }
@@ -57,7 +62,9 @@ function CourseCard({ item }) {
 
   function addToCart(id) {
     console.log(fakeCount, id);
-    makeRequest("POST", "/cart/add", { course: [{ count: fakeCount, id: id }] })
+    const data = new FormData();
+    data.append("course", JSON.stringify([{ count: fakeCount, id: id }]));
+    makeRequest("POST", "/cart/add", data)
       .then((res) => {
         getCartItem();
         setFakeCount(0);
@@ -77,13 +84,13 @@ function CourseCard({ item }) {
       });
   }
 
-  function updateCount(id, courseId, count,type) {
-    makeRequest("PATCH", "/cart/update-cart-count", {
-      id,
-      type,
-      count,
-      courseId,
-    })
+  function updateCount(id, courseId, count, type) {
+    const data = new FormData();
+    data.append("id", id);
+    data.append("type", type);
+    data.append("count", count);
+    data.append("courseId", courseId);
+    makeRequest("PATCH", "/cart/update-cart-count", data)
       .then((res) => {
         setFakeCount(0);
         getCartItem();
