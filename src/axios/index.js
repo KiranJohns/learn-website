@@ -17,9 +17,9 @@ export default function fetchData() {
         axios({
           method,
           url: `${BASEURL}${url}`,
-          data: JSON.stringify(data),
+          data: data,
           headers: {
-            "Content-Type": "application/json",
+            "Content-Type": "multipart/form-data",
             Authorization: `Bearer ${token}`,
           },
           withCredentials: true,

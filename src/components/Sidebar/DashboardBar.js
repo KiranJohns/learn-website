@@ -73,11 +73,28 @@ function DashboardBar() {
     makeRequest("GET", "/info/data")
       .then((res) => {
         setInfo(res.data.response[0]);
+        console.log(res.data.response[0]);
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
+
+  function handleProfileChange(e) {
+    const file = new FormData();
+    console.log(e.target.files[0]);
+    setInfo({ ...info, profile_image: e.target.files[0] });
+    file.append("image", e.target.files[0]);
+    setTimeout(() => {
+      makeRequest("POST", "/info/set-profile-image", file)
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }, 3000);
+  }
 
   return (
     <div className="" style={{ padding: "", backgroundColor: "#212450" }}>
@@ -139,7 +156,7 @@ function DashboardBar() {
               src={
                 info.profile_image
                   ? typeof info.profile_image === "string"
-                    ? typeof info.profile_image
+                    ? info.profile_image
                     : URL.createObjectURL(info.profile_image)
                   : "/assets/img/testimonial/profilePic.webp"
               }
@@ -149,9 +166,7 @@ function DashboardBar() {
           <input
             type="file"
             ref={inputRef}
-            onChange={(e) =>
-              setInfo({ ...info, profile_image: e.target.files[0] })
-            }
+            onChange={handleProfileChange}
             style={{ display: "none" }}
           />
         </div>
