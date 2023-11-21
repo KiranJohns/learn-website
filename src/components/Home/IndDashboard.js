@@ -183,7 +183,7 @@ function DashIndividual() {
             Hello {info.first_name+" "+info.last_name}{" "}
             <IoHandLeft style={{ color: "#f1c27d", marginBottom: ".5rem" }} />
           </h3>
-          <div style={{}}>
+          <div className="headd-element" style={{}}>
             <h2
               style={{
                 padding: "0",
@@ -197,7 +197,7 @@ function DashIndividual() {
             </h2>
           </div>
         </div>
-        <div className="team-shadow">
+        <div className="team-shadow container"  style={{ display:"flex", flexDirection:'column' }}>
           <div
             className=""
             style={{
@@ -213,11 +213,11 @@ function DashIndividual() {
               >
                 <div className="ag-courses-item_bg-comp"></div>
                 <div
-                  className="bi bi-person-circle ag-courses-item_date-box-new"
+                  className="dash-box-h bi bi-person-circle ag-courses-item_date-box-new "
                   style={{ fontSize: "2rem" }}
                 ></div>
                 <div
-                  className="ag-courses-item_title-comp"
+                  className="ag-courses-item_title-comp dash-box-h"
                   style={{
                     display: "flex",
                     justifyContent: "center",
@@ -241,12 +241,13 @@ function DashIndividual() {
                   style={{ fontSize: "2rem" }}
                 ></div>
                 <div
-                  className="ag-courses-item_title-comp"
+                  className="ag-courses-item_title-comp dash-box-h"
                   style={{
                     display: "flex",
                     justifyContent: "center",
                     alignItems: "",
                     marginTop: "1rem",
+                    
                   }}
                 >
                   Buy Courses
@@ -265,15 +266,16 @@ function DashIndividual() {
                 <div className="ag-courses-item_bg-comp"></div>
                 <div
                   className="bi bi-person-circle ag-courses-item_date-box-new"
-                  style={{ fontSize: "2rem" }}
+                  style={{ fontSize: "1.8rem" }}
                 ></div>
                 <div
-                  className="ag-courses-item_title-comp"
+                  className="ag-courses-item_title-comp dash-box-h"
                   style={{
                     display: "flex",
                     justifyContent: "center",
                     alignItems: "",
                     marginTop: "1rem",
+                    zIndex:"999"
                   }}
                 >
                   My Certificates
@@ -295,10 +297,10 @@ function DashIndividual() {
                 <div className="ag-courses-item_bg-comp"></div>
                 <div
                   className="bi bi-person-circle ag-courses-item_date-box-new"
-                  style={{ fontSize: "2rem" }}
+                  style={{ fontSize: "1.8rem"  }}
                 ></div>
                 <div
-                  className="ag-courses-item_title-comp"
+                  className="ag-courses-item_title-comp dash-box-h"
                   style={{
                     display: "flex",
                     justifyContent: "center",
@@ -319,10 +321,10 @@ function DashIndividual() {
                 <div className="ag-courses-item_bg-comp"></div>
                 <div
                   className="bi bi-person-circle ag-courses-item_date-box-new"
-                  style={{ fontSize: "2rem" }}
+                  style={{ fontSize: "1.8rem"  }}
                 ></div>
                 <div
-                  className="ag-courses-item_title-comp"
+                  className="ag-courses-item_title-comp dash-box-h"
                   style={{
                     display: "flex",
                     justifyContent: "center",
@@ -375,7 +377,7 @@ function DashIndividual() {
           </div>
           
         </div> */}
-        <div className="dash-shadow">
+        <div className="dash-shadow ">
           <div className=" row g-3  min-vh-100  d-flex justify-content-center mt-30">
             <div style={{}}>
               <div
@@ -395,8 +397,8 @@ function DashIndividual() {
                 >
                   Courses to do
                 </h4>
-                <div style={{}} className="p-relative d-inline header__search">
-                  <form action="">
+                <div style={{}} className="p-relative d-inline header__search ">
+                  <form className="your-element" action="">
                     <input
                       style={{ background: "#edeef3" }}
                       className="d-block  "

@@ -154,7 +154,7 @@ class DashTest extends Component {
           </div>
         </div>
 
-        <div className="team-shadow">
+        <div className="team-shadow ">
           <div style={{ display: "flex", justifyContent: "center" }}>
             <h3 style={{ marginTop: ".6rem", color:"#212a50" }}>My Team</h3>
           </div>
@@ -402,7 +402,7 @@ class DashTest extends Component {
                 My Courses
               </h4>
               <div className="p-relative d-inline header__search">
-                <form action="">
+                <form className="your-element" action="">
                   <input
                     className="d-block mr-25"
                     type="text"

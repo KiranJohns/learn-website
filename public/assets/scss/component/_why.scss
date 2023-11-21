@@ -92,3 +92,33 @@
     }
 }
 
+.dash-box-h{
+    font-size: 2rem;
+}
+
+@media screen and (max-width: 768px) {
+    .your-element {
+      display: none;
+    }
+    .dash-box-h{
+        font-size: 1.2rem;
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    .headd-element {
+      display: none;
+    }
+
+    .dash-box-h{
+        font-size: 1rem;
+    }
+  }
+
+  @media screen and (max-width: 520px) {
+
+
+    .dash-box-h{
+        font-size: .8rem;
+    }
+  }

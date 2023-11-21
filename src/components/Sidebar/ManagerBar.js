@@ -9,39 +9,39 @@ import { MdVerifiedUser } from "react-icons/md";
 // import {imgg} from '../../../public/assets/img'
 
 const arr = [
-  { name: "Dashboard", link: "/company/dashboard", icon: "bi bi-ui-checks-grid" },
-//   {
-//     name: "My Profile",
-//     link: "/company/myprofile",
-//     icon: "bi bi-person-circle",
-//   },
-//   { name: "My Course", link: "/company/mycourses", icon: "bi bi-book" },
-//   {
-//     name: "Certificates",
-//     link: "/company/certificates",
-//     icon: "bi bi-patch-check-fill",
-//   },
-//   {
-//     name: "All Courses",
-//     link: "/company/availablecourses",
-//     icon: "bi bi-card-checklist",
-//   },
-//   {
-//     name: "Create User",
-//     link: "/company/createuser",
-//     icon: "bi bi-person-check ",
-//   },
-//   { name: "Show user", link: "/company/showuser", icon: "bi bi-person-check" },
-//   {
-//     name: " Archive User",
-//     link: "/company/archive",
-//     icon: "bi bi-person-fill-slash",
-//   },
-//   {
-//     name: "Assign Course",
-//     link: "/company/assigncourse",
-//     icon: "bi bi-person-check-fill",
-//   },
+  { name: "Dashboard", link: "/manager/dashboard", icon: "bi bi-ui-checks-grid" },
+  {
+    name: "My Profile",
+    link: "/manager/myprofile",
+    icon: "bi bi-person-circle",
+  },
+  // { name: "My Course", link: "/company/mycourses", icon: "bi bi-book" },
+  // {
+  //   name: "Certificates",
+  //   link: "/company/certificates",
+  //   icon: "bi bi-patch-check-fill",
+  // },
+  // {
+  //   name: "All Courses",
+  //   link: "/company/availablecourses",
+  //   icon: "bi bi-card-checklist",
+  // },
+  // {
+  //   name: "Create User",
+  //   link: "/company/createuser",
+  //   icon: "bi bi-person-check ",
+  // },
+  // { name: "Show user", link: "/company/showuser", icon: "bi bi-person-check" },
+  // {
+  //   name: " Archive User",
+  //   link: "/company/archive",
+  //   icon: "bi bi-person-fill-slash",
+  // },
+  // {
+  //   name: "Assign Course",
+  //   link: "/company/assigncourse",
+  //   icon: "bi bi-person-check-fill",
+  // },
 ];
 function ManageBar() {
   const router = useRouter();
