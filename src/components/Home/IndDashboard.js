@@ -292,15 +292,15 @@ function DashIndividual() {
               flexWrap: "nowrap",
             }}
           >
-            <div className="ag-courses_item-comp " style={{ marginLeft: "" }}>
-              <a href="" className="ag-courses-item_link-comp">
-                <div className="ag-courses-item_bg-comp"></div>
+            <div className="ag-courses_item-sec " style={{ marginLeft: "" }}>
+              <a href="" className="ag-courses-item_link-sec">
+                <div className="ag-courses-item_bg-sec"></div>
                 <div
                   className="bi bi-person-circle ag-courses-item_date-box-new"
                   style={{ fontSize: "1.8rem"  }}
                 ></div>
                 <div
-                  className="ag-courses-item_title-comp dash-box-h"
+                  className="ag-courses-item_title-sec dash-box-h"
                   style={{
                     display: "flex",
                     justifyContent: "center",
@@ -314,17 +314,17 @@ function DashIndividual() {
             </div>
 
             <div
-              className="ag-courses_item-comp "
+              className="ag-courses_item-sec "
               style={{ marginLeft: "3.2rem" }}
             >
-              <a href="" className="ag-courses-item_link-comp">
-                <div className="ag-courses-item_bg-comp"></div>
+              <a href="" className="ag-courses-item_link-sec">
+                <div className="ag-courses-item_bg-sec"></div>
                 <div
                   className="bi bi-person-circle ag-courses-item_date-box-new"
                   style={{ fontSize: "1.8rem"  }}
                 ></div>
                 <div
-                  className="ag-courses-item_title-comp dash-box-h"
+                  className="ag-courses-item_title-sec dash-box-h"
                   style={{
                     display: "flex",
                     justifyContent: "center",

@@ -19,12 +19,22 @@ const arr = [
     name: "My Profile",
     link: "/company/myprofile",
     icon: "bi bi-person-circle",
-    // subLinks: [{
-    //   name: "Profile Information",
-    // },
-    // {
-    //   name: "sdfgsg"
-    // }]
+   display: false,
+    show:function (link) { 
+      if(localStorage.getItem('openSublinks')== link){
+        localStorage.removeItem('openSublinks')
+      }
+      else{
+        localStorage.removeItem('openSublinks')
+        localStorage.setItem('openSublinks',link);
+      }
+    },
+    subLinks: [{
+      name: "Profile Information",
+    },
+    {
+      name: "New Profile"
+    }]
   },
   { name: "My Course", link: "/company/mycourses", icon: "bi bi-book" },
   {
@@ -175,7 +185,11 @@ function DashboardBar() {
         {arr.map((link) => (
           <>
             <Link href={link.link}>
-              <div
+              <div onClick={()=>{
+                if(typeof link?.show === 'function'){
+                  link.show(link.link)
+                }
+               }}
                 style={{ margin: ".8rem", borderRadius: "8px " }}
                 className={`list-group-item  ${
                   router.pathname.startsWith(link.link)
@@ -187,21 +201,46 @@ function DashboardBar() {
                 <span className="txttsml "> &nbsp;{link.name}</span>
               </div>
             </Link>
-            {link?.subLinks?.map((item, id) => {
+            { localStorage.getItem('openSublinks') == link.link && link?.subLinks?.map((item, id) => {
               return (
-                <a
+                <div className=" text-nowrap" style={{ overflow: "hidden", textAlign:'center' }}>
+                <a className="list-group-item ml-2"
                   style={{ width: "4rem", height: "2rem" }}
                   key={id}
                   href={item.name}
                 >
                   {item.name}
                 </a>
+                </div>
+            
               );
             })}
           </>
         ))}
 
-        {/* <Link href="/company/myprofile"><div className='list-group-item py-3 px-2 text-center'>
+    
+
+        <div
+          onClick={handleLogout}
+          style={{ margin: ".8rem", borderRadius: "8px" }}
+          className="list-group-item py-3 px-2 "
+        >
+          <i className="bi bi-box-arrow-left txttsml me-2 ml-50"></i>
+          <span className="txttsml">{"  "}&nbsp;Logout</span>
+        </div>
+
+        <span className="txttsml" style={{ color: "#212450" }}>
+          {" "}
+        </span>
+      </div>
+    </div>
+  );
+}
+
+export default DashboardBar;
+
+
+    {/* <Link href="/company/myprofile"><div className='list-group-item py-3 px-2 text-center'>
           <i className='bi bi-person-circle txttsml me-1' style={{ color: '#fff' }}></i>
           <span className='txttsml' style={{ color: '#fff' }}>
           My Profile
@@ -256,22 +295,3 @@ function DashboardBar() {
           Assign Course
           </span>
         </div></Link>   */}
-
-        <div
-          onClick={handleLogout}
-          style={{ margin: ".8rem", borderRadius: "8px" }}
-          className="list-group-item py-3 px-2 "
-        >
-          <i className="bi bi-box-arrow-left txttsml me-2 ml-50"></i>
-          <span className="txttsml">{"  "}&nbsp;Logout</span>
-        </div>
-
-        <span className="txttsml" style={{ color: "#212450" }}>
-          {" "}
-        </span>
-      </div>
-    </div>
-  );
-}
-
-export default DashboardBar;

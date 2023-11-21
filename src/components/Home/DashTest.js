@@ -327,18 +327,18 @@ class DashTest extends Component {
               flexWrap: "nowrap",
             }}
           >
-            <div className="ag-courses_item-comp " style={{ marginLeft: "" }}>
+            <div className="ag-courses_item-sec " style={{ marginLeft: "" }}>
               <a
                 href="/company/mycourses"
-                className="ag-courses-item_link-comp"
+                className="ag-courses-item_link-sec"
               >
-                <div className="ag-courses-item_bg-comp"></div>
+                <div className="ag-courses-item_bg-sec"></div>
                 <div
                   className="bi bi-person-circle ag-courses-item_date-box-new"
                   style={{ fontSize: "2rem" }}
                 ></div>
                 <div
-                  className="ag-courses-item_title-comp"
+                  className="ag-courses-item_title-sec"
                   style={{
                     display: "flex",
                     justifyContent: "center",
@@ -352,17 +352,17 @@ class DashTest extends Component {
             </div>
 
             <div
-              className="ag-courses_item-comp "
+              className="ag-courses_item-sec "
               style={{ marginLeft: "3.5rem" }}
             >
-              <a href="" className="ag-courses-item_link-comp">
-                <div className="ag-courses-item_bg-comp"></div>
+              <a href="" className="ag-courses-item_link-sec">
+                <div className="ag-courses-item_bg-sec"></div>
                 <div
                   className="bi bi-person-circle ag-courses-item_date-box-new"
                   style={{ fontSize: "2rem" }}
                 ></div>
                 <div
-                  className="ag-courses-item_title-comp"
+                  className="ag-courses-item_title-sec"
                   style={{
                     display: "flex",
                     justifyContent: "center",
