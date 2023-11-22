@@ -55,7 +55,7 @@ const links = [
       },
       {
         name: "Assign Bundle",
-        link:"#"
+        link:"/company/assignBundle"
       },
     ],
   },

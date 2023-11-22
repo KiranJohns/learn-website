@@ -43,7 +43,7 @@ const links = [
     subLinks: [
       {
         name: "My Bundle",
-        link:"/manager/mybundle"
+        link:"/manager/myBundle"
       },
       {
         name: "Buy Bundle",

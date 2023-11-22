@@ -84,7 +84,7 @@ class ManageDash extends Component {
     const columns = [
       {
         name: "No",
-        selector: (row, idx) => idx + 1,
+        selector: (row) =>row.id,
         sortable: true,
       },
       {
