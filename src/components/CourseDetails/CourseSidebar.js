@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 import store from "../../redux/store";
 import fetchData from "../../axios";
 
-function CourseSidebar() {
+function CourseSidebar({addToCart}) {
   const {
     query: { slug },
   } = useRouter();
@@ -15,25 +15,6 @@ function CourseSidebar() {
   const [open, setOpen] = useState(false);
 
   const makeRequest = fetchData();
-
-
-
-  function getCartItem() {
-    makeRequest("GET", "/cart/get")
-      .then((res) => {
-        store.dispatch({
-          type: "SET_CART",
-          payload: JSON.stringify(res.data.response),
-        });
-      })
-      .catch((err) => {
-        if (err?.data?.errors[0].message === "please login") {
-          store.dispatch({
-            type: "SET_CART",
-          });
-        }
-      });
-  }
   const [course, setCourse] = useState(() => {
     makeRequest("GET", `/course/get-single-course/${slug}`)
       .then((res) => {
@@ -43,25 +24,6 @@ function CourseSidebar() {
         console.log(err);
       });
   });
-
-  function addToCart(id) {
-    makeRequest("POST", "/cart/add", { course: [{ count: 1, id: id }] })
-      .then((res) => {
-        getCartItem();
-        console.log(res.data);
-      })
-      .catch((err) => {
-        if (err?.data?.errors[0].message === "please login") {
-          store.dispatch({
-            type: "ADD_TO_CART",
-            payload: {
-              course: course.find((item) => item.id === id),
-              count: 1,
-            },
-          });
-        }
-      });
-  }
 
   const onOpenModal = () => {
     setOpen((open) => true);
@@ -185,7 +147,7 @@ function CourseSidebar() {
             <div className="course__enroll-btn">
               <span
                 role="button"
-                onClick={() => addToCart(course.id)}
+                onClick={addToCart}
                 className="pe-auto e-btn e-btn-7 w-100"
               >
                 add to cart

@@ -23,10 +23,51 @@ import Link from "next/link";
 import CourseSidebar from "./CourseSidebar";
 import { useRouter } from "next/router";
 import fetchData from "../../axios";
+import store from "../../redux/store";
 function CourseDetailsMain() {
   const {
     query: { slug },
   } = useRouter();
+
+
+  function getCartItem() {
+    makeRequest("GET", "/cart/get")
+      .then((res) => {
+        store.dispatch({
+          type: "SET_CART",
+          payload: JSON.stringify(res.data.response),
+        });
+      })
+      .catch((err) => {
+        if (err?.data?.errors[0].message === "please login") {
+          store.dispatch({
+            type: "SET_CART",
+          });
+        }
+      });
+  }
+
+
+  function addToCart() {
+    const data = new FormData();
+    data.append("course", JSON.stringify([{ count: 1, id: slug }]));
+    makeRequest("POST", "/cart/add", data)
+      .then((res) => {
+        getCartItem()
+        console.log(res.data);
+      })
+      .catch((err) => {
+        if (err?.data?.errors[0]?.message === "please login") {
+          store.dispatch({
+            type: "ADD_TO_CART",
+            payload: {
+              course: course.find((item) => item.id === id),
+              count: fakeCount,
+            },
+          });
+        }
+      });
+  }
 
   const makeRequest = fetchData()
   const [course, setCourse] = useState(() => {
@@ -221,7 +262,7 @@ function CourseDetailsMain() {
                 </div>
               </div>
               <div className="col-xxl-4 col-xl-4 col-lg-4">
-                <CourseSidebar />
+                <CourseSidebar addToCart={addToCart}/>
               </div>
             </div>
           </div>

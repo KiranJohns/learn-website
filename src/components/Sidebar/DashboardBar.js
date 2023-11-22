@@ -9,7 +9,7 @@ import fetchData from "../../axios";
 
 // import {imgg} from '../../../public/assets/img'
 
-const arr = [
+const links = [
   {
     name: "Dashboard",
     link: "/company/dashboard",
@@ -19,22 +19,18 @@ const arr = [
     name: "My Profile",
     link: "/company/myprofile",
     icon: "bi bi-person-circle",
-   display: false,
-    show:function (link) { 
-      if(localStorage.getItem('openSublinks')== link){
-        localStorage.removeItem('openSublinks')
-      }
-      else{
-        localStorage.removeItem('openSublinks')
-        localStorage.setItem('openSublinks',link);
-      }
+    display: false,
+    show: function (link) {
+      this.display = !this.display;
     },
-    subLinks: [{
-      name: "Profile Information",
-    },
-    {
-      name: "New Profile"
-    }]
+    subLinks: [
+      {
+        name: "Profile Information",
+      },
+      {
+        name: "New Profile",
+      },
+    ],
   },
   { name: "My Course", link: "/company/mycourses", icon: "bi bi-book" },
   {
@@ -68,6 +64,7 @@ function DashboardBar() {
   const router = useRouter();
   const inputRef = useRef(null);
   const [info, setInfo] = useState({});
+  const [linksArr, setLinksArr] = useState(links);
   const makeRequest = fetchData();
 
   const handleImage = () => {
@@ -197,14 +194,25 @@ function DashboardBar() {
       </div>
       {/* <hr className="" /> */}
       <div className=" text-nowrap" style={{ overflow: "hidden" }}>
-        {arr.map((link) => (
+        {linksArr.map((link) => (
           <>
-            <Link href={link.link}>
-              <div onClick={()=>{
-                if(typeof link?.show === 'function'){
-                  link.show(link.link)
-                }
-               }}
+            <span onClick={(e) => {
+              if(!link?.subLinks) {
+                router.push(link.link)
+              }
+              console.log(typeof link?.show === "function");
+              if (typeof link?.show === "function") {
+                setLinksArr((l) => {
+                  return l.filter((li) => {
+                    if (li.link == link.link) {
+                      li.display = !li.display;
+                    }
+                    return li;
+                  });
+                });
+              }
+            }}>
+              <div
                 style={{ margin: ".8rem", borderRadius: "8px " }}
                 className={`list-group-item  ${
                   router.pathname.startsWith(link.link)
@@ -215,25 +223,41 @@ function DashboardBar() {
                 <i className={`${link.icon} txttsml me-2 ml-50`}></i>
                 <span className="txttsml "> &nbsp;{link.name}</span>
               </div>
-            </Link>
-            { localStorage.getItem('openSublinks') == link.link && link?.subLinks?.map((item, id) => {
-              return (
-                <div className=" text-nowrap" style={{ overflow: "hidden", textAlign:'center' }}>
-                <a className="list-group-item ml-2"
-                  style={{ width: "4rem", height: "2rem" }}
-                  key={id}
-                  href={item.name}
-                >
-                  {item.name}
-                </a>
-                </div>
-            
-              );
-            })}
+            </span>
+            {link?.display &&
+              link?.subLinks?.map((item, id) => {
+                return (
+                  <div
+                    className=" text-nowrap my-2"
+                    style={{
+                      transition: "all ease 0.5s",
+                      overflow: "hidden",
+                      height: "0 !important",
+                      padding: "0.1rem 1rem !important",
+                      textAlign: "center",
+                      width: "100%",
+                      display: "flex",
+                      justifyContent: "left",
+                    }}
+                  >
+                    <a
+                      className="list-group-item my-2"
+                      style={{
+                        width: "fit-content",
+                        marginLeft: "5.5rem",
+                        padding: "0.1rem 1rem !important",
+                        borderRadius: "5px",
+                      }}
+                      key={id}
+                      href={item.name}
+                    >
+                      {item.name}
+                    </a>
+                  </div>
+                );
+              })}
           </>
         ))}
-
-    
 
         <div
           onClick={handleLogout}
@@ -254,8 +278,8 @@ function DashboardBar() {
 
 export default DashboardBar;
 
-
-    {/* <Link href="/company/myprofile"><div className='list-group-item py-3 px-2 text-center'>
+{
+  /* <Link href="/company/myprofile"><div className='list-group-item py-3 px-2 text-center'>
           <i className='bi bi-person-circle txttsml me-1' style={{ color: '#fff' }}></i>
           <span className='txttsml' style={{ color: '#fff' }}>
           My Profile
@@ -309,4 +333,5 @@ export default DashboardBar;
           <span className='txttsml' style={{ color: '#fff' }}>
           Assign Course
           </span>
-        </div></Link>   */}
+        </div></Link>   */
+}
