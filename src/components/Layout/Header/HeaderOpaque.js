@@ -29,11 +29,12 @@ const HeaderOpaque = () => {
   };
 
   useEffect(() => {
-    if (localStorage.getItem("check-cart")) {
+    if (localStorage.getItem("learnfrocarecart")) {
       let courseCart = [];
       let bundlesCart = [];
       let localCart =
         JSON.parse(localStorage.getItem("learnfrocarecart")) || [];
+      console.log(localCart);
       if (localCart) {
         localCart?.forEach((item) => {
           if (item.item_type == "course") {
@@ -43,27 +44,27 @@ const HeaderOpaque = () => {
           }
         });
 
+        console.log(courseCart, bundlesCart);
+
+        // TODO: have to convert to the form-data
         const courseData = new FormData();
         courseData.append("course", JSON.stringify(courseCart));
-        makeRequest("POST", "/cart/add", courseData)
-          .then((res) => {
-            getCartItem();
-            localStorage.removeItem("check-cart");
-            localStorage.removeItem("learnfrocarecart");
-          })
-          .catch((err) => {
-            console.log(err?.data);
-          });
+        let courseResponse = makeRequest("POST", "/cart/add", courseData);
 
         const bundleData = new FormData();
         bundleData.append("course", JSON.stringify(bundlesCart));
-        makeRequest("POST", "/cart/add-bundle", data)
+        let bundleResponse = makeRequest(
+          "POST",
+          "/cart/add-bundle",
+          bundleData
+        );
+        Promise.all([courseResponse, bundleResponse])
           .then((res) => {
             getCartItem();
-            console.log(res.data);
+            console.log(res);
           })
           .catch((err) => {
-           console.log(err);
+            console.log(err);
           });
       }
     }
@@ -424,18 +425,18 @@ const HeaderOpaque = () => {
                         </Dropdown.Toggle>
 
                         <Dropdown.Menu>
-                        <Dropdown.Item
-                              className="btn"
-                              onClick={() => {
-                                if (getUserType() === "company") {
-                                  router.push("/company/myprofile");
-                                } else {
-                                  router.push("/individual/myprofile");
-                                }
-                              }}
-                            >
-                              My Profile
-                            </Dropdown.Item>
+                          <Dropdown.Item
+                            className="btn"
+                            onClick={() => {
+                              if (getUserType() === "company") {
+                                router.push("/company/myprofile");
+                              } else {
+                                router.push("/individual/myprofile");
+                              }
+                            }}
+                          >
+                            My Profile
+                          </Dropdown.Item>
                           <Dropdown.Item
                             className="btn"
                             onClick={handleLogout}

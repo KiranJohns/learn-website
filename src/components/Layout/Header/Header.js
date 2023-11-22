@@ -52,11 +52,12 @@ const Header = () => {
   }, [router]);
 
   useEffect(() => {
-    if (localStorage.getItem("check-cart")) {
+    if (localStorage.getItem("learnfrocarecart")) {
       let courseCart = [];
       let bundlesCart = [];
       let localCart =
         JSON.parse(localStorage.getItem("learnfrocarecart")) || [];
+      console.log(localCart);
       if (localCart) {
         localCart?.forEach((item) => {
           if (item.item_type == "course") {
@@ -66,25 +67,18 @@ const Header = () => {
           }
         });
 
-        // TODO: have to convert to the form-data
+        console.log(courseCart, bundlesCart);
+
         const courseData = new FormData();
         courseData.append("course", JSON.stringify(courseCart));
-        makeRequest("POST", "/cart/add", courseData)
-          .then((res) => {
-            getCartItem();
-            localStorage.removeItem("check-cart");
-            localStorage.removeItem("learnfrocarecart");
-          })
-          .catch((err) => {
-            console.log(err?.data);
-          });
+        let courseResponse = makeRequest("POST", "/cart/add", courseData)
 
         const bundleData = new FormData();
         bundleData.append("course", JSON.stringify(bundlesCart));
-        makeRequest("POST", "/cart/add-bundle", data)
+        let bundleResponse = makeRequest("POST", "/cart/add-bundle", bundleData)
+        Promise.all([courseResponse, bundleResponse])
           .then((res) => {
             getCartItem();
-            setFakeCount(0);
             console.log(res);
           })
           .catch((err) => {

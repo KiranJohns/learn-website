@@ -42,10 +42,10 @@ function SignInMain() {
 
   function handleLogin() {
     let url = "";
-    if(!loginUser) {
-      url = "/auth/login"
+    if (!loginUser) {
+      url = "/auth/login";
     } else {
-      url = "/sub-user/login"
+      url = "/sub-user/login";
     }
     store.dispatch({
       type: "SET_LOADING_FOR_SIGN_IN",
@@ -67,7 +67,10 @@ function SignInMain() {
         );
         localStorage.setItem("userType", res.data.userType);
         let from = localStorage.getItem("from-checkout", true);
-        if (res.data.userType == "individual" || res.data.userType === "sub_user") {
+        if (
+          res.data.userType == "individual" ||
+          res.data.userType === "sub_user"
+        ) {
           if (from) {
             localStorage.removeItem("from-checkout");
             location.pathname = "/cart";
@@ -94,6 +97,7 @@ function SignInMain() {
         });
       });
   }
+  
   return (
     <main>
       {/* <Modal
