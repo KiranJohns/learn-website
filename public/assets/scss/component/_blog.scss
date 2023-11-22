@@ -715,7 +715,7 @@
    
     
   
-    overflow: hidden;
+    // overflow: hidden;
   
     font-weight: bold;
     font-size: 30px;
@@ -751,9 +751,7 @@
     position: absolute;
     top: -75px;
     right: -75px;
-  
     border-radius: 50%;
-  
     -webkit-transition: all .5s ease;
     -o-transition: all .5s ease;
     transition: all .5s ease;
