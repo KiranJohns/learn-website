@@ -17,7 +17,7 @@ const links = [
   },
   {
     name: "My Profile",
-    link: "/company/myprofile",
+    link: "myprofile",
     icon: "bi bi-person-circle",
     display: false,
     show: function (link) {
@@ -34,7 +34,7 @@ const links = [
   },
   {
     name: "Bundle",
-    link: "/company/myprofile",
+    link: "bundle",
     icon: "bi bi-person-circle",
     display: false,
     show: function (link) {
@@ -118,6 +118,17 @@ function DashboardBar() {
           console.log(err);
         });
     }, 3000);
+  }
+
+  function openSubLink(link) {
+    setLinksArr((l) => {
+      return l.filter((li) => {
+        if (li.link == link) {
+          li.display = !li.display;
+        }
+        return li;
+      });
+    });
   }
 
   return (
@@ -213,22 +224,15 @@ function DashboardBar() {
       <div className=" text-nowrap" style={{ overflow: "hidden" }}>
         {linksArr.map((link) => (
           <>
-            <span onClick={(e) => {
-              if(!link?.subLinks) {
-                router.push(link.link)
-              }
-              console.log(typeof link?.show === "function");
-              if (typeof link?.show === "function") {
-                setLinksArr((l) => {
-                  return l.filter((li) => {
-                    if (li.link == link.link) {
-                      li.display = !li.display;
-                    }
-                    return li;
-                  });
-                });
-              }
-            }}>
+            <span
+              onClick={(e) => {
+                console.log(link.link);
+                if (!link?.subLinks) {
+                  router.push(link.link);
+                }
+                openSubLink(link.link);
+              }}
+            >
               <div
                 style={{ margin: ".8rem", borderRadius: "8px " }}
                 className={`list-group-item  ${
@@ -352,7 +356,6 @@ export default DashboardBar;
           </span>
         </div></Link>   */
 }
-
 
 // {
 //   name: "My Profile",
