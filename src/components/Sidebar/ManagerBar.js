@@ -1,25 +1,63 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import { BiSolidDashboard } from "react-icons/bs";
 import { NavLink } from "react-router-dom";
 import { useRouter } from "next/router";
 import { MdVerifiedUser } from "react-icons/md";
-import { useEffect } from "react";
 import fetchData from "../../axios";
 
 // import {imgg} from '../../../public/assets/img'
 
-const arr = [
+const links = [
   {
     name: "Dashboard",
-    link: "/manager/dashboard",
+    link: "/company/dashboard",
     icon: "bi bi-ui-checks-grid",
   },
   {
     name: "My Profile",
-    link: "/manager/myprofile",
+    link: "myprofile",
     icon: "bi bi-person-circle",
+    // display: false,
+    // show: function (link) {
+    //   this.display = !this.display;
+    // },
+    // subLinks: [
+    //   {
+    //     name: "Profile Information",
+    //   },
+    //   {
+    //     name: "New Profile",
+    //   },
+    // ],
+  },
+  {
+    name: "Bundle",
+    link: "bundle",
+    icon: "bi bi-person-circle",
+    display: false,
+    show: function (link) {
+      this.display = !this.display;
+    },
+    subLinks: [
+      {
+        name: "My Bundle",
+        link:"/manager/mybundle"
+      },
+      {
+        name: "Buy Bundle",
+        link:"/bundle/bundle-all"
+      },
+      {
+        name: "Purchased Bundle",
+        link:"/manager/purchasedBundle"
+      },
+      {
+        name: "Assign Bundle",
+        link:"#"
+      },
+    ],
   },
   // { name: "My Course", link: "/company/mycourses", icon: "bi bi-book" },
   // {
@@ -49,11 +87,13 @@ const arr = [
   //   icon: "bi bi-person-check-fill",
   // },
 ];
-function ManageBar() {
+function ManagerBar() {
   const router = useRouter();
   const inputRef = useRef(null);
   const [info, setInfo] = useState({});
+  const [linksArr, setLinksArr] = useState(links);
   const makeRequest = fetchData();
+
   const handleImage = () => {
     inputRef.current.click();
   };
@@ -67,6 +107,7 @@ function ManageBar() {
     makeRequest("GET", "/info/data")
       .then((res) => {
         setInfo(res.data.response[0]);
+        console.log(res.data.response[0]);
       })
       .catch((err) => {
         console.log(err);
@@ -88,6 +129,18 @@ function ManageBar() {
         });
     }, 3000);
   }
+
+  function openSubLink(link) {
+    setLinksArr((l) => {
+      return l.filter((li) => {
+        if (li.link == link) {
+          li.display = !li.display;
+        }
+        return li;
+      });
+    });
+  }
+
   return (
     <div className="" style={{ padding: "", backgroundColor: "#212450" }}>
       <div
@@ -143,7 +196,6 @@ function ManageBar() {
                 width: "88px",
                 height: "88px",
                 marginRight: ".15rem",
-
                 borderRadius: "88px",
               }}
               src={
@@ -164,7 +216,7 @@ function ManageBar() {
           />
         </div>
         <div
-          className="mt-4 "
+          className="mt-2 "
           style={{ display: "flex", flexDirection: "column" }}
         >
           <h5 style={{ color: "#212450", textAlign: "center", marginLeft: "" }}>
@@ -173,26 +225,92 @@ function ManageBar() {
             <br />
           </h5>
           <h6 style={{ color: "#212450", textAlign: "center", marginLeft: "" }}>
-            Manager
+            Company
             <br />
           </h6>
         </div>
       </div>
       {/* <hr className="" /> */}
       <div className=" text-nowrap" style={{ overflow: "hidden" }}>
-        {arr.map((link) => (
-          <Link href={link.link}>
-            <div
-              style={{ margin: ".8rem", borderRadius: "8px " }}
-              className={`list-group-item  ${
-                router.pathname.startsWith(link.link) ? "activate-sidebar" : ""
-              }  py-3 px-2`}
+        {linksArr.map((link) => (
+          <>
+            <span
+              onClick={(e) => {
+                console.log(link.link);
+                if (!link?.subLinks) {
+                  router.push(link.link);
+                }
+                openSubLink(link.link);
+              }}
             >
-              <i className={`${link.icon} txttsml me-2 ml-50`}></i>
-              <span className="txttsml "> &nbsp;{link.name}</span>
-            </div>
-          </Link>
+              <div
+                style={{ margin: ".8rem", borderRadius: "8px " }}
+                className={`list-group-item  ${
+                  router.pathname.startsWith(link.link)
+                    ? "activate-sidebar"
+                    : ""
+                }  py-3 px-2`}
+              >
+                <i className={`${link.icon} txttsml me-2 ml-50`}></i>
+                <span className="txttsml "> &nbsp;{link.name}</span>
+              </div>
+            </span>
+            {link?.display &&
+              link?.subLinks?.map((item, id) => {
+                return (
+                  <div
+                    className=" text-nowrap my-1"
+                    style={{
+                      transition: "all ease 0.5s",
+                      overflow: "hidden",
+                      height: "0 !important",
+                      padding: "0.1rem 1rem !important",
+                      textAlign: "center",
+                      width: "100%",
+                      display: "flex",
+                      justifyContent: "left",
+                    }}
+                  >
+                    <a 
+                      className="list-group-item my-2"
+                      style={{
+                        width: "max-content",
+                        marginLeft: "5.9rem",
+                        padding: "0.3rem 1rem !important",
+                        borderRadius: "5px",
+                      }}
+                      key={id}
+                      href={item.link}
+                    >
+                      {item.name}
+                    </a>
+                  </div>
+                );
+              })}
+          </>
         ))}
+
+        <div
+          onClick={handleLogout}
+          style={{ margin: ".8rem", borderRadius: "8px" }}
+          className="list-group-item py-3 px-2 "
+        >
+          <i className="bi bi-box-arrow-left txttsml me-2 ml-50"></i>
+          <span className="txttsml">{"  "}&nbsp;Logout</span>
+        </div>
+
+        <span className="txttsml" style={{ color: "#212450" }}>
+          {" "}
+        </span>
+      </div>
+    </div>
+  );
+}
+
+export default ManagerBar;
+
+
+
 
         {/* <Link href="/company/myprofile"><div className='list-group-item py-3 px-2 text-center'>
           <i className='bi bi-person-circle txttsml me-1' style={{ color: '#fff' }}></i>
@@ -249,22 +367,3 @@ function ManageBar() {
           Assign Course
           </span>
         </div></Link>   */}
-
-        <div
-          onClick={handleLogout}
-          style={{ margin: ".8rem", borderRadius: "8px" }}
-          className="list-group-item py-3 px-2 "
-        >
-          <i className="bi bi-box-arrow-left txttsml me-2 ml-50"></i>
-          <span className="txttsml">{"  "}&nbsp;Logout</span>
-        </div>
-
-        <span className="txttsml" style={{ color: "#212450" }}>
-          {" "}
-        </span>
-      </div>
-    </div>
-  );
-}
-
-export default ManageBar;
