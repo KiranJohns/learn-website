@@ -28,7 +28,7 @@ const customStyles = {
   },
 };
 
-class DashAssign extends Component {
+class ManAssignBund extends Component {
   constructor() {
     super();
     this.state = {
@@ -99,7 +99,7 @@ class DashAssign extends Component {
                 fontSize: 42,
               }}
             >
-              Assign Course
+              Assign Bundles
             </h2>
             <div style={{ padding: "", backgroundColor: "" }}>
               {/* <div
@@ -164,4 +164,4 @@ class DashAssign extends Component {
   }
 }
 
-export default DashAssign;
+export default ManAssignBund;

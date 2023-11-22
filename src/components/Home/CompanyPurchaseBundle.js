@@ -26,7 +26,7 @@ const customStyles = {
   },
 };
 
-class CompanyBundle extends Component {
+class CompanyPurBundle extends Component {
   constructor() {
     super();
     this.state = {
@@ -102,7 +102,7 @@ class CompanyBundle extends Component {
           fontSize: 38,
         }}
       >
-       My Bundle
+       Purchased Bundle
       </h2>
         <div style={{ padding: "", backgroundColor: "" }}>
           {/* <div
@@ -149,4 +149,4 @@ class CompanyBundle extends Component {
   }
 }
 
-export default CompanyBundle;
+export default CompanyPurBundle;

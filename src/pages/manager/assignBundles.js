@@ -1,33 +1,39 @@
 import React from "react";
 import CourseBundle from "../../components/CourseGrid/CourseBundle";
-import DashboardBar from "../../components/Sidebar/DashboardBar";
+
+import ManageBar from "../../components/Sidebar/ManagerBar";
 import HeaderDashboard from "../../components/Layout/Header/HeaderDashboard";
-import DashCAvail from "../../components/Home/DashCAvail";
+import DashMain from "../../components/Home/DashMain";
+import DashCourse from "../../components/Home/DashCourse";
 import Header from "../../components/Layout/Header/Header";
+import ManagerBundle from "../../components/Home/ManageMyBundle";
 import NoSSR from "react-no-ssr";
+import DashTest from "../../components/Home/DashTest";
+import { Auth } from "../auth";
+import { useState } from "react";
 import { getToken, getUserType } from "../../axios";
 import { useRouter } from "next/router";
-import { useState } from "react";
 import { useEffect } from "react";
-import { Auth } from "../auth";
-import CompanyPurBundle from "../../components/Home/CompanyPurchaseBundle";
+import Sidebar from "../../components/Sidebar/SampleSidebar";
+import mybundle from "../company/mybundle";
+import ManAssignBund from "../../components/Home/ManAssignBund";
 
-function purchasedBundle() {
-  const [logedIn, setlogedIn] = useState(() => {
-    return getUserType();
-  });
+function myBundle() {
+  // const [logedIn, setlogedIn] = useState(() => {
+  //   return getUserType();
+  // });
+  // let routes = ["manager"]
 
-  const router = useRouter();
+  // const router = useRouter();
 
-  useEffect(() => {
-    if (logedIn !== "company") {
-      router.push("/sign-in");
-    }
-  }, []);
-
+  // useEffect(() => {
+  //   if (!routes.includes(logedIn)) {
+  //     router.push("/sign-in");
+  //   }
+  // }, []);
   return (
     <>
-      {logedIn === "company" && (
+      {/* {routes.includes(logedIn) && ( */}
         <React.Fragment>
           <main
             className="p-1"
@@ -47,18 +53,18 @@ function purchasedBundle() {
                   className="col-sm-12 col-md-12 col-lg-2 p-0"
                   style={{ backgroundColor: "#212450" }}
                 >
-                  <DashboardBar />
+                  <ManageBar />
                 </div>
-                <div className="col-sm col-md-9  bg-white">
-                  <CompanyPurBundle />
+                <div className="col-sm col-md-9 bg-white">
+                  <ManagerBundle />
                 </div>
               </div>
             </div>
           </main>
         </React.Fragment>
-      )}
+      {/* )} */}
     </>
   );
 }
 
-export default purchasedBundle;
+export default myBundle;
