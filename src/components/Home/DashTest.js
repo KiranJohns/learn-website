@@ -174,7 +174,7 @@ class DashTest extends Component {
                   style={{ fontSize: "2rem" }}
                 ></div> */}
                 <div
-                  className="ag-courses-item_title-new"
+                  className="ag-courses-item_title-new dash-box-h"
                   style={{
                     display: "flex",
                     justifyContent: "center",
@@ -208,7 +208,7 @@ class DashTest extends Component {
                   style={{ fontSize: "2rem" }}
                 ></div> */}
                 <div
-                  className="ag-courses-item_title-new"
+                  className="ag-courses-item_title-new dash-box-h"
                   style={{
                     display: "flex",
                     justifyContent: "center",
