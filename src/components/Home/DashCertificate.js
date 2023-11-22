@@ -138,13 +138,20 @@ class DashCertificate extends Component {
               <DataTable
                 columns={columns}
                 data={
-                  this.state.searchData
+               [   ...this.state.searchData
                     ? this.state.records.filter((item) =>
                         item.name
                           .toLowerCase()
                           .includes(this.state.searchData.toLowerCase())
                       )
-                    : this.state.records
+                    : this.state.records, 
+                    ...this.state.searchData
+                    ? this.state.records.filter((item) =>
+                        item.name
+                          .toLowerCase()
+                          .includes(this.state.searchData.toLowerCase())
+                      )
+                    : this.state.records]
                 }
                 customStyles={customStyles}
                 pagination

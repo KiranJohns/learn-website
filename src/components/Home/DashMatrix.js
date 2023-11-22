@@ -183,23 +183,25 @@ const DashMatrix = () => {
   ];
   return (
     <div>
-      <table style={{ border: "2px solid black" }}>
-        <tr style={{ border: "2px solid black" }}>
+      <div className="dash-neww" style={{}}>
+      <table style={{ border: "1px solid #212a50",  }}>
+        <tr style={{ border: "1px solid #212a50" }}>
           <th
             style={{
-              border: "2px solid black",
+              border: "1px solid #212a50",
               padding: "0 0.5rem",
-              color: "black",
+              color: "#212a50",
             }}
           >
-            User
+           
           </th>
           {courseName.map((item) => (
             <th
               style={{
-                border: "2px solid black",
+                border: "1px solid #212a50",
                 padding: "0 0.5rem",
-                color: "black",
+                color: "#fff",
+                background:'#212a50'
               }}
             >
               {item}
@@ -214,9 +216,10 @@ const DashMatrix = () => {
                   <>
                     <td
                       style={{
-                        border: "2px solid black",
+                        border: "1px solid #212a50",
                         padding: "0 0.5rem",
-                        color: "black",
+                        color: "white",
+                        background:'#212450'
                       }}
                     >
                       {
@@ -226,7 +229,7 @@ const DashMatrix = () => {
                     </td>
                     <td
                       style={{
-                        border: "2px solid black",
+                        border: "1px solid #212a50",
                         padding: "0 0.5rem",
                         color: "black",
                         backgroundColor: item[i].course.color,
@@ -241,7 +244,7 @@ const DashMatrix = () => {
                 return (
                   <td
                     style={{
-                      border: "2px solid black",
+                      border: "1px solid #212a50",
                       padding: "0 0.5rem",
                       color: "black",
                       backgroundColor: item[i].course.color,
@@ -256,6 +259,7 @@ const DashMatrix = () => {
           </tr>;
         })}
       </table>
+      </div>
     </div>
   );
 };
