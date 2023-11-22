@@ -32,6 +32,23 @@ const links = [
       },
     ],
   },
+  {
+    name: "Bundle",
+    link: "/company/myprofile",
+    icon: "bi bi-person-circle",
+    display: false,
+    show: function (link) {
+      this.display = !this.display;
+    },
+    subLinks: [
+      {
+        name: "My Bundle",
+      },
+      {
+        name: "Buy Bundle",
+      },
+    ],
+  },
   { name: "My Course", link: "/company/mycourses", icon: "bi bi-book" },
   {
     name: "Certificates",
@@ -335,3 +352,22 @@ export default DashboardBar;
           </span>
         </div></Link>   */
 }
+
+
+// {
+//   name: "My Profile",
+//   link: "/company/myprofile",
+//   icon: "bi bi-person-circle",
+//   display: false,
+//   show: function (link) {
+//     this.display = !this.display;
+//   },
+//   subLinks: [
+//     {
+//       name: "Profile Information",
+//     },
+//     {
+//       name: "New Profile",
+//     },
+//   ],
+// },
