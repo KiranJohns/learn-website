@@ -19,18 +19,18 @@ const links = [
     name: "My Profile",
     link: "myprofile",
     icon: "bi bi-person-circle",
-    display: false,
-    show: function (link) {
-      this.display = !this.display;
-    },
-    subLinks: [
-      {
-        name: "Profile Information",
-      },
-      {
-        name: "New Profile",
-      },
-    ],
+    // display: false,
+    // show: function (link) {
+    //   this.display = !this.display;
+    // },
+    // subLinks: [
+    //   {
+    //     name: "Profile Information",
+    //   },
+    //   {
+    //     name: "New Profile",
+    //   },
+    // ],
   },
   {
     name: "Bundle",
@@ -43,9 +43,19 @@ const links = [
     subLinks: [
       {
         name: "My Bundle",
+        link:"/company/mybundle"
       },
       {
         name: "Buy Bundle",
+        link:"/bundle/bundle-all"
+      },
+      {
+        name: "Purchased Bundle",
+        link:"/company/purchasedBundle"
+      },
+      {
+        name: "Assign Bundle",
+        link:"#"
       },
     ],
   },
@@ -249,7 +259,7 @@ function DashboardBar() {
               link?.subLinks?.map((item, id) => {
                 return (
                   <div
-                    className=" text-nowrap my-2"
+                    className=" text-nowrap my-1"
                     style={{
                       transition: "all ease 0.5s",
                       overflow: "hidden",
@@ -261,16 +271,16 @@ function DashboardBar() {
                       justifyContent: "left",
                     }}
                   >
-                    <a
+                    <a 
                       className="list-group-item my-2"
                       style={{
-                        width: "fit-content",
-                        marginLeft: "5.5rem",
-                        padding: "0.1rem 1rem !important",
+                        width: "max-content",
+                        marginLeft: "5.9rem",
+                        padding: "0.3rem 1rem !important",
                         borderRadius: "5px",
                       }}
                       key={id}
-                      href={item.name}
+                      href={item.link}
                     >
                       {item.name}
                     </a>

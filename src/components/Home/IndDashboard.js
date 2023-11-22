@@ -275,7 +275,7 @@ function DashIndividual() {
                     justifyContent: "center",
                     alignItems: "",
                     marginTop: "1rem",
-                    zIndex:"999"
+                    zIndex:""
                   }}
                 >
                   My Certificates

@@ -84,7 +84,7 @@ class DashTest extends Component {
     const columns = [
       {
         name: "No",
-        selector: (row, idx) => idx + 1,
+        selector: (row) => row.id,
         sortable: true,
       },
       {
@@ -139,8 +139,8 @@ class DashTest extends Component {
             Hello {this.state.user.first_name + " " + this.state.user.last_name}{" "}
             <IoHandLeft style={{ color: "#f1c27d", marginBottom: ".5rem" }} />
           </h3>
-          <div style={{}}>
-            <h2
+          <div  className="headd-element" style={{}}>
+            <h2 
               style={{
                 padding: "0",
                 color:"#212a50",
@@ -253,7 +253,7 @@ class DashTest extends Component {
                   style={{ fontSize: "2rem" }}
                 ></div>
                 <div
-                  className="ag-courses-item_title-comp"
+                  className="ag-courses-item_title-comp dash-box-h"
                   style={{
                     display: "flex",
                     justifyContent: "center",
@@ -277,7 +277,7 @@ class DashTest extends Component {
                   style={{ fontSize: "2rem" }}
                 ></div>
                 <div
-                  className="ag-courses-item_title-comp"
+                  className="ag-courses-item_title-comp dash-box-h"
                   style={{
                     display: "flex",
                     justifyContent: "center",
@@ -304,7 +304,7 @@ class DashTest extends Component {
                   style={{ fontSize: "2rem" }}
                 ></div>
                 <div
-                  className="ag-courses-item_title-comp"
+                  className="ag-courses-item_title-comp dash-box-h"
                   style={{
                     display: "flex",
                     justifyContent: "center",
@@ -338,7 +338,7 @@ class DashTest extends Component {
                   style={{ fontSize: "2rem" }}
                 ></div>
                 <div
-                  className="ag-courses-item_title-sec"
+                  className="ag-courses-item_title-sec dash-box-h"
                   style={{
                     display: "flex",
                     justifyContent: "center",
@@ -362,7 +362,7 @@ class DashTest extends Component {
                   style={{ fontSize: "2rem" }}
                 ></div>
                 <div
-                  className="ag-courses-item_title-sec"
+                  className="ag-courses-item_title-sec dash-box-h"
                   style={{
                     display: "flex",
                     justifyContent: "center",
