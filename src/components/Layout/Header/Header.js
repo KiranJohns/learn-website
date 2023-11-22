@@ -44,7 +44,7 @@ const Header = () => {
     localStorage.removeItem(`learnforcare_access`);
     localStorage.removeItem(`learnforcare_refresh`);
     localStorage.removeItem("userType");
-    location.pathname = "/";
+    location.pathname = "/sign-in";
   };
 
   useEffect(() => {
@@ -53,15 +53,23 @@ const Header = () => {
 
   useEffect(() => {
     if (localStorage.getItem("check-cart")) {
-      let cartIds = [];
+      let courseCart = [];
+      let bundlesCart = [];
       let localCart =
         JSON.parse(localStorage.getItem("learnfrocarecart")) || [];
       if (localCart) {
         localCart?.forEach((item) => {
-          cartIds.push({ count: item.product_count, id: item.id });
+          if (item.item_type == "course") {
+            courseCart.push({ count: item.product_count, id: item.id });
+          } else {
+            bundlesCart.push({ count: item.product_count, id: item.id });
+          }
         });
 
-        makeRequest("POST", "/cart/add", { course: cartIds })
+        // TODO: have to convert to the form-data
+        const courseData = new FormData();
+        courseData.append("course", JSON.stringify(courseCart));
+        makeRequest("POST", "/cart/add", courseData)
           .then((res) => {
             getCartItem();
             localStorage.removeItem("check-cart");
@@ -69,6 +77,18 @@ const Header = () => {
           })
           .catch((err) => {
             console.log(err?.data);
+          });
+
+        const bundleData = new FormData();
+        bundleData.append("course", JSON.stringify(bundlesCart));
+        makeRequest("POST", "/cart/add-bundle", data)
+          .then((res) => {
+            getCartItem();
+            setFakeCount(0);
+            console.log(res);
+          })
+          .catch((err) => {
+            console.log(err);
           });
       }
     }

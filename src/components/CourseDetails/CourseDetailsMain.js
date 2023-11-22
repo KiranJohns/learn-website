@@ -11,7 +11,6 @@ import sampleProducts from "./../../../sampleProduct.json";
 import CourseAccordion from "../Elements/Accordion/CourseAccordion";
 import products from "../../../sampleProduct.json";
 
-
 const CourseSliderWithNoSSR = dynamic(
   () => import("../Elements/Slider/CourseSliderSection"),
   {
@@ -28,7 +27,6 @@ function CourseDetailsMain() {
   const {
     query: { slug },
   } = useRouter();
-
 
   function getCartItem() {
     makeRequest("GET", "/cart/get")
@@ -47,13 +45,12 @@ function CourseDetailsMain() {
       });
   }
 
-
   function addToCart() {
     const data = new FormData();
     data.append("course", JSON.stringify([{ count: 1, id: slug }]));
     makeRequest("POST", "/cart/add", data)
       .then((res) => {
-        getCartItem()
+        getCartItem();
         console.log(res.data);
       })
       .catch((err) => {
@@ -61,7 +58,10 @@ function CourseDetailsMain() {
           store.dispatch({
             type: "ADD_TO_CART",
             payload: {
-              course: course.find((item) => item.id === id),
+              course: {
+                ...course.find((item) => item.id === id),
+                item_type: "course",
+              },
               count: fakeCount,
             },
           });
@@ -69,7 +69,7 @@ function CourseDetailsMain() {
       });
   }
 
-  const makeRequest = fetchData()
+  const makeRequest = fetchData();
   const [course, setCourse] = useState(() => {
     makeRequest("GET", `/course/get-single-course/${slug}`)
       .then((res) => {
@@ -175,9 +175,7 @@ function CourseDetailsMain() {
                                                         </div> */}
                             <div className="course__description-list mb-45">
                               <h4>Who should attend?</h4>
-                              <p className=" mb-45">
-                                {course?.description}
-                              </p>
+                              <p className=" mb-45">{course?.description}</p>
                             </div>
                             <div className="course__description-list mb-45">
                               <h4>What you will learn?</h4>
@@ -262,7 +260,7 @@ function CourseDetailsMain() {
                 </div>
               </div>
               <div className="col-xxl-4 col-xl-4 col-lg-4">
-                <CourseSidebar addToCart={addToCart}/>
+                <CourseSidebar addToCart={addToCart} />
               </div>
             </div>
           </div>

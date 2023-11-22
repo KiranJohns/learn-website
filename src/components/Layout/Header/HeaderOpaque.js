@@ -30,22 +30,42 @@ const HeaderOpaque = () => {
 
   useEffect(() => {
     if (localStorage.getItem("check-cart")) {
-      let localCart = JSON.parse(localStorage.getItem("learnfrocarecart"));
-      console.log(localCart);
-      let cartIds = [];
-      localCart?.forEach((item) => {
-        cartIds.push({ count: item.product_count, id: item.id });
-      });
-
-      makeRequest("POST", "/cart/add", { course: cartIds })
-        .then((res) => {
-          getCartItem();
-          localStorage.removeItem("check-cart");
-          localStorage.removeItem("learnfrocarecart");
-        })
-        .catch((err) => {
-          console.log(err.data);
+      let courseCart = [];
+      let bundlesCart = [];
+      let localCart =
+        JSON.parse(localStorage.getItem("learnfrocarecart")) || [];
+      if (localCart) {
+        localCart?.forEach((item) => {
+          if (item.item_type == "course") {
+            courseCart.push({ count: item.product_count, id: item.id });
+          } else {
+            bundlesCart.push({ count: item.product_count, id: item.id });
+          }
         });
+
+        const courseData = new FormData();
+        courseData.append("course", JSON.stringify(courseCart));
+        makeRequest("POST", "/cart/add", courseData)
+          .then((res) => {
+            getCartItem();
+            localStorage.removeItem("check-cart");
+            localStorage.removeItem("learnfrocarecart");
+          })
+          .catch((err) => {
+            console.log(err?.data);
+          });
+
+        const bundleData = new FormData();
+        bundleData.append("course", JSON.stringify(bundlesCart));
+        makeRequest("POST", "/cart/add-bundle", data)
+          .then((res) => {
+            getCartItem();
+            console.log(res.data);
+          })
+          .catch((err) => {
+           console.log(err);
+          });
+      }
     }
   }, []);
 

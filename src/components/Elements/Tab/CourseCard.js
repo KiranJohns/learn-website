@@ -75,7 +75,7 @@ function CourseCard({ item }) {
           store.dispatch({
             type: "ADD_TO_CART",
             payload: {
-              course: course.find((item) => item.id === id),
+              course: {...course.find((item) => item.id === id), item_type: "course"},
               count: fakeCount,
             },
           });

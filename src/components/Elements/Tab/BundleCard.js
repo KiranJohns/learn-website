@@ -9,11 +9,13 @@ function BundleCard({ item }) {
   const makeRequest = fetchData();
   const { cart } = useSelector((state) => state.cart);
   const [fakeCount, setFakeCount] = useState(0);
-  const [course, setCourse] = useState([]);
+  const [bundles, setBundles] = useState([]);
 
   function getCartItem() {
     makeRequest("GET", "/cart/get")
       .then((res) => {
+
+        console.log(res.data.response);
         store.dispatch({
           type: "SET_CART",
           payload: JSON.stringify(res.data.response),
@@ -29,13 +31,14 @@ function BundleCard({ item }) {
   }
 
   useEffect(() => {
-    getAllCourse();
+    getAllBundles();
   }, []);
 
-  function getAllCourse() {
-    makeRequest("GET", "/course/get-all-course")
+  function getAllBundles() {
+    makeRequest("GET", "/bundle/get-all-bundles")
       .then((res) => {
-        setCourse(res.data.response);
+        setBundles(res.data.response);
+        console.log(res.data.response);
       })
       .catch((err) => {
         console.log(err);
@@ -47,7 +50,6 @@ function BundleCard({ item }) {
       let cartItem = cart.find((cartItem) => cartItem.course_id == item.id);
 
       if (cartItem) {
-        console.log(cartItem);
         updateCount(Number(cartItem.id), Number(item.id), Number(fakeCount),cartItem.item_type);
       } else {
         addToCart(item.id);
@@ -57,7 +59,9 @@ function BundleCard({ item }) {
 
   function addToCart(id) {
     console.log(fakeCount, id);
-    makeRequest("POST", "/cart/add", { course: [{ count: fakeCount, id: id }] })
+    const data = new FormData();
+    data.append("course", JSON.stringify([{ count: fakeCount, id: id }]));
+    makeRequest("POST", "/cart/add-bundle", data)
       .then((res) => {
         getCartItem();
         setFakeCount(0);
@@ -68,7 +72,7 @@ function BundleCard({ item }) {
           store.dispatch({
             type: "ADD_TO_CART",
             payload: {
-              course: course.find((item) => item.id === id),
+              course: {...bundles.find((item) => item.id === id),item_type: "bundle"},
               count: fakeCount,
             },
           });
@@ -77,13 +81,13 @@ function BundleCard({ item }) {
       });
   }
 
-  function updateCount(id, courseId, count,type) {
-    makeRequest("PATCH", "/cart/update-cart-count", {
-      id,
-      type,
-      count,
-      courseId,
-    })
+  function updateCount(id, courseId, count, type) {
+    const data = new FormData();
+    data.append("id", id);
+    data.append("type", type);
+    data.append("count", count);
+    data.append("courseId", courseId);
+    makeRequest("PATCH", "/cart/update-cart-count", data)
       .then((res) => {
         setFakeCount(0);
         getCartItem();
@@ -111,7 +115,7 @@ function BundleCard({ item }) {
         <div className="course__thumb w-img p-relative fix">
           <Link href={`/course/${item.id}`}>
             <a>
-              <img src={item.thumbnail} alt="img not found" />
+              <img src={item.image} alt="img not found" />
             </a>
           </Link>
           {/* <div className="course__tag">

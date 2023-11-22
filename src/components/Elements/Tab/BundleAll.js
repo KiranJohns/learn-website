@@ -13,18 +13,19 @@ import { useSelector } from "react-redux";
 import fetchData from "../../../axios/index";
 import CourseCard from "./CourseCard";
 import Pagination from 'react-bootstrap/Pagination';
+import BundleCard from "./BundleCard";
 
 
 export default () => {
   const { cart } = useSelector((store) => store.cart);
   let makeRequest = fetchData();
 
-  const [course, setCourse] = useState([]);
+  const [bundles, setBundles] = useState([]);
 
   useEffect(() => {
-    makeRequest("GET", "/course/get-all-course")
+    makeRequest("GET", "/bundle/get-all-bundles")
       .then((res) => {
-        setCourse(res.data.response);
+        setBundles(res.data.response);
       })
       .catch((err) => {
         console.log(err);
@@ -73,7 +74,7 @@ export default () => {
           </div>
           <TabPanel>
             <div className="row">
-              {course.map((item) => (<CourseCard item={item} />))}
+              {bundles.map((item) => (<BundleCard item={item} />))}
             </div>
           
           </TabPanel>
