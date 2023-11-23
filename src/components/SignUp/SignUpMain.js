@@ -93,7 +93,7 @@ function SignUpMain() {
     })
       .then((res) => {
         console.log(res);
-        window.location.pathname = "/sign-in";
+        location.pathname = "/sign-in";
       })
       .catch((err) => {
         toast.error(err.data.errors[0].error);

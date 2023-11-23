@@ -11555,7 +11555,7 @@ var createModule = function() {
         return window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;
       },
       DB_NAME: function() {
-        return "EM_FS_" + window.location.pathname;
+        return "EM_FS_" + location.pathname;
       },
       DB_VERSION: 20,
       DB_STORE_NAME: "FILE_DATA",

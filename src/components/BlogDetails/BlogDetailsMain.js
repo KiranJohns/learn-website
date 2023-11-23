@@ -71,7 +71,7 @@ class BlogDetailsMain extends Component {
       });
     this.getDetails();
     ReactGA.initialize("UA-168056874-1", { alwaysSendToDefaultTracker: true });
-    ReactGA.pageview(window.location.pathname + window.location.search);
+    ReactGA.pageview(location.pathname + location.search);
 
     this.state.timer = setTimeout(() => {
       makeRequest("POST", "/blog/update-blog-view-count",{blog_id: this.props.slug})

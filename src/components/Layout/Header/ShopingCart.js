@@ -111,12 +111,12 @@ const ShopingCart = ({ setShopOpen, shopOpen }) => {
     makeRequest("POST", "/cart/checkout")
       .then((res) => {
         console.log(res.data.response);
-        window.location.href = res.data.response;
+     location.href = res.data.response;
       })
       .catch((err) => {
         if (err?.data?.errors[0].message === "please login") {
           localStorage.setItem("from-checkout",true)
-          window.location = "/sign-in";
+          location = "/sign-in";
         }
       });
   }
