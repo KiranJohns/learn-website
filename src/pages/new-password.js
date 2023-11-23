@@ -14,6 +14,7 @@ class NewPass extends React.Component {
 
     render() {
         return (
+            
             <React.Fragment>
             <Header/>
             <NewPassword/>
