@@ -49,7 +49,7 @@ class PurchaseBundle extends Component {
   }
 
   getData = () => {
-    this.makeRequest("GET", "/course/get-all-bought-course")
+    this.makeRequest("GET", "/info/get-purchased-bundles")
         .then((res) => {
           console.log(res);
           this.setState({
@@ -70,8 +70,8 @@ class PurchaseBundle extends Component {
         sortable: true,
       },
       {
-        name: "Courses",
-        selector: (row) => row.Name,
+        name: "bundle name",
+        selector: (row) => row.bundle_name,
         sortable: true,
       },
       {
@@ -83,8 +83,8 @@ class PurchaseBundle extends Component {
         selector: (row) => row.course_count,
       },
       {
-        name: "Actions",
-        cell: () => <BasicExample />,
+        name: "total amount",
+        selector: (row) => row.amount,
       },
     ];
 

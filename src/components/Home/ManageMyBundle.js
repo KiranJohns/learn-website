@@ -46,7 +46,7 @@ class ManagerBundle extends Component {
         .then((res) => {
           console.log(res.data.response);
           this.setState({
-            records: res.data.response,
+            records: res.data.response.filter(item => item.course_count >= 1),
             filterRecords: res.data,
           });
         })
@@ -59,12 +59,12 @@ class ManagerBundle extends Component {
     const columns = [
       {
         name: "ID",
-        selector: (row,idx) => ++idx,
+        selector: (row, idx) => ++idx,
         sortable: true,
       },
       {
-        name: "Courses",
-        selector: (row) => row.Name,
+        name: "Bundle name",
+        selector: (row) => row.bundle_name,
         sortable: true,
       },
       {
@@ -76,8 +76,8 @@ class ManagerBundle extends Component {
         selector: (row) => row.course_count,
       },
       {
-        name: "Actions",
-        cell: () => <BasicExample />,
+        name: "total price",
+        selector: (row) => row.amount,
       },
     ];
 

@@ -56,7 +56,7 @@ const CompAssignBund = () => {
   };
 
   const makeRequest = fetchData();
-  useEffect(() => {
+  function getData() {
     makeRequest("GET", "/info/get-purchased-bundles")
       .then((res) => {
         setRecords(res.data.response.filter((item) => item.course_count >= 1));
@@ -82,6 +82,10 @@ const CompAssignBund = () => {
       .catch((err) => {
         console.log(err);
       });
+  }
+
+  useEffect(() => {
+    getData();
   }, []);
 
   function assignCourseToManager(id) {
@@ -92,13 +96,9 @@ const CompAssignBund = () => {
 
     makeRequest("POST", "/info/assign-course-to-manager", form)
       .then((res) => {
+        getData();
         console.log(res);
-        toast("course assigned")
-        setAssignData({
-          course_id: null,
-          userId: null,
-          count: null,
-        });
+        toast("course assigned");
       })
       .catch((err) => {
         console.log(err);
@@ -114,13 +114,9 @@ const CompAssignBund = () => {
     console.log(assignData);
     makeRequest("POST", "/info/assign-course-to-manager-individual", form)
       .then((res) => {
+        getData();
         console.log(res);
-        toast("course assigned")
-        setAssignData({
-          course_id: null,
-          userId: null,
-          count: null,
-        });
+        toast("course assigned");
       })
       .catch((err) => {
         console.log(err);
@@ -170,6 +166,7 @@ const CompAssignBund = () => {
 
   return (
     <div className="">
+      <ToastContainer />
       <div className="dash-shadow">
         <div className=" row g-3  min-vh-100  d-flex justify-content-center mt-20">
           <h2
@@ -188,13 +185,13 @@ const CompAssignBund = () => {
               styles={{ padding: "2rem" }}
               open={showModal}
               onClose={() => {
-                setShowModal(false)
-                setAssignData(prev => {
+                setShowModal(false);
+                setAssignData((prev) => {
                   return {
                     ...prev,
-                    count: 1
-                  }
-                })
+                    count: 1,
+                  };
+                });
               }}
             >
               <div style={{ maxHeight: "20rem" }}>
@@ -275,7 +272,9 @@ const CompAssignBund = () => {
                                 </span>
                                 <span>{item.email}</span>
                                 <span
-                                  onClick={() => assignCourseToManagerIndividual(item.id)}
+                                  onClick={() =>
+                                    assignCourseToManagerIndividual(item.id)
+                                  }
                                   style={{ width: "fit-content" }}
                                   className="btn btn-success"
                                 >
