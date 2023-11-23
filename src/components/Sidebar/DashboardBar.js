@@ -6,6 +6,7 @@ import { NavLink } from "react-router-dom";
 import { useRouter } from "next/router";
 import { MdVerifiedUser } from "react-icons/md";
 import fetchData from "../../axios";
+import { MdArrowDropDownCircle } from "react-icons/md";
 
 // import {imgg} from '../../../public/assets/img'
 
@@ -17,7 +18,7 @@ const links = [
   },
   {
     name: "My Profile",
-    link: "myprofile",
+    link: "/company/myprofile",
     icon: "bi bi-person-circle",
     // display: false,
     // show: function (link) {
@@ -36,6 +37,7 @@ const links = [
     name: "Bundle",
     link: "bundle",
     icon: "bi bi-person-circle",
+    drop: "bi bi-caret-down-fill",
     display: false,
     show: function (link) {
       this.display = !this.display;
@@ -252,7 +254,7 @@ function DashboardBar() {
                 }  py-3 px-2`}
               >
                 <i className={`${link.icon} txttsml me-2 ml-50`}></i>
-                <span className="txttsml "> &nbsp;{link.name}</span>
+                <span className="txttsml "> &nbsp;{link.name} {link.drop && <span style={{marginLeft:'1rem',marginTop:'.2rem'}} className={link.drop}></span>}</span>
               </div>
             </span>
             {link?.display &&
@@ -272,14 +274,14 @@ function DashboardBar() {
                     }}
                   >
                     <a 
-                      className="list-group-item my-2"
+                      className="list-group-items my-2"
                       style={{
                         width: "max-content",
-                        marginLeft: "5.9rem",
+                        marginLeft: "4.5rem",
                         padding: "0.3rem 1rem !important",
                         borderRadius: "5px",
                       }}
-                      key={id}
+                      key={item.id}
                       href={item.link}
                     >
                       {item.name}

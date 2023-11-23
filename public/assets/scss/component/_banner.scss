@@ -200,7 +200,17 @@
     background-color: #212a50;
   }
 
+  .list-group-items{
+    background-color:#212450;
+    color: white;
+    text-align: left !important;
+}
 
+.list-group-items:hover{
+    color: wheat;
+    
+    cursor: pointer;
+}
   
 
   
