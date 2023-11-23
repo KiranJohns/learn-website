@@ -22,7 +22,7 @@ const CourseExam = () => {
                  <p>1. What is the average life expectency of an elephant ?</p>
                  <form action="button">
                  <div className='row'>
-                  <div className='col-6'>
+                  <div className='col-6 con'>
                  <span style={{display:'flex'}}>  <Form.Check type="radio" name="opt" value="a"  aria-label="radio 1" />  <p style={{textWrap:"wrap", marginLeft:'1px'}}>a. fdfsdfsdfsdffffffffffffsdfdsfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsddsa adasdasdasdasdasdasadsaddasdsaa</p></span> 
                   </div>
                   <div className='col-6 '>
