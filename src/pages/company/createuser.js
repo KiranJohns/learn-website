@@ -9,7 +9,7 @@ import NoSSR from "react-no-ssr";
 import { getUserType } from "../../axios";
 import { useRouter } from "next/router";
 
-function CompanyDashboard() {
+function CompanyCreate() {
   const [logedIn, setlogedIn] = useState(() => {
     return getUserType();
   });
@@ -54,7 +54,7 @@ function CompanyDashboard() {
   );
 }
 
-export default CompanyDashboard;
+export default CompanyCreate;
 
 // import React from "react";
 // import CourseBundle from "../../components/CourseGrid/CourseBundle";
