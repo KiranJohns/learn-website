@@ -7,6 +7,8 @@ import DropdownButton from "react-bootstrap/DropdownButton";
 import BasicExample from "../About/button1";
 import fetchData from "../../axios";
 import Modal from "react-responsive-modal";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { Tab } from "react-bootstrap";
 
 const customStyles = {
@@ -57,7 +59,6 @@ const CompAssignBund = () => {
   useEffect(() => {
     makeRequest("GET", "/info/get-purchased-bundles")
       .then((res) => {
-        console.log("bundles", res.data.response);
         setRecords(res.data.response.filter((item) => item.course_count >= 1));
       })
       .catch((err) => {
@@ -66,7 +67,6 @@ const CompAssignBund = () => {
 
     makeRequest("GET", "/info/get-all-manager-individual")
       .then((res) => {
-        console.log("individuals", res.data.response);
         setFilteredCompanyIndividuals(res.data.response);
         setCompanyIndividuals(res.data.response);
       })
@@ -76,7 +76,6 @@ const CompAssignBund = () => {
 
     makeRequest("GET", "/info/get-all-managers")
       .then((res) => {
-        console.log("managers", res.data.response);
         setAllManagers(res.data.response);
         setFilteredManagers(res.data.response);
       })
@@ -94,6 +93,7 @@ const CompAssignBund = () => {
     makeRequest("POST", "/info/assign-course-to-manager", form)
       .then((res) => {
         console.log(res);
+        toast("course assigned")
         setAssignData({
           course_id: null,
           userId: null,
@@ -115,6 +115,7 @@ const CompAssignBund = () => {
     makeRequest("POST", "/info/assign-course-to-manager-individual", form)
       .then((res) => {
         console.log(res);
+        toast("course assigned")
         setAssignData({
           course_id: null,
           userId: null,

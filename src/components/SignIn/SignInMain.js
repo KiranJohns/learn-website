@@ -67,22 +67,26 @@ function SignInMain() {
         );
         localStorage.setItem("userType", res.data.userType);
         let from = localStorage.getItem("from-checkout", true);
-        if (
-          res.data.userType == "individual" ||
-          res.data.userType === "sub_user"
-        ) {
+        if (res.data.userType == "individual") {
           if (from) {
             localStorage.removeItem("from-checkout");
             location.pathname = "/cart";
           } else {
             location.pathname = "/individual/dashboard";
           }
-        } else {
+        } else if (res.data.userType === "company") {
           if (from) {
             localStorage.removeItem("from-checkout");
             location.pathname = "/cart";
           } else {
             location.pathname = "/company/dashboard";
+          }
+        } else if (res.data.userType === "manager") {
+          if (from) {
+            localStorage.removeItem("from-checkout");
+            location.pathname = "/cart";
+          } else {
+            location.pathname = "/manager/dashboard";
           }
         }
       })
@@ -97,7 +101,7 @@ function SignInMain() {
         });
       });
   }
-  
+
   return (
     <main>
       {/* <Modal

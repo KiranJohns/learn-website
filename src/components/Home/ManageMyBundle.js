@@ -36,22 +36,15 @@ class ManagerBundle extends Component {
     this.makeRequest = fetchData();
   }
 
-  handleFilter = (event) => {
-    const newData = this.state.filterRecords.filter((row) =>
-      row.name.toLowerCase().includes(event.target.value.toLowerCase())
-    );
-    this.setState({ records: newData });
-  };
-
   componentDidMount() {
     console.log('');
     this.getData();
   }
 
   getData = () => {
-    this.makeRequest("GET", "/course/get-all-bought-course")
+    this.makeRequest("GET", "/info/get-purchased-bundles")
         .then((res) => {
-          console.log(res);
+          console.log(res.data.response);
           this.setState({
             records: res.data.response,
             filterRecords: res.data,
