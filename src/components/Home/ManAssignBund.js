@@ -225,137 +225,64 @@ const ManAssignBund = () => {
                     Manager
                   </strong>
                 </div>
-                {selectUserForAssignCourse === "individual" ? (
-                  <div>
-                    <div className="form-control d-flex gap-3">
-                      <div className="form-group">
-                        <label for="exampleInputEmail1">Course Count</label>
-                        <input
-                          disabled
-                          type="number"
-                          className="form-control"
-                          id="exampleInputEmail1"
-                          aria-describedby="emailHelp"
-                          placeholder="1"
-                        />
-                      </div>
-                      <div className="form-group">
-                        <label for="exampleInputEmail1">user name</label>
-                        <input
-                          onChange={(e) =>
-                            setFilteredCompanyIndividuals(
-                              companyIndividuals.filter((item) =>
-                                item.first_name
-                                  .toLocaleLowerCase()
-                                  .startsWith(
-                                    e.target.value.toLocaleLowerCase()
-                                  )
-                              )
-                            )
-                          }
-                          type="text"
-                          className="form-control"
-                          id="exampleInputEmail1"
-                          aria-describedby="emailHelp"
-                          placeholder="enter course name"
-                        />
-                      </div>
+                <div>
+                  <div className="form-control d-flex gap-3">
+                    <div className="form-group">
+                      <label for="exampleInputEmail1">Course Count</label>
+                      <input
+                        disabled
+                        type="number"
+                        className="form-control"
+                        id="exampleInputEmail1"
+                        aria-describedby="emailHelp"
+                        placeholder="1"
+                      />
                     </div>
-                    <div className="list-group bg-white">
-                      <ul class="list-group">
-                        {filteredCompanyIndividuals &&
-                          filteredCompanyIndividuals.map((item) => {
-                            return (
-                              <li class="list-group-item bg-white text-black d-flex justify-content-between">
-                                <span style={{ width: "fit-content" }}>
-                                  {item.first_name + " " + item.last_name}
-                                </span>
-                                <span>{item.email}</span>
-                                <span
-                                  onClick={() =>
-                                    assignCourseToManagerIndividual(item.id)
-                                  }
-                                  style={{ width: "fit-content" }}
-                                  className="btn btn-success"
-                                >
-                                  Assign
-                                </span>
-                              </li>
-                            );
-                          })}
-                      </ul>
+                    <div className="form-group">
+                      <label for="exampleInputEmail1">user name</label>
+                      <input
+                        onChange={(e) =>
+                          setFilteredCompanyIndividuals(
+                            companyIndividuals.filter((item) =>
+                              item.first_name
+                                .toLocaleLowerCase()
+                                .startsWith(e.target.value.toLocaleLowerCase())
+                            )
+                          )
+                        }
+                        type="text"
+                        className="form-control"
+                        id="exampleInputEmail1"
+                        aria-describedby="emailHelp"
+                        placeholder="enter course name"
+                      />
                     </div>
                   </div>
-                ) : (
-                  <div>
-                    <div className="form-control d-flex gap-3">
-                      <div className="form-group">
-                        <label for="exampleInputEmail1">Course Count</label>
-                        <input
-                          onChange={(e) => {
-                            if (Number(e.target.value) <= selectedBundleCount) {
-                              setAssignData((prev) => {
-                                return {
-                                  ...prev,
-                                  count: e.target.value,
-                                };
-                              });
-                            }
-                          }}
-                          type="number"
-                          value={assignData.count}
-                          className="form-control"
-                          id="exampleInputEmail1"
-                          aria-describedby="emailHelp"
-                          placeholder="0"
-                        />
-                      </div>
-                      <div className="form-group">
-                        <label for="exampleInputEmail1">manager name</label>
-                        <input
-                          onChange={(e) =>
-                            setFilteredManagers(
-                              allManagers.filter((item) =>
-                                item.first_name
-                                  .toLocaleLowerCase()
-                                  .startsWith(
-                                    e.target.value.toLocaleLowerCase()
-                                  )
-                              )
-                            )
-                          }
-                          type="text"
-                          className="form-control"
-                          id="exampleInputEmail1"
-                          aria-describedby="emailHelp"
-                          placeholder="enter course name"
-                        />
-                      </div>
-                    </div>
-                    <div className="list-group bg-white">
-                      <ul class="list-group">
-                        {filteredManagers &&
-                          filteredManagers.map((item) => {
-                            return (
-                              <li class="list-group-item bg-white text-black d-flex justify-content-between">
-                                <span style={{ width: "fit-content" }}>
-                                  {item.first_name + " " + item.last_name}
-                                </span>
-                                <span>{item.email}</span>
-                                <span
-                                  style={{ width: "fit-content" }}
-                                  className="btn btn-success"
-                                  onClick={() => assignCourseToManager(item.id)}
-                                >
-                                  Assign
-                                </span>
-                              </li>
-                            );
-                          })}
-                      </ul>
-                    </div>
+                  <div className="list-group bg-white">
+                    <ul class="list-group">
+                      {filteredCompanyIndividuals &&
+                        filteredCompanyIndividuals.map((item) => {
+                          return (
+                            <li class="list-group-item bg-white text-black d-flex justify-content-between">
+                              <span style={{ width: "fit-content" }}>
+                                {item.first_name + " " + item.last_name}
+                              </span>
+                              <span>{item.email}</span>
+                              <span
+                                onClick={() =>
+                                  assignCourseToManagerIndividual(item.id)
+                                }
+                                style={{ width: "fit-content" }}
+                                className="btn btn-success"
+                              >
+                                Assign
+                              </span>
+                            </li>
+                          );
+                        })}
+                    </ul>
                   </div>
-                )}
+                </div>
               </div>
             </Modal>
             <div
@@ -397,6 +324,5 @@ const ManAssignBund = () => {
     </div>
   );
 };
-
 
 export default ManAssignBund;
