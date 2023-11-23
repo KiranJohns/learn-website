@@ -33,34 +33,29 @@ class CompanyPurBundle extends Component {
       records: [],
       filterRecords: [],
     };
-    this.makeRequest = fetchData();
   }
-
+  
   handleFilter = (event) => {
     const newData = this.state.filterRecords.filter((row) =>
-      row.name.toLowerCase().includes(event.target.value.toLowerCase())
+    row.name.toLowerCase().includes(event.target.value.toLowerCase())
     );
     this.setState({ records: newData });
   };
-
+  
   componentDidMount() {
-    console.log('');
-    this.getData();
-  }
-
-  getData = () => {
-    this.makeRequest("GET", "/course/get-all-bought-course")
-        .then((res) => {
-          console.log(res);
-          this.setState({
-            records: res.data.response,
-            filterRecords: res.data,
-          });
-        })
-        .catch((err) => {
-          console.log(err);
+    let makeRequest = fetchData();
+    makeRequest("GET", "/info/get-purchased-bundles")
+      .then((res) => {
+        console.log(res);
+        this.setState({
+          records: res.data.response,
+          filterRecords: res.data,
         });
-  };
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 
   render() {
     const columns = [
@@ -71,7 +66,7 @@ class CompanyPurBundle extends Component {
       },
       {
         name: "Courses",
-        selector: (row) => row.Name,
+        selector: (row) => row.bundle_name,
         sortable: true,
       },
       {

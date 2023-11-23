@@ -49,7 +49,7 @@ class CompanyBundle extends Component {
       .then((res) => {
         console.log(res);
         this.setState({
-          records: res.data.response,
+          records: res.data.response?.filter(item => item.course_count >= 1),
           filterRecords: res.data,
         });
       })
