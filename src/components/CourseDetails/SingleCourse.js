@@ -8,7 +8,7 @@ import { useEffect } from "react";
 import DocViewer, { DocViewerRenderers } from "react-doc-viewer";
 import { Slide } from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css'
-
+import Button from 'react-bootstrap/Button';
 
 
 
@@ -85,8 +85,8 @@ const SingleCourse = () => {
       <div style={{ display: "flex", justifyContent: "center", marginTop:"3rem" }}>
         <iframe
           src="https://onedrive.live.com/embed?resid=F5F394858BB1213E%214405&authkey=!AIJnHcKPEcZ66uQ&em=2"
-          width="402"
-          height="327"
+          width="630"
+          height="500"
           frameborder="0"
           scrolling="no"
           controls="0"
@@ -113,6 +113,14 @@ const SingleCourse = () => {
           ))} 
         </Slide>
       </div>
+
+      <div className="blog-box-shadow mt-50 p-4">
+      <div> <h4>Resources</h4></div>
+      <div style={{margin:' 1rem .5re'}}>
+      <p>Name of resource <a href="" style={{color:'#212a50'}}  download>{" "}View</a></p> 
+      </div>
+      </div>
+        <div className="mt-4 py-4  px-1" style={{display:'flex', justifyContent:'right'}}>  <Button variant="success">Start Exam</Button>{' '}</div>
     </div>
   );
 };

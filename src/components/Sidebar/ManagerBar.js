@@ -154,7 +154,7 @@ function ManagerBar() {
           flexDirection: "column",
           justifyContent: "center",
           padding: "0 1rem",
-          height: "20rem",
+          height: "16.2rem",
           position: "relative",
           // borderRadius: '10px'
         }}
