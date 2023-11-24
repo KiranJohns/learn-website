@@ -34,7 +34,7 @@ const links = [
     // ],
   },
   {
-    name: "Bundle",
+    name: "Bundles",
     link: "bundle",
     icon: "bi bi-person-circle",
     drop: "bi bi-caret-down-fill",
@@ -44,34 +44,62 @@ const links = [
     },
     subLinks: [
       {
-        name: "My Bundle",
+        name: "My Bundles",
         link: "/company/mybundle",
       },
       {
-        name: "Buy Bundle",
+        name: "Buy Bundles",
         link: "/bundle/bundle-all",
       },
       {
-        name: "Purchased Bundle",
+        name: "Purchased Bundles",
         link: "/company/purchasedBundle",
       },
       {
-        name: "Assign Bundle",
+        name: "Assign Bundles",
         link: "/company/assignBundle",
       },
     ],
   },
-  { name: "My Course", link: "/company/mycourses", icon: "bi bi-book" },
+  {
+    name: "Courses",
+    link: "courses",
+    icon: "bi bi-book",
+    drop: "bi bi-caret-down-fill",
+    display: false,
+    show: function (link) {
+      this.display = !this.display;
+    },
+    subLinks: [
+      {
+        name: "My Courses",
+        link: "/company/mycourses",
+      },
+      {
+        name: "Buy Course",
+        link: "/course-all/",
+      },
+      {
+        name: "Purchased Courses",
+        link: "/company/availablecourses",
+      },
+      {
+        name: "Assign Courses",
+        link: "/company/assigncourse",
+      },
+    ],
+  },
+  // { name: "My Course", link: "/company/mycourses", icon: "bi bi-book" },
   {
     name: "Certificates",
     link: "/company/certificates",
     icon: "bi bi-patch-check-fill",
   },
-  {
-    name: "All Courses",
-    link: "/company/availablecourses",
-    icon: "bi bi-card-checklist",
-  },
+  // {
+  //   name: "All Courses",
+  //   link: "/company/availablecourses",
+  //   icon: "bi bi-card-checklist",
+  // },
   {
     name: "Create User",
     link: "/company/createuser",
@@ -83,11 +111,7 @@ const links = [
     link: "/company/archive",
     icon: "bi bi-person-fill-slash",
   },
-  {
-    name: "Assign Course",
-    link: "/company/assigncourse",
-    icon: "bi bi-person-check-fill",
-  },
+
 ];
 function DashboardBar() {
   const router = useRouter();

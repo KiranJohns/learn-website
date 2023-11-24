@@ -32,7 +32,7 @@ const customStyles = {
   },
 };
 
-const CompAssignBund = () => {
+const ManagerAssignCourse = () => {
   const [records, setRecords] = useState([]);
   const [searchString, setSearchString] = useState("");
   const [companyIndividuals, setCompanyIndividuals] = useState([]);
@@ -179,7 +179,7 @@ const CompAssignBund = () => {
               fontSize: 42,
             }}
           >
-            Assign Bundle
+            Assign Course
           </h2>
           <div style={{ padding: "", backgroundColor: "" }}>
             <Modal
@@ -407,4 +407,4 @@ const CompAssignBund = () => {
   );
 };
 
-export default CompAssignBund;
+export default ManagerAssignCourse;
