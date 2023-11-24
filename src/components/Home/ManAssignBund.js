@@ -39,7 +39,7 @@ const ManAssignBund = () => {
   const [filteredCompanyIndividuals, setFilteredCompanyIndividuals] = useState(
     []
   );
-  const [allManagers, setAllManagers] = useState([]);
+  const [fromAssignedTable, setFromAssignedTable] = useState(false);
   const [filteredManagers, setFilteredManagers] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [selectedBundleCount, setSelectedBundleCount] = useState(0);
@@ -58,8 +58,23 @@ const ManAssignBund = () => {
   const makeRequest = fetchData();
   function getData() {
     makeRequest("GET", "/info/get-purchased-bundles")
-      .then((res) => {
-        setRecords(res.data.response.filter((item) => item.course_count >= 1));
+      .then((purchasedRes) => {
+        console.log("response purchased ", purchasedRes.data.response);
+        makeRequest("GET", "/info/get-assigned-bundle")
+          .then((res) => {
+            console.log("response from assigned ", res.data.response);
+            setRecords((prev) => {
+              return [
+                ...purchasedRes.data.response.filter(
+                  (item) => item.course_count >= 1
+                ),
+                ...res.data.response.filter((item) => item.course_count >= 1),
+              ];
+            });
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       })
       .catch((err) => {
         console.log(err);
@@ -73,28 +88,26 @@ const ManAssignBund = () => {
       .catch((err) => {
         console.log(err);
       });
-
-    makeRequest("GET", "/info/get-all-managers")
-      .then((res) => {
-        setAllManagers(res.data.response);
-        setFilteredManagers(res.data.response);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
   }
 
   useEffect(() => {
+    setRecords();
     getData();
   }, []);
 
-  function assignCourseToManager(id) {
+  function assignCourseToManagerIndividualFromManager(id) {
     let form = new FormData();
     form.append("course_id", assignData.course_id);
     form.append("userId", id);
-    form.append("count", assignData.count);
+    form.append("count", 1);
+    form.append("from_assigned_table", fromAssignedTable);
 
-    makeRequest("POST", "/info/assign-course-to-manager", form)
+    console.log(assignData);
+    makeRequest(
+      "POST",
+      "/info/assign-course-to-manager-individual-from-manager",
+      form
+    )
       .then((res) => {
         getData();
         console.log(res);
@@ -110,6 +123,7 @@ const ManAssignBund = () => {
     form.append("course_id", assignData.course_id);
     form.append("userId", id);
     form.append("count", 1);
+    form.append("from_assigned_table", fromAssignedTable);
 
     console.log(assignData);
     makeRequest("POST", "/info/assign-course-to-manager-individual", form)
@@ -136,7 +150,7 @@ const ManAssignBund = () => {
     },
     {
       name: "validity",
-      selector: (row) => row.validity,
+      selector: (row) => new Date(row.validity).toLocaleDateString(),
     },
     {
       name: "count",
@@ -155,6 +169,12 @@ const ManAssignBund = () => {
                 course_id: row.id,
               };
             });
+
+            if (row?.from_assigned_table) {
+              setFromAssignedTable(true);
+            } else {
+              setFromAssignedTable(false);
+            }
             setSelectedBundleCount(row.course_count);
           }}
         >
@@ -194,37 +214,7 @@ const ManAssignBund = () => {
                 });
               }}
             >
-              <div style={{ maxHeight: "20rem" }}>
-                <div className="modal-header d-flex mb-5">
-                  <strong
-                    className={`btn ${
-                      selectUserForAssignCourse == "individual"
-                        ? "btn-success"
-                        : ""
-                    }`}
-                    onClick={() => {
-                      setSelectUserForAssignCourse("individual");
-                      setAssignData((prev) => {
-                        return {
-                          ...prev,
-                          count: 1,
-                        };
-                      });
-                    }}
-                  >
-                    Individual
-                  </strong>
-                  <strong
-                    className={`btn ${
-                      selectUserForAssignCourse == "manager"
-                        ? "btn-success"
-                        : ""
-                    }`}
-                    onClick={() => setSelectUserForAssignCourse("manager")}
-                  >
-                    Manager
-                  </strong>
-                </div>
+              <div style={{ maxHeight: "20rem" }} className="mt-3">
                 <div>
                   <div className="form-control d-flex gap-3">
                     <div className="form-group">
@@ -269,9 +259,13 @@ const ManAssignBund = () => {
                               </span>
                               <span>{item.email}</span>
                               <span
-                                onClick={() =>
-                                  assignCourseToManagerIndividual(item.id)
-                                }
+                                onClick={() =>{
+                                  if(fromAssignedTable) {
+                                    assignCourseToManagerIndividualFromManager(item.id)
+                                  } else {
+                                    assignCourseToManagerIndividual(item.id)
+                                  }
+                                }}
                                 style={{ width: "fit-content" }}
                                 className="btn btn-success"
                               >

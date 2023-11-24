@@ -225,7 +225,7 @@ function ManagerBar() {
             <br />
           </h5>
           <h6 style={{ color: "#212450", textAlign: "center", marginLeft: "" }}>
-            Company
+            Manager
             <br />
           </h6>
         </div>

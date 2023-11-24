@@ -48,9 +48,19 @@ class IndMyBundle extends Component {
     makeRequest("GET", "/info/get-purchased-bundles")
       .then((res) => {
         console.log(res);
-        this.setState({
-          records: res.data.response?.filter(item => item.course_count >= 1),
-          filterRecords: res.data,
+        makeRequest("GET", "/info/get-individual-assigned-bundles")
+        .then((resAssigned) => {
+          console.log(resAssigned);
+          let result = [
+            ...res.data.response, ...resAssigned.data.response
+          ]
+          this.setState({
+            records: result,
+            filterRecords: res.data,
+          });
+        })
+        .catch((err) => {
+          console.log(err);
         });
       })
       .catch((err) => {
@@ -70,21 +80,21 @@ class IndMyBundle extends Component {
         sortable: true,
       },
       {
-        name: "Courses",
-        selector: (row) => row.bundle_name,
+        name: "bundle name",
+        selector: (row) => row.name,
         sortable: true,
       },
       {
         name: "validity",
-        selector: (row) => row.validity,
+        selector: (row) => new Date(row.validity).toLocaleDateString(),
       },
       {
-        name: "count",
-        selector: (row) => row.course_count,
+        name: "description",
+        selector: (row) => row.description,
       },
       {
         name: "Actions",
-        cell: () => <BasicExample />,
+        cell: () => <span className="btn btn-success">start</span>,
       },
     ];
 

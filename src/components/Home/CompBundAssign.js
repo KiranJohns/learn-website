@@ -149,6 +149,7 @@ const CompAssignBund = () => {
           className="btn btn-primary"
           onClick={() => {
             openModal();
+            console.log("row", row.id);
             setAssignData((prev) => {
               return {
                 ...prev,
@@ -220,7 +221,15 @@ const CompAssignBund = () => {
                         ? "btn-success"
                         : ""
                     }`}
-                    onClick={() => setSelectUserForAssignCourse("manager")}
+                    onClick={() => {
+                      setAssignData((prev) => {
+                        return {
+                          ...prev,
+                          count: 1,
+                        };
+                      });
+                      setSelectUserForAssignCourse("manager");
+                    }}
                   >
                     Manager
                   </strong>

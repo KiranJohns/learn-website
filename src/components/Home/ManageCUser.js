@@ -15,13 +15,13 @@ class ManageCreateU extends Component {
         country: "",
         password: "",
         phone: "",
-        user_type: "",
+        user_type: "individual",
       },
     };
 
     this.handleOnchange = this.handleOnchange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this)
-    this.mackRequest = fetchData()
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.mackRequest = fetchData();
   }
 
   handleOnchange = (e) => {
@@ -37,38 +37,34 @@ class ManageCreateU extends Component {
 
   handleSubmit(e) {
     e.persist();
-    if(this.state.userData.user_type === "individual") {
-      this.mackRequest("POST","/info/create-manager-individual",{...this.state.userData,phone: Number(this.state.userData.phone)}).then(res => {
-        toast.success("user created")
-      }).catch(err => {
-        // console.log(err.data);
-        toast.error(err.data)
+    this.mackRequest("POST", "/info/create-manager-individual", {
+      ...this.state.userData,
+      phone: Number(this.state.userData.phone),
+    })
+      .then((res) => {
+        toast.success("user created");
       })
-    } else if (this.state.userData.user_type === "manager") {
-      this.mackRequest("POST","/info/create-manager",{...this.state.userData,phone: Number(this.state.userData.phone)}).then(res => {
-        toast.success("manager created")
-      }).catch(err => {
+      .catch((err) => {
         console.log(err.data);
-        toast.error(err.data.data.response)
-      })
-    }
+        toast.error(err.data);
+      });
   }
 
   render() {
     return (
       <div className="">
-         <ToastContainer
-              position="top-right"
-              autoClose={5000}
-              hideProgressBar={false}
-              newestOnTop={false}
-              closeOnClick={true}
-              rtl={false}
-              pauseOnFocusLoss
-              draggable
-              pauseOnHover
-              theme="light"
-            />
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick={true}
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
         <div className="dash-shadow mt-20 p-4">
           <h2
             style={{
@@ -184,23 +180,6 @@ class ManageCreateU extends Component {
                   value={this.state.userData.phone}
                 />
               </div>
-
-              <div class="form-group p-2 mb-4">
-                <label className="text-black" for="FormControlInput1">
-                  Type of user
-                </label>
-                <select
-                  onChange={this.handleOnchange}
-                  className="form-control border border-black"
-                  id="exampleFormControlSelect1"
-                  name="user_type"
-                >
-                  <option>Select</option>
-                  <option value="individual">individual</option>
-                  <option value="manager">manager</option>
-                </select>
-              </div>
-
               <div className="form-group p-2 mb-4">
                 <button
                   type="button"
