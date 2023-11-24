@@ -50,7 +50,8 @@ class IndMyBundle extends Component {
         console.log(res);
         makeRequest("GET", "/info/get-individual-assigned-bundles")
         .then((resAssigned) => {
-          console.log(resAssigned);
+          console.log('resAssigned', resAssigned.data.response);
+          console.log('res', res.data.response);
           let result = [
             ...res.data.response, ...resAssigned.data.response
           ]
@@ -76,12 +77,12 @@ class IndMyBundle extends Component {
     const columns = [
       {
         name: "ID",
-        selector: (row) => row.id,
+        selector: (row, idx) => idx,
         sortable: true,
       },
       {
         name: "bundle name",
-        selector: (row) => row.name,
+        selector: (row) => row?.name || row?.bundle_name,
         sortable: true,
       },
       {

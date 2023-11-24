@@ -116,7 +116,7 @@ const SingleCourse = () => {
 
       <div className="blog-box-shadow mt-50 p-4">
       <div> <h4>Resources</h4></div>
-      <div style={{margin:' 1rem .5re'}}>
+      <div style={{margin:' 1rem .5rem'}}>
       <p>Name of resource <a href="" style={{color:'#212a50'}}  download>{" "}View</a></p> 
       </div>
       </div>
