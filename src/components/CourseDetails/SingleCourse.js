@@ -116,8 +116,8 @@ const SingleCourse = () => {
 
       <div className="blog-box-shadow mt-50 p-4">
       <div> <h4>Resources</h4></div>
-      <div style={{margin:' 1rem .5re'}}>
-      <p>Name of resource <a href="" style={{color:'#212a50'}}  download>{" "}View</a></p> 
+      <div style={{margin:' 1rem .5rem'}}>
+      <p >Name of resource <a href="https://www.africau.edu/images/default/sample.pdf"   style={{color:'#1b85b8'}} target="_blank"  download>{" "}View</a></p> 
       </div>
       </div>
         <div className="mt-4 py-4  px-1" style={{display:'flex', justifyContent:'right'}}>  <Button variant="success">Start Exam</Button>{' '}</div>

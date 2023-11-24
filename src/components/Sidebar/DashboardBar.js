@@ -307,10 +307,10 @@ function DashboardBar() {
 
         <div
           onClick={handleLogout}
-          style={{ margin: ".8rem", borderRadius: "8px" }}
+          style={{ margin: ".8rem", borderRadius: "8px",  }}
           className="list-group-item py-3 px-2 "
         >
-          <i className="bi bi-box-arrow-left txttsml me-2 ml-50"></i>
+          <i  className="bi bi-box-arrow-left txttsml me-2 ml-50"></i>
           <span className="txttsml">{"  "}&nbsp;Logout</span>
         </div>
 
