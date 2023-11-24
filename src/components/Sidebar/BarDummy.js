@@ -20,21 +20,13 @@ const arr = [
     link: "/individual/myprofile",
     icon: "bi bi-person-circle",
   },
-  { name: "My Bundles", 
-  link: "/individual/mybundles", 
-  icon: "bi bi-book" },
+  { name: "My Bundles", link: "/individual/mybundles", icon: "bi bi-book" },
 
-  { name: "My Courses", 
-  link: "/individual/mycourses", 
-  icon: "bi bi-book" },
+  { name: "My Courses", link: "/individual/mycourses", icon: "bi bi-book" },
 
-  { name: "Buy Bundles", 
-  link: "/bundle/bundle-all", 
-  icon: "bi bi-book" },
+  { name: "Buy Bundles", link: "/bundle/bundle-all", icon: "bi bi-book" },
 
-  { name: "Buy Courses", 
-  link: "/course-all", 
-  icon: "bi bi-book" },
+  { name: "Buy Courses", link: "/course-all", icon: "bi bi-book" },
 
   {
     name: "Certificates",

@@ -45,19 +45,19 @@ const links = [
     subLinks: [
       {
         name: "My Bundle",
-        link:"/company/mybundle"
+        link: "/company/mybundle",
       },
       {
         name: "Buy Bundle",
-        link:"/bundle/bundle-all"
+        link: "/bundle/bundle-all",
       },
       {
         name: "Purchased Bundle",
-        link:"/company/purchasedBundle"
+        link: "/company/purchasedBundle",
       },
       {
         name: "Assign Bundle",
-        link:"/company/assignBundle"
+        link: "/company/assignBundle",
       },
     ],
   },
@@ -234,63 +234,76 @@ function DashboardBar() {
       </div>
       {/* <hr className="" /> */}
       <div className=" text-nowrap" style={{ overflow: "hidden" }}>
-        {linksArr.map((link) => (
-          <>
-            <span
-              onClick={(e) => {
-                console.log(link.link);
-                if (!link?.subLinks) {
-                  router.push(link.link);
-                }
-                openSubLink(link.link);
-              }}
-            >
-              <div
-                style={{ margin: ".8rem", borderRadius: "8px " }}
-                className={`list-group-item  ${
-                  router.pathname.startsWith(link.link)
-                    ? "activate-sidebar"
-                    : ""
-                }  py-3 px-2`}
+        {linksArr.map((link) => {
+          return (
+            <>
+              <span
+                onClick={(e) => {
+                  console.log(link.link);
+                  if (!link?.subLinks) {
+                    router.push(link.link);
+                  }
+                  openSubLink(link.link);
+                }}
               >
-                <i className={`${link.icon} txttsml me-2 ml-50`}></i>
-                <span className="txttsml "> &nbsp;{link.name} {link.drop && <span style={{marginLeft:'1rem',marginTop:'.2rem'}} className={link.drop}></span>}</span>
-              </div>
-            </span>
-            {link?.display &&
-              link?.subLinks?.map((item, id) => {
-                return (
-                  <div
-                    className=" text-nowrap my-1"
-                    style={{
-                      transition: "all ease 0.5s",
-                      overflow: "hidden",
-                      height: "0 !important",
-                      padding: "0.1rem 1rem !important",
-                      textAlign: "center",
-                      width: "100%",
-                      display: "flex",
-                      justifyContent: "left",
-                    }}
-                  >
-                    <a 
-                      className="list-group-items my-2"
+                <div
+                  style={{ margin: ".8rem", borderRadius: "8px " }}
+                  className={`list-group-item  ${
+                    link.subLinks?.find((link) => link.link == router.pathname)
+                      ? "activate-sidebar"
+                      : router.pathname == link.link
+                      ? "activate-sidebar"
+                      : ""
+                  }  py-3 px-2`}
+                >
+                  <i className={`${link.icon} txttsml me-2 ml-50`}></i>
+                  <span className="txttsml ">
+                    {" "}
+                    &nbsp;{link.name}{" "}
+                    {link.drop && (
+                      <span
+                        style={{ marginLeft: "1rem", marginTop: ".2rem" }}
+                        className={link.drop}
+                      ></span>
+                    )}
+                  </span>
+                </div>
+              </span>
+              {link?.display &&
+                link?.subLinks?.map((item, id) => {
+                  return (
+                    <div
+                      className=" text-nowrap my-1"
                       style={{
-                        width: "max-content",
-                        marginLeft: "4.5rem",
-                        padding: "0.3rem 1rem !important",
-                        borderRadius: "5px",
+                        transition: "all ease 0.5s",
+                        overflow: "hidden",
+                        height: "0 !important",
+                        padding: "0.1rem 1rem !important",
+                        textAlign: "center",
+                        width: "100%",
+                        display: "flex",
+                        justifyContent: "left",
                       }}
-                      key={item.id}
-                      href={item.link}
                     >
-                      {item.name}
-                    </a>
-                  </div>
-                );
-              })}
-          </>
-        ))}
+                      <a
+                        className="list-group-items my-2"
+                        style={{
+                          width: "max-content",
+                          marginLeft: "4.5rem",
+                          padding: "0.3rem 1rem !important",
+                          borderRadius: "5px",
+                        }}
+                        key={item.id}
+                        href={item.link}
+                      >
+                        {item.name}
+                      </a>
+                    </div>
+                  );
+                })}
+            </>
+          );
+        })}
 
         <div
           onClick={handleLogout}

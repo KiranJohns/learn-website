@@ -246,9 +246,9 @@ function ManagerBar() {
               <div
                 style={{ margin: ".8rem", borderRadius: "8px " }}
                 className={`list-group-item  ${
-                  router.pathname.startsWith(link.link)
+                  link.subLinks?.find(link => link.link == router.pathname)
                     ? "activate-sidebar"
-                    : ""
+                    : router.pathname == link.link ? "activate-sidebar" : ""
                 }  py-3 px-2`}
               >
                 <i className={`${link.icon} txttsml me-2 ml-50`}></i>
