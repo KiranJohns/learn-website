@@ -11552,7 +11552,12 @@ var createModule = function() {
         }
       },
       indexedDB: function() {
-        return window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;
+        if (typeof window !== 'undefined') {
+          return window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;
+        } else {
+          // Handle non-browser environment, or return a default value
+          return null;
+        }
       },
       DB_NAME: function() {
         return "EM_FS_" + location.pathname;
