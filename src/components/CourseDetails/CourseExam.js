@@ -1,5 +1,5 @@
 import React from 'react'
-import Form from 'react-bootstrap/Form';
+// import Form from 'react-bootstrap/Form';
 
 const CourseExam = () => {
   return (
@@ -18,7 +18,7 @@ const CourseExam = () => {
         After you completed the online assessment, you need to click on the SUBMIT button at the bottom of the page. Once you have done this, you will not be able to return to the question page to change any of your answers, so make sure that you have checked all of your answers before you finish. At the end of the exam you will immediately receive your score!
                 </small>
                </div>
-               <div className='dash-shadow p-4 mt-4'>
+               {/* <div className='dash-shadow p-4 mt-4'>
                  <p>1. What is the average life expectency of an elephant ?</p>
                  <form action="button">
                  <div className='row'>
@@ -35,7 +35,7 @@ const CourseExam = () => {
                
                  </div>
                  </form>
-               </div>
+               </div> */}
                <div className='dash-shadow p-4 mt-4'>
                  <p> sdsadassadasd</p>
                </div>
