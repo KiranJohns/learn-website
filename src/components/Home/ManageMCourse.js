@@ -46,7 +46,7 @@ class ManageMyCourse extends Component {
     let makeRequest = fetchData();
     let purchasedRes = await makeRequest(
       "GET",
-      "/course/get-all-assigned-course"
+      "/info/get-assigned-course-for-manager"
     );
     let assignedRes = await makeRequest("GET", "/course/get-bought-course");
     Promise.all([purchasedRes, assignedRes])

@@ -41,12 +41,13 @@ class ManagerBundle extends Component {
     this.getData();
   }
 
-  getData = () => {
-    this.makeRequest("GET", "/info/get-purchased-bundles")
-        .then((res) => {
-          console.log(res.data.response);
+  getData = async () => {
+    let resPurchased = await this.makeRequest("GET", "/info/get-purchased-bundles")
+    let resAssigned = await this.makeRequest("GET", "/info/get-assigned-bundle")
+        
+    Promise.all([resPurchased,resAssigned]).then((res) => {
           this.setState({
-            records: res.data.response.filter(item => item.course_count >= 1),
+            records: [...res[0].data.response,...res[1].data.response].filter(item => item.course_count >= 1),
             filterRecords: res.data,
           });
         })
@@ -69,7 +70,7 @@ class ManagerBundle extends Component {
       },
       {
         name: "validity",
-        selector: (row) => row.validity,
+        selector: (row) => new Date(row.validity).toLocaleDateString(),
       },
       {
         name: "count",
