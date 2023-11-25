@@ -33,6 +33,7 @@ const customStyles = {
 };
 
 const ManagerAssignCourse = () => {
+  const [from, setFrom] = useState("");
   const [records, setRecords] = useState([]);
   const [searchString, setSearchString] = useState("");
   const [companyIndividuals, setCompanyIndividuals] = useState([]);
@@ -67,7 +68,7 @@ const ManagerAssignCourse = () => {
         console.log("res[0].data.response ", res[0].data.response);
         console.log("res[1].data.response ", res[1].data.response);
         let newRes = [...res[0].data.response, ...res[1].data.response];
-        setRecords(newRes?.filter((item) => item?.filter((item) => item.course_count >= 1)));
+        setRecords(newRes?.filter((item) => item.course_count >= 1));
       })
       .catch((err) => {
         console.log(err);
@@ -105,6 +106,29 @@ const ManagerAssignCourse = () => {
       });
   }
 
+  function assignCourseToManagerIndividualFromAssigned(id) {
+    console.log(id);
+    let form = new FormData();
+    form.append("course_id", assignData.course_id);
+    form.append("userId", id);
+    form.append("count", 1);
+
+    console.log(assignData);
+    makeRequest(
+      "POST",
+      "/info/assign-course-to-manager-individual-from-manager-assigned",
+      form
+    )
+      .then((res) => {
+        getData();
+        console.log(res);
+        toast("course assigned");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
   const columns = [
     {
       name: "ID",
@@ -113,12 +137,12 @@ const ManagerAssignCourse = () => {
     },
     {
       name: "course",
-      selector: (row) => row.Name,
+      selector: (row) => row.name || row.Name,
       sortable: true,
     },
     {
       name: "validity",
-      selector: (row) => row.validity,
+      selector: (row) => new Date(row.validity).toLocaleDateString(),
     },
     {
       name: "count",
@@ -138,6 +162,11 @@ const ManagerAssignCourse = () => {
                 course_id: row.id,
               };
             });
+            if (row.from_purchased) {
+              setFrom("purchased");
+            } else {
+              setFrom("assigned");
+            }
             setSelectedBundleCount(row.course_count);
           }}
         >
@@ -222,9 +251,13 @@ const ManagerAssignCourse = () => {
                               </span>
                               <span>{item.email}</span>
                               <span
-                                onClick={() =>
-                                  assignCourseToManagerIndividual(item.id)
-                                }
+                                onClick={() => {
+                                  if (from == "purchased") {
+                                    assignCourseToManagerIndividual(item.id);
+                                  } else {
+                                    assignCourseToManagerIndividualFromAssigned(item.id);
+                                  }
+                                }}
                                 style={{ width: "fit-content" }}
                                 className="btn btn-success"
                               >

@@ -44,7 +44,7 @@ class ManagePurCourse extends Component {
   
   componentDidMount() {
     let makeRequest = fetchData();
-    makeRequest("GET", "/info/get-purchased-bundles")
+    makeRequest("GET", "/course/get-bought-course")
       .then((res) => {
         console.log(res);
         this.setState({
@@ -66,7 +66,7 @@ class ManagePurCourse extends Component {
       },
       {
         name: "Courses",
-        selector: (row) => row.bundle_name,
+        selector: (row) => row.Name,
         sortable: true,
       },
       {
