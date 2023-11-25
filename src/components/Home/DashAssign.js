@@ -42,7 +42,7 @@ const CompAssignCourse = () => {
   const [allManagers, setAllManagers] = useState([]);
   const [filteredManagers, setFilteredManagers] = useState([]);
   const [showModal, setShowModal] = useState(false);
-  const [from, setFrom] = useState('');
+  const [from, setFrom] = useState("");
   const [selectedBundleCount, setSelectedBundleCount] = useState(0);
   const [assignData, setAssignData] = useState({
     course_id: null, // purchased course id (purchased course table id)
@@ -58,16 +58,17 @@ const CompAssignCourse = () => {
 
   const makeRequest = fetchData();
   async function getData() {
-    let purchasedRes = await makeRequest("GET", "/info/get-purchased-bundles");
-    let assignedRes = await makeRequest(
+    let purchasedRes = await makeRequest(
       "GET",
-      "/info/get-assigned-bundles-for-company"
-    )
-      Promise.all([purchasedRes,assignedRes]).then((res) => {
-        console.log(res[0].data.response[0])
-        console.log(res[1].data.response[0])
-        let newRes = [...res[0].data.response,...res[1].data.response]
-        setRecords(newRes?.filter((item) => item.course_count >= 1))
+      "/course/get-all-assigned-course"
+    );
+    let assignedRes = await makeRequest("GET", "/course/get-bought-course");
+    Promise.all([purchasedRes, assignedRes])
+      .then((res) => {
+        console.log(res[0].data.response);
+        console.log(res[1].data.response);
+        let newRes = [...res[0].data.response, ...res[1].data.response];
+        setRecords(newRes?.filter((item) => item.course_count >= 1));
       })
       .catch((err) => {
         console.log(err);
@@ -138,7 +139,11 @@ const CompAssignCourse = () => {
     form.append("count", 1);
 
     console.log(assignData);
-    makeRequest("POST", "/info/assign-course-to-manager-individual-from-assigned", form)
+    makeRequest(
+      "POST",
+      "/info/assign-course-to-manager-individual-from-assigned",
+      form
+    )
       .then((res) => {
         getData();
         console.log(res);
@@ -173,8 +178,8 @@ const CompAssignCourse = () => {
       sortable: true,
     },
     {
-      name: "bundle name",
-      selector: (row) => row.bundle_name,
+      name: "name",
+      selector: (row) => row.name || row.Name,
       sortable: true,
     },
     {
@@ -199,10 +204,10 @@ const CompAssignCourse = () => {
                 course_id: row.id,
               };
             });
-            if(row.from_purchased) {
-              setFrom("purchased")
+            if (row.from_purchased) {
+              setFrom("purchased");
             } else {
-              setFrom("assigned")
+              setFrom("assigned");
             }
             setSelectedBundleCount(row.course_count);
           }}
@@ -329,11 +334,13 @@ const CompAssignCourse = () => {
                                 </span>
                                 <span>{item.email}</span>
                                 <span
-                                  onClick={() =>{
-                                    if(from == "assigned") {
-                                      assignCourseToManagerIndividualFromAssigned(item.id)
+                                  onClick={() => {
+                                    if (from == "assigned") {
+                                      assignCourseToManagerIndividualFromAssigned(
+                                        item.id
+                                      );
                                     } else {
-                                      assignCourseToManagerIndividual(item.id)
+                                      assignCourseToManagerIndividual(item.id);
                                     }
                                   }}
                                   style={{ width: "fit-content" }}
@@ -407,12 +414,14 @@ const CompAssignCourse = () => {
                                   style={{ width: "fit-content" }}
                                   className="btn btn-success"
                                   onClick={() => {
-                                    if(from == "assigned") {
-                                      assignCourseToManagerFromAssigned(item.id)
-                                    }else {
-                                      assignCourseToManager(item.id)}
+                                    if (from == "assigned") {
+                                      assignCourseToManagerFromAssigned(
+                                        item.id
+                                      );
+                                    } else {
+                                      assignCourseToManager(item.id);
                                     }
-                                  }
+                                  }}
                                 >
                                   Assign
                                 </span>
@@ -466,4 +475,3 @@ const CompAssignCourse = () => {
 };
 
 export default CompAssignCourse;
-

@@ -42,13 +42,20 @@ class ManageMyCourse extends Component {
     this.setState({ records: newData });
   };
   
-  componentDidMount() {
+  async componentDidMount() {
     let makeRequest = fetchData();
-    makeRequest("GET", "/info/get-purchased-bundles")
+    let purchasedRes = await makeRequest(
+      "GET",
+      "/course/get-all-assigned-course"
+    );
+    let assignedRes = await makeRequest("GET", "/course/get-bought-course");
+    Promise.all([purchasedRes, assignedRes])
       .then((res) => {
-        console.log(res);
+        console.log(res[0].data.response);
+        console.log(res[1].data.response);
+        let newRes = [...res[0].data.response, ...res[1].data.response];
         this.setState({
-          records: res.data.response,
+          records: newRes?.filter((item) => item.course_count >= 1),
           filterRecords: res.data,
         });
       })
@@ -66,7 +73,7 @@ class ManageMyCourse extends Component {
       },
       {
         name: "Courses",
-        selector: (row) => row.bundle_name,
+        selector: (row) => row.Name,
         sortable: true,
       },
       {

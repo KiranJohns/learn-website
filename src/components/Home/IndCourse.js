@@ -60,21 +60,26 @@ class IndCourse extends Component {
     this.getData();
   }
 
-  getData = () => {
+   getData = async () => {
     try {
-      let url = "/on-going-course/get-all-on-going-courses"
       
-      this.makeRequest("GET", url)
-        .then((res) => {
+      let assignedRes = await this.makeRequest("GET", "/course/get-all-assigned-course")
+      let purchasedRes = await this.makeRequest("GET", "/course/get-bought-course")
+      Promise.all([assignedRes, purchasedRes]).then((res) => {
+        let arr = [
+          ...res[0].data.response,
+          ...res[1].data.response
+        ]
           console.log('res',res);
           this.setState({
-            records: res.data.response,
-            filterRecords: res.data,
+            records: arr,
+            filterRecords: arr,
           });
         })
         .catch((err) => {
           console.log(err);
         });
+
 
       // if (getUserType() === "individual") {
         
@@ -130,12 +135,12 @@ class IndCourse extends Component {
       },
       {
         name: "name",
-        selector: (row) => row.name,
+        selector: (row) => row.name || row.Name,
         sortable: true,
       },
       {
         name: "description",
-        selector: (row) => row.description.slice(0, 25),
+        selector: (row) => row?.description?.slice(0, 25),
       },
       {
         name: "category",
@@ -144,11 +149,11 @@ class IndCourse extends Component {
       {
         name: "validity",
         selector: (row) => {
-          let date = row.validity
-            .split("/")
-            .map((d) => (d.length <= 1 ? "0" + d : d));
-          let newDate = `${date[1]}/${date[0]}/${date[2]}`;
-          return newDate;
+          // let date = row.validity
+          //   .split("/")
+          //   .map((d) => (d.length <= 1 ? "0" + d : d));
+          // let newDate = `${date[1]}/${date[0]}/${date[2]}`;
+          return new Date(row.validity).toLocaleDateString();
         },
       },
       {
