@@ -6,7 +6,7 @@ import HeaderDashboard from "../../components/Layout/Header/HeaderDashboard";
 import DashMain from "../../components/Home/DashMain";
 import DashCourse from "../../components/Home/DashCourse";
 import Header from "../../components/Layout/Header/Header";
-import ManageMyCourse from "../../components/Home/manageMyCourse";
+import ManageMyCourse from "../../components/Home/ManageMCourse";
 import NoSSR from "react-no-ssr";
 import DashTest from "../../components/Home/DashTest";
 import { Auth } from "../auth";
