@@ -42,14 +42,19 @@ class CompanyBundle extends Component {
     this.setState({ records: newData });
   };
 
-  componentDidMount() {
+  async componentDidMount() {
     let makeRequest = fetchData();
-    
-    makeRequest("GET", "/info/get-purchased-bundles")
-      .then((res) => {
-        console.log(res);
+
+    let purchasedRes = await makeRequest("GET", "/info/get-purchased-bundles");
+    let assignedRes = await makeRequest(
+      "GET",
+      "/info/get-assigned-bundles-for-company"
+    )
+      Promise.all([purchasedRes,assignedRes]).then((res) => {
+        console.log(res)
+        let newRes = [...res[0].data.response,...res[1].data.response]
         this.setState({
-          records: res.data.response?.filter(item => item.course_count >= 1),
+          records: newRes?.filter((item) => item.course_count >= 1),
           filterRecords: res.data,
         });
       })

@@ -42,6 +42,7 @@ const CompAssignBund = () => {
   const [allManagers, setAllManagers] = useState([]);
   const [filteredManagers, setFilteredManagers] = useState([]);
   const [showModal, setShowModal] = useState(false);
+  const [from, setFrom] = useState('');
   const [selectedBundleCount, setSelectedBundleCount] = useState(0);
   const [assignData, setAssignData] = useState({
     course_id: null, // purchased course id (purchased course table id)
@@ -56,10 +57,17 @@ const CompAssignBund = () => {
   };
 
   const makeRequest = fetchData();
-  function getData() {
-    makeRequest("GET", "/info/get-purchased-bundles")
-      .then((res) => {
-        setRecords(res.data.response.filter((item) => item.course_count >= 1));
+  async function getData() {
+    let purchasedRes = await makeRequest("GET", "/info/get-purchased-bundles");
+    let assignedRes = await makeRequest(
+      "GET",
+      "/info/get-assigned-bundles-for-company"
+    )
+      Promise.all([purchasedRes,assignedRes]).then((res) => {
+        console.log(res[0].data.response[0])
+        console.log(res[1].data.response[0])
+        let newRes = [...res[0].data.response,...res[1].data.response]
+        setRecords(newRes?.filter((item) => item.course_count >= 1))
       })
       .catch((err) => {
         console.log(err);
@@ -123,6 +131,41 @@ const CompAssignBund = () => {
       });
   }
 
+  function assignCourseToManagerIndividualFromAssigned(id) {
+    let form = new FormData();
+    form.append("course_id", assignData.course_id);
+    form.append("userId", id);
+    form.append("count", 1);
+
+    console.log(assignData);
+    makeRequest("POST", "/info/assign-course-to-manager-individual-from-assigned", form)
+      .then((res) => {
+        getData();
+        console.log(res);
+        toast("course assigned");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  function assignCourseToManagerFromAssigned(id) {
+    let form = new FormData();
+    form.append("course_id", assignData.course_id);
+    form.append("userId", id);
+    form.append("count", assignData.count);
+
+    console.log(assignData);
+    makeRequest("POST", "/info/assign-course-to-manager-from-assigned", form)
+      .then((res) => {
+        getData();
+        console.log(res);
+        toast("course assigned");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
   const columns = [
     {
       name: "ID",
@@ -156,6 +199,11 @@ const CompAssignBund = () => {
                 course_id: row.id,
               };
             });
+            if(row.from_purchased) {
+              setFrom("purchased")
+            } else {
+              setFrom("assigned")
+            }
             setSelectedBundleCount(row.course_count);
           }}
         >
@@ -281,9 +329,13 @@ const CompAssignBund = () => {
                                 </span>
                                 <span>{item.email}</span>
                                 <span
-                                  onClick={() =>
-                                    assignCourseToManagerIndividual(item.id)
-                                  }
+                                  onClick={() =>{
+                                    if(from == "assigned") {
+                                      assignCourseToManagerIndividualFromAssigned(item.id)
+                                    } else {
+                                      assignCourseToManagerIndividual(item.id)
+                                    }
+                                  }}
                                   style={{ width: "fit-content" }}
                                   className="btn btn-success"
                                 >
@@ -354,7 +406,13 @@ const CompAssignBund = () => {
                                 <span
                                   style={{ width: "fit-content" }}
                                   className="btn btn-success"
-                                  onClick={() => assignCourseToManager(item.id)}
+                                  onClick={() => {
+                                    if(from == "assigned") {
+                                      assignCourseToManagerFromAssigned(item.id)
+                                    }else {
+                                      assignCourseToManager(item.id)}
+                                    }
+                                  }
                                 >
                                   Assign
                                 </span>
