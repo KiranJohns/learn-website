@@ -9,6 +9,7 @@ import { useState } from "react";
 import { getUserType } from "../../axios";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
+import CompAssignCourse from "../../components/Home/DashAssign";
 
 function assigncourse() {
   const [logedIn, setlogedIn] = useState(() => {
@@ -47,7 +48,7 @@ function assigncourse() {
                   <DashboardBar />
                 </div>
                 <div className="col-sm col-md-9  bg-white">
-                  <DashAssign />
+                  <CompAssignCourse />
                 </div>
               </div>
             </div>

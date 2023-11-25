@@ -77,10 +77,10 @@ class ManageMyCourse extends Component {
         name: "count",
         selector: (row) => row.course_count,
       },
-      {
-        name: "Actions",
-        cell: () => <BasicExample />,
-      },
+    //   {
+    //     name: "Actions",
+    //     cell: () => <BasicExample />,
+    //   },
     ];
 
     return (

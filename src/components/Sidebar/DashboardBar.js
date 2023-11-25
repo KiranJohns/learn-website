@@ -81,11 +81,11 @@ const links = [
       },
       {
         name: "Purchased Courses",
-        link: "/company/availablecourses",
+        link: "/company/purchasedCourses",
       },
       {
         name: "Assign Courses",
-        link: "/company/assigncourse",
+        link: "/company/assignCourses",
       },
     ],
   },

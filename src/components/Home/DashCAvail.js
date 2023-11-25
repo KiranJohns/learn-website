@@ -102,7 +102,7 @@ class DashCAvail extends Component {
           fontSize: 42,
         }}
       >
-        Available Courses
+        Purchased Courses
       </h2>
         <div style={{ padding: "", backgroundColor: "" }}>
           {/* <div

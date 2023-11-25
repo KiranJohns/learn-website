@@ -10,9 +10,8 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { useEffect } from "react";
 import { Auth } from "../auth";
-import CompanyPurCourse from "../../components/Home/CompanyPurCourse";
 
-function purchasedBundle() {
+function courseavailable() {
   const [logedIn, setlogedIn] = useState(() => {
     return getUserType();
   });
@@ -50,7 +49,7 @@ function purchasedBundle() {
                   <DashboardBar />
                 </div>
                 <div className="col-sm col-md-9  bg-white">
-                  <CompanyPurCourse />
+                  <DashCAvail />
                 </div>
               </div>
             </div>
@@ -61,4 +60,4 @@ function purchasedBundle() {
   );
 }
 
-export default purchasedBundle;
+export default courseavailable;
