@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+import Link from "next/link";
 import React from "react";
 import { useState } from "react";
 import ReactPlayer from "react-player";
@@ -37,9 +38,8 @@ const SingleCourse = () => {
   const [course, setCourse] = useState({});
   const [doc, setDocs] = useState([]);
   const [images, setImages] = useState([]);
-  
+
   const router = useRouter();
-  console.log(router.query.slug);
   const makeRequest = fetchData();
   // let docs = [{uri: require('../../html/sample.html')}]
   useEffect(() => {
@@ -149,7 +149,14 @@ const SingleCourse = () => {
         style={{ display: "flex", justifyContent: "right" }}
       >
         {" "}
-        <Button variant="success">Start Exam</Button>{" "}
+        <Link
+          href={{
+            pathname: "/company/exam",
+            query: { id: course?.id },
+          }}
+        >
+          <span className="btn btn-success">Start Exam</span>
+        </Link>{" "}
       </div>
     </div>
   );
