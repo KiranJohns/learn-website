@@ -6,6 +6,7 @@ import BasicExample from "../About/button1";
 import fetchData from "../../axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { CSVLink, CSVDownload } from "react-csv";
 
 const customStyles = {
   headRow: {
@@ -27,6 +28,8 @@ const customStyles = {
     },
   },
 };
+
+
 
 class DashSUser extends Component {
   constructor() {
@@ -141,22 +144,7 @@ class DashSUser extends Component {
              Individuals
             </h2>
             <div style={{ padding: "", backgroundColor: "" }}>
-              {/* <div
-            className="pb-2 smth"
-            style={{ display: "flex", justifyContent: "left" }}
-          >
-            <input
-              type="text"
-              className=""
-              placeholder="Search course..."
-              onChange={this.handleFilter}
-              style={{
-                padding: "6px 10px",
-                borderColor: "transparent",
-                overflow: "hidden",
-              }}
-            />
-          </div> */}
+            
               <div
                 style={{ float: "right", marginBottom: "1.4rem" }}
                 className="p-relative d-inline header__search"
@@ -204,3 +192,22 @@ class DashSUser extends Component {
 }
 
 export default DashSUser;
+
+
+
+  {/* <div
+            className="pb-2 smth"
+            style={{ display: "flex", justifyContent: "left" }}
+          >
+            <input
+              type="text"
+              className=""
+              placeholder="Search course..."
+              onChange={this.handleFilter}
+              style={{
+                padding: "6px 10px",
+                borderColor: "transparent",
+                overflow: "hidden",
+              }}
+            />
+          </div> */}

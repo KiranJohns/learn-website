@@ -35,7 +35,7 @@ function BundleCare({ name }) {
             effective methodology to deliver the Care Certificate in your
             organisation.
           </p>
-          <div style={{ display: "flex", justifyContent: "center" }}>
+          {/* <div style={{ display: "flex", justifyContent: "center" }}>
             <div
               className="course__more d-flex justify-content-around"
               style={{ width: "15rem" }}
@@ -80,11 +80,11 @@ function BundleCare({ name }) {
                 </button>
               </span>
             </div>
-          </div>
+          </div> */}
         </div>
-        <div className="col-md-6">
-        {bundle && <BundleCard item={bundle} />}
-        </div>
+         <div className="col-md-2"></div>
+        {bundle && <BundleCard className="col-md-6" item={bundle} />}
+    
       </div>
     </div>
   );
