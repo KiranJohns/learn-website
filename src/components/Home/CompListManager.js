@@ -28,7 +28,7 @@ const customStyles = {
   },
 };
 
-class DashSUser extends Component {
+class CompListManager extends Component {
   constructor() {
     super();
     this.state = {
@@ -135,10 +135,10 @@ class DashSUser extends Component {
                 display: "flex",
                 justifyContent: "center",
                 position: "absolute",
-                fontSize: 37,
+                fontSize: 38,
               }}
             >
-             Individuals
+              List of Managers
             </h2>
             <div style={{ padding: "", backgroundColor: "" }}>
               {/* <div
@@ -203,4 +203,4 @@ class DashSUser extends Component {
   }
 }
 
-export default DashSUser;
+export default CompListManager;
