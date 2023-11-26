@@ -10,7 +10,7 @@ import { getUserType } from "../../axios";
 import { useRouter } from "next/router";
 import CompListManager from "../../components/Home/CompListManager";
 
-function ManagerListComp() {
+function managers() {
   const [logedIn, setlogedIn] = useState(() => {
     return getUserType();
   });
@@ -58,4 +58,4 @@ function ManagerListComp() {
   );
 }
 
-export default ManagerListComp;
+export default managers;
