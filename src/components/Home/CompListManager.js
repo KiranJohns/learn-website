@@ -51,26 +51,26 @@ class CompListManager extends Component {
   }
 
   getData = () => {
-    this.makeRequest("GET", "/info/get-all-sub-users")
+    this.makeRequest("GET", "/info/get-all-managers")
       .then((res) => {
         console.log(res.data.response);
         this.setState({ records: res.data.response, filterRecords: res.data });
       })
       .catch((err) => console.log(err));
   };
-
   handleBlock(block, id) {
     let url = null;
     let message = null;
+    console.log(id);
     if (block) {
-      url = "/info/unblock-sub-user";
+      url = "/info/unblock-user";
       message = "user unblocked";
     } else {
       message = "user blocked";
-      url = "/info/block-sub-user";
+      url = "/info/block-user";
     }
     this.makeRequest("POST", url, {
-      sub_user_id: id,
+      userId: id,
     })
       .then((res) => {
         this.getData()
@@ -78,7 +78,6 @@ class CompListManager extends Component {
       })
       .catch((err) => console.log(err));
   }
-
   render() {
     const columns = [
       {

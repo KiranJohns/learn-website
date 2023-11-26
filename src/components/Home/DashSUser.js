@@ -51,10 +51,10 @@ class DashSUser extends Component {
   }
 
   getData = () => {
-    this.makeRequest("GET", "/info/get-all-sub-users")
+    this.makeRequest("GET", "/info/get-all-individuals-under-company")
       .then((res) => {
         console.log(res.data.response);
-        this.setState({ records: res.data.response, filterRecords: res.data });
+        this.setState({ records: res.data.response.flat(1), filterRecords: res.data });
       })
       .catch((err) => console.log(err));
   };
@@ -62,15 +62,16 @@ class DashSUser extends Component {
   handleBlock(block, id) {
     let url = null;
     let message = null;
+    console.log(id);
     if (block) {
-      url = "/info/unblock-sub-user";
+      url = "/info/unblock-user";
       message = "user unblocked";
     } else {
       message = "user blocked";
-      url = "/info/block-sub-user";
+      url = "/info/block-user";
     }
     this.makeRequest("POST", url, {
-      sub_user_id: id,
+      userId: id,
     })
       .then((res) => {
         this.getData()
