@@ -1,7 +1,9 @@
 import React from "react";
+import Table from 'react-bootstrap/Table';
 
 const DashMatrix = () => {
   const matrixDataUser = [
+  
     {
       id: 1,
       name: "Rahul",
@@ -27,7 +29,7 @@ const DashMatrix = () => {
         userId: 1,
         course: {
           name: "some of the people",
-          color: "red",
+          color: "#e04c4c",
           progress: "0%",
         },
       },
@@ -36,7 +38,7 @@ const DashMatrix = () => {
         userId: 1,
         course: {
           name: "of the people",
-          color: "green",
+          color: "#5a9676",
           progress: "100%",
         },
       },
@@ -45,8 +47,8 @@ const DashMatrix = () => {
         userId: 1,
         course: {
           name: "by the people",
-          color: "yellow",
-          progress: "75%",
+          color: "#f2a024",
+          progress: "50%",
         },
       },
       {
@@ -54,8 +56,8 @@ const DashMatrix = () => {
         userId: 1,
         course: {
           name: "for the people",
-          color: "orange",
-          progress: "30%",
+          color: "#5a9676",
+          progress: "100%",
         },
       },
     ],
@@ -65,8 +67,8 @@ const DashMatrix = () => {
         userId: 2,
         course: {
           name: "by the people",
-          color: "yellow",
-          progress: "75%",
+          color: "#f2a024",
+          progress: "50%",
         },
       },
       {
@@ -74,7 +76,7 @@ const DashMatrix = () => {
         userId: 2,
         course: {
           name: "some of the people",
-          color: "red",
+          color: "#e04c4c",
           progress: "0%",
         },
       },
@@ -83,7 +85,7 @@ const DashMatrix = () => {
         userId: 2,
         course: {
           name: "of the people",
-          color: "green",
+          color: "#5a9676",
           progress: "100%",
         },
       },
@@ -92,8 +94,8 @@ const DashMatrix = () => {
         userId: 2,
         course: {
           name: "for the people",
-          color: "orange",
-          progress: "30%",
+          color: "#f2a024",
+          progress: "50%",
         },
       },
     ],
@@ -103,7 +105,7 @@ const DashMatrix = () => {
         userId: 3,
         course: {
           name: "some of the people",
-          color: "red",
+          color: "#e04c4c",
           progress: "0%",
         },
       },
@@ -112,8 +114,8 @@ const DashMatrix = () => {
         userId: 3,
         course: {
           name: "for the people",
-          color: "orange",
-          progress: "30%",
+          color: "#f2a024",
+          progress: "50%",
         },
       },
       {
@@ -121,7 +123,7 @@ const DashMatrix = () => {
         userId: 3,
         course: {
           name: "of the people",
-          color: "green",
+          color: "#5a9676",
           progress: "100%",
         },
       },
@@ -130,8 +132,8 @@ const DashMatrix = () => {
         userId: 3,
         course: {
           name: "by the people",
-          color: "yellow",
-          progress: "75%",
+          color: "#5a9676",
+          progress: "100%",
         },
       },
     ],
@@ -141,8 +143,8 @@ const DashMatrix = () => {
         userId: 4,
         course: {
           name: "by the people",
-          color: "yellow",
-          progress: "75%",
+          color: "#f2a024",
+          progress: "50%",
         },
       },
       {
@@ -150,7 +152,7 @@ const DashMatrix = () => {
         userId: 4,
         course: {
           name: "some of the people",
-          color: "red",
+          color: "#e04c4c",
           progress: "0%",
         },
       },
@@ -159,7 +161,7 @@ const DashMatrix = () => {
         userId: 4,
         course: {
           name: "of the people",
-          color: "green",
+          color: "#5a9676",
           progress: "100%",
         },
       },
@@ -168,8 +170,8 @@ const DashMatrix = () => {
         userId: 4,
         course: {
           name: "for the people",
-          color: "orange",
-          progress: "30%",
+          color: "#5a9676",
+          progress: "100%",
         },
       },
     ],
@@ -182,8 +184,9 @@ const DashMatrix = () => {
     "for the people",
   ];
   return (
-    <div>
-      <div className="dash-neww" style={{}}>
+    <div className="row">
+      <div className="dash-neww " >
+        <div className="col-12" style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
       <table style={{ border: "1px solid #212a50",  }}>
         <tr style={{ border: "1px solid #212a50" }}>
           <th
@@ -231,7 +234,7 @@ const DashMatrix = () => {
                       style={{
                         border: "1px solid #212a50",
                         padding: "0 0.5rem",
-                        color: "black",
+                        color: "#3a3b3c",
                         backgroundColor: item[i].course.color,
                         textAlign: "center",
                       }}
@@ -246,7 +249,7 @@ const DashMatrix = () => {
                     style={{
                       border: "1px solid #212a50",
                       padding: "0 0.5rem",
-                      color: "black",
+                      color: "#3a3b3c",
                       backgroundColor: item[i].course.color,
                       textAlign: "center",
                     }}
@@ -259,9 +262,97 @@ const DashMatrix = () => {
           </tr>;
         })}
       </table>
+      
       </div>
+      
+      </div >
+      <div className="dash-neww " >
+      <div className="col-12 p-2 m-2">
+      <Table  bordered hover variant="light">
+      <thead >
+        <tr>
+          <th  style={{
+            
+            padding: "0 0.5rem",
+            color: "#fff",
+            background:'#212a50'
+          }} ></th>
+          {courseName.map((item) => (
+            <th
+              style={{
+            
+                padding: "0 0.5rem",
+                color: "#fff",
+                background:'#212a50'
+              }}
+            >
+              {item}
+            </th>
+          ))}
+        </tr>
+      </thead>
+      <tbody>
+      {matrixDataCourse.map((item) => {
+          return <tr>
+            {item.map((course, i) => {
+              if (i == 0) {
+                return (
+                  <>
+                    <td
+                      style={{
+                      
+                        padding: "0 0.5rem",
+                        color: "white",
+                        background:'#212450'
+                      }}
+                    >
+                      {
+                        matrixDataUser.find((user) => user.id == course.userId)
+                          .name
+                      }
+                    </td>
+                    <td
+                      style={{
+                       
+                        padding: "0 0.5rem",
+                        color: "#3a3b3c",
+                        backgroundColor: item[i].course.color,
+                        textAlign: "center",
+                      }}
+                    >
+                      {course.course.progress}
+                    </td>
+                  </>
+                );
+              } else {
+                return (
+                  <td
+                    style={{
+                     
+                      padding: "0 0.5rem",
+                      color: "#3a3b3c",
+                      backgroundColor: item[i].course.color,
+                      textAlign: "center",
+                    }}
+                  >
+                    {item[i].course.progress}
+                  </td>
+                );
+              }
+            })}
+          </tr>;
+        })}
+      </tbody>
+    </Table>
+      </div>
+    </div>
     </div>
   );
 };
 
 export default DashMatrix;
+
+// #e04c4c
+// #e07051
+// #5a9676
+// #f2a024
