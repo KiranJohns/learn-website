@@ -8,6 +8,7 @@ import { MdVerifiedUser } from "react-icons/md";
 import fetchData from "../../axios";
 import { MdArrowDropDownCircle } from "react-icons/md";
 
+
 // import {imgg} from '../../../public/assets/img'
 
 const links = [
@@ -105,7 +106,8 @@ const links = [
     link: "/company/createuser",
     icon: "bi bi-person-check ",
   },
-  { name: "Show user", link: "/company/showuser", icon: "bi bi-person-check" },
+  { name: "Managers", link: "/company/managers", icon: "bi bi-person-check" },
+  { name: "Individuals", link: "/company/showuser", icon: "bi bi-person-check" },
   {
     name: " Archive User",
     link: "/company/archive",

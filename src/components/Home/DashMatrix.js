@@ -186,14 +186,16 @@ const DashMatrix = () => {
   return (
     <div className="row">
       <div className="dash-neww " >
-        <div className="col-12" style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
+          
+        <div className="col-12 m-50 p-50" style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
       <table style={{ border: "1px solid #212a50",  }}>
-        <tr style={{ border: "1px solid #212a50" }}>
+        <tr style={{ border: "1px solid #212a50",  textAlign:'center' }}>
           <th
             style={{
               border: "1px solid #212a50",
               padding: "0 0.5rem",
               color: "#212a50",
+             
             }}
           >
            
@@ -212,7 +214,7 @@ const DashMatrix = () => {
           ))}
         </tr>
         {matrixDataCourse.map((item) => {
-          return <tr>
+          return <tr >
             {item.map((course, i) => {
               if (i == 0) {
                 return (
@@ -266,11 +268,17 @@ const DashMatrix = () => {
       </div>
       
       </div >
+
       <div className="dash-neww " >
+       
       <div className="col-12 p-2 m-2">
-      <Table  bordered hover variant="light">
+        <div className="d-flex justify-content-center my-2 "><h4>
+          Course Matrix
+          </h4></div>
+        
+      <Table  bordered  variant="light">
       <thead >
-        <tr>
+        <tr style={{ textAlign:'center'}}>
           <th  style={{
             
             padding: "0 0.5rem",
@@ -303,7 +311,8 @@ const DashMatrix = () => {
                       
                         padding: "0 0.5rem",
                         color: "white",
-                        background:'#212450'
+                        background:'#212450',
+                        textAlign:'center'
                       }}
                     >
                       {

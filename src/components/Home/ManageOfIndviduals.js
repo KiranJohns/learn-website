@@ -28,7 +28,7 @@ const customStyles = {
   },
 };
 
-class DashSUser extends Component {
+class ManageIndList extends Component {
   constructor() {
     super();
     this.state = {
@@ -203,4 +203,4 @@ class DashSUser extends Component {
   }
 }
 
-export default DashSUser;
+export default ManageIndList;

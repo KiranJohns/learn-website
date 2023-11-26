@@ -99,11 +99,11 @@ const links = [
   //   link: "/company/availablecourses",
   //   icon: "bi bi-card-checklist",
   // },
-  // {
-  //   name: "Create User",
-  //   link: "/company/createuser",
-  //   icon: "bi bi-person-check ",
-  // },
+  {
+    name: "Create User",
+    link: "/company/createUser",
+    icon: "bi bi-person-check ",
+  },
   // { name: "Show user", link: "/company/showuser", icon: "bi bi-person-check" },
   // {
   //   name: " Archive User",
