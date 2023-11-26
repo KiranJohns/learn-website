@@ -17,6 +17,7 @@ class CourseGridChild extends Component {
 
 				<BundleCare name="Child Care Bundle"/>
                 {/* course tab-start */}
+				
 				<CourseGridTab category="Child Care Courses" />
 				{/* course tab-end */}
 
