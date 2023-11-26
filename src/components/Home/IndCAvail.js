@@ -43,21 +43,23 @@ const IndCAvail = () => {
 
   const getData = () => {
     let onGoingCourseUrl = "/on-going-course/get-all-on-going-courses";
-    let url = "";
-    if (getUserType() === "individual") {
-      url = "/course/get-all-bought-course";
-    } else {
-      url = "/sub-user/course/get-assigned-course";
-    }
-    Promise.all([makeRequest("GET", onGoingCourseUrl),
-    makeRequest("GET", url)]).then(res => {
+    let url1 = "/course/get-all-bought-course";
+    let url2 = "/course/get-all-assigned-course";
+    Promise.all([
+      makeRequest("GET", onGoingCourseUrl),
+      makeRequest("GET", url1),
+      makeRequest("GET", url2),
+    ]).then((res) => {
+      let arr = [
+        ...res[0].data.response,
+        ...res[1].data.response,
+        ...res[2].data.response,
+      ];
+      console.log(res);
       setRecords(() => {
-        return [
-          ...res[0].data.response,
-          ...res[1].data.response.filter(course => course.course_count > 0)
-        ]
+        return [arr.filter((course) => course.course_count > 0)];
       });
-    })
+    });
   };
 
   const continueCourse = (id) => {

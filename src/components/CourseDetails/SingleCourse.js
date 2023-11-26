@@ -6,38 +6,38 @@ import fetchData from "../../axios";
 import { useEffect } from "react";
 // import html from "../../html/sample.html";
 import DocViewer, { DocViewerRenderers } from "react-doc-viewer";
-import { Slide } from 'react-slideshow-image';
-import 'react-slideshow-image/dist/styles.css'
-import Button from 'react-bootstrap/Button';
-
-
+import { Slide } from "react-slideshow-image";
+import "react-slideshow-image/dist/styles.css";
+import Button from "react-bootstrap/Button";
 
 const divStyle = {
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  backgroundSize: 'cover',
-  height: '500px'
-}
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  backgroundSize: "cover",
+  height: "500px",
+};
 
 const slideImages = [
   {
-    url: 'https://images.unsplash.com/photo-1509721434272-b79147e0e708?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80',
-    caption: 'Slide 1'
+    url: "https://images.unsplash.com/photo-1509721434272-b79147e0e708?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80",
+    caption: "Slide 1",
   },
   {
-    url: 'https://images.unsplash.com/photo-1506710507565-203b9f24669b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1536&q=80',
-    caption: 'Slide 2'
+    url: "https://images.unsplash.com/photo-1506710507565-203b9f24669b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1536&q=80",
+    caption: "Slide 2",
   },
   {
-    url: 'https://images.unsplash.com/photo-1536987333706-fc9adfb10d91?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80',
-    caption: 'Slide 3'
+    url: "https://images.unsplash.com/photo-1536987333706-fc9adfb10d91?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80",
+    caption: "Slide 3",
   },
 ];
 
 const SingleCourse = () => {
   const [course, setCourse] = useState({});
   const [doc, setDocs] = useState([]);
+  const [images, setImages] = useState([]);
+  
   const router = useRouter();
   console.log(router.query.slug);
   const makeRequest = fetchData();
@@ -50,7 +50,7 @@ const SingleCourse = () => {
       .then((res) => {
         console.log(res.data.response);
         setCourse(res.data.response[0]);
-        setDocs(res.data.response[0].ppt);
+        setImages(res.data.response[0].ppt);
       })
       .catch((err) => {})
       .catch((err) => {
@@ -79,10 +79,20 @@ const SingleCourse = () => {
           controls
           src={course?.video}
         ></video>
-
-        {/* <ReactPlayer controls  className='course-player' url='https://www.youtube.com/watch?v=LXb3EKWsInQ' /> */}
+        {/* <DocViewer
+          documents={[{ uri: course.ppt }]}
+          pluginRenderers={DocViewerRenderers}
+        /> */}
+        <iframe
+          title={"PDF-Viewer"}
+          src={course.ppt}
+          frameBorder={0}
+          style={{ height: "100vh", width: "90vw" }}
+        ></iframe>
       </div>
-      <div style={{ display: "flex", justifyContent: "center", marginTop:"3rem" }}>
+      {/* <div
+        style={{ display: "flex", justifyContent: "center", marginTop: "3rem" }}
+      >
         <iframe
           src="https://onedrive.live.com/embed?resid=F5F394858BB1213E%214405&authkey=!AIJnHcKPEcZ66uQ&em=2"
           width="630"
@@ -90,46 +100,62 @@ const SingleCourse = () => {
           frameborder="0"
           scrolling="no"
           controls="0"
-        ></iframe>
-   
-        {/* <DocViewer
+        ></iframe> */}
+
+      {/* <DocViewer
         // documents={docs}
           documents={[{uri: course?.ppt}]}
           initialActiveDocument={[{uri: course?.ppt}]}
           pluginRenderers={DocViewerRenderers}
         /> */}
-
-      </div>
+      {/* </div> */}
       <div className="slide-container">
         <Slide autoplay={false}>
-         {slideImages.map((slideImage, index)=> (
+          {images?.map((slideImage, index) => (
             <div key={index}>
-              <div  style={{ ...divStyle, 'backgroundImage': `url(${slideImage.url})` }}>
-
-        
-               
-              </div>
+              <div
+                style={{
+                  ...divStyle,
+                  backgroundImage: `url(${slideImage})`,
+                }}
+              ></div>
             </div>
-          ))} 
+          ))}
         </Slide>
       </div>
 
       <div className="blog-box-shadow mt-50 p-4">
-      <div> <h4>Resources</h4></div>
-      <div style={{margin:' 1rem .5rem'}}>
-      <p >Name of resource <a href="https://www.africau.edu/images/default/sample.pdf"   style={{color:'#1b85b8'}} target="_blank"  download>{" "}View</a></p> 
+        <div>
+          {" "}
+          <h4>Resources</h4>
+        </div>
+        <div style={{ margin: " 1rem .5rem" }}>
+          <p>
+            Name of resource{" "}
+            <a
+              href="https://www.africau.edu/images/default/sample.pdf"
+              style={{ color: "#1b85b8" }}
+              target="_blank"
+              download
+            >
+              {" "}
+              View
+            </a>
+          </p>
+        </div>
       </div>
+      <div
+        className="mt-4 py-4  px-1"
+        style={{ display: "flex", justifyContent: "right" }}
+      >
+        {" "}
+        <Button variant="success">Start Exam</Button>{" "}
       </div>
-        <div className="mt-4 py-4  px-1" style={{display:'flex', justifyContent:'right'}}>  <Button variant="success">Start Exam</Button>{' '}</div>
     </div>
   );
 };
 
 export default SingleCourse;
-
-
-
-
 
 // import React, { useEffect } from "react";
 // import NewInDash from "../../../components/Sidebar/BarDummy";
@@ -159,9 +185,9 @@ export default SingleCourse;
 //             <NewInDash />
 //           </div>
 //           <div className="col-sm col-md-9 bg-white">
-      
+
 //             <CourseExam  />
-          
+
 //           </div>
 //         </div>
 //       </div>

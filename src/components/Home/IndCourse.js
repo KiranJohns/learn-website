@@ -43,7 +43,7 @@ class IndCourse extends Component {
     };
     this.makeRequest = fetchData();
     this.handleShowModal = this.handleShowModal.bind(this);
-    // this.assignCourse = this.assignCourse.bind(this);
+    this.handleStart = this.handleStart.bind(this);
     this.sub_user_id = null;
     this.course_id = null;
     this.purchased_course_id = null;
@@ -60,32 +60,27 @@ class IndCourse extends Component {
     this.getData();
   }
 
-   getData = async () => {
+  getData = async () => {
     try {
-      
-      let assignedRes = await this.makeRequest("GET", "/course/get-all-assigned-course")
-      let purchasedRes = await this.makeRequest("GET", "/course/get-bought-course")
-      Promise.all([assignedRes, purchasedRes]).then((res) => {
+      let onGoingCourseUrl = "/on-going-course/get-all-on-going-courses";
+      let url1 = "/course/get-bought-course";
+      let url2 = "/course/get-all-assigned-course";
+      Promise.all([
+        this.makeRequest("GET", onGoingCourseUrl),
+        this.makeRequest("GET", url1),
+        this.makeRequest("GET", url2),
+      ]).then((res) => {
         let arr = [
           ...res[0].data.response,
-          ...res[1].data.response
-        ]
-          console.log('res',res);
-          this.setState({
-            records: arr,
-            filterRecords: arr,
-          });
-        })
-        .catch((err) => {
-          console.log(err);
+          ...res[1].data.response,
+          ...res[2].data.response,
+        ];
+        console.log(res);
+        this.setState({
+          records: arr,
+          filterRecords: arr,
         });
-
-
-      // if (getUserType() === "individual") {
-        
-      // } else {
-
-      // }
+      });
     } catch (error) {
       console.log(error);
     }
@@ -126,6 +121,20 @@ class IndCourse extends Component {
   //     });
   // }
 
+  handleStart(id, from) {
+    let form = new FormData();
+    form.append("from", from);
+    form.append("course_id", id);
+    this.makeRequest("POST", "/course/start-course", form)
+      .then((res) => {
+        console.log(res);
+        location.pathname = `/company/course-learn/${res.data.response.id}`
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
   render() {
     const columns = [
       {
@@ -160,15 +169,31 @@ class IndCourse extends Component {
         name: "",
         cell: (row) => {
           return (
-            <a
-              onClick={() => {
-                console.log(row);
-                location.pathname = `/company/course-learn/${row.on_going_course_id}`
-              }}
-              className="btn btn-success"
-            >
-              continue
-            </a>
+            <>
+              {row?.progress ? (
+                <a
+                  onClick={() => {
+                    location.pathname = `/company/course-learn/${row.on_going_course_id}`;
+                  }}
+                  className="btn btn-success"
+                >
+                  continue
+                </a>
+              ) : (
+                <a
+                  onClick={() => {
+                    if(row.from_purchased) {
+                      this.handleStart(row.id,"purchased")
+                    } else {
+                      this.handleStart(row.id,"assigned")
+                    }
+                  }}
+                  className="btn btn-success"
+                >
+                  start
+                </a>
+              )}
+            </>
           );
         },
       },
