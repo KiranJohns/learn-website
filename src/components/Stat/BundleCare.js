@@ -1,15 +1,29 @@
 import React, { Component, useState } from "react";
 import Link from "next/link";
 import SingleCourseBundle from "../Elements/Tab/SingleCourseBundle";
+import CourseCard from "../Elements/Tab/CourseCard";
+import { useEffect } from "react";
+import fetchData from "../../axios";
+import BundleCard from "../Elements/Tab/BundleCard";
 
-function BundleCare({name}) {
+function BundleCare({ name }) {
   const [fakeCount, setFakeCount] = useState(0);
+  const [bundle, setBundle] = useState({});
+  const makeRequest = fetchData()
+  useEffect(() => {
+    makeRequest("GET","/bundle/get-all-bundles").then(res => {
+      console.log(res);
+      setBundle(res.data.response[0])
+    }).catch(err => {
+      console.log(err);
+    })
+  },[])
   function handleClick() {}
   return (
     <div className="container mt-100">
       <div className="row">
         <div className="col-xxl-5  col-xl-4 col-lg-4 col-md-4 col-sm-0 text-center">
-          <h1 style={{marginBottom: "1rem"}} >{name}</h1>
+          <h1 style={{ marginBottom: "1rem" }}>{name}</h1>
           <h1></h1>
           <p>
             The Care Certificate is delivered through our simple to use, online
@@ -21,10 +35,12 @@ function BundleCare({name}) {
             effective methodology to deliver the Care Certificate in your
             organisation.
           </p>
-          <div style={{display: 'flex', justifyContent: 'center'}}>
-            <div className="course__more d-flex justify-content-around" style={{width: '15rem'}}>
-              <div
-                className="course__status d-flex align-items-center">
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <div
+              className="course__more d-flex justify-content-around"
+              style={{ width: "15rem" }}
+            >
+              <div className="course__status d-flex align-items-center">
                 <span className="sky-blue mb-3" style={{ marginBottom: "1px" }}>
                   £12
                 </span>
@@ -57,7 +73,6 @@ function BundleCare({name}) {
                 <button
                   className="btn btn-primary btn-sm mb-2 d-flex justify-content-between align-items-center"
                   type="button"
-                  // class=""
                   style={{ outline: "none", border: "none" }}
                   onClick={() => handleClick()}
                 >
@@ -67,24 +82,8 @@ function BundleCare({name}) {
             </div>
           </div>
         </div>
-        <div className="col-xxl-4  col-xl-4 col-md-4 col-sm-6">
-          <div className="d-flex justify-content-center p-2">
-            <img
-              src="/assets/img/course/bundle/certificate1.png"
-              height={350}
-              alt="image "
-            />
-          </div>
-         
-        </div>
-        <div className="col-xxl-3  col-xl-3 col-md-3 col-sm-6">
-        <div className="d-flex justify-content-center p-2">
-            <img
-              src="/assets/img/course/bundle/certificate1.png"
-              height={350}
-              alt="image "
-            />
-          </div>
+        <div className="col-md-6">
+        {bundle && <BundleCard item={bundle} />}
         </div>
       </div>
     </div>

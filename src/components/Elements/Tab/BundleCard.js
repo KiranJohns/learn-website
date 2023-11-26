@@ -137,7 +137,7 @@ function BundleCard({ item }) {
                               </div> */}
             <h6>
               <Link href={`/course/${item.id}`}>
-                <a>{item.description.slice(0, 150) + "..."}</a>
+                <a>{item?.description?.slice(0, 150) + "..."}</a>
               </Link>
             </h6>
           </div>
