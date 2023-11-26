@@ -111,7 +111,7 @@ const SingleCourse = () => {
       {/* </div> */}
       <div className="slide-container">
         <Slide autoplay={false}>
-          {images?.map((slideImage, index) => (
+          {images && images?.map((slideImage, index) => (
             <div key={index}>
               <div
                 style={{
@@ -152,7 +152,7 @@ const SingleCourse = () => {
         <Link
           href={{
             pathname: "/company/exam",
-            query: { id: course?.id },
+            query: { id: course?.course_id },
           }}
         >
           <span className="btn btn-success">Start Exam</span>
