@@ -124,14 +124,14 @@ const IndCourse = () => {
       cell: (row) => (
         <>
           {row?.progress ? (
-            <a
-              onClick={() => {
-                location.pathname = `/company/course-learn/${row.on_going_course_id}`;
+            <Link
+              href={{
+                pathname: "/learnCourse/coursepage",
+                query: { courseId: row.on_going_course_id },
               }}
-              className="btn btn-success"
             >
-              continue
-            </a>
+              <a className="btn btn-success">continue</a>
+            </Link>
           ) : (
             <a
               onClick={() => {
