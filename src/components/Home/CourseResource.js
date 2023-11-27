@@ -117,11 +117,11 @@ const CourseResource = () => {
               {" "}
               <h4>Resources</h4>
             </div>
-            <div style={{ margin: " 1rem .5rem" }}>
+            {course && course.resource.map((item,i) => (<div style={{ margin: " 1rem .5rem" }}>
               <p>
-                Name of resource{" "}
+                resource {" "}
                 <a
-                  href="https://www.africau.edu/images/default/sample.pdf"
+                  href={item}
                   style={{ color: "#1b85b8" }}
                   target="_blank"
                   download
@@ -130,7 +130,7 @@ const CourseResource = () => {
                   View
                 </a>
               </p>
-            </div>
+            </div>))}
           </div>
           <div
             className="mt-4 py-4  px-1"
