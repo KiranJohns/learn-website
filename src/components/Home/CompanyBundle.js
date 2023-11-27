@@ -63,7 +63,7 @@ class CompanyBundle extends Component {
         console.log(res)
         let newRes = [...res[0].data.response,...res[1].data.response]
         this.setState({
-          records: newRes?.filter((item) => item.course_count >= 1),
+          records: newRes?.filter((item) => item.course_count >= 1).reverse(),
           filterRecords: res.data,
         });
       })

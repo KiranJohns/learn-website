@@ -66,7 +66,7 @@ class DashCourse extends Component {
         .then((res) => {
           console.log(res);
           this.setState({
-            records: res.data.response,
+            records: res.data.response.reverse(),
             filterRecords: res.data,
           });
         })

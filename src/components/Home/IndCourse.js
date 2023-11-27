@@ -7,7 +7,6 @@ import fetchData, { getUserType } from "../../axios";
 import Modal from "react-responsive-modal";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
 
 const customStyles = {
   headRow: {
@@ -125,22 +124,14 @@ const IndCourse = () => {
       cell: (row) => (
         <>
           {row?.progress ? (
-            <Link href={{
-              pathname: '/course-learn/course',
-              query: {id: row.on_going_course_id}
-            }}>
-              <a
-                // onClick={() => {
-                //   navigate("/course-learn/course", {
-                //     state: { id: row.on_going_course_id },
-                //   });
-                //   // location.pathname = `/company/course-learn/${row.on_going_course_id}`;
-                // }}
-                className="btn btn-success"
-              >
-                continue
-              </a>
-            </Link>
+            <a
+              onClick={() => {
+                location.pathname = `/company/course-learn/${row.on_going_course_id}`;
+              }}
+              className="btn btn-success"
+            >
+              continue
+            </a>
           ) : (
             <a
               onClick={() => {
