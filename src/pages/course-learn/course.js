@@ -3,7 +3,7 @@ import DashboardBar from "../../components/Sidebar/DashboardBar";
 import Header from "../../components/Layout/Header/Header";
 import NoSSR from "react-no-ssr";
 import { useRouter } from "next/router";
-import SingleCourse from "../../components/CourseDetails/SingleCourse";
+import CourseLearn from "../../components/CourseDetails/CourseLearn";
 import fetchData from "../../axios";
 import { useState } from "react";
 import NewInDash from "../../components/Sidebar/BarDummy";
@@ -28,7 +28,7 @@ function CourseDetails() {
             </div>
             <div className="col-sm col-md-9 bg-white">
         
-              <SingleCourse  />
+              <CourseLearn/>
             
             </div>
           </div>
