@@ -220,7 +220,9 @@ const CompAssignCourse = () => {
 
   return (
     <div className="">
-      <ToastContainer />
+      <ToastContainer position="top-center"
+         />
+
       <div className="dash-shadow">
         <div className=" row g-3  min-vh-100  d-flex justify-content-center mt-20">
           <h2
@@ -248,14 +250,13 @@ const CompAssignCourse = () => {
                 });
               }}
             >
-              <div style={{ maxHeight: "20rem" }}>
-                <div className="modal-header d-flex mb-5">
+              <div style={{ maxHeight: "150rem" }}>
+                <div className=" d-flex mb-5">
                   <strong
-                    className={`btn ${
-                      selectUserForAssignCourse == "individual"
+                    className={`btn ${selectUserForAssignCourse == "individual"
                         ? "btn-success"
                         : ""
-                    }`}
+                      }`}
                     onClick={() => {
                       setSelectUserForAssignCourse("individual");
                       setAssignData((prev) => {
@@ -269,11 +270,10 @@ const CompAssignCourse = () => {
                     Individual
                   </strong>
                   <strong
-                    className={`btn ${
-                      selectUserForAssignCourse == "manager"
+                    className={`btn ${selectUserForAssignCourse == "manager"
                         ? "btn-success"
                         : ""
-                    }`}
+                      }`}
                     onClick={() => {
                       setAssignData((prev) => {
                         return {
@@ -302,7 +302,7 @@ const CompAssignCourse = () => {
                         />
                       </div>
                       <div className="form-group">
-                        <label for="exampleInputEmail1">User Name</label>
+                        <label for="exampleInputEmail1">Search</label>
                         <input
                           onChange={(e) =>
                             setFilteredCompanyIndividuals(
@@ -319,7 +319,7 @@ const CompAssignCourse = () => {
                           className="form-control"
                           id="exampleInputEmail1"
                           aria-describedby="emailHelp"
-                          placeholder="enter user name"
+                          placeholder="search by name"
                         />
                       </div>
                     </div>
@@ -379,7 +379,7 @@ const CompAssignCourse = () => {
                         />
                       </div>
                       <div className="form-group">
-                        <label for="exampleInputEmail1">manager name</label>
+                        <label for="exampleInputEmail1">Search</label>
                         <input
                           onChange={(e) =>
                             setFilteredManagers(
@@ -396,7 +396,7 @@ const CompAssignCourse = () => {
                           className="form-control"
                           id="exampleInputEmail1"
                           aria-describedby="emailHelp"
-                          placeholder="enter course name"
+                          placeholder="Search by name"
                         />
                       </div>
                     </div>
@@ -457,10 +457,10 @@ const CompAssignCourse = () => {
               data={
                 searchString
                   ? records.filter((item) =>
-                      item.name
-                        .toLowerCase()
-                        .includes(searchString.toLowerCase())
-                    )
+                    item.name
+                      .toLowerCase()
+                      .includes(searchString.toLowerCase())
+                  )
                   : records
               }
               customStyles={customStyles}
