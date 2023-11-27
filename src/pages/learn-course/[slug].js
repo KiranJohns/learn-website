@@ -14,7 +14,7 @@ import { useEffect } from "react";
 import SingleCourse from "../../components/CourseDetails/SingleCourse";
 
 
-function learn() {
+function Learn() {
     const [logedIn, setlogedIn] = useState(() => {
       return getUserType();
     });
@@ -63,5 +63,5 @@ function learn() {
     );
   }
   
-  export default learn;
+  export default Learn;
   
