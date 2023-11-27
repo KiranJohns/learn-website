@@ -10,6 +10,7 @@ import DocViewer, { DocViewerRenderers } from "react-doc-viewer";
 import { Slide } from "react-slideshow-image";
 import "react-slideshow-image/dist/styles.css";
 import Button from "react-bootstrap/Button";
+import NoSSR from "react-no-ssr";
 
 const divStyle = {
   display: "flex",
@@ -83,16 +84,16 @@ const SingleCourse = () => {
           documents={[{ uri: course.ppt }]}
           pluginRenderers={DocViewerRenderers}
         /> */}
-        <iframe
+        {/* <iframe
           title={"PDF-Viewer"}
-          src={course.ppt}
+          src={course?.ppt}
           frameBorder={0}
           style={{ height: "100vh", width: "90vw" }}
-        ></iframe>
+        ></iframe> */}
       </div>
       {/* <div
         style={{ display: "flex", justifyContent: "center", marginTop: "3rem" }}
-      >
+      >*/}
         <iframe
           src="https://onedrive.live.com/embed?resid=F5F394858BB1213E%214405&authkey=!AIJnHcKPEcZ66uQ&em=2"
           width="630"
@@ -100,7 +101,7 @@ const SingleCourse = () => {
           frameborder="0"
           scrolling="no"
           controls="0"
-        ></iframe> */}
+        ></iframe> 
 
       {/* <DocViewer
         // documents={docs}
@@ -109,21 +110,22 @@ const SingleCourse = () => {
           pluginRenderers={DocViewerRenderers}
         /> */}
       {/* </div> */}
-      <div className="slide-container">
-        <Slide autoplay={false}>
+   
+      <div  className="slide-container">
+     <Slide  autoplay={false}>
           {images && images?.map((slideImage, index) => (
             <div key={index}>
               <div
                 style={{
                   ...divStyle,
-                  backgroundImage: `url(${slideImage})`,
+                  'backgroundImage': `url(${slideImage})`,
                 }}
               ></div>
             </div>
           ))}
         </Slide>
-      </div>
-
+        </div> 
+  
       <div className="blog-box-shadow mt-50 p-4">
         <div>
           {" "}
