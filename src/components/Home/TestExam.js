@@ -14,6 +14,7 @@ const TestExam = () => {
     const form = new FormData();
     form.append("course_id", router.query.id);
     form.append("enrolled_course_id", router.query.user);
+
     makeRequest("POST", "/exam/get-exam", form)
       .then((res) => {
         console.log(JSON.parse(res.data.response[0].exam));
