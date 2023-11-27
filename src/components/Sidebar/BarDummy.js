@@ -32,6 +32,11 @@ const arr = [
 
   { name: "My Courses", link: "/individual/mycourses", icon: "bi bi-book" },
 
+  {
+    name: "Purchased Courses",
+    link: "/individual/purchasedCourses",
+    icon: "bi bi-card-checklist",
+  },
 
   { name: "Buy Courses", link: "/course-all", icon: "bi bi-book" },
 
@@ -41,22 +46,18 @@ const arr = [
     icon: "bi bi-patch-check-fill",
   },
 
-  {
-    name: "P",
-    link: "/individual/allcourses",
-    icon: "bi bi-card-checklist",
-  },
-  {
-    name: "Contact Us",
-    link: "/contact",
-    icon: "bi bi-envelope",
-  },
+ 
+  // {
+  //   name: "Contact Us",
+  //   link: "/contact",
+  //   icon: "bi bi-envelope",
+  // },
 
-  {
-    name: " FAQ",
-    link: "#",
-    icon: "bi bi-question-circle",
-  },
+  // {
+  //   name: " FAQ",
+  //   link: "#",
+  //   icon: "bi bi-question-circle",
+  // },
 ];
 function NewInDash() {
   const makeRequest = fetchData();
