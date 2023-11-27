@@ -4,12 +4,14 @@ import DataTable from "react-data-table-component";
 import Link from "next/link";
 import BasicExample from "../About/button1";
 import fetchData from "../../axios";
+import Button from 'react-bootstrap/Button';
 
 const customStyles = {
   headRow: {
     style: {
       backgroundColor: "#212450",
       color: "white",
+      textAlign:'center',
     },
   },
   headCells: {
@@ -22,8 +24,15 @@ const customStyles = {
   cells: {
     style: {
       fontSize: "15px",
+     
     },
   },
+  rows: {
+    style: {
+      textAlign:'center',
+    },
+},
+
 };
 
 class CompanyBundle extends Component {
@@ -88,15 +97,15 @@ class CompanyBundle extends Component {
         selector: (row) => row.course_count,
       },
       {
-        name: "Actions",
-        cell: () => <BasicExample />,
+        name: "Action",
+        cell: (id) => <a href="https://test.learnforcare.co.uk/bundle/bundle-all"><Button variant="primary">View</Button></a> ,
       },
     ];
 
     return (
       <div className="">
         <div className="dash-shadow">
-          <div className=" row g-3  min-vh-100  d-flex justify-content-center mt-20">
+          <div style={{position:'relative'}} className=" row g-3  min-vh-100  d-flex justify-content-center mt-20">
             <h2
               style={{
                 color: "#212450",

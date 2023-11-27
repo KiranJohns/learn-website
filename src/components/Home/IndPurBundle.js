@@ -4,6 +4,7 @@ import DataTable from "react-data-table-component";
 import Link from "next/link";
 import BasicExample from "../About/button1";
 import fetchData from "../../axios";
+import Button from 'react-bootstrap/Button';
 
 const customStyles = {
   headRow: {
@@ -65,7 +66,7 @@ class IndPurBundle extends Component {
         sortable: true,
       },
       {
-        name: "Courses",
+        name: "Bundles",
         selector: (row) => row.bundle_name,
         sortable: true,
       },
@@ -79,7 +80,7 @@ class IndPurBundle extends Component {
       },
       {
         name: "Actions",
-        cell: () => <BasicExample />,
+        cell: () => <a href="https://test.learnforcare.co.uk/bundle/bundle-all"><Button variant="primary">View</Button></a>,
       },
     ];
 
@@ -97,7 +98,7 @@ class IndPurBundle extends Component {
           fontSize: 38,
         }}
       >
-       Purchased Bundle
+       Purchased Bundles
       </h2>
         <div style={{ padding: "", backgroundColor: "" }}>
           {/* <div

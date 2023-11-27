@@ -27,7 +27,7 @@ const customStyles = {
   },
 };
 
-class CompanyPurBundle extends Component {
+class IndPurCourse extends Component {
   constructor() {
     super();
     this.state = {
@@ -79,8 +79,8 @@ class CompanyPurBundle extends Component {
         selector: (row) => row.course_count,
       },
       {
-        name: "Actions",
-        cell: (id) => <a href="https://test.learnforcare.co.uk/bundle/bundle-all"><Button style={{background:"#212a50", color:'#fff'}} variant="">View</Button></a> ,
+        name: "Action",
+        cell: () => <a href="https://test.learnforcare.co.uk/course-all"><Button style={{background:"#212a50", color:'#fff'}} variant="">View</Button></a>,
       },
     ];
 
@@ -88,7 +88,7 @@ class CompanyPurBundle extends Component {
       <div className="">
        
       <div className="dash-shadow">
-      <div style={{position:'relative'}} className=" row g-3   min-vh-100  d-flex justify-content-center mt-20">
+      <div className=" row g-3  min-vh-100  d-flex justify-content-center mt-20">
       <h2
         style={{  
           color: "#212450",
@@ -98,7 +98,7 @@ class CompanyPurBundle extends Component {
           fontSize: 38,
         }}
       >
-       Purchased Bundle
+       Purchased Courses
       </h2>
         <div style={{ padding: "", backgroundColor: "" }}>
           {/* <div
@@ -145,4 +145,4 @@ class CompanyPurBundle extends Component {
   }
 }
 
-export default CompanyPurBundle;
+export default IndPurCourse;
