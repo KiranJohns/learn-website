@@ -43,40 +43,21 @@ const IndCAvail = () => {
   }, []);
 
   const getData = () => {
-    let onGoingCourseUrl = "/on-going-course/get-all-on-going-courses";
     let url1 = "/course/get-all-bought-course";
-    let url2 = "/course/get-all-assigned-course";
     Promise.all([
-      makeRequest("GET", onGoingCourseUrl),
       makeRequest("GET", url1),
-      makeRequest("GET", url2),
     ]).then((res) => {
       let arr = [
         ...res[0].data.response,
-        ...res[1].data.response,
-        ...res[2].data.response,
       ];
       console.log(res);
       setRecords(() => {
-        return [arr.filter((course) => course.course_count > 0)];
+        return arr.reverse()
       });
     });
   };
-
-  const continueCourse = (id) => {
-    location.pathname = `/company/course-learn/${id}`;
-  };
-
-  const startCourse = (id) => {
-    makeRequest("GET", `/course/start-course/${id}`)
-      .then((res) => {
-        location.pathname = `/company/course-learn/${res.data.response.id}`;
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
+  
+  
   const columns = [
     {
       name: "ID",
@@ -85,12 +66,15 @@ const IndCAvail = () => {
     },
     {
       name: "Courses",
-      selector: (row) => row.name,
+      selector: (row) => row.Name,
       sortable: true,
     },
     {
       name: "validity",
-      selector: (row) => row.validity,
+      selector: (row) => {
+        let date = row.validity.split("/")
+        return `${date[1]}/${date[0]}/${date[2]}`
+      },
     },
     {
       name: "catagory",
