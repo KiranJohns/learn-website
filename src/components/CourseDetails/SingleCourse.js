@@ -54,7 +54,9 @@ const SingleCourse = () => {
       .then((res) => {
         console.log(res.data.response);
         setCourse(res.data.response[0]);
-        setImages(res.data.response[0].ppt);
+        setTimeout(() => {
+          setImages(res.data.response[0].ppt);
+        }, 5000);
       })
       .catch((err) => { })
       .catch((err) => {
