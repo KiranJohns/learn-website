@@ -11,6 +11,7 @@ import { Slide } from "react-slideshow-image";
 import "react-slideshow-image/dist/styles.css";
 import Button from "react-bootstrap/Button";
 import NoSSR from "react-no-ssr";
+import { FcPrevious, FcNext } from "react-icons/fc";
 
 const divStyle = {
   display: "flex",
@@ -19,6 +20,8 @@ const divStyle = {
   backgroundSize: "cover",
   height: "500px",
 };
+
+
 
 const slideImages = [
   {
@@ -53,7 +56,7 @@ const SingleCourse = () => {
         setCourse(res.data.response[0]);
         setImages(res.data.response[0].ppt);
       })
-      .catch((err) => {})
+      .catch((err) => { })
       .catch((err) => {
         // console.log(err);
       });
@@ -91,28 +94,28 @@ const SingleCourse = () => {
           style={{ height: "100vh", width: "90vw" }}
         ></iframe> */}
       </div>
-      {/* <div
-        style={{ display: "flex", justifyContent: "center", marginTop: "3rem" }}
-      >*/}
-        <iframe
-          src="https://onedrive.live.com/embed?resid=F5F394858BB1213E%214405&authkey=!AIJnHcKPEcZ66uQ&em=2"
-          width="630"
-          height="500"
-          frameborder="0"
-          scrolling="no"
-          controls="0"
-        ></iframe> 
-
+      <div className="onecare"
+        style={{ display: "flex", justifyContent: "center", marginTop: "3rem",  }}
+      >
+      <iframe
+        src="https://onedrive.live.com/embed?resid=F5F394858BB1213E%214405&authkey=!AIJnHcKPEcZ66uQ&em=2"
+        width="630"
+        height="500"
+        frameborder=""
+        scrolling="no"
+        controls="0"
+      ></iframe>
+        </div>
       {/* <DocViewer
         // documents={docs}
           documents={[{uri: course?.ppt}]}
           initialActiveDocument={[{uri: course?.ppt}]}
           pluginRenderers={DocViewerRenderers}
         /> */}
-      {/* </div> */}
-   
-      <div  className="slide-container">
-     <Slide  autoplay={false}>
+    
+
+      <div className="slide-container">
+        <Slide autoplay={false}>
           {images && images?.map((slideImage, index) => (
             <div key={index}>
               <div
@@ -124,8 +127,10 @@ const SingleCourse = () => {
             </div>
           ))}
         </Slide>
-        </div> 
+      </div>
+
   
+
       <div className="blog-box-shadow mt-50 p-4">
         <div>
           {" "}
@@ -154,7 +159,7 @@ const SingleCourse = () => {
         <Link
           href={{
             pathname: "/company/exam",
-            query: { id: course?.course_id,user: router.query.slug },
+            query: { id: course?.course_id, user: router.query.slug },
           }}
         >
           <span className="btn btn-success">Start Exam</span>
