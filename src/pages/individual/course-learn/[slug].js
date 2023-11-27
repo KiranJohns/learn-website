@@ -7,7 +7,7 @@ import Header from "../../../components/Layout/Header/Header";
 import DashIndividual from "../../../components/Home/IndDashboard";
 import NoSSR from "react-no-ssr";
 import NewInDash from "../../../components/Sidebar/BarDummy";
-import SingleCourse from "../../../components/CourseDetails/SingleCourse";
+import InCourse from "../../../components/CourseDetails/IndiviualCourse";
 import { getToken, getUserType } from "../../../axios";
 import { useState } from "react";
 import { useRouter } from "next/router";
@@ -52,7 +52,7 @@ function exam() {
                     <NewInDash />
                   </div>
                   <div className="col-sm col-md-9 bg-white">
-                    <SingleCourse />
+                    <InCourse />
                   </div>
                 </div>
               </div>
