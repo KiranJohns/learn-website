@@ -53,6 +53,7 @@ const TestExam = () => {
   function handleSubmit() {
     const form = new FormData();
     form.append("answer", JSON.stringify(examResult));
+    form.append("enrolled_course_id", router.query.user);
     form.append("question_id", questionId);
     makeRequest("POST", "/exam/validate", form)
       .then((res) => {
