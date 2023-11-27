@@ -8,6 +8,8 @@ import fetchData from "../../axios";
 import DataTable from "react-data-table-component";
 import { BsSearch } from "react-icons/bs";
 import { IoHandLeft } from "react-icons/io5";
+import Button from 'react-bootstrap/Button';
+import { FaEye } from "react-icons/fa";
 
 const customStyles = {
   headRow: {
@@ -84,7 +86,7 @@ class DashTest extends Component {
     const columns = [
       {
         name: "No",
-        selector: (row) => row.id,
+        selector: (row, index) => index + 1,
         sortable: true,
       },
       {
@@ -115,11 +117,10 @@ class DashTest extends Component {
         },
       },
       {
-        name: "",
-        cell: () => (
-          <a href={"#"} className="btn btn-success">
-            Start Course
-          </a>
+        name: "Action",
+        cell: (row) => (
+          <a href={`/course/${row.purchased_course_id
+          }`}><Button style={{background:"#212a50", color:"white"}} variant=""><FaEye /></Button></a> 
         ),
       },
     ];
