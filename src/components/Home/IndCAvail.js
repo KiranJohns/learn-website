@@ -3,6 +3,7 @@ import axios from "axios";
 import DataTable from "react-data-table-component";
 import BasicExample from "../About/button1";
 import fetchData, { getUserType } from "../../axios";
+import Button from 'react-bootstrap/Button';
 
 const customStyles = {
   headRow: {
@@ -97,47 +98,24 @@ const IndCAvail = () => {
     },
     {
       name: "Actions",
-      cell: (row) => {
-        if (row.course_count > 0) {
-          console.log(row);
-          return (
-            <a
-              style={{ width: "7rem" }}
-              onClick={() => startCourse(row.assigned_course_id)}
-              className="btn btn-success"
-            >
-              start
-            </a>
-          );
-        } else {
-          return (
-            <a
-              style={{ width: "7rem" }}
-              onClick={() => continueCourse(row?.on_going_course_id)}
-              className="btn btn-success"
-            >
-              continue
-            </a>
-          );
-        }
-      },
+      cell: (id) => <a href="https://test.learnforcare.co.uk/course-all"><Button style={{background:"#212a50", color:'#fff'}} variant="">View</Button></a> ,
     },
   ];
 
   return (
     <div className="">
       <div className="dash-shadow">
-        <div className=" row g-3  min-vh-100  d-flex justify-content-center mt-20">
+        <div style={{position:'relative'}} className=" row g-3  min-vh-100  d-flex justify-content-center mt-20">
           <h2
             style={{
               color: "#212450",
               display: "flex",
               justifyContent: "center",
               position: "absolute",
-              fontSize: 42,
+              fontSize: 38,
             }}
           >
-            Available Courses
+           Purchased Courses
           </h2>
           <div style={{ padding: "", backgroundColor: "" }}>
             <div
