@@ -116,7 +116,7 @@ const SingleCourse = () => {
         /> */}
     
 
-      <div className="slide-container">
+      {/* <div className="slide-container">
         <Slide autoplay={false}>
           {images && images?.map((slideImage, index) => (
             <div key={index}>
@@ -129,7 +129,7 @@ const SingleCourse = () => {
             </div>
           ))}
         </Slide>
-      </div>
+      </div> */}
 
   
 
