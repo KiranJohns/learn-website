@@ -1,20 +1,20 @@
 import React from "react";
-import CourseBundle from "../../../components/CourseGrid/CourseBundle";
-import IndividualBar from "../../../components/Sidebar/IndividualBar";
-import HeaderDashboard from "../../../components/Layout/Header/HeaderDashboard";
-import DashMain from "../../../components/Home/DashMain";
-import Header from "../../../components/Layout/Header/Header";
-import DashIndividual from "../../../components/Home/IndDashboard";
+import CourseBundle from "../../components/CourseGrid/CourseBundle";
+import IndividualBar from "../../components/Sidebar/IndividualBar";
+import HeaderDashboard from "../../components/Layout/Header/HeaderDashboard";
+import DashArchive from "../../components/Home/DashArchive";
+import Header from "../../components/Layout/Header/Header";
+import DashIndividual from "../../components/Home/IndDashboard";
 import NoSSR from "react-no-ssr";
-import NewInDash from "../../../components/Sidebar/BarDummy";
-import InCourse from "../../../components/CourseDetails/IndiviualCourse";
-import { getToken, getUserType } from "../../../axios";
+import NewInDash from "../../components/Sidebar/BarDummy";
+import { getToken, getUserType } from "../../axios";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
+import SingleCourse from "../../components/CourseDetails/SingleCourse";
 
 
-function exam() {
+function learn() {
     const [logedIn, setlogedIn] = useState(() => {
       return getUserType();
     });
@@ -52,7 +52,7 @@ function exam() {
                     <NewInDash />
                   </div>
                   <div className="col-sm col-md-9 bg-white">
-                    <InCourse />
+                    <SingleCourse/>
                   </div>
                 </div>
               </div>
@@ -63,5 +63,5 @@ function exam() {
     );
   }
   
-  export default exam
+  export default learn;
   
