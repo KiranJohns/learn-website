@@ -8,14 +8,18 @@ const TestExam = () => {
   const router = useRouter();
   const [exam, setExam] = useState([]);
   const [examResult, setExamResult] = useState([]);
+  const [questionId, setQuestionId] = useState(null);
 
   useEffect(() => {
     const form = new FormData();
     form.append("course_id", router.query.id);
+    form.append("enrolled_course_id", router.query.user);
     makeRequest("POST", "/exam/get-exam", form)
       .then((res) => {
         console.log(JSON.parse(res.data.response[0].exam));
         let exam = JSON.parse(res.data.response[0].exam);
+        setQuestionId(res.data.response[0].id)
+        console.log(res.data.response[0].id)
         setExam(exam);
         exam.forEach((item) => {
           setExamResult((prev) => {
@@ -46,15 +50,16 @@ const TestExam = () => {
   }
 
   function handleSubmit() {
-    // const form = new FormData();
-    // form.append("result",examResult);
-    // makeRequest("POST", "/exam/get-exam", form)
-    //   .then((res) => {
-
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
+    const form = new FormData();
+    form.append("answer", JSON.stringify(examResult));
+    form.append("question_id", questionId);
+    makeRequest("POST", "/exam/validate", form)
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
   return (
     <div>
