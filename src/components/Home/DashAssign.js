@@ -184,7 +184,7 @@ const CompAssignCourse = () => {
     },
     {
       name: "validity",
-      selector: (row) => row.validity,
+      selector: (row) => new Date(row.validity).toLocaleDateString(),
     },
     {
       name: "count",
