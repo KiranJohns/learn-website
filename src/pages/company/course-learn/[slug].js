@@ -26,7 +26,7 @@ function CourseDetails() {
           </div>
           <div className="col-sm col-md-9 bg-white">
       
-            <SingleCourse  />
+            <SingleCourse />
           
           </div>
         </div>

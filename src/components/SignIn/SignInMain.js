@@ -302,7 +302,7 @@ function SignInMain() {
                       </div>
                     </div>
                     <div className="sign__action d-sm-flex justify-content-between mb-30">
-                      <div className="sign__agree d-flex align-items-center">
+                      <div style={{visibility:"hidden"}} className="sign__agree d-flex align-items-center">
                         <input
                           className="m-check-input"
                           type="checkbox"

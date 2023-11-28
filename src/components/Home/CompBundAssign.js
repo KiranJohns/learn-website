@@ -215,16 +215,16 @@ const CompAssignBund = () => {
 
   return (
     <div className="">
-      <ToastContainer />
+      <ToastContainer  position="top-center"/>
       <div className="dash-shadow">
-        <div className=" row g-3  min-vh-100  d-flex justify-content-center mt-20">
+        <div style={{position:'relative'}} className=" row g-3  min-vh-100  d-flex justify-content-center mt-20">
           <h2
             style={{
               color: "#212450",
               display: "flex",
               justifyContent: "center",
               position: "absolute",
-              fontSize: 42,
+              fontSize: 38,
             }}
           >
             Assign Bundle
@@ -243,8 +243,8 @@ const CompAssignBund = () => {
                 });
               }}
             >
-              <div style={{ maxHeight: "20rem" }}>
-                <div className="modal-header d-flex mb-5">
+              <div style={{ maxHeight: "150rem" }}>
+                <div className=" d-flex mb-5">
                   <strong
                     className={`btn ${
                       selectUserForAssignCourse == "individual"
@@ -297,7 +297,7 @@ const CompAssignBund = () => {
                         />
                       </div>
                       <div className="form-group">
-                        <label for="exampleInputEmail1">User Name</label>
+                        <label for="exampleInputEmail1">Search</label>
                         <input
                           onChange={(e) =>
                             setFilteredCompanyIndividuals(
@@ -314,7 +314,7 @@ const CompAssignBund = () => {
                           className="form-control"
                           id="exampleInputEmail1"
                           aria-describedby="emailHelp"
-                          placeholder="enter user name"
+                          placeholder="search by name"
                         />
                       </div>
                     </div>
@@ -372,7 +372,7 @@ const CompAssignBund = () => {
                         />
                       </div>
                       <div className="form-group">
-                        <label for="exampleInputEmail1">manager name</label>
+                        <label for="exampleInputEmail1">Search</label>
                         <input
                           onChange={(e) =>
                             setFilteredManagers(
@@ -389,7 +389,7 @@ const CompAssignBund = () => {
                           className="form-control"
                           id="exampleInputEmail1"
                           aria-describedby="emailHelp"
-                          placeholder="enter course name"
+                          placeholder="Search by name"
                         />
                       </div>
                     </div>
