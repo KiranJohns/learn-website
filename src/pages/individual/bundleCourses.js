@@ -1,49 +1,48 @@
 import React from "react";
 import CourseBundle from "../../components/CourseGrid/CourseBundle";
-import NewInDash from "../../components/Sidebar/BarDummy";
-import ManageBar from "../../components/Sidebar/ManagerBar";
+import IndividualBar from "../../components/Sidebar/IndividualBar";
 import HeaderDashboard from "../../components/Layout/Header/HeaderDashboard";
 import DashMain from "../../components/Home/DashMain";
-import DashCourse from "../../components/Home/DashCourse";
+import DashArchive from "../../components/Home/DashArchive";
 import Header from "../../components/Layout/Header/Header";
-import TestExam from "../../components/Home/TestExam";
+import DashIndividual from "../../components/Home/IndDashboard";
 import NoSSR from "react-no-ssr";
-import DashTest from "../../components/Home/DashTest";
-import { Auth } from "../auth";
-import { useState } from "react";
+import NewInDash from "../../components/Sidebar/BarDummy";
 import { getToken, getUserType } from "../../axios";
+import { useState } from "react";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-import Sidebar from "../../components/Sidebar/SampleSidebar";
+import IndMyBundle from "../../components/Home/IndMyBundle";
+import BundleCour from "../../components/Home/BundleCourses";
 
-function dashboard() {
-  // const [logedIn, setlogedIn] = useState(() => {
-  //   return getUserType();
-  // });
-  // let routes = ["manager"]
+function BundleCorses() {
+  const [logedIn, setlogedIn] = useState(() => {
+    return getUserType();
+  });
+  let routes = ["individual"]
 
-  // const router = useRouter();
+  const router = useRouter();
 
-  // useEffect(() => {
-  //   if (!routes.includes(logedIn)) {
-  //     router.push("/sign-in");
-  //   }
-  // }, []);
+  useEffect(() => {
+    if (!routes.includes(logedIn)) {
+      router.push("/sign-in");
+    }
+  }, []);
   return (
     <>
-      {/* {routes.includes(logedIn) && ( */}
+      {routes.includes(logedIn) && (
         <React.Fragment>
           <main
             className="p-1"
             style={{
-              backgroundImage: "linear-gradient(to left, #EDEEF3, #EDEEF3)",
+              backgroundImage: "linear-gradient(to right, #EDEEF3, #EDEEF3)",
             }}
           >
             <NoSSR>
               <Header />
             </NoSSR>
             <div
-              className="container-fluid "
+              className="container-fluid"
               style={{ borderRadius: "22px", marginTop: "120px" }}
             >
               <div className="row justify-content-md-center">
@@ -54,15 +53,15 @@ function dashboard() {
                   <NewInDash />
                 </div>
                 <div className="col-sm col-md-9 bg-white">
-                  <TestExam />
+                  <BundleCour />
                 </div>
               </div>
             </div>
           </main>
         </React.Fragment>
-      {/* )} */}
+       )} 
     </>
   );
 }
 
-export default dashboard;
+export default BundleCorses;

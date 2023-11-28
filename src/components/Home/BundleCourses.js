@@ -7,7 +7,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import fetchData from "../../axios";
 
-const CourseResource = () => {
+const BundleCour = () => {
   const [slides, setSlides] = useState([]);
   const containerStyless = {
     width: "800px",
@@ -152,4 +152,4 @@ const CourseResource = () => {
   );
 };
 
-export default CourseResource;
+export default BundleCour;

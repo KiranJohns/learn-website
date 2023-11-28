@@ -104,6 +104,8 @@ const links = [
     link: "/manager/createUser",
     icon: "bi bi-person-check ",
   },
+  { name: "Individuals", link: "/manager/individuals", icon: "bi bi-person-check" },
+
   // { name: "Show user", link: "/company/showuser", icon: "bi bi-person-check" },
   // {
   //   name: " Archive User",
