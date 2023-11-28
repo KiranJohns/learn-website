@@ -88,6 +88,20 @@ function DashIndividual() {
     }
   };
 
+  const handleStart = (id, from) => {
+    let form = new FormData();
+    form.append("from", from);
+    form.append("course_id", id);
+    makeRequest("POST", "/course/start-course", form)
+      .then((res) => {
+        console.log(res);
+        location.pathname = `/company/course-learn/${res.data.response.id}`;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   function startCourse(id) {
     console.log(id);
     // makeRequest("GET", `/course/start-course/${id}`)
@@ -141,28 +155,34 @@ function DashIndividual() {
       },
     },
     {
-      name: "",
-      cell: (row) => {
-        if (getUserType() === "individual") {
-          return (
+      name: "Action",
+      cell: (row) => (
+        <>
+          {row?.progress ? (
+            <Link
+              href={{
+                pathname: "/learnCourse/coursepage",
+                query: { courseId: row.on_going_course_id },
+              }}
+            >
+              <a className="btn btn-success">continue</a>
+            </Link>
+          ) : (
             <a
-              onClick={() => startCourse(row.purchased_course_id)}
+              onClick={() => {
+                if (row.from_purchased) {
+                  handleStart(row.id, "purchased");
+                } else {
+                  handleStart(row.id, "assigned");
+                }
+              }}
               className="btn btn-success"
             >
               start
             </a>
-          );
-        } else {
-          return (
-            <a
-              onClick={() => startCourse(row.assigned_course_id)}
-              className="btn btn-success"
-            >
-              start
-            </a>
-          );
-        }
-      },
+          )}
+        </>
+      ),
     },
   ];
 

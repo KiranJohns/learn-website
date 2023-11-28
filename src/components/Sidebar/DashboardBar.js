@@ -91,11 +91,11 @@ const links = [
     ],
   },
   // { name: "My Course", link: "/company/mycourses", icon: "bi bi-book" },
-  {
-    name: "Certificates",
-    link: "/company/certificates",
-    icon: "bi bi-patch-check-fill",
-  },
+  // {
+  //   name: "Certificates",
+  //   link: "/company/certificates",
+  //   icon: "bi bi-patch-check-fill",
+  // },
   // {
   //   name: "All Courses",
   //   link: "/company/availablecourses",

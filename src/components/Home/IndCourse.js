@@ -120,7 +120,7 @@ const IndCourse = () => {
       selector: (row) => new Date(row.validity).toLocaleDateString(),
     },
     {
-      name: "",
+      name: "Action",
       cell: (row) => (
         <>
           {row?.progress ? (
