@@ -33,7 +33,7 @@ class IndMyBundle extends Component {
       records: [],
       filterRecords: [],
     };
-    this.handleStartBundle = this.handleStartBundle.bind(this)
+    this.handleStartBundle = this.handleStartBundle.bind(this);
   }
 
   handleFilter = (event) => {
@@ -45,32 +45,41 @@ class IndMyBundle extends Component {
 
   componentDidMount() {
     let makeRequest = fetchData();
-    
+
     makeRequest("GET", "/info/get-purchased-bundles")
       .then((res) => {
         makeRequest("GET", "/info/get-individual-assigned-bundles")
-        .then((resAssigned) => {
-          console.log('resAssigned', resAssigned.data.response);
-          console.log('res', res.data.response);
-          let result = [
-            ...res.data.response, ...resAssigned.data.response
-          ]
-          this.setState({
-            records: result,
-            filterRecords: res.data,
+          .then((resAssigned) => {
+            console.log(res,resAssigned);
+            let result = [...res.data.response, ...resAssigned.data.response];
+            this.setState({
+              records: result.filter(item => item.course_count >= 1),
+              filterRecords: res.data,
+            });
+          })
+          .catch((err) => {
+            console.log(err);
           });
-        })
-        .catch((err) => {
-          console.log(err);
-        });
       })
       .catch((err) => {
         console.log(err);
       });
   }
 
-  handleStartBundle() {
-    
+  handleStartBundle(id,from) {
+    let makeRequest = fetchData();
+
+    let form = new FormData();
+    form.append("from", from);
+    form.append("bundle_id", id);
+    makeRequest("POST", "/bundle/start-bundle", form)
+      .then((res) => {
+        console.log(res);
+        location.href = `/individual/bundleCourses/?id=${res.data.response.id}`;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   getData = () => {
@@ -81,7 +90,7 @@ class IndMyBundle extends Component {
     const columns = [
       {
         name: "ID",
-        selector: (row, idx) => idx,
+        selector: (row, idx) => ++idx,
         sortable: true,
       },
       {
@@ -95,13 +104,24 @@ class IndMyBundle extends Component {
       },
       {
         name: "description",
-        selector: (row) => row.description,
+        selector: (row) => row.description?.slice(0,20),
       },
       {
         name: "Actions",
-        cell: () => <span onClick={() => {
-          handleStartBundle()
-        }} className="btn btn-success">start</span>,
+        cell: (row) => (
+          <span
+            onClick={() => {
+              if (row.from_purchased) {
+                this.handleStartBundle(row.id, "purchased");
+              } else {
+                this.handleStartBundle(row.id, "assigned");
+              }
+            }}
+            className="btn btn-success"
+          >
+            start
+          </span>
+        ),
       },
     ];
 
