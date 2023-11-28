@@ -313,7 +313,7 @@ function DashIndividual() {
             }}
           >
             <div className="ag-courses_item-sec " style={{ marginLeft: "" }}>
-              <a href="" className="ag-courses-item_link-sec">
+              <a href="/individual/mycourses" className="ag-courses-item_link-sec">
                 <div className="ag-courses-item_bg-sec"></div>
                 <div
                   className="bi bi-person-circle ag-courses-item_date-box-new"
@@ -337,7 +337,7 @@ function DashIndividual() {
               className="ag-courses_item-sec "
               style={{ marginLeft: "3.2rem" }}
             >
-              <a href="" className="ag-courses-item_link-sec">
+              <a href="/individual/mybundles" className="ag-courses-item_link-sec">
                 <div className="ag-courses-item_bg-sec"></div>
                 <div
                   className="bi bi-person-circle ag-courses-item_date-box-new"

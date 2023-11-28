@@ -243,13 +243,13 @@ const CompAssignBund = () => {
                 });
               }}
             >
-              <div style={{ maxHeight: "150rem" }}>
+              <div style={{ maxHeight: "200rem" }}>
                 <div className=" d-flex mb-5">
                   <strong
                     className={`btn ${
                       selectUserForAssignCourse == "individual"
                         ? "btn-success"
-                        : ""
+                        : "btn-secondary"
                     }`}
                     onClick={() => {
                       setSelectUserForAssignCourse("individual");
@@ -267,7 +267,7 @@ const CompAssignBund = () => {
                     className={`btn ${
                       selectUserForAssignCourse == "manager"
                         ? "btn-success"
-                        : ""
+                        : "btn-secondary"
                     }`}
                     onClick={() => {
                       setAssignData((prev) => {
@@ -284,21 +284,25 @@ const CompAssignBund = () => {
                 </div>
                 {selectUserForAssignCourse === "individual" ? (
                   <div>
-                    <div className="form-control d-flex gap-3">
-                      <div className="form-group">
-                        <label for="exampleInputEmail1">Course Count</label>
+                    <div className="form-control dash-shadow d-flex gap-3">
+                      <div className="">
+                    <span style={{}}>   <label style={{fontSize:".7rem"}} for="exampleInputEmail1">Course Count</label>
                         <input
+                        style={{width:'4rem'}}
                           disabled
                           type="number"
                           className="form-control"
                           id="exampleInputEmail1"
                           aria-describedby="emailHelp"
                           placeholder="1"
-                        />
+                          
+                        /></span> 
                       </div>
                       <div className="form-group">
-                        <label for="exampleInputEmail1">Search</label>
+                        <label style={{visibility:"hidden"}} for="exampleInputEmail1">Search</label>
+                        <div>
                         <input
+                        style={{width:"20rem"}}
                           onChange={(e) =>
                             setFilteredCompanyIndividuals(
                               companyIndividuals.filter((item) =>
@@ -316,6 +320,8 @@ const CompAssignBund = () => {
                           aria-describedby="emailHelp"
                           placeholder="search by name"
                         />
+                       
+                        </div>
                       </div>
                     </div>
                     <div className="list-group bg-white">

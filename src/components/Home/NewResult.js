@@ -107,7 +107,7 @@ const NewResult = () => {
                 localStorage.removeItem("wrong-answers")
               }}
             >
-              Go back to my Courses(fail)/ Certificate (pass)
+          Certificates 
             </span>
           </div>
         </div>

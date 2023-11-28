@@ -12,7 +12,7 @@ import fetchData from "../../axios";
 const links = [
   {
     name: "Dashboard",
-    link: "/company/dashboard",
+    link: "/manager/dashboard",
     icon: "bi bi-ui-checks-grid",
   },
   {
