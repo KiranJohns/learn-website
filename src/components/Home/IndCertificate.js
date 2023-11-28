@@ -3,6 +3,7 @@ import axios from "axios";
 import DataTable from "react-data-table-component";
 import Link from "next/link";
 import BasicExample from "../About/button1";
+import fetchData from "../../axios";
 
 const customStyles = {
   headRow: {
@@ -48,12 +49,15 @@ class IndCertificate extends Component {
   }
 
   fetchData = () => {
-    console.log('ertyuiop');
-    axios
-      .get("https://jsonplaceholder.typicode.com/users")
+    let makeRequest = fetchData();
+    console.log("ertyuiop");
+    makeRequest("GET", "/certificate/get-certificates")
       .then((res) => {
-        // console.log(res.data);
-        this.setState({ records: [...res.data,...res.data], filterRecords: res.data });
+        console.log(res.data);
+        this.setState({
+          records: res.data.response,
+          filterRecords: res.data,
+        });
       })
       .catch((err) => console.log(err));
   };
@@ -67,16 +71,20 @@ class IndCertificate extends Component {
       },
       {
         name: "Courses",
-        selector: (row) => row.name,
+        selector: (row) => row.course_name,
         sortable: true,
       },
       {
-        name: "Email",
-        selector: (row) => row.email,
+        name: "Date",
+        selector: (row) => new Date(row.date).toLocaleDateString(),
+      },
+      {
+        name: "Percentage",
+        selector: (row) => row.percentage,
       },
       {
         name: "Actions",
-        cell: () => <BasicExample />,
+        selector: (row) => <a className="btn btn-success" target="_blank" href={row.image}>view</a>,
       },
     ];
 
