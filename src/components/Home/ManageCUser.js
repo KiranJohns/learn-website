@@ -72,38 +72,45 @@ class ManageCreateU extends Component {
               color: "#212450",
               display: "flex",
               justifyContent: "center",
-              fontSize: 38,
+              fontSize: 36,
             }}
           >
             Create User
           </h2>
-          <div className="row g-3  d-flex justify-content-end  ">
-            <form className="col-sm-10 col-md-8 d-block mx-auto">
+          <div >
+            <form className="row g-3  d-flex justify-content-end  ">
+
+              <div className="col-12 d-flex mx-auto">
+             
+             <div className="col-6">
               <div className="form-group p-2 mb-4">
                 <label className="text-black" for="FormControlInput1">
                   First Name
                 </label>
                 <input
+                 style={{background:"#f7fbff"}}
                   onChange={this.handleOnchange}
                   type="text"
                   className="form-control border border-black"
                   id="first_name"
-                  placeholder="first_name"
+                  placeholder="First Name"
                   name="first_name"
                   value={this.state.userData.first_name}
                 />
               </div>
+
               <div className="form-group p-2 mb-4">
                 <label className="text-black" for="FormControlInput1">
                   Last Name
                 </label>
                 <input
+                 style={{background:"#f7fbff"}}
                   onChange={this.handleOnchange}
                   type="text"
                   className="form-control border border-black"
                   id="last_name"
                   name="last_name"
-                  placeholder="last_name"
+                  placeholder="Last Name"
                   value={this.state.userData.last_name}
                 />
               </div>
@@ -113,11 +120,12 @@ class ManageCreateU extends Component {
                   Email
                 </label>
                 <input
+                 style={{background:"#f7fbff"}}
                   onChange={this.handleOnchange}
                   type="email"
                   className="form-control border border-black"
                   id="email"
-                  placeholder="name@example.com"
+                  placeholder="Email"
                   name="email"
                   value={this.state.userData.email}
                 />
@@ -128,6 +136,7 @@ class ManageCreateU extends Component {
                   Country
                 </label>
                 <select
+                 style={{background:"#f7fbff"}}
                   onChange={this.handleOnchange}
                   className="form-control border border-black"
                   id="exampleFormControlSelect1"
@@ -137,26 +146,30 @@ class ManageCreateU extends Component {
                   <option value="United Kingdom">United Kingdom</option>
                 </select>
               </div>
+              </div>
 
+               <div className="col-6">
               <div className="form-group p-2 mb-4">
                 <label className="text-black" for="FormControlInput1">
                   City
                 </label>
                 <input
+                 style={{background:"#f7fbff"}}
                   onChange={this.handleOnchange}
                   type="text"
                   className="form-control border border-black"
                   id="city"
                   name="city"
-                  placeholder="city"
+                  placeholder="City"
                   value={this.state.userData.city}
                 />
               </div>
               <div className="form-group p-2 mb-4">
                 <label className="text-black" for="FormControlInput1">
-                  password
+                  Password
                 </label>
                 <input
+                 style={{background:"#f7fbff"}}
                   onChange={this.handleOnchange}
                   type="password"
                   className="form-control border border-black"
@@ -168,19 +181,23 @@ class ManageCreateU extends Component {
               </div>
               <div className="form-group p-2 mb-4">
                 <label className="text-black" for="FormControlInput1">
-                  phone
+                  Phone
                 </label>
                 <input
+                 style={{background:"#f7fbff"}}
                   onChange={this.handleOnchange}
                   type="number"
                   className="form-control border border-black"
                   id="phone"
                   name="phone"
-                  placeholder="phone"
+                  placeholder="Phone"
                   value={this.state.userData.phone}
                 />
               </div>
-              <div className="form-group p-2 mb-4">
+              </div>
+
+              </div> 
+              <div  className="form-group d-flex justify-content-center p-2 mb-4">
                 <button
                   type="button"
                   className="btn btn-primary"

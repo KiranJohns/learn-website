@@ -101,7 +101,7 @@ const links = [
   // },
   {
     name: "Create User",
-    link: "/company/createUser",
+    link: "/manager/createUser",
     icon: "bi bi-person-check ",
   },
   // { name: "Show user", link: "/company/showuser", icon: "bi bi-person-check" },

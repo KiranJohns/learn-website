@@ -79,11 +79,28 @@
     text-align: left !important;
 }
 
+@media screen and (max-width: 1100px) {
+  .list-group-item{
+ margin-right: .2px !important;
+    margin-left: 0.5px !important;
+}
+}
+
+@media screen and (max-width: 980px) {
+  .list-group-item{
+    text-align: center !important;
+    margin-left: 0 !important;
+}
+}
+
+
 .list-group-item:hover{
     color: #212450;
     background-color:#fff;
     cursor: pointer;
 }
+
+
 
 .navheight{
     height: 5rem;
