@@ -86,7 +86,7 @@ class DashTest extends Component {
     const columns = [
       {
         name: "No",
-        selector: (row, index) => index + 1,
+        selector: (row, index) => index +  1,
         sortable: true,
       },
       {
