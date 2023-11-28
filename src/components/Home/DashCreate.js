@@ -76,47 +76,40 @@ class DashCreate extends Component {
               color: "#212450",
               display: "flex",
               justifyContent: "center",
-              fontSize: 42,
+              fontSize: 38,
             }}
           >
             Create User
           </h2>
-          <div className="row g-3  d-flex justify-content-end  ">
-            <form className="col-sm-10 col-md-8 d-block mx-auto">
+          <div >
+            <form className="row g-3  d-flex justify-content-end  ">
+             <div className="col-12 d-flex mx-auto">
+
+          <div className="col-6">
               <div className="form-group p-2 mb-4">
                 <label className="text-black" for="FormControlInput1">
                   First Name
                 </label>
                 <input
+                style={{background:"#f7fbff"}}
                   onChange={this.handleOnchange}
                   type="text"
                   className="form-control border border-black"
                   id="first_name"
-                  placeholder="first_name"
+                  placeholder="First Name"
                   name="first_name"
                   value={this.state.userData.first_name}
                 />
               </div>
-              <div className="form-group p-2 mb-4">
-                <label className="text-black" for="FormControlInput1">
-                  Last Name
-                </label>
-                <input
-                  onChange={this.handleOnchange}
-                  type="text"
-                  className="form-control border border-black"
-                  id="last_name"
-                  name="last_name"
-                  placeholder="last_name"
-                  value={this.state.userData.last_name}
-                />
-              </div>
+
+           
 
               <div className="form-group p-2 mb-4">
                 <label className="text-black" for="FormControlInput1">
                   Email
                 </label>
                 <input
+                 style={{background:"#f7fbff"}}
                   onChange={this.handleOnchange}
                   type="email"
                   className="form-control border border-black"
@@ -132,6 +125,7 @@ class DashCreate extends Component {
                   Country
                 </label>
                 <select
+                 style={{background:"#f7fbff"}}
                   onChange={this.handleOnchange}
                   className="form-control border border-black"
                   id="exampleFormControlSelect1"
@@ -141,26 +135,84 @@ class DashCreate extends Component {
                   <option value="United Kingdom">United Kingdom</option>
                 </select>
               </div>
+              
+              <div class="form-group p-2 mb-4">
+                <label className="text-black" for="FormControlInput1">
+                  Type of User
+                </label>
+                <select
+                 style={{background:"#f7fbff"}}
+                  onChange={this.handleOnchange}
+                  className="form-control border border-black"
+                  id="exampleFormControlSelect1"
+                  name="user_type"
+                >
+                  <option>Select</option>
+                  <option value="individual">Individual</option>
+                  <option value="manager">Manager</option>
+                </select>
+              </div>
+
+              </div>
+
+              <div className="col-6">
+
+              <div className="form-group p-2 mb-4">
+                <label className="text-black" for="FormControlInput1">
+                  Last Name
+                </label>
+                <input
+                 style={{background:"#f7fbff"}}
+                  onChange={this.handleOnchange}
+                  type="text"
+                  className="form-control border border-black"
+                  id="last_name"
+                  name="last_name"
+                  placeholder="Second Name"
+                  value={this.state.userData.last_name}
+                />
+              </div>
+
+                
+              <div className="form-group p-2 mb-4">
+                <label className="text-black" for="FormControlInput1">
+                  Phone
+                </label>
+                <input
+                 style={{background:"#f7fbff"}}
+                  onChange={this.handleOnchange}
+                  type="number"
+                  className="form-control border border-black"
+                  id="phone"
+                  name="phone"
+                  placeholder="Phone"
+                  value={this.state.userData.phone}
+                />
+              </div>
 
               <div className="form-group p-2 mb-4">
                 <label className="text-black" for="FormControlInput1">
                   City
                 </label>
                 <input
+                 style={{background:"#f7fbff"}}
                   onChange={this.handleOnchange}
                   type="text"
                   className="form-control border border-black"
                   id="city"
                   name="city"
-                  placeholder="city"
+                  placeholder="City"
                   value={this.state.userData.city}
                 />
               </div>
+              
+
               <div className="form-group p-2 mb-4">
                 <label className="text-black" for="FormControlInput1">
-                  password
+                  Password
                 </label>
                 <input
+                 style={{background:"#f7fbff"}}
                   onChange={this.handleOnchange}
                   type="password"
                   className="form-control border border-black"
@@ -170,38 +222,11 @@ class DashCreate extends Component {
                   value={this.state.userData.password}
                 />
               </div>
-              <div className="form-group p-2 mb-4">
-                <label className="text-black" for="FormControlInput1">
-                  phone
-                </label>
-                <input
-                  onChange={this.handleOnchange}
-                  type="number"
-                  className="form-control border border-black"
-                  id="phone"
-                  name="phone"
-                  placeholder="phone"
-                  value={this.state.userData.phone}
-                />
               </div>
 
-              <div class="form-group p-2 mb-4">
-                <label className="text-black" for="FormControlInput1">
-                  Type of user
-                </label>
-                <select
-                  onChange={this.handleOnchange}
-                  className="form-control border border-black"
-                  id="exampleFormControlSelect1"
-                  name="user_type"
-                >
-                  <option>Select</option>
-                  <option value="individual">individual</option>
-                  <option value="manager">manager</option>
-                </select>
+         
               </div>
-
-              <div className="form-group p-2 mb-4">
+              <div className="form-group d-flex justify-content-center p-2 mb-4">
                 <button
                   type="button"
                   className="btn btn-primary"

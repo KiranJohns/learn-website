@@ -6,6 +6,8 @@ import BasicExample from "../About/button1";
 import fetchData from "../../axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { FaLock } from "react-icons/fa";
+import { FaUnlock } from "react-icons/fa";
 
 const customStyles = {
   headRow: {
@@ -104,9 +106,9 @@ class CompListManager extends Component {
         cell: (row) => (
           <a
             onClick={() => this.handleBlock(row.block, row.id)}
-            className={row.block ? `btn btn-success` : `btn btn-danger`}
+            className={row.block ? `btn btn-danger` : `btn btn-success`}
           >
-            {row.block ? "unblock" : "block"}
+            {row.block ? <FaLock /> : <FaUnlock />}
           </a>
         ),
       },
@@ -127,14 +129,14 @@ class CompListManager extends Component {
             pauseOnHover
             theme="light"
           />
-          <div className=" row g-3  min-vh-100  d-flex justify-content-center mt-20">
+          <div style={{position:"relative"}} className=" row g-3  min-vh-100  d-flex justify-content-center mt-20">
             <h2
               style={{
                 color: "#212450",
                 display: "flex",
                 justifyContent: "center",
                 position: "absolute",
-                fontSize: 38,
+                fontSize: 36,
               }}
             >
               List of Managers

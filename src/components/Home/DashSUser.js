@@ -6,6 +6,8 @@ import "react-toastify/dist/ReactToastify.css";
 import fetchData from "../../axios";
 import Button from 'react-bootstrap/Button';
 import { CSVLink, CSVDownload } from "react-csv";
+import { FaLock } from "react-icons/fa";
+import { FaUnlock } from "react-icons/fa";
 
 const customStyles = {
   headRow: {
@@ -118,9 +120,9 @@ const DashSUser = () => {
       cell: (row) => (
         <a
           onClick={() => handleBlock(row.block, row.id)}
-          className={row.block ? `btn btn-success` : `btn btn-danger`}
+          className={row.block ? `btn btn-danger` : `btn btn-success`}
         >
-          {row.block ? "unblock" : "block"}
+          {row.block ? <FaLock /> : <FaUnlock />}
         </a>
       ),
     },

@@ -86,7 +86,7 @@ class DashTest extends Component {
     const columns = [
       {
         name: "No",
-        selector: (row, index) => index +  1,
+        selector: (row, index) => index + 1,
         sortable: true,
       },
       {
@@ -356,7 +356,7 @@ class DashTest extends Component {
               className="ag-courses_item-sec "
               style={{ marginLeft: "3.5rem" }}
             >
-              <a href="" className="ag-courses-item_link-sec">
+              <a href="/company/mybundle" className="ag-courses-item_link-sec">
                 <div className="ag-courses-item_bg-sec"></div>
                 <div
                   className="bi bi-person-circle ag-courses-item_date-box-new"

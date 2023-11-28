@@ -8,6 +8,9 @@ import fetchData from "../../axios";
 import DataTable from "react-data-table-component";
 import { BsSearch } from "react-icons/bs";
 import { IoHandLeft } from "react-icons/io5";
+import Button from 'react-bootstrap/Button';
+import { FaEye } from "react-icons/fa";
+
 const customStyles = {
   headRow: {
     style: {
@@ -115,11 +118,10 @@ class ManageDash extends Component {
         },
       },
       {
-        name: "",
-        cell: () => (
-          <a href={"#"} className="btn btn-success">
-            Start Course
-          </a>
+        name: "Action",
+        cell: (row) => (
+          <a href={`/course/${row.purchased_course_id
+          }`}><Button style={{background:"#212a50", color:"white"}} variant=""><FaEye /></Button></a> 
         ),
       },
     ];
@@ -172,10 +174,10 @@ class ManageDash extends Component {
                   <div className="ag-courses-item_bg-comp"></div>
                   <div
                     className="bi bi-person-circle ag-courses-item_date-box-new"
-                    style={{ fontSize: "2rem" }}
+                    style={{ fontSize: "1.85rem" }}
                   ></div>
                   <div
-                    className="ag-courses-item_title-comp"
+                    className="ag-courses-item_title-comp dash-box-h"
                     style={{
                       display: "flex",
                       justifyContent: "center",
@@ -196,10 +198,10 @@ class ManageDash extends Component {
                   <div className="ag-courses-item_bg-comp"></div>
                   <div
                     className="bi bi-person-circle ag-courses-item_date-box-new"
-                    style={{ fontSize: "2rem" }}
+                    style={{ fontSize: "1.85rem" }}
                   ></div>
                   <div
-                    className="ag-courses-item_title-comp"
+                    className="ag-courses-item_title-comp dash-box-h"
                     style={{
                       display: "flex",
                       justifyContent: "center",
@@ -220,10 +222,10 @@ class ManageDash extends Component {
                   <div className="ag-courses-item_bg-comp"></div>
                   <div
                     className="bi bi-person-circle ag-courses-item_date-box-new"
-                    style={{ fontSize: "2rem" }}
+                    style={{ fontSize: "1.85rem" }}
                   ></div>
                   <div
-                    className="ag-courses-item_title-comp"
+                    className="ag-courses-item_title-comp dash-box-h"
                     style={{
                       display: "flex",
                       justifyContent: "center",
@@ -244,15 +246,15 @@ class ManageDash extends Component {
                 justifyContent: "space-between",
               }}
             >
-              <div className="ag-courses_item-sec" style={{ marginLeft: "" }}>
-                <a href="" className="ag-courses-item_link-sec">
-                  <div className="ag-courses-item_bg-sec"></div>
+              <div className="ag-courses_item-comp" style={{ marginLeft: "" }}>
+                <a href="" className="ag-courses-item_link-comp">
+                  <div className="ag-courses-item_bg-comp"></div>
                   <div
                     className="bi bi-person-circle ag-courses-item_date-box-new"
-                    style={{ fontSize: "2rem" }}
+                    style={{ fontSize: "1.85rem" }}
                   ></div>
                   <div
-                    className="ag-courses-item_title-sec"
+                    className="ag-courses-item_title-comp dash-box-h"
                     style={{
                       display: "flex",
                       justifyContent: "center",
@@ -265,15 +267,15 @@ class ManageDash extends Component {
                 </a>
               </div>
 
-              <div className="ag-courses_item-sec" style={{ marginLeft: "" }}>
-                <a href="" className="ag-courses-item_link-sec">
-                  <div className="ag-courses-item_bg-sec"></div>
+              <div className="ag-courses_item-comp" style={{ marginLeft: ".5rem" }}>
+                <a href="" className="ag-courses-item_link-comp">
+                  <div className="ag-courses-item_bg-comp"></div>
                   <div
                     className="bi bi-person-circle ag-courses-item_date-box-new"
-                    style={{ fontSize: "2rem" }}
+                    style={{ fontSize: "1.85rem" }}
                   ></div>
                   <div
-                    className="ag-courses-item_title-sec"
+                    className="ag-courses-item_title-comp dash-box-h"
                     style={{
                       display: "flex",
                       justifyContent: "center",
@@ -286,15 +288,15 @@ class ManageDash extends Component {
                 </a>
               </div>
 
-              <div className="ag-courses_item-sec " style={{}}>
-                <a href="" className="ag-courses-item_link-sec">
-                  <div className="ag-courses-item_bg-sec"></div>
+              <div className="ag-courses_item-comp " style={{ marginLeft: ".5rem" }}>
+                <a href="" className="ag-courses-item_link-comp">
+                  <div className="ag-courses-item_bg-comp"></div>
                   <div
                     className="bi bi-person-circle ag-courses-item_date-box-new"
-                    style={{ fontSize: "2rem" }}
+                    style={{ fontSize: "1.85rem" }}
                   ></div>
                   <div
-                    className="ag-courses-item_title-sec"
+                    className="ag-courses-item_title-comp dash-box-h"
                     style={{
                       display: "flex",
                       justifyContent: "center",
@@ -335,7 +337,7 @@ class ManageDash extends Component {
                 style={{ display: "none" }}
                 className="p-relative d-inline header__search"
               >
-                <form action="">
+                <form  className="your-element" action="">
                   <input
                     className="d-block mr-25"
                     type="text"

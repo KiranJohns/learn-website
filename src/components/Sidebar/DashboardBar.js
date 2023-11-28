@@ -110,11 +110,11 @@ const links = [
   { name: "Managers", link: "/company/managers", icon: "bi bi-person-check" },
 
   { name: "Individuals", link: "/company/showuser", icon: "bi bi-person-check" },
-  {
-    name: " Archive User",
-    link: "/company/archive",
-    icon: "bi bi-person-fill-slash",
-  },
+  // {
+  //   name: " Archive User",
+  //   link: "/company/archive",
+  //   icon: "bi bi-person-fill-slash",
+  // },
 
 ];
 function DashboardBar() {
@@ -263,7 +263,7 @@ function DashboardBar() {
         </div>
       </div>
       {/* <hr className="" /> */}
-      <div className=" text-nowrap" style={{ overflow: "hidden" }}>
+      <div className=" text-nowrap" style={{ overflow: "hidden", }}>
         {linksArr.map((link) => {
           return (
             <>
@@ -277,7 +277,7 @@ function DashboardBar() {
                 }}
               >
                 <div
-                  style={{ margin: ".8rem", borderRadius: "8px " }}
+                  style={{ margin: ".8rem", borderRadius: "8px",}}
                   className={`list-group-item  ${
                     link.subLinks?.find((link) => link.link == router.pathname)
                       ? "activate-sidebar"
