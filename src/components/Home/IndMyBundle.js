@@ -33,6 +33,7 @@ class IndMyBundle extends Component {
       records: [],
       filterRecords: [],
     };
+    this.handleStartBundle = this.handleStartBundle.bind(this)
   }
 
   handleFilter = (event) => {
@@ -47,7 +48,6 @@ class IndMyBundle extends Component {
     
     makeRequest("GET", "/info/get-purchased-bundles")
       .then((res) => {
-        console.log(res);
         makeRequest("GET", "/info/get-individual-assigned-bundles")
         .then((resAssigned) => {
           console.log('resAssigned', resAssigned.data.response);
@@ -67,6 +67,10 @@ class IndMyBundle extends Component {
       .catch((err) => {
         console.log(err);
       });
+  }
+
+  handleStartBundle() {
+    
   }
 
   getData = () => {
@@ -95,7 +99,9 @@ class IndMyBundle extends Component {
       },
       {
         name: "Actions",
-        cell: () => <span className="btn btn-success">start</span>,
+        cell: () => <span onClick={() => {
+          handleStartBundle()
+        }} className="btn btn-success">start</span>,
       },
     ];
 

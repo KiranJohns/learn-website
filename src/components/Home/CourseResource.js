@@ -117,7 +117,7 @@ const CourseResource = () => {
               {" "}
               <h4>Resources</h4>
             </div>
-            {course && course.resource.map((item,i) => (<div style={{ margin: " 1rem .5rem" }}>
+            {course && course?.resource?.map((item,i) => (<div style={{ margin: " 1rem .5rem" }}>
               <p>
                 resource {" "}
                 <a
