@@ -88,6 +88,7 @@ class ManageCreateU extends Component {
                   First Name
                 </label>
                 <input
+                 style={{background:"#f7fbff"}}
                   onChange={this.handleOnchange}
                   type="text"
                   className="form-control border border-black"
@@ -103,6 +104,7 @@ class ManageCreateU extends Component {
                   Last Name
                 </label>
                 <input
+                 style={{background:"#f7fbff"}}
                   onChange={this.handleOnchange}
                   type="text"
                   className="form-control border border-black"
@@ -118,6 +120,7 @@ class ManageCreateU extends Component {
                   Email
                 </label>
                 <input
+                 style={{background:"#f7fbff"}}
                   onChange={this.handleOnchange}
                   type="email"
                   className="form-control border border-black"
@@ -133,6 +136,7 @@ class ManageCreateU extends Component {
                   Country
                 </label>
                 <select
+                 style={{background:"#f7fbff"}}
                   onChange={this.handleOnchange}
                   className="form-control border border-black"
                   id="exampleFormControlSelect1"
@@ -150,6 +154,7 @@ class ManageCreateU extends Component {
                   City
                 </label>
                 <input
+                 style={{background:"#f7fbff"}}
                   onChange={this.handleOnchange}
                   type="text"
                   className="form-control border border-black"
@@ -164,6 +169,7 @@ class ManageCreateU extends Component {
                   Password
                 </label>
                 <input
+                 style={{background:"#f7fbff"}}
                   onChange={this.handleOnchange}
                   type="password"
                   className="form-control border border-black"
@@ -178,6 +184,7 @@ class ManageCreateU extends Component {
                   Phone
                 </label>
                 <input
+                 style={{background:"#f7fbff"}}
                   onChange={this.handleOnchange}
                   type="number"
                   className="form-control border border-black"
