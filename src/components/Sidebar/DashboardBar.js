@@ -134,6 +134,8 @@ function DashboardBar() {
   };
 
   useEffect(() => {
+    openSubLink(location.pathname)
+    console.log(location.pathname);
     makeRequest("GET", "/info/data")
       .then((res) => {
         setInfo(res.data.response[0]);
