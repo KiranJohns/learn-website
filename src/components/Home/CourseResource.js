@@ -140,7 +140,7 @@ const CourseResource = () => {
             <Link
               href={{
                 pathname: "/company/exam",
-                query: { id: course?.course_id, user: router.query.courseId },
+                query: { id: course?.course_id, user: router.query.courseId,courseName: course.name },
               }}
             >
               <span className="btn btn-success">Start Exam</span>
