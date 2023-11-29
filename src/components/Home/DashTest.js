@@ -121,7 +121,7 @@ class DashTest extends Component {
       {
         name: "Action",
         cell: (row) => (
-          <a href={`/course/${row.purchased_course_id
+          <a href={`/course/${row.course_id
           }`}><Button style={{background:"#212a50", color:"white"}} variant=""><FaEye /></Button></a> 
         ),
       },

@@ -95,7 +95,7 @@ function DashIndividual() {
     makeRequest("POST", "/course/start-course", form)
       .then((res) => {
         console.log(res);
-        location.pathname = `/company/course-learn/${res.data.response.id}`;
+        location.pathname = `/learnCourse/coursepage/?courseId=${res.data.response.id}`;
       })
       .catch((err) => {
         console.log(err);
@@ -129,20 +129,22 @@ function DashIndividual() {
     {
       name: "No",
       selector: (row, idx) => idx + 1,
-      sortable: true,
+      center: true,
     },
     {
       name: "Name",
       selector: (row) => (row.name ? row.name : row.Name),
-      sortable: true,
+      center: true,
     },
     {
       name: "description",
       selector: (row) => row.description.slice(0, 25),
+      center: true,
     },
     {
       name: "category",
       selector: (row) => row.category,
+      center: true,
     },
     {
       name: "validity",
