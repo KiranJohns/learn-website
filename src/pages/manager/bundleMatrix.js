@@ -15,7 +15,7 @@ import { getToken, getUserType } from "../../axios";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import Sidebar from "../../components/Sidebar/SampleSidebar";
-import ManCoursMatrix from "../../components/Home/ManagerMatrix";
+import ManBundMatrix from "../../components/Home/ManBundMatrix";
 
 function CoursMatrix() {
   // const [logedIn, setlogedIn] = useState(() => {
@@ -55,7 +55,7 @@ function CoursMatrix() {
                   <ManageBar />
                 </div>
                 <div className="col-sm col-md-9 bg-white">
-                  <ManCoursMatrix />
+                  <ManBundMatrix />
                 </div>
               </div>
             </div>

@@ -168,7 +168,7 @@ const CompAssignBund = () => {
   }
   const columns = [
     {
-      name: "ID",
+      name: "Index",
       selector: (row, idx) => ++idx,
       
       center:true,
@@ -336,7 +336,7 @@ const CompAssignBund = () => {
                       <ul classNAm="list-group">
 
                         <li class="list-group-item bg-white text-black d-flex justify-content-between">
-                          <span style={{ width: "fit-content", marginLeft: '1rem' }}>
+                          <span style={{ width: "fit-content", marginLeft: '.7rem' }}>
                             Name
                           </span>
                           <span style={{ textAlign: 'center' }}>Email</span>
