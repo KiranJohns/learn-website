@@ -64,7 +64,7 @@ const BundleCour = () => {
       makeRequest("GET", `/bundle/get-started-bundle/${router.query.id}`)
         .then((res) => {
           setRecords(res.data.response.courses);
-          console.log(res.data.response);
+          console.log(res.data.response.bundle[0]);
           setData(res.data.response.bundle[0]);
           // location.href = `/individual/bundleCourses/?id=${res.data.response.id}`;
         })
@@ -107,10 +107,10 @@ const BundleCour = () => {
       name: "Action",
       cell: (row) => (
         <Link href={{
-          pathname: "/individual/courseDetails",
+          pathname: "/learnCourse/bundleCourse",
           query:{
             course_id:row.id,
-            bundleId: data.id
+            bundleId: router.query.id
           },
         }}>
           <a
