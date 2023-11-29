@@ -1,7 +1,7 @@
 import React from "react";
 import Table from 'react-bootstrap/Table';
 
-const ManCoursMatrix = () => {
+const ManBundMatrix = () => {
 
   const matrixDataUser = [
   
@@ -299,4 +299,4 @@ const ManCoursMatrix = () => {
   );
 };
 
-export default ManCoursMatrix;
+export default ManBundMatrix;

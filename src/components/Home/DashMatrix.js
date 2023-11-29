@@ -29,7 +29,7 @@ const DashMatrix = () => {
         userId: 1,
         course: {
           name: "some of the people",
-          color: "#e04c4c",
+          color: "#ae0000",
           progress: "0%",
         },
       },
@@ -38,7 +38,7 @@ const DashMatrix = () => {
         userId: 1,
         course: {
           name: "of the people",
-          color: "#5a9676",
+          color: "#549C30",
           progress: "100%",
         },
       },
@@ -47,7 +47,7 @@ const DashMatrix = () => {
         userId: 1,
         course: {
           name: "by the people",
-          color: "#f2a024",
+          color: "#f7b500",
           progress: "50%",
         },
       },
@@ -56,7 +56,7 @@ const DashMatrix = () => {
         userId: 1,
         course: {
           name: "for the people",
-          color: "#5a9676",
+          color: "#549C30",
           progress: "100%",
         },
       },
@@ -67,7 +67,7 @@ const DashMatrix = () => {
         userId: 2,
         course: {
           name: "by the people",
-          color: "#f2a024",
+          color: "#f7b500",
           progress: "50%",
         },
       },
@@ -76,7 +76,7 @@ const DashMatrix = () => {
         userId: 2,
         course: {
           name: "some of the people",
-          color: "#e04c4c",
+          color: "#ae0000",
           progress: "0%",
         },
       },
@@ -85,7 +85,7 @@ const DashMatrix = () => {
         userId: 2,
         course: {
           name: "of the people",
-          color: "#5a9676",
+          color: "#549C30",
           progress: "100%",
         },
       },
@@ -94,7 +94,7 @@ const DashMatrix = () => {
         userId: 2,
         course: {
           name: "for the people",
-          color: "#f2a024",
+          color: "#f7b500",
           progress: "50%",
         },
       },
@@ -105,7 +105,7 @@ const DashMatrix = () => {
         userId: 3,
         course: {
           name: "some of the people",
-          color: "#e04c4c",
+          color: "#ae0000",
           progress: "0%",
         },
       },
@@ -114,7 +114,7 @@ const DashMatrix = () => {
         userId: 3,
         course: {
           name: "for the people",
-          color: "#f2a024",
+          color: "#f7b500",
           progress: "50%",
         },
       },
@@ -123,7 +123,7 @@ const DashMatrix = () => {
         userId: 3,
         course: {
           name: "of the people",
-          color: "#5a9676",
+          color: "#549C30",
           progress: "100%",
         },
       },
@@ -132,7 +132,7 @@ const DashMatrix = () => {
         userId: 3,
         course: {
           name: "by the people",
-          color: "#5a9676",
+          color: "#549C30",
           progress: "100%",
         },
       },
@@ -143,7 +143,7 @@ const DashMatrix = () => {
         userId: 4,
         course: {
           name: "by the people",
-          color: "#f2a024",
+          color: "#f7b500",
           progress: "50%",
         },
       },
@@ -152,7 +152,7 @@ const DashMatrix = () => {
         userId: 4,
         course: {
           name: "some of the people",
-          color: "#e04c4c",
+          color: "#ae0000",
           progress: "0%",
         },
       },
@@ -161,7 +161,7 @@ const DashMatrix = () => {
         userId: 4,
         course: {
           name: "of the people",
-          color: "#5a9676",
+          color: "#549C30",
           progress: "100%",
         },
       },
@@ -170,7 +170,7 @@ const DashMatrix = () => {
         userId: 4,
         course: {
           name: "for the people",
-          color: "#5a9676",
+          color: "#549C30",
           progress: "100%",
         },
       },
@@ -184,99 +184,37 @@ const DashMatrix = () => {
     "for the people",
   ];
   return (
-    <div className="row">
-      <div className="dash-neww " >
-          
-        <div className="col-12 m-50 p-50" style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
-      <table style={{ border: "1px solid #212a50",  }}>
-        <tr style={{ border: "1px solid #212a50",  textAlign:'center' }}>
-          <th
-            style={{
-              border: "1px solid #212a50",
-              padding: "0 0.5rem",
-              color: "#212a50",
-             
-            }}
-          >
-           
-          </th>
-          {courseName.map((item) => (
-            <th
-              style={{
-                border: "1px solid #212a50",
-                padding: "0 0.5rem",
-                color: "#fff",
-                background:'#212a50'
-              }}
-            >
-              {item}
-            </th>
-          ))}
-        </tr>
-        {matrixDataCourse.map((item) => {
-          return <tr >
-            {item.map((course, i) => {
-              if (i == 0) {
-                return (
-                  <>
-                    <td
-                      style={{
-                        border: "1px solid #212a50",
-                        padding: "0 0.5rem",
-                        color: "white",
-                        background:'#212450'
-                      }}
-                    >
-                      {
-                        matrixDataUser.find((user) => user.id == course.userId)
-                          .name
-                      }
-                    </td>
-                    <td
-                      style={{
-                        border: "1px solid #212a50",
-                        padding: "0 0.5rem",
-                        color: "#3a3b3c",
-                        backgroundColor: item[i].course.color,
-                        textAlign: "center",
-                      }}
-                    >
-                      {course.course.progress}
-                    </td>
-                  </>
-                );
-              } else {
-                return (
-                  <td
-                    style={{
-                      border: "1px solid #212a50",
-                      padding: "0 0.5rem",
-                      color: "#3a3b3c",
-                      backgroundColor: item[i].course.color,
-                      textAlign: "center",
-                    }}
-                  >
-                    {item[i].course.progress}
-                  </td>
-                );
-              }
-            })}
-          </tr>;
-        })}
-      </table>
-      
-      </div>
-      
-      </div >
+    <div className="row p-3">
+  
+   
+  
+      <div style={{position:'relative'}} className="dash-neww " >
+      <div style={{position:'absolute'}} className="">
 
-      <div className="dash-neww " >
-       
+       <span className="m-1" style={{display:'flex'}}>   
+        <div style={{height:'1.5rem', width:"3rem", background:"#ae0000", color:'white', textAlign:'center'}} className="redd">
+           0%
+          </div>
+          <div style={{height:'1.5rem', width:"3rem", background:"#f7b500", color:'white', textAlign:'center'}} className="redd">
+           50%
+          </div>
+          <div style={{height:'1.5rem', width:"3rem", background:"#549C30", color:'white', textAlign:'center'}} className="redd">
+           100%
+          </div>
+          </span>
+
+       </div>
       <div className="col-12 p-2 m-2">
         <div className="d-flex justify-content-center my-2 "><h4>
           Course Matrix
           </h4></div>
         
       <Table  bordered  variant="light">
+    <thead>
+      <tr style={{ textAlign:'center'}}>
+        <th style={{background:'#212a50', color:'white'}} colSpan={5}>Course Name</th>
+      </tr>
+    </thead>
       <thead >
         <tr style={{ textAlign:'center'}}>
           <th  style={{
@@ -284,7 +222,7 @@ const DashMatrix = () => {
             padding: "0 0.5rem",
             color: "#fff",
             background:'#212a50'
-          }} ></th>
+          }} >Individual</th>
           {courseName.map((item) => (
             <th
               style={{
@@ -312,9 +250,10 @@ const DashMatrix = () => {
                         padding: "0 0.5rem",
                         color: "white",
                         background:'#212450',
-                        textAlign:'center'
+                        textAlign:'center',
+                        fontWeight:'bold'
                       }}
-                    >
+                    > 
                       {
                         matrixDataUser.find((user) => user.id == course.userId)
                           .name
@@ -365,3 +304,85 @@ export default DashMatrix;
 // #e07051
 // #5a9676
 // #f2a024
+
+
+// <div className="col-12 m-50 p-50" style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
+// <table style={{ border: "1px solid #212a50",  }}>
+ 
+//   <tr style={{ border: "1px solid #212a50",  textAlign:'center' }}>
+//     <th
+//       style={{
+//         border: "1px solid #212a50",
+//         padding: "0 0.5rem",
+//         color: "#212a50",
+       
+//       }}
+//     >
+     
+//     </th>
+//     {courseName.map((item) => (
+//       <th
+//         style={{
+//           border: "1px solid #212a50",
+//           padding: "0 0.5rem",
+//           color: "#fff",
+//           background:'#212a50'
+//         }}
+//       >
+//         {item}
+//       </th>
+//     ))}
+//   </tr>
+//   {matrixDataCourse.map((item) => {
+//     return <tr >
+//       {item.map((course, i) => {
+//         if (i == 0) {
+//           return (
+//             <>
+//               <td
+//                 style={{
+//                   border: "1px solid #212a50",
+//                   padding: "0 0.5rem",
+//                   color: "white",
+//                   background:'#212450'
+//                 }}
+//               >
+//                 {
+//                   matrixDataUser.find((user) => user.id == course.userId)
+//                     .name
+//                 }
+//               </td>
+//               <td
+//                 style={{
+//                   border: "1px solid #212a50",
+//                   padding: "0 0.5rem",
+//                   color: "#3a3b3c",
+//                   backgroundColor: item[i].course.color,
+//                   textAlign: "center",
+//                 }}
+//               >
+//                 {course.course.progress}
+//               </td>
+//             </>
+//           );
+//         } else {
+//           return (
+//             <td
+//               style={{
+//                 border: "1px solid #212a50",
+//                 padding: "0 0.5rem",
+//                 color: "#3a3b3c",
+//                 backgroundColor: item[i].course.color,
+//                 textAlign: "center",
+//               }}
+//             >
+//               {item[i].course.progress}
+//             </td>
+//           );
+//         }
+//       })}
+//     </tr>;
+//   })}
+// </table>
+
+// </div>

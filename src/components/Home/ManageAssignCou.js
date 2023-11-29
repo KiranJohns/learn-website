@@ -131,25 +131,32 @@ const ManagerAssignCourse = () => {
 
   const columns = [
     {
-      name: "ID",
+      name: "Index",
       selector: (row, idx) => ++idx,
-      sortable: true,
+      center:true,
     },
     {
       name: "course",
       selector: (row) => row.name || row.Name,
       sortable: true,
+      center:true,
     },
     {
       name: "validity",
-      selector: (row) => new Date(row.validity).toLocaleDateString(),
+      selector: (row) => {
+        let newDt = new Date(row.validity).toLocaleDateString().split('/').map(d=> d.length <= 1 ? '0'+d : d )
+         return newDt[1]+'/'+newDt[0] +'/'+newDt[2]
+        },
+      center:true,
     },
     {
       name: "count",
       selector: (row) => row.course_count,
+      center:true,
     },
     {
       name: "action",
+      center:true,
       selector: (row) => (
         <a
           className="btn btn-primary"
@@ -206,12 +213,13 @@ const ManagerAssignCourse = () => {
                 });
               }}
             >
-              <div style={{ maxHeight: "20rem" }}>
+              <div style={{ maxHeight: "220rem" }} className="dash-shadow p-3 mt-4 ">
                 <div>
-                  <div className="form-control d-flex gap-3">
+                  <div className="form-control dash-shadow d-flex gap-3 p-3">
                     <div className="form-group">
-                      <label for="exampleInputEmail1">Course Count</label>
+                      <label style={{ fontSize: ".72rem" }} for="exampleInputEmail1">Course Count</label>
                       <input
+                         style={{ width: '7rem' }}
                         disabled
                         type="number"
                         className="form-control"
@@ -221,8 +229,10 @@ const ManagerAssignCourse = () => {
                       />
                     </div>
                     <div className="form-group">
-                      <label for="exampleInputEmail1">User Name</label>
+                    <label style={{visibility:'hidden'}} for="exampleInputEmail1">Search</label>
+                    <div className="p-relative d-inline ">
                       <input
+                       style={{ width: "18rem" }}
                         onChange={(e) =>
                           setFilteredCompanyIndividuals(
                             companyIndividuals.filter((item) =>
@@ -238,8 +248,26 @@ const ManagerAssignCourse = () => {
                         aria-describedby="emailHelp"
                         placeholder="enter user name"
                       />
+                      <i style={{ position: 'absolute', left: "13.3rem", top: "2.2rem" }} className="bi bi-search"></i>
+                      </div>
                     </div>
                   </div>
+                  <div className="list-group bg-white">
+                      <ul classNAm="list-group">
+
+                        <li class="list-group-item bg-white text-black d-flex justify-content-between">
+                          <span style={{ width: "fit-content", marginLeft: '.5rem' }}>
+                            Name
+                          </span>
+                          <span style={{ textAlign: 'center' }}>Email</span>
+                          <span
+                            style={{ width: "fit-content", marginRight: "1rem" }}
+                          >
+                            Action
+                          </span>
+                        </li>
+                      </ul>
+                    </div>
                   <div className="list-group bg-white">
                     <ul class="list-group">
                       {filteredCompanyIndividuals &&
