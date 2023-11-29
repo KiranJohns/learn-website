@@ -1,10 +1,11 @@
 import React from "react";
-import Table from 'react-bootstrap/Table';
+import Table from "react-bootstrap/Table";
+import fetchData from "../../axios";
+import { useEffect } from "react";
+import { useState } from "react";
 
 const ManCoursMatrix = () => {
-
   const matrixDataUser = [
-  
     {
       id: 1,
       name: "Stark",
@@ -178,123 +179,188 @@ const ManCoursMatrix = () => {
     ],
   ];
 
-  const courseName = [
-    "some of the people",
-    "by the people",
-    "of the people",
-    "for the people",
-  ];
+  // const courseName = [
+  //   "some of the people",
+  //   "by the people",
+  //   "of the people",
+  //   "for the people",
+  // ];
+
+  const makeRequest = fetchData();
+  const [courseName, setCourseName] = useState([]);
+  function removeDuplicates(arr) {
+    return arr.filter((item, index) => arr.indexOf(item) === index);
+  }
+  useEffect(() => {
+    console.clear();
+    makeRequest("GET", "/course/get-manager-matrix-course")
+      .then((res) => {
+        console.log(res.data.response);
+        let users = res.data.response;
+        let course_name = [];
+        users.forEach((item) => {
+          let assigned = item.matrix_assigned.reverse();
+          let enrolled = item.matrix.reverse();
+
+          let course = [...assigned, ...enrolled].map((course) => {
+            return course.course_name;
+          });
+
+          let newCName = [...removeDuplicates(course)];
+
+          if (course_name.length > newCName.length) {
+            course_name = newCName;
+          } else if (course_name.length <= 0) {
+            course_name = newCName
+          }
+        });
+        console.log(course_name);
+        setCourseName(course_name);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
   return (
     <div className="row p-3">
-  
-   
-  
-      <div style={{position:'relative'}} className="dash-neww " >
-      <div style={{position:'absolute'}} className="">
-
-       <span className="m-1" style={{display:'flex'}}>   
-        <div style={{height:'1.5rem', width:"3rem", background:"#ae0000", color:'white', textAlign:'center'}} className="redd">
-           0%
-          </div>
-          <div style={{height:'1.5rem', width:"3rem", background:"#f7b500", color:'white', textAlign:'center'}} className="redd">
-           50%
-          </div>
-          <div style={{height:'1.5rem', width:"3rem", background:"#549C30", color:'white', textAlign:'center'}} className="redd">
-           100%
-          </div>
-          </span>
-
-       </div>
-      <div className="col-12 p-2 m-2">
-        <div className="d-flex justify-content-center my-2 "><h4>
-          Bundle Matrix
-          </h4></div>
-        
-      <Table  bordered  variant="light">
-    <thead>
-      <tr style={{ textAlign:'center'}}>
-        <th style={{background:'#212a50', color:'white'}} colSpan={5}>Bundle Name</th>
-      </tr>
-    </thead>
-      <thead >
-        <tr style={{ textAlign:'center'}}>
-          <th  style={{
-            
-            padding: "0 0.5rem",
-            color: "#fff",
-            background:'#212a50'
-          }} >Individual</th>
-          {courseName.map((item) => (
-            <th
+      <div style={{ position: "relative" }} className="dash-neww ">
+        <div style={{ position: "absolute" }} className="">
+          <span className="m-1" style={{ display: "flex" }}>
+            <div
               style={{
-            
-                padding: "0 0.5rem",
-                color: "#fff",
-                background:'#212a50'
+                height: "1.5rem",
+                width: "3rem",
+                background: "#ae0000",
+                color: "white",
+                textAlign: "center",
               }}
+              className="redd"
             >
-              {item}
-            </th>
-          ))}
-        </tr>
-      </thead>
-      <tbody>
-      {matrixDataCourse.map((item) => {
-          return <tr>
-            {item.map((course, i) => {
-              if (i == 0) {
-                return (
-                  <>
-                    <td
-                      style={{
-                      
-                        padding: "0 0.5rem",
-                        color: "white",
-                        background:'#212450',
-                        textAlign:'center',
-                        fontWeight:'bold'
-                      }}
-                    > 
-                      {
-                        matrixDataUser.find((user) => user.id == course.userId)
-                          .name
-                      }
-                    </td>
-                    <td
-                      style={{
-                       
-                        padding: "0 0.5rem",
-                        color: "#3a3b3c",
-                        backgroundColor: item[i].course.color,
-                        textAlign: "center",
-                      }}
-                    >
-                      {course.course.progress}
-                    </td>
-                  </>
-                );
-              } else {
-                return (
-                  <td
+              0%
+            </div>
+            <div
+              style={{
+                height: "1.5rem",
+                width: "3rem",
+                background: "#f7b500",
+                color: "white",
+                textAlign: "center",
+              }}
+              className="redd"
+            >
+              50%
+            </div>
+            <div
+              style={{
+                height: "1.5rem",
+                width: "3rem",
+                background: "#549C30",
+                color: "white",
+                textAlign: "center",
+              }}
+              className="redd"
+            >
+              100%
+            </div>
+          </span>
+        </div>
+        <div className="col-12 p-2 m-2">
+          <div className="d-flex justify-content-center my-2 ">
+            <h4>Bundle Matrix</h4>
+          </div>
+
+          <Table bordered variant="light">
+            <thead>
+              <tr style={{ textAlign: "center" }}>
+                <th
+                  style={{ background: "#212a50", color: "white" }}
+                  colSpan={5}
+                >
+                  Bundle Name
+                </th>
+              </tr>
+            </thead>
+            <thead>
+              <tr style={{ textAlign: "center" }}>
+                <th
+                  style={{
+                    padding: "0 0.5rem",
+                    color: "#fff",
+                    background: "#212a50",
+                  }}
+                >
+                  Individual
+                </th>
+                {courseName.map((item) => (
+                  <th
                     style={{
-                     
                       padding: "0 0.5rem",
-                      color: "#3a3b3c",
-                      backgroundColor: item[i].course.color,
-                      textAlign: "center",
+                      color: "#fff",
+                      background: "#212a50",
                     }}
                   >
-                    {item[i].course.progress}
-                  </td>
+                    {item}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {matrixDataCourse.map((item) => {
+                return (
+                  <tr>
+                    {item.map((course, i) => {
+                      if (i == 0) {
+                        return (
+                          <>
+                            <td
+                              style={{
+                                padding: "0 0.5rem",
+                                color: "white",
+                                background: "#212450",
+                                textAlign: "center",
+                                fontWeight: "bold",
+                              }}
+                            >
+                              {
+                                matrixDataUser.find(
+                                  (user) => user.id == course.userId
+                                ).name
+                              }
+                            </td>
+                            <td
+                              style={{
+                                padding: "0 0.5rem",
+                                color: "#3a3b3c",
+                                backgroundColor: item[i].course.color,
+                                textAlign: "center",
+                              }}
+                            >
+                              {course.course.progress}
+                            </td>
+                          </>
+                        );
+                      } else {
+                        return (
+                          <td
+                            style={{
+                              padding: "0 0.5rem",
+                              color: "#3a3b3c",
+                              backgroundColor: item[i].course.color,
+                              textAlign: "center",
+                            }}
+                          >
+                            {item[i].course.progress}
+                          </td>
+                        );
+                      }
+                    })}
+                  </tr>
                 );
-              }
-            })}
-          </tr>;
-        })}
-      </tbody>
-    </Table>
+              })}
+            </tbody>
+          </Table>
+        </div>
       </div>
-    </div>
     </div>
   );
 };
