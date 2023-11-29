@@ -63,12 +63,12 @@ const CompAssignBund = () => {
       "GET",
       "/info/get-assigned-bundles-for-company"
     )
-      Promise.all([purchasedRes,assignedRes]).then((res) => {
-        console.log(res[0].data.response[0])
-        console.log(res[1].data.response[0])
-        let newRes = [...res[0].data.response,...res[1].data.response]
-        setRecords(newRes?.filter((item) => item.course_count >= 1))
-      })
+    Promise.all([purchasedRes, assignedRes]).then((res) => {
+      console.log(res[0].data.response[0])
+      console.log(res[1].data.response[0])
+      let newRes = [...res[0].data.response, ...res[1].data.response]
+      setRecords(newRes?.filter((item) => item.course_count >= 1).reverse())
+    })
       .catch((err) => {
         console.log(err);
       });
@@ -170,23 +170,32 @@ const CompAssignBund = () => {
     {
       name: "ID",
       selector: (row, idx) => ++idx,
-      sortable: true,
+      
+      center:true,
     },
     {
       name: "bundle name",
       selector: (row) => row.bundle_name,
       sortable: true,
+      center:true,
     },
     {
       name: "validity",
-      selector: (row) => row.validity,
+      center:true,
+      selector: (row) => {
+      let newDt = new Date(row.validity).toLocaleDateString().split('/').map(d=> d.length <= 1 ? '0'+d : d )
+       return newDt[1]+'/'+newDt[0] +'/'+newDt[2]
+
+      },
     },
     {
-      name: "count",
+      name: "Bundle count",
       selector: (row) => row.course_count,
+      center:true,
     },
     {
       name: "action",
+      center:true,
       selector: (row) => (
         <a
           className="btn btn-primary"
@@ -199,7 +208,7 @@ const CompAssignBund = () => {
                 course_id: row.id,
               };
             });
-            if(row.from_purchased) {
+            if (row.from_purchased) {
               setFrom("purchased")
             } else {
               setFrom("assigned")
@@ -215,9 +224,9 @@ const CompAssignBund = () => {
 
   return (
     <div className="">
-      <ToastContainer  position="top-center"/>
+      <ToastContainer position="top-center" />
       <div className="dash-shadow">
-        <div style={{position:'relative'}} className=" row g-3  min-vh-100  d-flex justify-content-center mt-20">
+        <div style={{ position: 'relative' }} className=" row g-3  min-vh-100  d-flex justify-content-center mt-20">
           <h2
             style={{
               color: "#212450",
@@ -230,8 +239,8 @@ const CompAssignBund = () => {
             Assign Bundle
           </h2>
           <div style={{ padding: "", backgroundColor: "" }}>
-            <Modal
-              styles={{ padding: "2rem" }}
+            <Modal className=""
+              styles={{ padding: "2rem", }}
               open={showModal}
               onClose={() => {
                 setShowModal(false);
@@ -243,14 +252,14 @@ const CompAssignBund = () => {
                 });
               }}
             >
-              <div style={{ maxHeight: "200rem" }}>
+              <div className="dash-shadow p-3 " style={{ maxHeight: "220rem", }}>
+                <div className="">
                 <div className=" d-flex mb-5">
                   <strong
-                    className={`btn ${
-                      selectUserForAssignCourse == "individual"
+                    className={`btn ${selectUserForAssignCourse == "individual"
                         ? "btn-success"
                         : "btn-secondary"
-                    }`}
+                      }`}
                     onClick={() => {
                       setSelectUserForAssignCourse("individual");
                       setAssignData((prev) => {
@@ -264,11 +273,10 @@ const CompAssignBund = () => {
                     Individual
                   </strong>
                   <strong
-                    className={`btn ${
-                      selectUserForAssignCourse == "manager"
+                    className={`btn ${selectUserForAssignCourse == "manager"
                         ? "btn-success"
                         : "btn-secondary"
-                    }`}
+                      }`}
                     onClick={() => {
                       setAssignData((prev) => {
                         return {
@@ -284,45 +292,61 @@ const CompAssignBund = () => {
                 </div>
                 {selectUserForAssignCourse === "individual" ? (
                   <div>
-                    <div className="form-control dash-shadow d-flex gap-3">
+                    <div className="form-control dash-shadow d-flex gap-3 p-3">
                       <div className="">
-                    <span style={{}}>   <label style={{fontSize:".7rem"}} for="exampleInputEmail1">Course Count</label>
-                        <input
-                        style={{width:'4rem'}}
-                          disabled
-                          type="number"
-                          className="form-control"
-                          id="exampleInputEmail1"
-                          aria-describedby="emailHelp"
-                          placeholder="1"
-                          
-                        /></span> 
+                        <span style={{}}>   <label style={{ fontSize: ".74rem" }} for="exampleInputEmail1">Course Count</label>
+                          <input
+                            style={{ width: '7rem' }}
+                            disabled
+                            type="number"
+                            className="form-control"
+                            id="exampleInputEmail1"
+                            aria-describedby="emailHelp"
+                            placeholder="1"
+
+                          /></span>
                       </div>
                       <div className="form-group">
-                        <label style={{visibility:"hidden"}} for="exampleInputEmail1">Search</label>
-                        <div>
-                        <input
-                        style={{width:"20rem"}}
-                          onChange={(e) =>
-                            setFilteredCompanyIndividuals(
-                              companyIndividuals.filter((item) =>
-                                item.first_name
-                                  .toLocaleLowerCase()
-                                  .startsWith(
-                                    e.target.value.toLocaleLowerCase()
-                                  )
+                        <label style={{ visibility: "hidden" }} for="exampleInputEmail1">Search</label>
+                        <div className="p-relative d-inline ">
+                          <input
+                            style={{ width: "18rem" }}
+                            onChange={(e) =>
+                              setFilteredCompanyIndividuals(
+                                companyIndividuals.filter((item) =>
+                                  item.first_name
+                                    .toLocaleLowerCase()
+                                    .startsWith(
+                                      e.target.value.toLocaleLowerCase()
+                                    )
+                                )
                               )
-                            )
-                          }
-                          type="text"
-                          className="form-control"
-                          id="exampleInputEmail1"
-                          aria-describedby="emailHelp"
-                          placeholder="search by name"
-                        />
-                       
+                            }
+                            type="text"
+                            className="form-control d-block mr-10"
+                            id="exampleInputEmail1"
+                            aria-describedby="emailHelp"
+                            placeholder="search by name"
+                          />
+                          <i style={{ position: 'absolute', left: "13.3rem", top: "2.2rem" }} className="bi bi-search"></i>
                         </div>
                       </div>
+                    </div>
+                    <div className="list-group bg-white">
+                      <ul classNAm="list-group">
+
+                        <li class="list-group-item bg-white text-black d-flex justify-content-between">
+                          <span style={{ width: "fit-content", marginLeft: '1rem' }}>
+                            Name
+                          </span>
+                          <span style={{ textAlign: 'center' }}>Email</span>
+                          <span
+                            style={{ width: "fit-content", marginRight: "1rem" }}
+                          >
+                            Action
+                          </span>
+                        </li>
+                      </ul>
                     </div>
                     <div className="list-group bg-white">
                       <ul class="list-group">
@@ -330,13 +354,13 @@ const CompAssignBund = () => {
                           filteredCompanyIndividuals.map((item) => {
                             return (
                               <li class="list-group-item bg-white text-black d-flex justify-content-between">
-                                <span style={{ width: "fit-content" }}>
+                                <span style={{ width: "fit-content", marginLeft: '.1rem' }}>
                                   {item.first_name + " " + item.last_name}
                                 </span>
                                 <span>{item.email}</span>
                                 <span
-                                  onClick={() =>{
-                                    if(from == "assigned") {
+                                  onClick={() => {
+                                    if (from == "assigned") {
                                       assignCourseToManagerIndividualFromAssigned(item.id)
                                     } else {
                                       assignCourseToManagerIndividual(item.id)
@@ -355,10 +379,11 @@ const CompAssignBund = () => {
                   </div>
                 ) : (
                   <div>
-                    <div className="form-control d-flex gap-3">
+                    <div className="form-control dash-shadow d-flex gap-3 p-3">
                       <div className="form-group">
-                        <label for="exampleInputEmail1">Course Count</label>
+                        <label style={{ fontSize: ".73rem" }} for="exampleInputEmail1">Course Count</label>
                         <input
+                          style={{ width: '8rem' }}
                           onChange={(e) => {
                             if (Number(e.target.value) <= selectedBundleCount) {
                               setAssignData((prev) => {
@@ -378,26 +403,46 @@ const CompAssignBund = () => {
                         />
                       </div>
                       <div className="form-group">
-                        <label for="exampleInputEmail1">Search</label>
-                        <input
-                          onChange={(e) =>
-                            setFilteredManagers(
-                              allManagers.filter((item) =>
-                                item.first_name
-                                  .toLocaleLowerCase()
-                                  .startsWith(
-                                    e.target.value.toLocaleLowerCase()
-                                  )
+                        <label style={{ visibility: 'hidden' }} for="exampleInputEmail1">Search</label>
+                        <div className="p-relative d-inline ">
+                          <input
+                            style={{ width: "18rem" }}
+                            onChange={(e) =>
+                              setFilteredManagers(
+                                allManagers.filter((item) =>
+                                  item.first_name
+                                    .toLocaleLowerCase()
+                                    .startsWith(
+                                      e.target.value.toLocaleLowerCase()
+                                    )
+                                )
                               )
-                            )
-                          }
-                          type="text"
-                          className="form-control"
-                          id="exampleInputEmail1"
-                          aria-describedby="emailHelp"
-                          placeholder="Search by name"
-                        />
+                            }
+                            type="text"
+                            className="form-control d-block mr-10"
+                            id="exampleInputEmail1"
+                            aria-describedby="emailHelp"
+                            placeholder="Search by name"
+                          />
+                          <i style={{ position: 'absolute', left: "13.3rem", top: "2.2rem" }} className="bi bi-search"></i>
+                        </div>
                       </div>
+                    </div>
+                    <div className="list-group bg-white">
+                      <ul class="list-group">
+
+                        <li class="list-group-item bg-white text-black d-flex justify-content-between">
+                          <span style={{ width: "fit-content", marginLeft: '1rem' }}>
+                            Name
+                          </span>
+                          <span style={{ textAlign: 'center' }}>Email</span>
+                          <span
+                            style={{ width: "fit-content", marginRight: ".8rem" }}
+                          >
+                            Action
+                          </span>
+                        </li>
+                      </ul>
                     </div>
                     <div className="list-group bg-white">
                       <ul class="list-group">
@@ -405,7 +450,7 @@ const CompAssignBund = () => {
                           filteredManagers.map((item) => {
                             return (
                               <li class="list-group-item bg-white text-black d-flex justify-content-between">
-                                <span style={{ width: "fit-content" }}>
+                                <span style={{ width: "fit-content", marginLeft: '.1rem' }}>
                                   {item.first_name + " " + item.last_name}
                                 </span>
                                 <span>{item.email}</span>
@@ -413,11 +458,12 @@ const CompAssignBund = () => {
                                   style={{ width: "fit-content" }}
                                   className="btn btn-success"
                                   onClick={() => {
-                                    if(from == "assigned") {
+                                    if (from == "assigned") {
                                       assignCourseToManagerFromAssigned(item.id)
-                                    }else {
-                                      assignCourseToManager(item.id)}
+                                    } else {
+                                      assignCourseToManager(item.id)
                                     }
+                                  }
                                   }
                                 >
                                   Assign
@@ -427,8 +473,10 @@ const CompAssignBund = () => {
                           })}
                       </ul>
                     </div>
+                    
                   </div>
                 )}
+                </div>
               </div>
             </Modal>
             <div
@@ -454,10 +502,10 @@ const CompAssignBund = () => {
               data={
                 searchString
                   ? records.filter((item) =>
-                      item.name
-                        .toLowerCase()
-                        .includes(searchString.toLowerCase())
-                    )
+                    item.name
+                      .toLowerCase()
+                      .includes(searchString.toLowerCase())
+                  )
                   : records
               }
               customStyles={customStyles}

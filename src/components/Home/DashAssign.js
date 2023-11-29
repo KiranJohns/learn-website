@@ -16,6 +16,8 @@ const customStyles = {
     style: {
       backgroundColor: "#212450",
       color: "white",
+      display:'flex',
+      justifyContent:'center'
     },
   },
   headCells: {
@@ -23,13 +25,16 @@ const customStyles = {
       fontSize: "16px",
       fontWeight: "600",
       textTransform: "uppercase",
+      
     },
   },
   cells: {
     style: {
       fontSize: "15px",
+    
     },
   },
+
 };
 
 const CompAssignCourse = () => {
@@ -68,7 +73,7 @@ const CompAssignCourse = () => {
         console.log(res[0].data.response);
         console.log(res[1].data.response);
         let newRes = [...res[0].data.response, ...res[1].data.response];
-        setRecords(newRes?.filter((item) => item.course_count >= 1));
+        setRecords(newRes?.filter((item) => item.course_count >= 1).reverse());
       })
       .catch((err) => {
         console.log(err);
@@ -175,23 +180,31 @@ const CompAssignCourse = () => {
     {
       name: "ID",
       selector: (row, idx) => ++idx,
-      sortable: true,
+     
+      center:true,
     },
     {
       name: "name",
       selector: (row) => row.name || row.Name,
       sortable: true,
+      center:true,
     },
     {
       name: "validity",
-      selector: (row) => new Date(row.validity).toLocaleDateString(),
+      selector: (row) => {
+        let newDt = new Date(row.validity).toLocaleDateString().split('/').map(d=> d.length <= 1 ? '0'+d : d )
+         return newDt[1]+'/'+newDt[0] +'/'+newDt[2]
+  
+        },
     },
     {
-      name: "count",
+      name: "Course count",
       selector: (row) => row.course_count,
+      center:true,
     },
     {
       name: "action",
+      center:true,
       selector: (row) => (
         <a
           className="btn btn-primary"
@@ -223,7 +236,7 @@ const CompAssignCourse = () => {
       <ToastContainer position="top-center"
          />
 
-      <div className="dash-shadow">
+      <div className="dash-shadow ">
         <div className=" row g-3  min-vh-100  d-flex justify-content-center mt-20">
           <h2
             style={{
@@ -250,12 +263,12 @@ const CompAssignCourse = () => {
                 });
               }}
             >
-              <div style={{ maxHeight: "150rem" }}>
+              <div className="dash-shadow p-3 " style={{ maxHeight: "200rem" }}>
                 <div className=" d-flex mb-5">
                   <strong
                     className={`btn ${selectUserForAssignCourse == "individual"
                         ? "btn-success"
-                        : ""
+                        : "btn-secondary"
                       }`}
                     onClick={() => {
                       setSelectUserForAssignCourse("individual");
@@ -272,7 +285,7 @@ const CompAssignCourse = () => {
                   <strong
                     className={`btn ${selectUserForAssignCourse == "manager"
                         ? "btn-success"
-                        : ""
+                        : "btn-secondary"
                       }`}
                     onClick={() => {
                       setAssignData((prev) => {
@@ -289,10 +302,11 @@ const CompAssignCourse = () => {
                 </div>
                 {selectUserForAssignCourse === "individual" ? (
                   <div>
-                    <div className="form-control d-flex gap-3">
+                    <div className="form-control dash-shadow d-flex gap-3 p-3">
                       <div className="form-group">
-                        <label for="exampleInputEmail1">Course Count</label>
+                        <label  style={{ fontSize: ".74rem" }} for="exampleInputEmail1">Course Count</label>
                         <input
+                        style={{ width: '7rem' }}
                           disabled
                           type="number"
                           className="form-control"
@@ -302,8 +316,10 @@ const CompAssignCourse = () => {
                         />
                       </div>
                       <div className="form-group">
-                        <label for="exampleInputEmail1">Search</label>
+                        <label style={{ visibility: "hidden" }} for="exampleInputEmail1">Search</label>
+                        <div className="p-relative d-inline ">
                         <input
+                         style={{ width: "18rem" }}
                           onChange={(e) =>
                             setFilteredCompanyIndividuals(
                               companyIndividuals.filter((item) =>
@@ -321,15 +337,35 @@ const CompAssignCourse = () => {
                           aria-describedby="emailHelp"
                           placeholder="search by name"
                         />
+                        <i style={{ position: 'absolute', left: "13.3rem", top: "2.2rem" }} className="bi bi-search"></i>
+                        </div> 
                       </div>
                     </div>
+
+                    <div className="list-group bg-white">
+                      <ul classNAm="list-group">
+
+                        <li class="list-group-item bg-white text-black d-flex justify-content-between">
+                          <span style={{ width: "fit-content", marginLeft: '1rem' }}>
+                            Name
+                          </span>
+                          <span style={{ textAlign: 'center' }}>Email</span>
+                          <span
+                            style={{ width: "fit-content", marginRight: "1rem" }}
+                          >
+                            Action
+                          </span>
+                        </li>
+                      </ul>
+                    </div>
+
                     <div className="list-group bg-white">
                       <ul class="list-group">
                         {filteredCompanyIndividuals &&
                           filteredCompanyIndividuals.map((item) => {
                             return (
                               <li class="list-group-item bg-white text-black d-flex justify-content-between">
-                                <span style={{ width: "fit-content" }}>
+                                <span style={{ width: "fit-content", marginLeft: '.1rem' }}>
                                   {item.first_name + " " + item.last_name}
                                 </span>
                                 <span>{item.email}</span>
@@ -356,10 +392,11 @@ const CompAssignCourse = () => {
                   </div>
                 ) : (
                   <div>
-                    <div className="form-control d-flex gap-3">
+                    <div className="form-control dash-shadow d-flex gap-3 p-3">
                       <div className="form-group">
-                        <label for="exampleInputEmail1">Course Count</label>
+                        <label style={{ fontSize: ".73rem" }} for="exampleInputEmail1">Course Count</label>
                         <input
+                         style={{ width: '7rem' }}
                           onChange={(e) => {
                             if (Number(e.target.value) <= selectedBundleCount) {
                               setAssignData((prev) => {
@@ -379,8 +416,10 @@ const CompAssignCourse = () => {
                         />
                       </div>
                       <div className="form-group">
-                        <label for="exampleInputEmail1">Search</label>
+                        <label style={{visibility:'hidden'}} for="exampleInputEmail1">Search</label>
+                        <div className="p-relative d-inline ">
                         <input
+                         style={{ width: "18rem" }}
                           onChange={(e) =>
                             setFilteredManagers(
                               allManagers.filter((item) =>
@@ -398,7 +437,25 @@ const CompAssignCourse = () => {
                           aria-describedby="emailHelp"
                           placeholder="Search by name"
                         />
+                         <i style={{ position: 'absolute', left: "13.3rem", top: "2.2rem" }} className="bi bi-search"></i>
+                        </div>
                       </div>
+                    </div>
+                    <div className="list-group bg-white">
+                      <ul class="list-group">
+
+                        <li class="list-group-item bg-white text-black d-flex justify-content-between">
+                          <span style={{ width: "fit-content", marginLeft: '1rem' }}>
+                            Name
+                          </span>
+                          <span style={{ textAlign: 'center' }}>Email</span>
+                          <span
+                            style={{ width: "fit-content", marginRight: "1rem" }}
+                          >
+                            Action
+                          </span>
+                        </li>
+                      </ul>
                     </div>
                     <div className="list-group bg-white">
                       <ul class="list-group">
@@ -406,7 +463,7 @@ const CompAssignCourse = () => {
                           filteredManagers.map((item) => {
                             return (
                               <li class="list-group-item bg-white text-black d-flex justify-content-between">
-                                <span style={{ width: "fit-content" }}>
+                                <span style={{ width: "fit-content", marginLeft: '.1rem' }}>
                                   {item.first_name + " " + item.last_name}
                                 </span>
                                 <span>{item.email}</span>
