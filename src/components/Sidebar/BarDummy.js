@@ -9,7 +9,7 @@ import fetchData, { getUserType } from "../../axios";
 
 // import {imgg} from '../../../public/assets/img'
 
-const arr = [
+const links = [
   {
     name: "Dashboard",
     link: "/individual/dashboard",
@@ -20,25 +20,69 @@ const arr = [
     link: "/individual/myprofile",
     icon: "bi bi-person-circle",
   },
-  { name: "My Bundles", link: "/individual/mybundles", icon: "bi bi-book" },
+  // { name: "My Bundles", link: "/individual/mybundles", icon: "bi bi-book" },
 
   {
-    name: "Purchased Bundles",
-    link: "/individual/purchasedbundles",
-    icon: "bi bi-card-checklist",
+    name: "Bundles",
+    link: "bundle",
+    icon: "bi bi-person-circle",
+    drop: "bi bi-caret-down-fill",
+    display: false,
+    show: function (link) {
+      this.display = !this.display;
+    },
+    subLinks: [
+      {
+        name: "My Bundles",
+        link: "/individual/mybundles",
+      },
+      {
+        name: "Buy Bundles",
+        link: "/bundle/bundle-all",
+      },
+      {
+        name: "Purchased Bundles",
+        link: "/individual/purchasedbundles",
+      },
+   
+    ],
+  },
+
+  {
+    name: "Courses",
+    link: "courses",
+    icon: "bi bi-book",
+    drop: "bi bi-caret-down-fill",
+    display: false,
+    show: function (link) {
+      this.display = !this.display;
+    },
+    subLinks: [
+      {
+        name: "My Courses",
+        link: "/individual/mycourses",
+      },
+      {
+        name: "Buy Course",
+        link: "/course-all/",
+      },
+      {
+        name: "Purchased Courses",
+        link: "/individual/purchasedCourses",
+      },
+   
+    ],
   },
   
-  { name: "Buy Bundles", link: "/bundle/bundle-all", icon: "bi bi-book" },
 
-  { name: "My Courses", link: "/individual/mycourses", icon: "bi bi-book" },
 
-  {
-    name: "Purchased Courses",
-    link: "/individual/purchasedCourses",
-    icon: "bi bi-card-checklist",
-  },
+  // {
+  //   name: "Purchased Courses",
+  //   link: "/individual/purchasedCourses",
+  //   icon: "bi bi-card-checklist",
+  // },
 
-  { name: "Buy Courses", link: "/course-all", icon: "bi bi-book" },
+
 
   {
     name: "Certificates",
@@ -64,6 +108,7 @@ function NewInDash() {
   const router = useRouter();
   const inputRef = useRef(null);
   const [info, setInfo] = useState({});
+  const [linksArr, setLinksArr] = useState(links);
 
   const handleImage = () => {
     inputRef.current.click();
@@ -99,6 +144,18 @@ function NewInDash() {
           console.log(err);
         });
     }, 3000);
+  }
+
+  
+  function openSubLink(link) {
+    setLinksArr((l) => {
+      return l.filter((li) => {
+        if (li.link == link) {
+          li.display = !li.display;
+        }
+        return li;
+      });
+    });
   }
 
   return (
@@ -192,83 +249,84 @@ function NewInDash() {
         </div>
       </div>
       {/* <hr className="" /> */}
-      <div className=" text-nowrap" style={{ overflow: "hidden" }}>
-        {arr.map((link) => (
-          <Link href={link.link}>
-            <div
-              style={{ margin: ".8rem", borderRadius: "8px " }}
-              className={`list-group-item  ${
-                router.pathname.startsWith(link.link) ? "activate-sidebar" : ""
-              }  py-3 px-2`}
-            >
-              <i className={`${link.icon} txttsml me-2 ml-50`}></i>
-              <span className="txttsml "> &nbsp;{link.name}</span>
-            </div>
-          </Link>
-        ))}
-
-        {/* <Link href="/company/myprofile"><div className='list-group-item py-3 px-2 text-center'>
-          <i className='bi bi-person-circle txttsml me-1' style={{ color: '#fff' }}></i>
-          <span className='txttsml' style={{ color: '#fff' }}>
-          My Profile
-          </span>
-        </div></Link> 
-
-        <Link href="/company/mycourses"><div className='list-group-item py-3 px-2 text-center'>
-          <i className='bi bi-book txttsml me-1' style={{ color: '#fff' }}></i>
-          <span className='txttsml' style={{ color: '#fff' }}>
-           My Courses
-          </span>
-        </div></Link>
-
-       <Link href="/company/certificates"><div className='list-group-item py-3 px-2 text-center'>
-          <i className='bi bi-patch-check-fill txttsml me-1' style={{ color: '#fff' }}></i>
-          <span className='txttsml' style={{ color: '#fff' }}>
-            Certificates
-          </span>
-        </div></Link> 
-
-       <Link href="/company/availablecourses"><div className='list-group-item py-3 px-2 text-center'>
-          <i className='bi bi-card-checklist txttsml me-1' style={{ color: '#fff' }}></i>
-          <span className='txttsml' style={{ color: '#fff' }}>
-           All Courses
-          </span>
-        </div></Link> 
-
-        <Link href="/company/createuser"><div className='list-group-item py-3 px-2 text-center'>
-          <i className='bi bi-person-check txttsml me-1' style={{ color: '#fff' }}></i>
-          <span className='txttsml' style={{ color: '#fff' }}>
-           Create User
-          </span>
-        </div></Link> 
-
-       <Link href="/company/showuser"><div className='list-group-item py-3 px-2 text-center'>
-          <i className='bi bi-person-check txttsml me-1' style={{ color: '#fff' }}></i>
-          <span className='txttsml' style={{ color: '#fff' }}>
-           Show User
-          </span>
-        </div></Link> 
-
-      <Link href="/company/archive"><div className='list-group-item py-3 px-2 text-center'>
-          <i className='bi bi-person-fill-slash txttsml me-1' style={{ color: '#fff' }}></i>
-          <span className='txttsml' style={{ color: '#fff' }}>
-           Archive User
-          </span>
-        </div></Link>  
-
-        <Link href="/company/assigncourse"><div className='list-group-item py-3 px-2 text-center'>
-          <i className='bi bi-person-check-fill txttsml me-1' style={{ color: '#fff' }}></i>
-          <span className='txttsml' style={{ color: '#fff' }}>
-          Assign Course
-          </span>
-        </div></Link>   */}
+      <div className=" text-nowrap" style={{ overflow: "hidden", }}>
+        {linksArr.map((link) => {
+          return (
+            <>
+              <span
+                onClick={(e) => {
+                  console.log(link.link);
+                  if (!link?.subLinks) {
+                    router.push(link.link);
+                  }
+                  openSubLink(link.link);
+                }}
+              >
+                <div
+                  style={{ margin: ".8rem", borderRadius: "8px",}}
+                  className={`list-group-item  ${
+                    link.subLinks?.find((link) => link.link == router.pathname)
+                      ? "activate-sidebar"
+                      : router.pathname == link.link
+                      ? "activate-sidebar"
+                      : ""
+                  }  py-3 px-2`}
+                >
+                  <i className={`${link.icon} txttsml me-2 ml-50`}></i>
+                  <span className="txttsml ">
+                    {" "}
+                    &nbsp;{link.name}{" "}
+                    {link.drop && (
+                      <span
+                        style={{ marginLeft: "1rem", marginTop: ".2rem" }}
+                        className={link.drop}
+                      ></span>
+                    )}
+                  </span>
+                </div>
+              </span>
+              {link?.display &&
+                link?.subLinks?.map((item, id) => {
+                  return (
+                    <div
+                      className=" text-nowrap my-1"
+                      style={{
+                        transition: "all ease 0.5s",
+                        overflow: "hidden",
+                        height: "0 !important",
+                        padding: "0.1rem 1rem !important",
+                        textAlign: "center",
+                        width: "100%",
+                        display: "flex",
+                        justifyContent: "left",
+                      }}
+                    >
+                      <a
+                        className="list-group-items my-2"
+                        style={{
+                          width: "max-content",
+                          marginLeft: "4.5rem",
+                          padding: "0.3rem 1rem !important",
+                          borderRadius: "5px",
+                        }}
+                        key={item.id}
+                        href={item.link}
+                      >
+                        {item.name}
+                      </a>
+                    </div>
+                  );
+                })}
+            </>
+          );
+        })}
 
         <div
           onClick={handleLogout}
-          style={{ margin: ".8rem", borderRadius: "8px" }}
+          style={{ margin: ".8rem", borderRadius: "8px",  }}
           className="list-group-item py-3 px-2 "
         >
-          <i className="bi bi-box-arrow-left txttsml me-2 ml-50"></i>
+          <i  className="bi bi-box-arrow-left txttsml me-2 ml-50"></i>
           <span className="txttsml">{"  "}&nbsp;Logout</span>
         </div>
 

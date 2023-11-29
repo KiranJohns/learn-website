@@ -10,8 +10,8 @@ import fetchData from "../../axios";
 const CourseResource = () => {
   const [slides, setSlides] = useState([]);
   const containerStyless = {
-    width: "800px",
-    height: "448px",
+    width: "840px",
+    height: "472px",
     margin: "0 auto",
   };
 
@@ -78,18 +78,18 @@ const CourseResource = () => {
           margin: "3rem 0rem",
         }}
       >
-        <div style={{ padding: "1.2rem" }}>
-          <div style={{ display: "flex", justifyContent: "center" }}>
+        <div style={{ padding: "1.2rem",   }}>
+          <div style={{ display: "flex", justifyContent: "center", padding:'1rem', margin:'1rem' }}>
             <video
               onContextMenu={(e) => e.preventDefault()}
-              config={{ file: { attributes: { controlsList: "nodownload" } } }}
+              controlsList="nodownload" 
               className="course-player"
               controls
               src={course?.video}
             ></video>
           </div>
 
-          <div
+          {/* <div
             className="onecare"
             style={{
               display: "flex",
@@ -106,9 +106,9 @@ const CourseResource = () => {
               scrolling="no"
               controls="0"
             ></iframe>
-          </div>
+          </div> */}
 
-          <div style={containerStyless}>
+          <div className="mt-4" style={containerStyless}>
             <ImageSlider slides={slides} />
           </div>
 
