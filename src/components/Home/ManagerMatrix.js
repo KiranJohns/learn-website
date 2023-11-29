@@ -188,6 +188,8 @@ const ManCoursMatrix = () => {
 
   const makeRequest = fetchData();
   const [courseName, setCourseName] = useState([]);
+  const [userName, setUserName] = useState([]);
+  const [course, setCourse] = useState([]);
   function removeDuplicates(arr) {
     return arr.filter((item, index) => arr.indexOf(item) === index);
   }
@@ -198,24 +200,46 @@ const ManCoursMatrix = () => {
         console.log(res.data.response);
         let users = res.data.response;
         let course_name = [];
+        let user_name = [];
         users.forEach((item) => {
           let assigned = item.matrix_assigned.reverse();
           let enrolled = item.matrix.reverse();
+          if(!user_name.find(n => n == item.first_name + " " + item.last_name)) {
+            user_name.push(item.first_name + " " + item.last_name)
+          }
+          let allCourses = [...assigned, ...enrolled];
 
-          let course = [...assigned, ...enrolled].map((course) => {
+          console.log(allCourses);
+          let CNames = allCourses.map((course) => {
             return course.course_name;
           });
 
-          let newCName = [...removeDuplicates(course)];
+          let courses = [];
+
+          allCourses.forEach((course) => {
+            if (!courses.find((i) => i?.course_name == course?.course_name)) {
+              courses.push(course);
+            }
+          });
+
+          item['course'] = courses
+
+          let newCName = [...removeDuplicates(CNames)];
 
           if (course_name.length > newCName.length) {
             course_name = newCName;
           } else if (course_name.length <= 0) {
-            course_name = newCName
+            course_name = newCName;
           }
+
+          delete item.matrix_assigned
+          delete item.matrix
         });
+        console.log(users);
         console.log(course_name);
         setCourseName(course_name);
+        setUserName(user_name)
+        setCourse(users)
       })
       .catch((err) => {
         console.log(err);
@@ -305,10 +329,10 @@ const ManCoursMatrix = () => {
               </tr>
             </thead>
             <tbody>
-              {matrixDataCourse.map((item) => {
+              {course.map((item) => {
                 return (
                   <tr>
-                    {item.map((course, i) => {
+                    {item.course.map((course, i) => {
                       if (i == 0) {
                         return (
                           <>
@@ -322,20 +346,18 @@ const ManCoursMatrix = () => {
                               }}
                             >
                               {
-                                matrixDataUser.find(
-                                  (user) => user.id == course.userId
-                                ).name
+                                userName[i]
                               }
                             </td>
                             <td
                               style={{
                                 padding: "0 0.5rem",
                                 color: "#3a3b3c",
-                                backgroundColor: item[i].course.color,
+                                backgroundColor: course?.color,
                                 textAlign: "center",
                               }}
                             >
-                              {course.course.progress}
+                              {course.progress ? course.progress+"%" : "0%"}
                             </td>
                           </>
                         );
@@ -345,11 +367,11 @@ const ManCoursMatrix = () => {
                             style={{
                               padding: "0 0.5rem",
                               color: "#3a3b3c",
-                              backgroundColor: item[i].course.color,
+                              backgroundColor: course.color,
                               textAlign: "center",
                             }}
                           >
-                            {item[i].course.progress}
+                            {course.progress ? course.progress+"%" : "0%"}
                           </td>
                         );
                       }
