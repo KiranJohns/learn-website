@@ -7,6 +7,7 @@ import fetchData, { getUserType } from "../../axios";
 import Modal from "react-responsive-modal";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
+import { useRouter } from "next/router";
 
 const customStyles = {
   headRow: {
@@ -34,7 +35,7 @@ const customStyles = {
 const BundleCour = () => {
   const [records, setRecords] = useState([]);
   const [filterRecords, setFilterRecords] = useState([]);
-  const [subUsers, setSubUsers] = useState([]);
+  const [data, setData] = useState();
   const [searchData, setSearchData] = useState("");
   const [openModal, setOpenModal] = useState(false);
 
@@ -42,6 +43,7 @@ const BundleCour = () => {
   let sub_user_id = null;
   let course_id = null;
   let purchased_course_id = null;
+  const router = useRouter();
 
   const handleFilter = (event) => {
     const newData = filterRecords.filter((row) =>
@@ -52,23 +54,23 @@ const BundleCour = () => {
 
   const getData = async () => {
     try {
-      let onGoingCourseUrl = "/on-going-course/get-all-on-going-courses";
-      let url1 = "/course/get-bought-course";
-      let url2 = "/course/get-all-assigned-course";
-      Promise.all([
-        makeRequest("GET", onGoingCourseUrl),
-        makeRequest("GET", url1),
-        makeRequest("GET", url2),
-      ]).then((res) => {
-        let arr = [
-          ...res[0].data.response,
-          ...res[1].data.response,
-          ...res[2].data.response,
-        ];
-        console.log(res);
-        setRecords(arr);
-        setFilterRecords(arr);
-      });
+      let makeRequest = fetchData();
+
+      // let form = new FormData();
+      // form.append("from", from);
+      // form.append("bundle_id", id);
+
+      console.log(router.query);
+      makeRequest("GET", `/bundle/get-started-bundle/${router.query.id}`)
+        .then((res) => {
+          setRecords(res.data.response.courses);
+          console.log(res.data.response);
+          setData(res.data.response.bundle[0]);
+          // location.href = `/individual/bundleCourses/?id=${res.data.response.id}`;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     } catch (error) {
       console.log(error);
     }
@@ -76,20 +78,6 @@ const BundleCour = () => {
 
   const handleShowModal = () => {
     setOpenModal(!openModal);
-  };
-
-  const handleStart = (id, from) => {
-    let form = new FormData();
-    form.append("from", from);
-    form.append("course_id", id);
-    makeRequest("POST", "/course/start-course", form)
-      .then((res) => {
-        console.log(res);
-        location.pathname = `/learnCourse/coursepage/${res.data.response.id}`;
-      })
-      .catch((err) => {
-        console.log(err);
-      });
   };
 
   useEffect(() => {
@@ -116,37 +104,37 @@ const BundleCour = () => {
       selector: (row) => row.category,
     },
     {
-      name: "validity",
-      selector: (row) => new Date(row.validity).toLocaleDateString(),
-    },
-    {
       name: "Action",
       cell: (row) => (
-        <>
-          {row?.progress ? (
-            <Link
-              href={{
-                pathname: "/learnCourse/coursepage",
-                query: { courseId: row.on_going_course_id },
-              }}
-            >
-              <a className="btn btn-success">continue</a>
-            </Link>
-          ) : (
-            <a
-              onClick={() => {
-                if (row.from_purchased) {
-                  handleStart(row.id, "purchased");
-                } else {
-                  handleStart(row.id, "assigned");
-                }
-              }}
-              className="btn btn-success"
-            >
-              start
-            </a>
-          )}
-        </>
+        <Link href={{
+          pathname: "/individual/courseDetails",
+          query:{
+            course_id:row.id,
+            bundleId: data.id
+          },
+        }}>
+          <a
+            onClick={() => {
+    //           let form = new FormData();
+    // form.append("enrolled_bundle_id", data.id);
+    // form.append("course_id", id);
+
+    // console.log(router.query);
+    // makeRequest("POST", `/bundle/start-bundle-course`, form)
+    //   .then((res) => {
+        // setRecords(res.data.response);
+        // console.log(res.data.response);
+        // location.href = `/individual/bundleCourses/?id=${res.data.response.id}`;
+      // })
+      // .catch((err) => {
+      //   console.log(err);
+      // });
+            }}
+            className="btn btn-success"
+          >
+            start
+          </a>
+        </Link>
       ),
     },
   ];
@@ -175,7 +163,7 @@ const BundleCour = () => {
               fontSize: 37,
             }}
           >
-           Bundle Courses
+            Bundle Courses
           </h2>
 
           <div

@@ -53,7 +53,7 @@ function BundleCorses() {
                   <NewInDash />
                 </div>
                 <div className="col-sm col-md-9 bg-white">
-                  <BundleCour />
+                  <BundleCour /> 
                 </div>
               </div>
             </div>
