@@ -69,6 +69,13 @@ const NewResult = () => {
               <h4>You have scored {examResult.per} marks</h4>
             </div>
 
+            <div
+              style={{ textAlign: "" }}
+              className="dash-shadow p-4 mt-4"
+            >
+              <h4>Wrong Answers</h4>
+            </div>
+
             {examResult &&
               examResult.questions.map((item, i) => (
                 <div className="dash-shadow p-4 mt-4">
@@ -76,7 +83,7 @@ const NewResult = () => {
                     {++i}. {item.question}
                   </p>
                   <form action="button">
-                    <div className="row">
+                    {/* <div className="row">
                       <div className="col-sm-12 col-md-6">
                         <span style={{ display: "flex", textWrap: "wrap" }}>
                           {" "}
@@ -84,7 +91,7 @@ const NewResult = () => {
                             type="radio"
                             name="option"
                             value="a"
-                            // onClick={() => setAnswer(item.question, option)}
+                            onClick={() => setAnswer(item.question, option)}
                             aria-label="radio 1"
                           />{" "}
                           <p
@@ -95,13 +102,14 @@ const NewResult = () => {
                           </p>
                         </span>
                       </div>
-                    </div>
+                    </div> */}
                   </form>
                 </div>
               ))}
 
-            <span
-              className="btn btn-success mt-3 float-right"
+              <div style={{textAlign:'center'}}>
+            <span 
+              className="btn btn-success mt-3 "
               onClick={() => {
                 location.pathname = "/individual/certificates";
                 localStorage.removeItem("wrong-answers")
@@ -109,6 +117,7 @@ const NewResult = () => {
             >
           Certificates 
             </span>
+            </div>
           </div>
         </div>
       </div>
