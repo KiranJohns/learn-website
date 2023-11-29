@@ -12,10 +12,10 @@ const NewExam = () => {
 
   useEffect(() => {
     const form = new FormData();
-    form.append("course_id", router.query.id);
-    form.append("enrolled_course_id", router.query.user);
+    form.append("course_id", Number(router.query.course_id));
+    form.append("bundle_id", Number(router.query.bundleId));
 
-    makeRequest("POST", "/exam/get-exam", form)
+    makeRequest("POST", "/bundle/get-exam", form)
       .then((res) => {
         console.log(JSON.parse(res.data.response[0].exam));
         let exam = JSON.parse(res.data.response[0].exam);
@@ -51,11 +51,12 @@ const NewExam = () => {
   }
 
   function handleSubmit() {
+    console.log(router.query.bundleId);
     const form = new FormData();
     form.append("answer", JSON.stringify(examResult));
-    form.append("enrolled_course_id", router.query.user);
     form.append("question_id", questionId);
-    makeRequest("POST", "/exam/validate", form)
+    form.append("enrolled_course_id", Number(router.query.bundleId));
+    makeRequest("POST", "/bundle/validate-exam", form)
       .then((res) => {
         console.log(res.data);
       })

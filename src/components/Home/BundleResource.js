@@ -22,10 +22,10 @@ const BundleResource = () => {
   const router = useRouter();
   const makeRequest = fetchData();
   useEffect(() => {
-    makeRequest(
-      "GET",
-      `/on-going-course/get-on-going-course/${router.query.courseId}`
-    )
+    const form = new FormData();
+    form.append("course_id", router.query.course_id);
+    form.append("bundleId", router.query.bundleId);
+    makeRequest("POST", `/bundle/get-course/`, form)
       .then((res) => {
         console.log(res.data.response);
         setCourse(res.data.response[0]);
@@ -44,9 +44,8 @@ const BundleResource = () => {
           setImages(res.data.response[0].ppt);
         }, 5000);
       })
-      .catch((err) => {})
       .catch((err) => {
-        // console.log(err);
+        console.log(err);
       });
   }, []);
 
@@ -117,20 +116,23 @@ const BundleResource = () => {
               {" "}
               <h4>Resources</h4>
             </div>
-            {course && course?.resource?.map((item,i) => (<div style={{ margin: " 1rem .5rem" }}>
-              <p>
-                Course resource {" "}
-                <a
-                  href={item}
-                  style={{ color: "#1b85b8" }}
-                  target="_blank"
-                  download
-                >
-                  {" "}
-                  View
-                </a>
-              </p>
-            </div>))}
+            {course &&
+              course?.resource?.map((item, i) => (
+                <div style={{ margin: " 1rem .5rem" }}>
+                  <p>
+                    Course resource{" "}
+                    <a
+                      href={item}
+                      style={{ color: "#1b85b8" }}
+                      target="_blank"
+                      download
+                    >
+                      {" "}
+                      View
+                    </a>
+                  </p>
+                </div>
+              ))}
           </div>
           <div
             className="mt-4 py-4  px-1"
@@ -139,8 +141,11 @@ const BundleResource = () => {
             {" "}
             <Link
               href={{
-                pathname: "/company/exam",
-                query: { id: course?.course_id, user: router.query.courseId,courseName: course.name },
+                pathname: "/learnCourse/exam",
+                query: {
+                  course_id: router.query.course_id,
+                  bundleId: router.query.bundleId,
+                },
               }}
             >
               <span className="btn btn-success">Start Exam</span>

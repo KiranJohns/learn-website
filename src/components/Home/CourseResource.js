@@ -41,7 +41,7 @@ const CourseResource = () => {
           });
         });
         setTimeout(() => {
-          setImages(res.data.response[0].ppt);
+          setImages(res.data.response[0]?.ppt);
         }, 5000);
       })
       .catch((err) => {})

@@ -85,7 +85,7 @@ const IndCourse = () => {
     makeRequest("POST", "/course/start-course", form)
       .then((res) => {
         console.log(res);
-        location.pathname = `/learnCourse/coursepage/${res.data.response.id}`;
+        location.href = `/learnCourse/coursepage/?courseId=${res.data.response.id}`;
       })
       .catch((err) => {
         console.log(err);
