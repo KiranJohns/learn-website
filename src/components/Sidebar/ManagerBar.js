@@ -106,6 +106,28 @@ const links = [
   },
   { name: "Individuals", link: "/manager/individuals", icon: "bi bi-person-check" },
 
+  {
+    name: "Matrix",
+    link: "courses",
+    icon: "bi bi-book",
+    drop: "bi bi-caret-down-fill",
+    display: false,
+    show: function (link) {
+      this.display = !this.display;
+    },
+    subLinks: [
+      {
+        name: "Courses Matrix",
+        link: "/company/courseMatrix",
+      },
+      {
+        name: "Bundle Matrix",
+        link: "/company/bundleMatrix",
+      },
+  
+    ],
+  },
+
   // { name: "Show user", link: "/company/showuser", icon: "bi bi-person-check" },
   // {
   //   name: " Archive User",

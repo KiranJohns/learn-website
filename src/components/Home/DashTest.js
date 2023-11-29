@@ -88,11 +88,13 @@ class DashTest extends Component {
         name: "No",
         selector: (row, index) => index + 1,
         sortable: true,
+        center:true
       },
       {
         name: "Name",
         selector: (row) => row.Name,
         sortable: true,
+        center:true
       },
       {
         name: "description",

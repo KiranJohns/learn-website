@@ -61,11 +61,11 @@ const CourseResource = () => {
           margin: "3rem 0rem",
         }}
       >
-        <h4 style={{ padding: "1rem", textAlign: "center" }}>{course.name}</h4>
+        <h4 style={{ padding: "1rem", textAlign: "center" }}>{course?.name}</h4>
         {/* course description */}
 
         <p style={{ padding: "1rem", textAlign: "center" }}>
-          {course.description}{" "}
+          {course?.description}{" "}
         </p>
       </div>
 
@@ -85,7 +85,7 @@ const CourseResource = () => {
               config={{ file: { attributes: { controlsList: "nodownload" } } }}
               className="course-player"
               controls
-              src={course.video}
+              src={course?.video}
             ></video>
           </div>
 
@@ -140,7 +140,7 @@ const CourseResource = () => {
             <Link
               href={{
                 pathname: "/company/exam",
-                query: { id: course?.course_id, user: router.query.courseId,courseName: course.name },
+                query: { id: course?.course_id, user: router.query.courseId,courseName: course?.name },
               }}
             >
               <span className="btn btn-success">Start Exam</span>
