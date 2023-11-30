@@ -63,6 +63,8 @@ const CompAssignCourse = () => {
     setShowModal(!showModal);
   };
 
+
+
   const makeRequest = fetchData();
   async function getData() {
     let purchasedRes = await makeRequest(

@@ -18,7 +18,11 @@ function exam() {
     //     router.push("/sign-in");
     //   }
     // }, []);
+
+ 
+  
     return (
+
       <>
         {/* {routes.includes(logedIn) && ( */}
           <React.Fragment>
