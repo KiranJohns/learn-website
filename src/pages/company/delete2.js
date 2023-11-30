@@ -2,16 +2,16 @@ import React from "react";
 import CourseBundle from "../../components/CourseGrid/CourseBundle";
 import DashboardBar from "../../components/Sidebar/DashboardBar";
 import HeaderDashboard from "../../components/Layout/Header/HeaderDashboard";
-import DashAssign from "../../components/Home/DashAssign";
+import DashCAvail from "../../components/Home/DashCAvail";
 import Header from "../../components/Layout/Header/Header";
 import NoSSR from "react-no-ssr";
-import { useState } from "react";
-import { getUserType } from "../../axios";
+import { getToken, getUserType } from "../../axios";
 import { useRouter } from "next/router";
+import { useState } from "react";
 import { useEffect } from "react";
-import CompAssignBund from "../../components/Home/CompBundAssign";
+import { Auth } from "../auth";
 
-function assignBundle() {
+function courseavailable() {
   const [logedIn, setlogedIn] = useState(() => {
     return getUserType();
   });
@@ -23,6 +23,7 @@ function assignBundle() {
       router.push("/sign-in");
     }
   }, []);
+
   return (
     <>
       {logedIn === "company" && (
@@ -48,7 +49,7 @@ function assignBundle() {
                   <DashboardBar />
                 </div>
                 <div className="col-sm col-md-9  bg-white">
-                  <CompAssignBund /> 
+                  <DashCAvail />
                 </div>
               </div>
             </div>
@@ -59,4 +60,4 @@ function assignBundle() {
   );
 }
 
-export default assignBundle;
+export default courseavailable;

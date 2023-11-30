@@ -36,8 +36,7 @@ function myCourse() {
               <Header />
             </NoSSR>
             <div
-              className="cont
-            ainer-fluid "
+              className="container-fluid "
               style={{ borderRadius: "22px", marginTop: "120px" }}
             >
               <div className="row justify-content-md-center">

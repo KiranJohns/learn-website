@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import Breadcrumb from '../Common/Breadcrumb';
 import CourseGridTab from '../Elements/Tab/CourseGridTab';
 import Cta from '../Home/CtaSection';
-import BundleCare from '../Stat/BundleCare';
-
+import BundleMan from '../Stat/BundleMandtory';
 
 class CourseGridMandatory extends Component {
 
@@ -16,7 +15,7 @@ class CourseGridMandatory extends Component {
 				{/* <Breadcrumb pageTitle="Mandatory Care Courses" type=""/> */}
 				{/* breadcrumb-end */}
 
-				<BundleCare  name="Mandatory Care Bundle"/>
+				<BundleMan  name="Mandatory Care Bundle"/>
 
                 {/* course tab-start */}
 				<CourseGridTab category="Mandatory Care Courses"/>

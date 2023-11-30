@@ -30,7 +30,7 @@ class HowItWorks extends Component{
             </div>
 
             <div className="col-xxl-12 col-xl-12 col-lg-12 howitspace bottomspace">
-                <h3 className='mt-2'>For Individuals /User</h3>            
+                <h3 className='mt-2'>For Individuals / User</h3>            
             <YouTube videoId="7PIji8OubXU?si=H7CV4YYW9UPF1Jjz" 
              opts={opts} onReady={this._onReady} />
             </div>

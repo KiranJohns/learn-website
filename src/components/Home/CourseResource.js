@@ -101,7 +101,7 @@ const CourseResource = () => {
               marginTop: "3rem",
             }}
           >
-            <iframe
+            <iframe className="blog-box-shadow"
               style={{ padding: "1rem", border: "none" }}
               src="https://onedrive.live.com/embed?resid=F5F394858BB1213E%214405&authkey=!AIJnHcKPEcZ66uQ&em=2"
               width="809"
@@ -112,8 +112,8 @@ const CourseResource = () => {
             ></iframe>
           </div> */}
 
-          <div className="mt-4" style={containerStyless}>
-            <ImageSlider slides={slides} />
+          <div className="mt-4 blog-box-shadow " style={containerStyless}>
+            <ImageSlider style={{padding:"1rem"}} slides={slides} />
           </div>
 
           <div className="blog-box-shadow mt-50 p-4">

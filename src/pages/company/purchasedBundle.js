@@ -2,17 +2,16 @@ import React from "react";
 import CourseBundle from "../../components/CourseGrid/CourseBundle";
 import DashboardBar from "../../components/Sidebar/DashboardBar";
 import HeaderDashboard from "../../components/Layout/Header/HeaderDashboard";
-import DashCAvail from "../../components/Home/DashCAvail";
+import DashAssign from "../../components/Home/DashAssign";
 import Header from "../../components/Layout/Header/Header";
 import NoSSR from "react-no-ssr";
-import { getToken, getUserType } from "../../axios";
-import { useRouter } from "next/router";
 import { useState } from "react";
+import { getUserType } from "../../axios";
+import { useRouter } from "next/router";
 import { useEffect } from "react";
-import { Auth } from "../auth";
-import CompanyPurBundle from "../../components/Home/CompanyPurchaseBundle";
+import CompAssignBund from "../../components/Home/CompBundAssign";
 
-function purchasedBundle() {
+function assignBundle() {
   const [logedIn, setlogedIn] = useState(() => {
     return getUserType();
   });
@@ -24,7 +23,6 @@ function purchasedBundle() {
       router.push("/sign-in");
     }
   }, []);
-
   return (
     <>
       {logedIn === "company" && (
@@ -50,7 +48,7 @@ function purchasedBundle() {
                   <DashboardBar />
                 </div>
                 <div className="col-sm col-md-9  bg-white">
-                  <CompanyPurBundle />
+                  <CompAssignBund /> 
                 </div>
               </div>
             </div>
@@ -61,4 +59,4 @@ function purchasedBundle() {
   );
 }
 
-export default purchasedBundle;
+export default assignBundle;
