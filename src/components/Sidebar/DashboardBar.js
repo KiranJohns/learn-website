@@ -80,12 +80,12 @@ const links = [
         name: "Buy Course",
         link: "/course-all/",
       },
+      // {
+      //   name: "Purchased Courses",
+      //   link: "/company/purchasedCourses",
+      // },
       {
         name: "Purchased Courses",
-        link: "/company/purchasedCourses",
-      },
-      {
-        name: "Assign Courses",
         link: "/company/assignCourses",
       },
     ],

@@ -14,7 +14,7 @@ const customStyles = {
   },
   headCells: {
     style: {
-      fontSize: "16px",
+      fontSize: "15px",
       fontWeight: "600",
       textTransform: "uppercase",
     },
@@ -74,10 +74,7 @@ class DashCAvail extends Component {
         selector: (row) => row.Name,
         sortable: true,
       },
-      {
-        name: "validity",
-        selector: (row) => row.validity,
-      },
+  
       {
         name: "count",
         selector: (row) => row.course_count,
@@ -85,6 +82,10 @@ class DashCAvail extends Component {
       {
         name: "Actions",
         cell: () => <BasicExample />,
+      },
+      {
+        name: "validity",
+        selector: (row) => row.validity,
       },
     ];
 
@@ -136,6 +137,7 @@ class DashCAvail extends Component {
             </form>
           </div>
           <DataTable
+          persistTableHead={true}
             columns={columns}
             data={this.state.records}
             customStyles={customStyles}

@@ -192,18 +192,30 @@ const CompAssignCourse = () => {
       center:true,
     },
     {
-      name: "validity",
-      selector: (row) => {
-        let newDt = new Date(row.validity).toLocaleDateString().split('/').map(d=> d.length <= 1 ? '0'+d : d )
-         return newDt[1]+'/'+newDt[0] +'/'+newDt[2]
-  
-        },
-    },
-    {
-      name: "Course count",
+      name: "Purchased No",
       selector: (row) => row.course_count,
       center:true,
     },
+    {
+      name: "Assigned No",
+      selector: (row) => row.course_count,
+      center:true,
+    },
+    
+    
+    {
+      name: "Remaning No",
+      selector: (row) => row.course_count,
+      center:true,
+    },
+    // {
+    //   name: "validity",
+    //   selector: (row) => {
+    //     let newDt = new Date(row.validity).toLocaleDateString().split('/').map(d=> d.length <= 1 ? '0'+d : d )
+    //      return newDt[1]+'/'+newDt[0] +'/'+newDt[2]
+  
+    //     },
+    // },
     {
       name: "action",
       center:true,
@@ -249,7 +261,7 @@ const CompAssignCourse = () => {
               fontSize: 37,
             }}
           >
-            Assign Courses
+           Purchased Courses
           </h2>
           <div style={{ padding: "", backgroundColor: "" }}>
             <Modal
@@ -527,7 +539,7 @@ const CompAssignCourse = () => {
               }
               customStyles={customStyles}
               pagination
-              selectableRows
+             
             />
           </div>
         </div>{" "}
