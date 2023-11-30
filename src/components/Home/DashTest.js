@@ -61,6 +61,7 @@ class DashTest extends Component {
       const makeRequest = fetchData();
       makeRequest("GET", "/info/data")
         .then((res) => {
+          console.log(res.data.response[0]);
           this.setState({ ...this.state, user: res.data.response[0] });
         })
         .catch((err) => {
@@ -194,7 +195,7 @@ class DashTest extends Component {
                       borderRadius: ".5rem",
                     }}
                   >
-                    0
+                    {this.state.user.managers_count}
                   </span>
                 </div>
               </a>
@@ -228,7 +229,7 @@ class DashTest extends Component {
                       borderRadius: ".5rem",
                     }}
                   >
-                    0
+                    {this.state.user.individuals_count}
                   </span>
                 </div>
               </a>

@@ -44,20 +44,16 @@ class ManagerBundle extends Component {
 
   getData = async () => {
     console.clear();
-    let resPurchased = await this.makeRequest(
-      "GET",
-      "/info/get-purchased-bundles"
-    );
     let resAssigned = await this.makeRequest(
       "GET",
       "/info/get-assigned-bundle"
     );
 
-    Promise.all([resPurchased, resAssigned])
+    Promise.all([resAssigned])
       .then((res) => {
         console.log(res);
         this.setState({
-          records: [...res[0].data.response, ...res[1].data.response].filter(
+          records: [...res[0].data.response].filter(
             (item) => item.course_count >= 1
           ),
           filterRecords: res.data,
@@ -68,11 +64,12 @@ class ManagerBundle extends Component {
       });
   };
 
-  handleStartBundle(id, from) {
+  handleStartBundle(id) {
     let makeRequest = fetchData();
 
     let form = new FormData();
-    form.append("from", from);
+    console.log(id);
+    form.append("from", "manager");
     form.append("bundle_id", id);
     makeRequest("POST", "/bundle/start-bundle", form)
       .then((res) => {
@@ -110,7 +107,16 @@ class ManagerBundle extends Component {
       },
       {
         name: "Action",
-        selector: (row) => <a className="btn btn-success">Start</a>,
+        selector: (row) => (
+          <a
+            className="btn btn-success"
+            onClick={() => {
+              this.handleStartBundle(row.id);
+            }}
+          >
+            Start
+          </a>
+        ),
       },
     ];
 
