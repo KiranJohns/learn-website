@@ -10,6 +10,9 @@ import Modal from "react-responsive-modal";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Tab } from "react-bootstrap";
+import Button from 'react-bootstrap/Button';
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
+
 
 const customStyles = {
   headRow: {
@@ -185,7 +188,6 @@ const CompAssignBund = () => {
       selector: (row) => {
       let newDt = new Date(row.validity).toLocaleDateString().split('/').map(d=> d.length <= 1 ? '0'+d : d )
        return newDt[1]+'/'+newDt[0] +'/'+newDt[2]
-
       },
     },
     {
@@ -255,6 +257,7 @@ const CompAssignBund = () => {
               <div className="dash-shadow p-3 " style={{ maxHeight: "220rem", }}>
                 <div className="">
                 <div className=" d-flex mb-5">
+                <ButtonGroup aria-label="Basic example">
                   <strong
                     className={`btn ${selectUserForAssignCourse == "individual"
                         ? "btn-success"
@@ -289,16 +292,17 @@ const CompAssignBund = () => {
                   >
                     Manager
                   </strong>
+                  </ButtonGroup>
                 </div>
                 {selectUserForAssignCourse === "individual" ? (
                   <div>
                     <div className="form-control dash-shadow d-flex gap-3 p-3">
-                      <div className="">
-                        <span style={{}}>   <label style={{ fontSize: ".74rem" }} for="exampleInputEmail1">Course Count</label>
+                      <div className="d-flex">
+                        <span style={{}}>   <label style={{ fontSize: ".74rem" }} for="exampleInputEmail1">Bundle Count</label>
                           <input
-                            style={{ width: '7rem' }}
+                            style={{ width: '4rem',textAlign:"center" }}
                             disabled
-                            type="number"
+                            type="text"
                             className="form-control"
                             id="exampleInputEmail1"
                             aria-describedby="emailHelp"
@@ -306,7 +310,7 @@ const CompAssignBund = () => {
 
                           /></span>
                       </div>
-                      <div className="form-group">
+                      <div style={{marginLeft:"16rem"}} className="form-group">
                         <label style={{ visibility: "hidden" }} for="exampleInputEmail1">Search</label>
                         <div className="p-relative d-inline ">
                           <input
@@ -333,9 +337,9 @@ const CompAssignBund = () => {
                       </div>
                     </div>
                     <div className="list-group bg-white">
-                      <ul classNAm="list-group">
+                      <ul className="list-group">
 
-                        <li class="list-group-item bg-white text-black d-flex justify-content-between">
+                      <li style={{background:"#212a50", fontWeight:"700", borderRadius:'.3rem',color:'white'}} class="list-group-item my-2  d-flex justify-content-between">
                           <span style={{ width: "fit-content", marginLeft: '.7rem' }}>
                             Name
                           </span>
@@ -354,11 +358,12 @@ const CompAssignBund = () => {
                           filteredCompanyIndividuals.map((item) => {
                             return (
                               <li class="list-group-item bg-white text-black d-flex justify-content-between">
-                                <span style={{ width: "fit-content", marginLeft: '.1rem' }}>
+                                <span style={{ width: "fit-content" }}>
                                   {item.first_name + " " + item.last_name}
                                 </span>
                                 <span>{item.email}</span>
                                 <span
+                                
                                   onClick={() => {
                                     if (from == "assigned") {
                                       assignCourseToManagerIndividualFromAssigned(item.id)
@@ -366,7 +371,7 @@ const CompAssignBund = () => {
                                       assignCourseToManagerIndividual(item.id)
                                     }
                                   }}
-                                  style={{ width: "fit-content" }}
+                                  style={{ width: "fit-content",margin:"0rem .1rem" }}
                                   className="btn btn-success"
                                 >
                                   Assign
@@ -379,11 +384,11 @@ const CompAssignBund = () => {
                   </div>
                 ) : (
                   <div>
-                    <div className="form-control dash-shadow d-flex gap-3 p-3">
-                      <div className="form-group">
-                        <label style={{ fontSize: ".73rem" }} for="exampleInputEmail1">Course Count</label>
+                    <div  className="form-control dash-shadow d-flex gap-3 p-3">
+                      <div  className="form-group">
+                        <label style={{ fontSize: ".73rem" }} for="exampleInputEmail1">Bundle Count</label>
                         <input
-                          style={{ width: '8rem' }}
+                           style={{ width: '4rem',textAlign:"center" }}
                           onChange={(e) => {
                             if (Number(e.target.value) <= selectedBundleCount) {
                               setAssignData((prev) => {
@@ -402,9 +407,9 @@ const CompAssignBund = () => {
                           placeholder="0"
                         />
                       </div>
-                      <div className="form-group">
+                      <div style={{marginLeft:"16rem"}} className="form-group">
                         <label style={{ visibility: 'hidden' }} for="exampleInputEmail1">Search</label>
-                        <div className="p-relative d-inline ">
+                        <div  className="p-relative d-inline ">
                           <input
                             style={{ width: "18rem" }}
                             onChange={(e) =>
@@ -431,13 +436,13 @@ const CompAssignBund = () => {
                     <div className="list-group bg-white">
                       <ul class="list-group">
 
-                        <li class="list-group-item bg-white text-black d-flex justify-content-between">
-                          <span style={{ width: "fit-content", marginLeft: '1rem' }}>
+                      <li style={{background:"#212a50", fontWeight:"700", borderRadius:'.3rem',color:'white'}} class="list-group-item my-2  d-flex justify-content-between">
+                          <span style={{ width: "fit-content", marginLeft: '.7rem' }}>
                             Name
                           </span>
                           <span style={{ textAlign: 'center' }}>Email</span>
                           <span
-                            style={{ width: "fit-content", marginRight: ".8rem" }}
+                            style={{ width: "fit-content", marginRight: "1rem" }}
                           >
                             Action
                           </span>
@@ -450,12 +455,12 @@ const CompAssignBund = () => {
                           filteredManagers.map((item) => {
                             return (
                               <li class="list-group-item bg-white text-black d-flex justify-content-between">
-                                <span style={{ width: "fit-content", marginLeft: '.1rem' }}>
+                                <span style={{ width: "fit-content", textAlign:'center' }}>
                                   {item.first_name + " " + item.last_name}
                                 </span>
                                 <span>{item.email}</span>
                                 <span
-                                  style={{ width: "fit-content" }}
+                                  style={{ width: "fit-content",margin:"0rem .1rem" }}
                                   className="btn btn-success"
                                   onClick={() => {
                                     if (from == "assigned") {
@@ -498,6 +503,7 @@ const CompAssignBund = () => {
               </form>
             </div>
             <DataTable
+               persistTableHead={true}
               columns={columns}
               data={
                 searchString

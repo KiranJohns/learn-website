@@ -40,9 +40,9 @@ const CourseResource = () => {
             ];
           });
         });
-        setTimeout(() => {
-          setImages(res.data.response[0]?.ppt);
-        }, 5000);
+        // setTimeout(() => {
+        //   setImages(res.data.response[0]?.ppt);
+        // }, 5000);
       })
       .catch((err) => {})
       .catch((err) => {

@@ -108,7 +108,7 @@ const links = [
 
   {
     name: "Matrix",
-    link: "courses",
+    link: "matrix",
     icon: "bi bi-book",
     drop: "bi bi-caret-down-fill",
     display: false,

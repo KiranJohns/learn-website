@@ -67,27 +67,60 @@ class ManageMyCourse extends Component {
   render() {
     const columns = [
       {
-        name: "ID",
+        name: "No",
         selector: (row,idx) => ++idx,
-        sortable: true,
+       
+        center:true,
       },
       {
         name: "Courses",
         selector: (row) => row.Name,
         sortable: true,
+        center:true,
       },
       {
         name: "validity",
-        selector: (row) => row.validity,
+        selector: (row) => {
+          let newDt = new Date(row.validity).toLocaleDateString().split('/').map(d=> d.length <= 1 ? '0'+d : d )
+           return newDt[1]+'/'+newDt[0] +'/'+newDt[2]
+          },
+        center:true,
       },
       {
         name: "count",
         selector: (row) => row.course_count,
+        center:true,
       },
-    //   {
-    //     name: "Actions",
-    //     cell: () => <BasicExample />,
-    //   },
+      {
+        name: "Actions",
+        cell: () => (
+          <>
+            {/* {row?.progress ? (
+              <Link
+                href={{
+                  pathname: "/learnCourse/coursepage",
+                  query: { courseId: row.on_going_course_id },
+                }}
+              >
+                <a className="btn btn-success">continue</a>
+              </Link>
+            ) : ( */}
+              <a
+                onClick={() => {
+                  if (row.from_purchased) {
+                    handleStart(row.id, "purchased");
+                  } else {
+                    handleStart(row.id, "assigned");
+                  }
+                }}
+                className="btn btn-success"
+              >
+                start
+              </a>
+            {/* )} */}
+          </>
+        ),
+      },
     ];
 
     return (
@@ -138,6 +171,7 @@ class ManageMyCourse extends Component {
             </form>
           </div>
           <DataTable
+            persistTableHead={true}
             columns={columns}
             data={this.state.records}
             customStyles={customStyles}
