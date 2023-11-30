@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Form from "react-bootstrap/Form";
 import fetchData from "../../axios";
 import { useRouter } from "next/router";
+import Modal from "react-responsive-modal";
 
 const NewExam = () => {
   const makeRequest = fetchData();
@@ -9,6 +10,12 @@ const NewExam = () => {
   const [exam, setExam] = useState([]);
   const [examResult, setExamResult] = useState([]);
   const [questionId, setQuestionId] = useState(null);
+
+  const [open, setOpen] = useState(false);
+
+  const onOpenModal = () => setOpen(true);
+  const onCloseModal = () => setOpen(false);
+ 
 
   useEffect(() => {
     const form = new FormData();

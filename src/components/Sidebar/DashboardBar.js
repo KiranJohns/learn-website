@@ -52,12 +52,9 @@ const links = [
         name: "Buy Bundles",
         link: "/bundle/bundle-all",
       },
+   
       {
         name: "Purchased Bundles",
-        link: "/company/purchasedBundle",
-      },
-      {
-        name: "Assign Bundles",
         link: "/company/assignBundle",
       },
     ],
@@ -80,12 +77,12 @@ const links = [
         name: "Buy Course",
         link: "/course-all/",
       },
+      // {
+      //   name: "Purchased Courses",
+      //   link: "/company/purchasedCourses",
+      // },
       {
         name: "Purchased Courses",
-        link: "/company/purchasedCourses",
-      },
-      {
-        name: "Assign Courses",
         link: "/company/assignCourses",
       },
     ],

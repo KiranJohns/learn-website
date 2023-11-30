@@ -171,29 +171,40 @@ const CompAssignBund = () => {
   }
   const columns = [
     {
-      name: "Index",
+      name: "No",
       selector: (row, idx) => ++idx,
       
       center:true,
     },
     {
-      name: "bundle name",
+      name: "Bundle Name",
       selector: (row) => row.bundle_name,
       sortable: true,
       center:true,
     },
     {
-      name: "validity",
+      name: "Purchased",
+      selector: (row) => row.course_count,
+      center:true,
+    },
+    {
+      name: "Assigned",
+      selector: (row) => row.course_count,
+      center:true,
+    },
+
+    {
+      name: "Remaining",
+      selector: (row) => row.course_count,
+      center:true,
+    },
+    {
+      name: "Validity",
       center:true,
       selector: (row) => {
       let newDt = new Date(row.validity).toLocaleDateString().split('/').map(d=> d.length <= 1 ? '0'+d : d )
        return newDt[1]+'/'+newDt[0] +'/'+newDt[2]
       },
-    },
-    {
-      name: "Bundle count",
-      selector: (row) => row.course_count,
-      center:true,
     },
     {
       name: "action",

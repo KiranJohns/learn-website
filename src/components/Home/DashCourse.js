@@ -126,23 +126,18 @@ class DashCourse extends Component {
       {
         name: "No",
         selector: (row, idx) => idx + 1,
-        sortable: true,
+        center:true,
       },
       {
         name: "Name",
         selector: (row) => row.Name,
         sortable: true,
+        center:true,
       },
-      {
-        name: "description",
-        selector: (row) => row.description.slice(0, 25),
-      },
-      {
-        name: "category",
-        selector: (row) => row.category,
-      },
+
       {
         name: "validity",
+        center:true,
         selector: (row) => {
           let date = row.validity
             .split("/")
@@ -152,11 +147,12 @@ class DashCourse extends Component {
         },
       },
       {
-        name: "count",
+        name: "Course count",
         selector: (row) => row.course_count,
       },
       {
-        name: "",
+        name: "Action",
+        center:true,
         cell: (row) => {
           return (
             <a
@@ -169,7 +165,7 @@ class DashCourse extends Component {
               }}
               className="btn btn-success"
             >
-              Assign To
+             start
             </a>
           );
         },
@@ -220,8 +216,7 @@ class DashCourse extends Component {
               style={{
                 padding: "",
                 color: "#212450",
-
-                fontSize: 42,
+                fontSize: 38,
               }}
             >
               My Courses
@@ -264,6 +259,7 @@ class DashCourse extends Component {
               </form>
             </div>
             <DataTable
+            persistTableHead={true}
               columns={columns}
               data={
                 this.state.searchData
