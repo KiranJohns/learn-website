@@ -13,6 +13,7 @@ import { Tab } from "react-bootstrap";
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Tabs from 'react-bootstrap/Tabs';
+import Table from 'react-bootstrap/Table';
 
 
 const customStyles = {
@@ -352,6 +353,58 @@ const CompAssignCourse = () => {
                       </div>
                     </div>
 
+                    <div>
+                    <div className="list-group bg-white">
+                      <ul classNAm="list-group">
+
+                      <li style={{background:"#212a50", fontWeight:"700", borderRadius:'.3rem',color:'white'}} class="list-group-item my-2  d-flex justify-content-between">
+                          <span style={{ width: "fit-content", marginLeft: '.7rem' }}>
+                            Name
+                          </span>
+                          <span style={{ textAlign: 'center' }}>Email</span>
+                          <span
+                            style={{ width: "fit-content", marginRight: "1rem" }}
+                          >
+                            Action
+                          </span>
+                        </li>
+                      </ul>
+                    </div>
+
+                    <div className="list-group bg-white">
+                      <ul class="list-group">
+                        {filteredCompanyIndividuals &&
+                          filteredCompanyIndividuals.map((item) => {
+                            return (
+                              <li class="list-group-item bg-white text-black d-flex justify-content-between">
+                                <span style={{ width: "fit-content" }}>
+                                  {item.first_name + " " + item.last_name}
+                                </span>
+                                <span>{item.email}</span>
+                                <span
+                                  onClick={() => {
+                                    if (from == "assigned") {
+                                      assignCourseToManagerIndividualFromAssigned(
+                                        item.id
+                                      );
+                                    } else {
+                                      assignCourseToManagerIndividual(item.id);
+                                    }
+                                  }}
+                                  style={{ width: "fit-content",margin:"0rem .1rem" }}
+                                  className="btn btn-success"
+                                >
+                                  Assign
+                                </span>
+                              </li>
+                            );
+                          })}
+                      </ul>
+                    </div>
+                    
+
+                    </div>
+
       </div>
       </Tab>
       <Tab eventKey="manager" title="Manager">
@@ -411,7 +464,7 @@ const CompAssignCourse = () => {
     </Tabs>
 
 
-                <div className=" d-flex mb-5">
+                {/* <div className=" d-flex mb-5">
                 <ButtonGroup aria-label="Basic example">
                   <strong
                     className={`btn ${selectUserForAssignCourse == "individual"
@@ -637,7 +690,7 @@ const CompAssignCourse = () => {
                       </ul>
                     </div>
                   </div>
-                )}
+                )} */}
               </div>
             </Modal>
             <div
