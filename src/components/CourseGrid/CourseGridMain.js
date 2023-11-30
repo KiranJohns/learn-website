@@ -12,7 +12,7 @@ class CourseGridMain extends Component {
         return (
             <main>
 	            {/* breadcrumb-start */}
-				<Breadcrumb pageTitle="Care Courses"/>
+				<Breadcrumb pageTitle="Care Certificate Courses"/>
 				{/* breadcrumb-end */}
 
 				<BundleCare name="Care Bundle"/>

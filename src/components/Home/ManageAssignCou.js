@@ -197,7 +197,7 @@ const ManagerAssignCourse = () => {
               fontSize: 38,
             }}
           >
-            Assign Course
+            Purchased Course
           </h2>
           <div style={{ padding: "", backgroundColor: "" }}>
             <Modal

@@ -52,12 +52,9 @@ const links = [
       },
       {
         name: "Purchased Bundles",
-        link:"/manager/purchasedBundle"
+        link:"/manager/purchasedBundles"
       },
-      {
-        name: "Assign Bundles",
-        link:"/manager/assignBundles"
-      },
+    
     ],
   },
   {
@@ -82,10 +79,7 @@ const links = [
         name: "Purchased Courses",
         link:"/manager/purchasedCourses"
       },
-      {
-        name: "Assign Courses",
-        link:"/manager/assignCourses"
-      },
+     
     ],
   },
   // { name: "My Course", link: "/company/mycourses", icon: "bi bi-book" },

@@ -205,7 +205,7 @@ const ManAssignBund = () => {
               fontSize: 37,
             }}
           >
-            Assign Bundle
+            Purchased Bundle
           </h2>
           <div style={{ padding: "", backgroundColor: "" }}>
             <Modal

@@ -6,7 +6,7 @@ import HeaderDashboard from "../../components/Layout/Header/HeaderDashboard";
 import DashMain from "../../components/Home/DashMain";
 import DashCourse from "../../components/Home/DashCourse";
 import Header from "../../components/Layout/Header/Header";
-import ManagerAssignCourse from "../../components/Home/ManageAssignCou";
+import ManagePurCourse from "../../components/Home/ManagePurCourse";
 import NoSSR from "react-no-ssr";
 import DashTest from "../../components/Home/DashTest";
 import { Auth } from "../auth";
@@ -16,7 +16,7 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 import Sidebar from "../../components/Sidebar/SampleSidebar";
 
-function assignCourse() {
+function purchasedCourse() {
   const [logedIn, setlogedIn] = useState(() => {
     return getUserType();
   });
@@ -54,7 +54,7 @@ function assignCourse() {
                   <ManageBar />
                 </div>
                 <div className="col-sm col-md-9 bg-white">
-                  <ManagerAssignCourse/>
+                  <ManagePurCourse />
                 </div>
               </div>
             </div>
@@ -65,4 +65,4 @@ function assignCourse() {
   );
 }
 
-export default assignCourse;
+export default purchasedCourse;
