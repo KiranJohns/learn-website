@@ -44,6 +44,7 @@ class DashCourse extends Component {
     this.makeRequest = fetchData();
     this.handleShowModal = this.handleShowModal.bind(this);
     this.assignCourse = this.assignCourse.bind(this);
+    this.handleStart = this.handleStart.bind(this);
     this.sub_user_id = null;
     this.course_id = null;
     this.purchased_course_id = null;
@@ -62,7 +63,7 @@ class DashCourse extends Component {
 
   getData = () => {
     try {
-      this.makeRequest("GET", "/course/get-bought-course")
+      this.makeRequest("GET", "/course/get-all-assigned-course")
         .then((res) => {
           console.log(res);
           this.setState({
@@ -77,12 +78,12 @@ class DashCourse extends Component {
       console.log(error);
     }
 
-    this.makeRequest("GET", "/info/get-all-sub-users")
-      .then((res) => {
-        console.log(res.data.response);
-        this.setState({ ...this.state, subUsers: res.data.response });
-      })
-      .catch((err) => console.log(err));
+    // this.makeRequest("GET", "/info/get-all-sub-users")
+    //   .then((res) => {
+    //     console.log(res.data.response);
+    //     this.setState({ ...this.state, subUsers: res.data.response });
+    //   })
+    //   .catch((err) => console.log(err));
   };
 
   handleShowModal() {
@@ -99,7 +100,7 @@ class DashCourse extends Component {
       purchased_course_id: this.purchased_course_id,
     })
       .then((res) => {
-        toast.success("course assigned")
+        toast.success("course assigned");
         this.getData();
         this.setState({
           ...this.state,
@@ -108,6 +109,20 @@ class DashCourse extends Component {
         console.log(res);
       })
       .catch((err) => console.log(err));
+  }
+
+  handleStart(id, from) {
+    let makeRequest = fetchData();
+    let form = new FormData();
+    form.append("from", from);
+    form.append("course_id", id);
+    makeRequest("POST", "/course/start-course", form)
+      .then((res) => {
+        location.href = `/learnCourse/coursepage/?courseId=${res.data.response.id}`;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   // handleCourseStart(id) {
@@ -126,20 +141,20 @@ class DashCourse extends Component {
       {
         name: "No",
         selector: (row, idx) => idx + 1,
-        center:true,
+        center: true,
       },
       {
         name: "Name",
-        selector: (row) => row.Name,
+        selector: (row) => row.name,
         sortable: true,
-        center:true,
+        center: true,
       },
 
       {
         name: "validity",
-        center:true,
+        center: true,
         selector: (row) => {
-          let date = row.validity
+          let date = new Date(row.validity).toLocaleDateString()
             .split("/")
             .map((d) => (d.length <= 1 ? "0" + d : d));
           let newDate = `${date[1]}/${date[0]}/${date[2]}`;
@@ -152,20 +167,20 @@ class DashCourse extends Component {
       },
       {
         name: "Action",
-        center:true,
+        center: true,
         cell: (row) => {
           return (
             <a
               onClick={() => {
-                console.log(row.course_id, row.purchased_course_id);
-                this.course_id = row.course_id;
-                this.purchased_course_id = row.purchased_course_id;
+                // console.log(row.course_id, row.purchased_course_id);
+                // this.course_id = row.course_id;
+                // this.purchased_course_id = row.purchased_course_id;
                 // Other state updates if needed
-                this.handleShowModal();
+                this.handleStart(row?.id, "assigned");
               }}
               className="btn btn-success"
             >
-             start
+              start
             </a>
           );
         },
@@ -259,7 +274,7 @@ class DashCourse extends Component {
               </form>
             </div>
             <DataTable
-            persistTableHead={true}
+              persistTableHead={true}
               columns={columns}
               data={
                 this.state.searchData
