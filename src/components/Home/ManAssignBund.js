@@ -102,7 +102,6 @@ const ManAssignBund = () => {
     form.append("count", 1);
     form.append("from_assigned_table", fromAssignedTable);
 
-    console.log(assignData);
     makeRequest(
       "POST",
       "/info/assign-course-to-manager-individual-from-manager",

@@ -34,27 +34,55 @@ class ManagerBundle extends Component {
       filterRecords: [],
     };
     this.makeRequest = fetchData();
+    this.handleStartBundle = this.handleStartBundle.bind(this);
   }
 
   componentDidMount() {
-    console.log('');
+    console.log("");
     this.getData();
   }
 
   getData = async () => {
-    let resPurchased = await this.makeRequest("GET", "/info/get-purchased-bundles")
-    let resAssigned = await this.makeRequest("GET", "/info/get-assigned-bundle")
-        
-    Promise.all([resPurchased,resAssigned]).then((res) => {
-          this.setState({
-            records: [...res[0].data.response,...res[1].data.response].filter(item => item.course_count >= 1),
-            filterRecords: res.data,
-          });
-        })
-        .catch((err) => {
-          console.log(err);
+    console.clear();
+    let resPurchased = await this.makeRequest(
+      "GET",
+      "/info/get-purchased-bundles"
+    );
+    let resAssigned = await this.makeRequest(
+      "GET",
+      "/info/get-assigned-bundle"
+    );
+
+    Promise.all([resPurchased, resAssigned])
+      .then((res) => {
+        console.log(res);
+        this.setState({
+          records: [...res[0].data.response, ...res[1].data.response].filter(
+            (item) => item.course_count >= 1
+          ),
+          filterRecords: res.data,
         });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
+
+  handleStartBundle(id, from) {
+    let makeRequest = fetchData();
+
+    let form = new FormData();
+    form.append("from", from);
+    form.append("bundle_id", id);
+    makeRequest("POST", "/bundle/start-bundle", form)
+      .then((res) => {
+        console.log(res);
+        location.href = `/individual/bundleCourses/?id=${res.data.response.id}`;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 
   render() {
     const columns = [
@@ -80,26 +108,29 @@ class ManagerBundle extends Component {
         name: "total price",
         selector: (row) => row.amount,
       },
+      {
+        name: "Action",
+        selector: (row) => <a className="btn btn-success">Start</a>,
+      },
     ];
 
     return (
       <div className="">
-       
-      <div className="dash-shadow">
-      <div className=" row g-3  min-vh-100  d-flex justify-content-center mt-20">
-      <h2
-        style={{  
-          color: "#212450",
-          display: "flex",
-          justifyContent: "center",
-          position:'absolute',
-          fontSize: 38,
-        }}
-      >
-       My Bundle
-      </h2>
-        <div style={{ padding: "", backgroundColor: "" }}>
-          {/* <div
+        <div className="dash-shadow">
+          <div className=" row g-3  min-vh-100  d-flex justify-content-center mt-20">
+            <h2
+              style={{
+                color: "#212450",
+                display: "flex",
+                justifyContent: "center",
+                position: "absolute",
+                fontSize: 38,
+              }}
+            >
+              My Bundle
+            </h2>
+            <div style={{ padding: "", backgroundColor: "" }}>
+              {/* <div
             className="pb-2 smth"
             style={{ display: "flex", justifyContent: "left" }}
           >
@@ -115,30 +146,35 @@ class ManagerBundle extends Component {
               }}
             />
           </div> */}
-          <div style={{float:'right',marginBottom:'1.4rem'}} className="p-relative d-inline header__search">
-            <form action="">
-              <input style={{ background:'#edeef3',}}
-                className="d-block mr-10"
-                type="text"
-                placeholder="Search..."
-                // value={searchString}
-                // onChange={handleSearch}
+              <div
+                style={{ float: "right", marginBottom: "1.4rem" }}
+                className="p-relative d-inline header__search"
+              >
+                <form action="">
+                  <input
+                    style={{ background: "#edeef3" }}
+                    className="d-block mr-10"
+                    type="text"
+                    placeholder="Search..."
+                    // value={searchString}
+                    // onChange={handleSearch}
+                  />
+                  <button type="submit">
+                    <i className="fas fa-search"></i>
+                  </button>
+                </form>
+              </div>
+              <DataTable
+                columns={columns}
+                data={this.state.records}
+                customStyles={customStyles}
+                pagination
+                selectableRows
               />
-              <button type="submit">
-                <i className="fas fa-search"></i>
-              </button>
-            </form>
-          </div>
-          <DataTable
-            columns={columns}
-            data={this.state.records}
-            customStyles={customStyles}
-            pagination
-            selectableRows
-          />
+            </div>
+          </div>{" "}
         </div>
-      </div> </div>
-    </div>
+      </div>
     );
   }
 }

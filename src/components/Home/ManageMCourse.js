@@ -33,27 +33,35 @@ class ManageMyCourse extends Component {
       records: [],
       filterRecords: [],
     };
+
+    this.handleStart = this.handleStart.bind(this);
   }
-  
+
   handleFilter = (event) => {
     const newData = this.state.filterRecords.filter((row) =>
-    row.name.toLowerCase().includes(event.target.value.toLowerCase())
+      row.name.toLowerCase().includes(event.target.value.toLowerCase())
     );
     this.setState({ records: newData });
   };
-  
+
   async componentDidMount() {
     let makeRequest = fetchData();
+    let onGoingCourseUrl = "/on-going-course/get-all-on-going-courses";
     let purchasedRes = await makeRequest(
       "GET",
       "/info/get-assigned-course-for-manager"
     );
     let assignedRes = await makeRequest("GET", "/course/get-bought-course");
-    Promise.all([purchasedRes, assignedRes])
+    Promise.all([purchasedRes, assignedRes, onGoingCourseUrl])
       .then((res) => {
         console.log(res[0].data.response);
+        console.log(res[0].data.response);
         console.log(res[1].data.response);
-        let newRes = [...res[0].data.response, ...res[1].data.response];
+        let newRes = [
+          ...res[0].data.response,
+          ...res[1].data.response,
+          ...res[2].data.response,
+        ];
         this.setState({
           records: newRes?.filter((item) => item.course_count >= 1),
           filterRecords: res.data,
@@ -64,11 +72,25 @@ class ManageMyCourse extends Component {
       });
   }
 
+  handleStart = (id, from) => {
+    let form = new FormData();
+    form.append("from", from);
+    form.append("course_id", id);
+    makeRequest("POST", "/course/start-course", form)
+      .then((res) => {
+        console.log(res);
+        location.href = `/learnCourse/coursepage/?courseId=${res.data.response.id}`;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   render() {
     const columns = [
       {
         name: "ID",
-        selector: (row,idx) => ++idx,
+        selector: (row, idx) => ++idx,
         sortable: true,
       },
       {
@@ -84,30 +106,29 @@ class ManageMyCourse extends Component {
         name: "count",
         selector: (row) => row.course_count,
       },
-    //   {
-    //     name: "Actions",
-    //     cell: () => <BasicExample />,
-    //   },
+      {
+        name: "Actions",
+        selector: (row) => <a className="btn btn-success">Start</a>,
+      },
     ];
 
     return (
       <div className="">
-       
-      <div className="dash-shadow">
-      <div className=" row g-3  min-vh-100  d-flex justify-content-center mt-20">
-      <h2
-        style={{  
-          color: "#212450",
-          display: "flex",
-          justifyContent: "center",
-          position:'absolute',
-          fontSize: 36,
-        }}
-      >
-       My Courses
-      </h2>
-        <div style={{ padding: "", backgroundColor: "" }}>
-          {/* <div
+        <div className="dash-shadow">
+          <div className=" row g-3  min-vh-100  d-flex justify-content-center mt-20">
+            <h2
+              style={{
+                color: "#212450",
+                display: "flex",
+                justifyContent: "center",
+                position: "absolute",
+                fontSize: 36,
+              }}
+            >
+              My Courses
+            </h2>
+            <div style={{ padding: "", backgroundColor: "" }}>
+              {/* <div
             className="pb-2 smth"
             style={{ display: "flex", justifyContent: "left" }}
           >
@@ -123,30 +144,35 @@ class ManageMyCourse extends Component {
               }}
             />
           </div> */}
-          <div style={{float:'right',marginBottom:'1.4rem'}} className="p-relative d-inline header__search">
-            <form action="">
-              <input style={{ background:'#edeef3',}}
-                className="d-block mr-10"
-                type="text"
-                placeholder="Search..."
-                // value={searchString}
-                // onChange={handleSearch}
+              <div
+                style={{ float: "right", marginBottom: "1.4rem" }}
+                className="p-relative d-inline header__search"
+              >
+                <form action="">
+                  <input
+                    style={{ background: "#edeef3" }}
+                    className="d-block mr-10"
+                    type="text"
+                    placeholder="Search..."
+                    // value={searchString}
+                    // onChange={handleSearch}
+                  />
+                  <button type="submit">
+                    <i className="fas fa-search"></i>
+                  </button>
+                </form>
+              </div>
+              <DataTable
+                columns={columns}
+                data={this.state.records}
+                customStyles={customStyles}
+                pagination
+                selectableRows
               />
-              <button type="submit">
-                <i className="fas fa-search"></i>
-              </button>
-            </form>
-          </div>
-          <DataTable
-            columns={columns}
-            data={this.state.records}
-            customStyles={customStyles}
-            pagination
-            selectableRows
-          />
+            </div>
+          </div>{" "}
         </div>
-      </div> </div>
-    </div>
+      </div>
     );
   }
 }

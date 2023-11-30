@@ -40,11 +40,8 @@ const CourseResource = () => {
             ];
           });
         });
-        setTimeout(() => {
-          setImages(res.data.response[0]?.ppt);
-        }, 5000);
+        setImages(res.data.response[0]?.ppt);
       })
-      .catch((err) => {})
       .catch((err) => {
         // console.log(err);
       });
@@ -78,11 +75,18 @@ const CourseResource = () => {
           margin: "3rem 0rem",
         }}
       >
-        <div style={{ padding: "1.2rem",   }}>
-          <div style={{ display: "flex", justifyContent: "center", padding:'1rem', margin:'1rem' }}>
+        <div style={{ padding: "1.2rem" }}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              padding: "1rem",
+              margin: "1rem",
+            }}
+          >
             <video
               onContextMenu={(e) => e.preventDefault()}
-              controlsList="nodownload" 
+              controlsList="nodownload"
               className="course-player"
               controls
               src={course?.video}
@@ -117,20 +121,23 @@ const CourseResource = () => {
               {" "}
               <h4>Resources</h4>
             </div>
-            {course && course?.resource?.map((item,i) => (<div style={{ margin: " 1rem .5rem" }}>
-              <p>
-                Course resource {" "}
-                <a
-                  href={item}
-                  style={{ color: "#1b85b8" }}
-                  target="_blank"
-                  download
-                >
-                  {" "}
-                  View
-                </a>
-              </p>
-            </div>))}
+            {course &&
+              course?.resource?.map((item, i) => (
+                <div style={{ margin: " 1rem .5rem" }}>
+                  <p>
+                    Course resource{" "}
+                    <a
+                      href={item}
+                      style={{ color: "#1b85b8" }}
+                      target="_blank"
+                      download
+                    >
+                      {" "}
+                      View
+                    </a>
+                  </p>
+                </div>
+              ))}
           </div>
           <div
             className="mt-4 py-4  px-1"
@@ -140,7 +147,11 @@ const CourseResource = () => {
             <Link
               href={{
                 pathname: "/company/exam",
-                query: { id: course?.course_id, user: router.query.courseId,courseName: course?.name },
+                query: {
+                  id: course?.course_id,
+                  user: router.query.courseId,
+                  courseName: course?.name,
+                },
               }}
             >
               <span className="btn btn-success">Start Exam</span>

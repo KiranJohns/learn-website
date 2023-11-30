@@ -204,42 +204,56 @@ const ManCoursMatrix = () => {
         users.forEach((item) => {
           let assigned = item.matrix_assigned.reverse();
           let enrolled = item.matrix.reverse();
-          if(!user_name.find(n => n == item.first_name + " " + item.last_name)) {
-            user_name.push(item.first_name + " " + item.last_name)
-          }
+
+          user_name.push(item.first_name + " " + item.last_name);
+
           let allCourses = [...assigned, ...enrolled];
 
           console.log(allCourses);
+
           let CNames = allCourses.map((course) => {
             return course.course_name;
           });
 
           let courses = [];
 
-          allCourses.forEach((course) => {
-            if (!courses.find((i) => i?.course_name == course?.course_name)) {
-              courses.push(course);
-            }
-          });
-
-          item['course'] = courses
+          let temp = {
+            color: "gray",
+            progress: "",
+          };
 
           let newCName = [...removeDuplicates(CNames)];
 
-          if (course_name.length > newCName.length) {
+          if (course_name.length < newCName.length) {
             course_name = newCName;
           } else if (course_name.length <= 0) {
             course_name = newCName;
           }
 
-          delete item.matrix_assigned
-          delete item.matrix
+          course_name.forEach(() => {
+            courses.push(temp);
+          });
+
+          allCourses.forEach((course) => {
+            if (!courses.find((i) => i?.course_name == course?.course_name)) {
+              course_name.forEach((item, id) => {
+                if (item == i?.course_name) {
+                  courses[id] = course;
+                }
+              });
+            }
+          });
+
+          item["course"] = courses;
+
+          delete item.matrix_assigned;
+          delete item.matrix;
         });
         console.log(users);
         console.log(course_name);
         setCourseName(course_name);
-        setUserName(user_name)
-        setCourse(users)
+        setUserName(user_name);
+        setCourse(users);
       })
       .catch((err) => {
         console.log(err);
@@ -329,11 +343,11 @@ const ManCoursMatrix = () => {
               </tr>
             </thead>
             <tbody>
-              {course.map((item) => {
+              {course.map((item, i) => {
                 return (
                   <tr>
-                    {item.course.map((course, i) => {
-                      if (i == 0) {
+                    {item.course.map((course, idx) => {
+                      if (idx == 0) {
                         return (
                           <>
                             <td
@@ -345,9 +359,7 @@ const ManCoursMatrix = () => {
                                 fontWeight: "bold",
                               }}
                             >
-                              {
-                                userName[i]
-                              }
+                              {userName[i]}
                             </td>
                             <td
                               style={{
@@ -357,7 +369,7 @@ const ManCoursMatrix = () => {
                                 textAlign: "center",
                               }}
                             >
-                              {course.progress ? course.progress+"%" : "0%"}
+                              {course.progress ? course.progress + "%" : "0%"}
                             </td>
                           </>
                         );
@@ -371,7 +383,7 @@ const ManCoursMatrix = () => {
                               textAlign: "center",
                             }}
                           >
-                            {course.progress ? course.progress+"%" : "0%"}
+                            {course.progress ? course.progress + "%" : "0%"}
                           </td>
                         );
                       }
