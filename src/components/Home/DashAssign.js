@@ -164,6 +164,7 @@ const CompAssignCourse = () => {
   }
 
   function assignCourseToManagerFromAssigned(id) {
+    
     let form = new FormData();
     form.append("course_id", assignData.course_id);
     form.append("userId", id);
@@ -326,7 +327,7 @@ const CompAssignCourse = () => {
                         <input
                          style={{ width: '4rem',textAlign:"center" }}
                           disabled
-                          type="text"
+                          type="number"
                           className="form-control"
                           id="exampleInputEmail1"
                           aria-describedby="emailHelp"

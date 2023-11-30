@@ -73,6 +73,9 @@ const NewExam = () => {
   }
   return (
     <div>
+       <Modal open={open} onClose={onCloseModal} center>
+        <h2>Simple centered modal</h2>
+      </Modal>
       <div className="row">
         <div className="col-md-12 ">
           <div className="dash-shadow p-4 mt-4">
@@ -130,6 +133,7 @@ const NewExam = () => {
             <span className="btn btn-success mt-3 float-right" onClick={handleSubmit}>
               submit
             </span>
+            
           </div>
         </div>
       </div>
