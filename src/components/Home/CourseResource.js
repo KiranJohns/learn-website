@@ -40,7 +40,13 @@ const CourseResource = () => {
             ];
           });
         });
+<<<<<<< HEAD
         setImages(res.data.response[0]?.ppt);
+=======
+        // setTimeout(() => {
+        //   setImages(res.data.response[0]?.ppt);
+        // }, 5000);
+>>>>>>> 66b3b837a7f8923bf7ac08cb5a09829585883aef
       })
       .catch((err) => {
         // console.log(err);

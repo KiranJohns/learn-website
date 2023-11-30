@@ -89,26 +89,32 @@ class ManageDash extends Component {
         name: "No",
         selector: (row) =>row.id,
         sortable: true,
+        center:true,
       },
       {
         name: "Name",
         selector: (row) => row.Name,
         sortable: true,
+        center:true,
       },
       {
         name: "description",
         selector: (row) => row.description.slice(0, 25),
+        center:true,
       },
       {
         name: "category",
         selector: (row) => row.category,
+        center:true,
       },
       {
         name: "count",
         selector: (row) => row.course_count,
+        center:true,
       },
       {
         name: "validity",
+        center:true,
         selector: (row) => {
           let date = row.validity
             .split("/")
@@ -381,6 +387,7 @@ class ManageDash extends Component {
                 </div>
                 <div>
                   <DataTable
+                   persistTableHead={true}
                     columns={columns}
                     data={
                       this.state.searchString

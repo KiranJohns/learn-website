@@ -146,6 +146,7 @@ class IndCertificate extends Component {
               </div>
               <DataTable
                 columns={columns}
+                persistTableHead={true}
                 data={
                   this.state.searchData
                     ? this.state.records.filter((item) =>

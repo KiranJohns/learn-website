@@ -225,18 +225,18 @@ const ManAssignBund = () => {
                 <div>
                   <div className="form-control dash-shadow d-flex gap-3 p-3">
                     <div className="form-group">
-                      <label style={{ fontSize: ".72rem" }} for="exampleInputEmail1">Course Count</label>
+                      <label style={{ fontSize: ".73rem" }} for="exampleInputEmail1">Bundle Count</label>
                       <input
-                       style={{ width: '7rem' }}
+                      style={{ width: '4rem', textAlign:"center" }}
                         disabled
-                        type="number"
+                        type="text"
                         className="form-control"
                         id="exampleInputEmail1"
                         aria-describedby="emailHelp"
                         placeholder="1"
                       />
                     </div>
-                    <div className="form-group">
+                    <div style={{marginLeft:"16rem"}} className="form-group">
                       <label style={{visibility:'hidden'}} for="exampleInputEmail1">Search</label>
                       <div className="p-relative d-inline ">
                       <input
@@ -263,8 +263,8 @@ const ManAssignBund = () => {
                   <div className="list-group bg-white">
                       <ul classNAm="list-group">
 
-                        <li class="list-group-item bg-white text-black d-flex justify-content-between">
-                          <span style={{ width: "fit-content", marginLeft: '.5rem' }}>
+                      <li style={{background:"#212a50", fontWeight:"700", borderRadius:'.3rem',color:'white'}} class="list-group-item my-2  d-flex justify-content-between">
+                          <span style={{ width: "fit-content", marginLeft: '.7rem' }}>
                             Name
                           </span>
                           <span style={{ textAlign: 'center' }}>Email</span>
@@ -326,6 +326,7 @@ const ManAssignBund = () => {
               </form>
             </div>
             <DataTable
+               persistTableHead={true}
               columns={columns}
               data={
                 searchString

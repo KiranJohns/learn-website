@@ -120,7 +120,6 @@ const IndCourse = () => {
       selector: (row) => {
         let newDt = new Date(row.validity).toLocaleDateString().split('/').map(d=> d.length <= 1 ? '0'+d : d )
          return newDt[1]+'/'+newDt[0] +'/'+newDt[2]
-  
         },
     },
     {

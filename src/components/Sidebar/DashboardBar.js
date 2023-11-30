@@ -114,7 +114,7 @@ const links = [
   { name: "Individuals", link: "/company/showuser", icon: "bi bi-person-check" },
   {
     name: "Matrix",
-    link: "courses",
+    link: "matrix",
     icon: "bi bi-book",
     drop: "bi bi-caret-down-fill",
     display: false,

@@ -10,6 +10,8 @@ import Modal from "react-responsive-modal";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Tab } from "react-bootstrap";
+import Button from 'react-bootstrap/Button';
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
 
 const customStyles = {
   headRow: {
@@ -265,6 +267,7 @@ const CompAssignCourse = () => {
             >
               <div className="dash-shadow p-3 " style={{ maxHeight: "200rem" }}>
                 <div className=" d-flex mb-5">
+                <ButtonGroup aria-label="Basic example">
                   <strong
                     className={`btn ${selectUserForAssignCourse == "individual"
                         ? "btn-success"
@@ -299,6 +302,7 @@ const CompAssignCourse = () => {
                   >
                     Manager
                   </strong>
+                  </ButtonGroup>
                 </div>
                 {selectUserForAssignCourse === "individual" ? (
                   <div>
@@ -306,16 +310,16 @@ const CompAssignCourse = () => {
                       <div className="form-group">
                         <label  style={{ fontSize: ".74rem" }} for="exampleInputEmail1">Course Count</label>
                         <input
-                        style={{ width: '7rem' }}
+                         style={{ width: '4rem',textAlign:"center" }}
                           disabled
-                          type="number"
+                          type="text"
                           className="form-control"
                           id="exampleInputEmail1"
                           aria-describedby="emailHelp"
                           placeholder="1"
                         />
                       </div>
-                      <div className="form-group">
+                      <div style={{marginLeft:"16rem"}} className="form-group">
                         <label style={{ visibility: "hidden" }} for="exampleInputEmail1">Search</label>
                         <div className="p-relative d-inline ">
                         <input
@@ -345,8 +349,8 @@ const CompAssignCourse = () => {
                     <div className="list-group bg-white">
                       <ul classNAm="list-group">
 
-                        <li class="list-group-item bg-white text-black d-flex justify-content-between">
-                          <span style={{ width: "fit-content", marginLeft: '1rem' }}>
+                      <li style={{background:"#212a50", fontWeight:"700", borderRadius:'.3rem',color:'white'}} class="list-group-item my-2  d-flex justify-content-between">
+                          <span style={{ width: "fit-content", marginLeft: '.7rem' }}>
                             Name
                           </span>
                           <span style={{ textAlign: 'center' }}>Email</span>
@@ -365,7 +369,7 @@ const CompAssignCourse = () => {
                           filteredCompanyIndividuals.map((item) => {
                             return (
                               <li class="list-group-item bg-white text-black d-flex justify-content-between">
-                                <span style={{ width: "fit-content", marginLeft: '.1rem' }}>
+                                <span style={{ width: "fit-content" }}>
                                   {item.first_name + " " + item.last_name}
                                 </span>
                                 <span>{item.email}</span>
@@ -379,7 +383,7 @@ const CompAssignCourse = () => {
                                       assignCourseToManagerIndividual(item.id);
                                     }
                                   }}
-                                  style={{ width: "fit-content" }}
+                                  style={{ width: "fit-content",margin:"0rem .1rem" }}
                                   className="btn btn-success"
                                 >
                                   Assign
@@ -396,7 +400,7 @@ const CompAssignCourse = () => {
                       <div className="form-group">
                         <label style={{ fontSize: ".73rem" }} for="exampleInputEmail1">Course Count</label>
                         <input
-                         style={{ width: '7rem' }}
+                          style={{ width: '4rem',textAlign:"center" }}
                           onChange={(e) => {
                             if (Number(e.target.value) <= selectedBundleCount) {
                               setAssignData((prev) => {
@@ -415,7 +419,7 @@ const CompAssignCourse = () => {
                           placeholder="0"
                         />
                       </div>
-                      <div className="form-group">
+                      <div style={{marginLeft:"16rem"}} className="form-group">
                         <label style={{visibility:'hidden'}} for="exampleInputEmail1">Search</label>
                         <div className="p-relative d-inline ">
                         <input
@@ -444,8 +448,8 @@ const CompAssignCourse = () => {
                     <div className="list-group bg-white">
                       <ul class="list-group">
 
-                        <li class="list-group-item bg-white text-black d-flex justify-content-between">
-                          <span style={{ width: "fit-content", marginLeft: '1rem' }}>
+                      <li style={{background:"#212a50", fontWeight:"700", borderRadius:'.3rem',color:'white'}} class="list-group-item my-2  d-flex justify-content-between">
+                          <span style={{ width: "fit-content", marginLeft: '.7rem' }}>
                             Name
                           </span>
                           <span style={{ textAlign: 'center' }}>Email</span>
@@ -510,6 +514,7 @@ const CompAssignCourse = () => {
               </form>
             </div>
             <DataTable
+             persistTableHead={true}
               columns={columns}
               data={
                 searchString
