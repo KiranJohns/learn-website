@@ -46,7 +46,10 @@ class ManageMyCourse extends Component {
 
   async componentDidMount() {
     let makeRequest = fetchData();
-    let onGoingCourseUrl = "/on-going-course/get-all-on-going-courses";
+    let onGoingCourseUrl = await makeRequest(
+      "GET",
+      "/on-going-course/get-all-on-going-courses"
+    );
     let purchasedRes = await makeRequest(
       "GET",
       "/info/get-assigned-course-for-manager"
@@ -54,9 +57,7 @@ class ManageMyCourse extends Component {
     let assignedRes = await makeRequest("GET", "/course/get-bought-course");
     Promise.all([purchasedRes, assignedRes, onGoingCourseUrl])
       .then((res) => {
-        console.log(res[0].data.response);
-        console.log(res[0].data.response);
-        console.log(res[1].data.response);
+        console.log(res);
         let newRes = [
           ...res[0].data.response,
           ...res[1].data.response,
@@ -72,81 +73,80 @@ class ManageMyCourse extends Component {
       });
   }
 
-  handleStart = (id, from) => {
+  handleStart(id, from) {
+    let makeRequest = fetchData();
     let form = new FormData();
     form.append("from", from);
     form.append("course_id", id);
     makeRequest("POST", "/course/start-course", form)
       .then((res) => {
-        console.log(res);
         location.href = `/learnCourse/coursepage/?courseId=${res.data.response.id}`;
       })
       .catch((err) => {
         console.log(err);
       });
-  };
+  }
 
   render() {
     const columns = [
       {
         name: "No",
         selector: (row, idx) => ++idx,
-       
-        center:true,
+
+        center: true,
       },
       {
         name: "Courses",
-        selector: (row) => row.Name,
+        selector: (row) => row?.Name || row?.name,
         sortable: true,
-        center:true,
+        center: true,
       },
       {
         name: "validity",
         selector: (row) => {
-          let newDt = new Date(row.validity).toLocaleDateString().split('/').map(d=> d.length <= 1 ? '0'+d : d )
-           return newDt[1]+'/'+newDt[0] +'/'+newDt[2]
-          },
-        center:true,
+          let newDt = new Date(row?.validity)
+            .toLocaleDateString()
+            .split("/")
+            .map((d) => (d?.length <= 1 ? "0" + d : d));
+          return newDt[1] + "/" + newDt[0] + "/" + newDt[2];
+        },
+        center: true,
       },
       {
         name: "count",
-        selector: (row) => row.course_count,
-        center:true,
+        selector: (row) => row?.course_count,
+        center: true,
       },
       {
         name: "Actions",
-        cell: () => (
+        cell: (row) => (
           <>
-            {/* {row?.progress ? (
+            {row?.progress ? (
               <Link
                 href={{
                   pathname: "/learnCourse/coursepage",
-                  query: { courseId: row.on_going_course_id },
+                  query: { courseId: row?.on_going_course_id },
                 }}
               >
                 <a className="btn btn-success">continue</a>
               </Link>
-            ) : ( */}
+            ) : (
               <a
                 onClick={() => {
-                  if (row.from_purchased) {
-                    handleStart(row.id, "purchased");
+                  console.log(row);
+                  if (row?.from_purchased) {
+                    this.handleStart(row?.id, "purchased");
                   } else {
-                    handleStart(row.id, "assigned");
+                    this.handleStart(row?.id, "manager");
                   }
                 }}
                 className="btn btn-success"
               >
                 start
               </a>
-            {/* )} */}
+            )}
           </>
         ),
-      },
-      },
-      {
-        name: "Actions",
-        selector: (row) => <a className="btn btn-success">Start</a>,
       },
     ];
 
