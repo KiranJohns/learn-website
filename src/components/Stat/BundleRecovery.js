@@ -23,17 +23,15 @@ function BundleRecover({ name }) {
     <div className="container mt-100">
       <div className="row">
         <div className="col-xxl-5  col-xl-4 col-lg-4 col-md-4 col-sm-0 text-center">
-          <h1 style={{ marginBottom: "1rem" }}>{name}</h1>
+          <h1 style={{ marginBottom: "1rem" }}>Recovery Care Courses</h1>
           <h1></h1>
           <p style={{textAlign:"center"}}>
-            The Care Certificate is delivered through our simple to use, online
-            Learning Management System (LMS) that records and evidences the
-            information needed for every of the fifteen standards. In addition,
-            we've created workbooks which offer guidance on what aspects of
-            every Care Certificate standard ought to be determined within the
-            workplace. This is far and away the foremost efficient and value
-            effective methodology to deliver the Care Certificate in your
-            organisation.
+          The Recovery Care Courses are delivered through our simple to use, 
+          online Learning Management System (LMS) that records and evidences the information needed for 
+          every of the two standards. In addition, we've created workbooks which offer guidance on what 
+          aspects of every Recovery Care Courses standard ought to be determined within the workplace. 
+          This is far and away the foremost efficient and value effective methodology to deliver the Recovery Care 
+          Courses in your organisation.
           </p>
           {/* <div style={{ display: "flex", justifyContent: "center" }}>
             <div

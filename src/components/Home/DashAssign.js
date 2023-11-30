@@ -12,6 +12,8 @@ import "react-toastify/dist/ReactToastify.css";
 import { Tab } from "react-bootstrap";
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import Tabs from 'react-bootstrap/Tabs';
+
 
 const customStyles = {
   headRow: {
@@ -62,6 +64,7 @@ const CompAssignCourse = () => {
   const openModal = () => {
     setShowModal(!showModal);
   };
+  const [key, setKey] = useState('individual');
 
 
 
@@ -299,6 +302,115 @@ const CompAssignCourse = () => {
               }}
             >
               <div className="dash-shadow p-3 " style={{ maxHeight: "200rem" }}>
+            
+              <Tabs
+       id="controlled-tab-example"
+       activeKey={key}
+       onSelect={(k) => setKey(k)}
+       className="mb-3"
+      
+    >
+      <Tab eventKey="individual" title="Individual">
+      <div style={{background:'white'}}>
+      <div className="form-control dash-shadow d-flex gap-3 p-3">
+                      <div className="form-group">
+                        <label  style={{ fontSize: ".74rem" }} for="exampleInputEmail1">Course Count</label>
+                        <input
+                         style={{ width: '4rem',textAlign:"center" }}
+                          disabled
+                          type="number"
+                          className="form-control"
+                          id="exampleInputEmail1"
+                          aria-describedby="emailHelp"
+                          placeholder="1"
+                        />
+                      </div>
+                      <div style={{marginLeft:"16rem"}} className="form-group">
+                        <label style={{ visibility: "hidden" }} for="exampleInputEmail1">Search</label>
+                        <div className="p-relative d-inline ">
+                        <input
+                         style={{ width: "18rem" }}
+                          onChange={(e) =>
+                            setFilteredCompanyIndividuals(
+                              companyIndividuals.filter((item) =>
+                                item.first_name
+                                  .toLocaleLowerCase()
+                                  .startsWith(
+                                    e.target.value.toLocaleLowerCase()
+                                  )
+                              )
+                            )
+                          }
+                          type="text"
+                          className="form-control"
+                          id="exampleInputEmail1"
+                          aria-describedby="emailHelp"
+                          placeholder="search by name"
+                        />
+                        <i style={{ position: 'absolute', left: "13.3rem", top: "2.2rem" }} className="bi bi-search"></i>
+                        </div> 
+                      </div>
+                    </div>
+
+      </div>
+      </Tab>
+      <Tab eventKey="manager" title="Manager">
+        <div style={{background:"white"}}>
+        <div className="form-control dash-shadow d-flex gap-3 p-3">
+                      <div className="form-group">
+                        <label style={{ fontSize: ".73rem" }} for="exampleInputEmail1">Course Count</label>
+                        <input
+                          style={{ width: '4rem',textAlign:"center" }}
+                          onChange={(e) => {
+                            if (Number(e.target.value) <= selectedBundleCount) {
+                              setAssignData((prev) => {
+                                return {
+                                  ...prev,
+                                  count: e.target.value,
+                                };
+                              });
+                            }
+                          }}
+                          type="number"
+                          value={assignData.count}
+                          className="form-control"
+                          id="exampleInputEmail1"
+                          aria-describedby="emailHelp"
+                          placeholder="0"
+                        />
+                      </div>
+                      <div style={{marginLeft:"16rem"}} className="form-group">
+                        <label style={{visibility:'hidden'}} for="exampleInputEmail1">Search</label>
+                        <div className="p-relative d-inline ">
+                        <input
+                         style={{ width: "18rem" }}
+                          onChange={(e) =>
+                            setFilteredManagers(
+                              allManagers.filter((item) =>
+                                item.first_name
+                                  .toLocaleLowerCase()
+                                  .startsWith(
+                                    e.target.value.toLocaleLowerCase()
+                                  )
+                              )
+                            )
+                          }
+                          type="text"
+                          className="form-control"
+                          id="exampleInputEmail1"
+                          aria-describedby="emailHelp"
+                          placeholder="search by name"
+                        />
+                         <i style={{ position: 'absolute', left: "13.3rem", top: "2.2rem" }} className="bi bi-search"></i>
+                        </div>
+                      </div>
+                    </div>
+        </div>
+      </Tab>
+    
+    </Tabs>
+
+
                 <div className=" d-flex mb-5">
                 <ButtonGroup aria-label="Basic example">
                   <strong
@@ -472,7 +584,7 @@ const CompAssignCourse = () => {
                           className="form-control"
                           id="exampleInputEmail1"
                           aria-describedby="emailHelp"
-                          placeholder="Search by name"
+                          placeholder="search by name"
                         />
                          <i style={{ position: 'absolute', left: "13.3rem", top: "2.2rem" }} className="bi bi-search"></i>
                         </div>

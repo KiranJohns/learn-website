@@ -15,10 +15,10 @@ class CourseGridMain extends Component {
 				<Breadcrumb pageTitle="Care Certificate Courses"/>
 				{/* breadcrumb-end */}
 
-				<BundleCare name="Care Bundle"/>
+				<BundleCare name="Care Course Bundle"/>
 
                 {/* course tab-start */}
-				<CourseGridTab category="Care Certificate" />
+				<CourseGridTab category="Care Course" />
 				{/* course tab-end */}
 
                 {/* cta-start */}

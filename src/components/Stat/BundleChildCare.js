@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import fetchData from "../../axios";
 import BundleCard from "../Elements/Tab/BundleCard";
 
-function BundleCare({ name }) {
+function BundleChild({ name }) {
   const [fakeCount, setFakeCount] = useState(0);
   const [bundle, setBundle] = useState({});
   const makeRequest = fetchData()
@@ -23,17 +23,14 @@ function BundleCare({ name }) {
     <div className="container mt-100">
       <div className="row">
         <div className="col-xxl-5  col-xl-4 col-lg-4 col-md-4 col-sm-0 text-center">
-          <h1 style={{ marginBottom: "1rem" }}>{name}</h1>
+          <h1 style={{ marginBottom: "1rem" }}>Child Care Courses</h1>
           <h1></h1>
-          <p>
-            The Care Certificate is delivered through our simple to use, online
-            Learning Management System (LMS) that records and evidences the
-            information needed for every of the fifteen standards. In addition,
-            we've created workbooks which offer guidance on what aspects of
-            every Care Certificate standard ought to be determined within the
-            workplace. This is far and away the foremost efficient and value
-            effective methodology to deliver the Care Certificate in your
-            organisation.
+          <p style={{textAlign:'center'}}>
+          The Child Care Courses are delivered through our simple to use, 
+          online Learning Management System (LMS) that records and evidences the information needed for every of the six standards. 
+          In addition, we've created workbooks which offer guidance on what aspects of every Child Care Courses standard ought to be determined 
+          within the workplace. This is far and away the foremost efficient and value effective methodology to deliver the Child Care Courses in 
+          your organisation.
           </p>
           {/* <div style={{ display: "flex", justifyContent: "center" }}>
             <div
@@ -90,4 +87,4 @@ function BundleCare({ name }) {
   );
 }
 
-export default BundleCare;
+export default BundleChild;

@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import fetchData from "../../axios";
 import BundleCard from "../Elements/Tab/BundleCard";
 
-function BundleCare({ name }) {
+function BundleSpecialised({ name }) {
   const [fakeCount, setFakeCount] = useState(0);
   const [bundle, setBundle] = useState({});
   const makeRequest = fetchData()
@@ -23,14 +23,14 @@ function BundleCare({ name }) {
     <div className="container mt-100">
       <div className="row">
         <div className="col-xxl-5  col-xl-4 col-lg-4 col-md-4 col-sm-0 text-center">
-          <h1 style={{ marginBottom: "1rem" }}>{name}</h1>
+          <h1 style={{ marginBottom: "1rem" }}>Specialised Care Courses</h1>
           <h1></h1>
-          <p >
+          <p style={{textAlign:"center"}}>
           When working within the care sector, it's crucial that the proper care and support is afforded to each patient.
            Our choice of Specialist Carer training courses can provide the skills and knowledge necessary to complete a range of specialist tasks, 
            including the management of instances about conflict or challenging behaviour. </p>
 
-           <p>
+           <p style={{textAlign:"center"}}>
            If the particular course that you're searching for isn't listed below,
             please do contact one amongst our training specialists.
           </p>
@@ -90,4 +90,4 @@ function BundleCare({ name }) {
   );
 }
 
-export default BundleCare;
+export default BundleSpecialised;
