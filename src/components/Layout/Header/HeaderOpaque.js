@@ -412,11 +412,12 @@ const HeaderOpaque = () => {
                         >
                           <a
                             onClick={() => {
-                              if (getUserType() === "company") {
-                                router.push("/company/dashboard");
-                              } else {
-                                router.push("/individual/dashboard");
-                              }
+                              router.push(`/${getUserType()}/myprofile`);
+                              // if (getUserType() === "company") {
+                              //   router.push("/company/dashboard");
+                              // } else {
+                              //   router.push("/individual/dashboard");
+                              // }
                             }}
                           >
                             {" "}
@@ -428,11 +429,12 @@ const HeaderOpaque = () => {
                           <Dropdown.Item
                             className="btn"
                             onClick={() => {
-                              if (getUserType() === "company") {
-                                router.push("/company/myprofile");
-                              } else {
-                                router.push("/individual/myprofile");
-                              }
+                              router.push(`/${getUserType()}/myprofile`);
+                              // if (getUserType() === "company") {
+                              //   router.push("/company/myprofile");
+                              // } else {
+                              //   router.push("/individual/myprofile");
+                              // }
                             }}
                           >
                             My Profile

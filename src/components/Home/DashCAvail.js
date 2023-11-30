@@ -53,7 +53,7 @@ class DashCAvail extends Component {
         .then((res) => {
           console.log(res);
           this.setState({
-            records: res.data.response,
+            records: res.data.response.reverse(),
             filterRecords: res.data,
           });
         })
@@ -91,7 +91,6 @@ class DashCAvail extends Component {
 
     return (
       <div className="">
-       
       <div className="dash-shadow">
       <div className=" row g-3  min-vh-100  d-flex justify-content-center mt-20">
       <h2

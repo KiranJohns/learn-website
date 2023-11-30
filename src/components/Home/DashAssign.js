@@ -106,6 +106,24 @@ const CompAssignCourse = () => {
     getData();
   }, []);
 
+  function selfAssignToCompany() {
+    let form = new FormData();
+    form.append("type", assignData.course_id);
+    form.append("count", id);
+    form.append("user_id", assignData.count);
+    form.append("bundle_id", assignData.count);
+
+    makeRequest("POST", "/info/assign-course-or-bundle", form)
+      .then((res) => {
+        getData();
+        console.log(res);
+        toast("course assigned");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
   function assignCourseToManager(id) {
     let form = new FormData();
     form.append("course_id", assignData.course_id);
