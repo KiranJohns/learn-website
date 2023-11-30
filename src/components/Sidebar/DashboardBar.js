@@ -52,12 +52,9 @@ const links = [
         name: "Buy Bundles",
         link: "/bundle/bundle-all",
       },
+   
       {
         name: "Purchased Bundles",
-        link: "/company/purchasedBundle",
-      },
-      {
-        name: "Assign Bundles",
         link: "/company/assignBundle",
       },
     ],

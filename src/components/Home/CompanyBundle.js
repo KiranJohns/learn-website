@@ -79,26 +79,32 @@ class CompanyBundle extends Component {
   render() {
     const columns = [
       {
-        name: "ID",
+        name: "NO",
         selector: (row, idx) => ++idx,
         sortable: true,
+        center:true,
       },
       {
         name: "Courses",
         selector: (row) => row.bundle_name,
         sortable: true,
+        center:true,
       },
       {
         name: "validity",
         selector: (row) => row.validity,
+        center:true,
       },
+
       {
         name: "count",
         selector: (row) => row.course_count,
+        center:true,
       },
       {
         name: "Action",
         cell: (id) => <a href="https://test.learnforcare.co.uk/bundle/bundle-all"><Button variant="primary">View</Button></a> ,
+        center:true,
       },
     ];
 

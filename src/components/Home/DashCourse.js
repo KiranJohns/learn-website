@@ -126,16 +126,18 @@ class DashCourse extends Component {
       {
         name: "No",
         selector: (row, idx) => idx + 1,
-       
+        center:true,
       },
       {
         name: "Name",
         selector: (row) => row.Name,
         sortable: true,
+        center:true,
       },
 
       {
         name: "validity",
+        center:true,
         selector: (row) => {
           let date = row.validity
             .split("/")
@@ -150,6 +152,7 @@ class DashCourse extends Component {
       },
       {
         name: "Action",
+        center:true,
         cell: (row) => {
           return (
             <a
