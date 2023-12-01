@@ -92,7 +92,6 @@ class ManageMyCourse extends Component {
       {
         name: "No",
         selector: (row, idx) => ++idx,
-
         center: true,
       },
       {
@@ -133,7 +132,6 @@ class ManageMyCourse extends Component {
             ) : (
               <a
                 onClick={() => {
-                  console.log(row);
                   if (row?.from_purchased) {
                     this.handleStart(row?.id, "purchased");
                   } else {

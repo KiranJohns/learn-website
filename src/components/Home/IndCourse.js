@@ -60,10 +60,11 @@ const IndCourse = () => {
         makeRequest("GET", url1),
         makeRequest("GET", url2),
       ]).then((res) => {
+        console.log(res[1].data.response,res[2].data.response);
         let arr = [
           ...res[0].data.response,
-          ...res[1].data.response,
-          ...res[2].data.response,
+          ...res[1].data.response.filter(item => item?.course_count >= 1),
+          ...res[2].data.response.filter(item => item?.course_count >= 1),
         ];
         console.log(res);
         setRecords(arr);
