@@ -154,7 +154,7 @@ const links = [
         link: "/company/courseWiseIndividual",
       },
       {
-        name: "Individual Courses",
+        name: "Transactions",
         link: "/company/transactions",
       },
       {
