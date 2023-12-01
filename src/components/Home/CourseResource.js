@@ -146,7 +146,7 @@ const CourseResource = () => {
             {" "}
             <Link
               href={{
-                pathname: "/learnCourse/exam",
+                pathname: "/online/exam",
                 query: {
                   id: course?.course_id,
                   user: router.query.courseId,

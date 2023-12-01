@@ -130,7 +130,7 @@ const IndCourse = () => {
             <Link
               href={{
                 pathname: "/learnCourse/coursepage",
-                query: { courseId: row.on_going_course_id },
+                query: { courseId: row.on_going_course_id,from: "course" },
               }}
             >
               <a className="btn btn-success">continue</a>
