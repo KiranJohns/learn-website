@@ -75,7 +75,7 @@ const CompTransaction = () => {
     },
     {
       name: "Amount",
-      selector: (row) => row.validity,
+      selector: (row) => row.amount,
     },
   ];
 
