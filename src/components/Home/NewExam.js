@@ -65,6 +65,8 @@ const NewExam = () => {
     form.append("enrolled_course_id", Number(router.query.bundleId));
     makeRequest("POST", "/bundle/validate-exam", form)
       .then((res) => {
+        localStorage.setItem('wrong-answers',JSON.stringify({questions: res.data.response.wrongAnswers,courseName: router.query.courseName, per: res.data.response.per}))
+        location.pathname = "learnCourse/result"
         console.log(res.data);
       })
       .catch((err) => {
