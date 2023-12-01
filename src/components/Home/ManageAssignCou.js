@@ -94,7 +94,9 @@ const ManagerAssignCourse = () => {
     form.append("userId", id);
     form.append("count", 1);
 
-    console.log(assignData);
+    console.log('course_id ',assignData.course_id);
+    console.log('id ',id);
+    console.log(1);
     makeRequest("POST", "/info/assign-course-to-manager-individual", form)
       .then((res) => {
         getData();
@@ -107,13 +109,15 @@ const ManagerAssignCourse = () => {
   }
 
   function assignCourseToManagerIndividualFromAssigned(id) {
-    console.log(id);
     let form = new FormData();
     form.append("course_id", assignData.course_id);
     form.append("userId", id);
     form.append("count", 1);
 
-    console.log(assignData);
+    console.log('course_id ',assignData.course_id);
+    console.log('id ',id);
+    console.log(1);
+
     makeRequest(
       "POST",
       "/info/assign-course-to-manager-individual-from-manager-assigned",
