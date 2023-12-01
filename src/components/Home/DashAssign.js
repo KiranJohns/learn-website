@@ -458,13 +458,59 @@ const CompAssignCourse = () => {
                         </div>
                       </div>
                     </div>
+                    <div className="list-group bg-white">
+                      <ul class="list-group">
+
+                      <li style={{background:"#212a50", fontWeight:"700", borderRadius:'.3rem',color:'white'}} class="list-group-item my-2  d-flex justify-content-between">
+                          <span style={{ width: "fit-content", marginLeft: '.7rem' }}>
+                            Name
+                          </span>
+                          <span style={{ textAlign: 'center' }}>Email</span>
+                          <span
+                            style={{ width: "fit-content", marginRight: "1rem" }}
+                          >
+                            Action
+                          </span>
+                        </li>
+                      </ul>
+                    </div>
+                    <div className="list-group bg-white">
+                      <ul class="list-group">
+                        {filteredManagers &&
+                          filteredManagers.map((item) => {
+                            return (
+                              <li class="list-group-item bg-white text-black d-flex justify-content-between">
+                                <span style={{ width: "fit-content", marginLeft: '.1rem' }}>
+                                  {item.first_name + " " + item.last_name}
+                                </span>
+                                <span>{item.email}</span>
+                                <span
+                                  style={{ width: "fit-content" }}
+                                  className="btn btn-success"
+                                  onClick={() => {
+                                    if (from == "assigned") {
+                                      assignCourseToManagerFromAssigned(
+                                        item.id
+                                      );
+                                    } else {
+                                      assignCourseToManager(item.id);
+                                    }
+                                  }}
+                                >
+                                  Assign
+                                </span>
+                              </li>
+                            );
+                          })}
+                      </ul>
+                    </div>
         </div>
       </Tab>
     
     </Tabs>
 
-
-                {/* <div className=" d-flex mb-5">
+{/* 
+                <div className=" d-flex mb-5">
                 <ButtonGroup aria-label="Basic example">
                   <strong
                     className={`btn ${selectUserForAssignCourse == "individual"

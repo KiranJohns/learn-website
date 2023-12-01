@@ -73,22 +73,42 @@ const links = [
    
     ],
   },
+
   
-
-
-  // {
-  //   name: "Purchased Courses",
-  //   link: "/individual/purchasedCourses",
-  //   icon: "bi bi-card-checklist",
-  // },
-
-
-
   {
     name: "Certificates",
     link: "/individual/certificates",
     icon: "bi bi-patch-check-fill",
   },
+  
+  {
+    name: "Reports",
+    link: "reports",
+    icon: "bi bi-book",
+    drop: "bi bi-caret-down-fill",
+    display: false,
+    show: function (link) {
+      this.display = !this.display;
+    },
+    subLinks: [
+      {
+        name: "Transactions",
+        link: "/individual/transactions",
+      },
+      {
+        name: "Monthly Report",
+        link: "/individual/monthlyReport",
+      },
+      
+   
+    ],
+  },
+  
+
+
+
+
+
 
  
   // {
