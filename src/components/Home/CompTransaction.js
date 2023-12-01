@@ -41,7 +41,7 @@ const CompTransaction = () => {
     const getData = async () => {
       try {
         let makeRequest = fetchData();
-        const res = await makeRequest("GET", "/info/get-purchased-bundles");
+        const res = await makeRequest("GET", "/info/get-all-transactions");
         console.log(res);
         setRecords(res.data.response);
         setFilterRecords(res.data);
