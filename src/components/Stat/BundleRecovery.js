@@ -13,7 +13,7 @@ function BundleRecover({ name }) {
   useEffect(() => {
     makeRequest("GET","/bundle/get-all-bundles").then(res => {
       console.log(res);
-      setBundle(res.data.response[0])
+      setBundle(res.data.response.filter(bundle => bundle.name==name)[0])
     }).catch(err => {
       console.log(err);
     })

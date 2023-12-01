@@ -18,7 +18,7 @@ class CourseGridRecovery extends Component {
 				<BundleRecover name="Recovery Care Bundle"/>
 
                 {/* course tab-start */}
-				<CourseGridTab category="Recovery Care Courses"/>
+				<CourseGridTab category="Recovery Care Course"/>
 				{/* course tab-end */}
 
                 {/* cta-start */}
