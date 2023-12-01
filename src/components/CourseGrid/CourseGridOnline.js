@@ -3,31 +3,30 @@ import Breadcrumb from '../Common/Breadcrumb';
 import CourseGridTab from '../Elements/Tab/CourseGridTab';
 import Cta from '../Home/CtaSection';
 import BundleOnline from '../Stat/BundleOnline';
-import CourseGridBundle from '../Elements/Tab/CourseGridBundle';
-import BundleSample from '../Elements/Tab/BundleSample';
 
-class OnlineBundle extends Component {
+class CourseGridOnline extends Component {
 
     render() {
 
         return (
             <main>
 	            {/* breadcrumb-start */}
-				<Breadcrumb pageTitle="Online Care Bundle Package"/>
+				<Breadcrumb pageTitle="Online Care Bundle Package" />
+				{/* <Breadcrumb pageTitle="Mandatory Care Courses" type=""/> */}
 				{/* breadcrumb-end */}
-                
-                 <BundleOnline name="Online Care Bundle Package"/>
+
+				<BundleOnline name="Online Care Bundle Package"/>
+
                 {/* course tab-start */}
-				
+				<CourseGridTab category="Mandatory Care Courses"/>
 				{/* course tab-end */}
-              
+
                 {/* cta-start */}
 				<Cta />
-                
 				{/* cta-end */}
         	</main>
         );
     }
 }
 
-export default OnlineBundle;
+export default CourseGridOnline;
