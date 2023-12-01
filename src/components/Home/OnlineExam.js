@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import Form from "react-bootstrap/Form";
 import fetchData from "../../axios";
 import { useRouter } from "next/router";
-import Modal from "react-responsive-modal";
 
 const OnlineExam = () => {
   const makeRequest = fetchData();
@@ -11,18 +10,12 @@ const OnlineExam = () => {
   const [examResult, setExamResult] = useState([]);
   const [questionId, setQuestionId] = useState(null);
 
-  const [open, setOpen] = useState(false);
-
-  const onOpenModal = () => setOpen(true);
-  const onCloseModal = () => setOpen(false);
- 
-
   useEffect(() => {
     const form = new FormData();
-    form.append("course_id", Number(router.query.course_id));
-    form.append("bundle_id", Number(router.query.bundleId));
+    form.append("course_id", router.query.id);
+    form.append("enrolled_course_id", router.query.user);
 
-    makeRequest("POST", "/bundle/get-exam", form)
+    makeRequest("POST", "/exam/get-exam", form)
       .then((res) => {
         console.log(JSON.parse(res.data.response[0].exam));
         let exam = JSON.parse(res.data.response[0].exam);
@@ -58,14 +51,15 @@ const OnlineExam = () => {
   }
 
   function handleSubmit() {
-    console.log(router.query.bundleId);
     const form = new FormData();
     form.append("answer", JSON.stringify(examResult));
+    form.append("enrolled_course_id", router.query.user);
     form.append("question_id", questionId);
-    form.append("enrolled_course_id", Number(router.query.bundleId));
-    makeRequest("POST", "/bundle/validate-exam", form)
+    makeRequest("POST", "/exam/validate", form)
       .then((res) => {
         console.log(res.data);
+        localStorage.setItem('wrong-answers',JSON.stringify({questions: res.data.response.wrongAnswers,courseName: router.query.courseName, per: res.data.response.per}))
+        location.pathname = "learnCourse/result"
       })
       .catch((err) => {
         console.log(err);
@@ -73,9 +67,6 @@ const OnlineExam = () => {
   }
   return (
     <div>
-       <Modal open={open} onClose={onCloseModal} center>
-        <h2>Simple centered modal</h2>
-      </Modal>
       <div className="row">
         <div className="col-md-12 ">
           <div className="dash-shadow p-4 mt-4">
@@ -116,12 +107,12 @@ const OnlineExam = () => {
                               value="a"
                               onClick={() => setAnswer(item.question, option)}
                               aria-label="radio 1"
-                            />{" "}
+                            />{"  "}
                             <p
                               name="option"
-                              style={{ marginLeft: "1px", overflow: "auto" }}
+                              style={{ marginLeft: "10px", overflow: "auto" }}
                             >
-                              {String.fromCharCode(97 + i)}. {option}
+                              {String.fromCharCode(97 + i)}{")   "}{' '} {option}
                             </p>
                           </span>
                         </div>
@@ -130,15 +121,17 @@ const OnlineExam = () => {
                   </form>
                 </div>
               ))}
-            <span className="btn btn-success mt-3 float-right" onClick={handleSubmit}>
+              <div style={{display:'flex', justifyContent:'center'}}>
+            <span className="btn btn-success mt-3" onClick={handleSubmit}>
               submit
             </span>
-            
+            </div>
           </div>
         </div>
       </div>
     </div>
   );
 };
+
 
 export default OnlineExam;
