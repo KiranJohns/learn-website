@@ -412,12 +412,7 @@ const HeaderOpaque = () => {
                         >
                           <a
                             onClick={() => {
-                              router.push(`/${getUserType()}/myprofile`);
-                              // if (getUserType() === "company") {
-                              //   router.push("/company/dashboard");
-                              // } else {
-                              //   router.push("/individual/dashboard");
-                              // }
+                              router.push(`/${getUserType()}/dashboard`);
                             }}
                           >
                             {" "}
@@ -430,11 +425,6 @@ const HeaderOpaque = () => {
                             className="btn"
                             onClick={() => {
                               router.push(`/${getUserType()}/myprofile`);
-                              // if (getUserType() === "company") {
-                              //   router.push("/company/myprofile");
-                              // } else {
-                              //   router.push("/individual/myprofile");
-                              // }
                             }}
                           >
                             My Profile

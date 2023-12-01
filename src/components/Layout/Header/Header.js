@@ -479,6 +479,7 @@ const Header = () => {
                           >
                             <a
                               onClick={() => {
+                                router.push(`/${getUserType()}/dashboard`);
                                 // if ( === "company") {
                               }}
                             >
