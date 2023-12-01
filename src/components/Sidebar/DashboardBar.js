@@ -130,6 +130,30 @@ const links = [
   
     ],
   },
+
+  {
+    name: "Reports",
+    link: "report",
+    icon: "bi bi-book",
+    drop: "bi bi-caret-down-fill",
+    display: false,
+    show: function (link) {
+      this.display = !this.display;
+    },
+    subLinks: [
+      {
+        name: "Manager Report",
+        link: "/company/managerReport",
+      },
+      {
+        name: "Individual Report",
+        link: "/company/individualReport",
+      },
+  
+    ],
+  },
+
+
   
   // {
   //   name: " Archive User",
