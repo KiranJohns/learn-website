@@ -12,8 +12,8 @@ function BundleCare({ name }) {
   const makeRequest = fetchData()
   useEffect(() => {
     makeRequest("GET","/bundle/get-all-bundles").then(res => {
-      console.log(res);
-      setBundle(res.data.response[0])
+      console.log(res , name);
+      setBundle(res.data.response.filter(bundle => bundle.name==name)[0])
     }).catch(err => {
       console.log(err);
     })
@@ -83,6 +83,7 @@ function BundleCare({ name }) {
           </div> */}
         </div>
          <div className="col-md-2"></div>
+
         {bundle && <BundleCard className="col-md-6" item={bundle} />}
     
       </div>
