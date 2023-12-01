@@ -4,7 +4,7 @@ import CourseGridTab from '../Elements/Tab/CourseGridTab';
 import Cta from '../Home/CtaSection';
 import BundleCare from "../../components/Stat/BundleCare";
 import CourseGridBundle from '../Elements/Tab/CourseGridBundle';
-import BundleSample from '../Elements/Tab/BundleSample';
+import BundleChild from '../Stat/BundleChildCare';
 
 class ChildCBundle extends Component {
 
@@ -13,13 +13,11 @@ class ChildCBundle extends Component {
         return (
             <main>
 	            {/* breadcrumb-start */}
-				<Breadcrumb pageTitle=" Child Care Bundle"/>
+                <BundleChild name="Child Care Bundle"/>
 				{/* breadcrumb-end */}
                 
-                 <BundleCare/>
-                {/* course tab-start */}
-				<BundleSample/>
-				{/* course tab-end */}
+             
+           
               
                 {/* cta-start */}
 				<Cta />

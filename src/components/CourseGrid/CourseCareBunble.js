@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import Breadcrumb from '../Common/Breadcrumb';
 import CourseGridTab from '../Elements/Tab/CourseGridTab';
 import Cta from '../Home/CtaSection';
-import BundleCare from "../../components/Stat/BundleCare";
+
 import CourseGridBundle from '../Elements/Tab/CourseGridBundle';
-import BundleSample from '../Elements/Tab/BundleSample';
+import BundleCare from '../../components/Stat/BundleCare';
 
 class CourseBundle extends Component {
 
@@ -16,9 +16,9 @@ class CourseBundle extends Component {
 				<Breadcrumb pageTitle=" Care Bundle"/>
 				{/* breadcrumb-end */}
                 
-                 <BundleCare/>
+               
                 {/* course tab-start */}
-				<BundleSample/>
+				<BundleCare name="Care Course Bundle"/>
 				{/* course tab-end */}
               
                 {/* cta-start */}

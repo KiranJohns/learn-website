@@ -84,7 +84,7 @@ function BundleCare({ name }) {
         </div>
          <div className="col-md-2"></div>
 
-        {bundle && <BundleCard className="col-md-6" item={bundle} />}
+        {bundle && <BundleCard className="col-md-6 " item={bundle} />}
     
       </div>
     </div>

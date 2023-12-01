@@ -5,6 +5,7 @@ import Cta from '../Home/CtaSection';
 import BundleCare from "../../components/Stat/BundleCare";
 import CourseGridBundle from '../Elements/Tab/CourseGridBundle';
 import BundleSample from '../Elements/Tab/BundleSample';
+import BundleMan from '../Stat/BundleMandtory';
 
 class MandateBundle extends Component {
 
@@ -16,9 +17,9 @@ class MandateBundle extends Component {
 				<Breadcrumb pageTitle="Mandatory Care Bundle"/>
 				{/* breadcrumb-end */}
                 
-                 <BundleCare/>
+                <BundleMan  name="Mandatory Care Bundle"/>
                 {/* course tab-start */}
-				<BundleSample/>
+			
 				{/* course tab-end */}
               
                 {/* cta-start */}

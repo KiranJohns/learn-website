@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Breadcrumb from '../Common/Breadcrumb';
 import CourseGridTab from '../Elements/Tab/CourseGridTab';
 import Cta from '../Home/CtaSection';
-import BundleCare from "../../components/Stat/BundleCare";
+import BundleRecover from '../Stat/BundleRecovery';
 import CourseGridBundle from '../Elements/Tab/CourseGridBundle';
 import BundleSample from '../Elements/Tab/BundleSample';
 
@@ -16,10 +16,9 @@ class RecoverBundle extends Component {
 				<Breadcrumb pageTitle="Recovery Care Bundle"/>
 				{/* breadcrumb-end */}
                 
-                 <BundleCare/>
-                {/* course tab-start */}
-				<BundleSample/>
-				{/* course tab-end */}
+                <BundleRecover name="Recovery Care Bundle"/>
+
+             
               
                 {/* cta-start */}
 				<Cta />

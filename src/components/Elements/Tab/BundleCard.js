@@ -110,7 +110,7 @@ function BundleCard({ item }) {
   }
 
   return (
-    <div key={item.id} className="col-xxl-3 col-xl-3 col-lg-3 col-md-4">
+    <div key={item.id} className="col-xxl-4 col-xl-4 col-lg-4 col-md-6">
       <div className="course__item white-bg mb-30 fix">
         <div className="course__thumb w-img p-relative fix">
           <Link href={`/course/${item.id}`}>
