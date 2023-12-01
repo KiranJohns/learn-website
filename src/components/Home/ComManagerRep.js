@@ -53,7 +53,7 @@ class ManagerReport extends Component {
   }
 
   getData = () => {
-    this.makeRequest("GET", "/info/get-all-managers")
+    this.makeRequest("GET", "/info/get-all-manager-reports")
       .then((res) => {
         console.log(res.data.response);
         this.setState({ records: res.data.response, filterRecords: res.data });
@@ -61,24 +61,7 @@ class ManagerReport extends Component {
       .catch((err) => console.log(err));
   };
   handleBlock(block, id) {
-    let url = null;
-    let message = null;
-    console.log(id);
-    if (block) {
-      url = "/info/unblock-user";
-      message = "user unblocked";
-    } else {
-      message = "user blocked";
-      url = "/info/block-user";
-    }
-    this.makeRequest("POST", url, {
-      userId: id,
-    })
-      .then((res) => {
-        this.getData()
-        toast.success(message);
-      })
-      .catch((err) => console.log(err));
+
   }
   render() {
     const columns = [
@@ -95,18 +78,18 @@ class ManagerReport extends Component {
       },
       {
         name: "Courses Assigned",
-        selector: (row) => row.city,
+        selector: (row) => row.course_count,
         sortable: true,
         center: true,
       },
       {
         name: "Bundles Assigned",
-        selector: (row) => row.email,
+        selector: (row) => row.bundle_count,
         center: true,
       },
       {
         name: "Individuals",
-        cell: (row) => row.email,
+        cell: (row) => row.individuals_count,
         center:'true'
       }
     ];
