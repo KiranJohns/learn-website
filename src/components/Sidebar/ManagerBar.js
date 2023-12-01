@@ -112,11 +112,11 @@ const links = [
     subLinks: [
       {
         name: "Courses Matrix",
-        link: "/company/courseMatrix",
+        link: "/manager/courseMatrix",
       },
       {
         name: "Bundle Matrix",
-        link: "/company/bundleMatrix",
+        link: "/manager/bundleMatrix",
       },
   
     ],

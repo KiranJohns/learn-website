@@ -197,7 +197,11 @@ const ManCoursMatrix = () => {
     console.clear();
     makeRequest("GET", "/course/get-manager-matrix-course")
       .then((res) => {
-        console.log(res.data.response);
+        let temp = {
+          color: "gray",
+          progress: "",
+        };
+        // console.log(res.data.response);
         let users = res.data.response;
         let course_name = [];
         let user_name = [];
@@ -209,18 +213,11 @@ const ManCoursMatrix = () => {
 
           let allCourses = [...assigned, ...enrolled];
 
-          console.log(allCourses);
-
           let CNames = allCourses.map((course) => {
             return course.course_name;
           });
 
           let courses = [];
-
-          let temp = {
-            color: "gray",
-            progress: "",
-          };
 
           let newCName = [...removeDuplicates(CNames)];
 
@@ -230,27 +227,40 @@ const ManCoursMatrix = () => {
             course_name = newCName;
           }
 
-          course_name.forEach(() => {
-            courses.push(temp);
-          });
-
           allCourses.forEach((course) => {
             if (!courses.find((i) => i?.course_name == course?.course_name)) {
               course_name.forEach((item, id) => {
-                if (item == i?.course_name) {
+                if (item == course?.course_name) {
                   courses[id] = course;
                 }
               });
             }
           });
-
+          
           item["course"] = courses;
 
-          delete item.matrix_assigned;
-          delete item.matrix;
+          // delete item.matrix_assigned;
+          // delete item.matrix;
+        });
+        
+        let tempCourses = []
+        course_name.forEach(() => {
+          tempCourses.push(temp);
         });
         console.log(users);
-        console.log(course_name);
+        
+        users.forEach((item => {
+          let temp = [...tempCourses]
+          let course = item['course']
+          course_name.forEach((name,idx) => {
+            course.forEach(c => {
+              if (c.course_name === name) {
+                temp[idx] = c
+              }
+            })
+          });
+          item['course'] = temp
+        }))
         setCourseName(course_name);
         setUserName(user_name);
         setCourse(users);
