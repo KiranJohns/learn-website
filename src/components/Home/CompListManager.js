@@ -88,7 +88,7 @@ class CompListManager extends Component {
         sortable: true,
       },
       {
-        name: "User",
+        name: "City",
         selector: (row) => row.first_name + " " + row.last_name,
         sortable: true,
       },

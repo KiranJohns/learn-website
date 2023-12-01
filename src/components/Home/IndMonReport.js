@@ -99,7 +99,7 @@ class IndMonthRep extends Component {
           fontSize: 38,
         }}
       >
-       Purchased Courses
+       Monthly Report
       </h2>
         <div style={{ padding: "", backgroundColor: "" }}>
           {/* <div
