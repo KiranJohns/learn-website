@@ -44,12 +44,13 @@ class Transaction extends Component {
   };
   
   componentDidMount() {
+    console.clear()
     let makeRequest = fetchData();
-    makeRequest("GET", "/info/get-purchased-bundles")
+    makeRequest("GET", "/info/get-all-transactions")
       .then((res) => {
         console.log(res);
         this.setState({
-          records: res.data.response,
+          records: res.data.response.reverse(),
           filterRecords: res.data,
         });
       })
@@ -61,27 +62,31 @@ class Transaction extends Component {
   render() {
     const columns = [
       {
-        name: "Sl",
+        name: "NO",
         selector: (row,idx) => ++idx,
-        sortable: true,
+        center: true,
       },
       {
         name: "Date",
-        selector: (row) => row.bundle_name,
+        selector: (row) => new Date(row.date).toLocaleDateString(),
+        center: true,
         sortable: true,
       },
       {
         name: "Time",
-        selector: (row) => row.bundle_name,
+        selector: (row) => new Date(row.date).toLocaleTimeString('en-US'),
+        center: true,
         sortable: true,
       },
       {
         name: "Quantity",
-        selector: (row) => row.course_count,
+        selector: (row) => row.count,
+        center: true,
       },
       {
         name: "Amount",
-        selector: (row) => row.validity,
+        selector: (row) => row.amount,
+        center: true,
       },
     ];
 
