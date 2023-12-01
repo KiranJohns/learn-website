@@ -64,7 +64,7 @@ const BundleCour = () => {
       makeRequest("GET", `/bundle/get-started-bundle/${router.query.id}`)
         .then((res) => {
           setRecords(res.data.response.courses);
-          console.log(res.data.response.bundle[0]);
+          console.log(res.data.response);
           setData(res.data.response.bundle[0]);
           // location.href = `/individual/bundleCourses/?id=${res.data.response.id}`;
         })
@@ -114,22 +114,7 @@ const BundleCour = () => {
           },
         }}>
           <a
-            onClick={() => {
-    //           let form = new FormData();
-    // form.append("enrolled_bundle_id", data.id);
-    // form.append("course_id", id);
-
-    // console.log(router.query);
-    // makeRequest("POST", `/bundle/start-bundle-course`, form)
-    //   .then((res) => {
-        // setRecords(res.data.response);
-        // console.log(res.data.response);
-        // location.href = `/individual/bundleCourses/?id=${res.data.response.id}`;
-      // })
-      // .catch((err) => {
-      //   console.log(err);
-      // });
-            }}
+            onClick={() => {}}
             className="btn btn-success"
           >
             start

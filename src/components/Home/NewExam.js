@@ -87,7 +87,7 @@ const NewExam = () => {
                 <h5 className="" style={{ color: "#212a5" }}>
                   Online Assessment
                 </h5>
-                <h5> Wellness Recovery Action plan</h5>
+                <h5>{router.query.courseName}</h5>
               </div>
               <small style={{ color: "#212a50" }}>
                 After you completed the online assessment, you need to click on

@@ -74,7 +74,7 @@ class ManagerBundle extends Component {
     makeRequest("POST", "/bundle/start-bundle", form)
       .then((res) => {
         console.log(res);
-        location.href = `/individual/bundleCourses/?id=${res.data.response.id}`;
+        location.href = `/learnCourse/bundleList/?id=${res.data.response.id}`;
       })
       .catch((err) => {
         console.log(err);

@@ -145,6 +145,7 @@ const BundleResource = () => {
                 query: {
                   course_id: router.query.course_id,
                   bundleId: router.query.bundleId,
+                  courseName: course.name
                 },
               }}
             >
