@@ -3,14 +3,13 @@ import CourseBundle from "../../components/CourseGrid/CourseBundle";
 import DashboardBar from "../../components/Sidebar/DashboardBar";
 import HeaderDashboard from "../../components/Layout/Header/HeaderDashboard";
 import DashMain from "../../components/Home/DashMain";
-import DashSUser from "../../components/Home/DashSUser";
+import CompTransaction from "../../components/Home/CompTransaction"; 
 import Header from "../../components/Layout/Header/Header";
 import NoSSR from "react-no-ssr";
 import { getUserType } from "../../axios";
 import { useRouter } from "next/router";
-import CWIndReport from "../../components/Home/CompCoursWiseInd.";
 
-function CourWiseInd() {
+function Transaction() {
   const [logedIn, setlogedIn] = useState(() => {
     return getUserType();
   });
@@ -22,6 +21,7 @@ function CourWiseInd() {
       router.push("/sign-in");
     }
   }, []);
+
   return (
     <>
       {logedIn === "company" && (
@@ -47,7 +47,7 @@ function CourWiseInd() {
                   <DashboardBar />
                 </div>
                 <div className="col-sm col-md-9  bg-white">
-                  <CWIndReport/>
+                  <CompTransaction />
                 </div>
               </div>
             </div>
@@ -58,4 +58,4 @@ function CourWiseInd() {
   );
 }
 
-export default CourWiseInd;
+export default Transaction;

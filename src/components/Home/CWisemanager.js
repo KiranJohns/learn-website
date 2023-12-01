@@ -29,7 +29,7 @@ const customStyles = {
   },
 };
 
-const CWIndReport = () => {
+const CWManager = () => {
   const [records, setRecords] = useState([]);
   const [filterRecords, setFilterRecords] = useState([]);
   const [searchString, setSearchString] = useState("");
@@ -127,7 +127,7 @@ const CWIndReport = () => {
               fontSize: 36,
             }}
           >
-           Course Wise Individual
+           Course Wise Manager
           </h2>
           <div style={{ padding: "", backgroundColor: "" }}>
             <div style={{ float: "right", marginBottom: "1.4rem" }} className="p-relative d-inline header__search">
@@ -165,4 +165,4 @@ const CWIndReport = () => {
   );
 };
 
-export default CWIndReport;
+export default CWManager;

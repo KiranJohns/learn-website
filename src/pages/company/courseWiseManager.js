@@ -8,7 +8,7 @@ import Header from "../../components/Layout/Header/Header";
 import NoSSR from "react-no-ssr";
 import { getUserType } from "../../axios";
 import { useRouter } from "next/router";
-import CompIndReport from "../../components/Home/CompIndiviRep";
+import CWManager from "../../components/Home/CWisemanager";
 
 function CourseWiseManage() {
   const [logedIn, setlogedIn] = useState(() => {
@@ -47,7 +47,7 @@ function CourseWiseManage() {
                   <DashboardBar />
                 </div>
                 <div className="col-sm col-md-9  bg-white">
-                  <CompIndReport/>
+                  <CWManager/>
                 </div>
               </div>
             </div>

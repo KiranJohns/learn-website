@@ -121,7 +121,28 @@ const links = [
   
     ],
   },
-
+  
+  {
+    name: "Reports",
+    link: "reports",
+    icon: "bi bi-book",
+    drop: "bi bi-caret-down-fill",
+    display: false,
+    show: function (link) {
+      this.display = !this.display;
+    },
+    subLinks: [
+      {
+        name: "Individual Report",
+        link: "/manager/individualReport",
+      },
+      {
+        name: "Bundle Matrix",
+        link: "/manager/courseIndividual",
+      },
+  
+    ],
+  },
   // { name: "Show user", link: "/company/showuser", icon: "bi bi-person-check" },
   // {
   //   name: " Archive User",
@@ -134,7 +155,7 @@ const links = [
   //   icon: "bi bi-person-check-fill",
   // },
 ];
-function ManagerBar() {
+function  ManagerBar() {
   const router = useRouter();
   const inputRef = useRef(null);
   const [info, setInfo] = useState({});
