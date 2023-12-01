@@ -29,7 +29,7 @@ const customStyles = {
   },
 };
 
-const CWIndReport = () => {
+const ManCWIndReport = () => {
   const [records, setRecords] = useState([]);
   const [filterRecords, setFilterRecords] = useState([]);
   const [searchString, setSearchString] = useState("");
@@ -165,4 +165,4 @@ const CWIndReport = () => {
   );
 };
 
-export default CWIndReport;
+export default ManCWIndReport;

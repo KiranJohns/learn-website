@@ -3,10 +3,7 @@ import axios from "axios";
 import DataTable from "react-data-table-component";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { FaLock, FaUnlock } from "react-icons/fa";
 import fetchData from "../../axios";
-import BasicExample from "../About/button1";
-import Link from "next/link";
 
 const customStyles = {
   headRow: {
@@ -29,11 +26,12 @@ const customStyles = {
   },
 };
 
-const CWIndReport = () => {
+const ManIndReport = () => {
   const [records, setRecords] = useState([]);
   const [filterRecords, setFilterRecords] = useState([]);
   const [searchString, setSearchString] = useState("");
-  const [makeRequest, setMakeRequest] = useState(() => fetchData());
+
+  const makeRequest = fetchData();
 
   const handleFilter = (event) => {
     const newData = filterRecords.filter((row) =>
@@ -79,27 +77,27 @@ const CWIndReport = () => {
 
   const columns = [
     {
-      name: "Course Name",
+      name: "Name",
       selector: (row) => row.first_name + " " + row.last_name,
       sortable: true,
       center: true,
     },
     {
-      name: "Course Name",
+      name: "Courses Assigned",
       selector: (row) => row.city,
       sortable: true,
       center: true,
     },
     {
-      name: "Course Name",
+      name: "Bundles Assigned",
       selector: (row) => row.email,
       center: true,
     },
     {
-      name: "Course Name",
+      name: "Certificates",
       cell: (row) => row.email,
-      center: true,
-    },
+      center: 'true'
+    }
   ];
 
   return (
@@ -127,7 +125,7 @@ const CWIndReport = () => {
               fontSize: 36,
             }}
           >
-           Course Wise Individual
+            Individual Report
           </h2>
           <div style={{ padding: "", backgroundColor: "" }}>
             <div style={{ float: "right", marginBottom: "1.4rem" }} className="p-relative d-inline header__search">
@@ -150,13 +148,14 @@ const CWIndReport = () => {
               data={
                 searchString
                   ? records.filter((item) =>
-                      item.name.toLowerCase().includes(searchString.toLowerCase())
+                      item.name
+                        .toLowerCase()
+                        .includes(searchString.toLowerCase())
                     )
                   : records
               }
               customStyles={customStyles}
               pagination
-              persistTableHead ={true}
             />
           </div>
         </div>{" "}
@@ -165,4 +164,4 @@ const CWIndReport = () => {
   );
 };
 
-export default CWIndReport;
+export default ManIndReport;

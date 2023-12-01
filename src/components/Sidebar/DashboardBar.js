@@ -146,8 +146,20 @@ const links = [
         link: "/company/managerReport",
       },
       {
+        name: "Manager Cousres",
+        link: "/company/courseWiseManager",
+      },
+      {
         name: "Individual Report",
-        link: "/company/individualReport",
+        link: "/company/courseWiseIndividual",
+      },
+      {
+        name: "Individual Courses",
+        link: "/company/transactions",
+      },
+      {
+        name: "Month Wise Report",
+        link: "/company/monthlyReport",
       },
   
     ],

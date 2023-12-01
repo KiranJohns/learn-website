@@ -1,30 +1,37 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import CourseBundle from "../../components/CourseGrid/CourseBundle";
-import DashboardBar from "../../components/Sidebar/DashboardBar";
+
+import ManageBar from "../../components/Sidebar/ManagerBar";
 import HeaderDashboard from "../../components/Layout/Header/HeaderDashboard";
 import DashMain from "../../components/Home/DashMain";
-import DashSUser from "../../components/Home/DashSUser";
+import DashCourse from "../../components/Home/DashCourse";
 import Header from "../../components/Layout/Header/Header";
+import ManIndReport from "../../components/Home/ManIndReport";
 import NoSSR from "react-no-ssr";
-import { getUserType } from "../../axios";
+import DashTest from "../../components/Home/DashTest";
+import { Auth } from "../auth";
+import { useState } from "react";
+import { getToken, getUserType } from "../../axios";
 import { useRouter } from "next/router";
-import CWIndReport from "../../components/Home/CompCoursWiseInd.";
+import { useEffect } from "react";
+import Sidebar from "../../components/Sidebar/SampleSidebar";
 
-function CourWiseInd() {
+function IndReport() {
   const [logedIn, setlogedIn] = useState(() => {
     return getUserType();
   });
+  let routes = ["manager"]
 
   const router = useRouter();
 
   useEffect(() => {
-    if (logedIn !== "company") {
+    if (!routes.includes(logedIn)) {
       router.push("/sign-in");
     }
   }, []);
   return (
     <>
-      {logedIn === "company" && (
+      {routes.includes(logedIn) && (
         <React.Fragment>
           <main
             className="p-1"
@@ -44,18 +51,18 @@ function CourWiseInd() {
                   className="col-sm-12 col-md-12 col-lg-2 p-0"
                   style={{ backgroundColor: "#212450" }}
                 >
-                  <DashboardBar />
+                  <ManageBar />
                 </div>
-                <div className="col-sm col-md-9  bg-white">
-                  <CWIndReport/>
+                <div className="col-sm col-md-9 bg-white">
+                  <ManIndReport/>
                 </div>
               </div>
             </div>
           </main>
         </React.Fragment>
-      )}
+      )} 
     </>
   );
 }
 
-export default CourWiseInd;
+export default IndReport;
