@@ -14,6 +14,7 @@ import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Tabs from 'react-bootstrap/Tabs';
 import Table from 'react-bootstrap/Table';
+import {jwtDecode} from 'jwt-decode';
 
 
 const customStyles = {
@@ -44,6 +45,10 @@ const customStyles = {
 
 const CompAssignCourse = () => {
   const [records, setRecords] = useState([]);
+  const [user, setUser] = useState(() => {
+    let token = localStorage.getItem(`learnforcare_access`);
+    return jwtDecode(token)
+  });
   const [searchString, setSearchString] = useState("");
   const [companyIndividuals, setCompanyIndividuals] = useState([]);
   const [filteredCompanyIndividuals, setFilteredCompanyIndividuals] = useState(
@@ -53,6 +58,7 @@ const CompAssignCourse = () => {
   const [filteredManagers, setFilteredManagers] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [from, setFrom] = useState("");
+  const [courseName, setCourseName] = useState("");
   const [selectedBundleCount, setSelectedBundleCount] = useState(0);
   const [assignData, setAssignData] = useState({
     course_id: null, // purchased course id (purchased course table id)
@@ -203,6 +209,22 @@ const CompAssignCourse = () => {
         console.log(err);
       });
   }
+
+  function selfAssign() {
+    let form = new FormData();
+    form.append("id", assignData.course_id);
+    form.append("count", 1);
+
+    makeRequest("POST", "/info/manager-self-assign-course", form)
+      .then((res) => {
+        getData();
+        console.log(res);
+        toast("course assigned");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
   const columns = [
     {
       name: "ID",
@@ -249,6 +271,7 @@ const CompAssignCourse = () => {
           className="btn btn-primary"
           onClick={() => {
             openModal();
+            setCourseName(row.name || row.Name)
             console.log("row", row.id);
             setAssignData((prev) => {
               return {
@@ -303,7 +326,7 @@ const CompAssignCourse = () => {
               }}
             >
               <div className="dash-shadow p-3 " style={{ maxHeight: "200rem" }}>
-            
+                {courseName} {/*course name */}
               <Tabs
        id="controlled-tab-example"
        activeKey={key}
@@ -373,6 +396,21 @@ const CompAssignCourse = () => {
 
                     <div className="list-group bg-white">
                       <ul class="list-group">
+                      <li class="list-group-item bg-white text-black d-flex justify-content-between">
+                                <span style={{ width: "fit-content" }}>
+                                  {user?.first_name + " " + user?.last_name}
+                                </span>
+                                <span>{user?.email}</span>
+                                <span
+                                  onClick={() => {
+                                    selfAssign()
+                                  }}
+                                  style={{ width: "fit-content",margin:"0rem .1rem" }}
+                                  className="btn btn-success"
+                                >
+                                  Assign
+                                </span>
+                              </li>
                         {filteredCompanyIndividuals &&
                           filteredCompanyIndividuals.map((item) => {
                             return (

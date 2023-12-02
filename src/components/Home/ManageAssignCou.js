@@ -117,7 +117,6 @@ const ManagerAssignCourse = () => {
     console.log('course_id ',assignData.course_id);
     console.log('id ',id);
     console.log(1);
-
     makeRequest(
       "POST",
       "/info/assign-course-to-manager-individual-from-manager-assigned",

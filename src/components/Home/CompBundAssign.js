@@ -12,6 +12,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { Tab } from "react-bootstrap";
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import {jwtDecode} from 'jwt-decode';
 
 
 const customStyles = {
@@ -38,6 +39,7 @@ const customStyles = {
 const CompAssignBund = () => {
   const [records, setRecords] = useState([]);
   const [searchString, setSearchString] = useState("");
+  const [courseName, setCourseName] = useState("");
   const [companyIndividuals, setCompanyIndividuals] = useState([]);
   const [filteredCompanyIndividuals, setFilteredCompanyIndividuals] = useState(
     []
@@ -54,10 +56,30 @@ const CompAssignBund = () => {
   });
   const [selectUserForAssignCourse, setSelectUserForAssignCourse] =
     useState("individual");
+    const [user, setUser] = useState(() => {
+      let token = localStorage.getItem(`learnforcare_access`);
+      return jwtDecode(token)
+    });
 
   const openModal = () => {
     setShowModal(!showModal);
   };
+
+  function selfAssign() {
+    let form = new FormData();
+    form.append("id", assignData.course_id);
+    form.append("count", 1);
+
+    makeRequest("POST", "/info/manager-self-assign-course", form)
+      .then((res) => {
+        getData();
+        console.log(res);
+        toast("course assigned");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 
   const makeRequest = fetchData();
   async function getData() {
@@ -214,6 +236,7 @@ const CompAssignBund = () => {
           className="btn btn-primary"
           onClick={() => {
             openModal();
+            setCourseName(row.name || row.Name)
             console.log("row", row.id);
             setAssignData((prev) => {
               return {
@@ -365,6 +388,22 @@ const CompAssignBund = () => {
                     </div>
                     <div className="list-group bg-white">
                       <ul class="list-group">
+                      <li class="list-group-item bg-white text-black d-flex justify-content-between">
+                                <span style={{ width: "fit-content" }}>
+                                  {user.first_name + " " + user.last_name}
+                                </span>
+                                <span>{user.email}</span>
+                                <span
+                                
+                                  onClick={() => {
+                                    selfAssign()
+                                  }}
+                                  style={{ width: "fit-content",margin:"0rem .1rem" }}
+                                  className="btn btn-success"
+                                >
+                                  Assign
+                                </span>
+                              </li>
                         {filteredCompanyIndividuals &&
                           filteredCompanyIndividuals.map((item) => {
                             return (
