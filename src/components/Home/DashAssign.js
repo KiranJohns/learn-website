@@ -77,6 +77,7 @@ const CompAssignCourse = () => {
 
   const makeRequest = fetchData();
   async function getData() {
+    console.clear()
     let purchasedRes = await makeRequest(
       "GET",
       "/course/get-all-assigned-course"
@@ -86,7 +87,7 @@ const CompAssignCourse = () => {
       .then((res) => {
         console.log(res[0].data.response);
         console.log(res[1].data.response);
-        let newRes = [...res[0].data.response, ...res[1].data.response];
+        let newRes = [...res[0].data.response, ...res[1].data.response].filter(item => item?.owner != user?.id);
         setRecords(newRes?.filter((item) => item.course_count >= 1).reverse());
       })
       .catch((err) => {

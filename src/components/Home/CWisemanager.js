@@ -47,7 +47,8 @@ const CWManager = () => {
   }, []);
 
   const getData = () => {
-    makeRequest("GET", "/info/get-all-managers")
+    console.clear()
+    makeRequest("GET", "/info/get-course-wise-reports")
       .then((res) => {
         console.log(res.data.response);
         setRecords(res.data.response);
@@ -56,48 +57,27 @@ const CWManager = () => {
       .catch((err) => console.log(err));
   };
 
-  const handleBlock = (block, id) => {
-    let url = null;
-    let message = null;
-    console.log(id);
-    if (block) {
-      url = "/info/unblock-user";
-      message = "user unblocked";
-    } else {
-      message = "user blocked";
-      url = "/info/block-user";
-    }
-    makeRequest("POST", url, {
-      userId: id,
-    })
-      .then((res) => {
-        getData();
-        toast.success(message);
-      })
-      .catch((err) => console.log(err));
-  };
-
   const columns = [
     {
-      name: "Course Name",
-      selector: (row) => row.first_name + " " + row.last_name,
+      name: "SL",
+      selector: (row,id) => id,
+      sortable: true,
+      center: true,
+    },
+    {
+      name: "CODE",
+      selector: (row,id) => id,
       sortable: true,
       center: true,
     },
     {
       name: "Course Name",
-      selector: (row) => row.city,
-      sortable: true,
+      selector: (row) => row.course_name,
       center: true,
     },
     {
-      name: "Course Name",
-      selector: (row) => row.email,
-      center: true,
-    },
-    {
-      name: "Course Name",
-      cell: (row) => row.email,
+      name: "Managers Count",
+      cell: (row) => row.managers_count,
       center: true,
     },
   ];

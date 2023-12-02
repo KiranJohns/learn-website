@@ -7,6 +7,7 @@ import fetchData from "../../axios";
 import Modal from "react-responsive-modal";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
+import { jwtDecode } from "jwt-decode";
 
 const customStyles = {
   headRow: {
@@ -38,6 +39,7 @@ class DashCourse extends Component {
       records: [],
       filterRecords: [],
       subUsers: [],
+      user: jwtDecode(localStorage.getItem(`learnforcare_access`)),
       searchData: "",
       openModal: false,
     };
@@ -67,7 +69,7 @@ class DashCourse extends Component {
         .then((res) => {
           console.log(res);
           this.setState({
-            records: res.data.response.reverse(),
+            records: res.data.response.reverse().filter(item => item?.owner == this.state?.user?.id),
             filterRecords: res.data,
           });
         })
