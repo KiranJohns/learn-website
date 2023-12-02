@@ -151,6 +151,10 @@ const links = [
       },
       {
         name: "Individual Report",
+        link: "/company/individualReport",
+      },
+      {
+        name: "Individual Courses",
         link: "/company/courseWiseIndividual",
       },
       {

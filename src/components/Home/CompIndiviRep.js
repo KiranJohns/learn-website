@@ -158,6 +158,8 @@ class CompIndReport extends Component {
                 </form>
               </div>
               <DataTable
+              persistTableHead={true}
+              
                 columns={columns}
                 data={
                   this.state.searchString

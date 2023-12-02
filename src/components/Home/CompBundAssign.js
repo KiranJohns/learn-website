@@ -36,7 +36,7 @@ const customStyles = {
   },
 };
 
-const CompAssignBund = () => {
+const  CompAssignBund = () => {
   const [records, setRecords] = useState([]);
   const [searchString, setSearchString] = useState("");
   const [courseName, setCourseName] = useState("");
