@@ -45,7 +45,7 @@ class CompMonthRep extends Component {
   
   componentDidMount() {
     let makeRequest = fetchData();
-    makeRequest("GET", "/info/get-purchased-bundles")
+    makeRequest("GET", "/info/get-all-transactions-by-month")
       .then((res) => {
         console.log(res);
         this.setState({
@@ -66,22 +66,22 @@ class CompMonthRep extends Component {
         sortable: true,
       },
       {
-        name: "Date",
-        selector: (row) => row.bundle_name,
+        name: "year",
+        selector: (row) => row.year,
         sortable: true,
       },
       {
-        name: "Time",
-        selector: (row) => row.bundle_name,
+        name: "month",
+        selector: (row) => row.month,
         sortable: true,
       },
       {
         name: "Quantity",
-        selector: (row) => row.course_count,
+        selector: (row) => row.total_fake_count,
       },
       {
-        name: "Amount",
-        selector: (row) => row.validity,
+        name: "amount",
+        selector: (row) => row.total_amount,
       },
     ];
 

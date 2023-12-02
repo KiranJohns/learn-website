@@ -59,24 +59,24 @@ const CWIndReport = () => {
   const columns = [
     {
       name: "SL",
-      selector: (row) => row.first_name + " " + row.last_name,
+      selector: (row,id) => id,
       sortable: true,
       center: true,
     },
     {
       name: "CODE",
-      selector: (row) => row.city,
+      selector: (row,id) => id,
       sortable: true,
       center: true,
     },
     {
       name: "Course Name",
-      selector: (row) => row.email,
+      selector: (row) => row.course_name,
       center: true,
     },
     {
       name: "Individuals Count",
-      cell: (row) => row.email,
+      cell: (row) => row.count,
       center: true,
     },
   ];
