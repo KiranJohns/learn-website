@@ -15,6 +15,7 @@ import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Tabs from 'react-bootstrap/Tabs';
 import Table from 'react-bootstrap/Table';
 import {jwtDecode} from 'jwt-decode';
+import Spinner from 'react-bootstrap/Spinner';
 
 
 const customStyles = {
@@ -799,6 +800,10 @@ const CompAssignCourse = () => {
             </div>
             <DataTable
              persistTableHead={true}
+             progressComponent={<div style={{padding:"1rem"}}>
+              <Spinner animation="border" variant="primary" />
+              </div>
+             }
               columns={columns}
               data={
                 searchString
@@ -810,6 +815,7 @@ const CompAssignCourse = () => {
                   : records
               }
               customStyles={customStyles}
+             
               pagination
              
             />
