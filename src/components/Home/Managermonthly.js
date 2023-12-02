@@ -27,7 +27,7 @@ const customStyles = {
   },
 };
 
-class ManTransaction extends Component {
+class ManageMonthRep extends Component {
   constructor() {
     super();
     this.state = {
@@ -44,9 +44,8 @@ class ManTransaction extends Component {
   };
   
   componentDidMount() {
-    console.clear()
     let makeRequest = fetchData();
-    makeRequest("GET", "/info/get-all-transactions")
+    makeRequest("GET", "/info/get-all-transactions-by-month")
       .then((res) => {
         console.log(res);
         this.setState({
@@ -62,31 +61,27 @@ class ManTransaction extends Component {
   render() {
     const columns = [
       {
-        name: "NO",
+        name: "Sl",
         selector: (row,idx) => ++idx,
-        center: true,
-      },
-      {
-        name: "Date",
-        selector: (row) => new Date(row.date).toLocaleDateString(),
-        center: true,
         sortable: true,
       },
       {
-        name: "Time",
-        selector: (row) => new Date(row.date).toLocaleTimeString('en-US'),
-        center: true,
+        name: "year",
+        selector: (row) => row.year,
+        sortable: true,
+      },
+      {
+        name: "month",
+        selector: (row) => row.month,
         sortable: true,
       },
       {
         name: "Quantity",
-        selector: (row) => row.count,
-        center: true,
+        selector: (row) => row.total_fake_count,
       },
       {
-        name: "Amount",
-        selector: (row) => row.amount,
-        center: true,
+        name: "amount",
+        selector: (row) => row.total_amount,
       },
     ];
 
@@ -94,17 +89,17 @@ class ManTransaction extends Component {
       <div className="">
        
       <div className="dash-shadow">
-      <div className="relative row g-3  min-vh-100  d-flex justify-content-center mt-20">
+      <div className=" row g-3  min-vh-100  d-flex justify-content-center mt-20">
       <h2
         style={{  
           color: "#212450",
           display: "flex",
           justifyContent: "center",
           position:'absolute',
-          fontSize: 36,
+          fontSize: 38,
         }}
       >
-      Transactions
+       Monthly Report
       </h2>
         <div style={{ padding: "", backgroundColor: "" }}>
           {/* <div
@@ -152,4 +147,4 @@ class ManTransaction extends Component {
   }
 }
 
-export default ManTransaction;
+export default ManageMonthRep;

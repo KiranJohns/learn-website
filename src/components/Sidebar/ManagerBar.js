@@ -140,7 +140,14 @@ const links = [
         name: "Manager Report",
         link: "/manager/courseIndividual",
       },
-  
+      {
+        name: "Transactions",
+        link: "/manager/transaction",
+      },
+      {
+        name: "Monthly Report",
+        link: "/manager/monthlyReport",
+      },
     ],
   },
   // { name: "Show user", link: "/company/showuser", icon: "bi bi-person-check" },
