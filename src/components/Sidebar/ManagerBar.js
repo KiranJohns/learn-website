@@ -137,7 +137,7 @@ const links = [
         link: "/manager/individualReport",
       },
       {
-        name: "Manager Report",
+        name: "Individual Courses",
         link: "/manager/courseIndividual",
       },
       {

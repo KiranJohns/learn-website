@@ -169,7 +169,7 @@ const links = [
     ],
   },
 
-
+  { name: "Invoice", link: "/company/invoice", icon: "bi bi-person-check" },
   
   // {
   //   name: " Archive User",
