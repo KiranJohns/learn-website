@@ -325,8 +325,8 @@ const CompAssignCourse = () => {
                 });
               }}
             >
-              <div className="dash-shadow p-3 " style={{ maxHeight: "200rem" }}>
-                {courseName} {/*course name */}
+              <div className="dash-shadow p-3 m-3" style={{ maxHeight: "200rem" }}>
+              <h5 style={{color:"#212a50"}}> {courseName}</h5>  {/*course name */}
               <Tabs
        id="controlled-tab-example"
        activeKey={key}
@@ -335,6 +335,7 @@ const CompAssignCourse = () => {
       
     >
       <Tab eventKey="individual" title="Individual">
+        
       <div style={{background:'white'}}>
       <div className="form-control dash-shadow d-flex gap-3 p-3">
                       <div className="form-group">

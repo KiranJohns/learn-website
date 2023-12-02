@@ -137,7 +137,7 @@ const links = [
         link: "/manager/individualReport",
       },
       {
-        name: "Bundle Matrix",
+        name: "Manager Report",
         link: "/manager/courseIndividual",
       },
   
