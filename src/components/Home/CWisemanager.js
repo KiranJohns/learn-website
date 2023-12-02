@@ -48,7 +48,7 @@ const CWManager = () => {
 
   const getData = () => {
     console.clear()
-    makeRequest("GET", "/info/get-course-wise-reports")
+    makeRequest("GET", "/info/get-course-wise-manager-reports")
       .then((res) => {
         console.log(res.data.response);
         setRecords(res.data.response);
