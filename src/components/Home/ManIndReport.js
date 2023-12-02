@@ -45,7 +45,7 @@ const ManIndReport = () => {
   }, []);
 
   const getData = () => {
-    makeRequest("GET", "/info/get-all-managers")
+    makeRequest("GET", "/info/get-all-individual-report")
       .then((res) => {
         console.log(res.data.response);
         setRecords(res.data.response);
@@ -54,26 +54,7 @@ const ManIndReport = () => {
       .catch((err) => console.log(err));
   };
 
-  const handleBlock = (block, id) => {
-    let url = null;
-    let message = null;
-    console.log(id);
-    if (block) {
-      url = "/info/unblock-user";
-      message = "user unblocked";
-    } else {
-      message = "user blocked";
-      url = "/info/block-user";
-    }
-    makeRequest("POST", url, {
-      userId: id,
-    })
-      .then((res) => {
-        getData();
-        toast.success(message);
-      })
-      .catch((err) => console.log(err));
-  };
+
 
   const columns = [
     {
@@ -84,18 +65,18 @@ const ManIndReport = () => {
     },
     {
       name: "Courses Assigned",
-      selector: (row) => row.city,
+      selector: (row) => row.course_count,
       sortable: true,
       center: true,
     },
     {
       name: "Bundles Assigned",
-      selector: (row) => row.email,
+      selector: (row) => row.bundle_count,
       center: true,
     },
     {
       name: "Certificates",
-      cell: (row) => row.email,
+      cell: (row) => row.certificates,
       center: 'true'
     }
   ];
