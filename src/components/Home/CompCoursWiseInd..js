@@ -47,7 +47,7 @@ const CWIndReport = () => {
   }, []);
 
   const getData = () => {
-    makeRequest("GET", "/info/get-all-managers")
+    makeRequest("GET", "/info/get-course-wise-individual-reports")
       .then((res) => {
         console.log(res.data.response);
         setRecords(res.data.response);
@@ -56,36 +56,15 @@ const CWIndReport = () => {
       .catch((err) => console.log(err));
   };
 
-  const handleBlock = (block, id) => {
-    let url = null;
-    let message = null;
-    console.log(id);
-    if (block) {
-      url = "/info/unblock-user";
-      message = "user unblocked";
-    } else {
-      message = "user blocked";
-      url = "/info/block-user";
-    }
-    makeRequest("POST", url, {
-      userId: id,
-    })
-      .then((res) => {
-        getData();
-        toast.success(message);
-      })
-      .catch((err) => console.log(err));
-  };
-
   const columns = [
     {
-      name: "Course Name",
+      name: "SL",
       selector: (row) => row.first_name + " " + row.last_name,
       sortable: true,
       center: true,
     },
     {
-      name: "Course Name",
+      name: "CODE",
       selector: (row) => row.city,
       sortable: true,
       center: true,
@@ -96,7 +75,7 @@ const CWIndReport = () => {
       center: true,
     },
     {
-      name: "Course Name",
+      name: "Individuals Count",
       cell: (row) => row.email,
       center: true,
     },
