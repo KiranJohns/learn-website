@@ -29,7 +29,7 @@ const ManBundMatrix = () => {
         id: 1,
         userId: 1,
         course: {
-          name: "some of the people",
+          name: "ADHD Awareness",
           color: "#ae0000",
           progress: "0%",
         },

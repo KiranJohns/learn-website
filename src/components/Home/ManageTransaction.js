@@ -27,7 +27,7 @@ const customStyles = {
   },
 };
 
-class CompTransaction extends Component {
+class ManTransaction extends Component {
   constructor() {
     super();
     this.state = {
@@ -101,7 +101,7 @@ class CompTransaction extends Component {
           display: "flex",
           justifyContent: "center",
           position:'absolute',
-          fontSize: 36,
+          fontSize: 38,
         }}
       >
       Transactions
@@ -152,4 +152,4 @@ class CompTransaction extends Component {
   }
 }
 
-export default CompTransaction;
+export default ManTransaction;

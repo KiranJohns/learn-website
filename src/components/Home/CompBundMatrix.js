@@ -4,184 +4,184 @@ import Table from 'react-bootstrap/Table';
 const MatrixBundComp = () => {
   const matrixDataUser = [
   
-    {
-      id: 1,
-      name: "Rahul",
-    },
-    {
-      id: 2,
-      name: "Kiran",
-    },
-    {
-      id: 3,
-      name: "Aloshy",
-    },
-    {
-      id: 4,
-      name: "Alba",
-    },
+    // {
+    //   id: 1,
+    //   name: "Rahul",
+    // },
+    // {
+    //   id: 2,
+    //   name: "Kiran",
+    // },
+    // {
+    //   id: 3,
+    //   name: "Aloshy",
+    // },
+    // {
+    //   id: 4,
+    //   name: "Alba",
+    // },
   ];
 
   const matrixDataCourse = [
     [
-      {
-        id: 1,
-        userId: 1,
-        course: {
-          name: "some of the people",
-          color: "#ae0000",
-          progress: "0%",
-        },
-      },
-      {
-        id: 1,
-        userId: 1,
-        course: {
-          name: "of the people",
-          color: "#549C30",
-          progress: "100%",
-        },
-      },
-      {
-        id: 1,
-        userId: 1,
-        course: {
-          name: "by the people",
-          color: "#f7b500",
-          progress: "50%",
-        },
-      },
-      {
-        id: 1,
-        userId: 1,
-        course: {
-          name: "for the people",
-          color: "#549C30",
-          progress: "100%",
-        },
-      },
-    ],
-    [
-      {
-        id: 1,
-        userId: 2,
-        course: {
-          name: "by the people",
-          color: "#f7b500",
-          progress: "50%",
-        },
-      },
-      {
-        id: 2,
-        userId: 2,
-        course: {
-          name: "some of the people",
-          color: "#ae0000",
-          progress: "0%",
-        },
-      },
-      {
-        id: 3,
-        userId: 2,
-        course: {
-          name: "of the people",
-          color: "#549C30",
-          progress: "100%",
-        },
-      },
-      {
-        id: 4,
-        userId: 2,
-        course: {
-          name: "for the people",
-          color: "#f7b500",
-          progress: "50%",
-        },
-      },
-    ],
-    [
-      {
-        id: 1,
-        userId: 3,
-        course: {
-          name: "some of the people",
-          color: "#ae0000",
-          progress: "0%",
-        },
-      },
-      {
-        id: 1,
-        userId: 3,
-        course: {
-          name: "for the people",
-          color: "#f7b500",
-          progress: "50%",
-        },
-      },
-      {
-        id: 1,
-        userId: 3,
-        course: {
-          name: "of the people",
-          color: "#549C30",
-          progress: "100%",
-        },
-      },
-      {
-        id: 1,
-        userId: 3,
-        course: {
-          name: "by the people",
-          color: "#549C30",
-          progress: "100%",
-        },
-      },
-    ],
-    [
-      {
-        id: 1,
-        userId: 4,
-        course: {
-          name: "by the people",
-          color: "#f7b500",
-          progress: "50%",
-        },
-      },
-      {
-        id: 1,
-        userId: 4,
-        course: {
-          name: "some of the people",
-          color: "#ae0000",
-          progress: "0%",
-        },
-      },
-      {
-        id: 1,
-        userId: 4,
-        course: {
-          name: "of the people",
-          color: "#549C30",
-          progress: "100%",
-        },
-      },
-      {
-        id: 1,
-        userId: 4,
-        course: {
-          name: "for the people",
-          color: "#549C30",
-          progress: "100%",
-        },
-      },
+    //   {
+    //     id: 1,
+    //     userId: 1,
+    //     course: {
+    //       name: "some of the people",
+    //       color: "#ae0000",
+    //       progress: "0%",
+    //     },
+    //   },
+    //   {
+    //     id: 1,
+    //     userId: 1,
+    //     course: {
+    //       name: "of the people",
+    //       color: "#549C30",
+    //       progress: "100%",
+    //     },
+    //   },
+    //   {
+    //     id: 1,
+    //     userId: 1,
+    //     course: {
+    //       name: "by the people",
+    //       color: "#f7b500",
+    //       progress: "50%",
+    //     },
+    //   },
+    //   {
+    //     id: 1,
+    //     userId: 1,
+    //     course: {
+    //       name: "for the people",
+    //       color: "#549C30",
+    //       progress: "100%",
+    //     },
+    //   },
+    // ],
+    // [
+    //   {
+    //     id: 1,
+    //     userId: 2,
+    //     course: {
+    //       name: "by the people",
+    //       color: "#f7b500",
+    //       progress: "50%",
+    //     },
+    //   },
+    //   {
+    //     id: 2,
+    //     userId: 2,
+    //     course: {
+    //       name: "some of the people",
+    //       color: "#ae0000",
+    //       progress: "0%",
+    //     },
+    //   },
+    //   {
+    //     id: 3,
+    //     userId: 2,
+    //     course: {
+    //       name: "of the people",
+    //       color: "#549C30",
+    //       progress: "100%",
+    //     },
+    //   },
+    //   {
+    //     id: 4,
+    //     userId: 2,
+    //     course: {
+    //       name: "for the people",
+    //       color: "#f7b500",
+    //       progress: "50%",
+    //     },
+    //   },
+    // ],
+    // [
+    //   {
+    //     id: 1,
+    //     userId: 3,
+    //     course: {
+    //       name: "some of the people",
+    //       color: "#ae0000",
+    //       progress: "0%",
+    //     },
+    //   },
+    //   {
+    //     id: 1,
+    //     userId: 3,
+    //     course: {
+    //       name: "for the people",
+    //       color: "#f7b500",
+    //       progress: "50%",
+    //     },
+    //   },
+    //   {
+    //     id: 1,
+    //     userId: 3,
+    //     course: {
+    //       name: "of the people",
+    //       color: "#549C30",
+    //       progress: "100%",
+    //     },
+    //   },
+    //   {
+    //     id: 1,
+    //     userId: 3,
+    //     course: {
+    //       name: "by the people",
+    //       color: "#549C30",
+    //       progress: "100%",
+    //     },
+    //   },
+    // ],
+    // [
+    //   {
+    //     id: 1,
+    //     userId: 4,
+    //     course: {
+    //       name: "by the people",
+    //       color: "#f7b500",
+    //       progress: "50%",
+    //     },
+    //   },
+    //   {
+    //     id: 1,
+    //     userId: 4,
+    //     course: {
+    //       name: "some of the people",
+    //       color: "#ae0000",
+    //       progress: "0%",
+    //     },
+    //   },
+    //   {
+    //     id: 1,
+    //     userId: 4,
+    //     course: {
+    //       name: "of the people",
+    //       color: "#549C30",
+    //       progress: "100%",
+    //     },
+    //   },
+    //   {
+    //     id: 1,
+    //     userId: 4,
+    //     course: {
+    //       name: "for the people",
+    //       color: "#549C30",
+    //       progress: "100%",
+    //     },
+    //   },
     ],
   ];
 
   const courseName = [
-    "some of the people",
-    "by the people",
-    "of the people",
-    "for the people",
+    "ADHD Awareness",
+    "Standard 1 Understand your role",
+    "Diabetes Care",
+    "First Aid Awareness",
   ];
   return (
     <div className="row p-3">
@@ -256,7 +256,7 @@ const MatrixBundComp = () => {
                     > 
                       {
                         matrixDataUser.find((user) => user.id == course.userId)
-                          .name
+                          ?.name
                       }
                     </td>
                     <td
