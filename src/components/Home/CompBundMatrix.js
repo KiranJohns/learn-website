@@ -1,5 +1,6 @@
 import React from "react";
 import Table from 'react-bootstrap/Table';
+import Form from 'react-bootstrap/Form';
 
 const MatrixBundComp = () => {
   const matrixDataUser = [
@@ -205,11 +206,23 @@ const MatrixBundComp = () => {
 
        </div>
       <div className="col-12 p-2 m-2">
-        <div className="d-flex justify-content-center my-2 "><h4>
-          Bundle Matrix
-          </h4></div>
+      <div style={{position:'relative'}}>
+          <div className="d-flex justify-content-center my-2 ">
+            <h4 >Bundle Matrix</h4>
+          </div>
+
+          
+          <div style={{position:'absolute', top:"0", right:"0"}}  className="col-4 p-1 m-">
+            <Form.Select size="" style={{ border: ".1px solid #212a50" }} aria-label="Default select example">
+            <option>Select Manager</option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+          </Form.Select>
+          </div>
+          </div>
         
-      <Table  bordered  variant="light">
+      <Table style={{marginTop:".5rem"}} responsive  bordered  variant="light">
     <thead>
       <tr style={{ textAlign:'center'}}>
         <th style={{background:'#212a50', color:'white'}} colSpan={5}>Bundle Name</th>
@@ -246,7 +259,6 @@ const MatrixBundComp = () => {
                   <>
                     <td
                       style={{
-                      
                         padding: "0 0.5rem",
                         color: "white",
                         background:'#212450',
@@ -260,8 +272,7 @@ const MatrixBundComp = () => {
                       }
                     </td>
                     <td
-                      style={{
-                       
+                      style={{  
                         padding: "0 0.5rem",
                         color: "#3a3b3c",
                         backgroundColor: item[i].course.color,
