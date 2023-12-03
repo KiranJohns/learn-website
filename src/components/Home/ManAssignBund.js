@@ -140,13 +140,15 @@ const ManAssignBund = () => {
     {
       name: "ID",
       selector: (row, idx) => ++idx,
-  
+      width:"70px",
       center:true,
     },
     {
       name: "bundle name",
       selector: (row) => row.bundle_name,
+      width:"400px",
       sortable: true,
+      center:true,
     },
     {
       name: "validity",
@@ -339,7 +341,7 @@ const ManAssignBund = () => {
               }
               customStyles={customStyles}
               pagination
-              selectableRows
+             
             />
           </div>
         </div>{" "}

@@ -58,20 +58,21 @@ const ManCWIndReport = () => {
 
   const columns = [
     {
-      name: "SL",
+      name: "no",
       selector: (row,id) => id,
-      sortable: true,
+      width:"100px",
       center: true,
     },
     {
       name: "CODE",
       selector: (row,id) => id,
-      sortable: true,
+     
       center: true,
     },
     {
       name: "Course Name",
       selector: (row) => row.course_name,
+      width:"430px",
       center: true,
     },
     {

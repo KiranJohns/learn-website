@@ -65,12 +65,13 @@ class ManTransaction extends Component {
         name: "NO",
         selector: (row,idx) => ++idx,
         center: true,
+        width:"100px"
       },
       {
         name: "Date",
         selector: (row) => new Date(row.date).toLocaleDateString(),
         center: true,
-        sortable: true,
+     
       },
       {
         name: "Time",
@@ -143,7 +144,7 @@ class ManTransaction extends Component {
             data={this.state.records}
             customStyles={customStyles}
             pagination
-            selectableRows
+         
           />
         </div>
       </div> </div>

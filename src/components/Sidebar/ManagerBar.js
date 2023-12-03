@@ -35,7 +35,7 @@ const links = [
   {
     name: "Bundles",
     link: "bundle",
-    icon: "bi bi-person-circle",
+    icon: "bi bi-stack",
     drop: "bi bi-caret-down-fill",
     display: false,
     show: function (link) {
@@ -96,15 +96,15 @@ const links = [
   {
     name: "Create User",
     link: "/manager/createUser",
-    icon: "bi bi-person-check ",
+    icon: "bi bi-person-check",
   },
   { name: "Individuals", link: "/manager/individuals", icon: "bi bi-person-check" },
 
   {
     name: "Matrix",
     link: "matrix",
-    icon: "bi bi-book",
-    drop: "bi bi-caret-down-fill",
+    icon: "bi bi-table",
+    drop: " bi bi-caret-down-fill",
     display: false,
     show: function (link) {
       this.display = !this.display;
@@ -125,7 +125,7 @@ const links = [
   {
     name: "Reports",
     link: "reports",
-    icon: "bi bi-book",
+    icon: "bi bi-info-circle-fill",
     drop: "bi bi-caret-down-fill",
     display: false,
     show: function (link) {

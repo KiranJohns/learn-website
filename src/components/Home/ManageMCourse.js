@@ -93,12 +93,15 @@ class ManageMyCourse extends Component {
         name: "No",
         selector: (row, idx) => ++idx,
         center: true,
+        width:"70px",
+     
       },
       {
         name: "Courses",
         selector: (row) => row?.Name || row?.name,
         sortable: true,
         center: true,
+        width:"400px",
       },
       {
         name: "validity",
@@ -203,7 +206,7 @@ class ManageMyCourse extends Component {
                 data={this.state.records}
                 customStyles={customStyles}
                 pagination
-                selectableRows
+                persistTableHead={true}
               />
             </div>
           </div>{" "}

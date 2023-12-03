@@ -134,15 +134,17 @@ const ManagerAssignCourse = () => {
 
   const columns = [
     {
-      name: "Index",
+      name: "No",
       selector: (row, idx) => ++idx,
       center:true,
+      width:"70px",
     },
     {
       name: "course",
       selector: (row) => row.name || row.Name,
       sortable: true,
       center:true,
+      width:"400px",
     },
     {
       name: "validity",
@@ -190,14 +192,14 @@ const ManagerAssignCourse = () => {
     <div className="">
       <ToastContainer />
       <div className="dash-shadow">
-        <div className=" row g-3  min-vh-100  d-flex justify-content-center mt-20">
+        <div style={{position:"relative"}} className=" row g-3  min-vh-100  d-flex justify-content-center mt-20">
           <h2
             style={{
               color: "#212450",
               display: "flex",
               justifyContent: "center",
               position: "absolute",
-              fontSize: 38,
+              fontSize: 36,
             }}
           >
             Purchased Course
@@ -333,8 +335,7 @@ const ManagerAssignCourse = () => {
                   : records
               }
               customStyles={customStyles}
-              pagination
-              selectableRows
+              pagination     
             />
           </div>
         </div>{" "}

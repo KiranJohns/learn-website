@@ -86,27 +86,34 @@ class ManagerBundle extends Component {
       {
         name: "ID",
         selector: (row, idx) => ++idx,
-        sortable: true,
+         width:'70px',
+         center:true,
       },
       {
         name: "Bundle name",
         selector: (row) => row.bundle_name,
         sortable: true,
+        width:"420px",
+        center:true,
       },
       {
         name: "validity",
         selector: (row) => new Date(row.validity).toLocaleDateString(),
+        center:true,
       },
       {
         name: "count",
         selector: (row) => row.course_count,
+        center:true,
       },
       {
         name: "total price",
         selector: (row) => row.amount,
+        center:true,
       },
       {
         name: "Action",
+        center:true,
         selector: (row) => (
           <a
             className="btn btn-success"
@@ -175,7 +182,7 @@ class ManagerBundle extends Component {
                 data={this.state.records}
                 customStyles={customStyles}
                 pagination
-                selectableRows
+                persistTableHead={true}
               />
             </div>
           </div>{" "}
