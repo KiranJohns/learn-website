@@ -324,7 +324,7 @@ const ManCoursMatrix = () => {
 
 
           
-          <div style={{position:'absolute', top:"0", right:"0"}}  className="col-4 p-2 m-2"> <Form.Select style={{ border: ".1px solid #212a50" }} aria-label="Default select example">
+          <div style={{position:'absolute', top:"0", right:"0"}}  className="col-4 p-1 m-"> <Form.Select size="" style={{ border: ".1px solid #212a50" }} aria-label="Default select example">
             <option>Select Manager</option>
             <option value="1">One</option>
             <option value="2">Two</option>
@@ -334,7 +334,7 @@ const ManCoursMatrix = () => {
           </div>
        
 
-          <Table style={{marginTop:"1rem"}} responsive bordered variant="light">
+          <Table style={{marginTop:".5rem"}} responsive bordered variant="light">
             <thead>
               <tr style={{ textAlign: "center" }}>
                 <th
