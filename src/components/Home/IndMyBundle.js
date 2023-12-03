@@ -99,15 +99,19 @@ class IndMyBundle extends Component {
       {
         name: "ID",
         selector: (row, idx) => ++idx,
-        sortable: true,
+        width:"90px",
+        center:true,
       },
       {
         name: "bundle name",
         selector: (row) => row?.name || row?.bundle_name,
         sortable: true,
+        width:"400px",
+        center:true,
       },
       {
         name: "validity",
+        center:true,
         selector: (row) => {
           let newDt = new Date(row.validity)
             .toLocaleDateString()
@@ -118,10 +122,12 @@ class IndMyBundle extends Component {
       },
       {
         name: "description",
+        center:true,
         selector: (row) => row.description?.slice(0, 20),
       },
       {
         name: "Actions",
+        center:true,
         cell: (row) => (
           <span
             onClick={() => {
@@ -152,7 +158,7 @@ class IndMyBundle extends Component {
                 display: "flex",
                 justifyContent: "center",
                 position: "absolute",
-                fontSize: 38,
+                fontSize: 36,
               }}
             >
               My Bundle
@@ -197,7 +203,7 @@ class IndMyBundle extends Component {
                 data={this.state.records}
                 customStyles={customStyles}
                 pagination
-                selectableRows
+                persistTableHead={true}
               />
             </div>
           </div>{" "}

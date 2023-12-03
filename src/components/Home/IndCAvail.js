@@ -4,6 +4,7 @@ import DataTable from "react-data-table-component";
 import BasicExample from "../About/button1";
 import fetchData, { getUserType } from "../../axios";
 import Button from 'react-bootstrap/Button';
+import { FaEye } from "react-icons/fa";
 
 const customStyles = {
   headRow: {
@@ -63,14 +64,19 @@ const IndCAvail = () => {
       name: "ID",
       selector: (row, idx) => ++idx,
       sortable: true,
+      width:"90px",
+      center:true,
     },
     {
       name: "Courses",
       selector: (row) => row.Name,
       sortable: true,
+      width:"420px",
+      center:true,
     },
     {
       name: "validity",
+      center:true,
       selector: (row) => {
         let date = row.validity.split("/")
         return `${date[1]}/${date[0]}/${date[2]}`
@@ -79,10 +85,13 @@ const IndCAvail = () => {
     {
       name: "catagory",
       selector: (row) => row.category,
+      width:"350px",
+      center:true,
     },
     {
       name: "Actions",
-      cell: (id) => <a href="https://test.learnforcare.co.uk/course-all"><Button style={{background:"#212a50", color:'#fff'}} variant="">View</Button></a> ,
+      center:true,
+      cell: (id) => <a href="https://test.learnforcare.co.uk/course-all"><Button style={{background:"#212a50", color:'#fff'}} variant=""><FaEye /></Button></a> ,
     },
   ];
 
@@ -119,11 +128,11 @@ const IndCAvail = () => {
               </form>
             </div>
             <DataTable
+            persistTableHead={true}
               columns={columns}
               data={records}
               customStyles={customStyles}
               pagination
-              selectableRows
             />
           </div>
         </div>{" "}

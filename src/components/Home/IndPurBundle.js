@@ -5,6 +5,7 @@ import Link from "next/link";
 import BasicExample from "../About/button1";
 import fetchData from "../../axios";
 import Button from 'react-bootstrap/Button';
+import { FaEye } from "react-icons/fa";
 
 const customStyles = {
   headRow: {
@@ -63,24 +64,30 @@ class IndPurBundle extends Component {
       {
         name: "ID",
         selector: (row,idx) => ++idx,
-        sortable: true,
+        width:"70px",
+        center:true,
       },
       {
         name: "Bundles",
         selector: (row) => row.bundle_name,
         sortable: true,
+        width:"410px",
+        center:true,
       },
       {
         name: "validity",
         selector: (row) => row.validity,
+        center:true,
       },
       {
         name: "count",
         selector: (row) => row.course_count,
+        center:true,
       },
       {
-        name: "Actions",
-        cell: () => <a href="https://test.learnforcare.co.uk/bundle/bundle-all"><Button variant="primary">View</Button></a>,
+        name: "Action",
+        cell: () => <a href="https://test.learnforcare.co.uk/bundle/bundle-all"><Button style={{background:"#212a50"}}><FaEye/></Button></a>,
+        center:true,
       },
     ];
 
@@ -135,8 +142,8 @@ class IndPurBundle extends Component {
             columns={columns}
             data={this.state.records}
             customStyles={customStyles}
-            pagination
-            selectableRows
+            pagination  
+            persistTableHead={true}       
           />
         </div>
       </div> </div>

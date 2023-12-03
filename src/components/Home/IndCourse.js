@@ -101,23 +101,24 @@ const IndCourse = () => {
     {
       name: "No",
       selector: (row, idx) => idx + 1,
-      sortable: true,
+      width:"90px",
+      center:true,
     },
     {
       name: "name",
       selector: (row) => row.name || row.Name,
       sortable: true,
+      width:"400px",
+      center:true,
     },
-    {
-      name: "description",
-      selector: (row) => row?.description?.slice(0, 25),
-    },
+ 
     {
       name: "category",
       selector: (row) => row.category,
     },
     {
       name: "validity",
+      center:true,
       selector: (row) => {
         let newDt = new Date(row.validity).toLocaleDateString().split('/').map(d=> d.length <= 1 ? '0'+d : d )
          return newDt[1]+'/'+newDt[0] +'/'+newDt[2]
@@ -125,6 +126,7 @@ const IndCourse = () => {
     },
     {
       name: "Action",
+      center:true,
       cell: (row) => (
         <>
           {row?.progress ? (
@@ -176,7 +178,7 @@ const IndCourse = () => {
             style={{
               padding: "",
               color: "#212450",
-              fontSize: 38,
+              fontSize: 36,
             }}
           >
             My Courses
@@ -211,7 +213,7 @@ const IndCourse = () => {
             }
             customStyles={customStyles}
             pagination
-            selectableRows
+            persistTableHead={true}
           />
         </div>
       </div>

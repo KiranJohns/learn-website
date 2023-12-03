@@ -800,8 +800,7 @@ const CompAssignCourse = () => {
               </form>
             </div>
             <DataTable
-             persistTableHead={true}
-            
+             persistTableHead={true}        
              progressComponent={<div style={{padding:"1rem"}}>
               <Spinner animation="border" variant="primary" />
               </div>
@@ -816,10 +815,8 @@ const CompAssignCourse = () => {
                   )
                   : records
               }
-              customStyles={customStyles}
-             
-              pagination
-             
+              customStyles={customStyles}     
+              pagination  
             />
           </div>
         </div>{" "}

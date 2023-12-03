@@ -61,27 +61,32 @@ class IndMonthRep extends Component {
   render() {
     const columns = [
       {
-        name: "Sl",
+        name: "NO",
         selector: (row,idx) => ++idx,
-        sortable: true,
+        center:true,
+        width:'90px'
       },
       {
         name: "year",
         selector: (row) => row.year,
         sortable: true,
+        center:true,
       },
       {
         name: "month",
         selector: (row) => row.month,
         sortable: true,
+        center:true,
       },
       {
         name: "Quantity",
         selector: (row) => row.total_fake_count,
+        center:true,
       },
       {
         name: "amount",
         selector: (row) => row.total_amount,
+        center:true,
       },
     ];
 
@@ -138,7 +143,7 @@ class IndMonthRep extends Component {
             data={this.state.records}
             customStyles={customStyles}
             pagination
-            selectableRows
+          
           />
         </div>
       </div> </div>
