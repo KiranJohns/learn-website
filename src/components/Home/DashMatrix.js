@@ -317,7 +317,7 @@ const ManCoursMatrix = () => {
 
           <div style={{position:'relative'}}>
           <div className="d-flex justify-content-center my-2 ">
-            <h4>Bundle Matrix</h4>
+            <h4>Course Matrix</h4>
 
           </div>
            
