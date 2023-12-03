@@ -493,3 +493,27 @@
         margin-top: 125px;
     }
 }
+
+
+.yellow-shapes{
+    position: relative;
+    z-index: 1;
+    & img{
+        position: absolute;
+        bottom: 17px;
+        left: -8px;
+        z-index: -1;
+        -webkit-animation: section-animation 3s infinite;
+        animation: section-animation 3s infinite;
+
+        @media #{$md}{
+            bottom: 6px;
+            height: 40% !important;
+        }
+        
+        @media #{$sm}{
+            bottom: 3px;
+            height: 40% !important;
+        }
+    }
+}

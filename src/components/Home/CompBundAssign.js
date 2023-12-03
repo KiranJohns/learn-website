@@ -194,15 +194,16 @@ const  CompAssignBund = () => {
   const columns = [
     {
       name: "No",
-      selector: (row, idx) => ++idx,
-      
+      selector: (row, idx) => ++idx,   
       center:true,
+      width:"70px",
     },
     {
       name: "Bundle Name",
       selector: (row) => row.bundle_name,
       sortable: true,
       center:true,
+      width:"400px",
     },
     {
       name: "Purchased",
@@ -554,6 +555,7 @@ const  CompAssignBund = () => {
             </div>
             <DataTable
                persistTableHead={true}
+             
               columns={columns}
               data={
                 searchString
@@ -566,7 +568,7 @@ const  CompAssignBund = () => {
               }
               customStyles={customStyles}
               pagination
-              selectableRows
+              
             />
           </div>
         </div>{" "}

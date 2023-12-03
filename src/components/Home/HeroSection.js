@@ -21,7 +21,7 @@ class Hero extends Component {
                                     <h3 className="hero__title">
                                         <span></span>
                                         <span>Empowering </span>   
-                                         <span className="yellow-shape">Caregivers<img src="assets/img/shape/yellow-bg.png" alt="yellow-shape"/> </span> 
+                                         <span className="yellow-shapes">Caregivers<img src="assets/img/shape/yellow-bg.png" alt="yellow-shape"/> </span> 
                                          through Education</h3>
                                       
                                         <p>Unlocking Knowledge, Enhancing Compassion, and Improving Care</p>

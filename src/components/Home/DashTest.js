@@ -88,23 +88,21 @@ class DashTest extends Component {
       {
         name: "No",
         selector: (row, index) => index + 1,
-        sortable: true,
+        width:'80px',
         center:true
       },
       {
         name: "Name",
         selector: (row) => row.Name,
         sortable: true,
+        width:'390px',
         center:true
       },
-      {
-        name: "description",
-        selector: (row) => row.description.slice(0, 25),
-      },
-      {
-        name: "category",
-        selector: (row) => row.category,
-      },
+     
+      // {
+      //   name: "category",
+      //   selector: (row) => row.category,
+      // },
       {
         name: "count",
         selector: (row) => row.course_count,
@@ -462,7 +460,7 @@ class DashTest extends Component {
                     }
                     customStyles={customStyles}
                     pagination
-                    selectableRows
+                  
                   />
                 </div>
               </div>
