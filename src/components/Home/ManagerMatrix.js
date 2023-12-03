@@ -195,7 +195,7 @@ const ManCoursMatrix = () => {
   }
   useEffect(() => {
     console.clear();
-    makeRequest("GET", "/course/get-manager-matrix-course")
+    makeRequest("POST", "/course/get-manager-matrix-course")
       .then((res) => {
         let temp = {
           color: "gray",
