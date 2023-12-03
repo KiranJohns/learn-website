@@ -47,7 +47,7 @@ const ManCWIndReport = () => {
   }, []);
 
   const getData = () => {
-    makeRequest("GET", "/info/get-course-wise-individual-reports")
+    makeRequest("GET", "/info/get-course-wise-individual-manager-reports")
       .then((res) => {
         console.log(res.data.response);
         setRecords(res.data.response);
@@ -59,24 +59,24 @@ const ManCWIndReport = () => {
   const columns = [
     {
       name: "SL",
-      selector: (row) => row.first_name + " " + row.last_name,
+      selector: (row,id) => id,
       sortable: true,
       center: true,
     },
     {
       name: "CODE",
-      selector: (row) => row.city,
+      selector: (row,id) => id,
       sortable: true,
       center: true,
     },
     {
       name: "Course Name",
-      selector: (row) => row.email,
+      selector: (row) => row.course_name,
       center: true,
     },
     {
       name: "Individuals Count",
-      cell: (row) => row.email,
+      cell: (row) => row.count,
       center: true,
     },
   ];

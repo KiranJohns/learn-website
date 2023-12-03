@@ -60,7 +60,7 @@ const BundleResource = () => {
           margin: "3rem 0rem",
         }}
       >
-        <h4 style={{ padding: "1rem", textAlign: "center" }}>{course.name}</h4>
+        <h4 style={{ padding: "1rem", textAlign: "center" }}>{course?.name}</h4>
         {/* course description */}
 
         <p style={{ padding: "1rem", textAlign: "center" }}>

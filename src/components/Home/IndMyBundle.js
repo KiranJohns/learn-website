@@ -45,17 +45,25 @@ class IndMyBundle extends Component {
 
   componentDidMount() {
     let makeRequest = fetchData();
-
     makeRequest("GET", "/info/get-purchased-bundles")
       .then((res) => {
         makeRequest("GET", "/info/get-individual-assigned-bundles")
           .then((resAssigned) => {
-            console.log(res,resAssigned);
-            let result = [...res.data.response, ...resAssigned.data.response];
-            this.setState({
-              records: result.filter(item => item.course_count >= 1),
-              filterRecords: res.data,
-            });
+            makeRequest("GET", "/bundle/get-on-going-bundles")
+              .then((onGoingRes) => {
+                let result = [
+                  ...res.data.response,
+                  ...resAssigned.data.response,
+                ];
+                console.log(onGoingRes.data.response);
+                result = result.filter((item) => item?.course_count >= 1);
+                console.log(result);
+                this.setState({
+                  records: [...result, ...onGoingRes.data.response],
+                  filterRecords: res.data,
+                });
+              })
+              .catch((err) => console.log(err));
           })
           .catch((err) => {
             console.log(err);
@@ -66,7 +74,7 @@ class IndMyBundle extends Component {
       });
   }
 
-  handleStartBundle(id,from) {
+  handleStartBundle(id, from) {
     let makeRequest = fetchData();
 
     let form = new FormData();
@@ -100,22 +108,27 @@ class IndMyBundle extends Component {
       },
       {
         name: "validity",
-        selector: (row) =>  {
-          let newDt = new Date(row.validity).toLocaleDateString().split('/').map(d=> d.length <= 1 ? '0'+d : d )
-           return newDt[1]+'/'+newDt[0] +'/'+newDt[2]
-    
-          },
+        selector: (row) => {
+          let newDt = new Date(row.validity)
+            .toLocaleDateString()
+            .split("/")
+            .map((d) => (d.length <= 1 ? "0" + d : d));
+          return newDt[1] + "/" + newDt[0] + "/" + newDt[2];
+        },
       },
       {
         name: "description",
-        selector: (row) => row.description?.slice(0,20),
+        selector: (row) => row.description?.slice(0, 20),
       },
       {
         name: "Actions",
         cell: (row) => (
           <span
             onClick={() => {
-              if (row.from_purchased) {
+              console.log(row);
+              if (row?.form_ongoing) {
+                location.href = `/learnCourse/bundleList/?id=${row.id}`;
+              } else if (row?.from_purchased) {
                 this.handleStartBundle(row.id, "purchased");
               } else {
                 this.handleStartBundle(row.id, "assigned");
