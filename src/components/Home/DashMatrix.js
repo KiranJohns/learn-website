@@ -3,6 +3,7 @@ import Table from "react-bootstrap/Table";
 import fetchData from "../../axios";
 import { useEffect } from "react";
 import { useState } from "react";
+import Form from 'react-bootstrap/Form';
 
 const ManCoursMatrix = () => {
   const matrixDataUser = [
@@ -236,23 +237,23 @@ const ManCoursMatrix = () => {
               });
             }
           });
-          
+
           item["course"] = courses;
 
           // delete item.matrix_assigned;
           // delete item.matrix;
         });
-        
+
         let tempCourses = []
         course_name.forEach(() => {
           tempCourses.push(temp);
         });
         console.log(users);
-        
+
         users.forEach((item => {
           let temp = [...tempCourses]
           let course = item['course']
-          course_name.forEach((name,idx) => {
+          course_name.forEach((name, idx) => {
             course.forEach(c => {
               if (c.course_name === name) {
                 temp[idx] = c
@@ -313,11 +314,27 @@ const ManCoursMatrix = () => {
           </span>
         </div>
         <div className="col-12 p-2 m-2">
+
+          <div style={{position:'relative'}}>
           <div className="d-flex justify-content-center my-2 ">
             <h4>Bundle Matrix</h4>
-          </div>
 
-          <Table bordered variant="light">
+          </div>
+           
+
+
+          
+          <div style={{position:'absolute', top:"0", right:"0"}}  className="col-4 p-2 m-2"> <Form.Select style={{ border: ".1px solid #212a50" }} aria-label="Default select example">
+            <option>Select Manager</option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+          </Form.Select>
+          </div>
+          </div>
+       
+
+          <Table style={{marginTop:"1rem"}} responsive bordered variant="light">
             <thead>
               <tr style={{ textAlign: "center" }}>
                 <th
