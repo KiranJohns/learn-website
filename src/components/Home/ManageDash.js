@@ -253,7 +253,7 @@ class ManageDash extends Component {
               }}
             >
               <div className="ag-courses_item-comp" style={{ marginLeft: "" }}>
-                <a href="" className="ag-courses-item_link-comp">
+                <a href="/manager/certificates" className="ag-courses-item_link-comp">
                   <div className="ag-courses-item_bg-comp"></div>
                   <div
                     className="bi bi-patch-check-fill  ag-courses-item_date-box-new"
