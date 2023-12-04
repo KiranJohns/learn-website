@@ -312,7 +312,7 @@ function SignUpMain() {
                           value={values.last_name}
                           onBlur={handleBlur}
                           onChange={handleChange}
-                          placeholder="last name"
+                          placeholder="Last name"
                         />
                         <i className="fas fa-user"></i>
                       </div>
@@ -330,7 +330,7 @@ function SignUpMain() {
                           value={values.email}
                           onBlur={handleBlur}
                           onChange={handleChange}
-                          placeholder="e-mail"
+                          placeholder="E-mail"
                         />
                         <i className="fas fa-envelope"></i>
                       </div>
@@ -348,7 +348,7 @@ function SignUpMain() {
                           value={values.phone}
                           onBlur={handleBlur}
                           onChange={handleChange}
-                          placeholder="phone"
+                          placeholder="Phone"
                         />
                         <i className="fas fa-phone fa-fw"></i>
                       </div>
@@ -475,7 +475,7 @@ function SignUpMain() {
                           value={values.confirmPassword}
                           onBlur={handleBlur}
                           onChange={handleChange}
-                          placeholder="confirm password"
+                          placeholder="Confirm password"
                         />
                         <i className="fas fa-lock"></i>
                       </div>

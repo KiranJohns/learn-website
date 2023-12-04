@@ -251,7 +251,7 @@ class DashTest extends Component {
               >
                 <div className="ag-courses-item_bg-comp"></div>
                 <div
-                  className="bi bi-person-circle ag-courses-item_date-box-new"
+                  className="bi bi-stack ag-courses-item_date-box-new"
                   style={{ fontSize: "2rem" }}
                 ></div>
                 <div
@@ -275,7 +275,7 @@ class DashTest extends Component {
               <a href="/course-all" className="ag-courses-item_link-comp">
                 <div className="ag-courses-item_bg-comp"></div>
                 <div
-                  className="bi bi-person-circle ag-courses-item_date-box-new"
+                  className="bi bi-book ag-courses-item_date-box-new"
                   style={{ fontSize: "2rem" }}
                 ></div>
                 <div
@@ -302,7 +302,7 @@ class DashTest extends Component {
               >
                 <div className="ag-courses-item_bg-comp"></div>
                 <div
-                  className="bi bi-person-circle ag-courses-item_date-box-new"
+                  className="bi bi-patch-check-fill ag-courses-item_date-box-new"
                   style={{ fontSize: "2rem" }}
                 ></div>
                 <div
@@ -336,7 +336,7 @@ class DashTest extends Component {
               >
                 <div className="ag-courses-item_bg-sec"></div>
                 <div
-                  className="bi bi-person-circle ag-courses-item_date-box-new"
+                  className="bi bi-book ag-courses-item_date-box-new"
                   style={{ fontSize: "2rem" }}
                 ></div>
                 <div
@@ -360,7 +360,7 @@ class DashTest extends Component {
               <a href="/company/mybundle" className="ag-courses-item_link-sec">
                 <div className="ag-courses-item_bg-sec"></div>
                 <div
-                  className="bi bi-person-circle ag-courses-item_date-box-new"
+                  className="bi bi-stack ag-courses-item_date-box-new"
                   style={{ fontSize: "2rem" }}
                 ></div>
                 <div

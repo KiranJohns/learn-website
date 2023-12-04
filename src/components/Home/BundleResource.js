@@ -88,7 +88,7 @@ const BundleResource = () => {
             ></video>
           </div>
 
-          <div
+          {/* <div
             className="onecare"
             style={{
               display: "flex",
@@ -105,7 +105,7 @@ const BundleResource = () => {
               scrolling="no"
               controls="0"
             ></iframe>
-          </div>
+          </div> */}
 
           <div style={containerStyless}>
             <ImageSlider slides={slides} />
