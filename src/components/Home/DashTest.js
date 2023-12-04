@@ -448,6 +448,7 @@ class DashTest extends Component {
                 </div>
                 <div>
                   <DataTable
+                     persistTableHead={true}   
                     columns={columns}
                     data={
                       this.state.searchString

@@ -130,17 +130,18 @@ function DashIndividual() {
       name: "No",
       selector: (row, idx) => idx + 1,
       center: true,
+      width:'90px'
     },
     {
       name: "Name",
       selector: (row) => (row.name ? row.name : row.Name),
       center: true,
     },
-    {
-      name: "description",
-      selector: (row) => row.description.slice(0, 25),
-      center: true,
-    },
+    // {
+    //   name: "description",
+    //   selector: (row) => row.description.slice(0, 25),
+    //   center: true,
+    // },
     {
       name: "category",
       selector: (row) => row.category,
@@ -235,7 +236,7 @@ function DashIndividual() {
               >
                 <div className="ag-courses-item_bg-comp"></div>
                 <div
-                  className="dash-box-h bi bi-person-circle ag-courses-item_date-box-new "
+                  className="dash-box-h bi bi-stack ag-courses-item_date-box-new "
                   style={{ fontSize: "2rem" }}
                 ></div>
                 <div
@@ -259,7 +260,7 @@ function DashIndividual() {
               <a href="/course-all" className="ag-courses-item_link-comp">
                 <div className="ag-courses-item_bg-comp"></div>
                 <div
-                  className="bi bi-person-circle ag-courses-item_date-box-new"
+                  className="bi bi-book ag-courses-item_date-box-new"
                   style={{ fontSize: "2rem" }}
                 ></div>
                 <div
@@ -287,7 +288,7 @@ function DashIndividual() {
               >
                 <div className="ag-courses-item_bg-comp"></div>
                 <div
-                  className="bi bi-person-circle ag-courses-item_date-box-new"
+                  className="bi bi-patch-check-fill ag-courses-item_date-box-new"
                   style={{ fontSize: "1.8rem" }}
                 ></div>
                 <div
@@ -318,7 +319,7 @@ function DashIndividual() {
               <a href="/individual/mycourses" className="ag-courses-item_link-sec">
                 <div className="ag-courses-item_bg-sec"></div>
                 <div
-                  className="bi bi-person-circle ag-courses-item_date-box-new"
+                  className="bi bi-book ag-courses-item_date-box-new"
                   style={{ fontSize: "1.8rem"  }}
                 ></div>
                 <div
@@ -342,7 +343,7 @@ function DashIndividual() {
               <a href="/individual/mybundles" className="ag-courses-item_link-sec">
                 <div className="ag-courses-item_bg-sec"></div>
                 <div
-                  className="bi bi-person-circle ag-courses-item_date-box-new"
+                  className="bi bi-stack ag-courses-item_date-box-new"
                   style={{ fontSize: "1.8rem"  }}
                 ></div>
                 <div
@@ -449,7 +450,7 @@ function DashIndividual() {
                   }
                   customStyles={customStyles}
                   pagination
-                  selectableRows
+                 
                 />
               </div>
             </div>

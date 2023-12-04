@@ -27,7 +27,7 @@ const customStyles = {
   },
 };
 
-class DashCertificate extends Component {
+class ManageCertificate extends Component {
   constructor() {
     super();
     this.state = {
@@ -168,4 +168,4 @@ class DashCertificate extends Component {
   }
 }
 
-export default DashCertificate;
+export default ManageCertificate;
