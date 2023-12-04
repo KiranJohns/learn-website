@@ -71,11 +71,15 @@ const Header = () => {
 
         const courseData = new FormData();
         courseData.append("course", JSON.stringify(courseCart));
-        let courseResponse = makeRequest("POST", "/cart/add", courseData)
+        let courseResponse = makeRequest("POST", "/cart/add", courseData);
 
         const bundleData = new FormData();
         bundleData.append("course", JSON.stringify(bundlesCart));
-        let bundleResponse = makeRequest("POST", "/cart/add-bundle", bundleData)
+        let bundleResponse = makeRequest(
+          "POST",
+          "/cart/add-bundle",
+          bundleData
+        );
         Promise.all([courseResponse, bundleResponse])
           .then((res) => {
             getCartItem();
@@ -456,7 +460,9 @@ const Header = () => {
                             />
                           </svg>
                         </div>
-                        <span className="cart-item">{cartCount && cartCount}</span>
+                        <span className="cart-item">
+                          {cartCount && cartCount}
+                        </span>
                       </span>
                     </div>
                     <div className="header__btn ml-20 d-none d-sm-block">
@@ -479,6 +485,7 @@ const Header = () => {
                           >
                             <a
                               onClick={() => {
+                                localStorage.removeItem("learnfrocarecart");
                                 router.push(`/${getUserType()}/dashboard`);
                                 // if ( === "company") {
                               }}

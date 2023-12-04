@@ -389,7 +389,9 @@ const HeaderOpaque = () => {
                           />
                         </svg>
                       </div>
-                      <span className="cart-item">{cartCount && cartCount}</span>
+                      <span className="cart-item">
+                        {cartCount && cartCount}
+                      </span>
                     </span>
                   </div>
                   <div className="header__btn ml-20 d-none d-sm-block">
@@ -412,6 +414,7 @@ const HeaderOpaque = () => {
                         >
                           <a
                             onClick={() => {
+                              localStorage.removeItem("learnfrocarecart");
                               router.push(`/${getUserType()}/dashboard`);
                             }}
                           >
