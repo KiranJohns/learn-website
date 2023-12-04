@@ -22,108 +22,69 @@ const customStyles = {
   cells: {
     style: {
       fontSize: "15px",
+      textAlign: "center",
     },
   },
 };
 
-class ManagerBundle extends Component {
+class ManageCertificate extends Component {
   constructor() {
     super();
     this.state = {
       records: [],
       filterRecords: [],
+      searchData: "",
     };
-    this.makeRequest = fetchData();
-    this.handleStartBundle = this.handleStartBundle.bind(this);
   }
+
+  handleFilter = (event) => {
+    const newData = this.state.filterRecords.filter((row) =>
+      row.name.toLowerCase().includes(event.target.value.toLowerCase())
+    );
+    this.setState({ records: newData });
+  };
 
   componentDidMount() {
-    console.log("");
-    this.getData();
+    this.fetchData();
   }
 
-  getData = async () => {
-    console.clear();
-    let resAssigned = await this.makeRequest(
-      "GET",
-      "/info/get-assigned-bundle"
-    );
-
-    Promise.all([resAssigned])
+  fetchData = () => {
+    let makeRequest = fetchData();
+    console.log("ertyuiop");
+    makeRequest("GET", "/certificate/get-certificates")
       .then((res) => {
-        console.log(res);
+        console.log(res.data);
         this.setState({
-          records: [...res[0].data.response].filter(
-            (item) => item.course_count >= 1
-          ),
+          records: res.data.response,
           filterRecords: res.data,
         });
       })
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch((err) => console.log(err));
   };
-
-  handleStartBundle(id) {
-    let makeRequest = fetchData();
-
-    let form = new FormData();
-    console.log(id);
-    form.append("from", "manager");
-    form.append("bundle_id", id);
-    makeRequest("POST", "/bundle/start-bundle", form)
-      .then((res) => {
-        console.log(res);
-        location.href = `/learnCourse/bundleList/?id=${res.data.response.id}`;
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
 
   render() {
     const columns = [
       {
         name: "ID",
-        selector: (row, idx) => ++idx,
-         width:'70px',
-         center:true,
-      },
-      {
-        name: "Bundle name",
-        selector: (row) => row.bundle_name,
+        selector: (row) => row.id,
         sortable: true,
-        width:"420px",
-        center:true,
       },
       {
-        name: "validity",
-        selector: (row) => new Date(row.validity).toLocaleDateString(),
-        center:true,
+        name: "Courses",
+        selector: (row) => row.course_name,
+        sortable: true,
       },
       {
-        name: "count",
-        selector: (row) => row.course_count,
-        center:true,
+        name: "Date",
+        selector: (row) => new Date(row.date).toLocaleDateString(),
       },
       {
-        name: "total price",
-        selector: (row) => row.amount,
-        center:true,
+        name: "Percentage",
+        selector: (row) => row.percentage,
       },
       {
-        name: "Action",
-        center:true,
-        selector: (row) => (
-          <a
-            className="btn btn-success"
-            onClick={() => {
-              this.handleStartBundle(row.id);
-            }}
-          >
-            Start
-          </a>
-        ),
+        name: "Actions",
+        selector: (row) => <a className="btn btn-success" target="_blank" href={row.image}>view</a>,
       },
     ];
 
@@ -137,10 +98,10 @@ class ManagerBundle extends Component {
                 display: "flex",
                 justifyContent: "center",
                 position: "absolute",
-                fontSize: 38,
+                fontSize: 42,
               }}
             >
-              My Bundle
+              Certificates
             </h2>
             <div style={{ padding: "", backgroundColor: "" }}>
               {/* <div
@@ -168,6 +129,12 @@ class ManagerBundle extends Component {
                     style={{ background: "#edeef3" }}
                     className="d-block mr-10"
                     type="text"
+                    onChange={(e) =>
+                      this.setState({
+                        ...this.state,
+                        searchData: e.target.value,
+                      })
+                    }
                     placeholder="Search..."
                     // value={searchString}
                     // onChange={handleSearch}
@@ -179,10 +146,19 @@ class ManagerBundle extends Component {
               </div>
               <DataTable
                 columns={columns}
-                data={this.state.records}
+                persistTableHead={true}
+                data={
+                  this.state.searchData
+                    ? this.state.records.filter((item) =>
+                        item.name
+                          .toLowerCase()
+                          .includes(this.state.searchData.toLowerCase())
+                      )
+                    : this.state.records
+                }
                 customStyles={customStyles}
                 pagination
-                persistTableHead={true}
+                selectableRows
               />
             </div>
           </div>{" "}
@@ -192,4 +168,4 @@ class ManagerBundle extends Component {
   }
 }
 
-export default ManagerBundle;
+export default ManageCertificate;

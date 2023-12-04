@@ -64,6 +64,7 @@ class Transaction extends Component {
       {
         name: "NO",
         selector: (row,idx) => ++idx,
+        width:'100px',
         center: true,
       },
       {
@@ -143,7 +144,6 @@ class Transaction extends Component {
             data={this.state.records}
             customStyles={customStyles}
             pagination
-            selectableRows
           />
         </div>
       </div> </div>

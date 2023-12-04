@@ -229,9 +229,9 @@ const CompAssignCourse = () => {
   }
   const columns = [
     {
-      name: "ID",
+      name: "No",
       selector: (row, idx) => ++idx,
-     
+     width:"70px",
       center:true,
     },
     {
@@ -239,6 +239,7 @@ const CompAssignCourse = () => {
       selector: (row) => row.name || row.Name,
       sortable: true,
       center:true,
+      width:"420px",
     },
     {
       name: "Purchased No",
@@ -289,7 +290,7 @@ const CompAssignCourse = () => {
             setSelectedBundleCount(row.course_count);
           }}
         >
-          Assign To
+          Assign 
         </a>
       ),
     },
@@ -799,7 +800,7 @@ const CompAssignCourse = () => {
               </form>
             </div>
             <DataTable
-             persistTableHead={true}
+             persistTableHead={true}        
              progressComponent={<div style={{padding:"1rem"}}>
               <Spinner animation="border" variant="primary" />
               </div>
@@ -814,10 +815,8 @@ const CompAssignCourse = () => {
                   )
                   : records
               }
-              customStyles={customStyles}
-             
-              pagination
-             
+              customStyles={customStyles}     
+              pagination  
             />
           </div>
         </div>{" "}

@@ -25,7 +25,7 @@ const links = [
   {
     name: "Bundles",
     link: "bundle",
-    icon: "bi bi-person-circle",
+    icon: "bi bi-stack",
     drop: "bi bi-caret-down-fill",
     display: false,
     show: function (link) {
@@ -84,7 +84,7 @@ const links = [
   {
     name: "Reports",
     link: "reports",
-    icon: "bi bi-book",
+    icon: "bi bi-info-circle-fill",
     drop: "bi bi-caret-down-fill",
     display: false,
     show: function (link) {

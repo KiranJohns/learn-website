@@ -66,14 +66,16 @@ class ManagerReport extends Component {
   render() {
     const columns = [
       {
-        name: "sl",
-        selector: (row) => row.id,
+        name: "no.",
+        selector: (row, idx) => ++idx,
+        width:"70px",
      center: true,
       },
       {
         name: "Name",
         selector: (row) => row.first_name + " " + row.last_name,
         sortable: true,
+        width:"370px",
         center: true,
       },
       {

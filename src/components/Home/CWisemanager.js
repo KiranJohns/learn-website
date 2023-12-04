@@ -61,18 +61,18 @@ const CWManager = () => {
     {
       name: "SL",
       selector: (row,id) => id,
-      sortable: true,
+      width:"70px",
       center: true,
     },
     {
       name: "CODE",
       selector: (row,id) => id,
-      sortable: true,
       center: true,
     },
     {
       name: "Course Name",
       selector: (row) => row.course_name,
+      width:"380px",
       center: true,
     },
     {

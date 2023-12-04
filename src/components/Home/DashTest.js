@@ -88,23 +88,21 @@ class DashTest extends Component {
       {
         name: "No",
         selector: (row, index) => index + 1,
-        sortable: true,
+        width:'80px',
         center:true
       },
       {
         name: "Name",
         selector: (row) => row.Name,
         sortable: true,
+        width:'390px',
         center:true
       },
-      {
-        name: "description",
-        selector: (row) => row.description.slice(0, 25),
-      },
-      {
-        name: "category",
-        selector: (row) => row.category,
-      },
+     
+      // {
+      //   name: "category",
+      //   selector: (row) => row.category,
+      // },
       {
         name: "count",
         selector: (row) => row.course_count,
@@ -253,7 +251,7 @@ class DashTest extends Component {
               >
                 <div className="ag-courses-item_bg-comp"></div>
                 <div
-                  className="bi bi-person-circle ag-courses-item_date-box-new"
+                  className="bi bi-stack ag-courses-item_date-box-new"
                   style={{ fontSize: "2rem" }}
                 ></div>
                 <div
@@ -277,7 +275,7 @@ class DashTest extends Component {
               <a href="/course-all" className="ag-courses-item_link-comp">
                 <div className="ag-courses-item_bg-comp"></div>
                 <div
-                  className="bi bi-person-circle ag-courses-item_date-box-new"
+                  className="bi bi-book ag-courses-item_date-box-new"
                   style={{ fontSize: "2rem" }}
                 ></div>
                 <div
@@ -304,7 +302,7 @@ class DashTest extends Component {
               >
                 <div className="ag-courses-item_bg-comp"></div>
                 <div
-                  className="bi bi-person-circle ag-courses-item_date-box-new"
+                  className="bi bi-patch-check-fill ag-courses-item_date-box-new"
                   style={{ fontSize: "2rem" }}
                 ></div>
                 <div
@@ -338,7 +336,7 @@ class DashTest extends Component {
               >
                 <div className="ag-courses-item_bg-sec"></div>
                 <div
-                  className="bi bi-person-circle ag-courses-item_date-box-new"
+                  className="bi bi-book ag-courses-item_date-box-new"
                   style={{ fontSize: "2rem" }}
                 ></div>
                 <div
@@ -362,7 +360,7 @@ class DashTest extends Component {
               <a href="/company/mybundle" className="ag-courses-item_link-sec">
                 <div className="ag-courses-item_bg-sec"></div>
                 <div
-                  className="bi bi-person-circle ag-courses-item_date-box-new"
+                  className="bi bi-stack ag-courses-item_date-box-new"
                   style={{ fontSize: "2rem" }}
                 ></div>
                 <div
@@ -450,6 +448,7 @@ class DashTest extends Component {
                 </div>
                 <div>
                   <DataTable
+                     persistTableHead={true}   
                     columns={columns}
                     data={
                       this.state.searchString
@@ -462,7 +461,7 @@ class DashTest extends Component {
                     }
                     customStyles={customStyles}
                     pagination
-                    selectableRows
+                  
                   />
                 </div>
               </div>

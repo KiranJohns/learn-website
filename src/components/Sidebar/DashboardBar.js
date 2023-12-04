@@ -37,7 +37,7 @@ const links = [
   {
     name: "Bundles",
     link: "bundle",
-    icon: "bi bi-person-circle",
+    icon: "bi bi-stack",
     drop: "bi bi-caret-down-fill",
     display: false,
     show: function (link) {
@@ -106,13 +106,13 @@ const links = [
   },
 
   
-  { name: "Managers", link: "/company/managers", icon: "bi bi-person-check" },
+  { name: "Managers", link: "/company/managers", icon: "bi bi-person-fill" },
 
-  { name: "Individuals", link: "/company/showuser", icon: "bi bi-person-check" },
+  { name: "Individuals", link: "/company/showuser", icon: "bi bi-person-fill" },
   {
     name: "Matrix",
     link: "matrix",
-    icon: "bi bi-book",
+    icon: "bi bi-table",
     drop: "bi bi-caret-down-fill",
     display: false,
     show: function (link) {
@@ -134,7 +134,7 @@ const links = [
   {
     name: "Reports",
     link: "report",
-    icon: "bi bi-book",
+    icon: "bi bi-info-circle-fill",
     drop: "bi bi-caret-down-fill",
     display: false,
     show: function (link) {
@@ -169,7 +169,7 @@ const links = [
     ],
   },
 
-  { name: "Invoice", link: "/company/invoice", icon: "bi bi-person-check" },
+  { name: "Invoice", link: "/company/invoice", icon: "bi bi-receipt" },
   
   // {
   //   name: " Archive User",

@@ -3,6 +3,7 @@ import axios from "axios";
 import DataTable from "react-data-table-component";
 import Link from "next/link";
 import BasicExample from "../About/button1";
+import fetchData from "../../axios";
 
 const customStyles = {
   headRow: {
@@ -48,11 +49,15 @@ class DashCertificate extends Component {
   }
 
   fetchData = () => {
-    axios
-      .get("https://jsonplaceholder.typicode.com/users")
+    let makeRequest = fetchData();
+    console.log("ertyuiop");
+    makeRequest("GET", "/certificate/get-certificates")
       .then((res) => {
-        // console.log(res.data);
-        this.setState({ records: res.data, filterRecords: res.data });
+        console.log(res.data);
+        this.setState({
+          records: res.data.response,
+          filterRecords: res.data,
+        });
       })
       .catch((err) => console.log(err));
   };
@@ -66,16 +71,20 @@ class DashCertificate extends Component {
       },
       {
         name: "Courses",
-        selector: (row) => row.name,
+        selector: (row) => row.course_name,
         sortable: true,
       },
       {
-        name: "Email",
-        selector: (row) => row.email,
+        name: "Date",
+        selector: (row) => new Date(row.date).toLocaleDateString(),
+      },
+      {
+        name: "Percentage",
+        selector: (row) => row.percentage,
       },
       {
         name: "Actions",
-        cell: () => <BasicExample />,
+        selector: (row) => <a className="btn btn-success" target="_blank" href={row.image}>view</a>,
       },
     ];
 
@@ -137,21 +146,15 @@ class DashCertificate extends Component {
               </div>
               <DataTable
                 columns={columns}
+                persistTableHead={true}
                 data={
-               [   ...this.state.searchData
+                  this.state.searchData
                     ? this.state.records.filter((item) =>
                         item.name
                           .toLowerCase()
                           .includes(this.state.searchData.toLowerCase())
                       )
-                    : this.state.records, 
-                    ...this.state.searchData
-                    ? this.state.records.filter((item) =>
-                        item.name
-                          .toLowerCase()
-                          .includes(this.state.searchData.toLowerCase())
-                      )
-                    : this.state.records]
+                    : this.state.records
                 }
                 customStyles={customStyles}
                 pagination
