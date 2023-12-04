@@ -67,7 +67,7 @@ class DashTest extends Component {
         .catch((err) => {
           console.log(err);
         });
-      makeRequest("GET", "/course/get-bought-course")
+      makeRequest("GET", "/on-going-course/get-all-on-going-courses")
         .then((res) => {
           console.log(res);
           this.setState({
@@ -87,30 +87,24 @@ class DashTest extends Component {
     const columns = [
       {
         name: "No",
-        selector: (row, index) => index + 1,
-        width:'80px',
-        center:true
+        selector: (row, idx) => idx + 1,
+        center: true,
+        width: "90px",
       },
       {
         name: "Name",
-        selector: (row) => row.Name,
-        sortable: true,
-        width:'390px',
-        center:true
+        selector: (row) => (row.name ? row.name : row.Name),
+        center: true,
       },
-     
-      // {
-      //   name: "category",
-      //   selector: (row) => row.category,
-      // },
       {
-        name: "count",
-        selector: (row) => row.course_count,
+        name: "category",
+        selector: (row) => row.category,
+        center: true,
       },
       {
         name: "validity",
         selector: (row) => {
-          let date = row.validity
+          let date = new Date(row.validity).toLocaleDateString()
             .split("/")
             .map((d) => (d.length <= 1 ? "0" + d : d));
           let newDate = `${date[1]}/${date[0]}/${date[2]}`;
@@ -120,8 +114,14 @@ class DashTest extends Component {
       {
         name: "Action",
         cell: (row) => (
-          <a href={`/course/${row.course_id
-          }`}><Button style={{background:"#212a50", color:"white"}} variant=""><FaEye /></Button></a> 
+            <a
+              onClick={() => {
+                location.pathname = `/learnCourse/coursepage/?courseId=${row.id}`;
+              }}
+              className="btn btn-success"
+            >
+              continue
+            </a>
         ),
       },
     ];
