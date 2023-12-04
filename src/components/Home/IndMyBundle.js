@@ -120,11 +120,11 @@ class IndMyBundle extends Component {
           return newDt[1] + "/" + newDt[0] + "/" + newDt[2];
         },
       },
-      {
-        name: "description",
-        center:true,
-        selector: (row) => row.description?.slice(0, 20),
-      },
+      // {
+      //   name: "description",
+      //   center:true,
+      //   selector: (row) => row.description?.slice(0, 20),
+      // },
       {
         name: "Actions",
         center:true,

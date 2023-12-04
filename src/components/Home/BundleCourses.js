@@ -184,7 +184,7 @@ const BundleCour = () => {
             }
             customStyles={customStyles}
             pagination
-         
+            persistTableHead={true}     
           />
         </div>
       </div>
