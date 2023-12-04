@@ -13,6 +13,7 @@ const BundleResource = () => {
     width: "800px",
     height: "448px",
     margin: "0 auto",
+    marginTop:"3rem"
   };
 
   const [course, setCourse] = useState({});
@@ -77,7 +78,7 @@ const BundleResource = () => {
           margin: "3rem 0rem",
         }}
       >
-        <div style={{ padding: "1.2rem" }}>
+        <div style={{ padding: "1.2rem", }}>
           <div style={{ display: "flex", justifyContent: "center" }}>
             <video
               onContextMenu={(e) => e.preventDefault()}
@@ -107,7 +108,7 @@ const BundleResource = () => {
             ></iframe>
           </div> */}
 
-          <div style={containerStyless}>
+          <div  style={containerStyless}>
             <ImageSlider slides={slides} />
           </div>
 

@@ -88,20 +88,24 @@ const BundleCour = () => {
     {
       name: "No",
       selector: (row, idx) => idx + 1,
-      sortable: true,
+    center:"true",
+    width:"90px"
     },
     {
       name: "name",
       selector: (row) => row.name || row.Name,
-      sortable: true,
+      center:"true",
+    width:"400px"
     },
-    {
-      name: "description",
-      selector: (row) => row?.description?.slice(0, 25),
-    },
+    // {
+    //   name: "description",
+    //   selector: (row) => row?.description?.slice(0, 25),
+    //   center:"true",
+    // },
     {
       name: "category",
       selector: (row) => row.category,
+      center:"true",
     },
     {
       name: "Action",
@@ -180,7 +184,7 @@ const BundleCour = () => {
             }
             customStyles={customStyles}
             pagination
-            selectableRows
+         
           />
         </div>
       </div>

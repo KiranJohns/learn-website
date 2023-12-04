@@ -313,7 +313,7 @@ function DashboardBar() {
           style={{ display: "flex", flexDirection: "column" }}
         >
           <h5 style={{ color: "#212450", textAlign: "center", marginLeft: "" }}>
-            {info.first_name + " " + info.last_name}{" "}
+            {(info.first_name && info.last_name)?(info.first_name + " " + info.last_name):" "}{" "}
             <MdVerifiedUser color="green" style={{ height: "1rem" }} />
             <br />
           </h5>

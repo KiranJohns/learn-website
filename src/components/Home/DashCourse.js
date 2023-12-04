@@ -144,12 +144,14 @@ class DashCourse extends Component {
         name: "No",
         selector: (row, idx) => idx + 1,
         center: true,
+        width:"80px"
       },
       {
         name: "Name",
         selector: (row) => row.name,
         sortable: true,
         center: true,
+        width:"400px"
       },
 
       {
@@ -289,7 +291,7 @@ class DashCourse extends Component {
               }
               customStyles={customStyles}
               pagination
-              selectableRows
+              
             />
           </div>
         </div>

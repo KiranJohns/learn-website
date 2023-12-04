@@ -96,11 +96,11 @@ class DashTest extends Component {
         selector: (row) => (row.name ? row.name : row.Name),
         center: true,
       },
-      {
-        name: "category",
-        selector: (row) => row.category,
-        center: true,
-      },
+      // {
+      //   name: "category",
+      //   selector: (row) => row.category,
+      //   center: true,
+      // },
       {
         name: "validity",
         selector: (row) => {
@@ -138,7 +138,7 @@ class DashTest extends Component {
           <h3
             style={{ color: "#212450", marginTop: ".3rem", display: "inline" }}
           >
-            Hello {this.state.user.first_name + " " + this.state.user.last_name}{" "}
+            Hello {(this.state.user.first_name && this.state.user.last_name)?(this.state.user.first_name + " " + this.state.user.last_name):" "}{" "}
             <IoHandLeft style={{ color: "#f1c27d", marginBottom: ".5rem" }} />
           </h3>
           <div  className="headd-element" style={{}}>
