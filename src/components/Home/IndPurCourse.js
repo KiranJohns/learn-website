@@ -95,7 +95,7 @@ class IndPurCourse extends Component {
           display: "flex",
           justifyContent: "center",
           position:'absolute',
-          fontSize: 38,
+          fontSize: 36,
         }}
       >
        Purchased Courses

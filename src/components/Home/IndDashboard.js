@@ -177,7 +177,7 @@ function DashIndividual() {
           <h3
             style={{ color: "#212450", marginTop: ".3rem", display: "inline" }}
           >
-            Hello {info.first_name + " " + info.last_name}{" "}
+            Hello {(info.first_name && info.last_name)?(info.first_name + " " + info.last_name):" "}{" "}
             <IoHandLeft style={{ color: "#f1c27d", marginBottom: ".5rem" }} />
           </h3>
           <div className="headd-element" style={{}}>
@@ -400,7 +400,7 @@ function DashIndividual() {
                     fontSize: 35,
                   }}
                 >
-                  Courses to do
+                  Courses 
                 </h4>
                 <div style={{}} className="p-relative d-inline header__search ">
                   <form className="your-element" action="">
@@ -432,6 +432,7 @@ function DashIndividual() {
                   }
                   customStyles={customStyles}
                   pagination
+                  persistTableHead={true}
                 />
               </div>
             </div>

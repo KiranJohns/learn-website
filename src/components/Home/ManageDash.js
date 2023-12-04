@@ -138,7 +138,7 @@ class ManageDash extends Component {
           <h3
             style={{ color: "#212450", marginTop: ".3rem", display: "inline" }}
           >
-            Hello {this.state.info.first_name + " " + this.state.info.last_name}{" "}
+            Hello {(this.state.info.first_name && this.state.info.last_name)?(this.state.info.first_name + " " + this.state.info.last_name):" "}{" "}
             <IoHandLeft style={{ color: "#f1c27d", marginBottom: ".5rem" }} />
           </h3>
           <div style={{}}>

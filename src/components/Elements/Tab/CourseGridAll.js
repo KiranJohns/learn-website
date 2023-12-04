@@ -14,6 +14,7 @@ import { useSelector } from "react-redux";
 import fetchData from "../../../axios/index";
 import CourseCard from "./CourseCard";
 import ResponsivePagination from "react-responsive-pagination";
+import { CiFilter } from "react-icons/ci";
 
 export default () => {
   const { cart } = useSelector((store) => store.cart);
@@ -74,7 +75,7 @@ export default () => {
   }, []);
 
   return (
-    <section className="course__area pt-50 pb-60 grey-bg">
+    <section  className="course__area pt-50 pb-60 grey-bg">
       <Tabs variant="enclosed" id="react-tabs-276">
         <div className="container">
           <div className="" style={{display: "flex",justifyContent: "space-between"}}>
@@ -111,26 +112,27 @@ export default () => {
              </div> */}
 
             <div className="select media-select">
-            <FaFilter className="ic-fil" style={{position:'absolute',zIndex:'1',  marginTop:'15.6px',marginLeft:'.7rem',marginRight:'.5rem',color:"#8c8faa",fontSize:'1rem' }}/>  
+          
+            <CiFilter className="ic-fil" style={{position:'absolute',zIndex:'1',  marginTop:'13.7px',marginLeft:'.4rem',marginRight:'.5rem',color:"#000",fontSize:'1.2rem' }}/>  
              <select
-                style={{ background: "#edeef3", paddingBottom: "1rem" , width: "18rem", textAlign:'justify',position:'relative',padding:'.8rem 2rem',width:'280px',height:'50px' }}
-                className="form-select text-secondary"
+                style={{border:'none',outline:"#fff",borderRadius:'4px', background: "#fac48e", paddingBottom: "1rem" , textAlign:'justify',position:'relative',padding:'.7rem 1.3rem',width:'12.5rem',height:'47px',fontSize:'.8rem', fontWeight:'500' }}
+                className=""
                 aria-label="Default select example"
                 onChange={(e) => setCategoryFilter(e.target.value)}
               >
                  
-                <option   style={{fontSize:'1rem'}}  value="">Filter</option>
-                <option value="Care Certificate">Care Certificate</option>
-                <option value="Mandatory Care Courses">
+                <option   style={{fontSize:'1rem', color:""}}  value="">Filters</option>
+                <option style={{fontSize:'1rem'}} value="Care Certificate">Care Certificate</option>
+                <option style={{fontSize:'1rem'}}  value="Mandatory Care Courses">
                   Mandatory Care Courses
                 </option>
-                <option value="Specialized Care Courses">
-                  Specialized Care Courses
+                <option style={{fontSize:'1rem'}}  value="Specialized Care Courses">
+                  Specialised Care Courses
                 </option>
-                <option value="Recovery Care Courses">
+                <option style={{fontSize:'1rem'}}  value="Recovery Care Courses">
                   Recovery Care Courses
                 </option>
-                <option value="Child Care Courses">Child Care Courses</option>
+                <option style={{fontSize:'1rem'}}  value="Child Care Courses">Child Care Courses</option>
               </select>
             </div>
           </div>
