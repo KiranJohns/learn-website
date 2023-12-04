@@ -62,7 +62,7 @@ const CompAssignBund = () => {
     return jwtDecode(token)
   });
 
-  const [key, setKey] = useState('home');
+  const [key, setKey] = useState('individual');
 
   const openModal = () => {
     setShowModal(!showModal);
