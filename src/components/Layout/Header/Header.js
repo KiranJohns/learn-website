@@ -319,16 +319,21 @@ const Header = () => {
                               <a>Blog</a>
                             </Link>
                           </li>
+                           <li>
+                               <Link href="/about">
+                                <a>About</a>
+                           </Link>
+                          </li>
                           {/* <li className="has-dropdown">
                           <Link href="/course-grid">
                             <a>Pages</a>
                           </Link>
                           <ul className="submenu">
-                            <li>
-                              <Link href="/about">
-                                <a>About</a>
-                              </Link>
-                            </li>
+                            // <li>
+                            //   <Link href="/about">
+                            //     <a>About</a>
+                            //   </Link>
+                            // </li>
                             <li>
                               <Link href="/instructor">
                                 <a>Instructor</a>
@@ -376,11 +381,11 @@ const Header = () => {
                             </li>
                           </ul>
                         </li> */}
-                          <li>
+                          {/* <li>
                             <Link href="/how-it">
                               <a>How it Works</a>
                             </Link>
-                          </li>
+                          </li> */}
                           {/* <li>
                           <Link href="/contact">
                             <a>Contact</a>

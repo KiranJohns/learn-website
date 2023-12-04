@@ -240,8 +240,22 @@ display: none;
 }
 }
 
+.footer-hidden-icon{
+ visibility: hidden;
+}
+
+
+
+
+@media screen and (max-width: 900px) {
+  .footer-hidden-icon{
+    display:none !important;
+   }
+}
+
 // @media screen and (max-width: 980px) {
 //   .list-group-item{
 //     text-align: center !important;
 //     margin-right: 1.2rem !important;
+// }
 // }

@@ -84,7 +84,7 @@ const Footer = () => {
 
                         
                         
-                        <div className="col-xxl-3 col-xl-2 offset-xl-1 col-lg-2 offset-lg-0 col-md-2 offset-md- col-sm-4">
+                        <div className="col-xxl-3 col-xl-2 offset-xl-1 col-lg-2 offset-lg-0 col-md-2 offset-md-4 col-sm-2">
                            <div className="footer__widget mb-50">
                               <div className="footer__widget-head mb-22">
                                  <h3 className="footer__widget-title footer__widget-title-2">Contact</h3>
@@ -97,7 +97,7 @@ const Footer = () => {
                                        <li><Link href="/instructor"><a>Partners</a></Link></li>
                                        <li><Link href="/blog"><a>News & Blogs</a></Link></li>
                                        <li><Link href="/about"><a>FAQs</a></Link></li> */}
-                                       <li><IoLocationOutline style={{marginBottom:'.2rem',}}/> Suite 14, Neals Corner, 2 bath road, <IoLocationOutline style={{visibility:'hidden'}}/> Hounslow TW3 3HJ</li>
+                                       <li><IoLocationOutline style={{marginBottom:'.2rem',margin:"4px 0px"}}/> Suite 14, Neals Corner, 2 bath road, <IoLocationOutline className='footer-hidden-icon'/> Hounslow TW3 3HJ</li>
                                        <li><BsTelephone/> +44-2031483007</li>
                                        <li><Link href="mailto:info@learnforcare.co.uk"><a><AiOutlineMail/> <span style={{visibility:'hidden'}}>''</span>info@learnforcare.co.uk</a></Link></li>
                                     </ul>
