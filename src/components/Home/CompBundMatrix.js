@@ -4,204 +4,328 @@ import Form from 'react-bootstrap/Form';
 
 const MatrixBundComp = () => {
   const matrixDataUser = [
-  
-    // {
-    //   id: 1,
-    //   name: "Rahul",
-    // },
-    // {
-    //   id: 2,
-    //   name: "Kiran",
-    // },
-    // {
-    //   id: 3,
-    //   name: "Aloshy",
-    // },
-    // {
-    //   id: 4,
-    //   name: "Alba",
-    // },
+    {
+      id: 1,
+      name: "Stark",
+    },
+    {
+      id: 2,
+      name: "Miles",
+    },
+    {
+      id: 3,
+      name: "Aloshy",
+    },
+    {
+      id: 4,
+      name: "Alba",
+    },
   ];
 
   const matrixDataCourse = [
     [
-    //   {
-    //     id: 1,
-    //     userId: 1,
-    //     course: {
-    //       name: "some of the people",
-    //       color: "#ae0000",
-    //       progress: "0%",
-    //     },
-    //   },
-    //   {
-    //     id: 1,
-    //     userId: 1,
-    //     course: {
-    //       name: "of the people",
-    //       color: "#549C30",
-    //       progress: "100%",
-    //     },
-    //   },
-    //   {
-    //     id: 1,
-    //     userId: 1,
-    //     course: {
-    //       name: "by the people",
-    //       color: "#f7b500",
-    //       progress: "50%",
-    //     },
-    //   },
-    //   {
-    //     id: 1,
-    //     userId: 1,
-    //     course: {
-    //       name: "for the people",
-    //       color: "#549C30",
-    //       progress: "100%",
-    //     },
-    //   },
-    // ],
-    // [
-    //   {
-    //     id: 1,
-    //     userId: 2,
-    //     course: {
-    //       name: "by the people",
-    //       color: "#f7b500",
-    //       progress: "50%",
-    //     },
-    //   },
-    //   {
-    //     id: 2,
-    //     userId: 2,
-    //     course: {
-    //       name: "some of the people",
-    //       color: "#ae0000",
-    //       progress: "0%",
-    //     },
-    //   },
-    //   {
-    //     id: 3,
-    //     userId: 2,
-    //     course: {
-    //       name: "of the people",
-    //       color: "#549C30",
-    //       progress: "100%",
-    //     },
-    //   },
-    //   {
-    //     id: 4,
-    //     userId: 2,
-    //     course: {
-    //       name: "for the people",
-    //       color: "#f7b500",
-    //       progress: "50%",
-    //     },
-    //   },
-    // ],
-    // [
-    //   {
-    //     id: 1,
-    //     userId: 3,
-    //     course: {
-    //       name: "some of the people",
-    //       color: "#ae0000",
-    //       progress: "0%",
-    //     },
-    //   },
-    //   {
-    //     id: 1,
-    //     userId: 3,
-    //     course: {
-    //       name: "for the people",
-    //       color: "#f7b500",
-    //       progress: "50%",
-    //     },
-    //   },
-    //   {
-    //     id: 1,
-    //     userId: 3,
-    //     course: {
-    //       name: "of the people",
-    //       color: "#549C30",
-    //       progress: "100%",
-    //     },
-    //   },
-    //   {
-    //     id: 1,
-    //     userId: 3,
-    //     course: {
-    //       name: "by the people",
-    //       color: "#549C30",
-    //       progress: "100%",
-    //     },
-    //   },
-    // ],
-    // [
-    //   {
-    //     id: 1,
-    //     userId: 4,
-    //     course: {
-    //       name: "by the people",
-    //       color: "#f7b500",
-    //       progress: "50%",
-    //     },
-    //   },
-    //   {
-    //     id: 1,
-    //     userId: 4,
-    //     course: {
-    //       name: "some of the people",
-    //       color: "#ae0000",
-    //       progress: "0%",
-    //     },
-    //   },
-    //   {
-    //     id: 1,
-    //     userId: 4,
-    //     course: {
-    //       name: "of the people",
-    //       color: "#549C30",
-    //       progress: "100%",
-    //     },
-    //   },
-    //   {
-    //     id: 1,
-    //     userId: 4,
-    //     course: {
-    //       name: "for the people",
-    //       color: "#549C30",
-    //       progress: "100%",
-    //     },
-    //   },
+      {
+        id: 1,
+        userId: 1,
+        course: {
+          name: "some of the people",
+          color: "#ae0000",
+          progress: "0%",
+        },
+      },
+      {
+        id: 1,
+        userId: 1,
+        course: {
+          name: "of the people",
+          color: "#549C30",
+          progress: "100%",
+        },
+      },
+      {
+        id: 1,
+        userId: 1,
+        course: {
+          name: "by the people",
+          color: "#f7b500",
+          progress: "50%",
+        },
+      },
+      {
+        id: 1,
+        userId: 1,
+        course: {
+          name: "for the people",
+          color: "#549C30",
+          progress: "100%",
+        },
+      },
+    ],
+    [
+      {
+        id: 1,
+        userId: 2,
+        course: {
+          name: "by the people",
+          color: "#f7b500",
+          progress: "50%",
+        },
+      },
+      {
+        id: 2,
+        userId: 2,
+        course: {
+          name: "some of the people",
+          color: "#ae0000",
+          progress: "0%",
+        },
+      },
+      {
+        id: 3,
+        userId: 2,
+        course: {
+          name: "of the people",
+          color: "#549C30",
+          progress: "100%",
+        },
+      },
+      {
+        id: 4,
+        userId: 2,
+        course: {
+          name: "for the people",
+          color: "#f7b500",
+          progress: "50%",
+        },
+      },
+    ],
+    [
+      {
+        id: 1,
+        userId: 3,
+        course: {
+          name: "some of the people",
+          color: "#ae0000",
+          progress: "0%",
+        },
+      },
+      {
+        id: 1,
+        userId: 3,
+        course: {
+          name: "for the people",
+          color: "#f7b500",
+          progress: "50%",
+        },
+      },
+      {
+        id: 1,
+        userId: 3,
+        course: {
+          name: "of the people",
+          color: "#549C30",
+          progress: "100%",
+        },
+      },
+      {
+        id: 1,
+        userId: 3,
+        course: {
+          name: "by the people",
+          color: "#549C30",
+          progress: "100%",
+        },
+      },
+    ],
+    [
+      {
+        id: 1,
+        userId: 4,
+        course: {
+          name: "by the people",
+          color: "#f7b500",
+          progress: "50%",
+        },
+      },
+      {
+        id: 1,
+        userId: 4,
+        course: {
+          name: "some of the people",
+          color: "#ae0000",
+          progress: "0%",
+        },
+      },
+      {
+        id: 1,
+        userId: 4,
+        course: {
+          name: "of the people",
+          color: "#549C30",
+          progress: "100%",
+        },
+      },
+      {
+        id: 1,
+        userId: 4,
+        course: {
+          name: "for the people",
+          color: "#549C30",
+          progress: "100%",
+        },
+      },
     ],
   ];
 
-  const courseName = [
-    "ADHD Awareness",
-    "Standard 1 Understand your role",
-    "Diabetes Care",
-    "First Aid Awareness",
-  ];
+  // const courseName = [
+  //   "some of the people",
+  //   "by the people",
+  //   "of the people",
+  //   "for the people",
+  // ];
+
+  const makeRequest = fetchData();
+  const [courseName, setCourseName] = useState([]);
+  const [userName, setUserName] = useState([]);
+  const [course, setCourse] = useState([]);
+  const [managers, setManagers] = useState([]);
+  const [user, setUser] = useState(() => {
+    let token = localStorage.getItem(`learnforcare_access`);
+    return jwtDecode(token);
+  });
+  const [manager, setManager] = useState(user.id);
+
+  function removeDuplicates(arr) {
+    return arr.filter((item, index) => arr.indexOf(item) === index);
+  }
+
+  useEffect(() => {
+    makeRequest("GET", "/info/get-all-managers")
+      .then((res) => {
+        setManagers(res.data.response);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+  useEffect(() => {
+    const form = new FormData();
+    form.append("manager_id", manager);
+    makeRequest("POST", "/course/get-manager-matrix-bundle", form)
+      .then((res) => {
+        let temp = {
+          color: "gray",
+          progress: "",
+        };
+        // console.log(res.data.response);
+        let users = res.data.response;
+        let course_name = [];
+        let user_name = [];
+        users.forEach((item) => {
+          let assigned = item.matrix_assigned.reverse();
+          let enrolled = item.matrix.reverse();
+
+          user_name.push(item.first_name + " " + item.last_name);
+
+          let allCourses = [...assigned, ...enrolled];
+
+          let CNames = allCourses.map((course) => {
+            return course.course_name;
+          });
+
+          let courses = [];
+
+          let newCName = [...removeDuplicates(CNames)];
+
+          if (course_name.length < newCName.length) {
+            course_name = newCName;
+          } else if (course_name.length <= 0) {
+            course_name = newCName;
+          }
+
+          allCourses.forEach((course) => {
+            if (!courses.find((i) => i?.course_name == course?.course_name)) {
+              course_name.forEach((item, id) => {
+                if (item == course?.course_name) {
+                  courses[id] = course;
+                }
+              });
+            }
+          });
+
+          item["course"] = courses;
+
+          // delete item.matrix_assigned;
+          // delete item.matrix;
+        });
+
+        let tempCourses = [];
+        course_name.forEach(() => {
+          tempCourses.push(temp);
+        });
+        console.log(users);
+
+        users.forEach((item) => {
+          let temp = [...tempCourses];
+          let course = item["course"];
+          course_name.forEach((name, idx) => {
+            course.forEach((c) => {
+              if (c.course_name === name) {
+                temp[idx] = c;
+              }
+            });
+          });
+          item["course"] = temp;
+        });
+        setCourseName(course_name);
+        setUserName(user_name);
+        setCourse(users);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [manager]);
   return (
     <div className="row p-3">
-  
-   
-  
-      <div style={{position:'relative'}} className="dash-neww " >
-      <div style={{position:'absolute'}} className="">
-
-       <span className="m-1" style={{display:'flex'}}>   
-        <div style={{height:'1.5rem', width:"3rem", background:"#ae0000", color:'white', textAlign:'center'}} className="redd">
-           0%
-          </div>
-          <div style={{height:'1.5rem', width:"3rem", background:"#f7b500", color:'white', textAlign:'center'}} className="redd">
-           50%
-          </div>
-          <div style={{height:'1.5rem', width:"3rem", background:"#549C30", color:'white', textAlign:'center'}} className="redd">
-           100%
-          </div>
+      <div style={{ position: "relative" }} className="dash-neww ">
+        <div style={{ position: "absolute" }} className="">
+          <span className="m-1" style={{ display: "flex" }}>
+            <div
+              style={{
+                height: "1.5rem",
+                width: "3rem",
+                background: "#ae0000",
+                color: "white",
+                textAlign: "center",
+              }}
+              className="redd"
+            >
+              0%
+            </div>
+            <div
+              style={{
+                height: "1.5rem",
+                width: "3rem",
+                background: "#f7b500",
+                color: "white",
+                textAlign: "center",
+              }}
+              className="redd"
+            >
+              50%
+            </div>
+            <div
+              style={{
+                height: "1.5rem",
+                width: "3rem",
+                background: "#549C30",
+                color: "white",
+                textAlign: "center",
+              }}
+              className="redd"
+            >
+              100%
+            </div>
           </span>
 
        </div>

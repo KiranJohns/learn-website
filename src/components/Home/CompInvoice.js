@@ -47,9 +47,8 @@ class CompInvoice extends Component {
   componentDidMount() {
     console.clear()
     let makeRequest = fetchData();
-    makeRequest("GET", "/info/get-all-transactions")
+    makeRequest("GET", "/cart/get-invoice")
       .then((res) => {
-        console.log(res);
         this.setState({
           records: res.data.response.reverse(),
           filterRecords: res.data,
@@ -83,7 +82,7 @@ class CompInvoice extends Component {
       {
         name: "Action",
         selector: (row) =>(    
-            <Button style={{background:"#212a50", color:"white"}} variant="success btn-icon-xxs"><FaEye/></Button>
+            <Button style={{background:"#212a50", color:"white"}} variant="success btn-icon-xxs"><a target="_blank" href={row.img}><FaEye/></a></Button>
           ),
         center: true,
       },

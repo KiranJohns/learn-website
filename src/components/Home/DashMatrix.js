@@ -3,7 +3,8 @@ import Table from "react-bootstrap/Table";
 import fetchData from "../../axios";
 import { useEffect } from "react";
 import { useState } from "react";
-import Form from 'react-bootstrap/Form';
+import Form from "react-bootstrap/Form";
+import { jwtDecode } from "jwt-decode";
 
 const ManCoursMatrix = () => {
   const matrixDataUser = [
@@ -191,12 +192,30 @@ const ManCoursMatrix = () => {
   const [courseName, setCourseName] = useState([]);
   const [userName, setUserName] = useState([]);
   const [course, setCourse] = useState([]);
+  const [managers, setManagers] = useState([]);
+  const [user, setUser] = useState(() => {
+    let token = localStorage.getItem(`learnforcare_access`);
+    return jwtDecode(token);
+  });
+  const [manager, setManager] = useState(user.id);
+
   function removeDuplicates(arr) {
     return arr.filter((item, index) => arr.indexOf(item) === index);
   }
+
   useEffect(() => {
-    console.clear();
-    makeRequest("GET", "/course/get-manager-matrix-course")
+    makeRequest("GET", "/info/get-all-managers")
+      .then((res) => {
+        setManagers(res.data.response);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+  useEffect(() => {
+    const form = new FormData();
+    form.append("manager_id", manager);
+    makeRequest("POST", "/course/get-manager-matrix-course", form)
       .then((res) => {
         let temp = {
           color: "gray",
@@ -244,24 +263,24 @@ const ManCoursMatrix = () => {
           // delete item.matrix;
         });
 
-        let tempCourses = []
+        let tempCourses = [];
         course_name.forEach(() => {
           tempCourses.push(temp);
         });
         console.log(users);
 
-        users.forEach((item => {
-          let temp = [...tempCourses]
-          let course = item['course']
+        users.forEach((item) => {
+          let temp = [...tempCourses];
+          let course = item["course"];
           course_name.forEach((name, idx) => {
-            course.forEach(c => {
+            course.forEach((c) => {
               if (c.course_name === name) {
-                temp[idx] = c
+                temp[idx] = c;
               }
-            })
+            });
           });
-          item['course'] = temp
-        }))
+          item["course"] = temp;
+        });
         setCourseName(course_name);
         setUserName(user_name);
         setCourse(users);
@@ -269,7 +288,7 @@ const ManCoursMatrix = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [manager]);
   return (
     <div className="row p-3">
       <div style={{ position: "relative" }} className="dash-neww ">
@@ -314,32 +333,45 @@ const ManCoursMatrix = () => {
           </span>
         </div>
         <div className="col-12 p-2 m-2">
+          <div style={{ position: "relative" }}>
+            <div className="d-flex justify-content-center my-2 ">
+              <h4>Course Matrix</h4>
+            </div>
 
-          <div style={{position:'relative'}}>
-          <div className="d-flex justify-content-center my-2 ">
-            <h4>Course Matrix</h4>
-
+            <div
+              style={{ position: "absolute", top: "0", right: "0" }}
+              className="col-4 p-1 m-"
+            >
+              <Form.Select
+                onChange={(e) => {
+                  console.log(e.target.value);
+                  setManager(e.target.value);
+                }}
+                size=""
+                style={{ border: ".1px solid #212a50" }}
+                aria-label="Default select example"
+              >
+                <option value={null}>Select Manager</option>
+                {managers.map((item) => (
+                  <option value={item.id}>
+                    {item.first_name + " " + item.last_name}
+                  </option>
+                ))}
+              </Form.Select>
+            </div>
           </div>
-           
 
-
-          
-          <div style={{position:'absolute', top:"0", right:"0"}}  className="col-4 p-1 m-"> <Form.Select size="" style={{ border: ".1px solid #212a50" }} aria-label="Default select example">
-            <option>Select Manager</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
-          </Form.Select>
-          </div>
-          </div>
-       
-
-          <Table style={{marginTop:".5rem"}} responsive bordered variant="light">
+          <Table
+            style={{ marginTop: ".5rem" }}
+            responsive
+            bordered
+            variant="light"
+          >
             <thead>
               <tr style={{ textAlign: "center" }}>
                 <th
                   style={{ background: "#212a50", color: "white" }}
-                  colSpan={5}
+                  colSpan={60}
                 >
                   Bundle Name
                 </th>

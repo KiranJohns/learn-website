@@ -46,29 +46,23 @@ function DashIndividual() {
     );
     setRecords(newData);
   };
-  
-  useEffect(()=> {
+
+  useEffect(() => {
     makeRequest("GET", "/info/data")
-    .then((res) => {
-      setInfo(res.data.response[0]);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-  },[])
+      .then((res) => {
+        setInfo(res.data.response[0]);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
   function handleSearch() {}
 
   const makeRequest = fetchData();
 
   const getData = () => {
     try {
-      let url = "";
-      if (getUserType() === "individual") {
-        url = "/course/get-bought-course";
-      } else {
-        url = "/sub-user/course/get-assigned-course";
-      }
-      makeRequest("GET", url)
+      makeRequest("GET", "/on-going-course/get-all-on-going-courses")
         .then((res) => {
           setRecords(
             res.data.response.filter((course) => {
@@ -88,19 +82,19 @@ function DashIndividual() {
     }
   };
 
-  const handleStart = (id, from) => {
-    let form = new FormData();
-    form.append("from", from);
-    form.append("course_id", id);
-    makeRequest("POST", "/course/start-course", form)
-      .then((res) => {
-        console.log(res);
-        location.pathname = `/learnCourse/coursepage/?courseId=${res.data.response.id}`;
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  // const handleStart = (id, from) => {
+  //   let form = new FormData();
+  //   form.append("from", from);
+  //   form.append("course_id", id);
+  //   makeRequest("POST", "/course/start-course", form)
+  //     .then((res) => {
+  //       console.log(res);
+  //       location.pathname = `/learnCourse/coursepage/?courseId=${id}`;
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
 
   function startCourse(id) {
     console.log(id);
@@ -130,18 +124,13 @@ function DashIndividual() {
       name: "No",
       selector: (row, idx) => idx + 1,
       center: true,
-      width:'90px'
+      width: "90px",
     },
     {
       name: "Name",
       selector: (row) => (row.name ? row.name : row.Name),
       center: true,
     },
-    // {
-    //   name: "description",
-    //   selector: (row) => row.description.slice(0, 25),
-    //   center: true,
-    // },
     {
       name: "category",
       selector: (row) => row.category,
@@ -160,31 +149,16 @@ function DashIndividual() {
     {
       name: "Action",
       cell: (row) => (
-        <>
-          {row?.progress ? (
-            <Link
-              href={{
-                pathname: "/learnCourse/coursepage",
-                query: { courseId: row.on_going_course_id },
-              }}
-            >
-              <a className="btn btn-success">continue</a>
-            </Link>
-          ) : (
-            <a
-              onClick={() => {
-                if (row.from_purchased) {
-                  handleStart(row.id, "purchased");
-                } else {
-                  handleStart(row.id, "assigned");
-                }
-              }}
-              className="btn btn-success"
-            >
-              start
-            </a>
-          )}
-        </>
+        <Link>
+          <a
+            onClick={() => {
+              location.pathname = `/learnCourse/coursepage/?courseId=${row.id}`;
+            }}
+            className="btn btn-success"
+          >
+            continue
+          </a>
+        </Link>
       ),
     },
   ];
@@ -203,7 +177,7 @@ function DashIndividual() {
           <h3
             style={{ color: "#212450", marginTop: ".3rem", display: "inline" }}
           >
-            Hello {info.first_name+" "+info.last_name}{" "}
+            Hello {info.first_name + " " + info.last_name}{" "}
             <IoHandLeft style={{ color: "#f1c27d", marginBottom: ".5rem" }} />
           </h3>
           <div className="headd-element" style={{}}>
@@ -220,7 +194,10 @@ function DashIndividual() {
             </h2>
           </div>
         </div>
-        <div className="team-shadow container"  style={{ display:"flex", flexDirection:'column' }}>
+        <div
+          className="team-shadow container"
+          style={{ display: "flex", flexDirection: "column" }}
+        >
           <div
             className=""
             style={{
@@ -270,7 +247,6 @@ function DashIndividual() {
                     justifyContent: "center",
                     alignItems: "",
                     marginTop: "1rem",
-                    
                   }}
                 >
                   Buy Courses
@@ -298,7 +274,7 @@ function DashIndividual() {
                     justifyContent: "center",
                     alignItems: "",
                     marginTop: "1rem",
-                    zIndex:""
+                    zIndex: "",
                   }}
                 >
                   My Certificates
@@ -316,11 +292,14 @@ function DashIndividual() {
             }}
           >
             <div className="ag-courses_item-sec " style={{ marginLeft: "" }}>
-              <a href="/individual/mycourses" className="ag-courses-item_link-sec">
+              <a
+                href="/individual/mycourses"
+                className="ag-courses-item_link-sec"
+              >
                 <div className="ag-courses-item_bg-sec"></div>
                 <div
                   className="bi bi-book ag-courses-item_date-box-new"
-                  style={{ fontSize: "1.8rem"  }}
+                  style={{ fontSize: "1.8rem" }}
                 ></div>
                 <div
                   className="ag-courses-item_title-sec dash-box-h"
@@ -340,11 +319,14 @@ function DashIndividual() {
               className="ag-courses_item-sec "
               style={{ marginLeft: "3.2rem" }}
             >
-              <a href="/individual/mybundles" className="ag-courses-item_link-sec">
+              <a
+                href="/individual/mybundles"
+                className="ag-courses-item_link-sec"
+              >
                 <div className="ag-courses-item_bg-sec"></div>
                 <div
                   className="bi bi-stack ag-courses-item_date-box-new"
-                  style={{ fontSize: "1.8rem"  }}
+                  style={{ fontSize: "1.8rem" }}
                 ></div>
                 <div
                   className="ag-courses-item_title-sec dash-box-h"
@@ -450,7 +432,6 @@ function DashIndividual() {
                   }
                   customStyles={customStyles}
                   pagination
-                 
                 />
               </div>
             </div>
