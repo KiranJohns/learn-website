@@ -131,11 +131,6 @@ function DashIndividual() {
       selector: (row) => (row.name ? row.name : row.Name),
       center: true,
     },
-    // {
-    //   name: "description",
-    //   selector: (row) => row.description.slice(0, 25),
-    //   center: true,
-    // },
     {
       name: "category",
       selector: (row) => row.category,
