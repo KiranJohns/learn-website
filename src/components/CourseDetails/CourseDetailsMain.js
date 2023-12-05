@@ -10,6 +10,9 @@ import "react-tabs/style/react-tabs.css";
 import sampleProducts from "./../../../sampleProduct.json";
 import CourseAccordion from "../Elements/Accordion/CourseAccordion";
 import products from "../../../sampleProduct.json";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from "react-toastify";
+import { useSelector } from "react-redux";
 
 const CourseSliderWithNoSSR = dynamic(
   () => import("../Elements/Slider/CourseSliderSection"),
@@ -24,6 +27,8 @@ import { useRouter } from "next/router";
 import fetchData from "../../axios";
 import store from "../../redux/store";
 function CourseDetailsMain() {
+  const { cart } = useSelector((state) => state.cart);
+  console.log(cart);
   const {
     query: { slug },
   } = useRouter();
@@ -55,14 +60,20 @@ function CourseDetailsMain() {
       })
       .catch((err) => {
         if (err?.data?.errors[0]?.message === "please login") {
+          console.log("hi");
+          if (Array.isArray(cart)) {
+            if (cart?.find((item) => item.id == slug)) {
+              return toast.warn("already added to the cart");
+            }
+          }
           store.dispatch({
             type: "ADD_TO_CART",
             payload: {
               course: {
-                ...course.find((item) => item.id === id),
+                ...course,
                 item_type: "course",
               },
-              count: fakeCount,
+              count: 1,
             },
           });
         }
@@ -85,6 +96,18 @@ function CourseDetailsMain() {
   return (
     <React.Fragment>
       <main>
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick={true}
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
         {/* course tab-start */}
         <section className="page__title-area pt-120 pb-90">
           <div className="page__title-shape">

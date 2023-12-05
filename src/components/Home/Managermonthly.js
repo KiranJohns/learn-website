@@ -5,6 +5,7 @@ import Link from "next/link";
 import BasicExample from "../About/button1";
 import fetchData from "../../axios";
 import Button from 'react-bootstrap/Button';
+import { getMonth } from "../../utils/month";
 
 const customStyles = {
   headRow: {
@@ -73,7 +74,7 @@ class ManageMonthRep extends Component {
       },
       {
         name: "month",
-        selector: (row) => row.month,
+        selector: (row) => getMonth(row.month),
         center:true,
       },
       {

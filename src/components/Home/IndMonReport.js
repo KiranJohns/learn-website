@@ -5,6 +5,7 @@ import Link from "next/link";
 import BasicExample from "../About/button1";
 import fetchData from "../../axios";
 import Button from 'react-bootstrap/Button';
+import { getMonth } from "../../utils/month";
 
 const customStyles = {
   headRow: {
@@ -47,7 +48,6 @@ class IndMonthRep extends Component {
     let makeRequest = fetchData();
     makeRequest("GET", "/info/get-all-transactions-by-month")
       .then((res) => {
-        console.log(res);
         this.setState({
           records: res.data.response.reverse(),
           filterRecords: res.data,
@@ -74,7 +74,7 @@ class IndMonthRep extends Component {
       },
       {
         name: "month",
-        selector: (row) => row.month,
+        selector: (row) => getMonth(row.month),
         sortable: true,
         center:true,
       },
