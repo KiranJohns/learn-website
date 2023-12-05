@@ -116,7 +116,7 @@ class DashTest extends Component {
         cell: (row) => (
             <a
               onClick={() => {
-                location.pathname = `/learnCourse/coursepage/?courseId=${row.id}`;
+                location.href = `/learnCourse/coursepage/?courseId=${row.id}`;
               }}
               className="btn btn-success"
             >
