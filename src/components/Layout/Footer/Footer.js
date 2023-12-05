@@ -70,8 +70,7 @@ const Footer = () => {
                                  <div className="footer__link footer__link-2">
                                     <ul>
                                        <li><Link href="/"><a>Privacy</a></Link></li>
-                                       <li><Link href="/"><a>Cookies</a></Link></li>
-                                       
+                                       <li><Link href="/"><a>Cookies</a></Link></li>                                
                                        <li><Link href="/"><a>Terms & Conditions</a></Link></li>
                                        <li><Link href="/"><a>FAQ</a></Link></li>
                                        <li><Link href="/sign-in"><a>Login</a></Link></li>

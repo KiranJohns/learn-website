@@ -66,20 +66,20 @@ const BurgerMenus = ({setMenuOpen, menuOpen}) => {
                       <li><Link href="/home-3"><a>Home 3</a></Link></li>
                     </ul> */}
                   </li>
-                  <li className={courses ? "has-droupdown active" : "has-droupdown"}>
+                  <li style={{backgroundColor:'#fff'}} className={courses ? "has-droupdown active" : "has-droupdown"}>
                     <a onClick={() => { openMobileMenu('courses'); }}>Courses</a>
-                    <ul className={courses ? "sub-menu active" : "sub-menu"}>
-                      <li><Link href="/course-all"><a>Courses </a></Link></li>
-                       <li><Link href="/bundle/bundle-all"><a>Course Bundles</a></Link></li>
+                    <ul style={{backgroundColor:'#fff'}} className={courses ? "sub-menu active" : "sub-menu"}>
+                      <li ><Link  href="/course-all"><a>Courses </a></Link></li>
+                       <li><Link  href="/bundle/bundle-all"><a>Course Bundles</a></Link></li>
                       {/* <li><Link href="/course-list"><a>Course List</a></Link></li>
                       <li><Link href="/course-sidebar"><a>Course Sidebar</a></Link></li>
                       <li><Link href="/course-details"><a>Course Details</a></Link></li> */}
                     </ul>
                   </li>
-                  <li className={blog ? "has-droupdown active" : "has-droupdown"}>
+                  <li style={{backgroundColor:'#fff'}} className={blog ? "has-droupdown active" : "has-droupdown"}>
                     <a onClick={() => { openMobileMenu('blog'); }}>Blog</a>
                     <ul className={blog ? "sub-menu active" : "sub-menu"}>
-                      <li><Link href="/blog" as="/blog"><a>Blog</a></Link></li>
+                      <li style={{backgroundColor:'#fff'}}><Link href="/blog" as="/blog"><a>Blog</a></Link></li>
                       {/* <li><Link href="/blog-details"><a>Blog Details</a></Link></li> */}
                     </ul>
                   </li>
