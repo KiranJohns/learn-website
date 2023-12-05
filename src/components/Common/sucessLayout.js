@@ -11,9 +11,7 @@ const SuccessLayout = () => {
 
     const handleButtonClick = () => {
         if (getUserType() === "company") {
-            router.push("/company/dashboard");
-        } else {
-            router.push("/individual/dashboard");
+            router.push(`/${getUserType()}/dashboard`);
         }
     };
 
