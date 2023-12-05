@@ -75,9 +75,6 @@ const MatrixBundComp = () => {
           });
 
           item["course"] = courses;
-
-          // delete item.matrix_assigned;
-          // delete item.matrix;
         });
 
         let tempCourses = [];
@@ -152,7 +149,7 @@ const MatrixBundComp = () => {
         <div className="col-12 p-2 m-2">
           <div style={{ position: "relative" }}>
             <div className="d-flex justify-content-center my-2 ">
-              <h4>Course Matrix</h4>
+              <h4>Bundle Matrix</h4>
             </div>
 
             <div

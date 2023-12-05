@@ -74,7 +74,7 @@ function CourseDetailsMain() {
     makeRequest("GET", `/course/get-single-course/${slug}`)
       .then((res) => {
         setCourse(res.data.response[0]);
-        console.log(res.data);
+        console.log(res.data.response[0]);
       })
       .catch((err) => {
         console.log(err);
@@ -109,16 +109,6 @@ function CourseDetailsMain() {
               <div className="col-xxl-8 col-xl-8 col-lg-8">
                 <div className="course__wrapper">
                   <div className="page__title-content mb-25">
-                    {/* <div className="page__title-breadcrumb">                            
-                                            <nav aria-label="breadcrumb">
-                                                <ol className="breadcrumb">
-                                                    <li className="breadcrumb-item"><Link href="/"><a>Home</a></Link></li>
-                                                    <li className="breadcrumb-item"><Link href="/course-grid"><a>Courses</a></Link></li>
-                                                    <li className="breadcrumb-item active" aria-current="page">The business Intelligence analyst Course 2022</li>
-                                                </ol>
-                                            </nav>
-                                        </div> */}
-                    {/* <span className="page__title-pre">Development</span> */}
                     <h5 className="page__title-3">{course?.name}</h5>
                   </div>
                   {/* <div className="course__meta-2 d-sm-flex mb-30">
@@ -166,34 +156,26 @@ function CourseDetailsMain() {
                           <div className="course__description mb-95">
                             <h3>Introduction</h3>
                             <p className=" mb-45">{course?.description}</p>
-
-                            {/* <div className="course__tag-2 mb-35 mt-35">
-                                                        <i className="fas fa-tags"></i>
-                                                        <Link href="/course-details"><a>Big data,</a></Link>
-                                                        <Link href="/course-details"><a>Data analysis,</a></Link>
-                                                        <Link href="/course-details"><a>Data modeling</a></Link>
-                                                        </div> */}
                             <div className="course__description-list mb-45">
                               <h4>Who should attend?</h4>
-                              <p className=" mb-45">{course?.description}</p>
+                              <ul
+                                className=" mb-45"
+                                style={{ listStyle: "initial" }}
+                              >
+                                {JSON.parse(
+                                  course?.who_should_attend || "[]"
+                                ).map((item) => (
+                                  <li>item</li>
+                                ))}
+                              </ul>
                             </div>
                             <div className="course__description-list mb-45">
                               <h4>What you will learn?</h4>
                               <ul>
                                 <li>
                                   {" "}
-                                  <i className="fas fa-check"></i> An
-                                  Introduction to First Aid
-                                </li>
-                                <li>
-                                  {" "}
-                                  <i className="fas fa-check"></i> Roles and
-                                  Responsibilities of the First Aider
-                                </li>
-                                <li>
-                                  {" "}
-                                  <i className="fas fa-check"></i> First Aid
-                                  Equipment
+                                  <i className="fas fa-check"></i>
+                                  An Introduction to First Aid
                                 </li>
                               </ul>
                             </div>

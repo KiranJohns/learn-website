@@ -9,7 +9,7 @@ import store from "../../redux/store";
 const MyCart = () => {
   const makeRequest = fetchData();
   const { cart, totalPrice } = useSelector((state) => state.cart);
-
+  const [coupon, setCoupon] = useState("");
   useEffect(() => {
     getCartItem();
   }, []);
@@ -75,6 +75,15 @@ const MyCart = () => {
         console.log(err?.data);
       });
   }
+  function applyCoupon() {
+    makeRequest("POST", "/coupon/apply-coupon", {code: coupon})
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err?.data);
+      });
+  }
   function decrement(courseId, id, type) {
     makeRequest("PATCH", "/cart/update-cart-count", {
       count: -1,
@@ -103,11 +112,11 @@ const MyCart = () => {
     makeRequest("POST", "/cart/checkout")
       .then((res) => {
         console.log(res.data.response);
-       location.href = res.data.response;
+        location.href = res.data.response;
       })
       .catch((err) => {
         if (err?.data?.errors[0].message === "please login") {
-          localStorage.setItem("from-checkout",true)
+          localStorage.setItem("from-checkout", true);
           location.pathname = "/sign-in";
         }
         console.log(err.data.errors[0]);
@@ -225,7 +234,9 @@ const MyCart = () => {
                     <div className="coupon d-sm-flex align-items-center">
                       <input
                         id="coupon_code"
+                        onChange={(e) => setCoupon(e.target.value)}
                         className="input-text"
+                        value={coupon}
                         name="coupon_code"
                         placeholder="Coupon code"
                         type="text"
@@ -234,6 +245,7 @@ const MyCart = () => {
                         className="e-btn"
                         name="apply_coupon"
                         type="submit"
+                        onClick={applyCoupon}
                       >
                         Apply coupon
                       </button>
