@@ -75,8 +75,8 @@ export default () => {
   }, []);
 
   return (
-    <section  className="course__area pt-50 pb-60 grey-bg">
-      <Tabs variant="enclosed" id="react-tabs-276">
+    <section  className="course__area pt-50 pb-60 grey-bg ">
+      <Tabs  variant="enclosed" id="react-tabs-276">
         <div className="container">
           <div className="" style={{display: "flex",justifyContent: "space-between"}}>
             <div
@@ -111,11 +111,11 @@ export default () => {
                 </ul>
              </div> */}
 
-            <div className="select media-select">
+            <div   className="select media-select filter-hidden">
           
             <CiFilter className="ic-fil" style={{position:'absolute',zIndex:'1',  marginTop:'13.7px',marginLeft:'.4rem',marginRight:'.5rem',color:"#000",fontSize:'1.2rem' }}/>  
              <select
-                style={{border:'none',outline:"#fff",borderRadius:'4px', background: "#fac48e", paddingBottom: "1rem" , textAlign:'justify',position:'relative',padding:'.7rem 1.3rem',width:'12.5rem',height:'47px',fontSize:'.8rem', fontWeight:'500' }}
+                style={{border:'none',outline:"#fff",borderRadius:'4px', background: "#fac48e", paddingBottom: "1rem" , textAlign:'justify',position:'relative',padding:'.7rem 1.3rem',width:'12.5rem',height:'45px',fontSize:'.8rem', fontWeight:'500' }}
                 className=""
                 aria-label="Default select example"
                 onChange={(e) => setCategoryFilter(e.target.value)}

@@ -4,6 +4,8 @@ import Breadcrumb from "../Common/Breadcrumb";
 import Link from "next/link";
 import fetchData from "../../axios";
 import { useSelector } from "react-redux";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import store from "../../redux/store";
 
 const MyCart = () => {
@@ -78,7 +80,9 @@ const MyCart = () => {
   function applyCoupon() {
     makeRequest("POST", "/coupon/apply-coupon", {code: coupon})
       .then((res) => {
+        toast('coupon applied');
         console.log(res.data);
+        
       })
       .catch((err) => {
         console.log(err?.data);
@@ -124,6 +128,8 @@ const MyCart = () => {
   }
   return (
     <main>
+       <ToastContainer position="top-right"
+         />
       {/* breadcrumb-start */}
       <Breadcrumb pageTitle="My Cart" />
       {/* breadcrumb-end */}
@@ -215,7 +221,7 @@ const MyCart = () => {
                               </div>
                             </td>
                             <td className="product-subtotal">
-                              <span className="amount">£{item.amount}</span>
+                              <span className="amount ">£{item.amount}</span>
                             </td>
                             <td className="product-remove">
                               <span onClick={() => removeItem(item.id)}>
@@ -269,7 +275,8 @@ const MyCart = () => {
                     <ul className="mb-20">
                       {/* <li>Subtotal <span>£24.00</span></li> */}
                       <li>
-                        Total <span>£{totalPrice}</span>
+                        Total <span style={{textDecoration:"line-through",color:'red' }}>£{totalPrice}</span>
+                        
                       </li>
                     </ul>
                     <Link href="/checkout">

@@ -335,9 +335,9 @@ const HeaderOpaque = () => {
                           </ul>
                         </li> */}
                         <li>
-                          <Link href="/how-it">
-                            <a>How it Works</a>
-                          </Link>
+                        <Link href="/about">
+                                <a>About Us</a>
+                           </Link>
                         </li>
                       </ul>
                     </nav>
@@ -456,7 +456,7 @@ const HeaderOpaque = () => {
                       <div></div>
                     ) : (
                       <Link href="/sign-up">
-                        <a className="e-btn">Sign UP</a>
+                        <a className="e-btn">Sign Up</a>
                       </Link>
                     )}
                   </div>
