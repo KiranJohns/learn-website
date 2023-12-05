@@ -242,7 +242,7 @@ const MatrixBundComp = () => {
                                 textAlign: "center",
                               }}
                             >
-                              {course.progress ? course.progress + "%" : "0%"}
+                              {course?.color == "red" && "not started" || course?.color == "yellow" && "started" || course?.color == "green" && "finished" || course?.color == "gray" && "" }
                             </td>
                           </>
                         );
@@ -256,7 +256,7 @@ const MatrixBundComp = () => {
                               textAlign: "center",
                             }}
                           >
-                            {course.progress ? course.progress + "%" : "0%"}
+                            {course?.color == "red" && "not started" || course?.color == "yellow" && "started" || course?.color == "green" && "finished" || course?.color == "gray" && "" }
                           </td>
                         );
                       }

@@ -127,13 +127,13 @@ const CourseResource = () => {
                   <p>
                     Course resource{" "}
                     <a
-                      href={item}
+                      href={item.url}
                       style={{ color: "#1b85b8" }}
                       target="_blank"
                       download
                     >
                       {" "}
-                      View
+                      {item.fileName}
                     </a>
                   </p>
                 </div>
