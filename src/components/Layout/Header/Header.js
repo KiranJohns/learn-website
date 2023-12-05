@@ -321,7 +321,7 @@ const Header = () => {
                           </li>
                            <li>
                                <Link href="/about">
-                                <a>About</a>
+                                <a>About Us</a>
                            </Link>
                           </li>
                           {/* <li className="has-dropdown">

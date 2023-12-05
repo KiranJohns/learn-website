@@ -27,10 +27,10 @@ const Footer = () => {
 
                                  <div className="footer__social">
                                     <ul>
-                                       <li><a href="#"><FaFacebookF/></a></li>
-                                       <li><a href="#" className="tw"><FaXTwitter/></a></li>
-                                       <li><a href="#" className="pin"><BsInstagram/></a></li>
-                                       <li><a href="#" className="lin1"><FaLinkedinIn/></a></li>
+                                       <li><a href="#"><FaFacebookF style={{fontSize:"1.2rem"}}/></a></li>
+                                       <li><a href="#" className="tw"><FaXTwitter style={{fontSize:"1.2rem"}}/></a></li>
+                                       <li><a href="#" className="pin"><BsInstagram style={{fontSize:"1.3rem"}}/></a></li>
+                                       <li><a href="#" className="lin1"><FaLinkedinIn style={{fontSize:"1.5rem"}}/></a></li>
                                        
                                       
                                        {/* <FontAwesomeIcon icon="fab fa-instagram" /> */}
@@ -39,7 +39,7 @@ const Footer = () => {
                               </div>
                            </div>
                         </div>
-                        <div className="col-xxl-2  col-xl-2 offset-xl-1 col-lg-2 offset-lg-0 col-md-2 offset-md-1 col-sm-3 offset-sm-1">
+                        <div className="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-4">
                            <div className="footer__widget mb-50">
                               <div className="footer__widget-head mb-22">
                                  <h3 className="footer__widget-title footer__widget-title-2">Links</h3>
@@ -47,7 +47,7 @@ const Footer = () => {
                               <div className="footer__widget-body">
                                  <div className="footer__link footer__link-2">
                                     <ul>
-                                       <li><Link href="/about"><a>About</a></Link></li>
+                                       <li><Link href="/about"><a>About Us</a></Link></li>
                                        <li><Link href="/course-all"><a>Courses</a></Link></li>
                                        
                                        <li><Link href="/"><a>How it Works</a></Link></li>
@@ -61,10 +61,10 @@ const Footer = () => {
                            </div>
                         </div>
 
-                        <div className="col-xxl-2  col-xl-2  col-lg-2 offset-lg-0 col-md-2 offset-md-1 col-sm-3 offset-sm-1">
+                        <div className="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-4">
                            <div className="footer__widget mb-50">
                               <div className="footer__widget-head mb-22">
-                                 <h3 style={{visibility:'hidden'}} className="footer__widget-title footer__widget-title-2">External Links</h3>
+                                 <h3  className="footer__widget-title footer__widget-title-2">External Links</h3>
                               </div>
                               <div className="footer__widget-body">
                                  <div className="footer__link footer__link-2">
@@ -84,7 +84,7 @@ const Footer = () => {
 
                         
                         
-                        <div className="col-xxl-3 col-xl-2 offset-xl-1 col-lg-2 offset-lg-0 col-md-2 offset-md-4 col-sm-2">
+                        <div className="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-4">
                            <div className="footer__widget mb-50">
                               <div className="footer__widget-head mb-22">
                                  <h3 className="footer__widget-title footer__widget-title-2">Contact</h3>
