@@ -12,6 +12,8 @@ const MyCart = () => {
   const makeRequest = fetchData();
   const { cart, totalPrice } = useSelector((state) => state.cart);
   const [coupon, setCoupon] = useState("");
+  const [couponData, setCouponData] = useState(null);
+  const [offerPrice, setOfferPrice] = useState("");
   useEffect(() => {
     getCartItem();
   }, []);
@@ -81,7 +83,14 @@ const MyCart = () => {
     makeRequest("POST", "/coupon/apply-coupon", {code: coupon})
       .then((res) => {
         toast('coupon applied');
-        console.log(res.data);
+        if(res.data.response.coupon_type == "Cash") {
+          setOfferPrice(parseInt(totalPrice) - parseInt(res.data.response.amount))
+        } else {
+          let per = parseInt((parseInt(totalPrice) * parseInt(res.data.response.amount)) / 100)
+          setOfferPrice(parseInt(totalPrice) - per)
+        }
+        console.log(res.data.response);
+        setCouponData(res.data.response)
         
       })
       .catch((err) => {
@@ -272,11 +281,14 @@ const MyCart = () => {
                 <div className="col-md-5 ml-auto">
                   <div className="cart-page-total">
                     <h2>Cart totals</h2>
-                    <ul className="mb-20">
+                    <ul className="mb-20 d-flex ">
                       {/* <li>Subtotal <span>£24.00</span></li> */}
-                      <li>
-                        Total <span style={{textDecoration:"line-through",color:'red' }}>£{totalPrice}</span>
-                        
+                      <li className="d-flex justify-content-between w-100">
+                        Total 
+                        <h4>
+                          <span style={{color:'green'}}>£ {offerPrice ? offerPrice : totalPrice}</span>
+                          {/* {couponData && <span style={{textDecoration:"line-through",color:`${couponData ? 'red' : 'green'}` }}>£ {totalPrice}</span>} */}
+                        </h4>
                       </li>
                     </ul>
                     <Link href="/checkout">
