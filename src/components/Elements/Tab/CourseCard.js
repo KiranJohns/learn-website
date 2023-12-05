@@ -127,19 +127,19 @@ function CourseCard({ item }) {
                         </Link>
                       </div> */}
         </div>
-        <div className="course__content">
-          <h3 className="homee__title" title={item.name}>
-            <Link href={`/course/${item.id}`}>
+        <div   className="course__content">
+          <h3   className="homee__title" title={item.name}>
+            <Link  href={`/course/${item.id}`}>
               <a>{item.name}</a>
               {/* <a>{item.name.slice(0, 20) + "..."}</a> */}
             </Link>
           </h3>
-          <div className="course__teacher d-flex align-items-center">
+          <div style={{textAlign:'justify'}} className="course__teacher d-flex align-items-center">
             {/* <div className="course__teacher-thumb mr-15">
                                  <img src="assets/img/course/teacher/teacher-5.jpg" alt="img not found"/>
                               </div> */}
             <h6>
-              <Link href={`/course/${item.id}`}>
+              <Link  href={`/course/${item.id}`}>
                 <a>{item.description.slice(0, 150) + "..."}</a>
               </Link>
             </h6>

@@ -247,7 +247,7 @@ class ManageDash extends Component {
               }}
             >
               <div className="ag-courses_item-comp" style={{ marginLeft: "" }}>
-                <a href="/manager/certificates" className="ag-courses-item_link-comp">
+                <a href="/manager/ceritificates" className="ag-courses-item_link-comp">
                   <div className="ag-courses-item_bg-comp"></div>
                   <div
                     className="bi bi-patch-check-fill  ag-courses-item_date-box-new"
@@ -268,7 +268,7 @@ class ManageDash extends Component {
               </div>
 
               <div className="ag-courses_item-comp" style={{ marginLeft: ".5rem" }}>
-                <a href="" className="ag-courses-item_link-comp">
+                <a href="/manager/myCourses" className="ag-courses-item_link-comp">
                   <div className="ag-courses-item_bg-comp"></div>
                   <div
                     className="bi bi-book ag-courses-item_date-box-new"
@@ -289,7 +289,7 @@ class ManageDash extends Component {
               </div>
 
               <div className="ag-courses_item-comp " style={{ marginLeft: ".5rem" }}>
-                <a href="" className="ag-courses-item_link-comp">
+                <a href="/manager/myBundle" className="ag-courses-item_link-comp">
                   <div className="ag-courses-item_bg-comp"></div>
                   <div
                     className="bi bi-stack ag-courses-item_date-box-new"
