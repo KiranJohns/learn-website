@@ -174,7 +174,7 @@ function SignInMain() {
           </div>
           <div className="info">Enter your registered email</div>
           <div className="form-group">
-            <label htmlFor="otp">Email</label>
+            {/* <label htmlFor="otp">Email</label> */}
             <input
               type="text"
               className="form-control"
