@@ -79,11 +79,11 @@ function CourseSidebar({addToCart}) {
               <div className="course__video-price">
                 <h5>
                   £{course?.price}.<span>00</span>{" "}
-                </h5>
-                <h5 className="old-price">$129.00</h5>
+                </h5 >
+                <h5 style={{visibility:"hidden"}} className="old-price">$129.00</h5>
               </div>
-              <div className="course__video-discount">
-                <span>68% OFF</span>
+              <div  className="course__video-discount">
+                <span style={{visibility:"hidden"}}>68% OFF</span>
               </div>
             </div>
             <div className="course__video-content mb-35">

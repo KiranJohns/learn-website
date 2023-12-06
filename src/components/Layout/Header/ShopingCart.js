@@ -111,6 +111,7 @@ const ShopingCart = ({ setShopOpen, shopOpen }) => {
     makeRequest("POST", "/cart/checkout")
       .then((res) => {
         console.log(res.data.response);
+        localStorage.removeItem("learnfrocarecart");
      location.href = res.data.response;
       })
       .catch((err) => {
