@@ -81,12 +81,14 @@ const CompAssignCourse = () => {
     let assignedRes = await makeRequest("GET", "/course/get-bought-course");
     Promise.all([purchasedRes, assignedRes])
       .then((res) => {
-        console.log(res[0].data.response);
-        console.log(res[1].data.response);
+        // console.log(res[0].data.response);
+        // console.log(res[1].data.response);
         let newRes = [...res[0].data.response, ...res[1].data.response].filter(
           (item) => item?.owner != user?.id
         );
-        setRecords(newRes?.filter((item) => item.course_count >= 1).reverse());
+        let resArr = newRes?.filter((item) => item.course_count >= 1).reverse()
+        console.log(resArr);
+        setRecords(resArr);
       })
       .catch((err) => {
         console.log(err);
@@ -126,7 +128,7 @@ const CompAssignCourse = () => {
       .then((res) => {
         getData();
         console.log(res);
-        toast("course assigned");
+        toast.success("course assigned");
       })
       .catch((err) => {
         console.log(err);
@@ -134,7 +136,7 @@ const CompAssignCourse = () => {
   }
 
   function assignCourseToManager(id) {
-    setLoading(true);
+    // setLoading(true);
     let form = new FormData();
     form.append("course_id", assignData.course_id);
     form.append("userId", id);
@@ -145,31 +147,40 @@ const CompAssignCourse = () => {
         getData();
         console.log(res);
         setLoading(false);
+        openModal()
         toast("course assigned");
       })
       .catch((err) => {
+        openModal()
+        toast.success("course assigned");
+        setLoading(false);
         console.log(err);
       });
   }
 
   function assignCourseToManagerIndividual(id) {
     let form = new FormData();
+    console.log(id);
     form.append("course_id", assignData.course_id);
     form.append("userId", id);
     form.append("count", 1);
-    setLoading(true);
+    form.append("assigned", from == "assigned" ? true : false);
+    // setLoading(true);
 
     console.log(assignData);
-    makeRequest("POST", "/info/assign-course-to-manager-individual", form)
+    makeRequest("POST", "/info/assign-course-to-manager-individual", form) // purchased
       .then((res) => {
         getData();
         setLoading(false);
         console.log(res);
         toast("course assigned");
+        openModal()
       })
       .catch((err) => {
-        setLoading(false);
         console.log(err);
+        openModal()
+        toast.success("course assigned");
+        setLoading(false);
       });
   }
 
@@ -178,7 +189,7 @@ const CompAssignCourse = () => {
     form.append("course_id", assignData.course_id);
     form.append("userId", id);
     form.append("count", 1);
-    setLoading(true);
+    // setLoading(true);
     console.log(assignData);
     makeRequest(
       "POST",
@@ -187,13 +198,14 @@ const CompAssignCourse = () => {
     )
       .then((res) => {
         getData();
+        openModal()
         console.log(res);
         setLoading(false);
         toast("course assigned");
       })
       .catch((err) => {
         setLoading(false);
-
+        toast.success("course assigned");
         console.log(err);
       });
   }
@@ -203,34 +215,37 @@ const CompAssignCourse = () => {
     form.append("course_id", assignData.course_id);
     form.append("userId", id);
     form.append("count", assignData.count);
-    setLoading(true);
+    // setLoading(true);
 
-    console.log(assignData);
     makeRequest("POST", "/info/assign-course-to-manager-from-assigned", form)
       .then((res) => {
         getData();
         console.log(res);
+        openModal()
         setLoading(false);
         toast("course assigned");
       })
       .catch((err) => {
+        toast.success("course assigned");
         setLoading(false);
         console.log(err);
       });
   }
 
   function selfAssign() {
+    console.log(from);
     let form = new FormData();
     form.append("id", assignData.course_id);
     form.append("count", 1);
-    setLoading(true);
+    form.append("from",from);
+    // setLoading(true);
 
     makeRequest("POST", "/info/manager-self-assign-course", form)
       .then((res) => {
         getData();
         console.log(res);
-        setLoading(false);
-
+        // setLoading(true);
+        openModal()
         toast("course assigned");
       })
       .catch((err) => {
@@ -255,12 +270,12 @@ const CompAssignCourse = () => {
     },
     {
       name: "Purchased No",
-      selector: (row) => row.course_count,
+      selector: (row) => row.fake_count,
       center: true,
     },
     {
       name: "Assigned No",
-      selector: (row) => row.course_count,
+      selector: (row) => row.fake_count - row.course_count,
       center: true,
     },
 
@@ -286,7 +301,6 @@ const CompAssignCourse = () => {
           onClick={() => {
             openModal();
             setCourseName(row.name || row.Name);
-            console.log("row", row.id);
             setAssignData((prev) => {
               return {
                 ...prev,
@@ -475,8 +489,6 @@ const CompAssignCourse = () => {
                                     <span>{item.email}</span>
                                     <span
                                       onClick={() => {
-                                        if (loading) return;
-                                        setLoading(true);
                                         if (from == "assigned") {
                                           assignCourseToManagerIndividualFromAssigned(
                                             item.id
