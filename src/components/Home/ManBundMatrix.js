@@ -200,7 +200,7 @@ const ManBundMatrix = () => {
                                 textAlign: "center",
                               }}
                             >
-                              {course?.color == "red" && "not started" || course?.color == "yellow" && "started" || course?.color == "green" && "finished" || course?.color == "gray" && "" }
+                              {course?.color == "red" && "not started" || course?.color == "yellow" && "in progress" || course?.color == "green" && "finished" || course?.color == "gray" && "" }
                             </td>
                           </>
                         );
@@ -214,7 +214,7 @@ const ManBundMatrix = () => {
                               textAlign: "center",
                             }}
                           >
-                            {course?.color == "red" && "not started" || course?.color == "yellow" && "started" || course?.color == "green" && "finished" || course?.color == "gray" && "" }
+                            {course?.color == "red" && "not started" || course?.color == "yellow" && "in progress" || course?.color == "green" && "finished" || course?.color == "gray" && "" }
                           </td>
                         );
                       }
