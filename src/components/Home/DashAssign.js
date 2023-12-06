@@ -10,21 +10,20 @@ import Modal from "react-responsive-modal";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Tab } from "react-bootstrap";
-import Button from 'react-bootstrap/Button';
-import ButtonGroup from 'react-bootstrap/ButtonGroup';
-import Tabs from 'react-bootstrap/Tabs';
-import Table from 'react-bootstrap/Table';
-import {jwtDecode} from 'jwt-decode';
-import Spinner from 'react-bootstrap/Spinner';
-
+import Button from "react-bootstrap/Button";
+import ButtonGroup from "react-bootstrap/ButtonGroup";
+import Tabs from "react-bootstrap/Tabs";
+import Table from "react-bootstrap/Table";
+import { jwtDecode } from "jwt-decode";
+import Spinner from "react-bootstrap/Spinner";
 
 const customStyles = {
   headRow: {
     style: {
       backgroundColor: "#212450",
       color: "white",
-      display:'flex',
-      justifyContent:'center'
+      display: "flex",
+      justifyContent: "center",
     },
   },
   headCells: {
@@ -32,23 +31,20 @@ const customStyles = {
       fontSize: "16px",
       fontWeight: "600",
       textTransform: "uppercase",
-      
     },
   },
   cells: {
     style: {
       fontSize: "15px",
-    
     },
   },
-
 };
 
 const CompAssignCourse = () => {
   const [records, setRecords] = useState([]);
   const [user, setUser] = useState(() => {
     let token = localStorage.getItem(`learnforcare_access`);
-    return jwtDecode(token)
+    return jwtDecode(token);
   });
   const [searchString, setSearchString] = useState("");
   const [companyIndividuals, setCompanyIndividuals] = useState([]);
@@ -58,6 +54,7 @@ const CompAssignCourse = () => {
   const [allManagers, setAllManagers] = useState([]);
   const [filteredManagers, setFilteredManagers] = useState([]);
   const [showModal, setShowModal] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [from, setFrom] = useState("");
   const [courseName, setCourseName] = useState("");
   const [selectedBundleCount, setSelectedBundleCount] = useState(0);
@@ -72,13 +69,11 @@ const CompAssignCourse = () => {
   const openModal = () => {
     setShowModal(!showModal);
   };
-  const [key, setKey] = useState('individual');
-
-
+  const [key, setKey] = useState("individual");
 
   const makeRequest = fetchData();
   async function getData() {
-    console.clear()
+    console.clear();
     let purchasedRes = await makeRequest(
       "GET",
       "/course/get-all-assigned-course"
@@ -88,7 +83,9 @@ const CompAssignCourse = () => {
       .then((res) => {
         console.log(res[0].data.response);
         console.log(res[1].data.response);
-        let newRes = [...res[0].data.response, ...res[1].data.response].filter(item => item?.owner != user?.id);
+        let newRes = [...res[0].data.response, ...res[1].data.response].filter(
+          (item) => item?.owner != user?.id
+        );
         setRecords(newRes?.filter((item) => item.course_count >= 1).reverse());
       })
       .catch((err) => {
@@ -137,6 +134,7 @@ const CompAssignCourse = () => {
   }
 
   function assignCourseToManager(id) {
+    setLoading(true);
     let form = new FormData();
     form.append("course_id", assignData.course_id);
     form.append("userId", id);
@@ -146,6 +144,7 @@ const CompAssignCourse = () => {
       .then((res) => {
         getData();
         console.log(res);
+        setLoading(false);
         toast("course assigned");
       })
       .catch((err) => {
@@ -158,15 +157,18 @@ const CompAssignCourse = () => {
     form.append("course_id", assignData.course_id);
     form.append("userId", id);
     form.append("count", 1);
+    setLoading(true);
 
     console.log(assignData);
     makeRequest("POST", "/info/assign-course-to-manager-individual", form)
       .then((res) => {
         getData();
+        setLoading(false);
         console.log(res);
         toast("course assigned");
       })
       .catch((err) => {
+        setLoading(false);
         console.log(err);
       });
   }
@@ -176,7 +178,7 @@ const CompAssignCourse = () => {
     form.append("course_id", assignData.course_id);
     form.append("userId", id);
     form.append("count", 1);
-
+    setLoading(true);
     console.log(assignData);
     makeRequest(
       "POST",
@@ -186,28 +188,33 @@ const CompAssignCourse = () => {
       .then((res) => {
         getData();
         console.log(res);
+        setLoading(false);
         toast("course assigned");
       })
       .catch((err) => {
+        setLoading(false);
+
         console.log(err);
       });
   }
 
   function assignCourseToManagerFromAssigned(id) {
-    
     let form = new FormData();
     form.append("course_id", assignData.course_id);
     form.append("userId", id);
     form.append("count", assignData.count);
+    setLoading(true);
 
     console.log(assignData);
     makeRequest("POST", "/info/assign-course-to-manager-from-assigned", form)
       .then((res) => {
         getData();
         console.log(res);
+        setLoading(false);
         toast("course assigned");
       })
       .catch((err) => {
+        setLoading(false);
         console.log(err);
       });
   }
@@ -216,14 +223,19 @@ const CompAssignCourse = () => {
     let form = new FormData();
     form.append("id", assignData.course_id);
     form.append("count", 1);
+    setLoading(true);
 
     makeRequest("POST", "/info/manager-self-assign-course", form)
       .then((res) => {
         getData();
         console.log(res);
+        setLoading(false);
+
         toast("course assigned");
       })
       .catch((err) => {
+        setLoading(false);
+
         console.log(err);
       });
   }
@@ -231,50 +243,49 @@ const CompAssignCourse = () => {
     {
       name: "No",
       selector: (row, idx) => ++idx,
-     width:"70px",
-      center:true,
+      width: "70px",
+      center: true,
     },
     {
       name: "name",
       selector: (row) => row.name || row.Name,
       sortable: true,
-      center:true,
-      width:"420px",
+      center: true,
+      width: "420px",
     },
     {
       name: "Purchased No",
       selector: (row) => row.course_count,
-      center:true,
+      center: true,
     },
     {
       name: "Assigned No",
       selector: (row) => row.course_count,
-      center:true,
+      center: true,
     },
-    
-    
+
     {
       name: "Remaning No",
       selector: (row) => row.course_count,
-      center:true,
+      center: true,
     },
     // {
     //   name: "validity",
     //   selector: (row) => {
     //     let newDt = new Date(row.validity).toLocaleDateString().split('/').map(d=> d.length <= 1 ? '0'+d : d )
     //      return newDt[1]+'/'+newDt[0] +'/'+newDt[2]
-  
+
     //     },
     // },
     {
       name: "action",
-      center:true,
+      center: true,
       selector: (row) => (
         <a
           className="btn btn-primary"
           onClick={() => {
             openModal();
-            setCourseName(row.name || row.Name)
+            setCourseName(row.name || row.Name);
             console.log("row", row.id);
             setAssignData((prev) => {
               return {
@@ -290,7 +301,7 @@ const CompAssignCourse = () => {
             setSelectedBundleCount(row.course_count);
           }}
         >
-          Assign 
+          Assign
         </a>
       ),
     },
@@ -298,8 +309,7 @@ const CompAssignCourse = () => {
 
   return (
     <div className="">
-      <ToastContainer position="top-center"
-         />
+      <ToastContainer position="top-center" />
 
       <div className="dash-shadow ">
         <div className=" row g-3  min-vh-100  d-flex justify-content-center mt-20">
@@ -312,7 +322,7 @@ const CompAssignCourse = () => {
               fontSize: 37,
             }}
           >
-           Purchased Courses
+            Purchased Courses
           </h2>
           <div style={{ padding: "", backgroundColor: "" }}>
             <Modal
@@ -328,230 +338,314 @@ const CompAssignCourse = () => {
                 });
               }}
             >
-              <div className="dash-shadow p-3 m-3" style={{ maxHeight: "200rem" }}>
-              <h5 style={{color:"#212a50"}}> {courseName}</h5>  {/*course name */}
-              <Tabs
-       id="controlled-tab-example"
-       activeKey={key}
-       onSelect={(k) => setKey(k)}
-       className="mb-3"
-      
-    >
-      <Tab eventKey="individual" title="Individual">
-        
-      <div style={{background:'white'}}>
-      <div className="form-control dash-shadow d-flex gap-3 p-3">
-                      <div className="form-group">
-                        <label  style={{ fontSize: ".74rem" }} for="exampleInputEmail1">Course Count</label>
-                        <input
-                         style={{ width: '4rem',textAlign:"center" }}
-                          disabled
-                          type="number"
-                          className="form-control"
-                          id="exampleInputEmail1"
-                          aria-describedby="emailHelp"
-                          placeholder="1"
-                        />
-                      </div>
-                      <div style={{marginLeft:"16rem"}} className="form-group">
-                        <label style={{ visibility: "hidden" }} for="exampleInputEmail1">Search</label>
-                        <div className="p-relative d-inline ">
-                        <input
-                         style={{ width: "18rem" }}
-                          onChange={(e) =>
-                            setFilteredCompanyIndividuals(
-                              companyIndividuals.filter((item) =>
-                                item.first_name
-                                  .toLocaleLowerCase()
-                                  .startsWith(
-                                    e.target.value.toLocaleLowerCase()
-                                  )
-                              )
-                            )
-                          }
-                          type="text"
-                          className="form-control"
-                          id="exampleInputEmail1"
-                          aria-describedby="emailHelp"
-                          placeholder="search by name"
-                        />
-                        <i style={{ position: 'absolute', left: "13.3rem", top: "2.2rem" }} className="bi bi-search"></i>
-                        </div> 
-                      </div>
-                    </div>
-
-                    <div>
-                    <div className="list-group bg-white">
-                      <ul classNAm="list-group">
-
-                      <li style={{background:"#212a50", fontWeight:"700", borderRadius:'.3rem',color:'white'}} class="list-group-item my-2  d-flex justify-content-between">
-                          <span style={{ width: "fit-content", marginLeft: '.7rem' }}>
-                            Name
-                          </span>
-                          <span style={{ textAlign: 'center' }}>Email</span>
-                          <span
-                            style={{ width: "fit-content", marginRight: "1rem" }}
+              <div
+                className="dash-shadow p-3 m-3"
+                style={{ maxHeight: "200rem" }}
+              >
+                <h5 style={{ color: "#212a50" }}> {courseName}</h5>{" "}
+                {/*course name */}
+                <Tabs
+                  id="controlled-tab-example"
+                  activeKey={key}
+                  onSelect={(k) => setKey(k)}
+                  className="mb-3"
+                >
+                  <Tab eventKey="individual" title="Individual">
+                    <div style={{ background: "white" }}>
+                      <div className="form-control dash-shadow d-flex gap-3 p-3">
+                        <div className="form-group">
+                          <label
+                            style={{ fontSize: ".74rem" }}
+                            for="exampleInputEmail1"
                           >
-                            Action
-                          </span>
-                        </li>
-                      </ul>
-                    </div>
-
-                    <div className="list-group bg-white">
-                      <ul class="list-group">
-                      <li class="list-group-item bg-white text-black d-flex justify-content-between">
-                                <span style={{ width: "fit-content" }}>
-                                  {user?.first_name + " " + user?.last_name}
-                                </span>
-                                <span>{user?.email}</span>
-                                <span
-                                  onClick={() => {
-                                    selfAssign()
-                                  }}
-                                  style={{ width: "fit-content",margin:"0rem .1rem" }}
-                                  className="btn btn-success"
-                                >
-                                  Assign
-                                </span>
-                              </li>
-                        {filteredCompanyIndividuals &&
-                          filteredCompanyIndividuals.map((item) => {
-                            return (
-                              <li class="list-group-item bg-white text-black d-flex justify-content-between">
-                                <span style={{ width: "fit-content" }}>
-                                  {item.first_name + " " + item.last_name}
-                                </span>
-                                <span>{item.email}</span>
-                                <span
-                                  onClick={() => {
-                                    if (from == "assigned") {
-                                      assignCourseToManagerIndividualFromAssigned(
-                                        item.id
-                                      );
-                                    } else {
-                                      assignCourseToManagerIndividual(item.id);
-                                    }
-                                  }}
-                                  style={{ width: "fit-content",margin:"0rem .1rem" }}
-                                  className="btn btn-success"
-                                >
-                                  Assign
-                                </span>
-                              </li>
-                            );
-                          })}
-                      </ul>
-                    </div>
-                    
-
-                    </div>
-
-      </div>
-      </Tab>
-      <Tab eventKey="manager" title="Manager">
-        <div style={{background:"white"}}>
-        <div className="form-control dash-shadow d-flex gap-3 p-3">
-                      <div className="form-group">
-                        <label style={{ fontSize: ".73rem" }} for="exampleInputEmail1">Course Count</label>
-                        <input
-                          style={{ width: '4rem',textAlign:"center" }}
-                          onChange={(e) => {
-                            if (Number(e.target.value) <= selectedBundleCount) {
-                              setAssignData((prev) => {
-                                return {
-                                  ...prev,
-                                  count: e.target.value,
-                                };
-                              });
-                            }
-                          }}
-                          type="number"
-                          value={assignData.count}
-                          className="form-control"
-                          id="exampleInputEmail1"
-                          aria-describedby="emailHelp"
-                          placeholder="0"
-                        />
-                      </div>
-                      <div style={{marginLeft:"16rem"}} className="form-group">
-                        <label style={{visibility:'hidden'}} for="exampleInputEmail1">Search</label>
-                        <div className="p-relative d-inline ">
-                        <input
-                         style={{ width: "18rem" }}
-                          onChange={(e) =>
-                            setFilteredManagers(
-                              allManagers.filter((item) =>
-                                item.first_name
-                                  .toLocaleLowerCase()
-                                  .startsWith(
-                                    e.target.value.toLocaleLowerCase()
+                            Course Count
+                          </label>
+                          <input
+                            style={{ width: "4rem", textAlign: "center" }}
+                            disabled
+                            type="number"
+                            className="form-control"
+                            id="exampleInputEmail1"
+                            aria-describedby="emailHelp"
+                            placeholder="1"
+                          />
+                        </div>
+                        <div
+                          style={{ marginLeft: "16rem" }}
+                          className="form-group"
+                        >
+                          <label
+                            style={{ visibility: "hidden" }}
+                            for="exampleInputEmail1"
+                          >
+                            Search
+                          </label>
+                          <div className="p-relative d-inline ">
+                            <input
+                              style={{ width: "18rem" }}
+                              onChange={(e) =>
+                                setFilteredCompanyIndividuals(
+                                  companyIndividuals.filter((item) =>
+                                    item.first_name
+                                      .toLocaleLowerCase()
+                                      .startsWith(
+                                        e.target.value.toLocaleLowerCase()
+                                      )
                                   )
-                              )
-                            )
-                          }
-                          type="text"
-                          className="form-control"
-                          id="exampleInputEmail1"
-                          aria-describedby="emailHelp"
-                          placeholder="search by name"
-                        />
-                         <i style={{ position: 'absolute', left: "13.3rem", top: "2.2rem" }} className="bi bi-search"></i>
+                                )
+                              }
+                              type="text"
+                              className="form-control"
+                              id="exampleInputEmail1"
+                              aria-describedby="emailHelp"
+                              placeholder="search by name"
+                            />
+                            <i
+                              style={{
+                                position: "absolute",
+                                left: "13.3rem",
+                                top: "2.2rem",
+                              }}
+                              className="bi bi-search"
+                            ></i>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div>
+                        <div className="list-group bg-white">
+                          <ul classNAm="list-group">
+                            <li
+                              style={{
+                                background: "#212a50",
+                                fontWeight: "700",
+                                borderRadius: ".3rem",
+                                color: "white",
+                              }}
+                              class="list-group-item my-2  d-flex justify-content-between"
+                            >
+                              <span
+                                style={{
+                                  width: "fit-content",
+                                  marginLeft: ".7rem",
+                                }}
+                              >
+                                Name
+                              </span>
+                              <span style={{ textAlign: "center" }}>Email</span>
+                              <span
+                                style={{
+                                  width: "fit-content",
+                                  marginRight: "1rem",
+                                }}
+                              >
+                                Action
+                              </span>
+                            </li>
+                          </ul>
+                        </div>
+
+                        <div className="list-group bg-white">
+                          <ul class="list-group">
+                            <li class="list-group-item bg-white text-black d-flex justify-content-between">
+                              <span style={{ width: "fit-content" }}>
+                                {user?.first_name + " " + user?.last_name}
+                              </span>
+                              <span>{user?.email}</span>
+                              <span
+                                onClick={() => {
+                                  selfAssign();
+                                }}
+                                style={{
+                                  width: "fit-content",
+                                  margin: "0rem .1rem",
+                                }}
+                                className="btn btn-success"
+                              >
+                                Assign
+                              </span>
+                            </li>
+                            {filteredCompanyIndividuals &&
+                              filteredCompanyIndividuals.map((item) => {
+                                return (
+                                  <li class="list-group-item bg-white text-black d-flex justify-content-between">
+                                    <span style={{ width: "fit-content" }}>
+                                      {item.first_name + " " + item.last_name}
+                                    </span>
+                                    <span>{item.email}</span>
+                                    <span
+                                      onClick={() => {
+                                        if (loading) return;
+                                        setLoading(true);
+                                        if (from == "assigned") {
+                                          assignCourseToManagerIndividualFromAssigned(
+                                            item.id
+                                          );
+                                        } else {
+                                          assignCourseToManagerIndividual(
+                                            item.id
+                                          );
+                                        }
+                                      }}
+                                      style={{
+                                        width: "fit-content",
+                                        margin: "0rem .1rem",
+                                      }}
+                                      className="btn btn-success"
+                                    >
+                                      Assign
+                                    </span>
+                                  </li>
+                                );
+                              })}
+                          </ul>
                         </div>
                       </div>
                     </div>
-                    <div className="list-group bg-white">
-                      <ul class="list-group">
-
-                      <li style={{background:"#212a50", fontWeight:"700", borderRadius:'.3rem',color:'white'}} class="list-group-item my-2  d-flex justify-content-between">
-                          <span style={{ width: "fit-content", marginLeft: '.7rem' }}>
-                            Name
-                          </span>
-                          <span style={{ textAlign: 'center' }}>Email</span>
-                          <span
-                            style={{ width: "fit-content", marginRight: "1rem" }}
+                  </Tab>
+                  <Tab eventKey="manager" title="Manager">
+                    <div style={{ background: "white" }}>
+                      <div className="form-control dash-shadow d-flex gap-3 p-3">
+                        <div className="form-group">
+                          <label
+                            style={{ fontSize: ".73rem" }}
+                            for="exampleInputEmail1"
                           >
-                            Action
-                          </span>
-                        </li>
-                      </ul>
+                            Course Count
+                          </label>
+                          <input
+                            style={{ width: "4rem", textAlign: "center" }}
+                            onChange={(e) => {
+                              if (
+                                Number(e.target.value) <= selectedBundleCount
+                              ) {
+                                setAssignData((prev) => {
+                                  return {
+                                    ...prev,
+                                    count: e.target.value,
+                                  };
+                                });
+                              }
+                            }}
+                            type="number"
+                            value={assignData.count}
+                            className="form-control"
+                            id="exampleInputEmail1"
+                            aria-describedby="emailHelp"
+                            placeholder="0"
+                          />
+                        </div>
+                        <div
+                          style={{ marginLeft: "16rem" }}
+                          className="form-group"
+                        >
+                          <label
+                            style={{ visibility: "hidden" }}
+                            for="exampleInputEmail1"
+                          >
+                            Search
+                          </label>
+                          <div className="p-relative d-inline ">
+                            <input
+                              style={{ width: "18rem" }}
+                              onChange={(e) =>
+                                setFilteredManagers(
+                                  allManagers.filter((item) =>
+                                    item.first_name
+                                      .toLocaleLowerCase()
+                                      .startsWith(
+                                        e.target.value.toLocaleLowerCase()
+                                      )
+                                  )
+                                )
+                              }
+                              type="text"
+                              className="form-control"
+                              id="exampleInputEmail1"
+                              aria-describedby="emailHelp"
+                              placeholder="search by name"
+                            />
+                            <i
+                              style={{
+                                position: "absolute",
+                                left: "13.3rem",
+                                top: "2.2rem",
+                              }}
+                              className="bi bi-search"
+                            ></i>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="list-group bg-white">
+                        <ul class="list-group">
+                          <li
+                            style={{
+                              background: "#212a50",
+                              fontWeight: "700",
+                              borderRadius: ".3rem",
+                              color: "white",
+                            }}
+                            class="list-group-item my-2  d-flex justify-content-between"
+                          >
+                            <span
+                              style={{
+                                width: "fit-content",
+                                marginLeft: ".7rem",
+                              }}
+                            >
+                              Name
+                            </span>
+                            <span style={{ textAlign: "center" }}>Email</span>
+                            <span
+                              style={{
+                                width: "fit-content",
+                                marginRight: "1rem",
+                              }}
+                            >
+                              Action
+                            </span>
+                          </li>
+                        </ul>
+                      </div>
+                      <div className="list-group bg-white">
+                        <ul class="list-group">
+                          {filteredManagers &&
+                            filteredManagers.map((item) => {
+                              return (
+                                <li class="list-group-item bg-white text-black d-flex justify-content-between">
+                                  <span
+                                    style={{
+                                      width: "fit-content",
+                                      marginLeft: ".1rem",
+                                    }}
+                                  >
+                                    {item.first_name + " " + item.last_name}
+                                  </span>
+                                  <span>{item.email}</span>
+                                  <span
+                                    style={{ width: "fit-content" }}
+                                    className="btn btn-success"
+                                    onClick={() => {
+                                      if (from == "assigned") {
+                                        assignCourseToManagerFromAssigned(
+                                          item.id
+                                        );
+                                      } else {
+                                        assignCourseToManager(item.id);
+                                      }
+                                    }}
+                                  >
+                                    Assign
+                                  </span>
+                                </li>
+                              );
+                            })}
+                        </ul>
+                      </div>
                     </div>
-                    <div className="list-group bg-white">
-                      <ul class="list-group">
-                        {filteredManagers &&
-                          filteredManagers.map((item) => {
-                            return (
-                              <li class="list-group-item bg-white text-black d-flex justify-content-between">
-                                <span style={{ width: "fit-content", marginLeft: '.1rem' }}>
-                                  {item.first_name + " " + item.last_name}
-                                </span>
-                                <span>{item.email}</span>
-                                <span
-                                  style={{ width: "fit-content" }}
-                                  className="btn btn-success"
-                                  onClick={() => {
-                                    if (from == "assigned") {
-                                      assignCourseToManagerFromAssigned(
-                                        item.id
-                                      );
-                                    } else {
-                                      assignCourseToManager(item.id);
-                                    }
-                                  }}
-                                >
-                                  Assign
-                                </span>
-                              </li>
-                            );
-                          })}
-                      </ul>
-                    </div>
-        </div>
-      </Tab>
-    
-    </Tabs>
-
-{/* 
+                  </Tab>
+                </Tabs>
+                {/* 
                 <div className=" d-flex mb-5">
                 <ButtonGroup aria-label="Basic example">
                   <strong
@@ -800,23 +894,24 @@ const CompAssignCourse = () => {
               </form>
             </div>
             <DataTable
-             persistTableHead={true}        
-             progressComponent={<div style={{padding:"1rem"}}>
-              <Spinner animation="border" variant="primary" />
-              </div>
-             }
+              persistTableHead={true}
+              progressComponent={
+                <div style={{ padding: "1rem" }}>
+                  <Spinner animation="border" variant="primary" />
+                </div>
+              }
               columns={columns}
               data={
                 searchString
                   ? records.filter((item) =>
-                    item.name
-                      .toLowerCase()
-                      .includes(searchString.toLowerCase())
-                  )
+                      item.name
+                        .toLowerCase()
+                        .includes(searchString.toLowerCase())
+                    )
                   : records
               }
-              customStyles={customStyles}     
-              pagination  
+              customStyles={customStyles}
+              pagination
             />
           </div>
         </div>{" "}

@@ -64,13 +64,9 @@ function DashIndividual() {
     try {
       makeRequest("GET", "/on-going-course/get-all-on-going-courses")
         .then((res) => {
+          console.log(res.data.response);
           setRecords(
-            res.data.response.filter((course) => {
-              if (course?.course_count > 0) {
-                console.log(course);
-                return course;
-              }
-            })
+            res.data.response.reverse()
           );
           setFilterRecords(res.data);
         })
@@ -149,16 +145,14 @@ function DashIndividual() {
     {
       name: "Action",
       cell: (row) => (
-        <Link>
-          <a
+          <span
             onClick={() => {
-              location.pathname = `/learnCourse/coursepage/?courseId=${row.id}`;
+              location.href = `/learnCourse/coursepage/?courseId=${row.id}`;
             }}
             className="btn btn-success"
           >
             continue
-          </a>
-        </Link>
+          </span>
       ),
     },
   ];
