@@ -156,7 +156,9 @@ function SignInMain() {
         styles={{
           modal: {
             maxWidth: "unset",
-            width: "50%",
+            minWidth:"25%",
+      
+
             padding: "unset",
           },
           overlay: {

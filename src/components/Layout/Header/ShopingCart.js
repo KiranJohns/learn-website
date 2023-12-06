@@ -108,11 +108,14 @@ const ShopingCart = ({ setShopOpen, shopOpen }) => {
 
   function handleCheckout(e) {
     e.preventDefault();
+    localStorage.removeItem("learnfrocarecart");
     makeRequest("POST", "/cart/checkout")
       .then((res) => {
         console.log(res.data.response);
+        setTimeout(() => {
+          location.href = res.data.response;
+        },2000);
         localStorage.removeItem("learnfrocarecart");
-     location.href = res.data.response;
       })
       .catch((err) => {
         if (err?.data?.errors[0].message === "please login") {
