@@ -121,9 +121,9 @@ export default () => {
                 onChange={(e) => setCategoryFilter(e.target.value)}
               >
                  
-                <option   style={{fontSize:'1rem', color:""}}  value="">Filters</option>
-                <option style={{fontSize:'1rem'}} value="Care Course
-                ">Care Certificate Courses</option>
+                <option style={{fontSize:'1rem', color:""}}  value="">Filters</option>
+                <option style={{fontSize:'1rem'}} value="Care Course">Care Certificate Courses</option>
+
                 <option style={{fontSize:'1rem'}}  value="Mandatory Care Courses">
                   Mandatory Care Courses
                 </option>

@@ -39,7 +39,7 @@ class Hero extends Component {
                                         <img src="assets/img/hero/Home1.webp" alt="img not found"/>
                                         {/* <img src="https://images.pexels.com/photos/5088181/pexels-photo-5088181.jpeg?auto=compress&cs=tinysrgb&w=600" alt="not found" /> */}
                                         <div className="hero__quote hero__quote-animation">
-                                            <span style={{fontWeight:"bold"}}>Nurturing Knowledge, Elevating<br/>Compassion in Caregiving</span>
+                                            <span style={{fontWeight:"bold", color:"#212a50"}}>Nurturing Knowledge, Elevating<br/>Compassion in Caregiving</span>
                                             <h4></h4>
                                         </div>
                                     </div>
