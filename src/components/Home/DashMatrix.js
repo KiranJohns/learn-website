@@ -293,49 +293,49 @@ const ManCoursMatrix = () => {
     <div className="row p-3">
       <div style={{ position: "relative" }} className="dash-neww ">
         <div style={{ position: "absolute" }} className="">
-          <span className="m-1" style={{ display: "flex" }}>
+          <span className="m-3" style={{ display: "flex" }}>
             <div
               style={{
                 height: "1.5rem",
-                width: "3rem",
+                width: "6rem",
                 background: "#ae0000",
                 color: "white",
                 textAlign: "center",
               }}
               className="redd"
             >
-              0%
+             not started
             </div>
             <div
               style={{
                 height: "1.5rem",
-                width: "3rem",
+                width: "6rem",
                 background: "#f7b500",
                 color: "white",
                 textAlign: "center",
               }}
               className="redd"
             >
-              50%
+              in progress
             </div>
             <div
               style={{
                 height: "1.5rem",
-                width: "3rem",
+                width: "6rem",
                 background: "#549C30",
                 color: "white",
                 textAlign: "center",
               }}
               className="redd"
             >
-              100%
+              completed
             </div>
           </span>
         </div>
         <div className="col-12 p-2 m-2">
-          <div style={{ position: "relative" }}>
+          <div style={{ position: "relative", }}>
             <div className="d-flex justify-content-center my-2 ">
-              <h4>Course Matrix</h4>
+              <h4 style={{fontSize:"1.5rem"}}>Course Matrix</h4>
             </div>
 
             <div
@@ -428,7 +428,7 @@ const ManCoursMatrix = () => {
                                 textAlign: "center",
                               }}
                             >
-                              {course.progress ? course.progress + "%" : "0%"}
+                             {course?.color == "red" && "not started" || course?.color == "yellow" && "in progress" || course?.color == "green" && "finished" || course?.color == "gray" && "" }
                             </td>
                           </>
                         );
@@ -442,7 +442,7 @@ const ManCoursMatrix = () => {
                               textAlign: "center",
                             }}
                           >
-                            {course.progress ? course.progress + "%" : "0%"}
+                          {course?.color == "red" && "not started" || course?.color == "yellow" && "in progress" || course?.color == "green" && "finished" || course?.color == "gray" && "" }
                           </td>
                         );
                       }

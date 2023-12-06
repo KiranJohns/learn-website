@@ -36,6 +36,7 @@ export default ({ category }) => {
     <section className="course__area pt-50 pb-60 grey-bg">
       <Tabs variant="enclosed" id="react-tabs-276">
         <div className="container">
+        <div style={{textAlign:'center'}}><h5 style={{fontSize:'30px'}}>Courses We Offer</h5></div>
           <div className="row align-items-end">
             <div className="col-xxl-5 col-xl-6 col-lg-6">
               <div className="section__title-wrapper mb-60">
@@ -72,7 +73,9 @@ export default ({ category }) => {
                    </div>
                 </div> */}
           </div>
+       
           <TabPanel>
+           
             <div className="row">
               {course.map((item) => {
                 if (category === item.category)

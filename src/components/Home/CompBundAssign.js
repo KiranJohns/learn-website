@@ -301,10 +301,10 @@ const CompAssignBund = () => {
               display: "flex",
               justifyContent: "center",
               position: "absolute",
-              fontSize: 38,
+              fontSize: 36,
             }}
           >
-            Assign Bundle
+           Purchased Bundle
           </h2>
           <div style={{ padding: "", backgroundColor: "" }}>
             <Modal

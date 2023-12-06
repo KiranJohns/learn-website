@@ -15,7 +15,7 @@ const Footer = () => {
                <div className="footer__top pt-190 pb-40">
                   <div className="container">
                      <div className="row">
-                        <div className="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-4">
+                        <div className="col-xxl-3 col-xl-3 col-lg-3 col-md-12 col-sm-9">
                            <div className="footer__widget mb-50">
                               <div className="footer__widget-head mb-22">
                                  <div className="footer__logo">
@@ -27,19 +27,17 @@ const Footer = () => {
 
                                  <div className="footer__social">
                                     <ul>
-                                       <li><a href="#"><FaFacebookF style={{fontSize:"1.2rem"}}/></a></li>
-                                       <li><a href="#" className="tw"><FaXTwitter style={{fontSize:"1.2rem"}}/></a></li>
-                                       <li><a href="#" className="pin"><BsInstagram style={{fontSize:"1.3rem"}}/></a></li>
+                                       <li ><a href="#"><FaFacebookF style={{fontSize:"1.5rem"}}/></a></li>
+                                       <li><a href="#" className="tw"><FaXTwitter style={{fontSize:"1.5rem"}}/></a></li>
+                                       <li><a href="#" className="pin"><BsInstagram style={{fontSize:"1.5rem"}}/></a></li>
                                        <li><a href="#" className="lin1"><FaLinkedinIn style={{fontSize:"1.5rem"}}/></a></li>
-                                       
-                                      
-                                       {/* <FontAwesomeIcon icon="fab fa-instagram" /> */}
+                           {/* <FontAwesomeIcon icon="fab fa-instagram" /> */}
                                     </ul>
                                  </div>
                               </div>
                            </div>
                         </div>
-                        <div className="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-4">
+                        <div className="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6">
                            <div className="footer__widget mb-50">
                               <div className="footer__widget-head mb-22">
                                  <h3 className="footer__widget-title footer__widget-title-2">Links</h3>
@@ -51,17 +49,17 @@ const Footer = () => {
                                        <li><Link href="/course-all"><a>Courses</a></Link></li>
                                        
                                        <li><Link href="/"><a>How it Works</a></Link></li>
-                                       <li><Link href="/blog"><a>Blogs</a></Link></li>
+                                       <li><Link href="/blog"><a>Blog</a></Link></li>
                                        <li><Link href="/bundle/bundle-all"><a>Bundles</a></Link></li>
                                       
-                                       <li><Link href="/contact"><a>Contact</a></Link></li>
+                                       <li><Link href="/contact"><a>Contact Us</a></Link></li>
                                     </ul>
                                  </div>
                               </div>
                            </div>
                         </div>
 
-                        <div className="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-4">
+                        <div className="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6">
                            <div className="footer__widget mb-50">
                               <div className="footer__widget-head mb-22">
                                  <h3  className="footer__widget-title footer__widget-title-2">External Links</h3>
@@ -83,7 +81,7 @@ const Footer = () => {
 
                         
                         
-                        <div className="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-4">
+                        <div className="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6">
                            <div className="footer__widget mb-50">
                               <div className="footer__widget-head mb-22">
                                  <h3 className="footer__widget-title footer__widget-title-2">Contact</h3>

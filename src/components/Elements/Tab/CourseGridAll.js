@@ -111,18 +111,19 @@ export default () => {
                 </ul>
              </div> */}
 
-            <div   className="select media-select filter-hidden">
+            <div className="select media-select filter-hidden">
           
-            <CiFilter className="ic-fil" style={{position:'absolute',zIndex:'1',  marginTop:'13.7px',marginLeft:'.4rem',marginRight:'.5rem',color:"#000",fontSize:'1.2rem' }}/>  
+            <CiFilter className="ic-fil" style={{position:'absolute',zIndex:'1',  marginTop:'12px',marginLeft:'.2rem',marginRight:'.5rem',color:"#000",fontSize:'1.3rem' }}/>  
              <select
-                style={{border:'none',outline:"#fff",borderRadius:'4px', background: "#fac48e", paddingBottom: "1rem" , textAlign:'justify',position:'relative',padding:'.7rem 1.3rem',width:'12.5rem',height:'45px',fontSize:'.8rem', fontWeight:'500' }}
+                style={{border:'none',outline:"#fff",borderRadius:'4px', background: "#fac48e", textAlign:'center',position:'relative',width:'12.9rem',height:'45px',fontSize:'.9rem', fontWeight:'500',  }}
                 className=""
                 aria-label="Default select example"
                 onChange={(e) => setCategoryFilter(e.target.value)}
               >
                  
-                <option   style={{fontSize:'1rem', color:""}}  value="">Filters</option>
-                <option style={{fontSize:'1rem'}} value="Care Certificate">Care Certificate</option>
+                <option style={{fontSize:'1rem', color:""}}  value="">Filters</option>
+                <option style={{fontSize:'1rem'}} value="Care Course">Care Certificate Courses</option>
+
                 <option style={{fontSize:'1rem'}}  value="Mandatory Care Courses">
                   Mandatory Care Courses
                 </option>
