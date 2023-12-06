@@ -34,14 +34,14 @@ class CompanyPurCourse extends Component {
       filterRecords: [],
     };
   }
-  
+
   handleFilter = (event) => {
     const newData = this.state.filterRecords.filter((row) =>
-    row.name.toLowerCase().includes(event.target.value.toLowerCase())
+      row.name.toLowerCase().includes(event.target.value.toLowerCase())
     );
     this.setState({ records: newData });
   };
-  
+
   componentDidMount() {
     let makeRequest = fetchData();
     makeRequest("GET", "/info/get-purchased-bundles")
@@ -61,7 +61,7 @@ class CompanyPurCourse extends Component {
     const columns = [
       {
         name: "ID",
-        selector: (row,idx) => ++idx,
+        selector: (row, idx) => ++idx,
         sortable: true,
       },
       {
@@ -85,22 +85,22 @@ class CompanyPurCourse extends Component {
 
     return (
       <div className="">
-       
-      <div className="dash-shadow">
-      <div className=" row g-3  min-vh-100  d-flex justify-content-center mt-20">
-      <h2
-        style={{  
-          color: "#212450",
-          display: "flex",
-          justifyContent: "center",
-          position:'absolute',
-          fontSize: 38,
-        }}
-      >
-       Purchased Bundle
-      </h2>
-        <div style={{ padding: "", backgroundColor: "" }}>
-          {/* <div
+
+        <div className="dash-shadow">
+          <div className=" row g-3  min-vh-100  d-flex justify-content-center mt-20">
+            <h2
+              style={{
+                color: "#212450",
+                display: "flex",
+                justifyContent: "center",
+                position: 'absolute',
+                fontSize: 38,
+              }}
+            >
+              Purchased Bundle
+            </h2>
+            <div style={{ padding: "", backgroundColor: "" }}>
+              {/* <div
             className="pb-2 smth"
             style={{ display: "flex", justifyContent: "left" }}
           >
@@ -116,30 +116,30 @@ class CompanyPurCourse extends Component {
               }}
             />
           </div> */}
-          <div style={{float:'right',marginBottom:'1.4rem'}} className="p-relative d-inline header__search">
-            <form action="">
-              <input style={{ background:'#edeef3',}}
-                className="d-block mr-10"
-                type="text"
-                placeholder="Search..."
-                // value={searchString}
-                // onChange={handleSearch}
+              <div style={{ float: 'right', marginBottom: '1.4rem' }} className="p-relative d-inline header__search">
+                <form action="">
+                  <input style={{ background: '#edeef3', }}
+                    className="d-block mr-10"
+                    type="text"
+                    placeholder="Search..."
+                  // value={searchString}
+                  // onChange={handleSearch}
+                  />
+                  <button type="submit">
+                    <i className="fas fa-search"></i>
+                  </button>
+                </form>
+              </div>
+              <DataTable
+                columns={columns}
+                data={this.state.records}
+                customStyles={customStyles}
+                pagination
+                selectableRows
               />
-              <button type="submit">
-                <i className="fas fa-search"></i>
-              </button>
-            </form>
-          </div>
-          <DataTable
-            columns={columns}
-            data={this.state.records}
-            customStyles={customStyles}
-            pagination
-            selectableRows
-          />
-        </div>
-      </div> </div>
-    </div>
+            </div>
+          </div> </div>
+      </div>
     );
   }
 }

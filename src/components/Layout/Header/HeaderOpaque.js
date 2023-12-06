@@ -205,7 +205,7 @@ const HeaderOpaque = () => {
                           <ul className="submenu">
                             <li>
                               <Link href="/course-grid">
-                                <a>Care Certificate</a>
+                                <a>Care Certificate Courses</a>
                               </Link>
                             </li>
                             <li>

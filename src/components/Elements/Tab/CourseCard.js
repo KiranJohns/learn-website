@@ -134,7 +134,7 @@ function CourseCard({ item }) {
               {/* <a>{item.name.slice(0, 20) + "..."}</a> */}
             </Link>
           </h3>
-          <div style={{textAlign:'justify'}} className="course__teacher d-flex align-items-center">
+          <div style={{textAlign:'center'}} className="course__teacher d-flex align-items-center">
             {/* <div className="course__teacher-thumb mr-15">
                                  <img src="assets/img/course/teacher/teacher-5.jpg" alt="img not found"/>
                               </div> */}
@@ -145,9 +145,9 @@ function CourseCard({ item }) {
             </h6>
           </div>
         </div>
-        <div className="course__more d-flex justify-content-around">
+        <div className="course__more d-flex justify-content-between">
           <div className="course__status d-flex align-items-center">
-            <span className="sky-blue mb-3" style={{ marginBottom: "1px" }}>
+            <span className="sky-blue mb-3" style={{ marginBottom: "1px", }}>
               £{item.price}
             </span>
           </div>
