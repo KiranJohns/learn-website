@@ -165,7 +165,7 @@ const MyCart = () => {
                         return (
                           <tr>
                             <td className="product-thumbnail">
-                              <Link href="course-grid">
+                              <Link href={`/course/${item.course_id}`}>
                                 <a>
                                   <img
                                     src={item.thumbnail}
@@ -175,7 +175,7 @@ const MyCart = () => {
                               </Link>
                             </td>
                             <td className="product-name">
-                              <Link href="/course-grid">
+                              <Link href={`/course/${item.course_id}`}>
                                 <a>{item.name}</a>
                               </Link>
                             </td>
