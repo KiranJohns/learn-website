@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BsFillPatchCheckFill } from "react-icons/bs";
 import Confetti from 'react-confetti';
 import { AiOutlineArrowRight} from "react-icons/ai";
@@ -8,6 +8,9 @@ import fetchData, { getUserType } from "../../axios";
 
 const SuccessLayout = () => {
     const router = useRouter();
+
+
+    
 
     const handleButtonClick = () => {
         if (getUserType() === "company") {
