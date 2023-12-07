@@ -44,7 +44,6 @@ const CompAssignBund = () => {
   const [filteredCompanyIndividuals, setFilteredCompanyIndividuals] = useState(
     []
   );
-  const [loading, setLoading] = useState(false);
   const [allManagers, setAllManagers] = useState([]);
   const [filteredManagers, setFilteredManagers] = useState([]);
   const [showModal, setShowModal] = useState(false);
@@ -69,7 +68,6 @@ const CompAssignBund = () => {
   };
 
   function selfAssign() {
-    setLoading(true);
     let form = new FormData();
     form.append("id", assignData.course_id);
     form.append("count", 1);
@@ -94,10 +92,11 @@ const CompAssignBund = () => {
     );
     Promise.all([purchasedRes, assignedRes])
       .then((res) => {
-        console.log(res[0].data.response[0]);
-        console.log(res[1].data.response[0]);
-        let newRes = [...res[0].data.response, ...res[1].data.response];
-        setRecords(newRes?.filter((item) => item.course_count >= 1).reverse());
+        // console.log(res[0].data.response);
+        // console.log(res[1].data.response);
+        let newRes = [...res[0].data.response, ...res[1].data.response.filter((item) => item.owner != user.id)].filter((item) => item.course_count >= 1).reverse();
+        console.log(newRes);
+        setRecords(newRes);
       })
       .catch((err) => {
         console.log(err);
@@ -127,7 +126,6 @@ const CompAssignBund = () => {
   }, []);
 
   function assignCourseToManager(id) {
-    setLoading(true);
     let form = new FormData();
     form.append("course_id", assignData.course_id);
     form.append("userId", id);
@@ -139,16 +137,13 @@ const CompAssignBund = () => {
         console.log(res);
         openModal();
         toast("course assigned");
-        setLoading(false);
       })
       .catch((err) => {
         console.log(err);
-        setLoading(false);
       });
   }
 
   function assignCourseToManagerIndividual(id) {
-    setLoading(true);
     let form = new FormData();
     form.append("course_id", assignData.course_id);
     form.append("userId", id);
@@ -161,16 +156,13 @@ const CompAssignBund = () => {
         openModal();
         console.log(res);
         toast("course assigned");
-        setLoading(false);
       })
       .catch((err) => {
         console.log(err);
-        setLoading(false);
       });
   }
 
   function assignCourseToManagerIndividualFromAssigned(id) {
-    setLoading(true);
     let form = new FormData();
     form.append("course_id", assignData.course_id);
     form.append("userId", id);
@@ -185,18 +177,15 @@ const CompAssignBund = () => {
       .then((res) => {
         getData();
         console.log(res);
-        setLoading(false);
         openModal();
         toast("course assigned");
       })
       .catch((err) => {
         console.log(err);
-        setLoading(false);
       });
   }
 
   function assignCourseToManagerFromAssigned(id) {
-    setLoading(true);
     let form = new FormData();
     form.append("course_id", assignData.course_id);
     form.append("userId", id);
@@ -206,14 +195,12 @@ const CompAssignBund = () => {
     makeRequest("POST", "/info/assign-course-to-manager-from-assigned", form)
       .then((res) => {
         getData();
-        setLoading(false);
         console.log(res);
         toast("course assigned");
         openModal();
       })
       .catch((err) => {
         console.log(err);
-        setLoading(false);
       });
   }
   const columns = [
@@ -232,12 +219,12 @@ const CompAssignBund = () => {
     },
     {
       name: "Purchased",
-      selector: (row) => row.course_count,
+      selector: (row) => row.fake_count,
       center: true,
     },
     {
       name: "Assigned",
-      selector: (row) => row.course_count,
+      selector: (row) => row.fake_count - row.course_count,
       center: true,
     },
 
@@ -435,7 +422,6 @@ const CompAssignBund = () => {
                             <span>{user.email}</span>
                             <span
                               onClick={() => {
-                                if (loading) return;
                                 selfAssign();
                               }}
                               style={{
@@ -457,7 +443,6 @@ const CompAssignBund = () => {
                                   <span>{item.email}</span>
                                   <span
                                     onClick={() => {
-                                      if (loading) return;
                                       if (from == "assigned") {
                                         assignCourseToManagerIndividualFromAssigned(
                                           item.id
