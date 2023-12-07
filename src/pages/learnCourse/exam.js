@@ -6,25 +6,25 @@ import NewExam from "../../components/Home/NewExam";
 import NoSSR from "react-no-ssr";
 
 function exam() {
-    // const [logedIn, setlogedIn] = useState(() => {
-    //   return getUserType();
-    // });
-    // let routes = ["manager"]
+    const [logedIn, setlogedIn] = useState(() => {
+      return getUserType();
+    });
+    let routes = ["manager"]
   
-    // const router = useRouter();
+    const router = useRouter();
   
-    // useEffect(() => {
-    //   if (!routes.includes(logedIn)) {
-    //     router.push("/sign-in");
-    //   }
-    // }, []);
+    useEffect(() => {
+      if (!routes.includes(logedIn)) {
+        router.push("/sign-in");
+      }
+    }, []);
 
  
   
     return (
 
       <>
-        {/* {routes.includes(logedIn) && ( */}
+        {routes.includes(logedIn) && (
           <React.Fragment>
             <main
               className="p-1"
@@ -53,7 +53,7 @@ function exam() {
               </div>
             </main>
           </React.Fragment>
-        {/* )} */}
+        )}
       </>
     );
   }

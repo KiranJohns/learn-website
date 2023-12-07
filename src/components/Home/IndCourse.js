@@ -67,8 +67,8 @@ const IndCourse = () => {
           ...res[2].data.response.filter(item => item?.course_count >= 1),
         ];
         console.log(res);
-        setRecords(arr);
-        setFilterRecords(arr);
+        setRecords(arr.reverse());
+        setFilterRecords(arr.reverse());
       });
     } catch (error) {
       console.log(error);

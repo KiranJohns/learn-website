@@ -134,34 +134,6 @@ function CourseDetailsMain() {
                   <div className="page__title-content mb-25">
                     <h5 className="page__title-3">{course?.name}</h5>
                   </div>
-                  {/* <div className="course__meta-2 d-sm-flex mb-30">
-                                    <div className="course__teacher-3 d-flex align-items-center mr-70 mb-30">
-                                        <div className="course__teacher-thumb-3 mr-15">
-                                            <img src="assets/img/course/teacher/teacher-1.jpg" alt="img not found"/>
-                                        </div>
-                                        <div className="course__teacher-info-3">
-                                            <h5>Teacher</h5>
-                                            <p><Link href="/instructor"><a>Elon Gated</a></Link></p>
-                                        </div>
-                                    </div>
-                                    <div className="course__update mr-80 mb-30">
-                                        <h5>Last Update:</h5>
-                                        <p>July 24, 2022</p>
-                                    </div>
-                                    <div className="course__rating-2 mb-30">
-                                        <h5>Review:</h5>
-                                        <div className="course__rating-inner d-flex align-items-center">
-                                            <ul>
-                                                <li><a href="#"> <i className="fas fa-star"></i> </a></li>
-                                                <li><a href="#"> <i className="fas fa-star"></i> </a></li>
-                                                <li><a href="#"> <i className="fas fa-star"></i> </a></li>
-                                                <li><a href="#"> <i className="fas fa-star"></i> </a></li>
-                                                <li><a href="#"> <i className="fas fa-star"></i> </a></li>
-                                            </ul>
-                                            <p>4.5</p>
-                                        </div>
-                                    </div>
-                                    </div> */}
                   <div className="course__img w-img mb-30">
                     <img src={course?.thumbnail} alt="img not found" />
                   </div>

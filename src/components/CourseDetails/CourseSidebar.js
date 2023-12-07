@@ -6,15 +6,106 @@ import { useRouter } from "next/router";
 // import products from '../../../sampleProduct.json'
 import store from "../../redux/store";
 import fetchData from "../../axios";
+import { useSelector } from "react-redux";
 
-function CourseSidebar({addToCart}) {
+function CourseSidebar({ addToCart }) {
   const {
     query: { slug },
   } = useRouter();
 
+  const [fakeCount, setFakeCount] = useState(0);
+  const { cart } = useSelector((state) => state.cart);
+
   const [open, setOpen] = useState(false);
 
   const makeRequest = fetchData();
+
+  async function handleClick(id) {
+    if (!fakeCount <= 0) {
+      let cartItem = cart.find((cartItem) => cartItem.course_id == course?.id);
+
+      if (cartItem) {
+        console.log(cartItem);
+        updateCount(
+          Number(cartItem.id),
+          Number(course?.id),
+          Number(fakeCount),
+          cartItem.item_type
+        );
+      } else {
+        addToCart(course?.id);
+      }
+    }
+  }
+
+  function getCartItem() {
+    makeRequest("GET", "/cart/get")
+      .then((res) => {
+        store.dispatch({
+          type: "SET_CART",
+          payload: JSON.stringify(res.data.response),
+        });
+      })
+      .catch((err) => {
+        if (err?.data?.errors[0].message === "please login") {
+          store.dispatch({
+            type: "SET_CART",
+          });
+        }
+      });
+  }
+
+  function addToCart(id) {
+    console.log(fakeCount, id);
+    const data = new FormData();
+    data.append("course", JSON.stringify([{ count: fakeCount, id: id }]));
+    makeRequest("POST", "/cart/add", data)
+      .then((res) => {
+        getCartItem();
+        setFakeCount(0);
+        console.log(res.data);
+      })
+      .catch((err) => {
+        if (err?.data?.errors[0].message === "please login") {
+          store.dispatch({
+            type: "ADD_TO_CART",
+            payload: {
+              course: {...course.find((item) => course?.id === id), item_type: "course"},
+              count: fakeCount,
+            },
+          });
+          setFakeCount(0);
+        }
+      });
+  }
+
+  function updateCount(id, courseId, count, type) {
+    const data = new FormData();
+    data.append("id", id);
+    data.append("type", type);
+    data.append("count", count);
+    data.append("courseId", courseId);
+    makeRequest("PATCH", "/cart/update-cart-count", data)
+      .then((res) => {
+        setFakeCount(0);
+        getCartItem();
+        store.dispatch({
+          type: "INCREMENT_ITEM_CONT",
+          payload: { id, count },
+        });
+      })
+      .catch((err) => {
+        if (err?.data?.errors[0].message === "please login") {
+          store.dispatch({
+            type: "INCREMENT_ITEM_CONT",
+            payload: { id, count },
+          });
+          setFakeCount(0);
+        }
+        console.log(err);
+        console.log(err?.data);
+      });
+  }
   const [course, setCourse] = useState(() => {
     makeRequest("GET", `/course/get-single-course/${slug}`)
       .then((res) => {
@@ -79,11 +170,13 @@ function CourseSidebar({addToCart}) {
               <div className="course__video-price">
                 <h5>
                   £{course?.price}.<span>00</span>{" "}
-                </h5 >
-                <h5 style={{visibility:"hidden"}} className="old-price">$129.00</h5>
+                </h5>
+                <h5 style={{ visibility: "hidden" }} className="old-price">
+                  $129.00
+                </h5>
               </div>
-              <div  className="course__video-discount">
-                <span style={{visibility:"hidden"}}>68% OFF</span>
+              <div className="course__video-discount">
+                <span style={{ visibility: "hidden" }}>68% OFF</span>
               </div>
             </div>
             <div className="course__video-content mb-35">
@@ -145,198 +238,54 @@ function CourseSidebar({addToCart}) {
               </a>
             </div>
             <div className="course__enroll-btn">
-              <span
-                role="button"
-                onClick={addToCart}
-                className="pe-auto e-btn e-btn-7 w-100"
-              >
-                add to cart
-                <i className="fas fa-arrow-right"></i>
-              </span>
+              <div className="course__more d-flex justify-content-between">
+                <div className="course__status d-flex align-items-center">
+                  <span
+                    className="sky-blue mb-3"
+                    style={{ marginBottom: "1px" }}
+                  >
+                    £{course?.price}
+                  </span>
+                </div>
+                <span style={{ marginTop: "2px" }}>
+                  <div className="d-flex ml-1">
+                    <button
+                      className="cart-minus "
+                      onClick={() =>
+                        setFakeCount((prev) => {
+                          if (prev <= 0) {
+                            return 0;
+                          }
+                          return prev - 1;
+                        })
+                      }
+                    >
+                      <i className="fas fa-minus"></i>
+                    </button>
+                    <p className="p-1">{fakeCount}</p>
+                    <button
+                      className="cart-plus"
+                      onClick={() => setFakeCount((prev) => prev + 1)}
+                    >
+                      <i className="fas fa-plus"></i>
+                    </button>
+                  </div>
+                </span>
+                <span style={{ marginBottom: ".1rem" }}>
+                  <button
+                    className="btn btn-primary btn-sm mb-2 d-flex justify-content-between align-items-center"
+                    type="button"
+                    // class=""
+                    style={{ outline: "none", border: "none" }}
+                    onClick={() => handleClick()}
+                  >
+                    Add
+                  </button>
+                </span>
+              </div>
             </div>
           </div>
         </div>
-        {/* <div className="course__sidebar-widget-2 white-bg mb-20">
-            <div className="course__sidebar-course">
-              <h3 className="course__sidebar-title">Related courses</h3>
-              <ul>
-                <li>
-                  <div className="course__sm d-flex align-items-center mb-30">
-                    <div className="course__sm-thumb mr-20">
-                      <Link href="/course-grid">
-                        <a>
-                          <img
-                            src="/assets/img/course/sm/course-sm-1.jpg"
-                            alt="img not found"
-                          />
-                        </a>
-                      </Link>
-                    </div>
-                    <div className="course__sm-content">
-                      <div className="course__sm-rating">
-                        <ul>
-                          <li>
-                            <a href="#">
-                              {" "}
-                              <i className="fas fa-star"></i>{" "}
-                            </a>
-                          </li>
-                          <li>
-                            <a href="#">
-                              {" "}
-                              <i className="fas fa-star"></i>{" "}
-                            </a>
-                          </li>
-                          <li>
-                            <a href="#">
-                              {" "}
-                              <i className="fas fa-star"></i>{" "}
-                            </a>
-                          </li>
-                          <li>
-                            <a href="#">
-                              {" "}
-                              <i className="fas fa-star"></i>{" "}
-                            </a>
-                          </li>
-                          <li>
-                            <a href="#">
-                              {" "}
-                              <i className="fas fa-star"></i>{" "}
-                            </a>
-                          </li>
-                        </ul>
-                      </div>
-                      <h5>
-                        <Link href="/course-grid">
-                          <a>Development</a>
-                        </Link>
-                      </h5>
-                      <div className="course__sm-price">
-                        <span>$54.00</span>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div className="course__sm d-flex align-items-center mb-30">
-                    <div className="course__sm-thumb mr-20">
-                      <Link href="/course-grid">
-                        <a>
-                          <img
-                            src="/assets/img/course/sm/course-sm-2.jpg"
-                            alt="img not found"
-                          />
-                        </a>
-                      </Link>
-                    </div>
-                    <div className="course__sm-content">
-                      <div className="course__sm-rating">
-                        <ul>
-                          <li>
-                            <a href="#">
-                              {" "}
-                              <i className="fas fa-star"></i>{" "}
-                            </a>
-                          </li>
-                          <li>
-                            <a href="#">
-                              {" "}
-                              <i className="fas fa-star"></i>{" "}
-                            </a>
-                          </li>
-                          <li>
-                            <a href="#">
-                              {" "}
-                              <i className="fas fa-star"></i>{" "}
-                            </a>
-                          </li>
-                          <li>
-                            <a href="#">
-                              {" "}
-                              <i className="fas fa-star"></i>{" "}
-                            </a>
-                          </li>
-                          <li>
-                            <a href="#">
-                              {" "}
-                              <i className="fas fa-star"></i>{" "}
-                            </a>
-                          </li>
-                        </ul>
-                      </div>
-                      <h5>
-                        <Link href="/course-grid">
-                          <a>Data Science</a>
-                        </Link>
-                      </h5>
-                      <div className="/course__sm-price">
-                        <span>$72.00</span>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div className="course__sm d-flex align-items-center mb-10">
-                    <div className="course__sm-thumb mr-20">
-                      <Link href="/course-grid">
-                        <a>
-                          <img
-                            src="assets/img/course/sm/course-sm-3.jpg"
-                            alt="img not found"
-                          />
-                        </a>
-                      </Link>
-                    </div>
-                    <div className="course__sm-content">
-                      <div className="course__sm-rating">
-                        <ul>
-                          <li>
-                            <a href="#">
-                              {" "}
-                              <i className="fas fa-star"></i>{" "}
-                            </a>
-                          </li>
-                          <li>
-                            <a href="#">
-                              {" "}
-                              <i className="fas fa-star"></i>{" "}
-                            </a>
-                          </li>
-                          <li>
-                            <a href="#">
-                              {" "}
-                              <i className="fas fa-star"></i>{" "}
-                            </a>
-                          </li>
-                          <li>
-                            <a href="#">
-                              {" "}
-                              <i className="fas fa-star"></i>{" "}
-                            </a>
-                          </li>
-                          <li>
-                            <a href="#">
-                              {" "}
-                              <i className="fas fa-star"></i>{" "}
-                            </a>
-                          </li>
-                        </ul>
-                      </div>
-                      <h5>
-                        <Link href="/course-grid">
-                          <a>UX Design</a>
-                        </Link>
-                      </h5>
-                      <div className="course__sm-price">
-                        <span>Free</span>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div> */}
       </div>
     </React.Fragment>
   );
