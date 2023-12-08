@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Form from "react-bootstrap/Form";
 import fetchData from "../../axios";
 import { useRouter } from "next/router";
+import { Modal } from "react-responsive-modal";
 
 const OnlineExam = () => {
   const makeRequest = fetchData();
@@ -9,6 +10,17 @@ const OnlineExam = () => {
   const [exam, setExam] = useState([]);
   const [examResult, setExamResult] = useState([]);
   const [questionId, setQuestionId] = useState(null);
+  const [open, setOpen] = useState(false);
+  const [state, setState] = useState("");
+
+  const onOpenModal = (state) => {
+    setState(state)
+    setOpen(true);
+  };
+  const onCloseModal = () => {
+    setState("")
+    setOpen(false);
+  };
 
   useEffect(() => {
     const form = new FormData();
@@ -19,8 +31,8 @@ const OnlineExam = () => {
       .then((res) => {
         console.log(JSON.parse(res.data.response[0].exam));
         let exam = JSON.parse(res.data.response[0].exam);
-        setQuestionId(res.data.response[0].id)
-        console.log(res.data.response[0].id)
+        setQuestionId(res.data.response[0].id);
+        console.log(res.data.response[0].id);
         setExam(exam);
         exam.forEach((item) => {
           setExamResult((prev) => {
@@ -31,9 +43,9 @@ const OnlineExam = () => {
       .catch((err) => {
         console.log(err);
       });
-      return () => {
-        setExamResult([])
-      }
+    return () => {
+      setExamResult([]);
+    };
   }, []);
 
   function setAnswer(question, answer) {
@@ -41,13 +53,21 @@ const OnlineExam = () => {
     setExamResult((prev) =>
       prev.filter((item) => {
         if (item.question == question) {
-          item['answer'] = answer
+          item["answer"] = answer;
           return item;
         } else {
           return item;
         }
       })
     );
+  }
+
+  function validateAnswers() {
+    if (examResult.find((item) => item.answer == "")) {
+      onOpenModal(false);
+    } else {
+      onOpenModal(true);
+    }
   }
 
   function handleSubmit() {
@@ -58,8 +78,15 @@ const OnlineExam = () => {
     makeRequest("POST", "/exam/validate", form)
       .then((res) => {
         console.log(res.data);
-        localStorage.setItem('wrong-answers',JSON.stringify({questions: res.data.response.wrongAnswers,courseName: router.query.courseName, per: res.data.response.per}))
-        location.pathname = "learnCourse/result"
+        localStorage.setItem(
+          "wrong-answers",
+          JSON.stringify({
+            questions: res.data.response.wrongAnswers,
+            courseName: router.query.courseName,
+            per: res.data.response.per,
+          })
+        );
+        location.pathname = "learnCourse/result";
       })
       .catch((err) => {
         console.log(err);
@@ -70,6 +97,11 @@ const OnlineExam = () => {
       <div className="row">
         <div className="col-md-12 ">
           <div className="dash-shadow p-4 mt-4">
+            <Modal open={open} onClose={onCloseModal} center>
+              <>
+              {state ? <>hi</> : <>hoi</>}
+              </>
+            </Modal>
             <div className="dash-shadow p-4 mt-2 col-md-12">
               <div
                 className=""
@@ -107,12 +139,14 @@ const OnlineExam = () => {
                               value="a"
                               onClick={() => setAnswer(item.question, option)}
                               aria-label="radio 1"
-                            />{"  "}
+                            />
+                            {"  "}
                             <p
                               name="option"
                               style={{ marginLeft: "10px", overflow: "auto" }}
                             >
-                              {String.fromCharCode(97 + i)}{")   "}{' '} {option}
+                              {String.fromCharCode(97 + i)}
+                              {")   "} {option}
                             </p>
                           </span>
                         </div>
@@ -121,10 +155,10 @@ const OnlineExam = () => {
                   </form>
                 </div>
               ))}
-              <div style={{display:'flex', justifyContent:'center'}}>
-            <span className="btn btn-success mt-3" onClick={handleSubmit}>
-              submit
-            </span>
+            <div style={{ display: "flex", justifyContent: "center" }}>
+              <span className="btn btn-success mt-3" onClick={validateAnswers}>
+                submit
+              </span>
             </div>
           </div>
         </div>
@@ -132,6 +166,5 @@ const OnlineExam = () => {
     </div>
   );
 };
-
 
 export default OnlineExam;

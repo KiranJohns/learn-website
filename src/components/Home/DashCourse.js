@@ -8,7 +8,7 @@ import Modal from "react-responsive-modal";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
 import { jwtDecode } from "jwt-decode";
-import { Suspense } from 'react';
+import { Suspense } from "react";
 
 const customStyles = {
   headRow: {
@@ -64,13 +64,21 @@ class DashCourse extends Component {
     this.getData();
   }
 
-  getData = () => {
+  getData = async () => {
     try {
-      this.makeRequest("GET", "/course/get-all-assigned-course")
+      Promise.all([
+        await this.makeRequest("GET", "/course/get-all-assigned-course"),
+        await this.makeRequest(
+          "GET",
+          "/on-going-course/get-all-on-going-courses"
+        ),
+      ])
         .then((res) => {
           console.log(res);
           this.setState({
-            records: res.data.response.reverse().filter(item => item?.owner == this.state?.user?.id),
+            records: [...res[0].data.response, ...res[1].data.response]
+              .reverse()
+              .filter((item) => item?.owner == this.state?.user?.id),
             filterRecords: res.data,
           });
         })
@@ -145,21 +153,22 @@ class DashCourse extends Component {
         name: "No",
         selector: (row, idx) => idx + 1,
         center: true,
-        width:"80px"
+        width: "80px",
       },
       {
         name: "Name",
         selector: (row) => row.name,
         sortable: true,
         center: true,
-        width:"400px"
+        width: "400px",
       },
 
       {
         name: "validity",
         center: true,
         selector: (row) => {
-          let date = new Date(row.validity).toLocaleDateString()
+          let date = new Date(row.validity)
+            .toLocaleDateString()
             .split("/")
             .map((d) => (d.length <= 1 ? "0" + d : d));
           let newDate = `${date[1]}/${date[0]}/${date[2]}`;
@@ -283,24 +292,23 @@ class DashCourse extends Component {
               </form>
             </div>
             <Suspense fallback={<Loading />}>
-            <DataTable
-              persistTableHead={true}
-              noDataComponent={" "}
-              columns={columns}
-              data={
-                this.state.searchData
-                  ? this.state.records.filter((item) =>
-                      item.Name.toLowerCase().includes(
-                        this.state.searchData.toLowerCase()
+              <DataTable
+                persistTableHead={true}
+                noDataComponent={" "}
+                columns={columns}
+                data={
+                  this.state.searchData
+                    ? this.state.records.filter((item) =>
+                        item.Name.toLowerCase().includes(
+                          this.state.searchData.toLowerCase()
+                        )
                       )
-                    )
-                  : this.state.records
-              }
-              customStyles={customStyles}
-              pagination
-              
-            />
-              </Suspense>
+                    : this.state.records
+                }
+                customStyles={customStyles}
+                pagination
+              />
+            </Suspense>
           </div>
         </div>
       </div>
