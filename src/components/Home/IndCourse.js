@@ -125,10 +125,7 @@ const IndCourse = () => {
          return newDt[1]+'/'+newDt[0] +'/'+newDt[2]
         },
     },
-    {
-      name: "Attempts",
-      selector: (row) => "0",
-    },
+  
     {
       name: "Action",
       center:true,
