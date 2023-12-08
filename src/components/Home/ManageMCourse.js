@@ -119,10 +119,7 @@ class ManageMyCourse extends Component {
         selector: (row) => row?.course_count,
         center: true,
       },
-      {
-        name: "Attempts",
-        selector: (row) => "0",
-      },
+     
       {
         name: "Actions",
         cell: (row) => (

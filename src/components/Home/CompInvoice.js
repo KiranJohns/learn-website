@@ -65,18 +65,20 @@ class CompInvoice extends Component {
         name: "NO",
         selector: (row,idx) => ++idx,
         center: true,
+        width:"150px"
       },
       {
         name: "Date",
         selector: (row) => new Date(row.date).toLocaleDateString(),
         center: true,
         sortable: true,
+    
       },
       {
-        name: "Amount",
+        name: "Time",
         selector: (row) => new Date(row.date).toLocaleTimeString('en-US'),
         center: true,
-        sortable: true,
+        
       },
  
       {

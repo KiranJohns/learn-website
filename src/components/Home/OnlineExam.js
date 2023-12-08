@@ -97,11 +97,11 @@ const OnlineExam = () => {
       <div className="row">
         <div className="col-md-12 ">
           <div className="dash-shadow p-4 mt-4">
-            <Modal open={open} onClose={onCloseModal} center>
+            {/* <Modal open={open} onClose={onCloseModal} center>
               <>
               {state ? <>hi</> : <>hoi</>}
               </>
-            </Modal>
+            </Modal> */}
             <div className="dash-shadow p-4 mt-2 col-md-12">
               <div
                 className=""
