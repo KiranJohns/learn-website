@@ -10,12 +10,13 @@ import NoSSR from "react-no-ssr";
 import NewInDash from "../../components/Sidebar/BarDummy";
 import ManageBar from "../../components/Sidebar/ManagerBar";
 import DashboardBar from "../../components/Sidebar/DashboardBar";
+import AttemptsExam from "../../components/Home/AttemptsExam";
 import { getToken, getUserType } from "../../axios";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 
-const coursepage = () => {
+const examAttempts = () => {
   const [logedIn, setlogedIn] = useState(() => {
     return getUserType();
   });
@@ -55,7 +56,9 @@ const coursepage = () => {
                   {getUserType() == "company" && <DashboardBar />}
                 </div>
                 <div className="col-sm col-md-9 bg-white">
-                  <CourseResource />
+        
+                  <AttemptsExam />
+               
                 </div>
               </div>
             </div>
@@ -66,4 +69,4 @@ const coursepage = () => {
   );
 };
 
-export default coursepage;
+export default examAttempts;

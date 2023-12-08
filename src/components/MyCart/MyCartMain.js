@@ -265,6 +265,7 @@ const MyCart = () => {
                         Apply coupon
                       </button>
                     </div>
+                    
                     {/* <div className="coupon2">
                       <button
                         className="e-btn"
@@ -276,15 +277,30 @@ const MyCart = () => {
                     </div> */}
                   </div>
                 </div>
+
+             
+                    <div className="coupon d-sm-flex align-items-center mt-2">
+                      <input
+                        id="discountcoupon_code"
+                        // onChange={(e) => setCoupon(e.target.value)}
+                        className="input-text"
+                        // value=
+                        name="coupon_code"
+                        placeholder="Discount"
+                        type="text"
+                      />
+                     
+                    </div>
               </div>
+
               <div className="row">
                 <div className="col-md-5 ml-auto">
                   <div className="cart-page-total">
-                    <h2>Cart totals</h2>
+                    <h2>Grand Total</h2>
                     <ul className="mb-20 d-flex ">
                       {/* <li>Subtotal <span>£24.00</span></li> */}
                       <li className="d-flex justify-content-between w-100">
-                        Total 
+                        Grand Total
                         <h4>
                           <span style={{color:'green'}}>£ {offerPrice ? offerPrice : totalPrice}</span>
                           {/* {couponData && <span style={{textDecoration:"line-through",color:`${couponData ? 'red' : 'green'}` }}>£ {totalPrice}</span>} */}

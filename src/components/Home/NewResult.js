@@ -74,14 +74,13 @@ const NewResult = () => {
               className="dash-shadow p-4 mt-4"
             >
               <h4>Wrong Answers</h4>
-            </div>
-
-            {examResult &&
+             
+              {examResult.questions.length > 0 ?
               examResult.questions.map((item, i) => (
-                <div className="dash-shadow p-4 mt-4">
+                <div className=" p-2 ">
                   <p>
                     {++i}. {item.question}
-                  </p>
+                  </p> 
                   <form action="button">
                     {/* <div className="row">
                       <div className="col-sm-12 col-md-6">
@@ -105,7 +104,10 @@ const NewResult = () => {
                     </div> */}
                   </form>
                 </div>
-              ))}
+              )):(<p style={{fontWeight:'700',color:"#000", marginTop:"1rem", marginLeft:".5rem"}}>None</p>)}
+            </div>
+  
+          
 
               <div style={{textAlign:'center'}}>
             <span 

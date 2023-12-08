@@ -4,6 +4,13 @@ import NewInDash from "../../components/Sidebar/BarDummy";
 import Header from "../../components/Layout/Header/Header";
 import NewExam from "../../components/Home/NewExam";
 import NoSSR from "react-no-ssr";
+import NewInDash from "../../components/Sidebar/BarDummy";
+import ManageBar from "../../components/Sidebar/ManagerBar";
+import DashboardBar from "../../components/Sidebar/DashboardBar";
+import { useState } from "react";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
+import { getToken, getUserType } from "../../axios";
 
 function exam() {
   const [logedIn, setlogedIn] = useState(() => {
@@ -45,7 +52,7 @@ function exam() {
                 >
                   {getUserType() == "individual" && <NewInDash />}
                   {getUserType() == "manager" && <ManageBar />}
-                  {getUserType() == "company" && <DashCourse />}
+                  {getUserType() == "company" && <DashboardBar />}
                 </div>
                   <div className="col-sm col-md-9 bg-white">
                     <NewExam/>

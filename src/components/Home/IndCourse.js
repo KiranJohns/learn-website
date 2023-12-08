@@ -116,6 +116,7 @@ const IndCourse = () => {
       name: "category",
       selector: (row) => row.category,
     },
+   
     {
       name: "validity",
       center:true,
@@ -123,6 +124,10 @@ const IndCourse = () => {
         let newDt = new Date(row.validity).toLocaleDateString().split('/').map(d=> d.length <= 1 ? '0'+d : d )
          return newDt[1]+'/'+newDt[0] +'/'+newDt[2]
         },
+    },
+    {
+      name: "Attempts",
+      selector: (row) => "0",
     },
     {
       name: "Action",

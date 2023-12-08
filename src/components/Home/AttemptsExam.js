@@ -32,7 +32,7 @@ const customStyles = {
   },
 };
 
-class DashCourse extends Component {
+class AttemptsExam extends Component {
   constructor() {
     super();
     this.state = {
@@ -141,10 +141,10 @@ class DashCourse extends Component {
   render() {
     const columns = [
       {
-        name: "No",
+        name: "Attempt",
         selector: (row, idx) => idx + 1,
         center: true,
-        width:"80px"
+        width:"170px"
       },
       {
         name: "Name",
@@ -155,7 +155,7 @@ class DashCourse extends Component {
       },
 
       {
-        name: "validity",
+        name: "Date",
         center: true,
         selector: (row) => {
           let date = new Date(row.validity).toLocaleDateString()
@@ -166,33 +166,29 @@ class DashCourse extends Component {
         },
       },
       {
-        name: "Attempts",
-        selector: (row) => "0",
-      },
-      {
-        name: "Course count",
+        name: "Marks Obtained",
         selector: (row) => row.course_count,
       },
-      {
-        name: "Action",
-        center: true,
-        cell: (row) => {
-          return (
-            <a
-              onClick={() => {
-                // console.log(row.course_id, row.purchased_course_id);
-                // this.course_id = row.course_id;
-                // this.purchased_course_id = row.purchased_course_id;
-                // Other state updates if needed
-                this.handleStart(row?.id, "assigned");
-              }}
-              className="btn btn-success"
-            >
-              start
-            </a>
-          );
-        },
-      },
+    //   {
+    //     name: "Action",
+    //     center: true,
+    //     cell: (row) => {
+    //       return (
+    //         <a
+    //           onClick={() => {
+    //             console.log(row.course_id, row.purchased_course_id);
+    //             this.course_id = row.course_id;
+    //             this.purchased_course_id = row.purchased_course_id;
+    //             Other state updates if needed
+    //             this.handleStart(row?.id, "assigned");
+    //           }}
+    //           className="btn btn-success"
+    //         >
+    //           start
+    //         </a>
+    //       );
+    //     },
+    //   },
     ];
 
     return (
@@ -239,10 +235,10 @@ class DashCourse extends Component {
               style={{
                 padding: "",
                 color: "#212450",
-                fontSize: 38,
+                fontSize: 36,
               }}
             >
-              My Courses
+             Exam Results
             </h2>
             {/* <div
               className="pb-2 smth"
@@ -304,61 +300,4 @@ class DashCourse extends Component {
   }
 }
 
-export default DashCourse;
-
-// import React from 'react'
-// import axios from 'axios'
-// import { useEffect } from 'react'
-// import { useState } from 'react'
-// import DataTable from 'react-data-table-component'
-
-// const DashCourse = () => {
-//   const column=[
-//     {
-//       name:"ID",
-//       selector: row => row.id
-//     },{
-//       name:"Name",
-//       selector: row => row.name
-//     },{
-//       name:'Email',
-//     },{
-//       name:"City"
-//     }
-// ]
-
-//    useEffect(()=>{
-//     const fetData =async ()=>{
-//       axios.get('https://jsonplaceholder.typicode.com/users')
-//       .then(res=>setRecords(res.data)
-// setFilterRecords(res.data))
-//       .catch(err=>console.log(err));
-//     }
-//     fetData();
-//    })
-//     const[records, setRecords]=useState([])
-//     const [filterRecords, setRecords] = useState([])
-//  const handleFilter = (event) => {
-//   const newData = filterRecords.filter(
-//     (row) => row.name.toLowerCase().includes(event.target.value.toLowerCase())
-//   );
-//   setRecords(newData);
-// }
-//   return (
-//     <div className=''>
-//     <div className=' row g-3  min-vh-100  d-flex justify-content-center align-items-center '>
-
-// <input type="text"  placeholder='Search course...' onChange={this.handleFilter} style={{padding:'6px 10px', borderColor:'transparent'}}/></div>
-// <DataTable
-//  columns={columns}
-//  data={this.state.records}
-//  customStyles={customStyles}
-//  pagination
-//  selectableRows
-//  >
-//      </div>
-//     </div>
-//   )
-// }
-
-// export default DashCourse
+export default AttemptsExam;

@@ -120,6 +120,10 @@ class ManageMyCourse extends Component {
         center: true,
       },
       {
+        name: "Attempts",
+        selector: (row) => "0",
+      },
+      {
         name: "Actions",
         cell: (row) => (
           <>
