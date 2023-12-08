@@ -280,7 +280,7 @@ function CourseDetailsMain() {
         {/* course tab-end */}
 
         {/* cta-start */}
-        <Cta />
+        {/* <Cta /> */}
         {/* cta-end */}
       </main>
     </React.Fragment>
