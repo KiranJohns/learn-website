@@ -68,15 +68,11 @@ class DashCourse extends Component {
     try {
       Promise.all([
         await this.makeRequest("GET", "/course/get-all-assigned-course"),
-        await this.makeRequest(
-          "GET",
-          "/on-going-course/get-all-on-going-courses"
-        ),
       ])
         .then((res) => {
           console.log(res);
           this.setState({
-            records: [...res[0].data.response, ...res[1].data.response]
+            records: [...res[0].data.response]
               .reverse()
               .filter((item) => item?.owner == this.state?.user?.id),
             filterRecords: res.data,
@@ -174,10 +170,6 @@ class DashCourse extends Component {
           let newDate = `${date[1]}/${date[0]}/${date[2]}`;
           return newDate;
         },
-      },
-      {
-        name: "Attempts",
-        selector: (row) => "0",
       },
       // {
       //   name: "Course count",

@@ -96,11 +96,11 @@ class DashTest extends Component {
         selector: (row) => (row.name ? row.name : row.Name),
         center: true,
       },
-      // {
-      //   name: "category",
-      //   selector: (row) => row.category,
-      //   center: true,
-      // },
+      {
+        name: "Attempts",
+        selector: (row) => row.attempts+"/20",
+        center: true,
+      },
       {
         name: "validity",
         selector: (row) => {
