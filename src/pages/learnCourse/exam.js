@@ -1,6 +1,4 @@
 import React from "react";
-
-import NewInDash from "../../components/Sidebar/BarDummy";
 import Header from "../../components/Layout/Header/Header";
 import NewExam from "../../components/Home/NewExam";
 import NoSSR from "react-no-ssr";

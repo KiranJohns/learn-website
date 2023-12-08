@@ -169,10 +169,10 @@ class DashCourse extends Component {
         name: "Attempts",
         selector: (row) => "0",
       },
-      {
-        name: "Course count",
-        selector: (row) => row.course_count,
-      },
+      // {
+      //   name: "Course count",
+      //   selector: (row) => row.course_count,
+      // },
       {
         name: "Action",
         center: true,
