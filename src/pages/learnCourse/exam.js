@@ -6,19 +6,18 @@ import NewExam from "../../components/Home/NewExam";
 import NoSSR from "react-no-ssr";
 
 function exam() {
-    const [logedIn, setlogedIn] = useState(() => {
-      return getUserType();
-    });
-    let routes = ["manager"]
-  
-    const router = useRouter();
-  
-    useEffect(() => {
-      if (!routes.includes(logedIn)) {
-        router.push("/sign-in");
-      }
-    }, []);
+  const [logedIn, setlogedIn] = useState(() => {
+    return getUserType();
+  });
+  let routes = ["individual", "manager", "company"];
 
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!routes.includes(logedIn)) {
+      router.push("/sign-in");
+    }
+  }, []);
  
   
     return (
@@ -40,12 +39,14 @@ function exam() {
                 style={{ borderRadius: "22px", marginTop: "120px" }}
               >
                 <div className="row justify-content-md-center">
-                  <div
-                    className="col-sm-12 col-md-12 col-lg-2 p-0"
-                    style={{ backgroundColor: "#212450" }}
-                  >
-                    <NewInDash />
-                  </div>
+                <div
+                  className="col-sm-12 col-md-12 col-lg-2 p-0"
+                  style={{ backgroundColor: "#212450" }}
+                >
+                  {getUserType() == "individual" && <NewInDash />}
+                  {getUserType() == "manager" && <ManageBar />}
+                  {getUserType() == "company" && <DashCourse />}
+                </div>
                   <div className="col-sm col-md-9 bg-white">
                     <NewExam/>
                   </div>

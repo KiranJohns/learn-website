@@ -103,7 +103,7 @@ class ManageMonthRep extends Component {
           fontSize: 38,
         }}
       >
-       Monthly Report
+       Month Wise Report 
       </h2>
         <div style={{ padding: "", backgroundColor: "" }}>
           {/* <div

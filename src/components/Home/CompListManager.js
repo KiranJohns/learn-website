@@ -14,6 +14,7 @@ const customStyles = {
     style: {
       backgroundColor: "#212450",
       color: "white",
+      
     },
   },
   headCells: {
@@ -86,7 +87,8 @@ class CompListManager extends Component {
         name: "ID",
         selector: (row) => row.id,
         width:"110px",
-        center:'true'
+        center:'true',
+        
       },
       {
         name: "Name",
@@ -97,7 +99,7 @@ class CompListManager extends Component {
       {
         name: "City",
         selector: (row) => row.city,
-        sortable: true,
+  
         center:'true',
       },
       {

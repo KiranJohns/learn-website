@@ -141,7 +141,7 @@ const CourseResource = () => {
           </div>
           <div
             className="mt-4 py-4  px-1"
-            style={{ display: "flex", justifyContent: "right" }}
+            style={{ display: "flex", justifyContent: "center" }}
           >
             {" "}
             <Link

@@ -92,7 +92,7 @@ const links = [
     },
     subLinks: [
       {
-        name: "Transactions",
+        name: "Transaction Report",
         link: "/individual/transactions",
       },
       {

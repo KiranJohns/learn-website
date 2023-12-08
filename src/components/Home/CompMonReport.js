@@ -64,25 +64,29 @@ class CompMonthRep extends Component {
       {
         name: "Sl",
         selector: (row,idx) => ++idx,
-        sortable: true,
+        center:"true",
+        width:'100px'
       },
       {
         name: "year",
         selector: (row) => row.year,
-        sortable: true,
+      
+        center:"true",
       },
       {
         name: "month",
-        selector: (row) => getMonth(row.month),
-        sortable: true,
+        selector: (row) => getMonth(row.month),   
+        center:"true",
       },
       {
         name: "Quantity",
         selector: (row) => row.total_fake_count,
+        center:"true",
       },
       {
         name: "amount",
         selector: (row) => row.total_amount,
+        center:"true",
       },
     ];
 
@@ -97,10 +101,10 @@ class CompMonthRep extends Component {
           display: "flex",
           justifyContent: "center",
           position:'absolute',
-          fontSize: 38,
+          fontSize: 36,
         }}
       >
-       Monthly Report
+       Month Wise Report
       </h2>
         <div style={{ padding: "", backgroundColor: "" }}>
           {/* <div
@@ -139,7 +143,7 @@ class CompMonthRep extends Component {
             data={this.state.records}
             customStyles={customStyles}
             pagination
-            selectableRows
+           
           />
         </div>
       </div> </div>

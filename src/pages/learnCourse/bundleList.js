@@ -16,21 +16,21 @@ import { useEffect } from "react";
 
 const coursepage = () => {
 
-    // const [logedIn, setlogedIn] = useState(() => {
-    //     return getUserType();
-    //   });
-    //   let routes = ["individual"]
-    
-    //   const router = useRouter();
-    
-    //   useEffect(() => {
-    //     if (!routes.includes(logedIn)) {
-    //       router.push("/sign-in");
-    //     }
-    //   }, []);
+  const [logedIn, setlogedIn] = useState(() => {
+    return getUserType();
+  });
+  let routes = ["individual", "manager", "company"];
+
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!routes.includes(logedIn)) {
+      router.push("/sign-in");
+    }
+  }, []);
       return (
         <>
-          {/* {routes.includes(logedIn) && ( */}
+          {routes.includes(logedIn) && (
             <React.Fragment>
               <main
                 className="p-1"
@@ -59,7 +59,7 @@ const coursepage = () => {
                 </div>
               </main>
             </React.Fragment>
-           {/* )}  */}
+            )} 
         </>
       );
     }

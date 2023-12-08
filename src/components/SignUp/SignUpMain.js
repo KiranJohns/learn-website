@@ -93,7 +93,7 @@ function SignUpMain() {
     })
       .then((res) => {
         console.log(res);
-        
+        toast("OTP is Accepted")
         location.pathname = "/sign-in";
       })
       .catch((err) => {

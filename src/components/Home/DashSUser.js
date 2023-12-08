@@ -99,24 +99,28 @@ const DashSUser = () => {
     {
       name: "ID",
       selector: (row) => row.id,
-      sortable: true,
+      center:"true", 
+       width:"100px"
     },
     {
       name: "User",
       selector: (row) => row.first_name + " " + row.last_name,
-      sortable: true,
+  
+      center:"true", 
     },
     {
       name: "city",
       selector: (row) => row.city,
-      sortable: true,
+      center:"true", 
     },
     {
       name: "Email",
       selector: (row) => row.email,
+      center:"true", 
     },
     {
       name: "Action",
+      center:"true", 
       cell: (row) => (
         <a
           onClick={() => handleBlock(row.block, row.id)}
@@ -162,11 +166,11 @@ const DashSUser = () => {
           <div style={{ padding: "", backgroundColor: "" }}>
 
             {/* CSV export*/}
-            <span style={{ marginLeft: "1rem", paddingTop: '.5rem', position:"absolute", outline:'none', border:'none' }}>
+            {/* <span style={{ marginLeft: "1rem", paddingTop: '.5rem', position:"absolute", outline:'none', border:'none' }}>
               <CSVLink data={csvf}>
                 <Button variant="secondary">Export</Button>
               </CSVLink>
-            </span>
+            </span> */}
 
           <div
               style={{ float: "right", marginBottom: "1.4rem" }}
@@ -199,7 +203,7 @@ const DashSUser = () => {
               }
               customStyles={customStyles}
               pagination
-              selectableRows
+             
             />
           </div>
         </div>{" "}
