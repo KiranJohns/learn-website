@@ -59,10 +59,8 @@ const ManAssignBund = () => {
   function getData() {
     makeRequest("GET", "/info/get-purchased-bundles")
       .then((purchasedRes) => {
-        console.log("response purchased ", purchasedRes.data.response);
         makeRequest("GET", "/info/get-assigned-bundle")
           .then((res) => {
-            console.log("response from assigned ", res.data.response);
             setRecords((prev) => {
               return [
                 ...purchasedRes.data.response.filter(
@@ -124,7 +122,7 @@ const ManAssignBund = () => {
     form.append("count", 1);
     form.append("from_assigned_table", fromAssignedTable);
 
-    console.log(assignData);
+    console.log('from manager individual');
     makeRequest("POST", "/info/assign-course-to-manager-individual", form)
       .then((res) => {
         getData();
@@ -140,33 +138,35 @@ const ManAssignBund = () => {
     {
       name: "ID",
       selector: (row, idx) => ++idx,
-      width:"70px",
-      center:true,
+      width: "70px",
+      center: true,
     },
     {
       name: "bundle name",
       selector: (row) => row.bundle_name,
-      width:"400px",
+      width: "400px",
       sortable: true,
-      center:true,
+      center: true,
     },
     {
       name: "validity",
       selector: (row) => {
-        let newDt = new Date(row.validity).toLocaleDateString().split('/').map(d=> d.length <= 1 ? '0'+d : d )
-         return newDt[1]+'/'+newDt[0] +'/'+newDt[2]
-  
-        },
-      center:true,
+        let newDt = new Date(row.validity)
+          .toLocaleDateString()
+          .split("/")
+          .map((d) => (d.length <= 1 ? "0" + d : d));
+        return newDt[1] + "/" + newDt[0] + "/" + newDt[2];
+      },
+      center: true,
     },
     {
       name: "count",
       selector: (row) => row.course_count,
-      center:true,
+      center: true,
     },
     {
       name: "action",
-      center:true,
+      center: true,
       selector: (row) => (
         <a
           className="btn btn-primary"
@@ -223,13 +223,21 @@ const ManAssignBund = () => {
                 });
               }}
             >
-              <div style={{ maxHeight: "220rem" }} className="dash-shadow p-3 mt-4 ">
+              <div
+                style={{ maxHeight: "220rem" }}
+                className="dash-shadow p-3 mt-4 "
+              >
                 <div>
                   <div className="form-control dash-shadow d-flex gap-3 p-3">
                     <div className="form-group">
-                      <label style={{ fontSize: ".73rem" }} for="exampleInputEmail1">Bundle Count</label>
+                      <label
+                        style={{ fontSize: ".73rem" }}
+                        for="exampleInputEmail1"
+                      >
+                        Bundle Count
+                      </label>
                       <input
-                      style={{ width: '4rem', textAlign:"center" }}
+                        style={{ width: "4rem", textAlign: "center" }}
                         disabled
                         type="text"
                         className="form-control"
@@ -238,46 +246,69 @@ const ManAssignBund = () => {
                         placeholder="1"
                       />
                     </div>
-                    <div style={{marginLeft:"16rem"}} className="form-group">
-                      <label style={{visibility:'hidden'}} for="exampleInputEmail1">Search</label>
+                    <div style={{ marginLeft: "16rem" }} className="form-group">
+                      <label
+                        style={{ visibility: "hidden" }}
+                        for="exampleInputEmail1"
+                      >
+                        Search
+                      </label>
                       <div className="p-relative d-inline ">
-                      <input
-                       style={{ width: "18rem" }}
-                        onChange={(e) =>
-                          setFilteredCompanyIndividuals(
-                            companyIndividuals.filter((item) =>
-                              item.first_name
-                                .toLocaleLowerCase()
-                                .startsWith(e.target.value.toLocaleLowerCase())
+                        <input
+                          style={{ width: "18rem" }}
+                          onChange={(e) =>
+                            setFilteredCompanyIndividuals(
+                              companyIndividuals.filter((item) =>
+                                item.first_name
+                                  .toLocaleLowerCase()
+                                  .startsWith(
+                                    e.target.value.toLocaleLowerCase()
+                                  )
+                              )
                             )
-                          )
-                        }
-                        type="text"
-                        className="form-control"
-                        id="exampleInputEmail1"
-                        aria-describedby="emailHelp"
-                        placeholder="Search by name"
-                      />
-                       <i style={{ position: 'absolute', left: "13.3rem", top: "2.2rem" }} className="bi bi-search"></i>
+                          }
+                          type="text"
+                          className="form-control"
+                          id="exampleInputEmail1"
+                          aria-describedby="emailHelp"
+                          placeholder="Search by name"
+                        />
+                        <i
+                          style={{
+                            position: "absolute",
+                            left: "13.3rem",
+                            top: "2.2rem",
+                          }}
+                          className="bi bi-search"
+                        ></i>
                       </div>
                     </div>
                   </div>
                   <div className="list-group bg-white">
-                      <ul classNAm="list-group">
-
-                      <li style={{background:"#212a50", fontWeight:"700", borderRadius:'.3rem',color:'white'}} class="list-group-item my-2  d-flex justify-content-between">
-                          <span style={{ width: "fit-content", marginLeft: '.7rem' }}>
-                            Name
-                          </span>
-                          <span style={{ textAlign: 'center' }}>Email</span>
-                          <span
-                            style={{ width: "fit-content", marginRight: "1rem" }}
-                          >
-                            Action
-                          </span>
-                        </li>
-                      </ul>
-                    </div>
+                    <ul classNAm="list-group">
+                      <li
+                        style={{
+                          background: "#212a50",
+                          fontWeight: "700",
+                          borderRadius: ".3rem",
+                          color: "white",
+                        }}
+                        class="list-group-item my-2  d-flex justify-content-between"
+                      >
+                        <span
+                          style={{ width: "fit-content", marginLeft: ".7rem" }}
+                        >
+                          Name
+                        </span>
+                        <span style={{ textAlign: "center" }}>Email</span>
+                        <span
+                          style={{ width: "fit-content", marginRight: "1rem" }}
+                        >
+                          Action
+                        </span>
+                      </li>
+                    </ul>
+                  </div>
                   <div className="list-group bg-white">
                     <ul class="list-group">
                       {filteredCompanyIndividuals &&
@@ -289,11 +320,14 @@ const ManAssignBund = () => {
                               </span>
                               <span>{item.email}</span>
                               <span
-                                onClick={() =>{
-                                  if(fromAssignedTable) {
-                                    assignCourseToManagerIndividualFromManager(item.id)
+                                onClick={() => {
+                                  // ABC
+                                  if (fromAssignedTable) {
+                                    assignCourseToManagerIndividualFromManager(
+                                      item.id
+                                    );
                                   } else {
-                                    assignCourseToManagerIndividual(item.id)
+                                    assignCourseToManagerIndividual(item.id);
                                   }
                                 }}
                                 style={{ width: "fit-content" }}
@@ -328,7 +362,7 @@ const ManAssignBund = () => {
               </form>
             </div>
             <DataTable
-               persistTableHead={true}
+              persistTableHead={true}
               columns={columns}
               data={
                 searchString
@@ -341,7 +375,6 @@ const ManAssignBund = () => {
               }
               customStyles={customStyles}
               pagination
-             
             />
           </div>
         </div>{" "}

@@ -65,10 +65,11 @@ const ManagerAssignCourse = () => {
     );
     Promise.all([purchasedRes, assignedRes])
       .then((res) => {
-        console.log("res[0].data.response ", res[0].data.response);
-        console.log("res[1].data.response ", res[1].data.response);
-        let newRes = [...res[0].data.response, ...res[1].data.response];
-        setRecords(newRes?.filter((item) => item.course_count >= 1));
+        console.log(res[0].data.response);
+        console.log(res[1].data.response);
+        let newRes = [...res[0].data.response, ...res[1].data.response].filter((item) => item?.course_count >= 1);
+        console.log(newRes);
+        setRecords(newRes);
       })
       .catch((err) => {
         console.log(err);
@@ -94,7 +95,7 @@ const ManagerAssignCourse = () => {
     form.append("userId", id);
     form.append("count", 1);
 
-    console.log('course_id ',assignData.course_id);
+    console.log('course_id ', 'from');
     console.log('id ',id);
     console.log(1);
     makeRequest("POST", "/info/assign-course-to-manager-individual", form)
@@ -114,7 +115,7 @@ const ManagerAssignCourse = () => {
     form.append("userId", id);
     form.append("count", 1);
 
-    console.log('course_id ',assignData.course_id);
+    console.log('from ',assignData.course_id);
     console.log('id ',id);
     console.log(1);
     makeRequest(
