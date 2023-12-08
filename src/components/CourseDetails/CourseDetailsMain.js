@@ -14,6 +14,10 @@ import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
 import { useSelector } from "react-redux";
 
+
+
+
+
 const CourseSliderWithNoSSR = dynamic(
   () => import("../Elements/Slider/CourseSliderSection"),
   {
@@ -127,9 +131,9 @@ function CourseDetailsMain() {
               alt="img not found"
             />
           </div>
-          <div className="container">
-            <div className="row">
-              <div className="col-xxl-8 col-xl-8 col-lg-8">
+          <div className="container ">
+            <div className="row ">
+              <div className="col-xxl-8 col-xl-8 col-lg-8 mb-0">
                 <div className="course__wrapper">
                   <div className="page__title-content mb-25">
                     <h5 className="page__title-3">{course?.name}</h5>
@@ -145,7 +149,7 @@ function CourseDetailsMain() {
                         role="tablist"
                       ></ul>
                     </div>
-                    <div className="course__tab-content mb-95">
+                    <div className="course__tab-content mb-45">
                       <div className="tab-contents">
                         <TabPanel>
                           <div className="course__description mb-95">

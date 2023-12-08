@@ -1785,7 +1785,17 @@
 
       .sticky-sidebar {
         position: fixed;
-        top: 120px; /* Adjust this value based on your design */
-          right: 10px;
-          z-index: 99;
+        top: 132px; /* Adjust this value based on your design */
+        width:28%;
+          right: 3rem;  
+      }
+
+      @media (max-width: 991px) {
+        .sticky-sidebar {
+        position: relative;
+        width:100%; 
+        top: 0;
+        right: 0;  
+       margin-top: 0;
+        }
       }
