@@ -165,7 +165,6 @@ const MatrixBundComp = () => {
                 style={{ border: ".1px solid #212a50" }}
                 aria-label="Default select example"
               >
-                <option value={null}>Select Manager</option>
                 <option value={user?.id}>{user?.first_name + " " + user?.last_name}</option>
                 {managers.map((item) => (
                   <option value={item.id}>
