@@ -8,6 +8,7 @@ import Modal from "react-responsive-modal";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
 import { jwtDecode } from "jwt-decode";
+import { Suspense } from 'react';
 
 const customStyles = {
   headRow: {
@@ -281,8 +282,10 @@ class DashCourse extends Component {
                 </button>
               </form>
             </div>
+            <Suspense fallback={<Loading />}>
             <DataTable
               persistTableHead={true}
+              noDataComponent={" "}
               columns={columns}
               data={
                 this.state.searchData
@@ -297,6 +300,7 @@ class DashCourse extends Component {
               pagination
               
             />
+              </Suspense>
           </div>
         </div>
       </div>
@@ -305,6 +309,10 @@ class DashCourse extends Component {
 }
 
 export default DashCourse;
+
+function Loading() {
+  return <h2>🌀 Loading...</h2>;
+}
 
 // import React from 'react'
 // import axios from 'axios'

@@ -9,6 +9,7 @@ import NoSSR from "react-no-ssr";
 import { getUserType } from "../../axios";
 import { useRouter } from "next/router";
 
+
 function myCourse() {
   const [logedIn, setlogedIn] = useState(() => {
     return getUserType();
@@ -59,6 +60,9 @@ function myCourse() {
 }
 
 export default myCourse;
+
+
+
 
 // import React from "react";
 // import CourseBundle from "../../components/CourseGrid/CourseBundle";
