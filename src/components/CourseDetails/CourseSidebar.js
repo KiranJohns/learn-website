@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { Component, useEffect, useState } from "react";
 import Link from "next/link";
 import ReactPlayer from "react-player";
 import Modal from "react-responsive-modal";
@@ -70,7 +70,10 @@ function CourseSidebar({ addToCart }) {
           store.dispatch({
             type: "ADD_TO_CART",
             payload: {
-              course: {...course.find((item) => course?.id === id), item_type: "course"},
+              course: {
+                ...course.find((item) => course?.id === id),
+                item_type: "course",
+              },
               count: fakeCount,
             },
           });
@@ -110,6 +113,7 @@ function CourseSidebar({ addToCart }) {
     makeRequest("GET", `/course/get-single-course/${slug}`)
       .then((res) => {
         setCourse(res.data.response[0]);
+        console.log(res.data.response[0]);
       })
       .catch((err) => {
         console.log(err);
@@ -125,7 +129,7 @@ function CourseSidebar({ addToCart }) {
   };
 
   return (
-    <React.Fragment >
+    <React.Fragment>
       <Modal
         open={open}
         onClose={onCloseModal}
@@ -171,8 +175,8 @@ function CourseSidebar({ addToCart }) {
                 <h5>
                   £{course?.price}.<span>00</span>{" "}
                 </h5>
-                <h5 style={{ visibility: "hidden" }} className="old-price">
-                  $129.00
+                <h5 style={{}} className="old-price">
+                  ${parseInt(course?.RRP).toFixed(2)}
                 </h5>
               </div>
               <div className="course__video-discount">
@@ -198,7 +202,7 @@ function CourseSidebar({ addToCart }) {
                   <div className="course__video-info">
                     <h5>
                       {/* <span>Typ :</span>14 */}
-                      Online
+                      {course?.course_type}
                     </h5>
                   </div>
                 </li>
@@ -207,7 +211,7 @@ function CourseSidebar({ addToCart }) {
                     <i className="fas fa-clock"></i>
                   </div>
                   <div className="course__video-info">
-                    <h5>Variable</h5>
+                    <h5>{course?.duration}</h5>
                   </div>
                 </li>
                 <li className="d-flex align-items-center">
@@ -215,7 +219,7 @@ function CourseSidebar({ addToCart }) {
                     <i className="fas fa-user"></i>
                   </div>
                   <div className="course__video-info">
-                    <h5>Intermediate, Advanced</h5>
+                    <h5>{course?.course_level}</h5>
                   </div>
                 </li>
                 <li className="d-flex align-items-center">
@@ -223,7 +227,7 @@ function CourseSidebar({ addToCart }) {
                     <i className="fas fa-globe"></i>
                   </div>
                   <div className="course__video-info">
-                    <h5>Certificate of completion</h5>
+                    <h5>{course?.certificate}</h5>
                   </div>
                 </li>
               </ul>

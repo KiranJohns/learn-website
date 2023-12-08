@@ -151,29 +151,81 @@ function CourseDetailsMain() {
                           <div className="course__description mb-95">
                             <h3>Introduction</h3>
                             <p className=" mb-45">{course?.description}</p>
-                            <div className="course__description-list mb-45">
-                              <h4>Who should attend?</h4>
-                              <ul
-                                className=" mb-45"
-                                style={{ listStyle: "initial" }}
-                              >
-                                {JSON.parse(
-                                  course?.who_should_attend || "[]"
-                                ).map((item) => (
-                                  <li>item</li>
-                                ))}
-                              </ul>
-                            </div>
-                            <div className="course__description-list mb-45">
-                              <h4>What you will learn?</h4>
-                              <ul>
-                                <li>
-                                  {" "}
-                                  <i className="fas fa-check"></i>
-                                  An Introduction to First Aid
-                                </li>
-                              </ul>
-                            </div>
+                            {course?.category == "Care Course" ? (
+                              <>
+                                <div className="course__description-list mb-45">
+                                  <h4>Aims</h4>
+                                  <ul
+                                    className=" mb-45"
+                                    style={{ listStyle: "initial" }}
+                                  >
+                                    {course?.aims?.map((item) => (
+                                      <li
+                                        style={{
+                                          listStyle: "inside",
+                                          marginBottom: "1rem",
+                                        }}
+                                      >
+                                        {item}
+                                      </li>
+                                    ))}
+                                  </ul>
+                                </div>
+                                <div className="course__description-list mb-45">
+                                  <h4>Objectives</h4>
+                                  <ul>
+                                    {course?.objectives_point?.map((item) => (
+                                      <li style={{marginTop: '1.4rem'}}>
+                                        {" "}
+                                        <i className="fas fa-check"></i>
+                                        {item}
+                                      </li>
+                                    ))}
+                                  </ul>
+                                </div>{" "}
+                              </>
+                            ) : (
+                              <>
+                                {" "}
+                                <div className="course__description-list mb-45">
+                                  <h4>Who should attend?</h4>
+                                  <ul
+                                    className=" mb-45"
+                                    style={{ listStyle: "initial" }}
+                                  >
+                                    {course?.who_should_attend?.map((item) => (
+                                      <li style={{
+                                        listStyle: "inside",
+                                        marginBottom: "1rem",
+                                      }}>{item}</li>
+                                    ))}
+                                  </ul>
+                                </div>
+                                <div className="course__description-list mb-45">
+                                  <h4>What you will learn?</h4>
+                                  <ul>
+                                    {course?.what_you_will_learn_point?.map(item => (
+                                        <li style={{
+                                          listStyle: "inside",
+                                          marginBottom: "1rem",
+                                        }}>{item}</li>
+                                    ))}
+                                    <li>
+                                      {" "}
+                                      <i className="fas fa-check"></i>
+                                      An Introduction to First Aid
+                                    </li>
+                                  </ul>
+                                  <ul>
+                                    <li>
+                                      {" "}
+                                      <i className="fas fa-check"></i>
+                                      {course.What_you_will_learn}
+                                    </li>
+                                  </ul>
+                                </div>
+                              </>
+                            )}
 
                             <div className="course__description-list mb-45">
                               <h4>Course Duration</h4>
@@ -199,31 +251,14 @@ function CourseDetailsMain() {
                             <div className="course__description-list mb-45">
                               <h4>Assessment</h4>
                               <p>
-                                Mandatory care course - First aid awareness
-                                online assessment is taken on completion of the
-                                training material. You will complete a multiple
-                                choice answer exam with a pass mark of 80%. The
-                                answers are marked automatically so you will
-                                know whether you have passed. If you don't pass,
-                                don't worry! You can take the test thirty (30)
-                                times. However, you need to purchase the same
-                                course again when you use all thirty (30)
-                                attempts.
+                                {course.assessment}
                               </p>
                             </div>
 
                             <div className="course__description-list mb-45">
                               <h4>Certificate</h4>
                               <p>
-                                Our online social care courses are accredited by
-                                the Continuing Professional Development (CPD)
-                                and are nationally recognised. Once you have
-                                completed your assessment, you will be awarded
-                                an accredited certificate in PDF format, which
-                                is immediately available. Hard copies of the
-                                certificate are available for an additional fee.
-                                All evidence of learning and certification will
-                                remain in our system for your future reference.
+                                {course.certificate}
                               </p>
                             </div>
                           </div>
@@ -236,8 +271,8 @@ function CourseDetailsMain() {
                   </Tabs>
                 </div>
               </div>
-              <div  className="col-xxl-4 col-xl-4 col-lg-4 ">
-                <CourseSidebar  addToCart={addToCart} />
+              <div className="col-xxl-4 col-xl-4 col-lg-4 ">
+                <CourseSidebar addToCart={addToCart} />
               </div>
             </div>
           </div>
