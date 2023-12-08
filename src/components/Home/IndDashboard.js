@@ -133,6 +133,13 @@ function DashIndividual() {
       center: true,
     },
     {
+      name: "Attempts",
+      selector: (row) => (
+        <a href="/learnCourse/examAttempts">{row.attempts || 0 + "/20"}</a>
+      ),
+      center: true,
+    },
+    {
       name: "validity",
       selector: (row) => {
         let date = row.validity

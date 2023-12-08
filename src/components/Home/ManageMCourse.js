@@ -46,22 +46,21 @@ class ManageMyCourse extends Component {
 
   async componentDidMount() {
     let makeRequest = fetchData();
-    let onGoingCourseUrl = await makeRequest(
-      "GET",
-      "/on-going-course/get-all-on-going-courses"
-    );
+    // let onGoingCourseUrl = await makeRequest(
+    //   "GET",
+    //   "/on-going-course/get-all-on-going-courses"
+    // );
     let purchasedRes = await makeRequest(
       "GET",
       "/info/get-assigned-course-for-manager"
     );
     let assignedRes = await makeRequest("GET", "/course/get-bought-course");
-    Promise.all([purchasedRes, assignedRes, onGoingCourseUrl])
+    Promise.all([purchasedRes, assignedRes])
       .then((res) => {
         console.log(res);
         let newRes = [
           ...res[0].data.response,
           ...res[1].data.response,
-          ...res[2].data.response,
         ];
         this.setState({
           records: newRes?.filter((item) => item.course_count >= 1),
