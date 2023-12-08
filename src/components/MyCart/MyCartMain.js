@@ -35,6 +35,7 @@ const MyCart = () => {
         console.log(err);
       });
   }
+
   function removeItem(id) {
     console.log(id);
     makeRequest("DELETE", "/cart/delete-cart-item", { cart_id: id })
@@ -94,6 +95,7 @@ const MyCart = () => {
         
       })
       .catch((err) => {
+        toast('Invalid Coupon');
         console.log(err?.data);
       });
   }
@@ -134,6 +136,8 @@ const MyCart = () => {
         }
         console.log(err.data.errors[0]);
       });
+
+
   }
   return (
     <main>
@@ -278,39 +282,45 @@ const MyCart = () => {
                   </div>
                 </div>
 
-             
-                    <div className="coupon d-sm-flex align-items-center mt-2">
-                      <input
-                        id="discountcoupon_code"
-                        // onChange={(e) => setCoupon(e.target.value)}
-                        className="input-text"
-                        // value=
-                        name="coupon_code"
-                        placeholder="Discount"
-                        type="text"
-                      />
-                     
-                    </div>
+           
               </div>
 
               <div className="row">
-                <div className="col-md-5 ml-auto">
+                <div className="col-md-6 ml-auto">
                   <div className="cart-page-total">
-                    <h2>Grand Total</h2>
+                    {/* <h2>Grand Total</h2> */}
                     <ul className="mb-20 d-flex ">
                       {/* <li>Subtotal <span>£24.00</span></li> */}
                       <li className="d-flex justify-content-between w-100">
+                        Subtotal
+                        <h4>
+                          <span style={{color:'#212a50',fontSize:'1.2rem'}}>£ { totalPrice}</span>
+                          {/* {couponData && <span style={{textDecoration:"line-through",color:`${couponData ? 'red' : 'green'}` }}>£ {totalPrice}</span>} */}
+                        </h4>
+                      </li>
+                      <li className="d-flex justify-content-between w-100">
+                        Discount
+                        <h4>
+                          <span style={{color:'#212a50',fontSize:'1.2rem'}}>£{offerPrice?(totalPrice - offerPrice):0 }</span>
+                          {/* {couponData && <span style={{textDecoration:"line-through",color:`${couponData ? 'red' : 'green'}` }}>£ {totalPrice}</span>} */}
+                        </h4>
+                      </li>
+                    
+                      
+                    </ul>
+                    <ul>
+                    <li className="d-flex justify-content-between w-100">
                         Grand Total
                         <h4>
-                          <span style={{color:'green'}}>£ {offerPrice ? offerPrice : totalPrice}</span>
+                          <span style={{color:'#212a50', fontSize:'1.2rem'}}>£ {offerPrice ? offerPrice : totalPrice}</span>
                           {/* {couponData && <span style={{textDecoration:"line-through",color:`${couponData ? 'red' : 'green'}` }}>£ {totalPrice}</span>} */}
                         </h4>
                       </li>
                     </ul>
-                    <Link href="/checkout">
+                    <Link  href="/checkout">
                       <span
                         onClick={handleCheckout}
-                        className="e-btn e-btn-border"
+                        className="e-btn mt-3 e-btn-border"
                         style={{ cursor: "pointer" }}
                       >
                         Proceed to checkout
