@@ -304,7 +304,7 @@ const ManCoursMatrix = () => {
               }}
               className="redd"
             >
-             not started
+              not started
             </div>
             <div
               style={{
@@ -333,9 +333,9 @@ const ManCoursMatrix = () => {
           </span>
         </div>
         <div className="col-12 p-2 m-2">
-          <div style={{ position: "relative", }}>
+          <div style={{ position: "relative" }}>
             <div className="d-flex justify-content-center my-2 ">
-              <h4 style={{fontSize:"1.5rem"}}>Course Matrix</h4>
+              <h4 style={{ fontSize: "1.5rem" }}>Course Matrix</h4>
             </div>
 
             <div
@@ -351,7 +351,9 @@ const ManCoursMatrix = () => {
                 style={{ border: ".1px solid #212a50" }}
                 aria-label="Default select example"
               >
-                <option value={null}>Select Manager</option>
+                <option value={user.id}>
+                  {user.first_name + " " + user.last_name}
+                </option>
                 {managers.map((item) => (
                   <option value={item.id}>
                     {item.first_name + " " + item.last_name}
@@ -428,7 +430,10 @@ const ManCoursMatrix = () => {
                                 textAlign: "center",
                               }}
                             >
-                             {course?.color == "red" && "not started" || course?.color == "yellow" && "in progress" || course?.color == "green" && "finished" || course?.color == "gray" && "" }
+                              {(course?.color == "red" && "not started") ||
+                                (course?.color == "yellow" && "in progress") ||
+                                (course?.color == "green" && "finished") ||
+                                (course?.color == "gray" && "")}
                             </td>
                           </>
                         );
@@ -442,7 +447,10 @@ const ManCoursMatrix = () => {
                               textAlign: "center",
                             }}
                           >
-                          {course?.color == "red" && "not started" || course?.color == "yellow" && "in progress" || course?.color == "green" && "finished" || course?.color == "gray" && "" }
+                            {(course?.color == "red" && "not started") ||
+                              (course?.color == "yellow" && "in progress") ||
+                              (course?.color == "green" && "finished") ||
+                              (course?.color == "gray" && "")}
                           </td>
                         );
                       }
