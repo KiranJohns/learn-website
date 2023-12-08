@@ -52,7 +52,7 @@ const Service = () => {
                               </svg>
                         </div>
                         <div className="services__content">
-                           <h3 className="services__title"><a>Learn at your own pace<br /></a></h3>
+                           <h3 className="services__title"><a>Learn<br/>at your own pace<br /></a></h3>
                            {/* <p>Arhje over  morish wind up gormless buttlyl.!</p> */}
 
                            {/* <Link href="/about"><a className="link-btn-2">
@@ -104,7 +104,7 @@ const Service = () => {
                               </svg>
                         </div>
                         <div className="services__content">
-                           <h3 className="services__title"><a>Certificated <br />  courses</a></h3>
+                           <h3 className="services__title"><a>Certificated <br/>courses</a></h3>
                            {/* <p>Arhje over  morish wind up gormless buttlyl.!</p> */}
 
                            {/* <Link href="/about"><a className="link-btn-2">

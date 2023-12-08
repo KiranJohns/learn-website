@@ -226,7 +226,6 @@ const CompAssignBund = () => {
     {
       name: "Bundle Name",
       selector: (row) => row.bundle_name,
-      sortable: true,
       center: true,
       width: "400px",
     },

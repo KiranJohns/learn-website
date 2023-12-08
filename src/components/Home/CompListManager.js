@@ -85,24 +85,29 @@ class CompListManager extends Component {
       {
         name: "ID",
         selector: (row) => row.id,
+        width:"110px",
+        center:'true'
+      },
+      {
+        name: "Name",
+        selector: (row) => row.first_name + " " + row.last_name,
         sortable: true,
+        center:'true',
       },
       {
         name: "City",
-        selector: (row) => row.first_name + " " + row.last_name,
-        sortable: true,
-      },
-      {
-        name: "city",
         selector: (row) => row.city,
         sortable: true,
+        center:'true',
       },
       {
         name: "Email",
         selector: (row) => row.email,
+        center:'true'
       },
       {
         name: "Action",
+        center:'true',
         cell: (row) => (
           <a
             onClick={() => this.handleBlock(row.block, row.id)}
@@ -139,7 +144,7 @@ class CompListManager extends Component {
                 fontSize: 36,
               }}
             >
-              List of Managers
+           Managers
             </h2>
             <div style={{ padding: "", backgroundColor: "" }}>
               {/* <div
@@ -194,7 +199,7 @@ class CompListManager extends Component {
                 }
                 customStyles={customStyles}
                 pagination
-                selectableRows
+                persistTableHead={true}
               />
             </div>
           </div>{" "}

@@ -103,7 +103,7 @@ class CompanyBundle extends Component {
         center: true,
       },
       {
-        name: "Courses",
+        name: "Bundle Name",
         selector: (row) => row.bundle_name,
         sortable: true,
         center: true,
@@ -162,7 +162,7 @@ class CompanyBundle extends Component {
                 display: "flex",
                 justifyContent: "center",
                 position: "absolute",
-                fontSize: 38,
+                fontSize: 36,
               }}
             >
               My Bundle
@@ -207,7 +207,7 @@ class CompanyBundle extends Component {
                 data={this.state.records}
                 customStyles={customStyles}
                 pagination
-                selectableRows
+                persistTableHead={true}
               />
             </div>
           </div>{" "}

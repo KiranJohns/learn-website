@@ -26,7 +26,7 @@ class ServiceBundle extends Component {
                         <GoStack/>
                         </div>
                         <div className="services__content">
-                           <h3 className="services__title"><a>Online Care Bundle Package</a></h3>
+                           <h3 className="services__title"><a>Online Care <span className='hero-online'>---</span> Bundle</a></h3>
                            {/* <p>Arhje over  morish wind up gormless buttlyl.!</p> */}
 
                            {/* <Link href="/about"><a className="link-btn-2">

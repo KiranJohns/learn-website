@@ -34,7 +34,7 @@ function CourseSidebar({addToCart}) {
   };
 
   return (
-    <React.Fragment>
+    <React.Fragment >
       <Modal
         open={open}
         onClose={onCloseModal}

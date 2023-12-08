@@ -264,8 +264,8 @@ function CourseDetailsMain() {
                   </Tabs>
                 </div>
               </div>
-              <div className="col-xxl-4 col-xl-4 col-lg-4">
-                <CourseSidebar addToCart={addToCart} />
+              <div  className="col-xxl-4 col-xl-4 col-lg-4 ">
+                <CourseSidebar  addToCart={addToCart} />
               </div>
             </div>
           </div>

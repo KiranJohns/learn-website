@@ -8,6 +8,7 @@ const BurgerMenus = ({setMenuOpen, menuOpen}) => {
       const [courses, setcourses] = useState(false)
       const [blog, setBlog] = useState(false)
       const [pages, setPages] = useState(false)
+      const [bundles, setbundles] = useState(false)
 
       const router = useRouter()
       const [path, setPath] = useState("")
@@ -22,6 +23,7 @@ const BurgerMenus = ({setMenuOpen, menuOpen}) => {
           setcourses(false)
           setBlog(false)
           setPages(false)
+          setbundles(false)
         }
         else if( menu == 'courses'){
           setHome(false)
@@ -40,6 +42,13 @@ const BurgerMenus = ({setMenuOpen, menuOpen}) => {
           setcourses(false)
           setBlog(false)
           setPages(!pages)
+        }
+        else if( menu == 'bundles'){
+          setHome(false)
+          setcourses(false)
+          setBlog(false)
+          setPages(false)
+          setbundles(!bundles)
         }
       }; 
 
@@ -67,37 +76,38 @@ const BurgerMenus = ({setMenuOpen, menuOpen}) => {
                     </ul> */}
                   </li>
                   <li style={{backgroundColor:'#fff'}} className={courses ? "has-droupdown active" : "has-droupdown"}>
-                    <a onClick={() => { openMobileMenu('courses'); }}>Courses</a>
+                    <a  onClick={() => { openMobileMenu('courses'); }}>Courses</a>
                     <ul style={{backgroundColor:'#fff'}} className={courses ? "sub-menu active" : "sub-menu"}>
-                      <li ><Link  href="/course-all"><a>Courses </a></Link></li>
-                       <li><Link  href="/bundle/bundle-all"><a>Course Bundles</a></Link></li>
-                      {/* <li><Link href="/course-list"><a>Course List</a></Link></li>
-                      <li><Link href="/course-sidebar"><a>Course Sidebar</a></Link></li>
-                      <li><Link href="/course-details"><a>Course Details</a></Link></li> */}
+                      <li ><Link  href="/course-all"><a>All Courses</a></Link></li>
+                       <li><Link  href="/course-grid"><a>Care Certificate Courses</a></Link></li>
+                      <li><Link href="/course-mandatory"><a>Mandatory Care Courses</a></Link></li>
+                      <li><Link href="/course-specialised"><a>Specialised Care Courses</a></Link></li>
+                      <li><Link href="/course-recovery"><a>Recovery Care Courses</a></Link></li>
+                      <li><Link href="/course-child"><a>Child Care Courses</a></Link></li>
                     </ul>
                   </li>
+
+                  <li style={{backgroundColor:'#fff'}} className={bundles ? "has-droupdown active" : "has-droupdown"}>
+                    <a  onClick={() => { openMobileMenu('bundles'); }}>Bundles</a>
+                    <ul style={{backgroundColor:'#fff'}} className={bundles? "sub-menu active" : "sub-menu"}>
+                      <li ><Link  href="/bundle/bundle-all"><a>All Bundles</a></Link></li>
+                       <li><Link  href="/bundle/care-bundle"><a>Course Bundles</a></Link></li>
+                      <li><Link href="/bundle/mandatory-bundle"><a>Mandatory Care Bundle</a></Link></li>
+                      <li><Link href="/bundle/special-bundle"><a>Specialised Care Bundle</a></Link></li>
+                      <li><Link href="/bundle/recovery-bundle"><a>Recovery Care Bundle</a></Link></li>
+                      <li><Link href="/bundle/child-bundle"><a>Child Care Bundle</a></Link></li>
+                      <li><Link href="/bundle/recovery-bundle"><a>Online Care Bundle</a></Link></li>
+                    </ul>
+                  </li>
+
                   <li style={{backgroundColor:'#fff'}} className={blog ? "has-droupdown active" : "has-droupdown"}>
-                    <a onClick={() => { openMobileMenu('blog'); }}>Blog</a>
+                    <a  onClick={() => { openMobileMenu('blog'); }}>Blog</a>
                     <ul className={blog ? "sub-menu active" : "sub-menu"}>
                       <li style={{backgroundColor:'#fff'}}><Link href="/blog" as="/blog"><a>Blog</a></Link></li>
                       {/* <li><Link href="/blog-details"><a>Blog Details</a></Link></li> */}
                     </ul>
                   </li>
-                  {/* <li className={pages ? "has-droupdown active" : "has-droupdown"}>
-                    <a onClick={() => { openMobileMenu('pages'); }}>Pages</a>
-                    <ul className={pages ? "sub-menu active" : "sub-menu"}>
-                      <li><Link href="/about"><a>About</a></Link></li>
-                      <li><Link href="/instructor"><a>Instructor</a></Link></li>
-                      <li><Link href="/instructor-details"><a>Instructor Details</a></Link></li>
-                      <li><Link href="/event-details"><a>Event Details</a></Link></li>
-                      <li><Link href="/cart"><a>My Cart</a></Link></li>
-                      <li><Link href="/wishlist"><a>My Wishlist</a></Link></li>
-                      <li><Link href="/checkout"><a>Checkout</a></Link></li>
-                      <li><Link href="/sign-in"><a>Sign In</a></Link></li>
-                      <li><Link href="/sign-up"><a>Sign Up</a></Link></li>
-                      <li><Link href="/error"><a>Error</a></Link></li>
-                  </ul>
-                </li> */}
+                  <li><Link href="/blog"><a>Blog</a></Link></li>
                 <li><Link href="/contact"><a>Contact</a></Link></li>
               </ul>
             </div>
@@ -128,3 +138,21 @@ const BurgerMenus = ({setMenuOpen, menuOpen}) => {
 }
 
 export default BurgerMenus;
+
+
+
+   {/* <li className={pages ? "has-droupdown active" : "has-droupdown"}>
+                    <a onClick={() => { openMobileMenu('pages'); }}>Pages</a>
+                    <ul className={pages ? "sub-menu active" : "sub-menu"}>
+                      <li><Link href="/about"><a>About</a></Link></li>
+                      <li><Link href="/instructor"><a>Instructor</a></Link></li>
+                      <li><Link href="/instructor-details"><a>Instructor Details</a></Link></li>
+                      <li><Link href="/event-details"><a>Event Details</a></Link></li>
+                      <li><Link href="/cart"><a>My Cart</a></Link></li>
+                      <li><Link href="/wishlist"><a>My Wishlist</a></Link></li>
+                      <li><Link href="/checkout"><a>Checkout</a></Link></li>
+                      <li><Link href="/sign-in"><a>Sign In</a></Link></li>
+                      <li><Link href="/sign-up"><a>Sign Up</a></Link></li>
+                      <li><Link href="/error"><a>Error</a></Link></li>
+                  </ul>
+                </li> */}

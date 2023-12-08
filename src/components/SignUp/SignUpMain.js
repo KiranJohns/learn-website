@@ -93,6 +93,7 @@ function SignUpMain() {
     })
       .then((res) => {
         console.log(res);
+        
         location.pathname = "/sign-in";
       })
       .catch((err) => {
@@ -211,7 +212,7 @@ function SignUpMain() {
           >
             <div className="main p-5">
               <div className="heading">
-                <h2>OTP Verification</h2>
+                <h4>One time Password (OTP) verification</h4>
               </div>
               <div className="info">
                 An OTP has been sent to your registered email address.
@@ -235,17 +236,18 @@ function SignUpMain() {
                         className="my-4 width-100 btn btn-primary"
                         onClick={handleOtp}
                       >
-                        submit
+                        Submit
                       </button>
                     </div>
 
                     <div className="mt-4">
+                     <span>Didn't recieve? </span>
                       <a
                         style={{ cursor: "pointer" }}
                         onClick={resend}
                         className="text-primary mt-2 width-100"
                       >
-                        Resend OTP
+                        Resend 
                       </a>
                     </div>
                   </div>

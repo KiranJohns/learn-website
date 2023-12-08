@@ -137,7 +137,7 @@ const ManageCreateU = () => {
                     className="form-control border border-black"
                     id="password"
                     name="password"
-                    placeholder="password"
+                    placeholder="Password"
                     value={userData.password}
                   />
                        <div
