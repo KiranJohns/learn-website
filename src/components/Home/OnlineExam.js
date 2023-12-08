@@ -156,7 +156,7 @@ const OnlineExam = () => {
                 </div>
               ))}
             <div style={{ display: "flex", justifyContent: "center" }}>
-              <span className="btn btn-success mt-3" onClick={validateAnswers}>
+              <span className="btn btn-success mt-3" onClick={handleSubmit}>
                 submit
               </span>
             </div>
