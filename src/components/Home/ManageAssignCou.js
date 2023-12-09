@@ -36,6 +36,7 @@ const ManagerAssignCourse = () => {
   const [from, setFrom] = useState("");
   const [records, setRecords] = useState([]);
   const [searchString, setSearchString] = useState("");
+  const [courseName, setCourseName] = useState("");
   const [companyIndividuals, setCompanyIndividuals] = useState([]);
   const [filteredCompanyIndividuals, setFilteredCompanyIndividuals] = useState(
     []
@@ -168,6 +169,7 @@ const ManagerAssignCourse = () => {
           className="btn btn-primary"
           onClick={() => {
             openModal();
+            setCourseName(row.Name || row.name)
             console.log("row", row.id);
             setAssignData((prev) => {
               return {
@@ -220,6 +222,7 @@ const ManagerAssignCourse = () => {
               }}
             >
               <div style={{ maxHeight: "220rem" }} className="dash-shadow p-3 mt-4 ">
+                <h5>{courseName}</h5>
                 <div>
                   <div className="form-control dash-shadow d-flex gap-3 p-3">
                     <div className="form-group">

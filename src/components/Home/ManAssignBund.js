@@ -36,6 +36,7 @@ const ManAssignBund = () => {
   const [records, setRecords] = useState([]);
   const [searchString, setSearchString] = useState("");
   const [companyIndividuals, setCompanyIndividuals] = useState([]);
+  const [courseName, setCourseName] = useState("");
   const [filteredCompanyIndividuals, setFilteredCompanyIndividuals] = useState(
     []
   );
@@ -172,6 +173,7 @@ const ManAssignBund = () => {
           className="btn btn-primary"
           onClick={() => {
             openModal();
+            setCourseName(row.bundle_name)
             setAssignData((prev) => {
               return {
                 ...prev,
@@ -228,6 +230,7 @@ const ManAssignBund = () => {
                 className="dash-shadow p-3 mt-4 "
               >
                 <div>
+                    <h5>{courseName}</h5>
                   <div className="form-control dash-shadow d-flex gap-3 p-3">
                     <div className="form-group">
                       <label
