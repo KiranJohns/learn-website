@@ -134,7 +134,7 @@ function DashIndividual() {
     },
     {
       name: "Attempts",
-      selector: (row) => <a href={`/learnCourse/examAttempts/?courseId=${row.id}`}>{row.attempts || 0+"/20"}</a>,
+      selector: (row) => <a href={`/learnCourse/examAttempts/?courseId=${row.id}`}>{row.attempts+"/20"}</a>,
       center: true,
     },
     {
