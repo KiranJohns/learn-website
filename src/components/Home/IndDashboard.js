@@ -292,6 +292,7 @@ function DashIndividual() {
               flexWrap: "nowrap",
             }}
           >
+          
             <div className="ag-courses_item-sec " style={{ marginLeft: "" }}>
               <a
                 href="/individual/mycourses"
@@ -316,9 +317,13 @@ function DashIndividual() {
               </a>
             </div>
 
+            {/* <div className="dash-box-res">
+            
+            </div> */}
+
             <div
               className="ag-courses_item-sec "
-              style={{ marginLeft: "3.2rem" }}
+              style={{ marginLeft: "2.5rem" }}
             >
               <a
                 href="/individual/mybundles"
@@ -342,8 +347,11 @@ function DashIndividual() {
                 </div>
               </a>
             </div>
+     
+
           </div>
         </div>
+
 
         {/* <div className="ag-courses_box dash-shadow">
           <div className="ag-courses_item">
