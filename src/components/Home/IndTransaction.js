@@ -75,7 +75,7 @@ class Transaction extends Component {
       },
       {
         name: "Time",
-        selector: (row) => new Date(row.date).toLocaleTimeString('en-US'),
+        selector: (row) => new Date(row.date).toLocaleTimeString("en-GB", {timeZone: "Europe/London",hour12: true}),
         center: true,
         sortable: true,
       },

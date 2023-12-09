@@ -4,7 +4,7 @@ import DataTable from "react-data-table-component";
 import Link from "next/link";
 import BasicExample from "../About/button1";
 import fetchData from "../../axios";
-import Button from 'react-bootstrap/Button';
+import Button from "react-bootstrap/Button";
 
 const customStyles = {
   headRow: {
@@ -35,16 +35,16 @@ class ManTransaction extends Component {
       filterRecords: [],
     };
   }
-  
+
   handleFilter = (event) => {
     const newData = this.state.filterRecords.filter((row) =>
-    row.name.toLowerCase().includes(event.target.value.toLowerCase())
+      row.name.toLowerCase().includes(event.target.value.toLowerCase())
     );
     this.setState({ records: newData });
   };
-  
+
   componentDidMount() {
-    console.clear()
+    console.clear();
     let makeRequest = fetchData();
     makeRequest("GET", "/info/get-all-transactions")
       .then((res) => {
@@ -63,19 +63,18 @@ class ManTransaction extends Component {
     const columns = [
       {
         name: "NO",
-        selector: (row,idx) => ++idx,
+        selector: (row, idx) => ++idx,
         center: true,
-        width:"100px"
+        width: "100px",
       },
       {
         name: "Date",
         selector: (row) => new Date(row.date).toLocaleDateString(),
         center: true,
-     
       },
       {
         name: "Time",
-        selector: (row) => new Date(row.date).toLocaleTimeString('en-US'),
+        selector: (row) => new Date(row.date).toLocaleTimeString("en-GB", {timeZone: "Europe/London",hour12: true}),
         center: true,
         sortable: true,
       },
@@ -93,62 +92,47 @@ class ManTransaction extends Component {
 
     return (
       <div className="">
-       
-      <div className="dash-shadow">
-      <div className="relative row g-3  min-vh-100  d-flex justify-content-center mt-20">
-      <h2
-        style={{  
-          color: "#212450",
-          display: "flex",
-          justifyContent: "center",
-          position:'absolute',
-          fontSize: 36,
-        }}
-      >
-      Transactions
-      </h2>
-        <div style={{ padding: "", backgroundColor: "" }}>
-          {/* <div
-            className="pb-2 smth"
-            style={{ display: "flex", justifyContent: "left" }}
-          >
-            <input
-              type="text"
-              className=""
-              placeholder="Search course..."
-              onChange={this.handleFilter}
+        <div className="dash-shadow">
+          <div className="relative row g-3  min-vh-100  d-flex justify-content-center mt-20">
+            <h2
               style={{
-                padding: "6px 10px",
-                borderColor: "transparent",
-                overflow: "hidden",
+                color: "#212450",
+                display: "flex",
+                justifyContent: "center",
+                position: "absolute",
+                fontSize: 36,
               }}
-            />
-          </div> */}
-          <div style={{float:'right',marginBottom:'1.4rem'}} className="p-relative d-inline header__search">
-            <form action="">
-              <input style={{ background:'#edeef3',}}
-                className="d-block mr-10"
-                type="text"
-                placeholder="Search..."
-                // value={searchString}
-                // onChange={handleSearch}
+            >
+              Transactions
+            </h2>
+            <div style={{ padding: "", backgroundColor: "" }}>
+              <div
+                style={{ float: "right", marginBottom: "1.4rem" }}
+                className="p-relative d-inline header__search"
+              >
+                <form action="">
+                  <input
+                    style={{ background: "#edeef3" }}
+                    className="d-block mr-10"
+                    type="text"
+                    placeholder="Search..."
+                  />
+                  <button type="submit">
+                    <i className="fas fa-search"></i>
+                  </button>
+                </form>
+              </div>
+              <DataTable
+                persistTableHead={true}
+                columns={columns}
+                data={this.state.records}
+                customStyles={customStyles}
+                pagination
               />
-              <button type="submit">
-                <i className="fas fa-search"></i>
-              </button>
-            </form>
-          </div>
-          <DataTable
-          persistTableHead={true}
-            columns={columns}
-            data={this.state.records}
-            customStyles={customStyles}
-            pagination
-         
-          />
+            </div>
+          </div>{" "}
         </div>
-      </div> </div>
-    </div>
+      </div>
     );
   }
 }
