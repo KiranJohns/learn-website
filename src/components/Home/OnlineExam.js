@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Form from "react-bootstrap/Form";
 import fetchData from "../../axios";
 import { useRouter } from "next/router";
-import { Modal } from "react-responsive-modal";
+import Modal from "react-responsive-modal";
 
 const OnlineExam = () => {
   const makeRequest = fetchData();
@@ -11,14 +11,17 @@ const OnlineExam = () => {
   const [examResult, setExamResult] = useState([]);
   const [questionId, setQuestionId] = useState(null);
   const [open, setOpen] = useState(false);
+  const [click, setClick] = useState(false);
   const [state, setState] = useState("");
 
   const onOpenModal = (state) => {
-    setState(state)
+    setState(state);
     setOpen(true);
   };
-  const onCloseModal = () => {
-    setState("")
+  const onCloseModal = (state) => {
+    setTimeout(() => {
+      setState(false);
+    }, 1000);
     setOpen(false);
   };
 
@@ -63,14 +66,17 @@ const OnlineExam = () => {
   }
 
   function validateAnswers() {
+    console.log(examResult);
     if (examResult.find((item) => item.answer == "")) {
-      onOpenModal(false);
-    } else {
       onOpenModal(true);
+    } else {
+      onOpenModal(false);
     }
   }
 
   function handleSubmit() {
+    if(click) return
+    setClick(true);
     const form = new FormData();
     form.append("answer", JSON.stringify(examResult));
     form.append("enrolled_course_id", router.query.user);
@@ -85,10 +91,11 @@ const OnlineExam = () => {
             courseName: router.query.courseName,
             per: res.data.response.per,
           })
-        );
-        location.pathname = "learnCourse/result";
+          );
+          location.pathname = "learnCourse/result";
       })
       .catch((err) => {
+        setClick(false);
         console.log(err);
       });
   }
@@ -97,11 +104,32 @@ const OnlineExam = () => {
       <div className="row">
         <div className="col-md-12 ">
           <div className="dash-shadow p-4 mt-4">
-            {/* <Modal open={open} onClose={onCloseModal} center>
+            <Modal open={open} onClose={onCloseModal} center>
               <>
-              {state ? <>hi</> : <>hoi</>}
+                {state ? (
+                  <>
+                    <div>Please select one option in each question</div>
+                  </>
+                ) : (
+                  <>
+                    Once you submit , you will no longer be able to change your
+                    answers for this attempt. <br />
+                    <button
+                      class="btn btn-primary"
+                      type="button"
+                      onClick={handleSubmit}
+                    >
+                      {click && <span
+                        class="spinner-border spinner-border-sm"
+                        role="status"
+                        aria-hidden="true"
+                      ></span>}
+                      {click ? "Loading..." : "submit"}
+                    </button>
+                  </>
+                )}
               </>
-            </Modal> */}
+            </Modal>
             <div className="dash-shadow p-4 mt-2 col-md-12">
               <div
                 className=""
@@ -156,7 +184,7 @@ const OnlineExam = () => {
                 </div>
               ))}
             <div style={{ display: "flex", justifyContent: "center" }}>
-              <span className="btn btn-success mt-3" onClick={handleSubmit}>
+              <span className="btn btn-success mt-3" onClick={validateAnswers}>
                 submit
               </span>
             </div>

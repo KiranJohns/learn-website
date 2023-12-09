@@ -8,7 +8,7 @@ import fetchData from "../../axios";
 import DataTable from "react-data-table-component";
 import { BsSearch } from "react-icons/bs";
 import { IoHandLeft } from "react-icons/io5";
-import Button from 'react-bootstrap/Button';
+import Button from "react-bootstrap/Button";
 import { FaEye } from "react-icons/fa";
 
 const customStyles = {
@@ -98,13 +98,16 @@ class DashTest extends Component {
       },
       {
         name: "Attempts",
-        selector: (row) => <a href="/learnCourse/examAttempts">{row.attempts+"/20"}</a>,
+        selector: (row) => (
+          <a href="/learnCourse/examAttempts">{row.attempts || 0 + "/20"}</a>
+        ),
         center: true,
       },
       {
         name: "validity",
         selector: (row) => {
-          let date = new Date(row.validity).toLocaleDateString()
+          let date = new Date(row.validity)
+            .toLocaleDateString()
             .split("/")
             .map((d) => (d.length <= 1 ? "0" + d : d));
           let newDate = `${date[1]}/${date[0]}/${date[2]}`;
@@ -114,14 +117,14 @@ class DashTest extends Component {
       {
         name: "Action",
         cell: (row) => (
-            <a
-              onClick={() => {
-                location.href = `/learnCourse/coursepage/?courseId=${row.id}`;
-              }}
-              className="btn btn-success"
-            >
-              continue
-            </a>
+          <a
+            onClick={() => {
+              location.href = `/learnCourse/coursepage/?courseId=${row.id}`;
+            }}
+            className="btn btn-success"
+          >
+            continue
+          </a>
         ),
       },
     ];
@@ -138,14 +141,17 @@ class DashTest extends Component {
           <h3
             style={{ color: "#212450", marginTop: ".3rem", display: "inline" }}
           >
-            Hello {(this.state.user.first_name && this.state.user.last_name)?(this.state.user.first_name + " " + this.state.user.last_name):" "}{" "}
+            Hello{" "}
+            {this.state.user.first_name && this.state.user.last_name
+              ? this.state.user.first_name + " " + this.state.user.last_name
+              : " "}{" "}
             <IoHandLeft style={{ color: "#f1c27d", marginBottom: ".5rem" }} />
           </h3>
-          <div  className="headd-element" style={{}}>
-            <h2 
+          <div className="headd-element" style={{}}>
+            <h2
               style={{
                 padding: "0",
-                color:"#212a50",
+                color: "#212a50",
                 display: "flex",
                 justifyContent: "center",
                 margin: ".3rem",
@@ -158,7 +164,7 @@ class DashTest extends Component {
 
         <div className="team-shadow ">
           <div style={{ display: "flex", justifyContent: "center" }}>
-            <h3 style={{ marginTop: ".6rem", color:"#212a50" }}>My Team</h3>
+            <h3 style={{ marginTop: ".6rem", color: "#212a50" }}>My Team</h3>
           </div>
           <div
             className=""
@@ -203,7 +209,7 @@ class DashTest extends Component {
               className="ag-courses_item-new"
               style={{ marginLeft: ".5rem" }}
             >
-              <a  className="ag-courses-item_link-new">
+              <a className="ag-courses-item_link-new">
                 <div className="ag-courses-item_bg-new"></div>
                 {/* <div
                   className="bi bi-person-circle ag-courses-item_date-box-new"
@@ -312,7 +318,6 @@ class DashTest extends Component {
                     justifyContent: "center",
                     alignItems: "",
                     marginTop: "1rem",
-                    
                   }}
                 >
                   Certificates
@@ -330,10 +335,7 @@ class DashTest extends Component {
             }}
           >
             <div className="ag-courses_item-sec " style={{ marginLeft: "" }}>
-              <a
-                href="/company/mycourses"
-                className="ag-courses-item_link-sec"
-              >
+              <a href="/company/mycourses" className="ag-courses-item_link-sec">
                 <div className="ag-courses-item_bg-sec"></div>
                 <div
                   className="bi bi-book ag-courses-item_date-box-new"
@@ -352,8 +354,6 @@ class DashTest extends Component {
                 </div>
               </a>
             </div>
-
-          
 
             <div
               className="ag-courses_item-sec "
@@ -450,7 +450,7 @@ class DashTest extends Component {
                 </div>
                 <div>
                   <DataTable
-                     persistTableHead={true}   
+                    persistTableHead={true}
                     columns={columns}
                     data={
                       this.state.searchString
@@ -463,7 +463,6 @@ class DashTest extends Component {
                     }
                     customStyles={customStyles}
                     pagination
-                  
                   />
                 </div>
               </div>
