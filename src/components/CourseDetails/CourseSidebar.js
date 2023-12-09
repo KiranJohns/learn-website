@@ -175,7 +175,7 @@ function CourseSidebar({ addToCart }) {
                 <h5>
                   £{course?.price}.<span>00</span>{" "}
                 </h5>
-                <h5 style={{}} className="old-price">
+                <h5 style={{color:'#c75342'}} className="old-price">
                 £{parseInt(course?.RRP).toFixed(2)}
                 </h5>
               </div>
