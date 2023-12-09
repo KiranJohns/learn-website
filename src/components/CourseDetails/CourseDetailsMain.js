@@ -152,12 +152,12 @@ function CourseDetailsMain() {
                     <div className="course__tab-content mb-45">
                       <div className="tab-contents">
                         <TabPanel>
-                          <div className="course__description mb-95">
-                            <h3>Introduction</h3>
+                          <div className="course__description mb-95 course-head-center">
+                            <h3 className="course-head-center">Introduction</h3>
                             <p className=" mb-45">{course?.description}</p>
                             {course?.category == "Care Course" ? (
                               <>
-                                <div className="course__description-list mb-45">
+                                <div className="course__description-list mb-45 course-head-center">
                                   <h4>Aims</h4>
                                   <ul
                                     className=" mb-45"
@@ -175,11 +175,11 @@ function CourseDetailsMain() {
                                     ))}
                                   </ul>
                                 </div>
-                                <div className="course__description-list mb-45">
-                                  <h4>Objectives</h4>
+                                <div className="course__description-list mb-45 course-head-center">
+                                  <h4 >Objectives</h4>
                                   <ul>
                                     {course?.objectives_point?.map((item) => (
-                                      <li style={{marginTop: '1.4rem'}}>
+                                      <li style={{ marginTop: '1.4rem' }}>
                                         {" "}
                                         <i className="fas fa-check"></i>
                                         {item}
@@ -209,10 +209,10 @@ function CourseDetailsMain() {
                                   <h4>What you will learn?</h4>
                                   <ul>
                                     {course?.what_you_will_learn_point?.map(item => (
-                                        <li style={{
-                                          listStyle: "inside",
-                                          marginBottom: "1rem",
-                                        }}>{item}</li>
+                                      <li style={{
+                                        listStyle: "inside",
+                                        marginBottom: "1rem",
+                                      }}>{item}</li>
                                     ))}
                                     <li>
                                       {" "}
@@ -231,7 +231,7 @@ function CourseDetailsMain() {
                               </>
                             )}
 
-                            <div className="course__description-list mb-45">
+                            <div className="course__description-list mb-45 course-head-center">
                               <h4>Course Duration</h4>
                               <ul>
                                 <li>
@@ -275,7 +275,7 @@ function CourseDetailsMain() {
                   </Tabs>
                 </div>
               </div>
-              <div className="col-xxl-4 col-xl-4 col-lg-4 sticky-sidebar">
+              <div className="col-xxl-4 col-xl-4 col-lg-4 sticky-sidebar ">
                 <CourseSidebar addToCart={addToCart} />
               </div>
             </div>

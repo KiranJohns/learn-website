@@ -227,7 +227,8 @@ function CourseSidebar({ addToCart }) {
                     <i className="fas fa-globe"></i>
                   </div>
                   <div className="course__video-info">
-                    <h5>{course?.certificate}</h5>
+                    {/* <h5>{course?.certificate}</h5> */}
+                    <h5> Certificate of completion</h5>
                   </div>
                 </li>
               </ul>

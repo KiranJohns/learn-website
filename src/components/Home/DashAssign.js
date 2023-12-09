@@ -911,6 +911,9 @@ const CompAssignCourse = () => {
                 </button>
               </form>
             </div>
+            <Suspense fallback={<Loading />}>
+       
+     
             <DataTable
               persistTableHead={true}
               progressComponent={
@@ -931,6 +934,7 @@ const CompAssignCourse = () => {
               customStyles={customStyles}
               pagination
             />
+             </Suspense>
           </div>
         </div>{" "}
       </div>
@@ -939,3 +943,7 @@ const CompAssignCourse = () => {
 };
 
 export default CompAssignCourse;
+
+function Loading() {
+  return <h2>🌀 Loading...</h2>;
+}

@@ -517,7 +517,7 @@
         }
     }
 }
-
+important__thumb-sm
 .hero-online{
     visibility: hidden;
 }
@@ -525,5 +525,12 @@
 @media screen and (max-width: 991px) {
     .hero-online{
      display: none;
+  }
+  }
+
+
+  @media screen and (max-width: 991px) {
+    .hero-image-cen{
+   float: center;
   }
   }

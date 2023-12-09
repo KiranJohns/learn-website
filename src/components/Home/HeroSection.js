@@ -35,7 +35,7 @@ class Hero extends Component {
                                         <img className="hero-1-circle-3" src="assets/img/shape/hero/hero-1-circle-3.png" alt="img not found"/>
                                         <img className="hero-1-circle-4" src="assets/img/shape/hero/hero-1-circle-4.png" alt="img not found"/>
                                     </div>
-                                    <div className="hero__thumb-big mr-30">
+                                    <div className="hero-image-cen hero__thumb-big mr-30 ">
                                         <img src="assets/img/hero/Home1.webp" alt="img not found"/>
                                         {/* <img src="https://images.pexels.com/photos/5088181/pexels-photo-5088181.jpeg?auto=compress&cs=tinysrgb&w=600" alt="not found" /> */}
                                         <div className="hero__quote hero__quote-animation">
@@ -43,7 +43,7 @@ class Hero extends Component {
                                             <h4></h4>
                                         </div>
                                     </div>
-                                    <div className="hero__thumb-sm mt-50 d-none d-lg-block">
+                                    <div className="hero-image-cen hero__thumb-sm mt-50 d-none d-lg-block">
                                         <img src="assets/img/hero/Home2.webp" alt="img not found"/>
                                     </div>
                                     </div>
