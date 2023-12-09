@@ -36,7 +36,9 @@ const AttemptsExam = () => {
   const [records, setRecords] = useState([]);
   const [filterRecords, setFilterRecords] = useState([]);
   const [subUsers, setSubUsers] = useState([]);
-  const [user, setUser] = useState(jwtDecode(localStorage.getItem(`learnforcare_access`)));
+  const [user, setUser] = useState(
+    jwtDecode(localStorage.getItem(`learnforcare_access`))
+  );
   const [searchData, setSearchData] = useState("");
   const [openModal, setOpenModal] = useState(false);
 
@@ -70,7 +72,6 @@ const AttemptsExam = () => {
       //   .catch((err) => {
       //     console.log(err);
       //   });
-
       // makeRequest("GET", "/info/get-all-sub-users")
       //   .then((res) => {
       //     setSubUsers(res.data.response);
@@ -117,8 +118,8 @@ const AttemptsExam = () => {
 
   const columns = [
     {
-      name: "Attempt",
-      selector: (row, idx) => row.attempts,
+      name: "Id",
+      selector: (row, idx) => row.id,
       center: true,
       width: "170px",
     },
@@ -137,7 +138,7 @@ const AttemptsExam = () => {
     {
       name: "Marks Obtained",
       selector: (row) => row.percentage,
-    }
+    },
   ];
 
   return (
