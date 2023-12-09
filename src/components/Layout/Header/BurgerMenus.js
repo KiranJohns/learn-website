@@ -9,6 +9,7 @@ const BurgerMenus = ({setMenuOpen, menuOpen}) => {
       const [blog, setBlog] = useState(false)
       const [pages, setPages] = useState(false)
       const [bundles, setbundles] = useState(false)
+      const [dashboard, setDashboard] = useState(false)
 
       const router = useRouter()
       const [path, setPath] = useState("")
@@ -24,24 +25,28 @@ const BurgerMenus = ({setMenuOpen, menuOpen}) => {
           setBlog(false)
           setPages(false)
           setbundles(false)
+          setDashboard(false)
         }
         else if( menu == 'courses'){
           setHome(false)
           setcourses(!courses)
           setBlog(false)
           setPages(false)
+          setDashboard(false)
         }
         else if( menu == 'blog'){
           setHome(false)
           setcourses(false)
           setBlog(!blog)
           setPages(false)
+          setDashboard(false)
         }
         else if( menu == 'pages'){
           setHome(false)
           setcourses(false)
           setBlog(false)
           setPages(!pages)
+          setDashboard(false)
         }
         else if( menu == 'bundles'){
           setHome(false)
@@ -50,6 +55,15 @@ const BurgerMenus = ({setMenuOpen, menuOpen}) => {
           setPages(false)
           setbundles(!bundles)
         }
+        else if( menu == 'dashboard'){
+          setHome(false)
+          setcourses(false)
+          setBlog(false)
+          setPages(false)
+          setDashboard(!bundles)
+          setbundles(false)
+        }
+
       }; 
 
       return (
@@ -111,10 +125,10 @@ const BurgerMenus = ({setMenuOpen, menuOpen}) => {
                 <li><Link href="/sign-in"><a>Sign in</a></Link></li>
                 <li><Link href="/sign-up"><a>Sign Up</a></Link></li>
                 
-                <li style={{backgroundColor:'#fff'}} className={blog ? "has-droupdown active" : "has-droupdown"}>
-                    <a  onClick={() => { openMobileMenu('blog'); }}>Dashboard</a>
-                    <ul className={blog ? "sub-menu active" : "sub-menu"}>
-                      <li style={{backgroundColor:'#fff'}}><Link href="/blog" as="/"><a>Profile</a></Link></li>
+                <li style={{backgroundColor:'#fff'}} className={dashboard ? "has-droupdown active" : "has-droupdown"}>
+                    <a  onClick={() => { openMobileMenu('dashboard'); }}>Dashboard</a>
+                    <ul className={dashboard ? "sub-menu active" : "sub-menu"}>
+                      <li style={{backgroundColor:'#fff'}}><Link href="/dashboard" as="/"><a>Profile</a></Link></li>
                       <li style={{backgroundColor:'#fff'}}><Link href="/blog" as="/"><a>Logout</a></Link></li>
                     
                     </ul>
