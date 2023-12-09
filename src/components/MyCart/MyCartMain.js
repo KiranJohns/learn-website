@@ -13,7 +13,7 @@ const MyCart = () => {
   const makeRequest = fetchData();
   const { cart, totalPrice } = useSelector((state) => state.cart);
   const [coupon, setCoupon] = useState("");
-  const [couponData, setCouponData] = useState(null);
+  const [couponData, setCouponData] = useState({coupon_code: "XXXX"});
   const [offerPrice, setOfferPrice] = useState("");
   useEffect(() => {
     getCartItem();
@@ -93,11 +93,25 @@ const MyCart = () => {
         }
         console.log(res.data.response);
         setCouponData(res.data.response)
-        
       })
       .catch((err) => {
         toast('Invalid Coupon');
         console.log(err?.data);
+      });
+  }
+
+  function removeCouponHandler() {
+    console.log('remove coupon');
+    makeRequest("POST", "/coupon/remove-coupon")
+      .then((res) => {
+        console.log(res);
+        setCoupon("")
+        toast('coupon removed');
+        setOfferPrice(0)
+        setCouponData({coupon_code: "XXXX"})
+      })
+      .catch((err) => {
+        console.log(err);
       });
   }
   function decrement(courseId, id, type) {
@@ -269,7 +283,7 @@ const MyCart = () => {
                       >
                         Apply coupon
                       </button>
-                    <div style={{marginLeft:'1rem',padding:".7rem", background:"#f5f5fa", position:'relative'}}> applied coupon<ImCross style={{fontSize:'.55rem', position:'absolute', top:"2", right:"2"}}/></div> 
+                    <div style={{marginLeft:'1rem',padding:".7rem", background:"#f5f5fa", position:'relative'}}>{couponData.coupon_code}<ImCross onClick={removeCouponHandler} style={{fontSize:'.55rem', position:'absolute', top:"2", right:"2"}}/></div> 
                     </div>
                     
                     {/* <div className="coupon2">
