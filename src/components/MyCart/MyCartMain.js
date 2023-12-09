@@ -322,7 +322,7 @@ const MyCart = () => {
                         </h4>
                       </li>
                     
-                      
+                       
                     </ul>
                     <ul>
                     <li className="d-flex justify-content-between w-100">

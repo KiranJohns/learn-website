@@ -37,9 +37,9 @@ const Counter = () => {
     ];
 
     return(
-    <section className="counter__area pt-75 pb-100">
+    <section className="counter__area pt-75 pb-100 ">
         <div className="container">
-            <div className="row">
+            <div  className="row">
                 <div className="col-xxl-6 offset-xl-3 col-xl-6 offset-xl-3">
                     <div className="section__title-wrapper text-center mb-60">
                         <h2 className="section__title">We are <span className="yellow-bg yellow-bg-big">Proud<img src="assets/img/shape/yellow-bg.png" alt="img not found"/></span></h2>
@@ -50,7 +50,7 @@ const Counter = () => {
             {counters &&
             <div className="row">
                 {counters.map( (counter, num) => (
-                    <div key={num} className="col-xxl-2 offset-xxl-1 col-xl-2 offset-xl-1 col-lg-3 col-md-3 offset-md-0 col-sm-5 offset-sm-2">
+                    <div style={{textAlign:'center'}} key={num} className="col-xxl-2 offset-xxl-1 col-xl-2 offset-xl-1 col-lg-3 col-md-3 offset-md-0 col-sm-5 offset-sm-2">
                         <div className="counter__item mb-30">
                             <div className="counter__icon user mb-15">
                             <div dangerouslySetInnerHTML={{__html: counter.countIcon}}></div>
