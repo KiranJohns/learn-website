@@ -86,10 +86,10 @@ const MyCart = () => {
       .then((res) => {
         toast('coupon applied');
         if(res.data.response.coupon_type == "Cash") {
-          setOfferPrice(parseInt(totalPrice) - parseInt(res.data.response.amount))
+          setOfferPrice(parseInt(parseFloat(totalPrice) - parseFloat(res.data.response.amount)).toFixed(2))
         } else {
-          let per = parseInt((parseInt(totalPrice) * parseInt(res.data.response.amount)) / 100)
-          setOfferPrice(parseInt(totalPrice) - per)
+          let per = parseFloat((parseFloat(totalPrice) * parseFloat(res.data.response.amount)) / 100)
+          setOfferPrice(parseFloat(parseInt(totalPrice) - per).toFixed(2))
         }
         console.log(res.data.response);
         setCouponData(res.data.response)
@@ -104,10 +104,9 @@ const MyCart = () => {
     console.log('remove coupon');
     makeRequest("POST", "/coupon/remove-coupon")
       .then((res) => {
-        console.log(res);
         setCoupon("")
         toast('coupon removed');
-        setOfferPrice(0)
+        setOfferPrice()
         setCouponData({coupon_code: "XXXX"})
       })
       .catch((err) => {
@@ -283,7 +282,7 @@ const MyCart = () => {
                       >
                         Apply coupon
                       </button>
-                    <div style={{marginLeft:'1rem',padding:".7rem", background:"#f5f5fa", position:'relative'}}>{couponData.coupon_code}<ImCross onClick={removeCouponHandler} style={{fontSize:'.55rem', position:'absolute', top:"2", right:"2"}}/></div> 
+                    {offerPrice && <div style={{marginLeft:'1rem',padding:".7rem", background:"#f5f5fa", position:'relative'}}>{couponData.coupon_code}<ImCross onClick={removeCouponHandler} style={{fontSize:'.55rem', position:'absolute', top:"2", right:"2"}}/></div>} 
                     </div>
                     
                     {/* <div className="coupon2">
@@ -317,7 +316,7 @@ const MyCart = () => {
                       <li className="d-flex justify-content-between w-100">
                         Discount
                         <h4>
-                          <span style={{color:'#212a50',fontSize:'1.2rem'}}>£{offerPrice?(totalPrice - offerPrice):0 }</span>
+                          <span style={{color:'#212a50',fontSize:'1.2rem'}}>£{offerPrice?(parseFloat(totalPrice - offerPrice).toFixed(2)):0 }</span>
                           {/* {couponData && <span style={{textDecoration:"line-through",color:`${couponData ? 'red' : 'green'}` }}>£ {totalPrice}</span>} */}
                         </h4>
                       </li>
