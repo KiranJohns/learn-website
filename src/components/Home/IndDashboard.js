@@ -134,9 +134,7 @@ function DashIndividual() {
     },
     {
       name: "Attempts",
-      selector: (row) => (
-        <a href="/learnCourse/examAttempts">{row.attempts || 0 + "/20"}</a>
-      ),
+      selector: (row) => <a href={`/learnCourse/examAttempts/?courseId=${row.id}`}>{row.attempts || 0+"/20"}</a>,
       center: true,
     },
     {
@@ -158,7 +156,7 @@ function DashIndividual() {
             }}
             className="btn btn-success"
           >
-            continue
+            {row.state == "pass" ? 'continue' : 'finished'}
           </span>
       ),
     },

@@ -14,10 +14,6 @@ import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
 import { useSelector } from "react-redux";
 
-
-
-
-
 const CourseSliderWithNoSSR = dynamic(
   () => import("../Elements/Slider/CourseSliderSection"),
   {
@@ -176,10 +172,10 @@ function CourseDetailsMain() {
                                   </ul>
                                 </div>
                                 <div className="course__description-list mb-45 course-head-center">
-                                  <h4 >Objectives</h4>
+                                  <h4>Objectives</h4>
                                   <ul>
                                     {course?.objectives_point?.map((item) => (
-                                      <li style={{ marginTop: '1.4rem' }}>
+                                      <li style={{ marginTop: "1.4rem" }}>
                                         {" "}
                                         <i className="fas fa-check"></i>
                                         {item}
@@ -197,35 +193,41 @@ function CourseDetailsMain() {
                                     className=" mb-45"
                                     style={{ listStyle: "initial" }}
                                   >
-                                    {course?.who_should_attend?.map((item) => (
-                                      <li style={{
-                                        listStyle: "inside",
-                                        marginBottom: "1rem",
-                                      }}>{item}</li>
-                                    ))}
+                                    {course?.who_should_attend?.length > 1 ? course?.who_should_attend?.map((item) => (
+                                      <li
+                                        style={{
+                                          listStyle: "inside",
+                                          marginBottom: "1rem",
+                                        }}
+                                      >
+                                        {item}
+                                      </li>
+                                    )) : 
+                                    <li
+                                        style={{
+                                          marginBottom: "1rem",
+                                        }}
+                                      >
+                                        {course?.who_should_attend?.length ? course?.who_should_attend[0] : ""}
+                                      </li>}
                                   </ul>
                                 </div>
                                 <div className="course__description-list mb-45">
                                   <h4>What you will learn?</h4>
                                   <ul>
-                                    {course?.what_you_will_learn_point?.map(item => (
-                                      <li style={{
-                                        listStyle: "inside",
-                                        marginBottom: "1rem",
-                                      }}>{item}</li>
-                                    ))}
-                                    <li>
-                                      {" "}
-                                      <i className="fas fa-check"></i>
-                                      An Introduction to First Aid
-                                    </li>
-                                  </ul>
-                                  <ul>
-                                    <li>
-                                      {" "}
-                                      <i className="fas fa-check"></i>
-                                      {course.What_you_will_learn}
-                                    </li>
+                                    {course?.what_you_will_learn_point?.map(
+                                      (item) => (
+                                        <li
+                                          style={{
+                                            listStyle: "inside",
+                                            marginBottom: "1rem",
+                                          }}
+                                        >
+                                          {item}
+                                        </li>
+                                      )
+                                    )}
+                                    <li> {course.What_you_will_learn}</li>
                                   </ul>
                                 </div>
                               </>
@@ -254,16 +256,12 @@ function CourseDetailsMain() {
 
                             <div className="course__description-list mb-45">
                               <h4>Assessment</h4>
-                              <p>
-                                {course.assessment}
-                              </p>
+                              <p>{course.assessment}</p>
                             </div>
 
                             <div className="course__description-list mb-45">
                               <h4>Certificate</h4>
-                              <p>
-                                {course.certificate}
-                              </p>
+                              <p>{course.certificate}</p>
                             </div>
                           </div>
                         </TabPanel>

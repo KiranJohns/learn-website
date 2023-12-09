@@ -99,9 +99,7 @@ class DashTest extends Component {
       },
       {
         name: "Attempts",
-        selector: (row) => (
-          <a href="/learnCourse/examAttempts">{row.attempts || 0 + "/20"}</a>
-        ),
+        selector: (row) => <a href={`/learnCourse/examAttempts/?courseId=${row.id}`}>{row.attempts || 0+"/20"}</a>,
         center: true,
       },
       {
