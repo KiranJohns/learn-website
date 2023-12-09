@@ -5,6 +5,7 @@ import Link from "next/link";
 import BasicExample from "../About/button1";
 import fetchData from "../../axios";
 import Button from "react-bootstrap/Button";
+import { Suspense } from "react";
 
 const customStyles = {
   headRow: {
@@ -202,13 +203,16 @@ class CompanyBundle extends Component {
                   </button>
                 </form>
               </div>
+              <Suspense fallback={<Loading />}>
               <DataTable
+                  noDataComponent={" "}
                 columns={columns}
                 data={this.state.records}
                 customStyles={customStyles}
                 pagination
                 persistTableHead={true}
               />
+               </Suspense>
             </div>
           </div>{" "}
         </div>
@@ -218,3 +222,7 @@ class CompanyBundle extends Component {
 }
 
 export default CompanyBundle;
+
+function Loading() {
+  return <h2>🌀 Loading...</h2>;
+}

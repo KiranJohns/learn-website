@@ -6,7 +6,7 @@ import BasicExample from "../About/button1";
 import fetchData from "../../axios";
 import Button from 'react-bootstrap/Button';
 import { getMonth } from "../../utils/month";
-
+import { Suspense } from "react";
 const customStyles = {
   headRow: {
     style: {
@@ -137,15 +137,17 @@ class CompMonthRep extends Component {
               </button>
             </form>
           </div>
+          <Suspense fallback={<Loading />}>
           <DataTable
           persistTableHead={true}
             columns={columns}
             data={this.state.records}
             customStyles={customStyles}
             pagination
-           
+            noDataComponent={" "}
           />
-        </div>
+            </Suspense>
+        </div> 
       </div> </div>
     </div>
     );
@@ -153,3 +155,7 @@ class CompMonthRep extends Component {
 }
 
 export default CompMonthRep;
+
+function Loading() {
+  return <h2>🌀 Loading...</h2>;
+}

@@ -7,6 +7,7 @@ import { FaLock, FaUnlock } from "react-icons/fa";
 import fetchData from "../../axios";
 import BasicExample from "../About/button1";
 import Link from "next/link";
+import { Suspense } from "react";
 
 const customStyles = {
   headRow: {
@@ -62,6 +63,7 @@ const CWIndReport = () => {
       selector: (row,id) => id,
       sortable: true,
       center: true,
+      width:"120px"
     },
     {
       name: "CODE",
@@ -124,7 +126,9 @@ const CWIndReport = () => {
                 </button>
               </form>
             </div>
+            <Suspense fallback={<Loading />}>
             <DataTable
+               noDataComponent={" "}
               columns={columns}
               data={
                 searchString
@@ -137,6 +141,7 @@ const CWIndReport = () => {
               pagination
               persistTableHead ={true}
             />
+            </Suspense>
           </div>
         </div>{" "}
       </div>
@@ -145,3 +150,7 @@ const CWIndReport = () => {
 };
 
 export default CWIndReport;
+
+function Loading() {
+  return <h2>🌀 Loading...</h2>;
+}

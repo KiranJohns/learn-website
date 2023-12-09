@@ -6,7 +6,7 @@ import BasicExample from "../About/button1";
 import fetchData from "../../axios";
 import Button from 'react-bootstrap/Button';
 import { FaEye } from "react-icons/fa";
-
+import { Suspense } from "react";
 const customStyles = {
   headRow: {
     style: {
@@ -137,6 +137,7 @@ class CompInvoice extends Component {
               </button>
             </form>
           </div>
+          <Suspense fallback={<Loading />}>
           <DataTable
           persistTableHead={true}
             columns={columns}
@@ -144,8 +145,11 @@ class CompInvoice extends Component {
             customStyles={customStyles}
             pagination
             selectableRows
+            noDataComponent={" "}
           />
+            </Suspense>
         </div>
+        
       </div> </div>
     </div>
     );
@@ -153,3 +157,7 @@ class CompInvoice extends Component {
 }
 
 export default CompInvoice;
+
+function Loading() {
+  return <h2>🌀 Loading...</h2>;
+}

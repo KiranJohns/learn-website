@@ -11,6 +11,7 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 import CompAssignBund from "../../components/Home/CompBundAssign";
 
+
 function assignBundle() {
   const [logedIn, setlogedIn] = useState(() => {
     return getUserType();

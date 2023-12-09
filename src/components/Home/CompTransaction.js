@@ -5,6 +5,7 @@ import Link from "next/link";
 import BasicExample from "../About/button1";
 import fetchData from "../../axios";
 import Button from 'react-bootstrap/Button';
+import { Suspense } from "react";
 
 const customStyles = {
   headRow: {
@@ -65,6 +66,7 @@ class CompTransaction extends Component {
         name: "NO",
         selector: (row,idx) => ++idx,
         center: true,
+        width:"100px"
       },
       {
         name: "Date",
@@ -137,14 +139,16 @@ class CompTransaction extends Component {
               </button>
             </form>
           </div>
+          <Suspense fallback={<Loading />}>
           <DataTable
           persistTableHead={true}
             columns={columns}
             data={this.state.records}
             customStyles={customStyles}
             pagination
-            selectableRows
+            noDataComponent={" "}
           />
+           </Suspense>
         </div>
       </div> </div>
     </div>
@@ -153,3 +157,7 @@ class CompTransaction extends Component {
 }
 
 export default CompTransaction;
+
+function Loading() {
+  return <h2>🌀 Loading...</h2>;
+}

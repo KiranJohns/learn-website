@@ -8,6 +8,7 @@ import Button from 'react-bootstrap/Button';
 import { CSVLink, CSVDownload } from "react-csv";
 import { FaLock } from "react-icons/fa";
 import { FaUnlock } from "react-icons/fa";
+import { Suspense } from "react";
 
 const customStyles = {
   headRow: {
@@ -190,7 +191,10 @@ const DashSUser = () => {
                 </button>
               </form>
             </div>
+            <Suspense fallback={<Loading />}>
             <DataTable
+            noDataComponent={" "}
+             persistTableHead={true}
               columns={columns}
               data={
                 searchString
@@ -205,6 +209,7 @@ const DashSUser = () => {
               pagination
              
             />
+            </Suspense>
           </div>
         </div>{" "}
       </div>
@@ -215,7 +220,9 @@ const DashSUser = () => {
 export default DashSUser;
 
 
-
+function Loading() {
+  return <h2>🌀 Loading...</h2>;
+}
 
   {/* <div
             className="pb-2 smth"

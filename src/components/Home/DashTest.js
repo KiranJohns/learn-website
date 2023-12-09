@@ -10,6 +10,7 @@ import { BsSearch } from "react-icons/bs";
 import { IoHandLeft } from "react-icons/io5";
 import Button from "react-bootstrap/Button";
 import { FaEye } from "react-icons/fa";
+import { Suspense } from "react";
 
 const customStyles = {
   headRow: {
@@ -449,6 +450,7 @@ class DashTest extends Component {
                   /> */}
                 </div>
                 <div>
+                <Suspense fallback={<Loading />}>
                   <DataTable
                     persistTableHead={true}
                     columns={columns}
@@ -464,7 +466,9 @@ class DashTest extends Component {
                     customStyles={customStyles}
                     pagination
                   />
+                   </Suspense>
                 </div>
+
               </div>
             </div>
           </div>
@@ -475,6 +479,9 @@ class DashTest extends Component {
 }
 export default DashTest;
 
+function Loading() {
+  return <h2>🌀 Loading...</h2>;
+}
 {
   /* <div>  
                 <Card style={{ width: '18rem', marginTop:'50px'}}>

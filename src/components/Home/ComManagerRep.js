@@ -8,6 +8,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { FaLock } from "react-icons/fa";
 import { FaUnlock } from "react-icons/fa";
+import { Suspense } from "react";
 
 const customStyles = {
   headRow: {
@@ -163,7 +164,10 @@ class ManagerReport extends Component {
                   </button>
                 </form>
               </div>
+              <Suspense fallback={<Loading />}>
               <DataTable
+                noDataComponent={" "}
+                persistTableHead={true}
                 columns={columns}
                 data={
                   this.state.searchString
@@ -178,6 +182,7 @@ class ManagerReport extends Component {
                 pagination
               
               />
+               </Suspense>
             </div>
           </div>{" "}
         </div>
@@ -187,3 +192,7 @@ class ManagerReport extends Component {
 }
 
 export default ManagerReport;
+
+function Loading() {
+  return <h2>🌀 Loading...</h2>;
+}

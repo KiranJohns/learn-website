@@ -14,6 +14,7 @@ import Tab from "react-bootstrap/Tab";
 import Button from "react-bootstrap/Button";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import { jwtDecode } from "jwt-decode";
+import { Suspense } from "react";
 
 const customStyles = {
   headRow: {
@@ -633,7 +634,9 @@ const CompAssignBund = () => {
                 </button>
               </form>
             </div>
+            <Suspense fallback={<Loading />}>
             <DataTable
+            noDataComponent={" "}
               persistTableHead={true}
               columns={columns}
               data={
@@ -648,6 +651,7 @@ const CompAssignBund = () => {
               customStyles={customStyles}
               pagination
             />
+             </Suspense>
           </div>
         </div>{" "}
       </div>
@@ -656,6 +660,11 @@ const CompAssignBund = () => {
 };
 
 export default CompAssignBund;
+
+
+function Loading() {
+  return <h2>🌀 Loading...</h2>;
+}
 
 {
   /* <div className="">
