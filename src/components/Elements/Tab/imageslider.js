@@ -73,6 +73,7 @@ const ImageSlider = ({ slides }) => {
   };
 
   return (
+   
     <div style={sliderStyless}>
       <div>
         <div onClick={goToPrevious} style={leftArrowStyless}>
@@ -95,6 +96,7 @@ const ImageSlider = ({ slides }) => {
         ))}
       </div>
     </div>
+
   );
 };
 

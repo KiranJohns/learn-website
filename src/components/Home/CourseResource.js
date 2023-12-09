@@ -111,9 +111,10 @@ const CourseResource = () => {
               controls="0"
             ></iframe>
           </div> */}
-
-          <div className="mt-4 blog-box-shadow " style={containerStyless}>
+          <div style={{position:'relative'}} className="row">
+          <div className="mt-4 blog-box-shadow col-6" style={containerStyless}>
             <ImageSlider style={{padding:"1rem"}} slides={slides} />
+          </div>
           </div>
 
           <div className="blog-box-shadow mt-50 p-4">
@@ -125,7 +126,7 @@ const CourseResource = () => {
               course?.resource?.map((item, i) => (
                 <div style={{ margin: " 1rem .5rem" }}>
                   <p>
-                    Course resource{" "}
+                  &#x2022;{" "}
                     <a
                       href={item.url}
                       style={{ color: "#1b85b8" }}

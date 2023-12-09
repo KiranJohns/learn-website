@@ -15,7 +15,8 @@ const Footer = () => {
                <div className="footer__top pt-190 pb-40">
                   <div className="container">
                      <div className="row">
-                        <div className="col-xxl-3 col-xl-3 col-lg-3 col-md-12 col-sm-9">
+                        
+                        <div className="col-xxl-3 col-xl-3 col-lg-3 col-md-12 col-sm-9 col-xs-12">
                            <div className="footer__widget mb-50">
                               <div className="footer__widget-head mb-22">
                                  <div className="footer__logo">
@@ -37,7 +38,8 @@ const Footer = () => {
                               </div>
                            </div>
                         </div>
-                        <div className="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6">
+                      
+                        <div className="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 col-xs-6">
                            <div className="footer__widget mb-50">
                               <div className="footer__widget-head mb-22">
                                  <h3 className="footer__widget-title footer__widget-title-2">Links</h3>
@@ -59,10 +61,10 @@ const Footer = () => {
                            </div>
                         </div>
 
-                        <div className="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6">
+                        <div className="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 col-xs-6">
                            <div className="footer__widget mb-50">
                               <div className="footer__widget-head mb-22">
-                                 <h3  className="footer__widget-title footer__widget-title-2">External Links</h3>
+                                 <h3 style={{visibility:'hidden'}} className="footer__widget-title footer__widget-title-2">External Links</h3>
                               </div>
                               <div className="footer__widget-body">
                                  <div className="footer__link footer__link-2">

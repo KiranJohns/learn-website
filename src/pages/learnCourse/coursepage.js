@@ -54,7 +54,7 @@ const coursepage = () => {
                   {getUserType() == "manager" && <ManageBar />}
                   {getUserType() == "company" && <DashboardBar />}
                 </div>
-                <div className="col-sm col-md-9 bg-white">
+                <div className="col-sm-12 col-md-12 bg-white">
                   <CourseResource />
                 </div>
               </div>
