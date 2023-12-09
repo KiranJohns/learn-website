@@ -228,6 +228,8 @@ function DashboardBar() {
       return l.filter((li) => {
         if (li.link == link) {
           li.display = !li.display;
+        } else {
+          li.display = false;
         }
         return li;
       });

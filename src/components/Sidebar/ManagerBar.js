@@ -210,6 +210,8 @@ function  ManagerBar() {
       return l.filter((li) => {
         if (li.link == link) {
           li.display = !li.display;
+        } else {
+          li.display = false;
         }
         return li;
       });
@@ -312,7 +314,6 @@ function  ManagerBar() {
             <>
               <span
                 onClick={(e) => {
-                  console.log(link.link);
                   if (!link?.subLinks) {
                     router.push(link.link);
                   }
