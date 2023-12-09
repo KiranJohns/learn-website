@@ -252,7 +252,7 @@ const CompAssignBund = () => {
           className="btn btn-primary"
           onClick={() => {
             openModal();
-            setCourseName(row.name || row.Name);
+            setCourseName(row.bundle_name );
             console.log("row", row.id);
             setAssignData((prev) => {
               return {
@@ -312,6 +312,7 @@ const CompAssignBund = () => {
                 className="dash-shadow p-3 m-3"
                 style={{ maxHeight: "220rem" }}
               >
+                <h5 style={{ color: "#212a50" }}> {courseName}</h5>{" "}
                 <Tabs
                   id="controlled-tab-example"
                   activeKey={key}
