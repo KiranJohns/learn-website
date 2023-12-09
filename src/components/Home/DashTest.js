@@ -99,7 +99,11 @@ class DashTest extends Component {
       },
       {
         name: "Attempts",
-        selector: (row) => <a href={`/learnCourse/examAttempts/?courseId=${row.id}`}>{row.attempts || 0+"/20"}</a>,
+        selector: (row) => (
+          <a href={`/learnCourse/examAttempts/?courseId=${row.id}`}>
+            {row.attempts}
+          </a>
+        ),
         center: true,
       },
       {
@@ -448,25 +452,24 @@ class DashTest extends Component {
                   /> */}
                 </div>
                 <div>
-                <Suspense fallback={<Loading />}>
-                  <DataTable
-                    persistTableHead={true}
-                    columns={columns}
-                    data={
-                      this.state.searchString
-                        ? this.state.records.filter((item) =>
-                            item.Name.toLowerCase().includes(
-                              this.state.searchString.toLowerCase()
+                  <Suspense fallback={<Loading />}>
+                    <DataTable
+                      persistTableHead={true}
+                      columns={columns}
+                      data={
+                        this.state.searchString
+                          ? this.state.records.filter((item) =>
+                              item.Name.toLowerCase().includes(
+                                this.state.searchString.toLowerCase()
+                              )
                             )
-                          )
-                        : this.state.records
-                    }
-                    customStyles={customStyles}
-                    pagination
-                  />
-                   </Suspense>
+                          : this.state.records
+                      }
+                      customStyles={customStyles}
+                      pagination
+                    />
+                  </Suspense>
                 </div>
-
               </div>
             </div>
           </div>
