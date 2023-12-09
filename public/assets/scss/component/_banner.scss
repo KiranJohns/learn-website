@@ -261,3 +261,14 @@ display: none;
    display: none;
 }
 }
+
+.dash-box-res{
+  padding: 1.7rem;
+}
+
+@media screen and (max-width:991px) {
+  .dash-box-res{
+    padding: 1.9rem;
+}
+}
+
