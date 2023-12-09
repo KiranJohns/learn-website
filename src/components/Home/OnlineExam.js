@@ -104,16 +104,19 @@ const OnlineExam = () => {
       <div className="row">
         <div className="col-md-12 ">
           <div className="dash-shadow p-4 mt-4">
-            <Modal open={open} onClose={onCloseModal} center>
+            <Modal  open={open} onClose={onCloseModal} center>
               <>
                 {state ? (
                   <>
-                    <div>Please select one option in each question</div>
+                    <div style={{padding:"1rem", color:"#212a50"}}>Please select one option in each question</div>
+
                   </>
                 ) : (
                   <>
-                    Once you submit , you will no longer be able to change your
-                    answers for this attempt. <br />
+                  <p style={{padding:".5rem", margin:'.5rem', textAlign:"center"}}>
+                    Once you submit , you will no longer be able to change<br/>your
+                    answers for this attempt. <br /></p>
+                    <div style={{display:'flex', justifyContent:'center'}}>
                     <button
                       class="btn btn-primary"
                       type="button"
@@ -125,7 +128,7 @@ const OnlineExam = () => {
                         aria-hidden="true"
                       ></span>}
                       {click ? "Loading..." : "submit"}
-                    </button>
+                    </button></div>
                   </>
                 )}
               </>

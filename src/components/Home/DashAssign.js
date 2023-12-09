@@ -16,6 +16,8 @@ import Tabs from "react-bootstrap/Tabs";
 import Table from "react-bootstrap/Table";
 import { jwtDecode } from "jwt-decode";
 import Spinner from "react-bootstrap/Spinner";
+import { Suspense } from "react";
+
 
 const customStyles = {
   headRow: {
