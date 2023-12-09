@@ -291,7 +291,7 @@ class DashCourse extends Component {
                 data={
                   this.state.searchData
                     ? this.state.records.filter((item) =>
-                        item.Name.toLowerCase().includes(
+                        item.Name.toLerCase().includes(
                           this.state.searchData.toLowerCase()
                         )
                       )

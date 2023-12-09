@@ -59,7 +59,7 @@
                 z-index: 1;
                 & img{
                     position: absolute;
-                    bottom: 22px;
+                    bottom: 15px;
                     left: -8px;
                     z-index: -1;
                     -webkit-animation: section-animation 3s infinite;
@@ -500,7 +500,7 @@
     z-index: 1;
     & img{
         position: absolute;
-        bottom: 17px;
+        bottom: 13px;
         left: -8px;
         z-index: -1;
         -webkit-animation: section-animation 3s infinite;
@@ -517,7 +517,7 @@
         }
     }
 }
-
+important__thumb-sm
 .hero-online{
     visibility: hidden;
 }
@@ -525,5 +525,12 @@
 @media screen and (max-width: 991px) {
     .hero-online{
      display: none;
+  }
+  }
+
+
+  @media screen and (max-width: 991px) {
+    .hero-image-cen{
+   float: center;
   }
   }

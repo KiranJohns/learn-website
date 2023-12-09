@@ -65,6 +65,12 @@ const BurgerMenus = ({setMenuOpen, menuOpen}) => {
               <div className="logo mb-40">
                 <Link href="/"><a><img className='w-75 mt-5 ml-5' src="/assets/img/logo/logo7.png" alt="logo"/></a></Link>
               </div>
+              <div className="sidebar__search p-relative mt-40 ">
+                <form action="#">
+                    <input type="text" placeholder="Search..."/>
+                    <button type="submit"><i className="fas fa-search"></i></button>
+                </form>
+              </div>
               <div className="mm-menu">
                 <ul>
                   <li className={home }>
@@ -100,24 +106,23 @@ const BurgerMenus = ({setMenuOpen, menuOpen}) => {
                     </ul>
                   </li>
 
-                  <li style={{backgroundColor:'#fff'}} className={blog ? "has-droupdown active" : "has-droupdown"}>
-                    <a  onClick={() => { openMobileMenu('blog'); }}>Blog</a>
+                  <li><Link href="/blog"><a>Blog</a></Link></li>
+                {/* <li><Link href="/contact"><a>Contact</a></Link></li> */}
+                <li><Link href="/sign-in"><a>Sign in</a></Link></li>
+                <li><Link href="/sign-up"><a>Sign Up</a></Link></li>
+                
+                <li style={{backgroundColor:'#fff'}} className={blog ? "has-droupdown active" : "has-droupdown"}>
+                    <a  onClick={() => { openMobileMenu('blog'); }}>Dashboard</a>
                     <ul className={blog ? "sub-menu active" : "sub-menu"}>
-                      <li style={{backgroundColor:'#fff'}}><Link href="/blog" as="/blog"><a>Blog</a></Link></li>
-                      {/* <li><Link href="/blog-details"><a>Blog Details</a></Link></li> */}
+                      <li style={{backgroundColor:'#fff'}}><Link href="/blog" as="/"><a>Profile</a></Link></li>
+                      <li style={{backgroundColor:'#fff'}}><Link href="/blog" as="/"><a>Logout</a></Link></li>
+                    
                     </ul>
                   </li>
-                  <li><Link href="/blog"><a>Blog</a></Link></li>
-                <li><Link href="/contact"><a>Contact</a></Link></li>
               </ul>
             </div>
 
-              <div className="sidebar__search p-relative mt-40 ">
-                <form action="#">
-                    <input type="text" placeholder="Search..."/>
-                    <button type="submit"><i className="fas fa-search"></i></button>
-                </form>
-              </div>
+          
               {/* <div className="sidebar__cart mt-30">
                 <a href="#">
                     <div className="header__cart-icon">

@@ -19,7 +19,7 @@ const Service = () => {
                   </div>
                </div>
                <div className="row">
-                  <div className="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6" style={{cursor:"pointer"}}>
+                  <div className="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6" style={{cursor:"pointer",textAlign:'center'}}>
                   <Link href="/course-all">
                      <div className="services__item blue-bg-4 mb-30">
                         <div className="services__icon">
@@ -37,7 +37,7 @@ const Service = () => {
                      </div>
                     </Link>
                   </div>
-                  <div className="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6" style={{cursor:"pointer"}}>
+                  <div className="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6" style={{cursor:"pointer",textAlign:'center'}}>
                   <Link href="/course-all">
                      <div className="services__item pink-bg mb-30">
                         <div className="services__icon">
@@ -64,7 +64,7 @@ const Service = () => {
                      </Link>
                   </div>
 
-                  <div className="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6" style={{cursor:"pointer"}}>
+                  <div className="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6" style={{cursor:"pointer",textAlign:'center'}}>
                   <div   onClick={() => {
                                 if (getUserType() === "company") {
                                   router.push("/company/dashboard");
@@ -93,7 +93,7 @@ const Service = () => {
                      </div>
                      </div>
                   </div>
-                  <div className="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6" style={{cursor:"pointer"}}>
+                  <div className="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6" style={{cursor:"pointer",textAlign:'center'}}>
                   <Link href="/course-all">
                      <div className="services__item green-bg mb-30">
                         <div className="services__icon">

@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import store from "../../redux/store";
+import { ImCross } from "react-icons/im";
 
 const MyCart = () => {
   const makeRequest = fetchData();
@@ -268,6 +269,7 @@ const MyCart = () => {
                       >
                         Apply coupon
                       </button>
+                    <div style={{marginLeft:'1rem',padding:".7rem", background:"#f5f5fa", position:'relative'}}> applied coupon<ImCross style={{fontSize:'.55rem', position:'absolute', top:"2", right:"2"}}/></div> 
                     </div>
                     
                     {/* <div className="coupon2">
@@ -285,7 +287,7 @@ const MyCart = () => {
            
               </div>
 
-              <div className="row">
+              <div className="row mt-3">
                 <div className="col-md-6 ml-auto">
                   <div className="cart-page-total">
                     {/* <h2>Grand Total</h2> */}

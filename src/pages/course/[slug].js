@@ -21,7 +21,7 @@ class CourseDetails extends React.Component {
         <Header />
         </NoSSR>
         <CourseDetailsMain />
-        <Footer />
+        {/* <Footer /> */}
       </React.Fragment>
     );
   }
