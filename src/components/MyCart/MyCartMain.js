@@ -91,6 +91,7 @@ const MyCart = () => {
           let per = parseFloat((parseFloat(totalPrice) * parseFloat(res.data.response.amount)) / 100)
           setOfferPrice(parseFloat(parseInt(totalPrice) - per).toFixed(2))
         }
+        setCoupon("");
         console.log(res.data.response);
         setCouponData(res.data.response)
       })
@@ -282,7 +283,7 @@ const MyCart = () => {
                       >
                         Apply coupon
                       </button>
-                    {offerPrice && <div style={{marginLeft:'1rem',padding:".7rem", background:"#f5f5fa", position:'relative'}}>{couponData.coupon_code}<ImCross onClick={removeCouponHandler} style={{fontSize:'.55rem', position:'absolute', top:"2", right:"2"}}/></div>} 
+                    {offerPrice && <div style={{marginLeft:'1rem',padding:".75rem", background:"#f5f5fa", position:'relative'}}>{couponData.coupon_code}<ImCross onClick={removeCouponHandler} style={{fontSize:'.55rem', position:'absolute', top:"3", right:"3"}}/></div>} 
                     </div>
                     
                     {/* <div className="coupon2">
