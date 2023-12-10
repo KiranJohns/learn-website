@@ -5,6 +5,10 @@
 /*  02. HEADER CSS START
 /*----------------------------------------*/
 
+// html,
+// body::-webkit-scrollbar {
+// 	display: none;
+// }
 .header{
 	&__padding{
 		padding-left: 245px;

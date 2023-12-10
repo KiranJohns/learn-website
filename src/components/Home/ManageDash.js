@@ -126,7 +126,7 @@ class ManageDash extends Component {
               }}
               className="btn btn-success"
             >
-              continue
+              {row.state == "pass" ? 'finished' : 'continue' }
             </a>
         ),
       },

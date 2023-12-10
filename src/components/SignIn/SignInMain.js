@@ -66,7 +66,7 @@ function SignInMain() {
           res.data.jwt_re_fresh_token
         );
         localStorage.setItem("userType", res.data.userType);
-        let from = localStorage.getItem("from-checkout", true);
+        let from = localStorage.getItem("from-checkout");
         if (res.data.userType == "individual") {
           if (from) {
             localStorage.removeItem("from-checkout");
@@ -156,8 +156,7 @@ function SignInMain() {
         styles={{
           modal: {
             maxWidth: "unset",
-            minWidth:"25%",
-      
+            minWidth: "25%",
 
             padding: "unset",
           },
@@ -304,7 +303,10 @@ function SignInMain() {
                       </div>
                     </div>
                     <div className="sign__action d-sm-flex justify-content-between mb-30">
-                      <div style={{visibility:"hidden"}} className="sign__agree d-flex align-items-center">
+                      <div
+                        style={{ visibility: "hidden" }}
+                        className="sign__agree d-flex align-items-center"
+                      >
                         <input
                           className="m-check-input"
                           type="checkbox"
