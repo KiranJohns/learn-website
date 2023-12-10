@@ -3,6 +3,7 @@ import Form from "react-bootstrap/Form";
 import fetchData from "../../axios";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import { getUserType } from "../../axios";
 
 const NewResult = () => {
   const makeRequest = fetchData();
@@ -113,7 +114,7 @@ const NewResult = () => {
             <span 
               className="btn btn-success mt-3 "
               onClick={() => {
-                location.pathname = "/individual/certificates";
+                location.pathname = `/${getUserType()}/certificates`;
                 localStorage.removeItem("wrong-answers")
               }}
             >
