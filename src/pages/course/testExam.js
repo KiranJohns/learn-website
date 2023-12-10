@@ -1,4 +1,4 @@
-import React from "react";
+ import React from "react";
 import CourseBundle from "../../components/CourseGrid/CourseBundle";
 import IndividualBar from "../../components/Sidebar/IndividualBar";
 import HeaderDashboard from "../../components/Layout/Header/HeaderDashboard";

@@ -128,7 +128,7 @@ function CourseCard({ item }) {
                       </div> */}
         </div>
         <div   className="course__content">
-          <h3   className="homee__title" title={item.name}>
+          <h3 style={{height:'1.8rem'}} className="homee__title" title={item.name}>
             <Link  href={`/course/${item.id}`}>
               <a>{item.name}</a>
               {/* <a>{item.name.slice(0, 20) + "..."}</a> */}
@@ -140,7 +140,7 @@ function CourseCard({ item }) {
                               </div> */}
             <h6>
               <Link  href={`/course/${item.id}`}>
-                <a>{item.description.slice(0, 150) + "..."}</a>
+                <a>{item.description.slice(0, 145) + ".."}</a>
               </Link>
             </h6>
           </div>

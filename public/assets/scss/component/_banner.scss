@@ -272,3 +272,16 @@ display: none;
 }
 }
 
+@keyframes colorChange {
+  0% { color: 	#EA4335; }
+  25% { color: #FBBC05; }
+  50% { color: #4285F4; }
+  75% { color: 	#34A853; }
+  100% { color: 	#EA4335; }
+}
+
+.animated-text {
+  font-size: 23px;
+  font-weight: 600;
+  animation: colorChange 5s infinite; /* Change the duration as needed */
+}
