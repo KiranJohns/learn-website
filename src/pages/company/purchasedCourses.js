@@ -10,8 +10,10 @@ import { getUserType } from "../../axios";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import CompAssignCourse from "../../components/Home/DashAssign";
+import { Spinner } from "react-bootstrap";
 
 function assigncourse() {
+  const [loading, setLoading] = useState(true);
   const [logedIn, setlogedIn] = useState(() => {
     return getUserType();
   });
@@ -19,41 +21,71 @@ function assigncourse() {
   const router = useRouter();
 
   useEffect(() => {
+    // let timar = setTimeout(() => {
+    //   setLoading(false);
+    // }, 2000);
+
+    if (window) {
+      window.addEventListener("load", (e) => {
+        setLoading(false);
+      });
+    }
     if (logedIn !== "company") {
       router.push("/sign-in");
     }
+    // return () => {
+    //   clearTimeout(timar);
+    // };
   }, []);
   return (
     <>
       {logedIn === "company" && (
-        <React.Fragment>
-          <main
-            className="p-1"
+        <>
+          <div
             style={{
-              backgroundImage: "linear-gradient(to left, #EDEEF3, #EDEEF3)",
+              height: "100%",
+              width: "100%",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              position: "fixed",
+              top: "0",
+              left: "0",
+              backgroundColor: "white",
+              zIndex: loading ? "1001" : "-1",
             }}
           >
-            <NoSSR>
-              <Header />
-            </NoSSR>
-            <div
-              className="container-fluid "
-              style={{ borderRadius: "22px", marginTop: "120px" }}
+            <Spinner animation="grow" variant="primary" />
+          </div>
+          <React.Fragment>
+            <main
+              className="p-1"
+              style={{
+                backgroundImage: "linear-gradient(to left, #EDEEF3, #EDEEF3)",
+              }}
             >
-              <div className="row justify-content-md-center">
-                <div
-                  className="col-sm-12 col-md-12 col-lg-2 p-0"
-                  style={{ backgroundColor: "#212450" }}
-                >
-                  <DashboardBar />
-                </div>
-                <div className="col-sm col-md-9  bg-white">
-                  <CompAssignCourse />
+              <NoSSR>
+                <Header />
+              </NoSSR>
+              <div
+                className="container-fluid "
+                style={{ borderRadius: "22px", marginTop: "120px" }}
+              >
+                <div className="row justify-content-md-center">
+                  <div
+                    className="col-sm-12 col-md-12 col-lg-2 p-0"
+                    style={{ backgroundColor: "#212450" }}
+                  >
+                    <DashboardBar />
+                  </div>
+                  <div className="col-sm col-md-9  bg-white">
+                    <CompAssignCourse />
+                  </div>
                 </div>
               </div>
-            </div>
-          </main>
-        </React.Fragment>
+            </main>
+          </React.Fragment>
+        </>
       )}
     </>
   );
