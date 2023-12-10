@@ -921,11 +921,7 @@ const CompAssignCourse = () => {
      
             <DataTable
               persistTableHead={true}
-              progressComponent={
-                <div style={{ padding: "1rem" }}>
-                  <Spinner animation="border" variant="primary" />
-                </div>
-              }
+              noDataComponent={" "}
               columns={columns}
               data={
                 searchString
