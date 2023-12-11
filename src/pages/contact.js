@@ -4,7 +4,6 @@ import HeaderThree from '../components/Layout/Header/HeaderStyleThree';
 import FooterThree from '../components/Layout/Footer/FooterStyleThree';
 import HeaderOpaque from '../components/Layout/Header/HeaderOpaque';
 import Footer from '../components/Layout/Footer/Footer';
-import Footer from '../components/Layout/Footer/Footer';
 import NoSSR from 'react-no-ssr';
 class Contact extends React.Component {
 
