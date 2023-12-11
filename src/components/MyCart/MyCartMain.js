@@ -170,8 +170,8 @@ const MyCart = () => {
                 <table className="table">
                   <thead>
                     <tr>
-                      <th className="product-thumbnail">Images</th>
-                      <th className="cart-product-name">Product</th>
+                      <th className="product-thumbnail">Course</th>
+                      <th className="cart-product-name">Course Name</th>
                       <th className="product-price">Unit Price</th>
                       <th className="product-quantity">Quantity</th>
                       <th className="product-subtotal">Total</th>

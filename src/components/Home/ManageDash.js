@@ -224,7 +224,7 @@ class ManageDash extends Component {
                 className="ag-courses_item-comp"
                 style={{ marginLeft: ".5rem" }}
               >
-                <a href="" className="ag-courses-item_link-comp">
+                <a href="/manager/individuals" className="ag-courses-item_link-comp">
                   <div className="ag-courses-item_bg-comp"></div>
                   <div
                     className="bi bi-person-circle ag-courses-item_date-box-new"
@@ -387,6 +387,7 @@ class ManageDash extends Component {
                 </div>
                 <div>
                   <DataTable
+                  noDataComponent={" "}
                    persistTableHead={true}
                     columns={columns}
                     data={

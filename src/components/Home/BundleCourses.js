@@ -174,6 +174,7 @@ const BundleCour = () => {
             </form>
           </div>
           <DataTable
+          noDataComponent={" "}
             columns={columns}
             data={
               searchData

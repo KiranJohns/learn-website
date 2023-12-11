@@ -145,7 +145,7 @@ const links = [
         link: "/manager/transaction",
       },
       {
-        name: "Monthly Report",
+        name: "Month Wise Report",
         link: "/manager/monthlyReport",
       },
     ],
