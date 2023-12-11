@@ -8,6 +8,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import store from "../../redux/store";
 import { ImCross } from "react-icons/im";
+import { FaTrash } from "react-icons/fa";
 
 const MyCart = () => {
   const makeRequest = fetchData();
@@ -84,7 +85,7 @@ const MyCart = () => {
   function applyCoupon() {
     makeRequest("POST", "/coupon/apply-coupon", {code: coupon})
       .then((res) => {
-        toast('coupon applied');
+        toast('Coupon Applied');
         if(res.data.response.coupon_type == "Cash") {
           setOfferPrice(parseInt(parseFloat(totalPrice) - parseFloat(res.data.response.amount)).toFixed(2))
         } else {
@@ -106,7 +107,7 @@ const MyCart = () => {
     makeRequest("POST", "/coupon/remove-coupon")
       .then((res) => {
         setCoupon("")
-        toast('coupon removed');
+        toast('Coupon Removed');
         setOfferPrice()
         setCouponData({coupon_code: "XXXX"})
       })
@@ -253,7 +254,7 @@ const MyCart = () => {
                             </td>
                             <td className="product-remove">
                               <span onClick={() => removeItem(item.id)}>
-                                <i className="fas fa-times"></i>
+                              <FaTrash style={{fontSize:"1rem", cursor:'pointer'}}/>
                               </span>
                             </td>
                           </tr>
@@ -267,6 +268,7 @@ const MyCart = () => {
                   <div className="coupon-all">
                     <div className="coupon d-sm-flex align-items-center">
                       <input
+                      style={{borderRadius:'.25rem'}}
                         id="coupon_code"
                         onChange={(e) => setCoupon(e.target.value)}
                         className="input-text"
@@ -283,7 +285,8 @@ const MyCart = () => {
                       >
                         Apply coupon
                       </button>
-                    {offerPrice && <div style={{marginLeft:'1rem',padding:".75rem", background:"#f5f5fa", position:'relative'}}>{couponData.coupon_code}<ImCross onClick={removeCouponHandler} style={{fontSize:'.55rem', position:'absolute', top:"3", right:"3"}}/></div>} 
+                    {offerPrice && <div style={{marginLeft:'1rem',padding:".75rem", background:"#5a9676",color:"#fff",fontWeight:"600",borderRadius:".27rem"}}>{couponData.coupon_code} 
+                    <span style={{marginLeft:'.2rem',padding:".77rem", background:"#5a9676",color:"#700004",cursor:"pointer", alignContent:"center"}}> <FaTrash onClick={removeCouponHandler} style={{fontSize:'1.1rem',marginBottom:'.18rem'}}/></span></div>} 
                     </div>
                     
                     {/* <div className="coupon2">
