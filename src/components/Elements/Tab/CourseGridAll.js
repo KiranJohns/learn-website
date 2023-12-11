@@ -113,27 +113,27 @@ export default () => {
 
             <div className="select media-select filter-hidden">
           
-            <CiFilter className="ic-fil" style={{position:'absolute',zIndex:'1',  marginTop:'12px',marginLeft:'.2rem',marginRight:'.5rem',color:"#000",fontSize:'1.3rem' }}/>  
+            <CiFilter className="ic-fil" style={{position:'absolute',zIndex:'1',  marginTop:'10px',marginLeft:'.5rem',marginRight:'.5rem',color:"#fff",fontSize:'1.3rem' }}/>  
              <select
-                style={{border:'none',outline:"#fff",borderRadius:'4px', background: "#fac48e", textAlign:'center',position:'relative',width:'12.9rem',height:'45px',fontSize:'.9rem', fontWeight:'500',  }}
+                style={{border:'none',outline:"#fff",borderRadius:'4px', background: "#5a9676", textAlign:'center',position:'relative',width:'13.1rem',height:'45px',fontSize:'.9rem', fontWeight:'500',color:"#fff"  }}
                 className=""
                 aria-label="Default select example"
                 onChange={(e) => setCategoryFilter(e.target.value)}
               >
-                 
-                <option style={{fontSize:'1rem', color:""}}  value="">Filters</option>
-                <option style={{fontSize:'1rem'}} value="Care Course">Care Certificate Courses</option>
+                 i
+                <option style={{fontSize:'1rem', color:"#000", background:'#fff',fontWeght:'500'}}  value="">Filters</option>
+                <option style={{fontSize:'1rem', color:"#000", background:'#fff',fontWeght:'500'}} value="Care Course">Care Certificate Courses</option>
 
-                <option style={{fontSize:'1rem'}}  value="Mandatory Care Courses">
+                <option style={{fontSize:'1rem', color:"#000", background:'#fff',fontWeght:'500'}} value="Mandatory Care Courses">
                   Mandatory Care Courses
                 </option>
-                <option style={{fontSize:'1rem'}}  value="Specialized Care Courses">
+                <option style={{fontSize:'1rem', color:"#000", background:'#fff',fontWeght:'500'}}  value="Specialized Care Courses">
                   Specialised Care Courses
                 </option>
-                <option style={{fontSize:'1rem'}}  value="Recovery Care Courses">
+                <option style={{fontSize:'1rem', color:"#000", background:'#fff',fontWeght:'500'}}  value="Recovery Care Courses">
                   Recovery Care Courses
                 </option>
-                <option style={{fontSize:'1rem'}}  value="Child Care Courses">Child Care Courses</option>
+                <option style={{fontSize:'1rem', color:"#000", background:'#fff',fontWeght:'500'}} value="Child Care Courses">Child Care Courses</option>
               </select>
             </div>
           </div>

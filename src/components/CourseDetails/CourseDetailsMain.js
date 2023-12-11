@@ -227,7 +227,7 @@ function CourseDetailsMain() {
                                         </li>
                                       )
                                     )}
-                                    <li> {course.What_you_will_learn}</li>
+                                    <li> {course?.What_you_will_learn}</li>
                                   </ul>
                                 </div>
                               </>
@@ -256,12 +256,12 @@ function CourseDetailsMain() {
 
                             <div className="course__description-list mb-45">
                               <h4>Assessment</h4>
-                              <p>{course.assessment}</p>
+                              <p>{course?.assessment}</p>
                             </div>
 
                             <div className="course__description-list mb-45">
                               <h4>Certificate</h4>
-                              <p>{course.certificate}</p>
+                              <p>{course?.certificate}</p>
                             </div>
                           </div>
                         </TabPanel>

@@ -16,7 +16,7 @@ const Footer = () => {
                   <div className="container">
                      <div className="row">
                         
-                        <div className="col-xxl-3 col-xl-3 col-lg-3 col-md-7 col-sm-9 col-xs-12">
+                        <div className="col-xxl-3 col-xl-3 col-lg-3 col-md-7 col-sm-7 col-xs-8">
                            <div className="footer__widget mb-50">
                               <div className="footer__widget-head mb-22">
                                  <div className="footer__logo">

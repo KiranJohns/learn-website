@@ -106,7 +106,7 @@ class CompTransaction extends Component {
           fontSize: 36,
         }}
       >
-      Transactions
+      Transaction Report
       </h2>
         <div style={{ padding: "", backgroundColor: "" }}>
           {/* <div

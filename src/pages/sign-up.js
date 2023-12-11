@@ -3,7 +3,7 @@ import FooterThree from "../components/Layout/Footer/FooterStyleThree";
 import HeaderFour from "../components/Layout/Header/HeaderStyleFour";
 import SignUpMain from "../components/SignUp/SignUpMain";
 import Header from "../components/Layout/Header/Header";
-import FooterPad from "../components/Layout/Footer/FooterLess";
+import Footer from "../components/Layout/Footer/Footer";
 import NoSSR from "react-no-ssr";
 
 class SignIn extends React.Component {
@@ -22,7 +22,7 @@ class SignIn extends React.Component {
         <NoSSR>
           <SignUpMain />
         </NoSSR>
-        <FooterPad />
+        <Footer/>
       </React.Fragment>
     );
   }

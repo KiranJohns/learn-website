@@ -8,10 +8,13 @@ import Header from "../../components/Layout/Header/Header";
 import BundleCour from "../../components/Home/BundleCourses";
 import NoSSR from "react-no-ssr";
 import NewInDash from "../../components/Sidebar/BarDummy";
+import ManagerBar from "../../components/Sidebar/ManagerBar";
+import DashboardBar from "../../components/Sidebar/DashboardBar";
 import { getToken, getUserType } from "../../axios";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
+
 
 
 const coursepage = () => {
@@ -50,7 +53,9 @@ const coursepage = () => {
                       className="col-sm-12 col-md-12 col-lg-2 p-0"
                       style={{ backgroundColor: "#212450" }}
                     >
-                      <NewInDash />
+                     {getUserType() == "individual" && <NewInDash />}
+                  {getUserType() == "manager" && <ManagerBar />}
+                  {getUserType() == "company" && <DashboardBar />}
                     </div>
                     <div className="col-sm col-md-9 bg-white">
                       <BundleCour />

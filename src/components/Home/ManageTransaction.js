@@ -103,7 +103,7 @@ class ManTransaction extends Component {
                 fontSize: 36,
               }}
             >
-              Transactions
+              Transaction Report
             </h2>
             <div style={{ padding: "", backgroundColor: "" }}>
               <div
@@ -123,6 +123,7 @@ class ManTransaction extends Component {
                 </form>
               </div>
               <DataTable
+              noDataComponent={" "}
                 persistTableHead={true}
                 columns={columns}
                 data={this.state.records}

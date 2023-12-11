@@ -6,6 +6,7 @@ import NoSSR from 'react-no-ssr';
 import SucessLayout from '../components/Common/sucessLayout';
 
 
+
 class Success extends React.Component {
 
     static getInitialProps({store}) {}

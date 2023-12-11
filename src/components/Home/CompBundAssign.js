@@ -312,7 +312,11 @@ const CompAssignBund = () => {
                 className="dash-shadow p-3 m-3"
                 style={{ maxHeight: "220rem" }}
               >
-                <h5 style={{ color: "#212a50" }}> {courseName}</h5>{" "}
+                <div style={{display:'flex', justifyContent:"space-between"}}>
+                <h5 style={{ color: "#212a50",marginLeft:"1rem" }}>{courseName}</h5>{" "}
+                <h5 style={{ color: "#212a50",marginRight:"1rem" }}>Available Bundle Count:{}</h5>
+                </div>
+                
                 <Tabs
                   id="controlled-tab-example"
                   activeKey={key}
@@ -326,13 +330,13 @@ const CompAssignBund = () => {
                           <span style={{}}>
                             {" "}
                             <label
-                              style={{ fontSize: ".74rem" }}
+                              style={{ fontSize: ".66rem" }}
                               for="exampleInputEmail1"
                             >
-                              Bundle Count
+                             Assign Bundle Count
                             </label>
                             <input
-                              style={{ width: "4rem", textAlign: "center" }}
+                              style={{ width: "5.9rem", textAlign: "center" }}
                               disabled
                               type="text"
                               className="form-control"
@@ -475,13 +479,13 @@ const CompAssignBund = () => {
                       <div className="form-control dash-shadow d-flex gap-3 p-3">
                         <div className="form-group">
                           <label
-                            style={{ fontSize: ".73rem" }}
+                            style={{ fontSize: ".66rem" }}
                             for="exampleInputEmail1"
                           >
-                            Bundle Count
+                           Assign Bundle Count
                           </label>
                           <input
-                            style={{ width: "4rem", textAlign: "center" }}
+                            style={{ width: "5.9rem", textAlign: "center" }}
                             onChange={(e) => {
                               if (
                                 Number(e.target.value) <= selectedBundleCount

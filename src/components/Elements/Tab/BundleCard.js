@@ -30,6 +30,10 @@ function BundleCard({ item }) {
       });
   }
 
+
+
+
+
   useEffect(() => {
     getAllBundles();
   }, []);
@@ -38,7 +42,7 @@ function BundleCard({ item }) {
     makeRequest("GET", "/bundle/get-all-bundles")
       .then((res) => {
         setBundles(res.data.response);
-        console.log(res.data.response);
+        console.log(res.data.response); 
       })
       .catch((err) => {
         console.log(err);
@@ -113,7 +117,7 @@ function BundleCard({ item }) {
     <div key={item.id} className="col-xxl-4 col-xl-4 col-lg-4 col-md-6">
       <div className="course__item white-bg mb-30 fix">
         <div className="course__thumb w-img p-relative fix">
-          <Link href={`/course-online`}>
+          <Link href={`/course-grid`}>
             <a>
               <img src={item.image} alt="img not found" />
             </a>
@@ -126,7 +130,7 @@ function BundleCard({ item }) {
         </div>
         <div className="course__content">
           <h3 className="homee__title" title={item.name}>
-            <Link href={`/course-online`}>
+            <Link href={`/course-grid`}>
               <a>{item.name}</a>
               {/* <a>{item.name.slice(0, 20) + "..."}</a> */}
             </Link>
@@ -136,7 +140,7 @@ function BundleCard({ item }) {
                                  <img src="assets/img/course/teacher/teacher-5.jpg" alt="img not found"/>
                               </div> */}
             <h6>
-              <Link href={`/course/${item.id}`}>
+              <Link href={`/course-grid`}>
                 <a>{item?.description?.slice(0, 150) + "..."}</a>
               </Link>
             </h6>

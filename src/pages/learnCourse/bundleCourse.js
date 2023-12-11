@@ -7,6 +7,8 @@ import DashArchive from "../../components/Home/DashArchive";
 import Header from "../../components/Layout/Header/Header";
 import BundleResource from "../../components/Home/BundleResource";
 import NoSSR from "react-no-ssr";
+import ManagerBar from "../../components/Sidebar/ManagerBar";
+import DashboardBar from "../../components/Sidebar/DashboardBar";
 import NewInDash from "../../components/Sidebar/BarDummy";
 import { getToken, getUserType } from "../../axios";
 import { useState } from "react";
@@ -50,7 +52,9 @@ const bundlecourse = () => {
                       className="col-sm-12 col-md-12 col-lg-2 p-0"
                       style={{ backgroundColor: "#212450" }}
                     >
-                      <NewInDash />
+                       {getUserType() == "individual" && <NewInDash />}
+                  {getUserType() == "manager" && <ManagerBar />}
+                  {getUserType() == "company" && <DashboardBar />}
                     </div>
                     <div className="col-sm col-md-9 bg-white">
                       <BundleResource/>

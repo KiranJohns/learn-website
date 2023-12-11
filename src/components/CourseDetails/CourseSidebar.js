@@ -71,7 +71,7 @@ function CourseSidebar({ addToCart }) {
             type: "ADD_TO_CART",
             payload: {
               course: {
-                ...course.find((item) => course?.id === id),
+                ...course,
                 item_type: "course",
               },
               count: fakeCount,

@@ -19,14 +19,14 @@ function myCourse() {
   const router = useRouter();
 
   useEffect(() => {
-    let timar = setTimeout(() => {
+    let timer = setTimeout(() => {
       setLoading(false);
-    }, 2000);
+    }, 1700);
     if (logedIn !== "company") {
       router.push("/sign-in");
     }
     return () => {
-      clearTimeout(timar);
+      clearTimeout(timer);
     };
   }, []);
 

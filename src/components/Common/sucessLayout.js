@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { useRouter } from "next/router";
 import fetchData, { getUserType } from "../../axios";
 
+
 const SuccessLayout = () => {
     const router = useRouter();
 
@@ -13,9 +14,9 @@ const SuccessLayout = () => {
     
 
     const handleButtonClick = () => {
-        if (getUserType() === "company") {
+       
             router.push(`/${getUserType()}/dashboard`);
-        }
+        
     };
 
     return (

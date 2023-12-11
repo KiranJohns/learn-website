@@ -156,35 +156,39 @@ function SignInMain() {
         styles={{
           modal: {
             maxWidth: "unset",
-            minWidth: "25%",
-
+            minWidth: "35%",
+            background:"#212a50",
             padding: "unset",
+            borderRadius:"1rem"
           },
           overlay: {
             background: "rgba(0, 0, 0, 0.5)",
           },
           closeButton: {
             background: "white",
+          
           },
         }}
         center
       >
         <div className="main p-5">
           <div className="heading">
-            <h3>Forgot Password</h3>
+            <h3 style={{textAlign:"center", color:"#fff"}}>Forgot Password</h3>
           </div>
-          <div className="info">Enter your registered email</div>
+          <div className="info"></div>
           <div className="form-group">
             {/* <label htmlFor="otp">Email</label> */}
             <input
               type="text"
               className="form-control"
+              placeholder="Enter your registered email"
               name="otp"
               id="otp"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               onKeyUp={(e) => e.key == "Enter" && handleForgotPassword(e)}
             />
+            <div style={{display:"flex", justifyContent:'center'}}>
             <Link href="/new-password">
               <button
                 type="button"
@@ -192,8 +196,9 @@ function SignInMain() {
                 onClick={handleForgotPassword}
               >
                 submit
-              </button>
+              </button>              
             </Link>
+            </div>
           </div>
         </div>
       </Modal>
