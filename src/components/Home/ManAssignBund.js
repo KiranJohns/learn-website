@@ -199,14 +199,14 @@ const ManAssignBund = () => {
     <div className="">
       <ToastContainer />
       <div className="dash-shadow">
-        <div className=" row g-3  min-vh-100  d-flex justify-content-center mt-20">
+        <div style={{position:'relative'}} className=" row g-3  min-vh-100  d-flex justify-content-center mt-20">
           <h2
             style={{
               color: "#212450",
               display: "flex",
               justifyContent: "center",
               position: "absolute",
-              fontSize: 37,
+              fontSize: 36,
             }}
           >
             Purchased Bundle
@@ -229,18 +229,22 @@ const ManAssignBund = () => {
                 style={{ maxHeight: "220rem" }}
                 className="dash-shadow p-3 mt-4 "
               >
+                  <div style={{display:'flex', justifyContent:"space-between"}}>
+                <h5 style={{ color: "#212a50",marginLeft:"1rem" }}>{courseName}</h5>{" "}
+                <h5 style={{ color: "#212a50",marginRight:"1rem" }}>Available Course Count:{}</h5>
+                </div>
                 <div>
-                    <h5>{courseName}</h5>
+                    
                   <div className="form-control dash-shadow d-flex gap-3 p-3">
                     <div className="form-group">
                       <label
-                        style={{ fontSize: ".73rem" }}
+                        style={{ fontSize: ".66rem" }}
                         for="exampleInputEmail1"
                       >
-                        Bundle Count
+                       Assign Bundle Count
                       </label>
                       <input
-                        style={{ width: "4rem", textAlign: "center" }}
+                        style={{ width: "5.9rem", textAlign: "center" }}
                         disabled
                         type="text"
                         className="form-control"

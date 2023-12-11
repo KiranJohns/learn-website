@@ -454,6 +454,7 @@ class DashTest extends Component {
                 <div>
                   <Suspense fallback={<Loading />}>
                     <DataTable
+                     noDataComponent={" "}
                       persistTableHead={true}
                       columns={columns}
                       data={

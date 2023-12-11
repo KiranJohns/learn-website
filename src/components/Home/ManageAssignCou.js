@@ -222,13 +222,16 @@ const ManagerAssignCourse = () => {
               }}
             >
               <div style={{ maxHeight: "220rem" }} className="dash-shadow p-3 mt-4 ">
-                <h5>{courseName}</h5>
+              <div style={{display:'flex', justifyContent:"space-between"}}>
+                <h5 style={{ color: "#212a50",marginLeft:"1rem" }}>{courseName}</h5>{" "}
+                <h5 style={{ color: "#212a50",marginRight:"1rem" }}>Available Course Count:{records.course_count}</h5>
+                </div>
                 <div>
                   <div className="form-control dash-shadow d-flex gap-3 p-3">
                     <div className="form-group">
-                      <label style={{ fontSize: ".73rem" }} for="exampleInputEmail1">Course Count</label>
+                      <label style={{ fontSize: ".66rem" }} for="exampleInputEmail1">Assign Course Count</label>
                       <input
-                        style={{ width: '4rem',textAlign:"center" }}
+                        style={{ width: '5.9rem',textAlign:"center" }}
                         disabled
                         type="text"
                         className="form-control"

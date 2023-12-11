@@ -76,6 +76,7 @@ const CompAssignCourse = () => {
   };
   const [key, setKey] = useState("individual");
 
+
   const makeRequest = fetchData();
   async function getData() {
     console.clear();
@@ -89,6 +90,7 @@ const CompAssignCourse = () => {
         // console.log(res[0].data.response);
         // console.log(res[1].data.response);
         let newRes = [...res[0].data.response, ...res[1].data.response].filter(
+     
           (item) => item?.owner != user?.id
         );
         let resArr = newRes?.filter((item) => item.course_count >= 1).reverse();
@@ -288,7 +290,7 @@ const CompAssignCourse = () => {
     },
 
     {
-      name: "Remaning No",
+      name: "Remaining No",
       selector: (row) => row.course_count,
       center: true,
     },
@@ -342,7 +344,7 @@ const CompAssignCourse = () => {
               display: "flex",
               justifyContent: "center",
               position: "absolute",
-              fontSize: 37,
+              fontSize: 36,
             }}
           >
             Purchased Courses
@@ -365,7 +367,10 @@ const CompAssignCourse = () => {
                 className="dash-shadow p-3 m-3"
                 style={{ maxHeight: "200rem" }}
               >
-                <h5 style={{ color: "#212a50" }}> {courseName}</h5>{" "}
+                <div style={{display:'flex', justifyContent:"space-between"}}>
+                <h5 style={{ color: "#212a50",marginLeft:"1rem" }}>{courseName}</h5>{" "}
+                <h5 style={{ color: "#212a50",marginRight:"1rem" }}>Available Course Count:{records.course_count}</h5>
+                </div>
                 {/*course name */}
                 <Tabs
                   id="controlled-tab-example"
@@ -378,13 +383,13 @@ const CompAssignCourse = () => {
                       <div className="form-control dash-shadow d-flex gap-3 p-3">
                         <div className="form-group">
                           <label
-                            style={{ fontSize: ".74rem" }}
+                            style={{ fontSize: ".65rem" }}
                             for="exampleInputEmail1"
                           >
-                            Course Count
+                          Assign Course Count
                           </label>
                           <input
-                            style={{ width: "4rem", textAlign: "center" }}
+                            style={{ width: "5.9rem", textAlign: "center" }}
                             disabled
                             type="number"
                             className="form-control"
@@ -531,13 +536,13 @@ const CompAssignCourse = () => {
                       <div className="form-control dash-shadow d-flex gap-3 p-3">
                         <div className="form-group">
                           <label
-                            style={{ fontSize: ".73rem" }}
+                            style={{ fontSize: ".65rem" }}
                             for="exampleInputEmail1"
                           >
-                            Course Count
+                           Assign Course Count
                           </label>
                           <input
-                            style={{ width: "4rem", textAlign: "center" }}
+                            style={{ width: "5.9rem", textAlign: "center" }}
                             onChange={(e) => {
                               if (
                                 Number(e.target.value) <= selectedBundleCount

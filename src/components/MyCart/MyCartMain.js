@@ -310,17 +310,18 @@ const MyCart = () => {
                     {/* <h2>Grand Total</h2> */}
                     <ul className="mb-20 d-flex ">
                       {/* <li>Subtotal <span>£24.00</span></li> */}
-                      <li className="d-flex justify-content-between w-100">
+                      <li style={{marginTop:".4rem"}} className="d-flex justify-content-between w-100">
                         Subtotal
                         <h4>
-                          <span  style={{color:'#212a50',fontSize:'1.2rem'}}>£ { totalPrice}</span>
+                          <span style={{color:'#212a50',fontSize:'1.2rem',}}>£ {totalPrice}</span>
                           {/* {couponData && <span style={{textDecoration:"line-through",color:`${couponData ? 'red' : 'green'}` }}>£ {totalPrice}</span>} */}
                         </h4>
                       </li>
-                      <li className="d-flex justify-content-between w-100">
+                      
+                      <li style={{marginTop:".4rem"}} className="d-flex justify-content-between w-100">
                         Discount
                         <h4>
-                          <span style={{color:'#212a50',fontSize:'1.2rem'}}>£{offerPrice?(parseFloat(totalPrice - offerPrice).toFixed(2)):0 }</span>
+                          <span style={{color:'#212a50',fontSize:'1.2rem'}}>£ {offerPrice?(parseFloat(totalPrice - offerPrice).toFixed(2)):0 }</span>
                           {/* {couponData && <span style={{textDecoration:"line-through",color:`${couponData ? 'red' : 'green'}` }}>£ {totalPrice}</span>} */}
                         </h4>
                       </li>
@@ -328,7 +329,7 @@ const MyCart = () => {
                        
                     </ul>
                     <ul>
-                    <li className="d-flex justify-content-between w-100">
+                    <li style={{marginTop:".4rem"}} className="d-flex  justify-content-between w-100">
                         Grand Total
                         <h4>
                           <span style={{color:'#212a50', fontSize:'1.2rem'}}>£ {offerPrice ? offerPrice : totalPrice}</span>
