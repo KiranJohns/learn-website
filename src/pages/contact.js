@@ -4,7 +4,7 @@ import HeaderThree from '../components/Layout/Header/HeaderStyleThree';
 import FooterThree from '../components/Layout/Footer/FooterStyleThree';
 import HeaderOpaque from '../components/Layout/Header/HeaderOpaque';
 import Footer from '../components/Layout/Footer/Footer';
-import FooterPad from '../components/Layout/Footer/FooterLess';
+import Footer from '../components/Layout/Footer/Footer';
 import NoSSR from 'react-no-ssr';
 class Contact extends React.Component {
 
@@ -21,7 +21,7 @@ class Contact extends React.Component {
             <HeaderOpaque />
             </NoSSR>
             <ContactMain />
-            <FooterPad />
+            <Footer />
             </React.Fragment>
         );
     }
