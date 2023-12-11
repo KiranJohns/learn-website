@@ -76,6 +76,7 @@ const CompAssignBund = () => {
     makeRequest("POST", "/info/manager-self-assign-course", form)
       .then((res) => {
         getData();
+        openModal()
         console.log(res);
         toast("course assigned");
       })
@@ -314,7 +315,7 @@ const CompAssignBund = () => {
               >
                 <div style={{display:'flex', justifyContent:"space-between"}}>
                 <h5 style={{ color: "#212a50",marginLeft:"1rem" }}>{courseName}</h5>{" "}
-                <h5 style={{ color: "#212a50",marginRight:"1rem" }}>Available Bundle Count:{}</h5>
+                <h5 style={{ color: "#212a50",marginRight:"1rem" }}>Available Bundle Count:{selectedBundleCount}</h5>
                 </div>
                 
                 <Tabs

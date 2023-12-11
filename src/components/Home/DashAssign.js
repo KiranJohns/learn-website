@@ -93,7 +93,7 @@ const CompAssignCourse = () => {
      
           (item) => item?.owner != user?.id
         );
-        let resArr = newRes?.filter((item) => item.course_count >= 1).reverse();
+        let resArr = newRes?.reverse();
         console.log(resArr);
         setRecords(resArr);
       })
@@ -369,7 +369,7 @@ const CompAssignCourse = () => {
               >
                 <div style={{display:'flex', justifyContent:"space-between"}}>
                 <h5 style={{ color: "#212a50",marginLeft:"1rem" }}>{courseName}</h5>{" "}
-                <h5 style={{ color: "#212a50",marginRight:"1rem" }}>Available Course Count:{records.course_count}</h5>
+                <h5 style={{ color: "#212a50",marginRight:"1rem" }}>Available Course Count:{selectedBundleCount}</h5>
                 </div>
                 {/*course name */}
                 <Tabs
