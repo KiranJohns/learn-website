@@ -97,7 +97,7 @@ function SignUpMain() {
         location.pathname = "/sign-in";
       })
       .catch((err) => {
-        toast.error(err.data.errors[0].error);
+        toast('OTP is Incorrect');
       });
     console.log(otp);
   };
