@@ -313,7 +313,7 @@ const MyCart = () => {
                       <li className="d-flex justify-content-between w-100">
                         Subtotal
                         <h4>
-                          <span style={{color:'#212a50',fontSize:'1.2rem'}}>£ { totalPrice}</span>
+                          <span  style={{color:'#212a50',fontSize:'1.2rem'}}>£ { totalPrice}</span>
                           {/* {couponData && <span style={{textDecoration:"line-through",color:`${couponData ? 'red' : 'green'}` }}>£ {totalPrice}</span>} */}
                         </h4>
                       </li>
