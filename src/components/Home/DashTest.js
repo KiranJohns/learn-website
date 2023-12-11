@@ -101,7 +101,7 @@ class DashTest extends Component {
         name: "Attempts",
         selector: (row) => (
           <a href={`/learnCourse/examAttempts/?courseId=${row.id}`}>
-            {row.attempts}
+            {row.attempts+"/20"}
           </a>
         ),
         center: true,
