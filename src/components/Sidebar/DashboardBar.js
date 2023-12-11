@@ -146,7 +146,7 @@ const links = [
         link: "/company/managerReport",
       },
       {
-        name: "Manager Cousres",
+        name: "Manager Coures",
         link: "/company/courseWiseManager",
       },
       {
