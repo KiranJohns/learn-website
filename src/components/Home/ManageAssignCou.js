@@ -102,6 +102,7 @@ const ManagerAssignCourse = () => {
     makeRequest("POST", "/info/assign-course-to-manager-individual", form)
       .then((res) => {
         getData();
+        setSelectedBundleCount(prev => --prev)
         console.log(res);
         toast("course assigned");
       })
@@ -126,6 +127,7 @@ const ManagerAssignCourse = () => {
     )
       .then((res) => {
         getData();
+        setSelectedBundleCount(prev => --prev)
         console.log(res);
         toast("course assigned");
       })
@@ -224,7 +226,7 @@ const ManagerAssignCourse = () => {
               <div style={{ maxHeight: "220rem" }} className="dash-shadow p-3 mt-4 ">
               <div style={{display:'flex', justifyContent:"space-between"}}>
                 <h5 style={{ color: "#212a50",marginLeft:"1rem" }}>{courseName}</h5>{" "}
-                <h5 style={{ color: "#212a50",marginRight:"1rem" }}>Available Course Count:{records.course_count}</h5>
+                <h5 style={{ color: "#212a50",marginRight:"1rem" }}>Available Course Count:{selectedBundleCount}</h5>
                 </div>
                 <div>
                   <div className="form-control dash-shadow d-flex gap-3 p-3">
