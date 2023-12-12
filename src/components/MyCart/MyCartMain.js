@@ -14,7 +14,7 @@ const MyCart = () => {
   const makeRequest = fetchData();
   const { cart, totalPrice } = useSelector((state) => state.cart);
   const [coupon, setCoupon] = useState("");
-  const [couponData, setCouponData] = useState({coupon_code: "XXXX"});
+  const [couponData, setCouponData] = useState({ coupon_code: "XXXX" });
   const [offerPrice, setOfferPrice] = useState("");
   useEffect(() => {
     getCartItem();
@@ -83,33 +83,40 @@ const MyCart = () => {
       });
   }
   function applyCoupon() {
-    makeRequest("POST", "/coupon/apply-coupon", {code: coupon})
+    makeRequest("POST", "/coupon/apply-coupon", { code: coupon })
       .then((res) => {
-        toast('Coupon Applied');
-        if(res.data.response.coupon_type == "Cash") {
-          setOfferPrice(parseInt(parseFloat(totalPrice) - parseFloat(res.data.response.amount)).toFixed(2))
+        toast("Coupon Applied");
+        if (res.data.response.coupon_type == "Cash") {
+          setOfferPrice(
+            parseInt(
+              parseFloat(totalPrice) - parseFloat(res.data.response.amount)
+            ).toFixed(2)
+          );
         } else {
-          let per = parseFloat((parseFloat(totalPrice) * parseFloat(res.data.response.amount)) / 100)
-          setOfferPrice(parseFloat(parseInt(totalPrice) - per).toFixed(2))
+          let per = parseFloat(
+            (parseFloat(totalPrice) * parseFloat(res.data.response.amount)) /
+              100
+          );
+          setOfferPrice(parseFloat(parseInt(totalPrice) - per).toFixed(2));
         }
         setCoupon("");
         console.log(res.data.response);
-        setCouponData(res.data.response)
+        setCouponData(res.data.response);
       })
       .catch((err) => {
-        toast('Invalid Coupon');
+        toast("Invalid Coupon");
         console.log(err?.data);
       });
   }
 
   function removeCouponHandler() {
-    console.log('remove coupon');
+    console.log("remove coupon");
     makeRequest("POST", "/coupon/remove-coupon")
       .then((res) => {
-        setCoupon("")
-        toast('Coupon Removed');
-        setOfferPrice()
-        setCouponData({coupon_code: "XXXX"})
+        setCoupon("");
+        toast("Coupon Removed");
+        setOfferPrice();
+        setCouponData({ coupon_code: "XXXX" });
       })
       .catch((err) => {
         console.log(err);
@@ -143,7 +150,10 @@ const MyCart = () => {
     makeRequest("POST", "/cart/checkout")
       .then((res) => {
         console.log(res.data.response);
-        location.href = res.data.response;
+        localStorage.removeItem("learnfrocarecart");
+        setInterval(() => {
+          location.href = res.data.response;
+        }, 100);
       })
       .catch((err) => {
         if (err?.data?.errors[0].message === "please login") {
@@ -152,13 +162,10 @@ const MyCart = () => {
         }
         console.log(err.data.errors[0]);
       });
-
-
   }
   return (
     <main>
-       <ToastContainer position="top-right"
-         />
+      <ToastContainer position="top-right" />
       {/* breadcrumb-start */}
       <Breadcrumb pageTitle="My Cart" />
       {/* breadcrumb-end */}
@@ -254,7 +261,12 @@ const MyCart = () => {
                             </td>
                             <td className="product-remove">
                               <span onClick={() => removeItem(item.id)}>
-                              <FaTrash style={{fontSize:"1rem", cursor:'pointer'}}/>
+                                <FaTrash
+                                  style={{
+                                    fontSize: "1rem",
+                                    cursor: "pointer",
+                                  }}
+                                />
                               </span>
                             </td>
                           </tr>
@@ -268,7 +280,7 @@ const MyCart = () => {
                   <div className="coupon-all">
                     <div className="coupon d-sm-flex align-items-center">
                       <input
-                      style={{borderRadius:'.25rem'}}
+                        style={{ borderRadius: ".25rem" }}
                         id="coupon_code"
                         onChange={(e) => setCoupon(e.target.value)}
                         className="input-text"
@@ -285,10 +297,41 @@ const MyCart = () => {
                       >
                         Apply coupon
                       </button>
-                    {offerPrice && <div style={{marginLeft:'1rem',padding:".75rem", background:"#5a9676",color:"#fff",fontWeight:"600",borderRadius:".27rem"}}>{couponData.coupon_code} 
-                    <span style={{marginLeft:'.2rem',padding:".77rem", background:"#5a9676",color:"#700004",cursor:"pointer", alignContent:"center"}}> <FaTrash onClick={removeCouponHandler} style={{fontSize:'1.1rem',marginBottom:'.18rem'}}/></span></div>} 
+                      {offerPrice && (
+                        <div
+                          style={{
+                            marginLeft: "1rem",
+                            padding: ".75rem",
+                            background: "#5a9676",
+                            color: "#fff",
+                            fontWeight: "600",
+                            borderRadius: ".27rem",
+                          }}
+                        >
+                          {couponData.coupon_code}
+                          <span
+                            style={{
+                              marginLeft: ".2rem",
+                              padding: ".77rem",
+                              background: "#5a9676",
+                              color: "#700004",
+                              cursor: "pointer",
+                              alignContent: "center",
+                            }}
+                          >
+                            {" "}
+                            <FaTrash
+                              onClick={removeCouponHandler}
+                              style={{
+                                fontSize: "1.1rem",
+                                marginBottom: ".18rem",
+                              }}
+                            />
+                          </span>
+                        </div>
+                      )}
                     </div>
-                    
+
                     {/* <div className="coupon2">
                       <button
                         className="e-btn"
@@ -300,8 +343,6 @@ const MyCart = () => {
                     </div> */}
                   </div>
                 </div>
-
-           
               </div>
 
               <div className="row mt-3">
@@ -310,34 +351,56 @@ const MyCart = () => {
                     {/* <h2>Grand Total</h2> */}
                     <ul className="mb-20 d-flex ">
                       {/* <li>Subtotal <span>£24.00</span></li> */}
-                      <li style={{marginTop:".4rem"}} className="d-flex justify-content-between w-100">
+                      <li
+                        style={{ marginTop: ".4rem" }}
+                        className="d-flex justify-content-between w-100"
+                      >
                         Subtotal
                         <h4>
-                          <span style={{color:'#212a50',fontSize:'1.2rem',}}>£ {totalPrice}</span>
+                          <span
+                            style={{ color: "#212a50", fontSize: "1.2rem" }}
+                          >
+                            £ {totalPrice}
+                          </span>
                           {/* {couponData && <span style={{textDecoration:"line-through",color:`${couponData ? 'red' : 'green'}` }}>£ {totalPrice}</span>} */}
                         </h4>
                       </li>
-                      
-                      <li style={{marginTop:".4rem"}} className="d-flex justify-content-between w-100">
+
+                      <li
+                        style={{ marginTop: ".4rem" }}
+                        className="d-flex justify-content-between w-100"
+                      >
                         Discount
                         <h4>
-                          <span style={{color:'#212a50',fontSize:'1.2rem'}}>£ {offerPrice?(parseFloat(totalPrice - offerPrice).toFixed(2)):0 }</span>
+                          <span
+                            style={{ color: "#212a50", fontSize: "1.2rem" }}
+                          >
+                            £{" "}
+                            {offerPrice
+                              ? parseFloat(totalPrice - offerPrice).toFixed(2)
+                              : 0}
+                          </span>
                           {/* {couponData && <span style={{textDecoration:"line-through",color:`${couponData ? 'red' : 'green'}` }}>£ {totalPrice}</span>} */}
                         </h4>
                       </li>
-                    
-                       
                     </ul>
                     <ul>
-                    <li style={{marginTop:".4rem"}} className="d-flex  justify-content-between w-100">
+                      <li
+                        style={{ marginTop: ".4rem" }}
+                        className="d-flex  justify-content-between w-100"
+                      >
                         Grand Total
                         <h4>
-                          <span style={{color:'#212a50', fontSize:'1.2rem'}}>£ {offerPrice ? offerPrice : totalPrice}</span>
+                          <span
+                            style={{ color: "#212a50", fontSize: "1.2rem" }}
+                          >
+                            £ {offerPrice ? offerPrice : totalPrice}
+                          </span>
                           {/* {couponData && <span style={{textDecoration:"line-through",color:`${couponData ? 'red' : 'green'}` }}>£ {totalPrice}</span>} */}
                         </h4>
                       </li>
                     </ul>
-                    <Link  href="/checkout">
+                    <Link href="/checkout">
                       <span
                         onClick={handleCheckout}
                         className="e-btn mt-3 e-btn-border"
