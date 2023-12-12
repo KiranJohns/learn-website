@@ -368,7 +368,7 @@ const HeaderOpaque = () => {
                           </svg>
                         </div>
                         <span className="cart-item">
-                          {cartCount && location.pathname == "success"
+                          {cartCount && location.pathname == "/success"
                             ? "0"
                             : cartCount}
                         </span>
@@ -393,7 +393,7 @@ const HeaderOpaque = () => {
                         </svg>
                       </div>
                       <span className="cart-item">
-                        {cartCount && location.pathname == "success"
+                        {cartCount && location.pathname == "/success"
                           ? "0"
                           : cartCount}
                       </span>
