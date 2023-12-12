@@ -23,7 +23,7 @@ const SuccessLayout = () => {
             type: "SET_CART",
             payload: JSON.stringify(res.data.response),
           });
-        }, 500);
+        }, 1000);
       })
       .catch((err) => {
         if (err?.data?.errors[0].message === "please login") {
