@@ -61,7 +61,7 @@ export default () => {
                 }}
                 className="col-12"
               >
-                <marquee scrollamount="10">{coupon.text[0]} <span className="animated-text">{coupon.highLight} </span> {coupon.text[1]} </marquee>
+                <marquee style={{color:"#212a50",fontSize:"19px" }} scrollamount="10">{coupon.text[0]} <span className="animated-text">{coupon.highLight} </span> {coupon.text[1]} </marquee>
               </div>
             </div>
             <div className="col-xxl-5 col-xl-6 col-lg-6">

@@ -30,6 +30,8 @@ export default () => {
   const [searchText, setSearchText] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("");
 
+  const [coupon, setCoupon] = useState({text: "", highLight: ""});
+
   function getCourse(limit) {
     if (limit == 1) {
       limit = 0;
@@ -38,6 +40,22 @@ export default () => {
       limit = 12 * limit;
       --limit;
     }
+
+    useState(() => {
+      makeRequest("GET", "/coupon/get-offer-text")
+        .then((res) => {
+          console.log("coupon ", res.data.response);
+          let text = res.data.response[0];
+          let offerText = text.offer_text;
+          let highLightText = text.hight_light_text;
+          let t = offerText.replace(text.hight_light_text, ",");
+          let textArr = t.split(",");
+          setCoupon({ text: textArr, highLight: highLightText });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }, []);
 
     makeRequest("GET", `/course/get-course-by-limit/${limit}`)
       .then((res) => {
@@ -141,7 +159,7 @@ export default () => {
           {/* offer text */}
           <div style={{marginBottom:'1rem',marginTop:'1rem' }}>
           <div style={{display:"flex", justifyContent:"center", alignItems:'center', position:"relative", background:"", padding:".5rem"}} className="col-12 animated-text">
-            <marquee scrollamount="10">sample for offer text</marquee>
+          <marquee style={{color:"#212a50",fontSize:"19px" }} scrollamount="10">{coupon.text[0]} <span className="animated-text">{coupon.highLight} </span> {coupon.text[1]} </marquee>
             </div>
 
           </div>
