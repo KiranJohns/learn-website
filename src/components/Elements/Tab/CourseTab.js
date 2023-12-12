@@ -13,6 +13,7 @@ import CourseCard from "./CourseCard";
 export default () => {
   const { cart } = useSelector((store) => store.cart);
   const [course, setCourse] = useState([]);
+  const [coupon, setCoupon] = useState({text: "", highLight: ""});
 
   const makeRequest = fetchData();
 
@@ -27,20 +28,44 @@ export default () => {
       });
   }, []);
 
+  useState(() => {
+    makeRequest("GET", "/coupon/get-offer-text")
+      .then((res) => {
+        console.log("coupon ", res.data.response);
+        let text = res.data.response[0];
+        let offerText = text.offer_text;
+        let highLightText = text.hight_light_text;
+        let t = offerText.replace(text.hight_light_text, ",");
+        let textArr = t.split(",");
+        setCoupon({ text: textArr, highLight: highLightText });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   return (
     <section className="course__area pt-50 pb-60 grey-bg">
       <Tabs variant="enclosed" id="react-tabs-276">
         <div className="container">
-          <div style={{position:'relative'}} className="row align-items-end">
-
-          <div style={{marginBottom:'2rem', }}>
-          <div style={{display:"flex", justifyContent:"center", alignItems:'center', position:"relative", background:"", padding:".5rem"}} className="col-12 animated-text">
-            <marquee scrollamount="10">sample for offer text</marquee>
+          <div style={{ position: "relative" }} className="row align-items-end">
+            <div style={{ marginBottom: "2rem" }}>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  position: "relative",
+                  background: "",
+                  padding: ".5rem",
+                }}
+                className="col-12"
+              >
+                <marquee scrollamount="10">{coupon.text[0]} <span className="animated-text">{coupon.highLight} </span> {coupon.text[1]} </marquee>
+              </div>
             </div>
-
-          </div>
             <div className="col-xxl-5 col-xl-6 col-lg-6">
-              <div  className="section__title-wrapper mb-60">
+              <div className="section__title-wrapper mb-60">
                 <h2 className="section__title">
                   Find the Right
                   <br />
