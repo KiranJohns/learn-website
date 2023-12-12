@@ -17,11 +17,13 @@ const SuccessLayout = () => {
     const makeRequest = fetchData();
     makeRequest("GET", "/cart/get")
       .then((res) => {
-        console.log(res.data.response);
-        store.dispatch({
-          type: "SET_CART",
-          payload: JSON.stringify(res.data.response),
-        });
+        setTimeout(() => {
+          console.log(res.data.response);
+          store.dispatch({
+            type: "SET_CART",
+            payload: JSON.stringify(res.data.response),
+          });
+        }, 500);
       })
       .catch((err) => {
         if (err?.data?.errors[0].message === "please login") {
