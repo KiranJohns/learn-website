@@ -14,11 +14,9 @@ const SuccessLayout = () => {
     router.push(`/${getUserType()}/dashboard`);
   };
   useEffect(() => {
-    setTimeout(() => {
-      store.dispatch({
-        type: "CLEAR_CART",
-      });
-    }, 500);
+    store.dispatch({
+      type: "SET_CART",
+    });
   }, []);
 
   return (
