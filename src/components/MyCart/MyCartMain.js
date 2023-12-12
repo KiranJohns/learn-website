@@ -153,7 +153,7 @@ const MyCart = () => {
         localStorage.removeItem("learnfrocarecart");
         setInterval(() => {
           location.href = res.data.response;
-        }, 100);
+        }, 1000);
       })
       .catch((err) => {
         if (err?.data?.errors[0].message === "please login") {

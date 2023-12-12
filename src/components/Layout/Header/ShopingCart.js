@@ -115,7 +115,7 @@ const ShopingCart = ({ setShopOpen, shopOpen }) => {
         localStorage.removeItem("learnfrocarecart");
         setTimeout(() => {
           location.href = res.data.response;
-        },2000);
+        },100);
       })
       .catch((err) => {
         if (err?.data?.errors[0].message === "please login") {
