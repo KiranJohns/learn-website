@@ -13,12 +13,13 @@ const SuccessLayout = () => {
   const handleButtonClick = () => {
     router.push(`/${getUserType()}/dashboard`);
   };
+
   useEffect(() => {
     store.dispatch({
       type: "SET_CART",
     });
   }, []);
-
+  
   return (
     <div className="row">
       <div
