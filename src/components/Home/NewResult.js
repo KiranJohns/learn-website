@@ -59,7 +59,7 @@ const NewResult = () => {
                 <h5 className="" style={{ color: "#212a5" }}>
                   Result
                 </h5>
-                <h5>{examResult.courseName}</h5>
+                <h5>{examResult?.courseName}</h5>
               </div>
             </div>
 
@@ -67,7 +67,7 @@ const NewResult = () => {
               style={{ textAlign: "center" }}
               className="dash-shadow p-4 mt-4"
             >
-              <h4>You have scored {examResult.per} marks</h4>
+              <h4>You have scored {examResult?.per} marks</h4>
             </div>
 
             <div
@@ -76,8 +76,8 @@ const NewResult = () => {
             >
               <h4>Wrong Answers</h4>
              
-              {examResult.questions.length > 0 ?
-              examResult.questions.map((item, i) => (
+              {examResult?.questions?.length > 0 ?
+              examResult?.questions?.map((item, i) => (
                 <div className=" p-2 ">
                   <p>
                     {++i}. {item.question}
@@ -114,7 +114,7 @@ const NewResult = () => {
             <span 
               className="btn btn-success mt-3 "
               onClick={() => {
-                location.pathname = `/${getUserType()}/certificates`;
+                location.href = `/${getUserType()}/certificates`;
                 localStorage.removeItem("wrong-answers")
               }}
             >
