@@ -10,6 +10,7 @@ import Modal from "react-responsive-modal";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Tab } from "react-bootstrap";
+import Spinner from 'react-bootstrap/Spinner';
 
 const customStyles = {
   headRow: {
@@ -31,6 +32,8 @@ const customStyles = {
     },
   },
 };
+
+
 
 const ManagerAssignCourse = () => {
   const [from, setFrom] = useState("");
@@ -89,6 +92,19 @@ const ManagerAssignCourse = () => {
   useEffect(() => {
     getData();
   }, []);
+
+  const [pending, setPending] = React.useState(true);
+	const [rows, setRows] = React.useState([]);
+
+  useEffect(() => {
+      if(records.length>0){
+			setRows(records);
+			setPending(false);
+      }
+      else{
+        setPending(true);
+      }
+	}, [records]);
 
   function assignCourseToManagerIndividual(id) {
     let form = new FormData();
@@ -332,6 +348,10 @@ const ManagerAssignCourse = () => {
               </form>
             </div>
             <DataTable
+            progressPending={pending}
+          progressComponent	={<div style={{padding:"1rem"}}>
+        <Spinner animation="border" variant="primary" />
+          </div>}
               noDataComponent={" "}
              persistTableHead={true}
               columns={columns}

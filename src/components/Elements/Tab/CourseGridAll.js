@@ -143,16 +143,16 @@ export default () => {
                 <option style={{fontSize:'1rem', color:"#000", background:'#fff',fontWeght:'500'}}  value="">Filters</option>
                 <option style={{fontSize:'1rem', color:"#000", background:'#fff',fontWeght:'500'}} value="Care Course">Care Certificate Courses</option>
 
-                <option style={{fontSize:'1rem', color:"#000", background:'#fff',fontWeght:'500'}} value="Mandatory Care Courses">
+                <option style={{fontSize:'1rem', color:"#000", background:'#fff',fontWeght:'500'}} value="Mandatory Care Course">
                   Mandatory Care Courses
                 </option>
-                <option style={{fontSize:'1rem', color:"#000", background:'#fff',fontWeght:'500'}}  value="Specialized Care Courses">
+                <option style={{fontSize:'1rem', color:"#000", background:'#fff',fontWeght:'500'}}  value="Specialised Care Course">
                   Specialised Care Courses
                 </option>
-                <option style={{fontSize:'1rem', color:"#000", background:'#fff',fontWeght:'500'}}  value="Recovery Care Courses">
+                <option style={{fontSize:'1rem', color:"#000", background:'#fff',fontWeght:'500'}}  value="Recovery Care Cours">
                   Recovery Care Courses
                 </option>
-                <option style={{fontSize:'1rem', color:"#000", background:'#fff',fontWeght:'500'}} value="Child Care Courses">Child Care Courses</option>
+                <option style={{fontSize:'1rem', color:"#000", background:'#fff',fontWeght:'500'}} value="Child Care Course">Child Care Courses</option>
               </select>
             </div>
           </div>
