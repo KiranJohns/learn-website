@@ -14,10 +14,12 @@ const SuccessLayout = () => {
     router.push(`/${getUserType()}/dashboard`);
   };
   useEffect(() => {
-    store.dispatch({
+    setTimeout(() => {
+      store.dispatch({
         type: "CLEAR_CART",
-    })
-  }, [])
+      });
+    }, 500);
+  }, []);
 
   return (
     <div className="row">

@@ -141,6 +141,7 @@ const cartReducer = function (state = initialUserState, action) {
         cartCount: Number(state.cartCount) - Number(product_count),
       };
     case "CLEAR_CART":
+      console.log(action.type);
       return {
         ...state,
         cart: [],
