@@ -16,7 +16,6 @@ import CourseCard from "./CourseCard";
 import ResponsivePagination from "react-responsive-pagination";
 import { CiFilter } from "react-icons/ci";
 
-
 export default () => {
   const { cart } = useSelector((store) => store.cart);
   let makeRequest = fetchData();
@@ -30,7 +29,24 @@ export default () => {
   const [searchText, setSearchText] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("");
 
-  const [coupon, setCoupon] = useState({text: "", highLight: ""});
+  const [coupon, setCoupon] = useState({ text: "", highLight: "" });
+
+  useState(() => {
+    makeRequest("GET", "/coupon/get-offer-text")
+      .then((res) => {
+        console.log("coupon ", res.data.response);
+        let text = res.data.response[0];
+        let offerText = text.offer_text;
+        let highLightText = text.hight_light_text;
+        let t = offerText.replace(text.hight_light_text, ",");
+        let textArr = t.split(",");
+        setCoupon({ text: textArr, highLight: highLightText });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
 
   function getCourse(limit) {
     if (limit == 1) {
@@ -41,21 +57,6 @@ export default () => {
       --limit;
     }
 
-    useState(() => {
-      makeRequest("GET", "/coupon/get-offer-text")
-        .then((res) => {
-          console.log("coupon ", res.data.response);
-          let text = res.data.response[0];
-          let offerText = text.offer_text;
-          let highLightText = text.hight_light_text;
-          let t = offerText.replace(text.hight_light_text, ",");
-          let textArr = t.split(",");
-          setCoupon({ text: textArr, highLight: highLightText });
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }, []);
 
     makeRequest("GET", `/course/get-course-by-limit/${limit}`)
       .then((res) => {
@@ -94,10 +95,13 @@ export default () => {
   }, []);
 
   return (
-    <section  className="course__area pt-50 pb-60 grey-bg ">
-      <Tabs  variant="enclosed" id="react-tabs-276">
+    <section className="course__area pt-50 pb-60 grey-bg ">
+      <Tabs variant="enclosed" id="react-tabs-276">
         <div className="container">
-          <div className="" style={{display: "flex",justifyContent: "space-between"}}>
+          <div
+            className=""
+            style={{ display: "flex", justifyContent: "space-between" }}
+          >
             <div
               style={{ float: "left", marginBottom: "1.4rem" }}
               className="p-relative d-inline header__search"
@@ -116,9 +120,8 @@ export default () => {
                 </button>
               </form>
             </div>
-         
 
-             {/* <div className="select-menu">
+            {/* <div className="select-menu">
                 <div className="select-btn">
                 <FaFilter className="ic-fil"/>
                  <span className="sBtn-text"> Filter..</span>
@@ -131,37 +134,128 @@ export default () => {
              </div> */}
 
             <div className="select media-select filter-hidden">
-          
-            <FaFilter className="ic-fil" style={{position:'absolute',zIndex:'1',  marginTop:'11px',marginLeft:'.5rem',marginRight:'.5rem',color:"#fff",fontSize:'1rem' }}/>  
-             <select
-                style={{border:'none',outline:"#fff",borderRadius:'4px', background: "#5a9676", textAlign:'center',position:'relative',width:'13.1rem',height:'45px',fontSize:'.9rem', fontWeight:'500',color:"#fff"  }}
+              <FaFilter
+                className="ic-fil"
+                style={{
+                  position: "absolute",
+                  zIndex: "1",
+                  marginTop: "11px",
+                  marginLeft: ".5rem",
+                  marginRight: ".5rem",
+                  color: "#fff",
+                  fontSize: "1rem",
+                }}
+              />
+              <select
+                style={{
+                  border: "none",
+                  outline: "#fff",
+                  borderRadius: "4px",
+                  background: "#5a9676",
+                  textAlign: "center",
+                  position: "relative",
+                  width: "13.1rem",
+                  height: "45px",
+                  fontSize: ".9rem",
+                  fontWeight: "500",
+                  color: "#fff",
+                }}
                 className=""
                 aria-label="Default select example"
                 onChange={(e) => setCategoryFilter(e.target.value)}
               >
-                 i
-                <option style={{fontSize:'1rem', color:"#000", background:'#fff',fontWeght:'500'}}  value="">Filters</option>
-                <option style={{fontSize:'1rem', color:"#000", background:'#fff',fontWeght:'500'}} value="Care Course">Care Certificate Courses</option>
-
-                <option style={{fontSize:'1rem', color:"#000", background:'#fff',fontWeght:'500'}} value="Mandatory Care Courses">
+                i
+                <option
+                  style={{
+                    fontSize: "1rem",
+                    color: "#000",
+                    background: "#fff",
+                    fontWeght: "500",
+                  }}
+                  value=""
+                >
+                  Filters
+                </option>
+                <option
+                  style={{
+                    fontSize: "1rem",
+                    color: "#000",
+                    background: "#fff",
+                    fontWeght: "500",
+                  }}
+                  value="Care Course"
+                >
+                  Care Certificate Courses
+                </option>
+                <option
+                  style={{
+                    fontSize: "1rem",
+                    color: "#000",
+                    background: "#fff",
+                    fontWeght: "500",
+                  }}
+                  value="Mandatory Care Courses"
+                >
                   Mandatory Care Courses
                 </option>
-                <option style={{fontSize:'1rem', color:"#000", background:'#fff',fontWeght:'500'}}  value="Specialized Care Courses">
+                <option
+                  style={{
+                    fontSize: "1rem",
+                    color: "#000",
+                    background: "#fff",
+                    fontWeght: "500",
+                  }}
+                  value="Specialized Care Courses"
+                >
                   Specialised Care Courses
                 </option>
-                <option style={{fontSize:'1rem', color:"#000", background:'#fff',fontWeght:'500'}}  value="Recovery Care Courses">
+                <option
+                  style={{
+                    fontSize: "1rem",
+                    color: "#000",
+                    background: "#fff",
+                    fontWeght: "500",
+                  }}
+                  value="Recovery Care Courses"
+                >
                   Recovery Care Courses
                 </option>
-                <option style={{fontSize:'1rem', color:"#000", background:'#fff',fontWeght:'500'}} value="Child Care Courses">Child Care Courses</option>
+                <option
+                  style={{
+                    fontSize: "1rem",
+                    color: "#000",
+                    background: "#fff",
+                    fontWeght: "500",
+                  }}
+                  value="Child Care Courses"
+                >
+                  Child Care Courses
+                </option>
               </select>
             </div>
           </div>
           {/* offer text */}
-          <div style={{marginBottom:'1rem',marginTop:'1rem' }}>
-          <div style={{display:"flex", justifyContent:"center", alignItems:'center', position:"relative", background:"", padding:".5rem"}} className="col-12 animated-text">
-          <marquee style={{color:"#212a50",fontSize:"19px" }} scrollamount="10">{coupon.text[0]} <span className="animated-text">{coupon.highLight} </span> {coupon.text[1]} </marquee>
+          <div style={{ marginBottom: "1rem", marginTop: "1rem" }}>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                position: "relative",
+                background: "",
+                padding: ".5rem",
+              }}
+              className="col-12 animated-text"
+            >
+              <marquee
+                style={{ color: "#212a50", fontSize: "19px" }}
+                scrollamount="10"
+              >
+                {coupon.text[0]}{" "}
+                <span className="animated-text">{coupon.highLight} </span>{" "}
+                {coupon.text[1]}{" "}
+              </marquee>
             </div>
-
           </div>
           <div className="row align-items-end">
             <div className="col-xxl-5 col-xl-6 col-lg-6">
@@ -201,7 +295,6 @@ export default () => {
           </div>
           <TabPanel>
             <div className="row">
-              
               {(categoryFilter ? filteredCourse : course).map((item) => {
                 if (searchText) {
                   return (

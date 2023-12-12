@@ -13,7 +13,7 @@ import CourseCard from "./CourseCard";
 export default () => {
   const { cart } = useSelector((store) => store.cart);
   const [course, setCourse] = useState([]);
-  const [coupon, setCoupon] = useState({text: "", highLight: ""});
+  const [coupon, setCoupon] = useState({ text: "", highLight: "" });
 
   const makeRequest = fetchData();
 
@@ -48,22 +48,29 @@ export default () => {
     <section className="course__area pt-50 pb-60 grey-bg">
       <Tabs variant="enclosed" id="react-tabs-276">
         <div className="container">
+          {/* <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              position: "relative",
+              background: "",
+              padding: ".5rem",
+            }}
+            className="col-12"
+          >
+            <marquee
+              style={{ color: "#212a50", fontSize: "19px" }}
+              scrollamount="10"
+            >
+              hi
+              {coupon.text[0]}{" "}
+              <span className="animated-text">{coupon.highLight} </span>{" "}
+              {coupon.text[1]}{" "}
+            </marquee>
+          </div> */}
           <div style={{ position: "relative" }} className="row align-items-end">
-            <div style={{ marginBottom: "2rem" }}>
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  position: "relative",
-                  background: "",
-                  padding: ".5rem",
-                }}
-                className="col-12"
-              >
-                <marquee style={{color:"#212a50",fontSize:"19px" }} scrollamount="10">{coupon.text[0]} <span className="animated-text">{coupon.highLight} </span> {coupon.text[1]} </marquee>
-              </div>
-            </div>
+            <div style={{ marginBottom: "2rem" }}></div>
             <div className="col-xxl-5 col-xl-6 col-lg-6">
               <div className="section__title-wrapper mb-60">
                 <h2 className="section__title">
