@@ -1,8 +1,7 @@
 import React from "react";
 import Header from "../components/Layout/Header/Header";
 import Footer from "../components/Layout/Footer/Footer";
-import HeaderOpaque from "../components/Layout/Header/HeaderOpaque";
-import NoSSR from "react-no-ssr";
+import HeaderSuccess from "../components/Layout/Header/HeaderSuccess";
 import SucessLayout from "../components/Common/sucessLayout";
 
 class Success extends React.Component {
@@ -16,7 +15,7 @@ class Success extends React.Component {
     return (
       <React.Fragment>
         <NoSSR>
-          <HeaderOpaque />
+          <HeaderSuccess />
         </NoSSR>
         <SucessLayout />
       </React.Fragment>
