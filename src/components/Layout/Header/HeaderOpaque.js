@@ -29,6 +29,7 @@ const HeaderOpaque = () => {
   };
 
   useEffect(() => {
+    console.log(location.pathname);
     if (localStorage.getItem("learnfrocarecart")) {
       let courseCart = [];
       let bundlesCart = [];
@@ -335,9 +336,9 @@ const HeaderOpaque = () => {
                           </ul>
                         </li> */}
                         <li>
-                        <Link href="/about">
-                                <a>About Us</a>
-                           </Link>
+                          <Link href="/about">
+                            <a>About Us</a>
+                          </Link>
                         </li>
                       </ul>
                     </nav>
@@ -367,7 +368,9 @@ const HeaderOpaque = () => {
                           </svg>
                         </div>
                         <span className="cart-item">
-                          {cartCount && location.pathname == "success" ? '0' : cartCount}
+                          {cartCount && location.pathname == "success"
+                            ? "0"
+                            : cartCount}
                         </span>
                       </span>
                     </div>
@@ -390,7 +393,9 @@ const HeaderOpaque = () => {
                         </svg>
                       </div>
                       <span className="cart-item">
-                        {cartCount && location.pathname == "success" ? '0' : cartCount}
+                        {cartCount && location.pathname == "success"
+                          ? "0"
+                          : cartCount}
                       </span>
                     </span>
                   </div>
