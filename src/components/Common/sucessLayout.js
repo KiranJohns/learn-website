@@ -15,23 +15,13 @@ const SuccessLayout = () => {
   };
   useEffect(() => {
     const makeRequest = fetchData();
-    makeRequest("GET", "/cart/get")
-      .then((res) => {
-        setTimeout(() => {
-          console.log(res.data.response);
-          store.dispatch({
-            type: "SET_CART",
-            payload: JSON.stringify(res.data.response),
-          });
-        }, 1000);
-      })
-      .catch((err) => {
-        if (err?.data?.errors[0].message === "please login") {
-          store.dispatch({
-            type: "SET_CART",
-          });
-        }
-      });
+    store.dispatch({
+      type: "SET_CART",
+      payload: JSON.stringify([]),
+    });
+    store.dispatch({
+      type: "SET_CART",
+    });
   }, []);
 
   return (
