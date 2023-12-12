@@ -14,16 +14,21 @@ const SuccessLayout = () => {
     router.push(`/${getUserType()}/dashboard`);
   };
   useEffect(() => {
-    setTimeout(() => {
-      store.dispatch({
-        type: "SET_CART",
+    const makeRequest = fetchData()
+    makeRequest("GET", "/cart/get")
+      .then((res) => {
+        store.dispatch({
+          type: "SET_CART",
+          payload: JSON.stringify(res.data.response),
+        });
+      })
+      .catch((err) => {
+        if (err?.data?.errors[0].message === "please login") {
+          store.dispatch({
+            type: "SET_CART",
+          });
+        }
       });
-    }, 300);
-    setTimeout(() => {
-      store.dispatch({
-        type: "SET_CART",
-      });
-    }, 500);
   }, []);
 
   return (
