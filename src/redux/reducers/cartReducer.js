@@ -142,12 +142,15 @@ const cartReducer = function (state = initialUserState, action) {
       };
     case "CLEAR_CART":
       console.log(action.type);
-      localStorage.removeItem("learnfrocarecart")
+      localStorage.removeItem("learnfrocarecart");
       return {
-        ...state,
         cart: [],
         totalPrice: 0,
         cartCount: 0,
+        logedIn:
+          typeof window !== "undefined"
+            ? localStorage?.getItem("learnforcare_access")
+            : "",
       };
   }
   return state;
