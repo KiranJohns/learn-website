@@ -142,6 +142,7 @@ const cartReducer = function (state = initialUserState, action) {
       };
     case "CLEAR_CART":
       console.log(action.type);
+      localStorage.removeItem("learnfrocarecart")
       return {
         ...state,
         cart: [],
