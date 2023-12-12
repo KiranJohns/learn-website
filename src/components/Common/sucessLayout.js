@@ -14,9 +14,10 @@ const SuccessLayout = () => {
     router.push(`/${getUserType()}/dashboard`);
   };
   useEffect(() => {
-    const makeRequest = fetchData()
+    const makeRequest = fetchData();
     makeRequest("GET", "/cart/get")
       .then((res) => {
+        console.log(res.data.response);
         store.dispatch({
           type: "SET_CART",
           payload: JSON.stringify(res.data.response),
