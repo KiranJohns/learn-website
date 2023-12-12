@@ -34,7 +34,7 @@ export default () => {
           <div style={{position:'relative'}} className="row align-items-end">
 
           <div style={{marginBottom:'2rem', }}>
-          <div style={{display:"flex", justifyContent:"center", alignItems:'center', position:"relative", background:"#fff", padding:".5rem"}} className="col-12 animated-text">
+          <div style={{display:"flex", justifyContent:"center", alignItems:'center', position:"relative", background:"", padding:".5rem"}} className="col-12 animated-text">
             <marquee scrollamount="10">sample for offer text</marquee>
             </div>
 

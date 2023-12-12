@@ -126,6 +126,7 @@ const ManCWIndReport = () => {
               </form>
             </div>
             <DataTable
+              noDataComponent={" "}
               columns={columns}
               data={
                 searchString

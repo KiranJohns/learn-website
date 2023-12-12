@@ -16,6 +16,7 @@ import CourseCard from "./CourseCard";
 import ResponsivePagination from "react-responsive-pagination";
 import { CiFilter } from "react-icons/ci";
 
+
 export default () => {
   const { cart } = useSelector((store) => store.cart);
   let makeRequest = fetchData();
@@ -113,7 +114,7 @@ export default () => {
 
             <div className="select media-select filter-hidden">
           
-            <CiFilter className="ic-fil" style={{position:'absolute',zIndex:'1',  marginTop:'10px',marginLeft:'.5rem',marginRight:'.5rem',color:"#fff",fontSize:'1.3rem' }}/>  
+            <FaFilter className="ic-fil" style={{position:'absolute',zIndex:'1',  marginTop:'11px',marginLeft:'.5rem',marginRight:'.5rem',color:"#fff",fontSize:'1rem' }}/>  
              <select
                 style={{border:'none',outline:"#fff",borderRadius:'4px', background: "#5a9676", textAlign:'center',position:'relative',width:'13.1rem',height:'45px',fontSize:'.9rem', fontWeight:'500',color:"#fff"  }}
                 className=""
@@ -136,6 +137,13 @@ export default () => {
                 <option style={{fontSize:'1rem', color:"#000", background:'#fff',fontWeght:'500'}} value="Child Care Courses">Child Care Courses</option>
               </select>
             </div>
+          </div>
+          {/* offer text */}
+          <div style={{marginBottom:'1rem',marginTop:'1rem' }}>
+          <div style={{display:"flex", justifyContent:"center", alignItems:'center', position:"relative", background:"", padding:".5rem"}} className="col-12 animated-text">
+            <marquee scrollamount="10">sample for offer text</marquee>
+            </div>
+
           </div>
           <div className="row align-items-end">
             <div className="col-xxl-5 col-xl-6 col-lg-6">
@@ -175,6 +183,7 @@ export default () => {
           </div>
           <TabPanel>
             <div className="row">
+              
               {(categoryFilter ? filteredCourse : course).map((item) => {
                 if (searchText) {
                   return (

@@ -162,7 +162,7 @@ function SignInMain() {
             borderRadius:"1rem"
           },
           overlay: {
-            background: "rgba(0, 0, 0, 0.5)",
+            background: "rgba(0, 0, 0, 0)",
           },
           closeButton: {
             background: "white",

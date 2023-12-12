@@ -145,6 +145,7 @@ class IndCertificate extends Component {
                 </form>
               </div>
               <DataTable
+                noDataComponent={" "}
                 columns={columns}
                 persistTableHead={true}
                 data={

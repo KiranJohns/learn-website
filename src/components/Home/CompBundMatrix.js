@@ -45,13 +45,14 @@ const MatrixBundComp = () => {
         users.forEach((item) => {
           let assigned = item.matrix_assigned.reverse();
           let enrolled = item.matrix.reverse();
+          console.log(assigned, enrolled);
 
           user_name.push(item.first_name + " " + item.last_name);
 
           let allCourses = [...assigned, ...enrolled];
 
           let CNames = allCourses.map((course) => {
-            return course.course_name;
+            return course.bundle_name;
           });
 
           let courses = [];
@@ -65,9 +66,9 @@ const MatrixBundComp = () => {
           }
 
           allCourses.forEach((course) => {
-            if (!courses.find((i) => i?.course_name == course?.course_name)) {
+            if (!courses.find((i) => i?.course_name == course?.bundle_name)) {
               course_name.forEach((item, id) => {
-                if (item == course?.course_name) {
+                if (item == course?.bundle_name) {
                   courses[id] = course;
                 }
               });
@@ -183,6 +184,12 @@ const MatrixBundComp = () => {
           >
             <thead>
               <tr style={{ textAlign: "center" }}>
+              <th
+                  style={{ background: "#212a50", color: "white" }}
+                  colSpan={1}
+                >
+                  
+                </th>
                 <th
                   style={{ background: "#212a50", color: "white" }}
                   colSpan={60}
@@ -202,7 +209,7 @@ const MatrixBundComp = () => {
                 >
                   Individual
                 </th>
-                {courseName.map((item) => (
+                {courseName?.map((item) => (
                   <th
                     style={{
                       padding: "0 0.5rem",
@@ -226,8 +233,8 @@ const MatrixBundComp = () => {
                             <td
                               style={{
                                 padding: "0 0.5rem",
-                                color: "white",
-                                background: "#212450",
+                                color: "#fff",
+                                background: "#212a50",
                                 textAlign: "center",
                                 fontWeight: "bold",
                               }}

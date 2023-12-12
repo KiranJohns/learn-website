@@ -332,6 +332,7 @@ const ManagerAssignCourse = () => {
               </form>
             </div>
             <DataTable
+              noDataComponent={" "}
              persistTableHead={true}
               columns={columns}
               data={

@@ -128,6 +128,7 @@ const IndCAvail = () => {
               </form>
             </div>
             <DataTable
+              noDataComponent={" "}
             persistTableHead={true}
               columns={columns}
               data={records}

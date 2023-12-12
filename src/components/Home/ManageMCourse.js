@@ -202,6 +202,7 @@ class ManageMyCourse extends Component {
                 </form>
               </div>
               <DataTable
+                noDataComponent={" "}
                 columns={columns}
                 data={this.state.records}
                 customStyles={customStyles}
