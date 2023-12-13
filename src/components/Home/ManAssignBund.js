@@ -10,6 +10,7 @@ import Modal from "react-responsive-modal";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Tab } from "react-bootstrap";
+import Spinner from "react-bootstrap/Spinner";
 
 const customStyles = {
   headRow: {
@@ -35,6 +36,7 @@ const customStyles = {
 const ManAssignBund = () => {
   const [records, setRecords] = useState([]);
   const [searchString, setSearchString] = useState("");
+  const [pending, setPending] = React.useState(true);
   const [companyIndividuals, setCompanyIndividuals] = useState([]);
   const [courseName, setCourseName] = useState("");
   const [filteredCompanyIndividuals, setFilteredCompanyIndividuals] = useState(
@@ -74,6 +76,7 @@ const ManAssignBund = () => {
           .catch((err) => {
             console.log(err);
           });
+          setPending(false)
       })
       .catch((err) => {
         console.log(err);
@@ -369,6 +372,13 @@ const ManAssignBund = () => {
               </form>
             </div>
             <DataTable
+              progressPending={pending}
+              progressComponent={
+                pending ? 
+                (<div style={{ padding: "1rem" }}>
+                  <Spinner animation="border" variant="primary" />
+                </div>) : (null)
+              }
             noDataComponent={" "}
               persistTableHead={true}
               columns={columns}
