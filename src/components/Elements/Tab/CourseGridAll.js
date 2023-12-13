@@ -164,22 +164,6 @@ export default () => {
                 aria-label="Default select example"
                 onChange={(e) => setCategoryFilter(e.target.value)}
               >
-<<<<<<< HEAD
-                 i
-                <option style={{fontSize:'1rem', color:"#000", background:'#fff',fontWeght:'500'}}  value="">Filters</option>
-                <option style={{fontSize:'1rem', color:"#000", background:'#fff',fontWeght:'500'}} value="Care Course">Care Certificate Courses</option>
-
-                <option style={{fontSize:'1rem', color:"#000", background:'#fff',fontWeght:'500'}} value="Mandatory Care Course">
-                  Mandatory Care Courses
-                </option>
-                <option style={{fontSize:'1rem', color:"#000", background:'#fff',fontWeght:'500'}}  value="Specialised Care Course">
-                  Specialised Care Courses
-                </option>
-                <option style={{fontSize:'1rem', color:"#000", background:'#fff',fontWeght:'500'}}  value="Recovery Care Cours">
-                  Recovery Care Courses
-                </option>
-                <option style={{fontSize:'1rem', color:"#000", background:'#fff',fontWeght:'500'}} value="Child Care Course">Child Care Courses</option>
-=======
                 i
                 <option
                   style={{
@@ -247,7 +231,6 @@ export default () => {
                 >
                   Child Care Courses
                 </option>
->>>>>>> 2086c80f5c7265ba9ecd1aefc52154e050e38b9d
               </select>
             </div>
           </div>
