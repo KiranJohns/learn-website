@@ -160,31 +160,33 @@ function CourseDetailsMain() {
                                     style={{ listStyle: "initial" }}
                                   >
                                     {course?.aims?.map((item) => {
-                                      if(item == "") return
+                                      if (item == "") return;
                                       return (
-                                      <li
-                                        style={{
-                                          listStyle: "inside",
-                                          marginBottom: "1rem",
-                                        }}
-                                      >
-                                        {item}
-                                      </li>
-                                    )})}
+                                        <li
+                                          style={{
+                                            listStyle: "inside",
+                                            marginBottom: "1rem",
+                                          }}
+                                        >
+                                          {item}
+                                        </li>
+                                      );
+                                    })}
                                   </ul>
                                 </div>
                                 <div className="course__description-list mb-45 course-head-center">
                                   <h4>Objectives</h4>
                                   <ul>
                                     {course?.objectives_point?.map((item) => {
-                                      if(item == "") return
+                                      if (item == "") return;
                                       return (
-                                      <li style={{ marginTop: "1.4rem" }}>
-                                        {" "}
-                                        <i className="fas fa-check"></i>
-                                        {item}
-                                      </li>
-                                    )})}
+                                        <li style={{ marginTop: "1.4rem" }}>
+                                          {" "}
+                                          <i className="fas fa-check"></i>
+                                          {item}
+                                        </li>
+                                      );
+                                    })}
                                   </ul>
                                 </div>{" "}
                               </>
@@ -197,23 +199,28 @@ function CourseDetailsMain() {
                                     className=" mb-45"
                                     style={{ listStyle: "initial" }}
                                   >
-                                    {course?.who_should_attend?.length > 1 ? course?.who_should_attend?.map((item) => (
+                                    {course?.who_should_attend?.length > 1 ? (
+                                      course?.who_should_attend?.map((item) => (
+                                        <li
+                                          style={{
+                                            listStyle: "inside",
+                                            marginBottom: "1rem",
+                                          }}
+                                        >
+                                          {item}
+                                        </li>
+                                      ))
+                                    ) : (
                                       <li
                                         style={{
-                                          listStyle: "inside",
                                           marginBottom: "1rem",
                                         }}
                                       >
-                                        {item}
+                                        {course?.who_should_attend?.length
+                                          ? course?.who_should_attend[0]
+                                          : ""}
                                       </li>
-                                    )) : 
-                                    <li
-                                        style={{
-                                          marginBottom: "1rem",
-                                        }}
-                                      >
-                                        {course?.who_should_attend?.length ? course?.who_should_attend[0] : ""}
-                                      </li>}
+                                    )}
                                   </ul>
                                 </div>
                                 <div className="course__description-list mb-45">
