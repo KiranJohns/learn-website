@@ -45,6 +45,8 @@ const DashCourse = () => {
   const [searchData, setSearchData] = useState("");
   const [openModal, setOpenModal] = useState(false);
 
+  const [pending, setPending] = React.useState(true);
+
   const makeRequest = fetchData();
 
   useEffect(() => {
@@ -84,8 +86,8 @@ const DashCourse = () => {
     setOpenModal(!openModal);
   };
 
-  const [pending, setPending] = React.useState(true);
-  const [rows, setRows] = React.useState([]);
+ 
+
   
 
   const assignCourse = (e, subUser) => {
@@ -226,7 +228,7 @@ const DashCourse = () => {
             </form>
           </div>
           <Suspense fallback={<Loading />}>
-            <DataTable
+            <DataTable    
               progressPending={pending}
               progressComponent={
                 pending ? 

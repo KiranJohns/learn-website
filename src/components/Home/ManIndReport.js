@@ -4,6 +4,7 @@ import DataTable from "react-data-table-component";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import fetchData from "../../axios";
+import Spinner from "react-bootstrap/Spinner";
 
 const customStyles = {
   headRow: {
@@ -27,6 +28,7 @@ const customStyles = {
 };
 
 const ManIndReport = () => {
+  const [pending, setPending] = React.useState(true);
   const [records, setRecords] = useState([]);
   const [filterRecords, setFilterRecords] = useState([]);
   const [searchString, setSearchString] = useState("");
@@ -50,6 +52,7 @@ const ManIndReport = () => {
         console.log(res.data.response);
         setRecords(res.data.response);
         setFilterRecords(res.data);
+       setPending(false)
       })
       .catch((err) => console.log(err));
   };
@@ -125,6 +128,14 @@ const ManIndReport = () => {
               </form>
             </div>
             <DataTable
+              progressPending={pending}
+              progressComponent={
+                pending ? 
+                (<div style={{ padding: "1rem" }}>
+                  <Spinner animation="border" variant="primary" />
+                </div>) : (null)
+              }
+           persistTableHead={true}
               noDataComponent={" "}
               columns={columns}
               data={

@@ -19,7 +19,7 @@ class AboutMain extends Component {
         return (
             <main>
 	            {/* breadcrumb-start */}
-				<Breadcrumb pageTitle="About" />
+				<Breadcrumb pageTitle="About Us" />
 				{/* breadcrumb-end */}
                 
                 <About/>

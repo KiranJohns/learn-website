@@ -141,9 +141,15 @@ const ManBundMatrix = () => {
           <Table bordered variant="light">
             <thead>
               <tr style={{ textAlign: "center" }}>
+              <th
+                  style={{ background: "#212a50", color: "white" }}
+                  colSpan={1}
+                >
+                 
+                </th>
                 <th
                   style={{ background: "#212a50", color: "white" }}
-                  colSpan={5}
+                  colSpan={60}
                 >
                   Bundle Name
                 </th>
@@ -184,8 +190,8 @@ const ManBundMatrix = () => {
                             <td
                               style={{
                                 padding: "0 0.5rem",
-                                color: "white",
-                                background: "#212450",
+                                color: "#212450",
+                                background: "white",
                                 textAlign: "center",
                                 fontWeight: "bold",
                               }}

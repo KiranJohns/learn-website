@@ -4,6 +4,7 @@ import DataTable from "react-data-table-component";
 import Link from "next/link";
 import BasicExample from "../About/button1";
 import fetchData from "../../axios";
+import Spinner from "react-bootstrap/Spinner";
 
 const customStyles = {
   headRow: {
