@@ -9,7 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
 import { jwtDecode } from "jwt-decode";
 import { Suspense } from "react";
-import Spinner from 'react-bootstrap/Spinner';
+import Spinner from "react-bootstrap/Spinner";
 import { useState, useEffect } from "react";
 
 const customStyles = {
@@ -56,11 +56,12 @@ const DashCourse = () => {
       const [assignedCourses] = await Promise.all([
         makeRequest("GET", "/course/get-all-assigned-course"),
       ]);
-
+      setPending(false)
+      console.log(assignedCourses.data.response);
       setRecords(
         [...assignedCourses.data.response]
           .reverse()
-          .filter((item) => item?.owner == user?.id)
+          .filter((item) => item?.owner == user?.id && item?.course_count > 0)
       );
       setFilterRecords(assignedCourses.data);
 
@@ -84,17 +85,8 @@ const DashCourse = () => {
   };
 
   const [pending, setPending] = React.useState(true);
-	const [rows, setRows] = React.useState([]);
-
-  useEffect(() => {
-    if(records.length>0){
-    setRows(records);
-    setPending(false);
-    }
-    else{
-      setPending(true);
-    }
-}, [records]);
+  const [rows, setRows] = React.useState([]);
+  
 
   const assignCourse = (e, subUser) => {
     e.persist();
@@ -235,10 +227,13 @@ const DashCourse = () => {
           </div>
           <Suspense fallback={<Loading />}>
             <DataTable
-               progressPending={pending}
-               progressComponent	={<div style={{padding:"1rem"}}>
-             <Spinner animation="border" variant="primary" />
-               </div>}
+              progressPending={pending}
+              progressComponent={
+                pending ? 
+                (<div style={{ padding: "1rem" }}>
+                  <Spinner animation="border" variant="primary" />
+                </div>) : (null)
+              }
               persistTableHead={true}
               noDataComponent={" "}
               columns={columns}
