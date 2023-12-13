@@ -159,7 +159,9 @@ function CourseDetailsMain() {
                                     className=" mb-45"
                                     style={{ listStyle: "initial" }}
                                   >
-                                    {course?.aims?.map((item) => (
+                                    {course?.aims?.map((item) => {
+                                      if(item == "") return
+                                      return (
                                       <li
                                         style={{
                                           listStyle: "inside",
@@ -168,19 +170,21 @@ function CourseDetailsMain() {
                                       >
                                         {item}
                                       </li>
-                                    ))}
+                                    )})}
                                   </ul>
                                 </div>
                                 <div className="course__description-list mb-45 course-head-center">
                                   <h4>Objectives</h4>
                                   <ul>
-                                    {course?.objectives_point?.map((item) => (
+                                    {course?.objectives_point?.map((item) => {
+                                      if(item == "") return
+                                      return (
                                       <li style={{ marginTop: "1.4rem" }}>
                                         {" "}
                                         <i className="fas fa-check"></i>
                                         {item}
                                       </li>
-                                    ))}
+                                    )})}
                                   </ul>
                                 </div>{" "}
                               </>
