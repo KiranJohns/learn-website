@@ -53,11 +53,11 @@ const CompanyBundle = () => {
       try {
         const assignedRes = await makeRequest("GET", "/info/get-assigned-bundles-for-company");
         const onFoingRes = await makeRequest("GET", "/bundle/get-on-going-bundles");
-
         console.clear();
         const newRes = [...assignedRes.data.response, ...onFoingRes.data.response];
         setRecords(newRes?.filter((item) => item.course_count >= 1).reverse());
         setFilterRecords(assignedRes.data); // Assuming this is correct, please double-check
+        setPending(false)
       } catch (err) {
         console.log(err);
       }
@@ -83,17 +83,9 @@ const CompanyBundle = () => {
   };
 
   const [pending, setPending] = React.useState(true);
-	const [rows, setRows] = React.useState([]);
 
-  useEffect(() => {
-    if(records.length>0){
-    setRows(records);
-    setPending(false);
-    }
-    else{
-      setPending(true);
-    }
-}, [records]);
+
+
 
   const columns = [
     {
@@ -187,10 +179,14 @@ const CompanyBundle = () => {
             </div>
             <Suspense fallback={<Loading />}>
               <DataTable
-                progressPending={pending}
-                progressComponent	={<div style={{padding:"1rem"}}>
-              <Spinner animation="border" variant="primary" />
-                </div>}
+
+                  progressPending={pending}
+              progressComponent={
+                pending ? 
+                (<div style={{ padding: "1rem" }}>
+                  <Spinner animation="border" variant="primary" />
+                </div>) : (null)
+              }
                 noDataComponent={" "}
                 columns={columns}
                 data={records}

@@ -8,6 +8,7 @@ import fetchData from "../../axios";
 import BasicExample from "../About/button1";
 import Link from "next/link";
 import { Suspense } from "react";
+import Spinner from 'react-bootstrap/Spinner';
 
 const customStyles = {
   headRow: {
@@ -35,6 +36,7 @@ const CWIndReport = () => {
   const [filterRecords, setFilterRecords] = useState([]);
   const [searchString, setSearchString] = useState("");
   const [makeRequest, setMakeRequest] = useState(() => fetchData());
+  const [pending, setPending] = React.useState(true);
 
   const handleFilter = (event) => {
     const newData = filterRecords.filter((row) =>
@@ -53,6 +55,7 @@ const CWIndReport = () => {
         console.log(res.data.response);
         setRecords(res.data.response);
         setFilterRecords(res.data);
+        setPending(false)
       })
       .catch((err) => console.log(err));
   };
@@ -128,6 +131,13 @@ const CWIndReport = () => {
             </div>
             <Suspense fallback={<Loading />}>
             <DataTable
+             progressPending={pending}
+             progressComponent={
+              pending ? 
+              (<div style={{ padding: "1rem" }}>
+                <Spinner animation="border" variant="primary" />
+              </div>) : (null)
+            }
                noDataComponent={" "}
               columns={columns}
               data={

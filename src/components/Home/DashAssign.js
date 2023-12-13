@@ -46,6 +46,9 @@ const customStyles = {
 
 
 const CompAssignCourse = () => {
+  const [pending, setPending] = React.useState(true);
+	
+
   const [records, setRecords] = useState([]);
   const [user, setUser] = useState(() => {
     let token = localStorage.getItem(`learnforcare_access`);
@@ -78,7 +81,8 @@ const CompAssignCourse = () => {
 
 
   const makeRequest = fetchData();
-  async function getData() {
+
+  useEffect(async() => {
     console.clear();
     let purchasedRes = await makeRequest(
       "GET",
@@ -87,6 +91,8 @@ const CompAssignCourse = () => {
     let assignedRes = await makeRequest("GET", "/course/get-bought-course");
     Promise.all([purchasedRes, assignedRes])
       .then((res) => {
+        console.log(pending);
+        setPending(false)
         // console.log(res[0].data.response);
         // console.log(res[1].data.response);
         let newRes = [...res[0].data.response, ...res[1].data.response].filter(
@@ -94,6 +100,7 @@ const CompAssignCourse = () => {
           (item) => item?.owner != user?.id
         );
         let resArr = newRes?.reverse();
+          console.log(pending);
         console.log(resArr);
         setRecords(resArr);
       })
@@ -118,24 +125,18 @@ const CompAssignCourse = () => {
       .catch((err) => {
         console.log(err);
       });
+  
+  
+  }, [])
+  
+
+  async function getData() {
+   
   }
 
-  const [pending, setPending] = React.useState(true);
-	const [rows, setRows] = React.useState([]);
+ 
 
-  useEffect(() => {
-    if(records.length>0){
-    setRows(records);
-    setPending(false);
-    }
-    else{
-      setPending(true);
-    }
-}, [records]);
 
-  useEffect(() => {
-    getData();
-  }, []);
 
   function selfAssignToCompany() {
     let form = new FormData();
@@ -939,9 +940,12 @@ const CompAssignCourse = () => {
      
             <DataTable
               progressPending={pending}
-              progressComponent	={<div style={{padding:"1rem"}}>
-            <Spinner animation="border" variant="primary" />
-              </div>}
+              progressComponent={
+                pending ? 
+                (<div style={{ padding: "1rem" }}>
+                  <Spinner animation="border" variant="primary" />
+                </div>) : (null)
+              }
               persistTableHead={true}
               noDataComponent={" "}
               columns={columns}
