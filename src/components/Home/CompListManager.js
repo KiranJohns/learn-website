@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import axios from "axios";
 import DataTable from "react-data-table-component";
 import Link from "next/link";
@@ -8,14 +8,13 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { FaLock } from "react-icons/fa";
 import { FaUnlock } from "react-icons/fa";
-import { Suspense } from "react";
+import Spinner from 'react-bootstrap/Spinner';
 
 const customStyles = {
   headRow: {
     style: {
       backgroundColor: "#212450",
       color: "white",
-      
     },
   },
   headCells: {
@@ -32,37 +31,52 @@ const customStyles = {
   },
 };
 
-class CompListManager extends Component {
-  constructor() {
-    super();
-    this.state = {
-      records: [],
-      filterRecords: [],
-      searchString: "",
-    };
-    this.makeRequest = fetchData();
-  }
+const CompListManager = () => {
+  const [records, setRecords] = useState([]);
+  const [searchString, setSearchString] = useState("");
 
-  handleFilter = (event) => {
-    const newData = this.state.filterRecords.filter((row) =>
+  const makeRequest = fetchData();
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  const handleFilter = (event) => {
+    const newData = records.filter((row) =>
       row.name.toLowerCase().includes(event.target.value.toLowerCase())
     );
-    this.setState({ records: newData });
+    setRecords(newData);
   };
 
-  componentDidMount() {
-    this.getData();
-  }
+  
 
-  getData = () => {
-    this.makeRequest("GET", "/info/get-all-managers")
+  const getData = () => {
+    makeRequest("GET", "/info/get-all-managers")
       .then((res) => {
         console.log(res.data.response);
-        this.setState({ records: res.data.response, filterRecords: res.data });
+        setRecords(res.data.response);
       })
       .catch((err) => console.log(err));
   };
-  handleBlock(block, id) {
+
+  const [pending, setPending] = React.useState(true);
+	const [rows, setRows] = React.useState([]);
+
+  useEffect(() => {
+    if(records.length>0){
+    setRows(records);
+    setPending(false);
+    }
+    else{
+      setPending(true);
+    }
+}, [records]);
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  const handleBlock = (block, id) => {
     let url = null;
     let message = null;
     console.log(id);
@@ -73,147 +87,124 @@ class CompListManager extends Component {
       message = "user blocked";
       url = "/info/block-user";
     }
-    this.makeRequest("POST", url, {
+    makeRequest("POST", url, {
       userId: id,
     })
       .then((res) => {
-        this.getData()
+        getData();
         toast.success(message);
       })
       .catch((err) => console.log(err));
-  }
-  render() {
-    const columns = [
-      {
-        name: "ID",
-        selector: (row) => row.id,
-        width:"110px",
-        center:'true',
-        
-      },
-      {
-        name: "Name",
-        selector: (row) => row.first_name + " " + row.last_name,
-        sortable: true,
-        center:'true',
-      },
-      {
-        name: "City",
-        selector: (row) => row.city,
-  
-        center:'true',
-      },
-      {
-        name: "Email",
-        selector: (row) => row.email,
-        center:'true'
-      },
-      {
-        name: "Action",
-        center:'true',
-        cell: (row) => (
-          <a
-            onClick={() => this.handleBlock(row.block, row.id)}
-            className={row.block ? `btn btn-danger` : `btn btn-success`}
-          >
-            {row.block ? <FaLock /> : <FaUnlock />}
-          </a>
-        ),
-      },
-    ];
+  };
 
-    return (
-      <div className="">
-        <div className="dash-shadow">
-          <ToastContainer
-            position="top-right"
-            autoClose={5000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick={true}
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-            theme="light"
-          />
-          <div style={{position:"relative"}} className=" row g-3  min-vh-100  d-flex justify-content-center mt-20">
-            <h2
-              style={{
-                color: "#212450",
-                display: "flex",
-                justifyContent: "center",
-                position: "absolute",
-                fontSize: 36,
-              }}
-            >
-           Managers
-            </h2>
-            <div style={{ padding: "", backgroundColor: "" }}>
-              {/* <div
-            className="pb-2 smth"
-            style={{ display: "flex", justifyContent: "left" }}
+  const columns = [
+    {
+      name: "ID",
+      selector: (row) => row.id,
+      width:"110px",
+      center:'true',
+    },
+    {
+      name: "Name",
+      selector: (row) => row.first_name + " " + row.last_name,
+      sortable: true,
+      center:'true',
+    },
+    {
+      name: "City",
+      selector: (row) => row.city,
+      center:'true',
+    },
+    {
+      name: "Email",
+      selector: (row) => row.email,
+      center:'true'
+    },
+    {
+      name: "Action",
+      center:'true',
+      cell: (row) => (
+        <a
+          onClick={() => handleBlock(row.block, row.id)}
+          className={row.block ? "btn btn-danger" : "btn btn-success"}
+        >
+          {row.block ? <FaLock /> : <FaUnlock />}
+        </a>
+      ),
+    },
+  ];
+
+  return (
+    <div className="">
+      <div className="dash-shadow">
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick={true}
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
+        <div style={{position:"relative"}} className=" row g-3  min-vh-100  d-flex justify-content-center mt-20">
+          <h2
+            style={{
+              color: "#212450",
+              display: "flex",
+              justifyContent: "center",
+              position: "absolute",
+              fontSize: 36,
+            }}
           >
-            <input
-              type="text"
-              className=""
-              placeholder="Search course..."
-              onChange={this.handleFilter}
-              style={{
-                padding: "6px 10px",
-                borderColor: "transparent",
-                overflow: "hidden",
-              }}
-            />
-          </div> */}
-              <div
-                style={{ float: "right", marginBottom: "1.4rem" }}
-                className="p-relative d-inline header__search"
-              >
-                <form action="">
-                  <input
-                    style={{ background: "#edeef3" }}
-                    className="d-block mr-10"
-                    type="text"
-                    placeholder="Search..."
-                    value={this.state.searchString}
-                    onChange={(e) =>
-                      this.setState({
-                        ...this.state,
-                        searchString: e.target.value,
-                      })
-                    }
-                  />
-                  <button type="submit">
-                    <i className="fas fa-search"></i>
-                  </button>
-                </form>
-              </div>
-              <Suspense fallback={<Loading />}>
+         Managers
+          </h2>
+          <div style={{ padding: "", backgroundColor: "" }}>
+            <div
+              style={{ float: "right", marginBottom: "1.4rem" }}
+              className="p-relative d-inline header__search"
+            >
+              <form action="">
+                <input
+                  style={{ background: "#edeef3" }}
+                  className="d-block mr-10"
+                  type="text"
+                  placeholder="Search..."
+                  value={searchString}
+                  onChange={(e) => setSearchString(e.target.value)}
+                />
+                <button type="submit">
+                  <i className="fas fa-search"></i>
+                </button>
+              </form>
+            </div>
+            <Suspense fallback={<Spinner animation="border" variant="primary" />}>
               <DataTable
-              noDataComponent={" "}
+                progressPending={pending}
+                progressComponent	={<div style={{padding:"1rem"}}>
+              <Spinner animation="border" variant="primary" />
+                </div>}
                 columns={columns}
                 data={
-                  this.state.searchString
-                    ? this.state.records.filter((item) =>
-                        item.name
-                          .toLowerCase()
-                          .includes(this.state.searchString.toLowerCase())
+                  searchString
+                    ? records.filter((item) =>
+                        item.name.toLowerCase().includes(searchString.toLowerCase())
                       )
-                    : this.state.records
+                    : records
                 }
                 customStyles={customStyles}
                 pagination
                 persistTableHead={true}
               />
-                </Suspense>
-            </div>
-          </div>{" "}
-        </div>
+            </Suspense>
+          </div>
+        </div>{" "}
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default CompListManager;
 
