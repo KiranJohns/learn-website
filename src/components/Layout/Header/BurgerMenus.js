@@ -238,7 +238,7 @@ const BurgerMenus = ({ setMenuOpen, menuOpen }) => {
                 >
                   <a
                     onClick={() => {
-                      openMobileMenu("dashboard");
+                      router.push(`${getUserType()}/dashboard`)
                     }}
                   >
                     Dashboard
@@ -250,7 +250,7 @@ const BurgerMenus = ({ setMenuOpen, menuOpen }) => {
                       </Link>
                     </li>
                     <li style={{ backgroundColor: "#fff" }}>
-                      <Link href="/blog" as="/">
+                      <Link href="/" as="/">
                         <a>Logout</a>
                       </Link>
                     </li>
