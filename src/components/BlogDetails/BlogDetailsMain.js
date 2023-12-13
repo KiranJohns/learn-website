@@ -140,6 +140,7 @@ class BlogDetailsMain extends Component {
                           />{" "}
                           #global #education #research
                         </p>
+                        
                         <p dangerouslySetInnerHTML={{ __html: article.content.replace(/\n/g, '</br>') }}></p>
                         <p style={{ display: "inline-block" }}>
                           <FaRegCalendarDays
