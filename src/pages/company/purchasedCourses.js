@@ -41,7 +41,7 @@ function assigncourse() {
     <>
       {logedIn === "company" && (
         <>
-          <div
+          {/* <div
             style={{
               height: "100%",
               width: "100%",
@@ -56,7 +56,7 @@ function assigncourse() {
             }}
           >
             <Spinner animation="grow" variant="primary" />
-          </div>
+          </div> */}
           <React.Fragment>
             <main
               className="p-1"

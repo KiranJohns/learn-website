@@ -9,6 +9,7 @@ import { CSVLink, CSVDownload } from "react-csv";
 import { FaLock } from "react-icons/fa";
 import { FaUnlock } from "react-icons/fa";
 import { Suspense } from "react";
+import Spinner from 'react-bootstrap/Spinner';
 
 const customStyles = {
   headRow: {
@@ -57,6 +58,24 @@ const DashSUser = () => {
 
 })
 },[])
+
+const [pending, setPending] = React.useState(true);
+	const [rows, setRows] = React.useState([]);
+
+  useEffect(() => {
+    if(records.length>0){
+    setRows(records);
+    setPending(false);
+    }
+    else{
+      setPending(true);
+    }
+}, [records]);
+
+  useEffect(() => {
+    getData();
+  }, []);
+
 
   const handleFilter = (event) => {
     const newData = filterRecords.filter((row) =>
@@ -193,6 +212,10 @@ const DashSUser = () => {
             </div>
             <Suspense fallback={<Loading />}>
             <DataTable
+                    progressPending={pending}
+                    progressComponent	={<div style={{padding:"1rem"}}>
+                  <Spinner animation="border" variant="primary" />
+                    </div>}
             noDataComponent={" "}
              persistTableHead={true}
               columns={columns}

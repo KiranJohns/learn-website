@@ -8,7 +8,8 @@ import Header from "../../components/Layout/Header/Header";
 import NoSSR from "react-no-ssr";
 import { getUserType } from "../../axios";
 import { useRouter } from "next/router";
-import Spinner from "react-bootstrap/Spinner";
+import Spinner from 'react-bootstrap/Spinner';
+
 
 function myCourse() {
   const [loading, setLoading] = useState(true);
@@ -19,22 +20,22 @@ function myCourse() {
   const router = useRouter();
 
   useEffect(() => {
-    let timer = setTimeout(() => {
-      setLoading(false);
-    }, 1700);
+    // let timer = setTimeout(() => {
+    //   setLoading(false);
+    // }, 1700);
     if (logedIn !== "company") {
       router.push("/sign-in");
     }
-    return () => {
-      clearTimeout(timer);
-    };
+    // return () => {
+    //   clearTimeout(timer);
+    // };
   }, []);
 
   return (
     <>
       {logedIn === "company" && (
         <>
-          <div
+          {/* <div
             style={{
               height: "100%",
               width: "100%",
@@ -49,7 +50,7 @@ function myCourse() {
             }}
           >
             <Spinner animation="grow" variant="primary" />
-          </div>
+          </div> */}
           <React.Fragment>
             <main
               className="p-1"

@@ -120,6 +120,19 @@ const CompAssignCourse = () => {
       });
   }
 
+  const [pending, setPending] = React.useState(true);
+	const [rows, setRows] = React.useState([]);
+
+  useEffect(() => {
+    if(records.length>0){
+    setRows(records);
+    setPending(false);
+    }
+    else{
+      setPending(true);
+    }
+}, [records]);
+
   useEffect(() => {
     getData();
   }, []);
@@ -925,6 +938,10 @@ const CompAssignCourse = () => {
        
      
             <DataTable
+              progressPending={pending}
+              progressComponent	={<div style={{padding:"1rem"}}>
+            <Spinner animation="border" variant="primary" />
+              </div>}
               persistTableHead={true}
               noDataComponent={" "}
               columns={columns}

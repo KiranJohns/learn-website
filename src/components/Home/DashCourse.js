@@ -83,6 +83,19 @@ const DashCourse = () => {
     setOpenModal(!openModal);
   };
 
+  const [pending, setPending] = React.useState(true);
+	const [rows, setRows] = React.useState([]);
+
+  useEffect(() => {
+    if(records.length>0){
+    setRows(records);
+    setPending(false);
+    }
+    else{
+      setPending(true);
+    }
+}, [records]);
+
   const assignCourse = (e, subUser) => {
     e.persist();
     makeRequest("POST", "/info/assign-course-to-sub-user", {
@@ -222,6 +235,10 @@ const DashCourse = () => {
           </div>
           <Suspense fallback={<Loading />}>
             <DataTable
+               progressPending={pending}
+               progressComponent	={<div style={{padding:"1rem"}}>
+             <Spinner animation="border" variant="primary" />
+               </div>}
               persistTableHead={true}
               noDataComponent={" "}
               columns={columns}
