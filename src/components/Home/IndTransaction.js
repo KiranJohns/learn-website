@@ -5,6 +5,7 @@ import Link from "next/link";
 import BasicExample from "../About/button1";
 import fetchData from "../../axios";
 import Button from 'react-bootstrap/Button';
+import Spinner from "react-bootstrap/Spinner";
 
 const customStyles = {
   headRow: {

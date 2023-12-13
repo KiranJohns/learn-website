@@ -5,6 +5,7 @@ import BasicExample from "../About/button1";
 import fetchData, { getUserType } from "../../axios";
 import Button from 'react-bootstrap/Button';
 import { FaEye } from "react-icons/fa";
+import Spinner from "react-bootstrap/Spinner";
 
 const customStyles = {
   headRow: {
@@ -37,6 +38,9 @@ const IndCAvail = () => {
   const [records, setRecords] = useState([]);
   const [filterRecords, setFilterRecords] = useState([]);
 
+  const [pending, setPending] = React.useState(true);
+
+
   const makeRequest = fetchData();
 
   useEffect(() => {
@@ -53,8 +57,9 @@ const IndCAvail = () => {
       ];
       console.log(res);
       setRecords(() => {
-        return arr.reverse()
+        return arr.reverse()  
       });
+      setPending(false)
     });
   };
   
@@ -105,7 +110,7 @@ const IndCAvail = () => {
               display: "flex",
               justifyContent: "center",
               position: "absolute",
-              fontSize: 38,
+              fontSize: 36,
             }}
           >
            Purchased Courses
@@ -128,12 +133,20 @@ const IndCAvail = () => {
               </form>
             </div>
             <DataTable
+               progressPending={pending}
+               progressComponent={
+                 pending ? 
+                 (<div style={{ padding: "1rem" }}>
+                   <Spinner animation="border" variant="primary" />
+                 </div>) : (null)
+               }   
               noDataComponent={" "}
             persistTableHead={true}
               columns={columns}
               data={records}
               customStyles={customStyles}
               pagination
+              
             />
           </div>
         </div>{" "}

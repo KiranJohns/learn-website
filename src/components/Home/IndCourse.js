@@ -7,6 +7,7 @@ import fetchData, { getUserType } from "../../axios";
 import Modal from "react-responsive-modal";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
+import Spinner from "react-bootstrap/Spinner";
 
 const customStyles = {
   headRow: {
@@ -32,11 +33,14 @@ const customStyles = {
 };
 
 const IndCourse = () => {
+  
   const [records, setRecords] = useState([]);
   const [filterRecords, setFilterRecords] = useState([]);
   const [subUsers, setSubUsers] = useState([]);
   const [searchData, setSearchData] = useState("");
   const [openModal, setOpenModal] = useState(false);
+
+  const [pending, setPending] = React.useState(true);
 
   const makeRequest = fetchData();
   let sub_user_id = null;
@@ -69,6 +73,7 @@ const IndCourse = () => {
         console.log(res);
         setRecords(arr.reverse());
         setFilterRecords(arr.reverse());
+        setPending(false)
       });
     } catch (error) {
       console.log(error);
@@ -205,6 +210,13 @@ const IndCourse = () => {
             </form>
           </div>
           <DataTable
+           progressPending={pending}
+           progressComponent={
+             pending ? 
+             (<div style={{ padding: "1rem" }}>
+               <Spinner animation="border" variant="primary" />
+             </div>) : (null)
+           }
             columns={columns}
             data={
               searchData
