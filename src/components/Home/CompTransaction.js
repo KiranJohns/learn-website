@@ -65,7 +65,7 @@ const CompTransaction = () => {
     },
     {
       name: "Date",
-      selector: (row) => new Date(row.date).toLocaleDateString(),
+      selector: (row) => row.date,
       center: true,
       sortable: true,
     },
