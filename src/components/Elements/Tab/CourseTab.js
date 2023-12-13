@@ -60,10 +60,10 @@ export default () => {
             className="col-12"
           >
             <marquee
-              style={{ color: "#212a50", fontSize: "19px" }}
+              style={{ color: "#212a50", fontSize: "19px", fontWeight:"600" }}
               scrollamount="10"
             >
-              hi
+              
               {coupon.text[0]}{" "}
               <span className="animated-text">{coupon.highLight} </span>{" "}
               {coupon.text[1]}{" "}
