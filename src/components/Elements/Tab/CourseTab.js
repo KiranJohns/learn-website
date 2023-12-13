@@ -48,7 +48,7 @@ export default () => {
     <section className="course__area pt-50 pb-60 grey-bg">
       <Tabs variant="enclosed" id="react-tabs-276">
         <div className="container">
-          {/* <div
+          <div
             style={{
               display: "flex",
               justifyContent: "center",
@@ -68,7 +68,7 @@ export default () => {
               <span className="animated-text">{coupon.highLight} </span>{" "}
               {coupon.text[1]}{" "}
             </marquee>
-          </div> */}
+          </div>
           <div style={{ position: "relative" }} className="row align-items-end">
             <div style={{ marginBottom: "2rem" }}></div>
             <div className="col-xxl-5 col-xl-6 col-lg-6">
