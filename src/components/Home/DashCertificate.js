@@ -55,7 +55,7 @@ class DashCertificate extends Component {
       .then((res) => {
         console.log(res.data);
         this.setState({
-          records: res.data.response,
+          records: res.data.response.reverse(),
           filterRecords: res.data,
         });
       })
@@ -76,7 +76,7 @@ class DashCertificate extends Component {
       },
       {
         name: "Date",
-        selector: (row) => new Date(row.date).toLocaleDateString(),
+        selector: (row) => row.date,
       },
       {
         name: "Percentage",
