@@ -15,6 +15,8 @@ import Button from "react-bootstrap/Button";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import { jwtDecode } from "jwt-decode";
 import { Suspense } from "react";
+import Spinner from 'react-bootstrap/Spinner';
+
 
 const customStyles = {
   headRow: {
@@ -84,6 +86,19 @@ const CompAssignBund = () => {
         console.log(err);
       });
   }
+
+  const [pending, setPending] = React.useState(true);
+	const [rows, setRows] = React.useState([]);
+
+  useEffect(() => {
+    if(records.length>0){
+    setRows(records);
+    setPending(false);
+    }
+    else{
+      setPending(true);
+    }
+}, [records]);
 
   const makeRequest = fetchData();
   async function getData() {
@@ -642,6 +657,10 @@ const CompAssignBund = () => {
             </div>
             <Suspense fallback={<Loading />}>
             <DataTable
+             progressPending={pending}
+             progressComponent	={<div style={{padding:"1rem"}}>
+           <Spinner animation="border" variant="primary" />
+             </div>}
             noDataComponent={" "}
               persistTableHead={true}
               columns={columns}
