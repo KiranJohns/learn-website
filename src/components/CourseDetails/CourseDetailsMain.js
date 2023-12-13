@@ -195,7 +195,7 @@ function CourseDetailsMain() {
                                   >
                                     {course?.who_should_attend?.length > 1 ? course?.who_should_attend?.map((item) => (
                                       <li
-                                        style={{
+                                        style={{ 
                                           listStyle: "inside",
                                           marginBottom: "1rem",
                                         }}

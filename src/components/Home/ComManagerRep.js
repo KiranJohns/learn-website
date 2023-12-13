@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import DataTable from "react-data-table-component";
 import Link from "next/link";
@@ -9,6 +9,8 @@ import "react-toastify/dist/ReactToastify.css";
 import { FaLock } from "react-icons/fa";
 import { FaUnlock } from "react-icons/fa";
 import { Suspense } from "react";
+import Spinner from 'react-bootstrap/Spinner';
+
 
 const customStyles = {
   headRow: {
@@ -31,167 +33,156 @@ const customStyles = {
   },
 };
 
-class ManagerReport extends Component {
-  constructor() {
-    super();
-    this.state = {
-      records: [],
-      filterRecords: [],
-      searchString: "",
-    };
-    this.makeRequest = fetchData();
-  }
+const ManagerReport = () => {
+  const [records, setRecords] = useState([]);
+  const [filterRecords, setFilterRecords] = useState([]);
+  const [searchString, setSearchString] = useState("");
+  const [pending, setPending] = React.useState(true);
 
-  handleFilter = (event) => {
-    const newData = this.state.filterRecords.filter((row) =>
+  const makeRequest = fetchData();
+
+  const handleFilter = (event) => {
+    const newData = filterRecords.filter((row) =>
       row.name.toLowerCase().includes(event.target.value.toLowerCase())
     );
-    this.setState({ records: newData });
+    setRecords(newData);
   };
 
-  componentDidMount() {
-    this.getData();
-  }
+  useEffect(() => {
+    getData();
+  }, []);
 
-  getData = () => {
-    this.makeRequest("GET", "/info/get-all-manager-reports")
+  const getData = () => {
+    makeRequest("GET", "/info/get-all-manager-reports")
       .then((res) => {
         console.log(res.data.response);
-        this.setState({ records: res.data.response, filterRecords: res.data });
+        setRecords(res.data.response);
+        setFilterRecords(res.data);
+        setPending(false)
       })
       .catch((err) => console.log(err));
   };
-  handleBlock(block, id) {
 
-  }
-  render() {
-    const columns = [
-      {
-        name: "no.",
-        selector: (row, idx) => ++idx,
-        width:"70px",
-     center: true,
-      },
-      {
-        name: "Name",
-        selector: (row) => row.first_name + " " + row.last_name,
-        sortable: true,
-        width:"370px",
-        center: true,
-      },
-      {
-        name: "Courses Assigned",
-        selector: (row) => row.course_count,
-        sortable: true,
-        center: true,
-      },
-      {
-        name: "Bundles Assigned",
-        selector: (row) => row.bundle_count,
-        center: true,
-      },
-      {
-        name: "Individuals",
-        cell: (row) => row.individuals_count,
-        center:'true'
-      }
-    ];
+  const handleBlock = (block, id) => {};
 
-    return (
-      <div className="">
-        <div className="dash-shadow">
-          <ToastContainer
-            position="top-right"
-            autoClose={5000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick={true}
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-            theme="light"
-          />
-          <div style={{position:"relative"}} className=" row g-3  min-vh-100  d-flex justify-content-center mt-20">
-            <h2
-              style={{
-                color: "#212450",
-                display: "flex",
-                justifyContent: "center",
-                position: "absolute",
-                fontSize: 36,
-              }}
-            >
-             Manager Report
-            </h2>
-            <div style={{ padding: "", backgroundColor: "" }}>
-              {/* <div
-            className="pb-2 smth"
-            style={{ display: "flex", justifyContent: "left" }}
+  const columns = [
+    {
+      name: "no.",
+      selector: (row, idx) => ++idx,
+      width: "70px",
+      center: true,
+    },
+    {
+      name: "Name",
+      selector: (row) => row.first_name + " " + row.last_name,
+      sortable: true,
+      width: "370px",
+      center: true,
+    },
+    {
+      name: "Courses Assigned",
+      selector: (row) => row.course_count,
+      sortable: true,
+      center: true,
+    },
+    {
+      name: "Bundles Assigned",
+      selector: (row) => row.bundle_count,
+      center: true,
+    },
+    {
+      name: "Individuals",
+      cell: (row) => row.individuals_count,
+      center: true,
+    },
+  ];
+
+  return (
+    <div className="">
+      <div className="dash-shadow">
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick={true}
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
+        <div
+          style={{ position: "relative" }}
+          className=" row g-3  min-vh-100  d-flex justify-content-center mt-20"
+        >
+          <h2
+            style={{
+              color: "#212450",
+              display: "flex",
+              justifyContent: "center",
+              position: "absolute",
+              fontSize: 36,
+            }}
           >
-            <input
-              type="text"
-              className=""
-              placeholder="Search course..."
-              onChange={this.handleFilter}
+            Manager Report
+          </h2>
+          <div style={{ padding: "", backgroundColor: "" }}>
+            <div
               style={{
-                padding: "6px 10px",
-                borderColor: "transparent",
-                overflow: "hidden",
+                float: "right",
+                marginBottom: "1.4rem",
               }}
-            />
-          </div> */}
-              <div
-                style={{ float: "right", marginBottom: "1.4rem" }}
-                className="p-relative d-inline header__search"
-              >
-                <form action="">
-                  <input
-                    style={{ background: "#edeef3" }}
-                    className="d-block mr-10"
-                    type="text"
-                    placeholder="Search..."
-                    value={this.state.searchString}
-                    onChange={(e) =>
-                      this.setState({
-                        ...this.state,
-                        searchString: e.target.value,
-                      })
-                    }
-                  />
-                  <button type="submit">
-                    <i className="fas fa-search"></i>
-                  </button>
-                </form>
-              </div>
-              <Suspense fallback={<Loading />}>
+              className="p-relative d-inline header__search"
+            >
+              <form action="">
+                <input
+                  style={{ background: "#edeef3" }}
+                  className="d-block mr-10"
+                  type="text"
+                  placeholder="Search..."
+                  value={searchString}
+                  onChange={(e) => setSearchString(e.target.value)}
+                />
+                <button type="submit">
+                  <i className="fas fa-search"></i>
+                </button>
+              </form>
+            </div>
+            <Suspense fallback={<Loading />}>
               <DataTable
+                progressPending={pending}
+                progressComponent={
+                 pending ? 
+                 (<div style={{ padding: "1rem" }}>
+                   <Spinner animation="border" variant="primary" />
+                 </div>) : (null)
+               }
                 noDataComponent={" "}
                 persistTableHead={true}
                 columns={columns}
                 data={
-                  this.state.searchString
-                    ? this.state.records.filter((item) =>
+                  searchString
+                    ? records.filter((item) =>
                         item.name
                           .toLowerCase()
-                          .includes(this.state.searchString.toLowerCase())
+                          .includes(searchString.toLowerCase())
                       )
-                    : this.state.records
+                    : records
                 }
                 customStyles={customStyles}
                 pagination
-              
               />
-               </Suspense>
-            </div>
-          </div>{" "}
-        </div>
+            </Suspense>
+          </div>
+        </div>{" "}
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default ManagerReport;
+
 
 function Loading() {
   return <h2>🌀 Loading...</h2>;

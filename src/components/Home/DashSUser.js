@@ -60,17 +60,9 @@ const DashSUser = () => {
 },[])
 
 const [pending, setPending] = React.useState(true);
-	const [rows, setRows] = React.useState([]);
 
-  useEffect(() => {
-    if(records.length>0){
-    setRows(records);
-    setPending(false);
-    }
-    else{
-      setPending(true);
-    }
-}, [records]);
+
+
 
   useEffect(() => {
     getData();
@@ -90,6 +82,7 @@ const [pending, setPending] = React.useState(true);
         console.log(res.data.response);
         setRecords(res.data.response.flat(1));
         setFilterRecords(res.data);
+        setPending(false)
       })
       .catch((err) => console.log(err));
   };
@@ -213,9 +206,12 @@ const [pending, setPending] = React.useState(true);
             <Suspense fallback={<Loading />}>
             <DataTable
                     progressPending={pending}
-                    progressComponent	={<div style={{padding:"1rem"}}>
-                  <Spinner animation="border" variant="primary" />
-                    </div>}
+                    progressComponent={
+                      pending ? 
+                      (<div style={{ padding: "1rem" }}>
+                        <Spinner animation="border" variant="primary" />
+                      </div>) : (null)
+                    }
             noDataComponent={" "}
              persistTableHead={true}
               columns={columns}

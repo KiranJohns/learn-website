@@ -55,26 +55,14 @@ const CompListManager = () => {
       .then((res) => {
         console.log(res.data.response);
         setRecords(res.data.response);
+        setPending(false)
       })
       .catch((err) => console.log(err));
   };
 
   const [pending, setPending] = React.useState(true);
-	const [rows, setRows] = React.useState([]);
+	
 
-  useEffect(() => {
-    if(records.length>0){
-    setRows(records);
-    setPending(false);
-    }
-    else{
-      setPending(true);
-    }
-}, [records]);
-
-  useEffect(() => {
-    getData();
-  }, []);
 
   const handleBlock = (block, id) => {
     let url = null;
@@ -183,9 +171,12 @@ const CompListManager = () => {
             <Suspense fallback={<Spinner animation="border" variant="primary" />}>
               <DataTable
                 progressPending={pending}
-                progressComponent	={<div style={{padding:"1rem"}}>
-              <Spinner animation="border" variant="primary" />
-                </div>}
+                progressComponent={
+                  pending ? 
+                  (<div style={{ padding: "1rem" }}>
+                    <Spinner animation="border" variant="primary" />
+                  </div>) : (null)
+                }
                 columns={columns}
                 data={
                   searchString

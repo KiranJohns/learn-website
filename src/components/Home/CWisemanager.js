@@ -8,6 +8,7 @@ import fetchData from "../../axios";
 import BasicExample from "../About/button1";
 import Link from "next/link";
 import { Suspense } from "react";
+import Spinner from 'react-bootstrap/Spinner';
 
 const customStyles = {
   headRow: {
@@ -35,6 +36,7 @@ const CWManager = () => {
   const [filterRecords, setFilterRecords] = useState([]);
   const [searchString, setSearchString] = useState("");
   const [makeRequest, setMakeRequest] = useState(() => fetchData());
+  const [pending, setPending] = React.useState(true);
 
   const handleFilter = (event) => {
     const newData = filterRecords.filter((row) =>
@@ -54,6 +56,7 @@ const CWManager = () => {
         console.log(res.data.response);
         setRecords(res.data.response);
         setFilterRecords(res.data);
+        setPending(false)
       })
       .catch((err) => console.log(err));
   };
@@ -61,13 +64,14 @@ const CWManager = () => {
   const columns = [
     {
       name: "SL",
-      selector: (row,id) => id,
+      selector: (row,id) => ++id,
       width:"70px",
       center: true,
     },
     {
       name: "CODE",
-      selector: (row,id) => id,
+      selector: (row,id) => row.course_code
+      ,
       center: true,
     },
     {
@@ -128,6 +132,13 @@ const CWManager = () => {
             </div>
             <Suspense fallback={<Loading />}>
             <DataTable
+             progressPending={pending}
+             progressComponent={
+              pending ? 
+              (<div style={{ padding: "1rem" }}>
+                <Spinner animation="border" variant="primary" />
+              </div>) : (null)
+            }
              noDataComponent={" "}
               columns={columns}
               data={

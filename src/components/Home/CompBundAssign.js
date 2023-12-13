@@ -47,6 +47,7 @@ const CompAssignBund = () => {
   const [filteredCompanyIndividuals, setFilteredCompanyIndividuals] = useState(
     []
   );
+  const [pending, setPending] = React.useState(true);
   const [allManagers, setAllManagers] = useState([]);
   const [filteredManagers, setFilteredManagers] = useState([]);
   const [showModal, setShowModal] = useState(false);
@@ -87,18 +88,10 @@ const CompAssignBund = () => {
       });
   }
 
-  const [pending, setPending] = React.useState(true);
-	const [rows, setRows] = React.useState([]);
 
-  useEffect(() => {
-    if(records.length>0){
-    setRows(records);
-    setPending(false);
-    }
-    else{
-      setPending(true);
-    }
-}, [records]);
+
+
+
 
   const makeRequest = fetchData();
   async function getData() {
@@ -114,6 +107,7 @@ const CompAssignBund = () => {
         let newRes = [...res[0].data.response, ...res[1].data.response.filter((item) => item.owner != user.id)].filter((item) => item.course_count >= 1).reverse();
         console.log(newRes);
         setRecords(newRes);
+        setPending(false)
       })
       .catch((err) => {
         console.log(err);
@@ -658,9 +652,12 @@ const CompAssignBund = () => {
             <Suspense fallback={<Loading />}>
             <DataTable
              progressPending={pending}
-             progressComponent	={<div style={{padding:"1rem"}}>
-           <Spinner animation="border" variant="primary" />
-             </div>}
+             progressComponent={
+              pending ? 
+              (<div style={{ padding: "1rem" }}>
+                <Spinner animation="border" variant="primary" />
+              </div>) : (null)
+            }
             noDataComponent={" "}
               persistTableHead={true}
               columns={columns}
