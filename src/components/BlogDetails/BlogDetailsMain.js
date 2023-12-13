@@ -142,7 +142,6 @@ class BlogDetailsMain extends Component {
                         </p>
                         
                         <p dangerouslySetInnerHTML={{ __html: article.content.replace(/\n/g, '</br>') }}></p>
-                        {/* <p>{article.content}</p> */}
                         <p style={{ display: "inline-block" }}>
                           <FaRegCalendarDays
                             style={{

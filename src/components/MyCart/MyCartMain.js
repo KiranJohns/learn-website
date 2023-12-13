@@ -208,7 +208,7 @@ const MyCart = () => {
                             </td>
                             <td className="product-price">
                               <span className="amount">
-                                £{item.amount / item.product_count}
+                                £{parseFloat(item.amount / item.product_count).toFixed(2)}
                               </span>
                             </td>
                             <td className="product-quantity text-center">
