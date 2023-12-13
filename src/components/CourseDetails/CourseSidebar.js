@@ -173,10 +173,10 @@ function CourseSidebar({ addToCart }) {
             <div className="course__video-meta mb-25 d-flex align-items-center justify-content-between">
               <div className="course__video-price">
                 <h5>
-                  £{course?.price}.<span>00</span>{" "}
+                  £{course?.price}{" "}
                 </h5>
                 <h5 style={{color:'#c75342'}} className="old-price">
-                £{parseInt(course?.RRP).toFixed(2)}
+                £{parseFloat(course?.RRP).toFixed(2)}
                 </h5>
               </div>
               <div className="course__video-discount">
