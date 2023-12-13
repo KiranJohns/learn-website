@@ -199,18 +199,21 @@ function CourseDetailsMain() {
                                     className=" mb-45"
                                     style={{ listStyle: "initial" }}
                                   >
-                                    {course?.who_should_attend?.length > 1 ? course?.who_should_attend?.map((item) => (
+                                    {course?.who_should_attend?.length > 1 ? (
+                                      course?.who_should_attend?.map((item) => (
+                                        <li
+                                          style={{
+                                            listStyle: "inside",
+                                            marginBottom: "1rem",
+                                          }}
+                                        >
+                                          {item}
+                                        </li>
+                                      ))
+                                    ) : (
                                       <li
                                         style={{ 
                                           listStyle: "inside",
-                                          marginBottom: "1rem",
-                                        }}
-                                      >
-                                        {item}
-                                      </li>
-                                    )) : 
-                                    <li
-                                        style={{
                                           marginBottom: "1rem",
                                         }}
                                       >
