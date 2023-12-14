@@ -15,9 +15,13 @@ const Success = () => {
   };
 
   useEffect(() => { 
+    
 if(localStorage.getItem('reload')){
+  setTimeout(() => {
+    window.location.reload()
+  }, 1000);
   localStorage.removeItem("reload");
-  window.location.reload()
+
 }
   // forceReload()
   
