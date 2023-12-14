@@ -3,43 +3,37 @@ import Header from "../components/Layout/Header/Header";
 import Footer from "../components/Layout/Footer/Footer";
 import HeaderSuccess from "../components/Layout/Header/HeaderSuccess";
 import HeaderOpaque from "../components/Layout/Header/HeaderOpaque";
-import SucessLayout from "../components/Common/sucessLayout";
+import SucessLayout from "../components/Common/successLayout";
 import NoSSR from "react-no-ssr";
 import ShopingCart from "../components/Layout/Header/ShopingCart";
 
-class Success extends React.Component {
-  static getInitialProps({ store }) {}
+const Success = () => {
+  return (
+    <React.Fragment>
+      <NoSSR>
+        <HeaderOpaque />
+      </NoSSR>
+      <NoSSR>
+        <div style={{ visibility: "hidden" }}>
+          <HeaderSuccess />
+        </div>
+      </NoSSR>
+      <NoSSR>
+        <div style={{ visibility: "hidden" }}>
+          <Header />
+        </div>
+      </NoSSR>
+      <NoSSR>
+        <div style={{ visibility: "hidden" }}>
+          <ShopingCart />
+        </div>
+      </NoSSR>
 
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <React.Fragment>
-        <NoSSR>
-        <Header />
-        </NoSSR>
-        <NoSSR>
-          <div style={{ visibility: "hidden" }}> <HeaderSuccess/></div>  
-        </NoSSR>
-        <NoSSR>
-          <div style={{ visibility: "hidden" }}>
-          <HeaderOpaque />
-          </div>
-        </NoSSR>
-        <NoSSR>
-          <div style={{ visibility: "hidden" }}>
-            <ShopingCart />
-          </div>
-        </NoSSR>
-
-        <NoSSR>
-          <SucessLayout />
-        </NoSSR>
-      </React.Fragment>
-    );
-  }
-}
+      <NoSSR>
+        <SucessLayout />
+      </NoSSR>
+    </React.Fragment>
+  );
+};
 
 export default Success;
