@@ -62,6 +62,7 @@ const HeaderOpaque = () => {
         Promise.all([courseResponse, bundleResponse])
           .then((res) => {
             getCartItem();
+            localStorage.getItem("learnfrocarecart")
             console.log(res);
           })
           .catch((err) => {

@@ -83,6 +83,7 @@ const Header = () => {
         Promise.all([courseResponse, bundleResponse])
           .then((res) => {
             getCartItem();
+            localStorage.removeItem("learnfrocarecart")
             console.log(res);
           })
           .catch((err) => {
