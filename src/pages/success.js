@@ -23,28 +23,25 @@ const Success = () => {
 
   return (
     <>
+    <div style={{position:"relative"}}>
       <NoSSR>
         <HeaderOpaque />
       </NoSSR>
-      <NoSSR>
+      {/* <NoSSR>
         <div style={{ visibility: "hidden" }}>
           <HeaderSuccess />
         </div>
-      </NoSSR>
+      </NoSSR> */}
       <NoSSR>
-        <div key={reloadKey} style={{ visibility: "hidden" }}>
+        <div key={reloadKey} style={{opacity:"-1", position:"absolute",top:"0",left:"0" }}>
           <Header />
-        </div>
-      </NoSSR>
-      <NoSSR>
-        <div style={{ visibility: "hidden" }}>
-          <ShopingCart />
         </div>
       </NoSSR>
 
       <NoSSR>
         <SuccessLayout />
       </NoSSR>
+      </div>
     </>
   );
 };
