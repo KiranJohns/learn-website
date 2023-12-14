@@ -176,13 +176,18 @@ function CourseDetailsMain() {
                                 </div>
                                 <div className="course__description-list mb-45 course-head-center">
                                   <h4>Objectives</h4>
-                                  <ul>
+                                  <ul style={{ listStyle: "initial" }}>
                                     {course?.objectives_point?.map((item) => {
                                       if (item == "") return;
                                       return (
-                                        <li style={{ marginTop: "1.4rem" }}>
+                                        <li
+                                          style={{
+                                            listStyle: course?.objectives_point?.length == 1 ? "" : "inside",
+                                            marginBottom: "1rem",
+                                            marginTop: "1.4rem",
+                                          }}
+                                        >
                                           {" "}
-                                          <i className="fas fa-check"></i>
                                           {item}
                                         </li>
                                       );
@@ -212,7 +217,7 @@ function CourseDetailsMain() {
                                       ))
                                     ) : (
                                       <li
-                                        style={{ 
+                                        style={{
                                           listStyle: "inside",
                                           marginBottom: "1rem",
                                         }}
@@ -244,6 +249,11 @@ function CourseDetailsMain() {
                                 </div>
                               </>
                             )}
+
+                            <div className="course__description-list mb-45">
+                              {/* <h4>Assessment</h4> */}
+                              <p>{course?.assessment}</p>
+                            </div>
 
                             <div className="course__description-list mb-45 course-head-center">
                               <h4>Course Duration</h4>
