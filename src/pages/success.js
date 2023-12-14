@@ -5,7 +5,7 @@ import HeaderSuccess from "../components/Layout/Header/HeaderSuccess";
 import HeaderOpaque from "../components/Layout/Header/HeaderOpaque";
 import SucessLayout from "../components/Common/sucessLayout";
 import NoSSR from "react-no-ssr";
-import ShopingCart from "./ShopingCart";
+import ShopingCart from "../components/Layout/Header/ShopingCart";
 
 class Success extends React.Component {
   static getInitialProps({ store }) {}
