@@ -8,18 +8,7 @@ import ShopingCart from "../components/Layout/Header/ShopingCart";
 
 const Success = () => {
 
-  const [reloadKey, setReloadKey] = useState(0);
 
-  const forceReload = () => {
-    setReloadKey((prevKey) => prevKey + 1);
-  };
-
-  useEffect(() => { 
-
-  forceReload()
-  
-  }, [])
-  
 
   return (
     <>
@@ -33,7 +22,7 @@ const Success = () => {
         </div>
       </NoSSR> */}
       <NoSSR>
-        <div key={reloadKey} style={{opacity:"-1", position:"absolute",top:"0",left:"0" }}>
+        <div  style={{opacity:"-1", position:"absolute",top:"0",left:"0" }}>
           <Header />
         </div>
       </NoSSR>
