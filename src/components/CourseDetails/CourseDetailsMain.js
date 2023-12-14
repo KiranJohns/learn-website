@@ -182,7 +182,11 @@ function CourseDetailsMain() {
                                       return (
                                         <li
                                           style={{
-                                            listStyle: course?.objectives_point?.length == 1 ? "" : "inside",
+                                            listStyle:
+                                              course?.objectives_point
+                                                ?.length == 1
+                                                ? ""
+                                                : "inside",
                                             marginBottom: "1rem",
                                             marginTop: "1.4rem",
                                           }}
@@ -199,26 +203,28 @@ function CourseDetailsMain() {
                               <>
                                 {" "}
                                 <div className="course__description-list mb-45">
-                                  <h4>Who should attend?</h4>
+                                  {(course?.who_should_attend?.length >= 0 && course?.who_should_attend[0] != "") && <h4>Who should attend?</h4>}
                                   <ul
                                     className=" mb-45"
                                     style={{ listStyle: "initial" }}
                                   >
                                     {course?.who_should_attend?.length > 1 ? (
-                                      course?.who_should_attend?.map((item) => (
-                                        <li
-                                          style={{
-                                            listStyle: "inside",
-                                            marginBottom: "1rem",
-                                          }}
-                                        >
-                                          {item}
-                                        </li>
-                                      ))
+                                      course?.who_should_attend?.map((item) => {
+                                        if (item == "") return null;
+                                        return (
+                                          <li
+                                            style={{
+                                              listStyle: "inside",
+                                              marginBottom: "1rem",
+                                            }}
+                                          >
+                                            {item}
+                                          </li>
+                                        );
+                                      })
                                     ) : (
                                       <li
                                         style={{
-                                          listStyle: "inside",
                                           marginBottom: "1rem",
                                         }}
                                       >
@@ -234,17 +240,18 @@ function CourseDetailsMain() {
                                   <ul>
                                     {course?.what_you_will_learn_point?.map(
                                       (item) => {
-                                        if(item=="")return null
-                                        return(
-                                        <li
-                                          style={{
-                                            listStyle: "inside",
-                                            marginBottom: "1rem",
-                                          }}
-                                        >
-                                          {item}
-                                        </li>
-                                      )}
+                                        if (item == "") return null;
+                                        return (
+                                          <li
+                                            style={{
+                                              listStyle: "inside",
+                                              marginBottom: "1rem",
+                                            }}
+                                          >
+                                            {item}
+                                          </li>
+                                        );
+                                      }
                                     )}
                                     <li> {course?.What_you_will_learn}</li>
                                   </ul>
