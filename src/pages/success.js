@@ -15,7 +15,7 @@ const Success = () => {
   };
 
   useEffect(() => { 
-    
+
   forceReload()
   
   }, [])
@@ -37,7 +37,7 @@ const Success = () => {
         </div>
       </NoSSR>
       <NoSSR>
-        <div key={reloadKey} style={{ visibility: "hidden" }}>
+        <div style={{ visibility: "hidden" }}>
           <ShopingCart />
         </div>
       </NoSSR>
