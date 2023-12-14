@@ -20,7 +20,7 @@ class Cart extends React.Component {
             <HeaderOpaque />
             </NoSSR>
             <MyCart />
-            <FooterPad />
+            <Footer />
             </React.Fragment>
         );
     }
