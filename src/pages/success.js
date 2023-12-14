@@ -2,7 +2,7 @@ import React from "react";
 import Header from "../components/Layout/Header/Header";
 import HeaderSuccess from "../components/Layout/Header/HeaderSuccess";
 import HeaderOpaque from "../components/Layout/Header/HeaderOpaque";
-import SucessLayout from "../components/Common/successLayout";
+import SuccessLayout from "../components/Common/sucessLayout";
 import NoSSR from "react-no-ssr";
 import ShopingCart from "../components/Layout/Header/ShopingCart";
 
@@ -29,7 +29,7 @@ const Success = () => {
       </NoSSR>
 
       <NoSSR>
-        <SucessLayout />
+        <SuccessLayout />
       </NoSSR>
     </>
   );
