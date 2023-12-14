@@ -541,7 +541,7 @@ const Header = () => {
                         <div></div>
                       ) : (
                         <Link href="/sign-up">
-                          <a className="e-btn">Sign UP</a>
+                          <a className="e-btn">Sign Up</a>
                         </Link>
                       )}
                     </div>

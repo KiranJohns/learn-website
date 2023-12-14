@@ -5,6 +5,7 @@ import HeaderSuccess from "../components/Layout/Header/HeaderSuccess";
 import HeaderOpaque from "../components/Layout/Header/HeaderOpaque";
 import SucessLayout from "../components/Common/sucessLayout";
 import NoSSR from "react-no-ssr";
+import ShopingCart from "./ShopingCart";
 
 class Success extends React.Component {
   static getInitialProps({ store }) {}
@@ -29,6 +30,12 @@ class Success extends React.Component {
           <Header />
           </div>
         </NoSSR>
+        <NoSSR>
+          <div style={{visibility:"hidden"}}>
+          <ShopingCart/>
+          </div>
+        </NoSSR>
+
         <NoSSR>
         <SucessLayout />
         </NoSSR>

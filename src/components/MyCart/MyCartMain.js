@@ -10,6 +10,7 @@ import store from "../../redux/store";
 import { ImCross } from "react-icons/im";
 import { FaTrash } from "react-icons/fa";
 
+
 const MyCart = () => {
   const makeRequest = fetchData();
   const { cart, totalPrice } = useSelector((state) => state.cart);
@@ -313,7 +314,7 @@ const MyCart = () => {
                           <span
                             style={{
                               marginLeft: ".2rem",
-                              padding: ".77rem",
+                              padding: ".75rem",
                               background: "#5a9676",
                               color: "#700004",
                               cursor: "pointer",
