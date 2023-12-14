@@ -8,7 +8,21 @@ import ShopingCart from "../components/Layout/Header/ShopingCart";
 
 const Success = () => {
 
+  const [reloadKey, setReloadKey] = useState(0);
 
+  const forceReload = () => {
+    setReloadKey((prevKey) => prevKey + 1);
+  };
+
+  useEffect(() => { 
+if(localStorage.getItem('reload')){
+  localStorage.removeItem("reload");
+  window.location.reload
+}
+
+  
+  }, [])
+  
 
   return (
     <>
