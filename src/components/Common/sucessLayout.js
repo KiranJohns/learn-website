@@ -15,12 +15,12 @@ const SuccessLayout = () => {
   };
 
   useEffect(() => {
-   if( localStorage.getItem("reload")){
-    localStorage.removeItem("reload");
-    window.location.reload();
-   }
+    if (localStorage.getItem("reload")) {
+      localStorage.removeItem("reload");
+      window.location.reload();
+    }
   }, []);
-  
+
   return (
     <div className="row">
       <div

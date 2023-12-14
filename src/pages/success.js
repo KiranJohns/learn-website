@@ -18,26 +18,25 @@ class Success extends React.Component {
     return (
       <React.Fragment>
         <NoSSR>
+          <HeaderOpaque />
+        </NoSSR>
+        <NoSSR>
+          <div style={{ visibility: "hidden" }}></div>
           <HeaderSuccess />
         </NoSSR>
         <NoSSR>
-          <div style={{visibility:"hidden"}}>  
-             <HeaderOpaque />
+          <div style={{ visibility: "hidden" }}>
+            <Header />
           </div>
         </NoSSR>
         <NoSSR>
-          <div style={{visibility:"hidden"}}>
-          <Header />
-          </div>
-        </NoSSR>
-        <NoSSR>
-          <div style={{visibility:"hidden"}}>
-          <ShopingCart/>
+          <div style={{ visibility: "hidden" }}>
+            <ShopingCart />
           </div>
         </NoSSR>
 
         <NoSSR>
-        <SucessLayout />
+          <SucessLayout />
         </NoSSR>
       </React.Fragment>
     );
