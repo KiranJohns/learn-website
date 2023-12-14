@@ -18,7 +18,7 @@ class CourseGridSpecialised extends Component {
 				<BundleSpecialised name="Specialised Care Bundle"/>
 
                 {/* course tab-start */}
-				<CourseGridTab category="Specialized Care Course" />
+				<CourseGridTab category="Specialised Care Course" />
 				{/* course tab-end */}
 
                 {/* cta-start */}
