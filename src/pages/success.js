@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Header from "../components/Layout/Header/Header";
 import HeaderSuccess from "../components/Layout/Header/HeaderSuccess";
 import HeaderOpaque from "../components/Layout/Header/HeaderOpaque";
@@ -7,6 +7,15 @@ import NoSSR from "react-no-ssr";
 import ShopingCart from "../components/Layout/Header/ShopingCart";
 
 const Success = () => {
+
+  const [reloadKey, setReloadKey] = useState(0);
+
+  useEffect(() => { 
+    setReloadKey((prevKey) => prevKey + 1);
+  
+  }, [])
+  
+
   return (
     <>
       <NoSSR>
@@ -18,12 +27,12 @@ const Success = () => {
         </div>
       </NoSSR>
       <NoSSR>
-        <div style={{ visibility: "hidden" }}>
+        <div key={reloadKey} style={{ visibility: "hidden" }}>
           <Header />
         </div>
       </NoSSR>
       <NoSSR>
-        <div style={{ visibility: "hidden" }}>
+        <div key={reloadKey} style={{ visibility: "hidden" }}>
           <ShopingCart />
         </div>
       </NoSSR>
