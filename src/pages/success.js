@@ -18,14 +18,14 @@ class Success extends React.Component {
     return (
       <React.Fragment>
         <NoSSR>
-          <HeaderOpaque />
+        <Header />
         </NoSSR>
         <NoSSR>
           <div style={{ visibility: "hidden" }}> <HeaderSuccess/></div>  
         </NoSSR>
         <NoSSR>
           <div style={{ visibility: "hidden" }}>
-            <Header />
+          <HeaderOpaque />
           </div>
         </NoSSR>
         <NoSSR>
