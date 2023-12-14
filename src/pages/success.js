@@ -10,8 +10,13 @@ const Success = () => {
 
   const [reloadKey, setReloadKey] = useState(0);
 
-  useEffect(() => { 
+  const forceReload = () => {
     setReloadKey((prevKey) => prevKey + 1);
+  };
+
+  useEffect(() => { 
+    
+  forceReload()
   
   }, [])
   
