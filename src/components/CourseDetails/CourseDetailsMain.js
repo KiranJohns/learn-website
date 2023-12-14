@@ -160,7 +160,7 @@ function CourseDetailsMain() {
                                     style={{ listStyle: "initial" }}
                                   >
                                     {course?.aims?.map((item) => {
-                                      if (item == "") return;
+                                      if (item == "") return null;
                                       return (
                                         <li
                                           style={{
@@ -178,7 +178,7 @@ function CourseDetailsMain() {
                                   <h4>Objectives</h4>
                                   <ul>
                                     {course?.objectives_point?.map((item) => {
-                                      if (item == "") return;
+                                      if (item == "") return null;
                                       return (
                                         <li style={{ marginTop: "1.4rem" }}>
                                           {" "}

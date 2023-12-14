@@ -243,7 +243,7 @@ const Header = () => {
                                           <li><Link href="/home-3"><a>Home Style 3</a></Link></li>
                                        </ul> */}
                           </li>
-                          <li className="has-dropdown">
+                          <li className="has-dropdown ">
                             <Link href="/course-all">
                               <a>Courses</a>
                             </Link>
