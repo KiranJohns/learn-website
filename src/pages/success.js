@@ -29,8 +29,9 @@ class Success extends React.Component {
           <Header />
           </div>
         </NoSSR>
-
+        <NoSSR>
         <SucessLayout />
+        </NoSSR>
       </React.Fragment>
     );
   }

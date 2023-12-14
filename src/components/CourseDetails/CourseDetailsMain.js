@@ -228,7 +228,9 @@ function CourseDetailsMain() {
                                   <h4>What you will learn?</h4>
                                   <ul>
                                     {course?.what_you_will_learn_point?.map(
-                                      (item) => (
+                                      (item) => {
+                                        if(item=="")return null
+                                        return(
                                         <li
                                           style={{
                                             listStyle: "inside",
@@ -237,7 +239,7 @@ function CourseDetailsMain() {
                                         >
                                           {item}
                                         </li>
-                                      )
+                                      )}
                                     )}
                                     <li> {course?.What_you_will_learn}</li>
                                   </ul>
