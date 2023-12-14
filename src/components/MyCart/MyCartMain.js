@@ -151,6 +151,7 @@ const MyCart = () => {
       .then((res) => {
         console.log(res.data.response);
         localStorage.removeItem("learnfrocarecart");
+        localStorage.setItem("reload", true);
         setInterval(() => {
           location.href = res.data.response;
         }, 1000);

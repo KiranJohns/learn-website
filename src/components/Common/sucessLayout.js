@@ -15,9 +15,10 @@ const SuccessLayout = () => {
   };
 
   useEffect(() => {
-    store.dispatch({
-      type: "SET_CART",
-    });
+   if( localStorage.getItem("reload")){
+    localStorage.removeItem("reload");
+    window.location.reload();
+   }
   }, []);
   
   return (

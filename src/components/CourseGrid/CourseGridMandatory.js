@@ -18,7 +18,7 @@ class CourseGridMandatory extends Component {
 				<BundleMan  name="Mandatory Care Bundle"/>
 
                 {/* course tab-start */}
-				<CourseGridTab category="Mandatory Care Courses"/>
+				<CourseGridTab category="Mandatory Care Course"/>
 				{/* course tab-end */}
 
                 {/* cta-start */}

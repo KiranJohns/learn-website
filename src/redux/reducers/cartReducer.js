@@ -120,6 +120,7 @@ const cartReducer = function (state = initialUserState, action) {
     case "REMOVE_ITEM":
       if (state.cart === null) {
         state.cart = [];
+        
       }
       let product_count = 0;
       state.cart = state.cart.filter((item) => {

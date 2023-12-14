@@ -113,6 +113,7 @@ const ShopingCart = ({ setShopOpen, shopOpen }) => {
       .then((res) => {
         console.log(res.data.response);
         localStorage.removeItem("learnfrocarecart");
+        localStorage.setItem("reload", true);
         setTimeout(() => {
           location.href = res.data.response;
         },100);

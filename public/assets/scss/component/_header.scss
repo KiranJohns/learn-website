@@ -536,10 +536,12 @@
 				color: $black;
 				padding: 35px 0;
 				text-transform: capitalize;
+				
 			}
 			&.has-dropdown{
 				& > a{
                     position: relative;
+					
                     &::after{
 						content: ' ';
 						display: inline-block;

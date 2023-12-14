@@ -194,7 +194,7 @@ export default () => {
                     background: "#fff",
                     fontWeght: "500",
                   }}
-                  value="Mandatory Care Courses"
+                  value="Mandatory Care Course"
                 >
                   Mandatory Care Courses
                 </option>
@@ -205,7 +205,7 @@ export default () => {
                     background: "#fff",
                     fontWeght: "500",
                   }}
-                  value="Specialized Care Courses"
+                  value="Specialised Care Course"
                 >
                   Specialised Care Courses
                 </option>
@@ -216,7 +216,7 @@ export default () => {
                     background: "#fff",
                     fontWeght: "500",
                   }}
-                  value="Recovery Care Courses"
+                  value="Recovery Care Course"
                 >
                   Recovery Care Courses
                 </option>
