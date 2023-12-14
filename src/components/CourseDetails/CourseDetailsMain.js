@@ -84,7 +84,17 @@ function CourseDetailsMain() {
   const [course, setCourse] = useState(() => {
     makeRequest("GET", `/course/get-single-course/${slug}`)
       .then((res) => {
-        setCourse(res.data.response[0]);
+        let course = res.data.response[0];
+        course.aims = course.aims.filter((item) => item != "");
+        course.objectives_point = course.objectives_point.filter(
+          (item) => item != ""
+        );
+        course.who_should_attend = course.who_should_attend.filter(
+          (item) => item != ""
+        );
+        course.what_you_will_learn_point =
+          course.what_you_will_learn_point.filter((item) => item != "");
+        setCourse(course);
         console.log(res.data.response[0]);
       })
       .catch((err) => {
@@ -154,7 +164,7 @@ function CourseDetailsMain() {
                             {course?.category == "Care Course" ? (
                               <>
                                 <div className="course__description-list mb-45 course-head-center">
-                                  <h4>Aims</h4>
+                                  {course?.aims?.length != 0 && <h4>Aims</h4>}
                                   <ul
                                     className=" mb-45"
                                     style={{ listStyle: "initial" }}
@@ -164,7 +174,9 @@ function CourseDetailsMain() {
                                       return (
                                         <li
                                           style={{
-                                            listStyle: "inside",
+                                            listStyle:
+                                              course?.aims?.length > 1 &&
+                                              "inside",
                                             marginBottom: "1rem",
                                           }}
                                         >
@@ -175,7 +187,7 @@ function CourseDetailsMain() {
                                   </ul>
                                 </div>
                                 <div className="course__description-list mb-45 course-head-center">
-                                  <h4>Objectives</h4>
+                                  {(course.objective_define || course?.objectives_point?.length >= 1) && <h4>Objectives</h4>}
                                   <ul style={{ listStyle: "initial" }}>
                                     {course?.objectives_point?.map((item) => {
                                       if (item == "") return null;
@@ -197,46 +209,40 @@ function CourseDetailsMain() {
                                       );
                                     })}
                                   </ul>
+                                  <p>
+                                    <br />
+                                    {course.objective_define}
+                                  </p>
                                 </div>{" "}
                               </>
                             ) : (
                               <>
                                 {" "}
                                 <div className="course__description-list mb-45">
-                                  {(course?.who_should_attend?.length >= 0 && course?.who_should_attend[0] != "") && <h4>Who should attend?</h4>}
+                                  {course?.who_should_attend?.length != 0 && (
+                                    <h4>Who should attend?</h4>
+                                  )}
                                   <ul
                                     className=" mb-45"
                                     style={{ listStyle: "initial" }}
                                   >
-                                    {course?.who_should_attend?.length > 1 ? (
-                                      course?.who_should_attend?.map((item) => {
-                                        if (item == "") return null;
-                                        return (
-                                          <li
-                                            style={{
-                                              listStyle: "inside",
-                                              marginBottom: "1rem",
-                                            }}
-                                          >
-                                            {item}
-                                          </li>
-                                        );
-                                      })
-                                    ) : (
-                                      <li
-                                        style={{
-                                          marginBottom: "1rem",
-                                        }}
-                                      >
-                                        {course?.who_should_attend?.length
-                                          ? course?.who_should_attend[0]
-                                          : ""}
-                                      </li>
-                                    )}
+                                    {course?.who_should_attend?.map((item) => {
+                                      if (item == "") return null;
+                                      return (
+                                        <li
+                                          style={{
+                                            listStyle: course?.who_should_attend?.length > 1 && "inside",
+                                            marginBottom: "1rem",
+                                          }}
+                                        >
+                                          {item}
+                                        </li>
+                                      );
+                                    })}
                                   </ul>
                                 </div>
                                 <div className="course__description-list mb-45">
-                                  <h4>What you will learn?</h4>
+                                  {(course?.what_you_will_learn_point?.length >= 1 || course?.What_you_will_learn) && <h4>What you will learn?</h4>}
                                   <ul>
                                     {course?.what_you_will_learn_point?.map(
                                       (item) => {
@@ -258,11 +264,6 @@ function CourseDetailsMain() {
                                 </div>
                               </>
                             )}
-
-                            <div className="course__description-list mb-45">
-                              {/* <h4>Assessment</h4> */}
-                              <p>{course?.assessment}</p>
-                            </div>
 
                             <div className="course__description-list mb-45 course-head-center">
                               <h4>Course Duration</h4>
