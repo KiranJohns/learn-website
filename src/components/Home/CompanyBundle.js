@@ -6,7 +6,8 @@ import BasicExample from "../About/button1";
 import fetchData from "../../axios";
 import Button from "react-bootstrap/Button";
 import { Suspense } from "react";
-import Spinner from 'react-bootstrap/Spinner';
+import Spinner from "react-bootstrap/Spinner";
+import { jwtDecode } from "jwt-decode";
 
 const customStyles = {
   headRow: {
@@ -39,24 +40,42 @@ const CompanyBundle = () => {
   const [records, setRecords] = useState([]);
   const [filterRecords, setFilterRecords] = useState([]);
 
-  const handleFilter = useCallback((event) => {
-    const newData = filterRecords.filter((row) =>
-      row.name.toLowerCase().includes(event.target.value.toLowerCase())
-    );
-    setRecords(newData);
-  }, [filterRecords]);
+  const [user, setUser] = useState(() => {
+    let token = localStorage.getItem(`learnforcare_access`);
+    return jwtDecode(token);
+  });
+
+  const handleFilter = useCallback(
+    (event) => {
+      const newData = filterRecords.filter((row) =>
+        row.name.toLowerCase().includes(event.target.value.toLowerCase())
+      );
+      setRecords(newData);
+    },
+    [filterRecords]
+  );
 
   useEffect(() => {
     const fetchDataAsync = async () => {
       let makeRequest = fetchData();
 
       try {
-        const onFoingRes = await makeRequest("GET", "/bundle/get-on-going-bundles");
+        const onFoingRes = await makeRequest(
+          "GET",
+          "/bundle/get-on-going-bundles"
+        );
+        let assignedRes = await makeRequest(
+          "GET",
+          "/info/get-assigned-bundles-for-company"
+        );
         console.clear();
-        const newRes = [...onFoingRes.data.response];
-        setRecords(newRes?.filter((item) => item.course_count >= 1).reverse());
+        const newRes = [
+          ...assignedRes.data.response,
+          ...onFoingRes.data.response,
+        ];
+        setRecords(newRes?.filter((item) => (item.course_count >= 1 && item.owner == user.id)).reverse());
         // setFilterRecords(assignedRes.data); // Assuming this is correct, please double-check
-        setPending(false)
+        setPending(false);
       } catch (err) {
         console.log(err);
       }
@@ -83,9 +102,6 @@ const CompanyBundle = () => {
 
   const [pending, setPending] = React.useState(true);
 
-
-
-
   const columns = [
     {
       name: "NO",
@@ -101,14 +117,7 @@ const CompanyBundle = () => {
     },
     {
       name: "validity",
-      selector: (row) => {
-        let date = new Date(row.validity)
-          .toLocaleDateString()
-          .split("/")
-          .map((d) => (d.length <= 1 ? "0" + d : d));
-        let newDate = `${date[1]}/${date[0]}/${date[2]}`;
-        return newDate;
-      },
+      selector: (row) => row.validity,
       center: true,
     },
     {
@@ -122,7 +131,7 @@ const CompanyBundle = () => {
         <a
           className="btn btn-success"
           style={{
-            width: '7rem'
+            width: "7rem",
           }}
           onClick={() => {
             if (row?.progress) {
@@ -178,14 +187,14 @@ const CompanyBundle = () => {
             </div>
             <Suspense fallback={<Loading />}>
               <DataTable
-
-                  progressPending={pending}
-              progressComponent={
-                pending ? 
-                (<div style={{ padding: "1rem" }}>
-                  <Spinner animation="border" variant="primary" />
-                </div>) : (null)
-              }
+                progressPending={pending}
+                progressComponent={
+                  pending ? (
+                    <div style={{ padding: "1rem" }}>
+                      <Spinner animation="border" variant="primary" />
+                    </div>
+                  ) : null
+                }
                 noDataComponent={" "}
                 columns={columns}
                 data={records}
@@ -202,7 +211,6 @@ const CompanyBundle = () => {
 };
 
 export default CompanyBundle;
-
 
 function Loading() {
   return <h2>🌀 Loading...</h2>;

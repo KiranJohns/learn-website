@@ -76,7 +76,7 @@ const CompAssignCourse = () => {
 
   const makeRequest = fetchData();
 
-  useEffect(async () => { 
+  useEffect(() => { 
     getData();
   }, []);
 
@@ -97,7 +97,6 @@ const CompAssignCourse = () => {
           (item) => item?.owner != user?.id
         );
         let resArr = newRes?.reverse();
-        console.log(pending);
         console.log(resArr);
         setRecords(resArr);
       })
@@ -124,23 +123,42 @@ const CompAssignCourse = () => {
       });
   }
 
-  function selfAssignToCompany() {
+  function selfAssign() {
+    console.log("hi ");
     let form = new FormData();
-    form.append("type", assignData.course_id);
-    form.append("count", id);
-    form.append("user_id", assignData.count);
-    form.append("bundle_id", assignData.count);
+    form.append("id", assignData.course_id);
+    form.append("from", from == "purchased" ? "company-purchased" : "company-assigned");
+    form.append("count", 1);
 
-    makeRequest("POST", "/info/assign-course-or-bundle", form)
+    makeRequest("POST", "/info/manager-self-assign-course", form)
       .then((res) => {
         getData();
+        openModal();
         console.log(res);
-        toast.success("Course Assigned");
+        toast("Bundle Assigned");
       })
       .catch((err) => {
         console.log(err);
       });
   }
+
+  // function selfAssignToCompany() {
+  //   let form = new FormData();
+  //   form.append("type", assignData.course_id);
+  //   form.append("count", id);
+  //   form.append("user_id", assignData.count);
+  //   form.append("bundle_id", assignData.count);
+
+  //   makeRequest("POST", "/info/assign-course-or-bundle", form)
+  //     .then((res) => {
+  //       getData();
+  //       console.log(res);
+  //       toast.success("Course Assigned");
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }
 
   function assignCourseToManager(id) {
     // setLoading(true);
@@ -243,28 +261,28 @@ const CompAssignCourse = () => {
       });
   }
 
-  function selfAssign() {
-    console.log("from self assigned ", from);
-    let form = new FormData();
-    form.append("id", assignData.course_id);
-    form.append("count", 1);
-    form.append("from", from);
-    // setLoading(true);
+  // function selfAssign() {
+  //   console.log("from self assigned ", from);
+  //   let form = new FormData();
+  //   form.append("id", assignData.course_id);
+  //   form.append("count", 1);
+  //   form.append("from", from);
+  //   // setLoading(true);
 
-    makeRequest("POST", "/info/manager-self-assign-course", form)
-      .then((res) => {
-        getData();
-        console.log(res);
-        // setLoading(true);
-        openModal();
-        toast("Course Assigned");
-      })
-      .catch((err) => {
-        setLoading(false);
+  //   makeRequest("POST", "/info/manager-self-assign-course", form)
+  //     .then((res) => {
+  //       getData();
+  //       console.log(res);
+  //       // setLoading(true);
+  //       openModal();
+  //       toast("Course Assigned");
+  //     })
+  //     .catch((err) => {
+  //       setLoading(false);
 
-        console.log(err);
-      });
-  }
+  //       console.log(err);
+  //     });
+  // }
   const columns = [
     {
       name: "No",
