@@ -452,7 +452,7 @@ class DashTest extends Component {
                   /> */}
                 </div>
                 <div>
-                  <Suspense fallback={<Loading />}>
+             
                     <DataTable
                      noDataComponent={" "}
                       persistTableHead={true}
@@ -469,7 +469,7 @@ class DashTest extends Component {
                       customStyles={customStyles}
                       pagination
                     />
-                  </Suspense>
+                
                 </div>
               </div>
             </div>
@@ -481,9 +481,7 @@ class DashTest extends Component {
 }
 export default DashTest;
 
-function Loading() {
-  return <h2>🌀 Loading...</h2>;
-}
+
 {
   /* <div>  
                 <Card style={{ width: '18rem', marginTop:'50px'}}>

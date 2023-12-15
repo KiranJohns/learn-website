@@ -58,10 +58,10 @@ const CompInvoice = () => {
 
   const columns = [
     {
-      name: "NO",
+      name: "Sl NO",
       selector: (row, idx) => ++idx,
       center: true,
-      width: "150px",
+      width: "130px",
     },
     {
       name: "Date",
@@ -132,7 +132,7 @@ const CompInvoice = () => {
               data={records}
               customStyles={customStyles}
               pagination
-              selectableRows
+              
               noDataComponent={" "}
             />
           </div>
