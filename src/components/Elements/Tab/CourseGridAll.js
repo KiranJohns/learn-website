@@ -227,7 +227,7 @@ export default () => {
                     background: "#fff",
                     fontWeght: "500",
                   }}
-                  value="Child Care Courses"
+                  value="Child Care Course"
                 >
                   Child Care Courses
                 </option>
