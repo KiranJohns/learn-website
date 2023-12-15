@@ -467,7 +467,10 @@ const Header = () => {
                           </svg>
                         </div>
                         <span className="cart-item">
-                          {cartCount && cartCount}
+                          {/* {cartCount && cartCount} */}
+                          {cartCount && location.pathname == "/success"
+                          ? "0"
+                          : cartCount}
                         </span>
                       </span>
                     </div>
