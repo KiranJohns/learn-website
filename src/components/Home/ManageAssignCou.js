@@ -10,7 +10,8 @@ import Modal from "react-responsive-modal";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Tab } from "react-bootstrap";
-import Spinner from 'react-bootstrap/Spinner';
+import Spinner from "react-bootstrap/Spinner";
+import { jwtDecode } from "jwt-decode";
 
 const customStyles = {
   headRow: {
@@ -33,8 +34,6 @@ const customStyles = {
   },
 };
 
-
-
 const ManagerAssignCourse = () => {
   const [pending, setPending] = React.useState(true);
   const [from, setFrom] = useState("");
@@ -54,6 +53,10 @@ const ManagerAssignCourse = () => {
     userId: null,
     count: null,
   });
+  const [user, setUser] = useState(() => {
+    let token = localStorage.getItem(`learnforcare_access`);
+    return jwtDecode(token);
+  });
   const [selectUserForAssignCourse, setSelectUserForAssignCourse] =
     useState("individual");
 
@@ -72,10 +75,12 @@ const ManagerAssignCourse = () => {
       .then((res) => {
         console.log(res[0].data.response);
         console.log(res[1].data.response);
-        let newRes = [...res[0].data.response, ...res[1].data.response].filter((item) => item?.course_count >= 1);
+        let newRes = [...res[0].data.response, ...res[1].data.response].filter(
+          (item) => item?.course_count >= 1
+        );
         console.log(newRes);
         setRecords(newRes);
-        setPending(false)
+        setPending(false);
       })
       .catch((err) => {
         console.log(err);
@@ -95,21 +100,19 @@ const ManagerAssignCourse = () => {
     getData();
   }, []);
 
-
-
   function assignCourseToManagerIndividual(id) {
     let form = new FormData();
     form.append("course_id", assignData.course_id);
     form.append("userId", id);
     form.append("count", 1);
 
-    console.log('course_id ', 'from');
-    console.log('id ',id);
+    console.log("course_id ", "from");
+    console.log("id ", id);
     console.log(1);
     makeRequest("POST", "/info/assign-course-to-manager-individual", form)
       .then((res) => {
         getData();
-        setSelectedBundleCount(prev => --prev)
+        setSelectedBundleCount((prev) => --prev);
         console.log(res);
         toast("Course Assigned");
       })
@@ -124,8 +127,8 @@ const ManagerAssignCourse = () => {
     form.append("userId", id);
     form.append("count", 1);
 
-    console.log('from ',assignData.course_id);
-    console.log('id ',id);
+    console.log("from ", assignData.course_id);
+    console.log("id ", id);
     console.log(1);
     makeRequest(
       "POST",
@@ -134,9 +137,27 @@ const ManagerAssignCourse = () => {
     )
       .then((res) => {
         getData();
-        setSelectedBundleCount(prev => --prev)
+        setSelectedBundleCount((prev) => --prev);
         console.log(res);
         toast("course assigned");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  function selfAssign() {
+    let form = new FormData();
+    form.append("id", assignData.course_id);
+    form.append("from", from == "purchased" ? "company-purchased" : "company-assigned");
+    form.append("count", 1);
+
+    makeRequest("POST", "/info/manager-self-assign-course", form)
+      .then((res) => {
+        getData();
+        openModal();
+        console.log(res);
+        toast("Bundle Assigned");
       })
       .catch((err) => {
         console.log(err);
@@ -147,38 +168,41 @@ const ManagerAssignCourse = () => {
     {
       name: "No",
       selector: (row, idx) => ++idx,
-      center:true,
-      width:"70px",
+      center: true,
+      width: "70px",
     },
     {
       name: "course",
       selector: (row) => row.name || row.Name,
       sortable: true,
-      center:true,
-      width:"400px",
+      center: true,
+      width: "400px",
     },
     {
       name: "validity",
       selector: (row) => {
-        let newDt = new Date(row.validity).toLocaleDateString().split('/').map(d=> d.length <= 1 ? '0'+d : d )
-         return newDt[1]+'/'+newDt[0] +'/'+newDt[2]
-        },
-      center:true,
+        let newDt = new Date(row.validity)
+          .toLocaleDateString()
+          .split("/")
+          .map((d) => (d.length <= 1 ? "0" + d : d));
+        return newDt[1] + "/" + newDt[0] + "/" + newDt[2];
+      },
+      center: true,
     },
     {
       name: "count",
       selector: (row) => row.course_count,
-      center:true,
+      center: true,
     },
     {
       name: "action",
-      center:true,
+      center: true,
       selector: (row) => (
         <a
           className="btn btn-primary"
           onClick={() => {
             openModal();
-            setCourseName(row.Name || row.name)
+            setCourseName(row.Name || row.name);
             console.log("row", row.id);
             setAssignData((prev) => {
               return {
@@ -204,7 +228,10 @@ const ManagerAssignCourse = () => {
     <div className="">
       <ToastContainer />
       <div className="dash-shadow">
-        <div style={{position:"relative"}} className=" row g-3  min-vh-100  d-flex justify-content-center mt-20">
+        <div
+          style={{ position: "relative" }}
+          className=" row g-3  min-vh-100  d-flex justify-content-center mt-20"
+        >
           <h2
             style={{
               color: "#212450",
@@ -230,17 +257,31 @@ const ManagerAssignCourse = () => {
                 });
               }}
             >
-              <div style={{ maxHeight: "220rem" }} className="dash-shadow p-3 mt-4 ">
-              <div style={{display:'flex', justifyContent:"space-between"}}>
-                <h5 style={{ color: "#212a50",marginLeft:"1rem" }}>{courseName}</h5>{" "}
-                <h5 style={{ color: "#212a50",marginRight:"1rem" }}>Available Course Count:{selectedBundleCount}</h5>
+              <div
+                style={{ maxHeight: "220rem" }}
+                className="dash-shadow p-3 mt-4 "
+              >
+                <div
+                  style={{ display: "flex", justifyContent: "space-between" }}
+                >
+                  <h5 style={{ color: "#212a50", marginLeft: "1rem" }}>
+                    {courseName}
+                  </h5>{" "}
+                  <h5 style={{ color: "#212a50", marginRight: "1rem" }}>
+                    Available Course Count:{selectedBundleCount}
+                  </h5>
                 </div>
                 <div>
                   <div className="form-control dash-shadow d-flex gap-3 p-3">
                     <div className="form-group">
-                      <label style={{ fontSize: ".66rem" }} for="exampleInputEmail1">Assign Course Count</label>
+                      <label
+                        style={{ fontSize: ".66rem" }}
+                        for="exampleInputEmail1"
+                      >
+                        Assign Course Count
+                      </label>
                       <input
-                        style={{ width: '5.9rem',textAlign:"center" }}
+                        style={{ width: "5.9rem", textAlign: "center" }}
                         disabled
                         type="text"
                         className="form-control"
@@ -249,48 +290,89 @@ const ManagerAssignCourse = () => {
                         placeholder="1"
                       />
                     </div>
-                    <div style={{marginLeft:"16rem"}} className="form-group">
-                    <label style={{visibility:'hidden'}} for="exampleInputEmail1">Search</label>
-                    <div className="p-relative d-inline ">
-                      <input
-                       style={{ width: "18rem" }}
-                        onChange={(e) =>
-                          setFilteredCompanyIndividuals(
-                            companyIndividuals.filter((item) =>
-                              item.first_name
-                                .toLocaleLowerCase()
-                                .startsWith(e.target.value.toLocaleLowerCase())
+                    <div style={{ marginLeft: "16rem" }} className="form-group">
+                      <label
+                        style={{ visibility: "hidden" }}
+                        for="exampleInputEmail1"
+                      >
+                        Search
+                      </label>
+                      <div className="p-relative d-inline ">
+                        <input
+                          style={{ width: "18rem" }}
+                          onChange={(e) =>
+                            setFilteredCompanyIndividuals(
+                              companyIndividuals.filter((item) =>
+                                item.first_name
+                                  .toLocaleLowerCase()
+                                  .startsWith(
+                                    e.target.value.toLocaleLowerCase()
+                                  )
+                              )
                             )
-                          )
-                        }
-                        type="text"
-                        className="form-control"
-                        id="exampleInputEmail1"
-                        aria-describedby="emailHelp"
-                        placeholder="enter user name"
-                      />
-                      <i style={{ position: 'absolute', left: "13.3rem", top: "2.2rem" }} className="bi bi-search"></i>
+                          }
+                          type="text"
+                          className="form-control"
+                          id="exampleInputEmail1"
+                          aria-describedby="emailHelp"
+                          placeholder="enter user name"
+                        />
+                        <i
+                          style={{
+                            position: "absolute",
+                            left: "13.3rem",
+                            top: "2.2rem",
+                          }}
+                          className="bi bi-search"
+                        ></i>
                       </div>
                     </div>
                   </div>
                   <div className="list-group bg-white">
-                      <ul classNAm="list-group">
-
-                      <li style={{background:"#212a50", fontWeight:"700", borderRadius:'.3rem',color:'white'}} class="list-group-item my-2  d-flex justify-content-between">
-                          <span style={{ width: "fit-content", marginLeft: '.7rem' }}>
-                            Name
-                          </span>
-                          <span style={{ textAlign: 'center' }}>Email</span>
-                          <span
-                            style={{ width: "fit-content", marginRight: "1rem" }}
-                          >
-                            Action
-                          </span>
-                        </li>
-                      </ul>
-                    </div>
+                    <ul classNAm="list-group">
+                      <li
+                        style={{
+                          background: "#212a50",
+                          fontWeight: "700",
+                          borderRadius: ".3rem",
+                          color: "white",
+                        }}
+                        class="list-group-item my-2  d-flex justify-content-between"
+                      >
+                        <span
+                          style={{ width: "fit-content", marginLeft: ".7rem" }}
+                        >
+                          Name
+                        </span>
+                        <span style={{ textAlign: "center" }}>Email</span>
+                        <span
+                          style={{ width: "fit-content", marginRight: "1rem" }}
+                        >
+                          Action
+                        </span>
+                      </li>
+                    </ul>
+                  </div>
                   <div className="list-group bg-white">
                     <ul class="list-group">
+                      <li class="list-group-item bg-white text-black d-flex justify-content-between">
+                        <span style={{ width: "fit-content" }}>
+                          {user.first_name + " " + user.last_name}
+                        </span>
+                        <span>{user.email}</span>
+                        <span
+                          onClick={() => {
+                            selfAssign();
+                          }}
+                          style={{
+                            width: "fit-content",
+                            margin: "0rem .1rem",
+                          }}
+                          className="btn btn-success"
+                        >
+                          Assign
+                        </span>
+                      </li>
                       {filteredCompanyIndividuals &&
                         filteredCompanyIndividuals.map((item) => {
                           return (
@@ -304,7 +386,9 @@ const ManagerAssignCourse = () => {
                                   if (from == "purchased") {
                                     assignCourseToManagerIndividual(item.id);
                                   } else {
-                                    assignCourseToManagerIndividualFromAssigned(item.id);
+                                    assignCourseToManagerIndividualFromAssigned(
+                                      item.id
+                                    );
                                   }
                                 }}
                                 style={{ width: "fit-content" }}
@@ -339,15 +423,16 @@ const ManagerAssignCourse = () => {
               </form>
             </div>
             <DataTable
-                    progressPending={pending}
-                    progressComponent={
-                      pending ? 
-                       (<div style={{ padding: "1rem" }}>
+              progressPending={pending}
+              progressComponent={
+                pending ? (
+                  <div style={{ padding: "1rem" }}>
                     <Spinner animation="border" variant="primary" />
-                      </div>) : (null)
-                        }
+                  </div>
+                ) : null
+              }
               noDataComponent={" "}
-             persistTableHead={true}
+              persistTableHead={true}
               columns={columns}
               data={
                 searchString
@@ -359,7 +444,7 @@ const ManagerAssignCourse = () => {
                   : records
               }
               customStyles={customStyles}
-              pagination     
+              pagination
             />
           </div>
         </div>{" "}
