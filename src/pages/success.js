@@ -29,7 +29,7 @@ if(localStorage.getItem('reload')){
 
   return (
     <>
-    <div style={{position:"relative"}}>
+    <div >
       <NoSSR>
         <HeaderOpaque />
       </NoSSR>
@@ -39,7 +39,7 @@ if(localStorage.getItem('reload')){
         </div>
       </NoSSR> */}
       <NoSSR>
-        <div  style={{opacity:"-1", position:"absolute",top:"0",left:"0" }}>
+        <div  style={{visibility:'hidden'}}>
           <Header />
         </div>
       </NoSSR>
