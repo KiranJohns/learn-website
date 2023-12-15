@@ -11,6 +11,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Tab } from "react-bootstrap";
 import Spinner from "react-bootstrap/Spinner";
+import { jwtDecode } from "jwt-decode";
 
 const customStyles = {
   headRow: {
@@ -46,6 +47,10 @@ const ManAssignBund = () => {
   const [filteredManagers, setFilteredManagers] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [selectedBundleCount, setSelectedBundleCount] = useState(0);
+  const [user, setUser] = useState(() => {
+    let token = localStorage.getItem(`learnforcare_access`);
+    return jwtDecode(token);
+  });
   const [assignData, setAssignData] = useState({
     course_id: null, // purchased course id (purchased course table id)
     userId: null,
@@ -76,7 +81,7 @@ const ManAssignBund = () => {
           .catch((err) => {
             console.log(err);
           });
-          setPending(false)
+        setPending(false);
       })
       .catch((err) => {
         console.log(err);
@@ -126,12 +131,34 @@ const ManAssignBund = () => {
     form.append("count", 1);
     form.append("from_assigned_table", fromAssignedTable);
 
-    console.log('from manager individual');
+    console.log("from manager individual");
     makeRequest("POST", "/info/assign-course-to-manager-individual", form)
       .then((res) => {
         getData();
         console.log(res);
         toast("course assigned");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  function selfAssign() {
+    console.log("hi ");
+    let form = new FormData();
+    form.append("id", assignData.course_id);
+    form.append(
+      "from",
+      fromAssignedTable ? "manager-assigned" : "manager-purchased"
+    );
+    form.append("count", 1);
+
+    makeRequest("POST", "/info/manager-self-assign-course", form)
+      .then((res) => {
+        getData();
+        openModal();
+        console.log(res);
+        toast("Bundle Assigned");
       })
       .catch((err) => {
         console.log(err);
@@ -176,7 +203,7 @@ const ManAssignBund = () => {
           className="btn btn-primary"
           onClick={() => {
             openModal();
-            setCourseName(row.bundle_name)
+            setCourseName(row.bundle_name);
             setAssignData((prev) => {
               return {
                 ...prev,
@@ -202,7 +229,10 @@ const ManAssignBund = () => {
     <div className="">
       <ToastContainer />
       <div className="dash-shadow">
-        <div style={{position:'relative'}} className=" row g-3  min-vh-100  d-flex justify-content-center mt-20">
+        <div
+          style={{ position: "relative" }}
+          className=" row g-3  min-vh-100  d-flex justify-content-center mt-20"
+        >
           <h2
             style={{
               color: "#212450",
@@ -232,19 +262,24 @@ const ManAssignBund = () => {
                 style={{ maxHeight: "220rem" }}
                 className="dash-shadow p-3 mt-4 "
               >
-                  <div style={{display:'flex', justifyContent:"space-between"}}>
-                <h5 style={{ color: "#212a50",marginLeft:"1rem" }}>{courseName}</h5>{" "}
-                <h5 style={{ color: "#212a50",marginRight:"1rem" }}>Available Course Count:{}</h5>
+                <div
+                  style={{ display: "flex", justifyContent: "space-between" }}
+                >
+                  <h5 style={{ color: "#212a50", marginLeft: "1rem" }}>
+                    {courseName}
+                  </h5>{" "}
+                  <h5 style={{ color: "#212a50", marginRight: "1rem" }}>
+                    Available Course Count:{}
+                  </h5>
                 </div>
                 <div>
-                    
                   <div className="form-control dash-shadow d-flex gap-3 p-3">
                     <div className="form-group">
                       <label
                         style={{ fontSize: ".66rem" }}
                         for="exampleInputEmail1"
                       >
-                       Assign Bundle Count
+                        Assign Bundle Count
                       </label>
                       <input
                         style={{ width: "5.9rem", textAlign: "center" }}
@@ -321,6 +356,24 @@ const ManAssignBund = () => {
                   </div>
                   <div className="list-group bg-white">
                     <ul class="list-group">
+                      <li class="list-group-item bg-white text-black d-flex justify-content-between">
+                        <span style={{ width: "fit-content" }}>
+                          {user.first_name + " " + user.last_name}
+                        </span>
+                        <span>{user.email}</span>
+                        <span
+                          onClick={() => {
+                            selfAssign();
+                          }}
+                          style={{
+                            width: "fit-content",
+                            margin: "0rem .1rem",
+                          }}
+                          className="btn btn-success"
+                        >
+                          Assign
+                        </span>
+                      </li>
                       {filteredCompanyIndividuals &&
                         filteredCompanyIndividuals.map((item) => {
                           return (
@@ -374,12 +427,13 @@ const ManAssignBund = () => {
             <DataTable
               progressPending={pending}
               progressComponent={
-                pending ? 
-                (<div style={{ padding: "1rem" }}>
-                  <Spinner animation="border" variant="primary" />
-                </div>) : (null)
+                pending ? (
+                  <div style={{ padding: "1rem" }}>
+                    <Spinner animation="border" variant="primary" />
+                  </div>
+                ) : null
               }
-            noDataComponent={" "}
+              noDataComponent={" "}
               persistTableHead={true}
               columns={columns}
               data={
