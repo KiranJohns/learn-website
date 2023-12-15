@@ -81,7 +81,7 @@ const CompAssignBund = () => {
         getData();
         openModal()
         console.log(res);
-        toast("course assigned");
+        toast("Bundle Assigned");
       })
       .catch((err) => {
         console.log(err);

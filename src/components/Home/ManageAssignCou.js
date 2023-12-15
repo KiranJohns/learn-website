@@ -111,7 +111,7 @@ const ManagerAssignCourse = () => {
         getData();
         setSelectedBundleCount(prev => --prev)
         console.log(res);
-        toast("course assigned");
+        toast("Course Assigned");
       })
       .catch((err) => {
         console.log(err);

@@ -149,7 +149,7 @@ const CompAssignCourse = () => {
       .then((res) => {
         getData();
         console.log(res);
-        toast.success("course assigned");
+        toast.success("Course Assigned");
       })
       .catch((err) => {
         console.log(err);

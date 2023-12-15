@@ -60,7 +60,7 @@ function IndProfile() {
     })
       .then((res) => {
         console.log(res);
-        toast.success("successfully updated");
+        toast.success("Successfully Updated");
       })
       .catch((err) => {
         console.log(err);
