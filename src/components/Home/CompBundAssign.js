@@ -72,7 +72,6 @@ const CompAssignBund = () => {
   };
 
   function selfAssign() {
-    console.log("hi ");
     let form = new FormData();
     form.append("id", assignData.course_id);
     form.append("from", from == "purchased" ? "company-purchased" : "company-assigned");
