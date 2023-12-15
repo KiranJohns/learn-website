@@ -125,7 +125,9 @@ const cartReducer = function (state = initialUserState, action) {
       let product_count = 0;
       state.cart = state.cart.filter((item) => {
         if (item.id == action.payload) {
-          state.totalPrice -= Number(item.price) * Number(item.product_count);
+          console.log(item);
+          console.log(item.price,item.product_count);
+          state.totalPrice -= Number(item.amount);
           product_count = item.product_count;
           return null;
         }
