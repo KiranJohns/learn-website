@@ -124,7 +124,7 @@ const CourseResource = () => {
             </div>
             {course &&
               course?.resource?.map((item, i) => (
-                <div style={{ margin: " 1rem .5rem" }}>
+                <div  style={{ margin: " 1rem .5rem" }}>
                   <p>
                   &#x2022;{" "}
                     <a
