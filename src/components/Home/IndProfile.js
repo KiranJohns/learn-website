@@ -76,7 +76,7 @@ function IndProfile() {
           display: "flex",
           justifyContent: "center",
           marginTop: "",
-          fontSize: 42,
+          fontSize: 36,
         }}
       >
         My Profile

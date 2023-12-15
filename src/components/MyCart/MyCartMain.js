@@ -276,6 +276,21 @@ const MyCart = () => {
                       })}
                   </tbody>
                 </table>
+
+                <div style={{display:'none'}} className="row">
+                  <div className="col-12">
+                  {cart &&
+                      cart.map((item) => {
+                        return (
+                       <div  className="dash-shadow">
+                        <div >
+                          <img style={{height:"10rem", width:"13rem"}} src={item.thumbnail} alt="" />
+                        </div>
+                       </div>
+                        )})}
+                  </div>
+            </div>
+
               </div>
               <div className="row">
                 <div className="col-12">
