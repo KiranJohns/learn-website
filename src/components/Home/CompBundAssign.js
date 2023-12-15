@@ -92,6 +92,7 @@ const CompAssignBund = () => {
 
   async function getData() {
     let purchasedRes = await makeRequest("GET", "/info/get-purchased-bundles");
+
     let assignedRes = await makeRequest(
       "GET",
       "/info/get-assigned-bundles-for-company"
@@ -100,11 +101,10 @@ const CompAssignBund = () => {
       .then((res) => {
         let newRes = [
           ...res[0].data.response,
-          ...res[1].data.response.filter((item) => item.owner != user.id),
+          ...res[1].data.response,
         ]
           .filter((item) => item.course_count >= 1)
           .reverse();
-        console.log(newRes);
         setRecords(newRes);
         setPending(false);
       })
