@@ -58,7 +58,7 @@ const CompInvoice = () => {
 
   const columns = [
     {
-      name: "NO",
+      name: "Sl NO",
       selector: (row, idx) => ++idx,
       center: true,
       width: "130px",
