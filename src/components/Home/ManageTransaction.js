@@ -57,23 +57,25 @@ const ManTransaction = () => {
 
   const columns = [
     {
-      name: "NO",
+      name: "SL",
       selector: (row, idx) => ++idx,
       center: true,
       width: "100px",
     },
     {
+      name: "User",
+      selector: (row, idx) => row.first_name.concat(" ",row.last_name),
+      center: true,
+      width: "100px",
+    },
+    {
       name: "Date",
-      selector: (row) => new Date(row.date).toLocaleDateString(),
+      selector: (row) => row.date,
       center: true,
     },
     {
       name: "Time",
-      selector: (row) =>
-        new Date(row.date).toLocaleTimeString("en-GB", {
-          timeZone: "Europe/London",
-          hour12: true,
-        }),
+      selector: (row) => row.time,
       center: true,
       sortable: true,
     },
