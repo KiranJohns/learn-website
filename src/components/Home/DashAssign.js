@@ -18,7 +18,6 @@ import { jwtDecode } from "jwt-decode";
 import Spinner from "react-bootstrap/Spinner";
 import { Suspense } from "react";
 
-
 const customStyles = {
   headRow: {
     style: {
@@ -42,12 +41,8 @@ const customStyles = {
   },
 };
 
-
-
-
 const CompAssignCourse = () => {
   const [pending, setPending] = React.useState(true);
-	
 
   const [records, setRecords] = useState([]);
   const [user, setUser] = useState(() => {
@@ -79,10 +74,13 @@ const CompAssignCourse = () => {
   };
   const [key, setKey] = useState("individual");
 
-
   const makeRequest = fetchData();
 
-  useEffect(async() => {
+  useEffect(async () => { 
+    getData();
+  }, []);
+
+  async function getData() {
     console.clear();
     let purchasedRes = await makeRequest(
       "GET",
@@ -92,15 +90,14 @@ const CompAssignCourse = () => {
     Promise.all([purchasedRes, assignedRes])
       .then((res) => {
         console.log(pending);
-        setPending(false)
+        setPending(false);
         // console.log(res[0].data.response);
         // console.log(res[1].data.response);
         let newRes = [...res[0].data.response, ...res[1].data.response].filter(
-     
           (item) => item?.owner != user?.id
         );
         let resArr = newRes?.reverse();
-          console.log(pending);
+        console.log(pending);
         console.log(resArr);
         setRecords(resArr);
       })
@@ -125,18 +122,7 @@ const CompAssignCourse = () => {
       .catch((err) => {
         console.log(err);
       });
-  
-  
-  }, [])
-  
-
-  async function getData() {
-   
   }
-
- 
-
-
 
   function selfAssignToCompany() {
     let form = new FormData();
@@ -183,13 +169,14 @@ const CompAssignCourse = () => {
   function assignCourseToManagerIndividual(id) {
     let form = new FormData();
 
+    console.log("from assigned");
     form.append("course_id", assignData.course_id);
     form.append("userId", id);
     form.append("count", 1);
     form.append("assigned", from == "assigned" ? true : false);
 
-    console.log('from ', from);
-    console.log('course_id', from);
+    console.log("from ", from);
+    console.log("course_id", from);
     makeRequest("POST", "/info/assign-course-to-manager-individual", form) // purchased
       .then((res) => {
         getData();
@@ -239,7 +226,7 @@ const CompAssignCourse = () => {
     form.append("userId", id);
     form.append("count", parseInt(assignData.count));
     // setLoading(true);
-    console.log('assignData.count ',assignData.count);
+    console.log("assignData.count ", assignData.count);
 
     makeRequest("POST", "/info/assign-course-to-manager-from-assigned", form)
       .then((res) => {
@@ -381,9 +368,15 @@ const CompAssignCourse = () => {
                 className="dash-shadow p-3 m-3"
                 style={{ maxHeight: "200rem" }}
               >
-                <div style={{display:'flex', justifyContent:"space-between"}}>
-                <h5 style={{ color: "#212a50",marginLeft:"1rem" }}>{courseName}</h5>{" "}
-                <h5 style={{ color: "#212a50",marginRight:"1rem" }}>Available Course Count:{selectedBundleCount}</h5>
+                <div
+                  style={{ display: "flex", justifyContent: "space-between" }}
+                >
+                  <h5 style={{ color: "#212a50", marginLeft: "1rem" }}>
+                    {courseName}
+                  </h5>{" "}
+                  <h5 style={{ color: "#212a50", marginRight: "1rem" }}>
+                    Available Course Count:{selectedBundleCount}
+                  </h5>
                 </div>
                 {/*course name */}
                 <Tabs
@@ -400,7 +393,7 @@ const CompAssignCourse = () => {
                             style={{ fontSize: ".65rem" }}
                             for="exampleInputEmail1"
                           >
-                          Assign Course Count
+                            Assign Course Count
                           </label>
                           <input
                             style={{ width: "5.9rem", textAlign: "center" }}
@@ -553,7 +546,7 @@ const CompAssignCourse = () => {
                             style={{ fontSize: ".65rem" }}
                             for="exampleInputEmail1"
                           >
-                           Assign Course Count
+                            Assign Course Count
                           </label>
                           <input
                             style={{ width: "5.9rem", textAlign: "center" }}
@@ -936,32 +929,31 @@ const CompAssignCourse = () => {
               </form>
             </div>
             <Suspense fallback={<Loading />}>
-       
-     
-            <DataTable
-              progressPending={pending}
-              progressComponent={
-                pending ? 
-                (<div style={{ padding: "1rem" }}>
-                  <Spinner animation="border" variant="primary" />
-                </div>) : (null)
-              }
-              persistTableHead={true}
-              noDataComponent={" "}
-              columns={columns}
-              data={
-                searchString
-                  ? records.filter((item) =>
-                      item.name
-                        .toLowerCase()
-                        .includes(searchString.toLowerCase())
-                    )
-                  : records
-              }
-              customStyles={customStyles}
-              pagination
-            />
-             </Suspense>
+              <DataTable
+                progressPending={pending}
+                progressComponent={
+                  pending ? (
+                    <div style={{ padding: "1rem" }}>
+                      <Spinner animation="border" variant="primary" />
+                    </div>
+                  ) : null
+                }
+                persistTableHead={true}
+                noDataComponent={" "}
+                columns={columns}
+                data={
+                  searchString
+                    ? records.filter((item) =>
+                        item.name
+                          .toLowerCase()
+                          .includes(searchString.toLowerCase())
+                      )
+                    : records
+                }
+                customStyles={customStyles}
+                pagination
+              />
+            </Suspense>
           </div>
         </div>{" "}
       </div>
