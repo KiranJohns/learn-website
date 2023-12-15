@@ -51,10 +51,9 @@ const CompanyBundle = () => {
       let makeRequest = fetchData();
 
       try {
-        const assignedRes = await makeRequest("GET", "/info/get-assigned-bundles-for-company");
         const onFoingRes = await makeRequest("GET", "/bundle/get-on-going-bundles");
         console.clear();
-        const newRes = [...assignedRes.data.response, ...onFoingRes.data.response];
+        const newRes = [...onFoingRes.data.response];
         setRecords(newRes?.filter((item) => item.course_count >= 1).reverse());
         setFilterRecords(assignedRes.data); // Assuming this is correct, please double-check
         setPending(false)

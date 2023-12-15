@@ -21,7 +21,7 @@ export default () => {
     makeRequest("GET", "/course/get-all-course")
       .then((res) => {
         console.log("course ", res.data.response);
-        setCourse(res.data.response);
+        setCourse(res.data.response.slice(0, 8));
       })
       .catch((err) => {
         console.log(err);
@@ -60,10 +60,9 @@ export default () => {
             className="col-12"
           >
             <marquee
-              style={{ color: "#212a50", fontSize: "19px", fontWeight:"600" }}
+              style={{ color: "#212a50", fontSize: "19px", fontWeight: "600" }}
               scrollamount="10"
             >
-              
               {coupon.text[0]}{" "}
               <span className="animated-text">{coupon.highLight} </span>{" "}
               {coupon.text[1]}{" "}
@@ -108,7 +107,7 @@ export default () => {
           </div>
           <TabPanel>
             <div className="row">
-              {course.map((item) => {
+              {course.map((item, idx) => {
                 return <CourseCard item={item} />;
               })}
             </div>
