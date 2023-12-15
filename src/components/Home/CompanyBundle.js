@@ -55,7 +55,7 @@ const CompanyBundle = () => {
         console.clear();
         const newRes = [...onFoingRes.data.response];
         setRecords(newRes?.filter((item) => item.course_count >= 1).reverse());
-        setFilterRecords(assignedRes.data); // Assuming this is correct, please double-check
+        // setFilterRecords(assignedRes.data); // Assuming this is correct, please double-check
         setPending(false)
       } catch (err) {
         console.log(err);

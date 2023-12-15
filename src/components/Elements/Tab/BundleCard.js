@@ -62,6 +62,7 @@ function BundleCard({ item }) {
   }
 
   function addToCart(id) {
+    console.log('bundle id ', id);
     console.log(fakeCount, id);
     const data = new FormData();
     data.append("course", JSON.stringify([{ count: fakeCount, id: id }]));

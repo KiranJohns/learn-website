@@ -103,8 +103,9 @@ const CompAssignBund = () => {
           ...res[0].data.response,
           ...res[1].data.response,
         ]
-          .filter((item) => item.course_count >= 1)
           .reverse();
+          console.log(res[0].data.response,
+            res[1].data.response);
         setRecords(newRes);
         setPending(false);
       })
@@ -256,7 +257,6 @@ const CompAssignBund = () => {
           onClick={() => {
             openModal();
             setCourseName(row.bundle_name);
-            console.log("row", row.id);
             setAssignData((prev) => {
               return {
                 ...prev,
