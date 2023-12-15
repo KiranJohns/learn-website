@@ -21,7 +21,6 @@ if(localStorage.getItem('reload')){
     window.location.reload()
   }, 1000);
   localStorage.removeItem("reload");
-
 }
   // forceReload()
   

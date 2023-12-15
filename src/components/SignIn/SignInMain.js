@@ -23,7 +23,7 @@ function SignInMain() {
     e.preventDefault();
     makeRequest("POST", "/auth/forgot-password", { email })
       .then((res) => {
-        toast.info("link sent to your email");
+        toast.info("Link sent to your email");
         console.log(res);
       })
       .catch((err) => {
@@ -195,7 +195,7 @@ function SignInMain() {
                 class="my-4 width-100 btn btn-primary"
                 onClick={handleForgotPassword}
               >
-                submit
+                Submit
               </button>              
             </Link>
             </div>
