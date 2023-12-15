@@ -169,7 +169,7 @@ const CompAssignCourse = () => {
         console.log(res);
         setLoading(false);
         openModal();
-        toast("course assigned");
+        toast("Course Assigned");
       })
       .catch((err) => {
         openModal();
@@ -195,7 +195,7 @@ const CompAssignCourse = () => {
         getData();
         setLoading(false);
         console.log(res);
-        toast("course assigned");
+        toast("Course Assigned");
         openModal();
       })
       .catch((err) => {
@@ -224,7 +224,7 @@ const CompAssignCourse = () => {
         openModal();
         console.log(res);
         setLoading(false);
-        toast("course assigned");
+        toast("Course Assigned");
       })
       .catch((err) => {
         setLoading(false);
@@ -270,7 +270,7 @@ const CompAssignCourse = () => {
         console.log(res);
         // setLoading(true);
         openModal();
-        toast("course assigned");
+        toast("Course Assigned");
       })
       .catch((err) => {
         setLoading(false);
