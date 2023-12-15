@@ -35,7 +35,7 @@ const ManageCreateU = () => {
       phone: Number(userData.phone),
     })
       .then((res) => {
-        toast.success("user created");
+        toast.success("User Created");
       })
       .catch((err) => {
         console.log(err.data);
