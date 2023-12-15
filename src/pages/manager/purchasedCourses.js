@@ -20,7 +20,7 @@ function assignCourse() {
   const [logedIn, setlogedIn] = useState(() => {
     return getUserType();
   });
-  let routes = ["manager"]
+  let routes = ["manager"];
 
   const router = useRouter();
 
@@ -54,13 +54,13 @@ function assignCourse() {
                   <ManageBar />
                 </div>
                 <div className="col-sm col-md-9 bg-white">
-                  <ManagerAssignCourse/>
+                  <ManagerAssignCourse />
                 </div>
               </div>
             </div>
           </main>
         </React.Fragment>
-      )} 
+      )}
     </>
   );
 }

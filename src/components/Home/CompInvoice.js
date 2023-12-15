@@ -58,8 +58,14 @@ const CompInvoice = () => {
 
   const columns = [
     {
-      name: "Sl NO",
+      name: "SL",
       selector: (row, idx) => ++idx,
+      center: true,
+      width: "130px",
+    },
+    {
+      name: "User",
+      selector: (row, idx) => row.first_name.concat(" ",row.last_name),
       center: true,
       width: "130px",
     },
