@@ -451,8 +451,7 @@ class DashTest extends Component {
                     }}
                   /> */}
                 </div>
-                <div>
-             
+                <div>      
                     <DataTable
                      noDataComponent={" "}
                       persistTableHead={true}
@@ -468,8 +467,7 @@ class DashTest extends Component {
                       }
                       customStyles={customStyles}
                       pagination
-                    />
-                
+                    />              
                 </div>
               </div>
             </div>
