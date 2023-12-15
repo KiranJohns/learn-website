@@ -259,7 +259,7 @@ const MyCart = () => {
                               </div>
                             </td>
                             <td className="product-subtotal">
-                              <span className="amount ">£{item.amount}</span>
+                              <span className="amount ">£{parseFloat(item.amount).toFixed(2)}</span>
                             </td>
                             <td className="product-remove">
                               <span onClick={() => removeItem(item.id)}>
@@ -377,7 +377,7 @@ const MyCart = () => {
                           <span
                             style={{ color: "#212a50", fontSize: "1.2rem" }}
                           >
-                            £ {totalPrice}
+                            £ {parseFloat(totalPrice).toFixed(2)}
                           </span>
                           {/* {couponData && <span style={{textDecoration:"line-through",color:`${couponData ? 'red' : 'green'}` }}>£ {totalPrice}</span>} */}
                         </h4>
@@ -411,7 +411,7 @@ const MyCart = () => {
                           <span
                             style={{ color: "#212a50", fontSize: "1.2rem" }}
                           >
-                            £ {offerPrice ? offerPrice : totalPrice}
+                            £ {offerPrice ? parseFloat(offerPrice).toFixed(2) : parseFloat(totalPrice).toFixed(2)}
                           </span>
                           {/* {couponData && <span style={{textDecoration:"line-through",color:`${couponData ? 'red' : 'green'}` }}>£ {totalPrice}</span>} */}
                         </h4>
