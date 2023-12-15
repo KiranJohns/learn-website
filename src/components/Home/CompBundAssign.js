@@ -15,8 +15,7 @@ import Button from "react-bootstrap/Button";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import { jwtDecode } from "jwt-decode";
 import { Suspense } from "react";
-import Spinner from 'react-bootstrap/Spinner';
-
+import Spinner from "react-bootstrap/Spinner";
 
 const customStyles = {
   headRow: {
@@ -58,6 +57,7 @@ const CompAssignBund = () => {
     userId: null,
     count: null,
   });
+  const makeRequest = fetchData();
   const [selectUserForAssignCourse, setSelectUserForAssignCourse] =
     useState("individual");
   const [user, setUser] = useState(() => {
@@ -72,14 +72,16 @@ const CompAssignBund = () => {
   };
 
   function selfAssign() {
+    console.log("hi ");
     let form = new FormData();
     form.append("id", assignData.course_id);
+    form.append("from", "manager-assigned");
     form.append("count", 1);
 
     makeRequest("POST", "/info/manager-self-assign-course", form)
       .then((res) => {
         getData();
-        openModal()
+        openModal();
         console.log(res);
         toast("Bundle Assigned");
       })
@@ -88,12 +90,6 @@ const CompAssignBund = () => {
       });
   }
 
-
-
-
-
-
-  const makeRequest = fetchData();
   async function getData() {
     let purchasedRes = await makeRequest("GET", "/info/get-purchased-bundles");
     let assignedRes = await makeRequest(
@@ -102,12 +98,15 @@ const CompAssignBund = () => {
     );
     Promise.all([purchasedRes, assignedRes])
       .then((res) => {
-        // console.log(res[0].data.response);
-        // console.log(res[1].data.response);
-        let newRes = [...res[0].data.response, ...res[1].data.response.filter((item) => item.owner != user.id)].filter((item) => item.course_count >= 1).reverse();
+        let newRes = [
+          ...res[0].data.response,
+          ...res[1].data.response.filter((item) => item.owner != user.id),
+        ]
+          .filter((item) => item.course_count >= 1)
+          .reverse();
         console.log(newRes);
         setRecords(newRes);
-        setPending(false)
+        setPending(false);
       })
       .catch((err) => {
         console.log(err);
@@ -246,7 +245,7 @@ const CompAssignBund = () => {
     {
       name: "Validity",
       center: true,
-      selector: (row) => row.validity
+      selector: (row) => row.validity,
     },
     {
       name: "action",
@@ -256,7 +255,7 @@ const CompAssignBund = () => {
           className="btn btn-primary"
           onClick={() => {
             openModal();
-            setCourseName(row.bundle_name );
+            setCourseName(row.bundle_name);
             console.log("row", row.id);
             setAssignData((prev) => {
               return {
@@ -295,7 +294,7 @@ const CompAssignBund = () => {
               fontSize: 36,
             }}
           >
-           Purchased Bundle
+            Purchased Bundle
           </h2>
           <div style={{ padding: "", backgroundColor: "" }}>
             <Modal
@@ -316,11 +315,17 @@ const CompAssignBund = () => {
                 className="dash-shadow p-3 m-3"
                 style={{ maxHeight: "220rem" }}
               >
-                <div style={{display:'flex', justifyContent:"space-between"}}>
-                <h5 style={{ color: "#212a50",marginLeft:"1rem" }}>{courseName}</h5>{" "}
-                <h5 style={{ color: "#212a50",marginRight:"1rem" }}>Available Bundle Count:{selectedBundleCount}</h5>
+                <div
+                  style={{ display: "flex", justifyContent: "space-between" }}
+                >
+                  <h5 style={{ color: "#212a50", marginLeft: "1rem" }}>
+                    {courseName}
+                  </h5>{" "}
+                  <h5 style={{ color: "#212a50", marginRight: "1rem" }}>
+                    Available Bundle Count:{selectedBundleCount}
+                  </h5>
                 </div>
-                
+
                 <Tabs
                   id="controlled-tab-example"
                   activeKey={key}
@@ -337,7 +342,7 @@ const CompAssignBund = () => {
                               style={{ fontSize: ".66rem" }}
                               for="exampleInputEmail1"
                             >
-                             Assign Bundle Count
+                              Assign Bundle Count
                             </label>
                             <input
                               style={{ width: "5.9rem", textAlign: "center" }}
@@ -486,7 +491,7 @@ const CompAssignBund = () => {
                             style={{ fontSize: ".66rem" }}
                             for="exampleInputEmail1"
                           >
-                           Assign Bundle Count
+                            Assign Bundle Count
                           </label>
                           <input
                             style={{ width: "5.9rem", textAlign: "center" }}
@@ -644,30 +649,31 @@ const CompAssignBund = () => {
               </form>
             </div>
             <Suspense fallback={<Loading />}>
-            <DataTable
-             progressPending={pending}
-             progressComponent={
-              pending ? 
-              (<div style={{ padding: "1rem" }}>
-                <Spinner animation="border" variant="primary" />
-              </div>) : (null)
-            }
-            noDataComponent={" "}
-              persistTableHead={true}
-              columns={columns}
-              data={
-                searchString
-                  ? records.filter((item) =>
-                      item.name
-                        .toLowerCase()
-                        .includes(searchString.toLowerCase())
-                    )
-                  : records
-              }
-              customStyles={customStyles}
-              pagination
-            />
-             </Suspense>
+              <DataTable
+                progressPending={pending}
+                progressComponent={
+                  pending ? (
+                    <div style={{ padding: "1rem" }}>
+                      <Spinner animation="border" variant="primary" />
+                    </div>
+                  ) : null
+                }
+                noDataComponent={" "}
+                persistTableHead={true}
+                columns={columns}
+                data={
+                  searchString
+                    ? records.filter((item) =>
+                        item.name
+                          .toLowerCase()
+                          .includes(searchString.toLowerCase())
+                      )
+                    : records
+                }
+                customStyles={customStyles}
+                pagination
+              />
+            </Suspense>
           </div>
         </div>{" "}
       </div>
@@ -676,7 +682,6 @@ const CompAssignBund = () => {
 };
 
 export default CompAssignBund;
-
 
 function Loading() {
   return <h2>🌀 Loading...</h2>;
