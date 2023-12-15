@@ -75,7 +75,7 @@ const CompAssignBund = () => {
     console.log("hi ");
     let form = new FormData();
     form.append("id", assignData.course_id);
-    form.append("from", "manager-assigned");
+    form.append("from", from == "purchased" ? "company-purchased" : "company-assigned");
     form.append("count", 1);
 
     makeRequest("POST", "/info/manager-self-assign-course", form)
@@ -102,7 +102,7 @@ const CompAssignBund = () => {
         let newRes = [
           ...res[0].data.response,
           ...res[1].data.response,
-        ]
+        ].filter(item => item.owner != user.id)
           .reverse();
           console.log(res[0].data.response,
             res[1].data.response);
