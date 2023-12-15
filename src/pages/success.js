@@ -1,46 +1,55 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Header from "../components/Layout/Header/Header";
-import Footer from "../components/Layout/Footer/Footer";
 import HeaderSuccess from "../components/Layout/Header/HeaderSuccess";
 import HeaderOpaque from "../components/Layout/Header/HeaderOpaque";
-import SucessLayout from "../components/Common/sucessLayout";
+import SuccessLayout from "../components/Common/sucessLayout";
 import NoSSR from "react-no-ssr";
 import ShopingCart from "../components/Layout/Header/ShopingCart";
 
-class Success extends React.Component {
-  static getInitialProps({ store }) {}
+const Success = () => {
 
-  constructor(props) {
-    super(props);
-  }
+  const [reloadKey, setReloadKey] = useState(0);
 
-  render() {
-    return (
-      <React.Fragment>
-        <NoSSR>
-          <HeaderOpaque />
-        </NoSSR>
-        <NoSSR>
-          <div style={{ visibility: "hidden" }}></div>
-          <HeaderSuccess />
-        </NoSSR>
-        <NoSSR>
-          <div style={{ visibility: "hidden" }}>
-            <Header />
-          </div>
-        </NoSSR>
-        <NoSSR>
-          <div style={{ visibility: "hidden" }}>
-            <ShopingCart />
-          </div>
-        </NoSSR>
+  const forceReload = () => {
+    setReloadKey((prevKey) => prevKey + 1);
+  };
 
-        <NoSSR>
-          <SucessLayout />
-        </NoSSR>
-      </React.Fragment>
-    );
-  }
+  useEffect(() => { 
+    
+if(localStorage.getItem('reload')){
+  setTimeout(() => {
+    window.location.reload()
+  }, 1000);
+  localStorage.removeItem("reload");
 }
+  // forceReload()
+  
+  }, [])
+  
+
+  return (
+    <>
+    <div style={{position:"relative"}}>
+      <NoSSR>
+        <HeaderOpaque />
+      </NoSSR>
+      {/* <NoSSR>
+        <div style={{ visibility: "hidden" }}>
+          <HeaderSuccess />
+        </div>
+      </NoSSR> */}
+      <NoSSR>
+        <div  style={{opacity:"-1", position:"absolute",top:"0",left:"0" }}>
+          <Header />
+        </div>
+      </NoSSR>
+
+      <NoSSR>
+        <SuccessLayout />
+      </NoSSR>
+      </div>
+    </>
+  );
+};
 
 export default Success;
