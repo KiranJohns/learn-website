@@ -21,8 +21,8 @@ const Success = () => {
     
 if(localStorage.getItem('reload')){
   setTimeout(() => {
-    // window.location.reload()
-    router.reload();
+    window.location.reload()
+    // router.reload();
   }, 900);
   localStorage.removeItem("reload");
 }
