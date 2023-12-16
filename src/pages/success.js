@@ -43,7 +43,7 @@ if(localStorage.getItem('reload')){
         </div>
       </NoSSR> */}
       <NoSSR>
-        <div  style={{visibility:'hidden'}}>
+        <div  className="behind-content-background" >
           <Header />
         </div>
       </NoSSR>
