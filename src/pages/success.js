@@ -49,10 +49,16 @@ if(localStorage.getItem('reload')){
       </NoSSR>
 
       <NoSSR>
-        <div  style={{visibility:'hidden'}}>
+        <div className="behind-content-background" >
           <ShopingCart />
         </div>
       </NoSSR>
+      <NoSSR>
+        <div className="behind-content-background">
+          <ShopingCart />
+        </div>
+      </NoSSR>
+
      
       
       <NoSSR>

@@ -285,3 +285,8 @@ display: none;
   font-weight: 600;
   animation: colorChange 5s infinite; /* Change the duration as needed */
 }
+
+.behind-content-background {
+  z-index: -1;
+  /* Add other background properties */
+}
