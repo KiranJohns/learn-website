@@ -47,18 +47,14 @@ if(localStorage.getItem('reload')){
           <Header />
         </div>
       </NoSSR>
-
-      <NoSSR>
+   
         <div className="behind-content-background" >
           <ShopingCart />
         </div>
-      </NoSSR>
-      <NoSSR>
+
         <div className="behind-content-background">
           <MyCart/>
         </div>
-      </NoSSR>
-
      
       
       <NoSSR>
