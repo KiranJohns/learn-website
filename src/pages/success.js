@@ -54,7 +54,7 @@ if(localStorage.getItem('reload')){
         </div>
       </NoSSR>
       <NoSSR>
-        <div  style={{visibility:'hidden'}}>
+        <div  style={{display:'none'}}>
           <MyCart />
         </div>
       </NoSSR>
