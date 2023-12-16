@@ -146,7 +146,7 @@ const CompAssignBund = () => {
         getData();
         console.log(res);
         openModal();
-        toast("course assigned");
+        toast("Bundle Assigned");
       })
       .catch((err) => {
         console.log(err);
@@ -165,7 +165,7 @@ const CompAssignBund = () => {
         getData();
         openModal();
         console.log(res);
-        toast("course assigned");
+        toast("Bundle Assigned");
       })
       .catch((err) => {
         console.log(err);
@@ -188,7 +188,7 @@ const CompAssignBund = () => {
         getData();
         console.log(res);
         openModal();
-        toast("course assigned");
+        toast("Bundle Assigned");
       })
       .catch((err) => {
         console.log(err);
@@ -206,7 +206,7 @@ const CompAssignBund = () => {
       .then((res) => {
         getData();
         console.log(res);
-        toast("course assigned");
+        toast("Bundle Assigned");
         openModal();
       })
       .catch((err) => {
