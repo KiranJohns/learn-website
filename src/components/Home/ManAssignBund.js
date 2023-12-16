@@ -144,7 +144,6 @@ const ManAssignBund = () => {
   }
 
   function selfAssign() {
-    console.log("hi ");
     let form = new FormData();
     form.append("id", assignData.course_id);
     form.append(

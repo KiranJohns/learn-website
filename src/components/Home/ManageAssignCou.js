@@ -75,7 +75,7 @@ const ManagerAssignCourse = () => {
       .then((res) => {
         console.log(res[0].data.response);
         console.log(res[1].data.response);
-        let newRes = [...res[0].data.response, ...res[1].data.response].filter(
+        let newRes = [...res[0].data.response, ...res[1].data.response.filter(item => item.owner != user.id)].filter(
           (item) => item?.course_count >= 1
         );
         console.log(newRes);
@@ -147,9 +147,10 @@ const ManagerAssignCourse = () => {
   }
 
   function selfAssign() {
+    console.log("from ", from);
     let form = new FormData();
     form.append("id", assignData.course_id);
-    form.append("from", from == "purchased" ? "company-purchased" : "company-assigned");
+    form.append("from", from == "purchased" ? "manager-purchased" : "manager-assigned");
     form.append("count", 1);
 
     makeRequest("POST", "/info/manager-self-assign-course", form)
@@ -157,7 +158,7 @@ const ManagerAssignCourse = () => {
         getData();
         openModal();
         console.log(res);
-        toast("Bundle Assigned");
+        toast("Course Assigned");
       })
       .catch((err) => {
         console.log(err);

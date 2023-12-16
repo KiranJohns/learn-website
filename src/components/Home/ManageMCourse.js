@@ -4,7 +4,7 @@ import Link from "next/link";
 import fetchData from "../../axios";
 import { Suspense } from "react";
 import Spinner from "react-bootstrap/Spinner";
-
+import { jwtDecode } from "jwt-decode";
 
 const customStyles = {
   headRow: {
@@ -39,6 +39,10 @@ const ManageMyCourse = () => {
     );
     setRecords(newData);
   };
+  const [user, setUser] = useState(() => {
+    let token = localStorage.getItem(`learnforcare_access`);
+    return jwtDecode(token);
+  });
 
   const handleStart = (id, from) => {
     let form = new FormData();
@@ -57,27 +61,25 @@ const ManageMyCourse = () => {
   useEffect(() => {
     const fetchDataAsync = async () => {
       try {
-        let purchasedRes = await makeRequest(
+        let assignedRes = await makeRequest(
           "GET",
           "/info/get-assigned-course-for-manager"
         );
-        let assignedRes = await makeRequest(
+        let onGoingCourse = await makeRequest(
           "GET",
-          "/course/get-bought-course"
+          "/on-going-course/get-all-on-going-courses"
         );
 
+        console.log(assignedRes.data.response, onGoingCourse.data.response);
         let newRes = [
-          ...purchasedRes.data.response,
-          ...assignedRes.data.response,
+          ...assignedRes.data.response.filter((item) => (item.owner == user.id && item.count >= 1)),
+          ...onGoingCourse.data.response,
         ];
 
-        setRecords(
-          newRes?.filter((item) => item.course_count >= 1)
-        );
+        setRecords(newRes);
         setFilterRecords(newRes);
-        setPending(false)
-      }
-       catch (err) {
+        setPending(false);
+      } catch (err) {
         console.log(err);
       }
     };
@@ -111,8 +113,8 @@ const ManageMyCourse = () => {
       center: true,
     },
     {
-      name: "count",
-      selector: (row) => row?.course_count,
+      name: "progress",
+      selector: (row) => (row?.progress || "0") + "%",
       center: true,
     },
     {
@@ -126,7 +128,9 @@ const ManageMyCourse = () => {
                 query: { courseId: row?.on_going_course_id },
               }}
             >
-              <a className="btn btn-success">continue</a>
+              <a style={{ width: "7rem" }} className="btn btn-success">
+                continue
+              </a>
             </Link>
           ) : (
             <button
@@ -138,6 +142,7 @@ const ManageMyCourse = () => {
                 }
               }}
               className="btn btn-success"
+              style={{ width: "7rem" }}
             >
               start
             </button>
@@ -150,9 +155,7 @@ const ManageMyCourse = () => {
   return (
     <div className="">
       <div className="dash-shadow">
-        <div
-          className=" row g-3  min-vh-100  d-flex justify-content-center mt-20"
-        >
+        <div className=" row g-3  min-vh-100  d-flex justify-content-center mt-20">
           <h2
             style={{
               color: "#212450",
@@ -184,13 +187,14 @@ const ManageMyCourse = () => {
               </form>
             </div>
             <DataTable
-             progressPending={pending}
-             progressComponent={
-               pending ? 
-               (<div style={{ padding: "1rem" }}>
-                 <Spinner animation="border" variant="primary" />
-               </div>) : (null)
-             }
+              progressPending={pending}
+              progressComponent={
+                pending ? (
+                  <div style={{ padding: "1rem" }}>
+                    <Spinner animation="border" variant="primary" />
+                  </div>
+                ) : null
+              }
               noDataComponent={" "}
               columns={columns}
               data={records}
