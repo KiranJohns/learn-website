@@ -82,7 +82,7 @@ const CompAssignBund = () => {
         getData();
         openModal();
         console.log(res);
-        toast("Bundle Assigned");
+        toast.success("Bundle Assigned");
       })
       .catch((err) => {
         console.log(err);
@@ -146,7 +146,7 @@ const CompAssignBund = () => {
         getData();
         console.log(res);
         openModal();
-        toast("Bundle Assigned");
+        toast.success("Bundle Assigned");
       })
       .catch((err) => {
         console.log(err);
@@ -165,7 +165,7 @@ const CompAssignBund = () => {
         getData();
         openModal();
         console.log(res);
-        toast("Bundle Assigned");
+        toast.success("Bundle Assigned");
       })
       .catch((err) => {
         console.log(err);
@@ -188,7 +188,7 @@ const CompAssignBund = () => {
         getData();
         console.log(res);
         openModal();
-        toast("Bundle Assigned");
+        toast.success("Bundle Assigned");
       })
       .catch((err) => {
         console.log(err);
@@ -206,7 +206,7 @@ const CompAssignBund = () => {
       .then((res) => {
         getData();
         console.log(res);
-        toast("Bundle Assigned");
+        toast.success("Bundle Assigned");
         openModal();
       })
       .catch((err) => {
@@ -241,11 +241,6 @@ const CompAssignBund = () => {
       name: "Remaining",
       selector: (row) => row.course_count,
       center: true,
-    },
-    {
-      name: "Validity",
-      center: true,
-      selector: (row) => row.validity,
     },
     {
       name: "action",
