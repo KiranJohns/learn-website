@@ -284,7 +284,7 @@ const MyCart = () => {
                     {cart &&
                       cart.map((item, id) => {
                         return (
-                          <div key={{ id }} style={{ width: "28em", height: "20rem", position: "relative" }} className="cart-card-shadow col-10 ">
+                          <div key={{ id }} style={{ width: "28em", height: "20rem", position: "relative",marginTop:"1rem" }} className="cart-card-shadow col-10 ">
 
                             <div style={{ position: 'absolute', right: "0", padding: ".5rem" }}>
                               <span onClick={() => removeItem(item.id)}>
