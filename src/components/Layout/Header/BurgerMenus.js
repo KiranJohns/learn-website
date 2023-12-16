@@ -17,6 +17,11 @@ const BurgerMenus = ({ setMenuOpen, menuOpen }) => {
     setPath(router.pathname);
   }, [router]);
 
+  let logedIn = null;
+  if (typeof window == "object") {
+    logedIn = localStorage.getItem("learnforcare_access");
+  }
+
   const handleLogout = () => {
     localStorage.removeItem(`learnforcare_access`);
     localStorage.removeItem(`learnforcare_refresh`);
@@ -226,49 +231,59 @@ const BurgerMenus = ({ setMenuOpen, menuOpen }) => {
                 </Link>
               </li>
               {/* <li><Link href="/contact"><a>Contact</a></Link></li> */}
-              <li>
-                <Link href="/sign-in">
-                  <a>Sign in</a>
-                </Link>
-              </li>
-              <li>
-                <Link href="/sign-up">
-                  <a>Sign Up</a>
-                </Link>
-              </li>
+
+              {logedIn ? (
+                // <Link href="/company/myprofile" >
+                //   <a className="e-btn ">Profile</a>
+                // </Link>
+
+                <div></div>
+              ) : (
+                <li>
+                  <Link href="/sign-in">
+                    <a>Sign in</a>
+                  </Link>
+                </li>
+              )}
+              {logedIn ? (
+                // <Link href="/company/myprofile" >
+                //   <a className="e-btn ">Profile</a>
+                // </Link>
+
+                <div></div>
+              ) : (
+                <li>
+                  <Link href="/sign-up">
+                    <a>Sign Up</a>
+                  </Link>
+                </li>
+              )}
+
 
               {getUserType() && (
-                <li
-                  style={{ backgroundColor: "#fff" }}
-                  // className={
-                  //   dashboard ? "has-droupdown active" : "has-droupdown"
-                  // }
-                >
-                  <a
-                   onClick={() => {
-                    localStorage.removeItem("learnfrocarecart");
-                    router.push(`/${getUserType()}/dashboard`);
-                    // if ( === "company") {
-                  }}
-                  >
-                    Dashboard
-                  </a>
-                  {/* <ul className={dashboard ? "sub-menu active" : "sub-menu"}>
-                    <li style={{ backgroundColor: "#fff" }}>
-                      <Link href="/dashboard" as="/">
-                        <a>Profile</a>
-                      </Link>
-                    </li>
-                  
-                  </ul> */}
+                <li >
+                  <Link href="" >
+                    <a
+                      onClick={() => {
+                        localStorage.removeItem("learnfrocarecart");
+                        router.push(`/${getUserType()}/dashboard`);
+                        // if ( === "company") {
+                      }}
+                    >
+                      Dashboard
+                    </a></Link>
                 </li>
-                
               )}
-               <li style={{ backgroundColor: "#fff" }}>
-                      <Link href="" >
-                        <a  onClick={handleLogout}>Logout</a>
-                      </Link>
-                    </li>
+
+
+              {getUserType() && (
+                <li style={{ backgroundColor: "#fff" }}>
+                  <Link href="" >
+                    <a onClick={handleLogout}>Logout</a>
+                  </Link>
+                </li>
+              )}
+
             </ul>
           </div>
 
