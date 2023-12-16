@@ -23,7 +23,7 @@ if(localStorage.getItem('reload')){
   setTimeout(() => {
     window.location.reload()
     // router.reload();
-  }, 900);
+  }, 500);
   localStorage.removeItem("reload");
 }
   // forceReload()
@@ -33,7 +33,7 @@ if(localStorage.getItem('reload')){
 
   return (
     <>
-    <div >
+    <div style={{position:'absolute'}}>
       <NoSSR>
         <HeaderOpaque />
       </NoSSR>
