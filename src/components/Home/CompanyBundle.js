@@ -70,10 +70,13 @@ const CompanyBundle = () => {
         );
         console.clear();
         const newRes = [
-          ...assignedRes.data.response,
+          ...assignedRes.data.response
+            .filter((item) => item.course_count >= 1 && item.owner == user.id)
+            .reverse(),
           ...onFoingRes.data.response,
         ];
-        setRecords(newRes?.filter((item) => (item.course_count >= 1 && item.owner == user.id)).reverse());
+        console.log(assignedRes.data.response, onFoingRes.data.response);
+        setRecords(newRes);
         // setFilterRecords(assignedRes.data); // Assuming this is correct, please double-check
         setPending(false);
       } catch (err) {

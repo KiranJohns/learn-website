@@ -135,7 +135,7 @@ const CompAssignCourse = () => {
         getData();
         openModal();
         console.log(res);
-        toast("Bundle Assigned");
+        toast("Course Assigned");
       })
       .catch((err) => {
         console.log(err);
@@ -177,7 +177,7 @@ const CompAssignCourse = () => {
       })
       .catch((err) => {
         openModal();
-        // toast.success("course assigned");
+        // toast.success("Course Assigned");
         setLoading(false);
         console.log(err);
       });
@@ -206,7 +206,7 @@ const CompAssignCourse = () => {
       .catch((err) => {
         console.log(err);
         openModal();
-        // toast.success("course assigned");
+        // toast.success("Course Assigned");
         setLoading(false);
       });
   }
@@ -233,7 +233,7 @@ const CompAssignCourse = () => {
       })
       .catch((err) => {
         setLoading(false);
-        // toast.success("course assigned");
+        // toast.success("Course Assigned");
         console.log(err);
       });
   }
@@ -252,10 +252,10 @@ const CompAssignCourse = () => {
         console.log(res);
         openModal();
         setLoading(false);
-        toast("course assigned");
+        toast("Course Assigned");
       })
       .catch((err) => {
-        // toast.success("course assigned");
+        // toast.success("Course Assigned");
         setLoading(false);
         console.log(err);
       });
