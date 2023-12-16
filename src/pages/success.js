@@ -23,7 +23,7 @@ if(localStorage.getItem('reload')){
   setTimeout(() => {
     // window.location.reload()
     router.reload();
-  }, 500);
+  }, 900);
   localStorage.removeItem("reload");
 }
   // forceReload()
@@ -53,16 +53,13 @@ if(localStorage.getItem('reload')){
           <ShopingCart />
         </div>
       </NoSSR>
-      <NoSSR>
-        <div  style={{display:'none'}}>
-          <MyCart />
-        </div>
-      </NoSSR>
+     
       
       <NoSSR>
         <SuccessLayout />
       </NoSSR>
       </div>
+     
     </>
   );
 };
