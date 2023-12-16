@@ -5,6 +5,7 @@ import HeaderOpaque from "../components/Layout/Header/HeaderOpaque";
 import SuccessLayout from "../components/Common/sucessLayout";
 import NoSSR from "react-no-ssr";
 import ShopingCart from "../components/Layout/Header/ShopingCart";
+import { useRouter } from 'next/router';
 
 const Success = () => {
 
@@ -13,12 +14,14 @@ const Success = () => {
   const forceReload = () => {
     setReloadKey((prevKey) => prevKey + 1);
   };
+  const router = useRouter();
 
   useEffect(() => { 
     
 if(localStorage.getItem('reload')){
   setTimeout(() => {
-    window.location.reload()
+    // window.location.reload()
+    router.reload();
   }, 1000);
   localStorage.removeItem("reload");
 }
