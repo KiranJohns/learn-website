@@ -60,7 +60,7 @@ const CompanyBundle = () => {
       let makeRequest = fetchData();
 
       try {
-        const onFoingRes = await makeRequest(
+        const onGoingRes = await makeRequest(
           "GET",
           "/bundle/get-on-going-bundles"
         );
@@ -73,9 +73,9 @@ const CompanyBundle = () => {
           ...assignedRes.data.response
             .filter((item) => item.course_count >= 1 && item.owner == user.id)
             .reverse(),
-          ...onFoingRes.data.response,
+          ...onGoingRes.data.response,
         ];
-        console.log(assignedRes.data.response, onFoingRes.data.response);
+        console.log(assignedRes.data.response, onGoingRes.data.response);
         setRecords(newRes);
         // setFilterRecords(assignedRes.data); // Assuming this is correct, please double-check
         setPending(false);
@@ -114,7 +114,7 @@ const CompanyBundle = () => {
     },
     {
       name: "Bundle Name",
-      selector: (row) => row.bundle_name,
+      selector: (row) => row.bundle_name || row.name,
       sortable: true,
       center: true,
     },
@@ -124,8 +124,8 @@ const CompanyBundle = () => {
       center: true,
     },
     {
-      name: "count",
-      selector: (row) => row.course_count,
+      name: "Progress",
+      selector: (row) => (row?.progress || 0) + "%",
       center: true,
     },
     {
@@ -137,14 +137,14 @@ const CompanyBundle = () => {
             width: "7rem",
           }}
           onClick={() => {
-            if (row?.progress) {
+            if (row?.form_ongoing) {
               location.href = `/learnCourse/bundleList/?id=${row.id}`;
             } else {
               handleStartBundle(row.id);
             }
           }}
         >
-          {row?.color ? "Continue" : "Start"}
+          {row?.form_ongoing ? "Continue" : "Start"}
         </a>
       ),
       center: true,

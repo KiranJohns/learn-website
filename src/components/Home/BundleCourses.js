@@ -88,14 +88,14 @@ const BundleCour = () => {
     {
       name: "No",
       selector: (row, idx) => idx + 1,
-    center:"true",
-    width:"90px"
+      center: "true",
+      width: "90px",
     },
     {
       name: "name",
       selector: (row) => row.name || row.Name,
-      center:"true",
-    width:"400px"
+      center: "true",
+      width: "400px",
     },
     // {
     //   name: "description",
@@ -105,23 +105,26 @@ const BundleCour = () => {
     {
       name: "category",
       selector: (row) => row.category,
-      center:"true",
+      center: "true",
     },
     {
       name: "Action",
       cell: (row) => (
-        <Link href={{
-          pathname: "/learnCourse/bundleCourse",
-          query:{
-            course_id:row.id,
-            bundleId: router.query.id
-          },
-        }}>
+        <Link
+          href={{
+            pathname: "/learnCourse/bundleCourse",
+            query: {
+              course_id: row.id,
+              bundleId: router.query.id,
+            },
+          }}
+        >
           <a
             onClick={() => {}}
             className="btn btn-success"
+            style={{ width: "7rem" }}
           >
-            start
+            {data?.finished_course?.includes(row.id) ? "finished" : "start"}
           </a>
         </Link>
       ),
@@ -174,7 +177,7 @@ const BundleCour = () => {
             </form>
           </div>
           <DataTable
-          noDataComponent={" "}
+            noDataComponent={" "}
             columns={columns}
             data={
               searchData
@@ -185,7 +188,7 @@ const BundleCour = () => {
             }
             customStyles={customStyles}
             pagination
-            persistTableHead={true}     
+            persistTableHead={true}
           />
         </div>
       </div>
