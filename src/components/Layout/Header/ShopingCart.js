@@ -133,7 +133,7 @@ const ShopingCart = ({ setShopOpen, shopOpen }) => {
             <h4>Shopping cart</h4>
           </div>
           <div className="cartmini__close">
-            <button
+            <button  style={{transition:".3s"}}
               type="button"
               className="cartmini__close-btn"
               onClick={() => setShopOpen(false)}
@@ -192,7 +192,7 @@ const ShopingCart = ({ setShopOpen, shopOpen }) => {
                             </span>
                           </div>
                         </div>
-                        <a
+                        <a style={{transition:""}}
                           href="#"
                           className="cartmini__del"
                           onClick={() => removeItem(item.id)}
