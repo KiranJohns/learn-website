@@ -51,6 +51,7 @@ function ForgotPass() {
       .catch((err) => {
         console.log(err);
         setLoading((prev) => false);
+        toast.info(err?.data?.errors[0]?.message)
         // console.log(err.data.errors[0]);
         // toast.error(err.data.errors[0].error);
       });
