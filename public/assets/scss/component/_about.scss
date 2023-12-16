@@ -289,6 +289,11 @@
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     border-radius: .6rem;
   }
+
+  .cart-card-shadow{
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: .6rem;
+  }
   
   
 .blog-box-shadow{
@@ -353,3 +358,46 @@ margin-left: 12rem;
 .data-box:hover{
     background: #e07051;
 }
+
+.cart-card-display{
+  display: none;
+}
+.unit-font-s{
+  font-size: 1.4rem;
+}
+
+.discount-font{
+  font-size: 1.2rem;
+}
+.grand-total-f{
+  font-size: 1.2rem;
+}
+
+@media screen and (max-width:770px) {
+  .cart-card-display{
+    display: block;
+  }
+  .cart-table-display{
+    display: none;
+  }
+}
+
+@media screen and (max-width:450px) {
+  .unit-font-s{
+    font-size: 1.1rem;
+  }
+
+}
+
+@media screen and (max-width:995px) {
+  .discount-font{
+    font-size: 1rem;
+  }
+  .grand-total-f{
+    font-size: 1.1rem;
+  }
+}
+
+
+
+
