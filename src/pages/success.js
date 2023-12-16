@@ -5,6 +5,8 @@ import HeaderOpaque from "../components/Layout/Header/HeaderOpaque";
 import SuccessLayout from "../components/Common/sucessLayout";
 import NoSSR from "react-no-ssr";
 import ShopingCart from "../components/Layout/Header/ShopingCart";
+import { useRouter } from 'next/router';
+import MyCart from "../components/MyCart/MyCartMain";
 
 const Success = () => {
 
@@ -14,12 +16,14 @@ const Success = () => {
     setReloadKey((prevKey) => prevKey + 1);
   };
 
+
   useEffect(() => { 
     
 if(localStorage.getItem('reload')){
   setTimeout(() => {
     window.location.reload()
-  }, 1000);
+    // router.reload();
+  }, 500);
   localStorage.removeItem("reload");
 }
   // forceReload()
@@ -29,7 +33,7 @@ if(localStorage.getItem('reload')){
 
   return (
     <>
-    <div >
+    <div style={{position:'absolute'}}>
       <NoSSR>
         <HeaderOpaque />
       </NoSSR>
@@ -39,15 +43,25 @@ if(localStorage.getItem('reload')){
         </div>
       </NoSSR> */}
       <NoSSR>
-        <div  style={{visibility:'hidden'}}>
+        <div  className="behind-content-background" >
           <Header />
         </div>
       </NoSSR>
+   
+        <div className="behind-content-background" >
+          <ShopingCart />
+        </div>
 
+        <div className="behind-content-background">
+          <MyCart/>
+        </div>
+     
+      
       <NoSSR>
         <SuccessLayout />
       </NoSSR>
       </div>
+     
     </>
   );
 };

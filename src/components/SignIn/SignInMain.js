@@ -28,6 +28,7 @@ function SignInMain() {
       })
       .catch((err) => {
         console.log(err);
+        toast.warning(err?.data?.errors[0]?.message)
       });
   }
   function handleOnChange(e) {

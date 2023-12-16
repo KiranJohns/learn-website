@@ -429,7 +429,10 @@ const Header = () => {
                             </svg>
                           </div>
                           <span className="cart-item">
-                            {cartCount && cartCount}
+                          {cartCount && cartCount}
+                          {/* {cartCount && location.pathname == "/success"
+                            ? "0"
+                            : cartCount} */}
                           </span>
                         </span>
                       </div>
@@ -467,10 +470,10 @@ const Header = () => {
                           </svg>
                         </div>
                         <span className="cart-item">
-                          {/* {cartCount && cartCount} */}
-                          {cartCount && location.pathname == "/success"
+                          {cartCount && cartCount}
+                          {/* {cartCount && location.pathname == "/success"
                           ? "0"
-                          : cartCount}
+                          : cartCount} */}
                         </span>
                       </span>
                     </div>

@@ -285,3 +285,10 @@ display: none;
   font-weight: 600;
   animation: colorChange 5s infinite; /* Change the duration as needed */
 }
+
+.behind-content-background {
+  position: absolute;
+  left: -9999px;
+  top: -9999px;
+  /* Add other background properties */
+}
