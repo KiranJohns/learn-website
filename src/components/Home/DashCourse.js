@@ -55,15 +55,19 @@ const DashCourse = () => {
 
   const getData = async () => {
     try {
-      const [assignedCourses] = await Promise.all([
+      const [assignedCourses, onGoingCourse] = await Promise.all([
         makeRequest("GET", "/course/get-all-assigned-course"),
+        makeRequest("GET", "/on-going-course/get-all-on-going-courses"),
       ]);
-      setPending(false)
-      console.log(assignedCourses.data.response);
+      setPending(false);
+      console.log(assignedCourses.data.response, onGoingCourse.data.response);
       setRecords(
-        [...assignedCourses.data.response]
-          .reverse()
-          .filter((item) => item?.owner == user?.id && item?.course_count > 0)
+        [
+          ...onGoingCourse.data.response,
+          ...assignedCourses.data.response.filter(
+            (item) => item?.owner == user?.id && item?.course_count >= 1
+          ),
+        ].reverse()
       );
       setFilterRecords(assignedCourses.data);
 
@@ -85,10 +89,6 @@ const DashCourse = () => {
   const handleShowModal = () => {
     setOpenModal(!openModal);
   };
-
- 
-
-  
 
   const assignCourse = (e, subUser) => {
     e.persist();
@@ -146,17 +146,51 @@ const DashCourse = () => {
       },
     },
     {
+      name: "Progress",
+      selector: (row) => (row.progress || 0) + "%",
+      sortable: true,
+      center: true,
+    },
+    {
       name: "Action",
       center: true,
       cell: (row) => (
-        <a
-          onClick={() => {
-            handleStart(row?.id, "assigned");
-          }}
-          className="btn btn-success"
-        >
-          start
-        </a>
+        <>
+          {row?.progress ? (
+            <Link
+              href={{
+                pathname: "/learnCourse/coursepage",
+                query: { courseId: row?.on_going_course_id },
+              }}
+            >
+              <a style={{ width: "7rem" }} className="btn btn-success">
+                continue
+              </a>
+            </Link>
+          ) : (
+            <button
+              onClick={() => {
+                if (row?.from_purchased) {
+                  handleStart(row?.id, "purchased");
+                } else {
+                  handleStart(row?.id, "manager");
+                }
+              }}
+              className="btn btn-success"
+              style={{ width: "7rem" }}
+            >
+              start
+            </button>
+          )}
+        </>
+        // <a
+        //   onClick={() => {
+        //     handleStart(row?.id, "assigned");
+        //   }}
+        //   className="btn btn-success"
+        // >
+        //   start
+        // </a>
       ),
     },
   ];
@@ -228,13 +262,14 @@ const DashCourse = () => {
             </form>
           </div>
           <Suspense fallback={<Loading />}>
-            <DataTable    
+            <DataTable
               progressPending={pending}
               progressComponent={
-                pending ? 
-                (<div style={{ padding: "1rem" }}>
-                  <Spinner animation="border" variant="primary" />
-                </div>) : (null)
+                pending ? (
+                  <div style={{ padding: "1rem" }}>
+                    <Spinner animation="border" variant="primary" />
+                  </div>
+                ) : null
               }
               persistTableHead={true}
               noDataComponent={" "}
