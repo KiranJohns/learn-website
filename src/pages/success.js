@@ -55,7 +55,7 @@ if(localStorage.getItem('reload')){
       </NoSSR>
       <NoSSR>
         <div className="behind-content-background">
-          <ShopingCart />
+          <MyCart/>
         </div>
       </NoSSR>
 
