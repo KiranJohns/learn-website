@@ -102,6 +102,8 @@ const HeaderOpaque = () => {
       });
   }
 
+  
+
   useEffect(() => {
     getCartItem();
   }, []);
