@@ -6,6 +6,7 @@ import SuccessLayout from "../components/Common/sucessLayout";
 import NoSSR from "react-no-ssr";
 import ShopingCart from "../components/Layout/Header/ShopingCart";
 import { useRouter } from 'next/router';
+import MyCart from "../components/MyCart/MyCartMain";
 
 const Success = () => {
 
@@ -22,7 +23,7 @@ if(localStorage.getItem('reload')){
   setTimeout(() => {
     // window.location.reload()
     router.reload();
-  }, 1000);
+  }, 500);
   localStorage.removeItem("reload");
 }
   // forceReload()
@@ -50,6 +51,11 @@ if(localStorage.getItem('reload')){
       <NoSSR>
         <div  style={{visibility:'hidden'}}>
           <ShopingCart />
+        </div>
+      </NoSSR>
+      <NoSSR>
+        <div  style={{visibility:'hidden'}}>
+          <MyCart />
         </div>
       </NoSSR>
       
