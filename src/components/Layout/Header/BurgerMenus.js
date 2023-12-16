@@ -17,6 +17,14 @@ const BurgerMenus = ({ setMenuOpen, menuOpen }) => {
     setPath(router.pathname);
   }, [router]);
 
+  const handleLogout = () => {
+    localStorage.removeItem(`learnforcare_access`);
+    localStorage.removeItem(`learnforcare_refresh`);
+    localStorage.removeItem("userType");
+    location.pathname = "/sign-in";
+  };
+
+
   const openMobileMenu = (menu) => {
     if (menu == "home") {
       setHome(!home);
@@ -232,31 +240,35 @@ const BurgerMenus = ({ setMenuOpen, menuOpen }) => {
               {getUserType() && (
                 <li
                   style={{ backgroundColor: "#fff" }}
-                  className={
-                    dashboard ? "has-droupdown active" : "has-droupdown"
-                  }
+                  // className={
+                  //   dashboard ? "has-droupdown active" : "has-droupdown"
+                  // }
                 >
                   <a
-                    onClick={() => {
-                      router.push(`${getUserType()}/dashboard`)
-                    }}
+                   onClick={() => {
+                    localStorage.removeItem("learnfrocarecart");
+                    router.push(`/${getUserType()}/dashboard`);
+                    // if ( === "company") {
+                  }}
                   >
                     Dashboard
                   </a>
-                  <ul className={dashboard ? "sub-menu active" : "sub-menu"}>
+                  {/* <ul className={dashboard ? "sub-menu active" : "sub-menu"}>
                     <li style={{ backgroundColor: "#fff" }}>
                       <Link href="/dashboard" as="/">
                         <a>Profile</a>
                       </Link>
                     </li>
-                    <li style={{ backgroundColor: "#fff" }}>
-                      <Link href="/" as="/">
-                        <a>Logout</a>
+                  
+                  </ul> */}
+                </li>
+                
+              )}
+               <li style={{ backgroundColor: "#fff" }}>
+                      <Link href="" >
+                        <a  onClick={handleLogout}>Logout</a>
                       </Link>
                     </li>
-                  </ul>
-                </li>
-              )}
             </ul>
           </div>
 
