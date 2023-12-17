@@ -4,7 +4,7 @@ import DataTable from "react-data-table-component";
 import Link from "next/link";
 import BasicExample from "../About/button1";
 import fetchData from "../../axios";
-import Button from 'react-bootstrap/Button';
+import Button from "react-bootstrap/Button";
 import { getMonth } from "../../utils/month";
 
 const customStyles = {
@@ -34,16 +34,17 @@ class IndMonthRep extends Component {
     this.state = {
       records: [],
       filterRecords: [],
+      searchString: "",
     };
   }
-  
+
   handleFilter = (event) => {
     const newData = this.state.filterRecords.filter((row) =>
-    row.name.toLowerCase().includes(event.target.value.toLowerCase())
+      row.name.toLowerCase().includes(event.target.value.toLowerCase())
     );
     this.setState({ records: newData });
   };
-  
+
   componentDidMount() {
     let makeRequest = fetchData();
     makeRequest("GET", "/info/get-all-transactions-by-month")
@@ -62,52 +63,51 @@ class IndMonthRep extends Component {
     const columns = [
       {
         name: "NO",
-        selector: (row,idx) => ++idx,
-        center:true,
-        width:'90px'
+        selector: (row, idx) => ++idx,
+        center: true,
+        width: "90px",
       },
       {
         name: "year",
         selector: (row) => row.year,
         sortable: true,
-        center:true,
+        center: true,
       },
       {
         name: "month",
         selector: (row) => getMonth(row.month),
         sortable: true,
-        center:true,
+        center: true,
       },
       {
         name: "Quantity",
         selector: (row) => row.total_fake_count,
-        center:true,
+        center: true,
       },
       {
         name: "amount",
         selector: (row) => row.total_amount,
-        center:true,
+        center: true,
       },
     ];
 
     return (
       <div className="">
-       
-      <div className="dash-shadow">
-      <div className=" row g-3  min-vh-100  d-flex justify-content-center mt-20">
-      <h2
-        style={{  
-          color: "#212450",
-          display: "flex",
-          justifyContent: "center",
-          position:'absolute',
-          fontSize: 38,
-        }}
-      >
-       Month Wise Report
-      </h2>
-        <div style={{ padding: "", backgroundColor: "" }}>
-          {/* <div
+        <div className="dash-shadow">
+          <div className=" row g-3  min-vh-100  d-flex justify-content-center mt-20">
+            <h2
+              style={{
+                color: "#212450",
+                display: "flex",
+                justifyContent: "center",
+                position: "absolute",
+                fontSize: 38,
+              }}
+            >
+              Month Wise Report
+            </h2>
+            <div style={{ padding: "", backgroundColor: "" }}>
+              {/* <div
             className="pb-2 smth"
             style={{ display: "flex", justifyContent: "left" }}
           >
@@ -123,32 +123,49 @@ class IndMonthRep extends Component {
               }}
             />
           </div> */}
-          <div style={{float:'right',marginBottom:'1.4rem'}} className="p-relative d-inline header__search">
-            <form action="">
-              <input style={{ background:'#edeef3',}}
-                className="d-block mr-10"
-                type="text"
-                placeholder="Search..."
-                // value={searchString}
-                // onChange={handleSearch}
+              <div
+                style={{ float: "right", marginBottom: "1.4rem" }}
+                className="p-relative d-inline header__search"
+              >
+                <form action="">
+                  <input
+                    style={{ background: "#edeef3" }}
+                    className="d-block mr-10"
+                    type="text"
+                    placeholder="Search..."
+                    value={this.state.searchString}
+                    onChange={(e) =>
+                      this.setState({
+                        ...this.state,
+                        searchString: e.target.value,
+                      })
+                    }
+                  />
+                  <button type="submit">
+                    <i className="fas fa-search"></i>
+                  </button>
+                </form>
+              </div>
+              <DataTable
+                noDataComponent={" "}
+                persistTableHead={true}
+                columns={columns}
+                data={
+                  this.state.searchString
+                    ? this.state.records.filter((item) =>
+                        getMonth(item.month)
+                          .toLowerCase()
+                          .startsWith(this.state.searchString.toLowerCase())
+                      )
+                    : this.state.records
+                }
+                customStyles={customStyles}
+                pagination
               />
-              <button type="submit">
-                <i className="fas fa-search"></i>
-              </button>
-            </form>
-          </div>
-          <DataTable
-            noDataComponent={" "}
-          persistTableHead={true}
-            columns={columns}
-            data={this.state.records}
-            customStyles={customStyles}
-            pagination
-          
-          />
+            </div>
+          </div>{" "}
         </div>
-      </div> </div>
-    </div>
+      </div>
     );
   }
 }
