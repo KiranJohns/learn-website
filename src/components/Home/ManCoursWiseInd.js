@@ -70,7 +70,7 @@ const ManCWIndReport = () => {
     },
     {
       name: "CODE",
-      selector: (row,id) => id,
+      selector: (row,id) => row.code,
      
       center: true,
     },
@@ -143,7 +143,7 @@ const ManCWIndReport = () => {
               data={
                 searchString
                   ? records.filter((item) =>
-                      item.name.toLowerCase().includes(searchString.toLowerCase())
+                      item.course_name.toLowerCase().startsWith(searchString.toLowerCase())
                     )
                   : records
               }
