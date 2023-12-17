@@ -393,7 +393,7 @@ class ManageDash extends Component {
                     data={
                       this.state.searchString
                         ? this.state.records.filter((item) =>
-                            (item.Name || item.name).toLowerCase().includes(
+                            (item.Name || item.name).toLowerCase().startsWith(
                               this.state.searchString.toLowerCase()
                             )
                           )

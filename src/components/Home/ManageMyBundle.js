@@ -29,6 +29,7 @@ const customStyles = {
 const ManagerBundle = () => {
   const [records, setRecords] = useState([]);
   const [filterRecords, setFilterRecords] = useState([]);
+  const [searchString, setSearchString] = useState("");
   const [user, setUser] = useState(() => {
     let token = localStorage.getItem(`learnforcare_access`);
     return jwtDecode(token);
@@ -156,8 +157,8 @@ const ManagerBundle = () => {
                   className="d-block mr-10"
                   type="text"
                   placeholder="Search..."
-                  // value={searchString}
-                  // onChange={handleSearch}
+                  value={searchString}
+                  onChange={(e) => setSearchString(e.target.value)}
                 />
                 <button type="submit">
                   <i className="fas fa-search"></i>
@@ -175,7 +176,13 @@ const ManagerBundle = () => {
               }
               noDataComponent={" "}
               columns={columns}
-              data={records}
+              data={searchString
+                ? records.filter((item) =>
+                    (item.bundle_name || item.name).toLowerCase().startsWith(
+                      searchString.toLowerCase()
+                    )
+                  )
+                : records}
               customStyles={customStyles}
               pagination
               persistTableHead={true}
