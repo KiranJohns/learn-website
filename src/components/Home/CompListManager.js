@@ -181,7 +181,7 @@ const CompListManager = () => {
                 data={
                   searchString
                     ? records.filter((item) =>
-                        item.name.toLowerCase().includes(searchString.toLowerCase())
+                        item.first_name.toLowerCase().startsWith(searchString.toLowerCase())
                       )
                     : records
                 }
