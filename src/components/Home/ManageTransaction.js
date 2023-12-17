@@ -5,7 +5,6 @@ import Button from "react-bootstrap/Button";
 import Spinner from "react-bootstrap/Spinner";
 import fetchData from "../../axios";
 
-
 const customStyles = {
   headRow: {
     style: {
@@ -32,7 +31,6 @@ const ManTransaction = () => {
   const [filterRecords, setFilterRecords] = useState([]);
   const [searchString, setSearchString] = useState("");
   const [pending, setPending] = React.useState(true);
-  
 
   const handleFilter = (event) => {
     const newData = filterRecords.filter((row) =>
@@ -49,7 +47,7 @@ const ManTransaction = () => {
         console.log(res);
         setRecords(res.data.response.reverse());
         setFilterRecords(res.data);
-        setPending(false)
+        setPending(false);
       })
       .catch((err) => {
         console.log(err);
@@ -65,7 +63,7 @@ const ManTransaction = () => {
     },
     {
       name: "User",
-      selector: (row, idx) => row.first_name.concat(" ",row.last_name),
+      selector: (row, idx) => row.first_name.concat(" ", row.last_name),
       center: true,
       width: "100px",
     },
@@ -129,19 +127,24 @@ const ManTransaction = () => {
             <DataTable
               progressPending={pending}
               progressComponent={
-                pending ? 
-                (<div style={{ padding: "1rem" }}>
-                  <Spinner animation="border" variant="primary" />
-                </div>) : (null)
+                pending ? (
+                  <div style={{ padding: "1rem" }}>
+                    <Spinner animation="border" variant="primary" />
+                  </div>
+                ) : null
               }
               noDataComponent={" "}
               persistTableHead={true}
               columns={columns}
-              data={searchString
-                ? records.filter((item) =>
-                    item.first_name.toLowerCase().startsWith(searchString.toLowerCase())
-                  )
-                : records}
+              data={
+                searchString
+                  ? records.filter((item) =>
+                      item.first_name
+                        .toLowerCase()
+                        .startsWith(searchString.toLowerCase())
+                    )
+                  : records
+              }
               customStyles={customStyles}
               pagination
             />

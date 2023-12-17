@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import DataTable from "react-data-table-component";
 import fetchData from "../../axios";
 import { getMonth } from "../../utils/month";
-import Button from 'react-bootstrap/Button';
+import Button from "react-bootstrap/Button";
 import Spinner from "react-bootstrap/Spinner";
 
 const customStyles = {
@@ -28,6 +28,8 @@ const customStyles = {
 
 const ManageMonthRep = () => {
   const [records, setRecords] = useState([]);
+  const [searchString, setSearchString] = useState("");
+
   const [filterRecords, setFilterRecords] = useState([]);
 
   const [pending, setPending] = React.useState(true);
@@ -39,7 +41,7 @@ const ManageMonthRep = () => {
         console.log(res);
         setRecords(res.data.response.reverse());
         setFilterRecords(res.data);
-        setPending(false)
+        setPending(false);
       })
       .catch((err) => {
         console.log(err);
@@ -91,20 +93,25 @@ const ManageMonthRep = () => {
               color: "#212450",
               display: "flex",
               justifyContent: "center",
-              position: 'absolute',
+              position: "absolute",
               fontSize: 38,
             }}
           >
             Month Wise Report
           </h2>
           <div style={{ padding: "", backgroundColor: "" }}>
-            <div style={{ float: 'right', marginBottom: '1.4rem' }} className="p-relative d-inline header__search">
+            <div
+              style={{ float: "right", marginBottom: "1.4rem" }}
+              className="p-relative d-inline header__search"
+            >
               <form action="">
-                <input style={{ background: '#edeef3', }}
+                <input
+                  style={{ background: "#edeef3" }}
                   className="d-block mr-10"
                   type="text"
                   placeholder="Search..."
-                  onChange={handleFilter}
+                  value={searchString}
+                  onChange={(e) => setSearchString(e.target.value)}
                 />
                 <button type="submit">
                   <i className="fas fa-search"></i>
@@ -114,15 +121,24 @@ const ManageMonthRep = () => {
             <DataTable
               progressPending={pending}
               progressComponent={
-                pending ?
-                  (<div style={{ padding: "1rem" }}>
+                pending ? (
+                  <div style={{ padding: "1rem" }}>
                     <Spinner animation="border" variant="primary" />
-                  </div>) : (null)
+                  </div>
+                ) : null
               }
               noDataComponent={" "}
               persistTableHead={true}
               columns={columns}
-              data={records}
+              data={
+                searchString
+                  ? records.filter((item) =>
+                      getMonth(item.month)
+                        .toLowerCase()
+                        .startsWith(searchString.toLowerCase())
+                    )
+                  : records
+              }
               customStyles={customStyles}
               pagination
             />
