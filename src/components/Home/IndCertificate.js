@@ -76,7 +76,7 @@ class IndCertificate extends Component {
       },
       {
         name: "Date",
-        selector: (row) => new Date(row.date).toLocaleDateString(),
+        selector: (row) => row.date,
       },
       {
         name: "Percentage",
@@ -151,9 +151,9 @@ class IndCertificate extends Component {
                 data={
                   this.state.searchData
                     ? this.state.records.filter((item) =>
-                        item.name
+                        item.course_name
                           .toLowerCase()
-                          .includes(this.state.searchData.toLowerCase())
+                          .startsWith(this.state.searchData.toLowerCase())
                       )
                     : this.state.records
                 }
