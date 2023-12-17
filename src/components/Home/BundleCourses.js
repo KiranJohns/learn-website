@@ -97,19 +97,21 @@ const BundleCour = () => {
       center: "true",
       width: "400px",
     },
-    // {
-    //   name: "description",
-    //   selector: (row) => row?.description?.slice(0, 25),
-    //   center:"true",
-    // },
     {
       name: "category",
       selector: (row) => row.category,
       center: "true",
     },
     {
+      name: "Attempts",
+      selector: (row) => row?.attempts,
+      center:"true",
+    },
+    {
       name: "Action",
-      cell: (row) => (
+      cell: (row) => {
+        console.log(row);
+        return (
         <Link
           href={{
             pathname: "/learnCourse/bundleCourse",
@@ -127,7 +129,7 @@ const BundleCour = () => {
             {data?.finished_course?.includes(row.id) ? "finished" : "start"}
           </a>
         </Link>
-      ),
+      )},
     },
   ];
 

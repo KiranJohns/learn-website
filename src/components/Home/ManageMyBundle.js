@@ -3,6 +3,7 @@ import DataTable from "react-data-table-component";
 import fetchData from "../../axios";
 import Spinner from "react-bootstrap/Spinner";
 import { Suspense } from "react";
+import { jwtDecode } from "jwt-decode";
 
 const customStyles = {
   headRow: {
@@ -28,6 +29,10 @@ const customStyles = {
 const ManagerBundle = () => {
   const [records, setRecords] = useState([]);
   const [filterRecords, setFilterRecords] = useState([]);
+  const [user, setUser] = useState(() => {
+    let token = localStorage.getItem(`learnforcare_access`);
+    return jwtDecode(token);
+  });
 
   const makeRequest = fetchData();
   const [pending, setPending] = React.useState(true);
@@ -35,9 +40,19 @@ const ManagerBundle = () => {
   const getData = async () => {
     console.clear();
     try {
+      const onGoingRes = await makeRequest(
+        "GET",
+        "/bundle/get-on-going-bundles"
+      );
       let resAssigned = await makeRequest("GET", "/info/get-assigned-bundle");
 
-      setRecords([...resAssigned.data.response].filter((item) => item.course_count >= 1));
+      setRecords([
+        ...resAssigned.data.response.filter(
+          (item) => item.course_count >= 1 && item.owner == user.id
+        ),
+        ...onGoingRes.data.response,
+      ]);
+      console.log(resAssigned.data.response, onGoingRes.data.response);
       setFilterRecords(resAssigned.data);
       setPending(false);
     } catch (err) {
@@ -69,29 +84,24 @@ const ManagerBundle = () => {
     {
       name: "ID",
       selector: (row, idx) => ++idx,
-      width: '70px',
+      width: "70px",
       center: true,
     },
     {
       name: "Bundle name",
-      selector: (row) => row.bundle_name,
+      selector: (row) => row.bundle_name || row.name,
       sortable: true,
       width: "420px",
       center: true,
     },
     {
       name: "validity",
-      selector: (row) => new Date(row.validity).toLocaleDateString(),
+      selector: (row) => row.validity,
       center: true,
     },
     {
-      name: "count",
-      selector: (row) => row.course_count,
-      center: true,
-    },
-    {
-      name: "total price",
-      selector: (row) => row.amount,
+      name: "Progress",
+      selector: (row) => (row.progress || 0) + "%",
       center: true,
     },
     {
@@ -100,11 +110,18 @@ const ManagerBundle = () => {
       selector: (row) => (
         <button
           className="btn btn-success"
+          style={{
+            width: "7rem",
+          }}
           onClick={() => {
-            handleStartBundle(row.id);
+            if (row?.form_ongoing) {
+              location.href = `/learnCourse/bundleList/?id=${row.id}`;
+            } else {
+              handleStartBundle(row.id);
+            }
           }}
         >
-          Start
+          {row?.form_ongoing ? "Continue" : "Start"}
         </button>
       ),
     },
@@ -113,7 +130,10 @@ const ManagerBundle = () => {
   return (
     <div className="">
       <div className="dash-shadow">
-        <div style={{ position: "relative" }} className=" row g-3  min-vh-100  d-flex justify-content-center mt-20">
+        <div
+          style={{ position: "relative" }}
+          className=" row g-3  min-vh-100  d-flex justify-content-center mt-20"
+        >
           <h2
             style={{
               color: "#212450",
@@ -147,10 +167,11 @@ const ManagerBundle = () => {
             <DataTable
               progressPending={pending}
               progressComponent={
-                pending ? 
-                (<div style={{ padding: "1rem" }}>
-                  <Spinner animation="border" variant="primary" />
-                </div>) : (null)
+                pending ? (
+                  <div style={{ padding: "1rem" }}>
+                    <Spinner animation="border" variant="primary" />
+                  </div>
+                ) : null
               }
               noDataComponent={" "}
               columns={columns}
@@ -167,4 +188,3 @@ const ManagerBundle = () => {
 };
 
 export default ManagerBundle;
-

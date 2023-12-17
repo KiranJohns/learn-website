@@ -74,9 +74,10 @@ const ManAssignBund = () => {
                 ...purchasedRes.data.response.filter(
                   (item) => item.course_count >= 1
                 ),
-                ...res.data.response.filter((item) => item.course_count >= 1),
+                ...res.data.response.filter((item) => (item.course_count >= 1 && item.owner != user.id)),
               ];
             });
+            console.log(purchasedRes.data.response, res.data.response);
           })
           .catch((err) => {
             console.log(err);
@@ -180,13 +181,7 @@ const ManAssignBund = () => {
     },
     {
       name: "validity",
-      selector: (row) => {
-        let newDt = new Date(row.validity)
-          .toLocaleDateString()
-          .split("/")
-          .map((d) => (d.length <= 1 ? "0" + d : d));
-        return newDt[1] + "/" + newDt[0] + "/" + newDt[2];
-      },
+      selector: (row) => row.validity,
       center: true,
     },
     {

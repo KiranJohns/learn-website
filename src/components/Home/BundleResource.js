@@ -28,7 +28,6 @@ const BundleResource = () => {
     form.append("bundleId", router.query.bundleId);
     makeRequest("POST", `/bundle/get-course/`, form)
       .then((res) => {
-        console.log(res.data.response);
         setCourse(res.data.response[0]);
         res.data.response[0].ppt.forEach((link) => {
           setSlides((prev) => {
