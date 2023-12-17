@@ -144,7 +144,7 @@ const CWManager = () => {
               data={
                 searchString
                   ? records.filter((item) =>
-                      item.name.toLowerCase().includes(searchString.toLowerCase())
+                      item.course_name.toLowerCase().includes(searchString.toLowerCase())
                     )
                   : records
               }
