@@ -14,11 +14,27 @@ const Success = () => {
   const forceReload = () => {
     setReloadKey((prevKey) => prevKey + 1);
   };
+  function getCartItem() {
+    makeRequest("GET", "/cart/get")
+      .then((res) => {
+        console.log(res);
+        store.dispatch({
+          type: "SET_CART",
+          payload: JSON.stringify(res.data.response),
+        });
+      })
+      .catch((err) => {
+        if (err?.data?.errors[0].message === "please login") {
+          store.dispatch({
+            type: "SET_CART",
+          });
+        }
+      });
+  }
   useEffect(() => {
     setInterval(() => {
       getCartItem()
-      setReloadKey((prev) => ++prev);
-    }, 1000);
+    }, 5000);
   }, []);
 
   return (
