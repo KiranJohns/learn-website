@@ -8,18 +8,17 @@ import ShopingCart from "../components/Layout/Header/ShopingCart";
 import { useRouter } from "next/router";
 import MyCart from "../components/MyCart/MyCartMain";
 import fetchData from "../axios";
+import Spinner from "react-bootstrap/Spinner";
 
 const Success = () => {
   const makeRequest = fetchData();
-  const [reloadKey, setReloadKey] = useState(0);
+  const [loading, setLoading] = useState(true);
 
-  const forceReload = () => {
-    setReloadKey((prevKey) => prevKey + 1);
-  };
   function getCartItem() {
     makeRequest("GET", "/cart/get")
       .then((res) => {
         console.log(res);
+        setLoading(false);
         store.dispatch({
           type: "SET_CART",
           payload: JSON.stringify(res.data.response),
@@ -44,35 +43,43 @@ const Success = () => {
 
   return (
     <>
-      <div style={{ position: "relative" }}>
-        <NoSSR>
-          <div key={reloadKey}>
-            <Header />
-          </div>
-        </NoSSR>
-        {/* <NoSSR>
-        <div style={{ visibility: "hidden" }}>
-          <HeaderSuccess />
-          </div>
-      </NoSSR> */}
-        <NoSSR>
-          <div key={reloadKey} className="behind-content-background">
-            <HeaderOpaque />
-          </div>
-        </NoSSR>
-
-        <div className="behind-content-background">
-          <ShopingCart />
+      {loading ? (
+        <div style={{height: '100vh',display: 'flex',alignItems: 'center', justifyContent: 'center'}}>
+          <Spinner animation="grow" variant="primary" />
         </div>
+      ) : (
+        <>
+          <div style={{ position: "relative" }}>
+            <NoSSR>
+              <div>
+                <Header />
+              </div>
+            </NoSSR>
+            {/* <NoSSR>
+                <div style={{ visibility: "hidden" }}>
+                  <HeaderSuccess />
+                </div>
+              </NoSSR> */}
+            <NoSSR>
+              <div className="behind-content-background">
+                <HeaderOpaque />
+              </div>
+            </NoSSR>
 
-        <div className="behind-content-background">
-          <MyCart />
-        </div>
+            <div className="behind-content-background">
+              <ShopingCart />
+            </div>
 
-        <NoSSR>
-          <SuccessLayout />
-        </NoSSR>
-      </div>
+            <div className="behind-content-background">
+              <MyCart />
+            </div>
+
+            <NoSSR>
+              <SuccessLayout />
+            </NoSSR>
+          </div>
+        </>
+      )}
     </>
   );
 };
