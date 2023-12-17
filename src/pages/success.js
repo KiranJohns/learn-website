@@ -32,9 +32,12 @@ const Success = () => {
       });
   }
   useEffect(() => {
-    setInterval(() => {
+    let timer = setTimeout(() => {
       getCartItem()
     }, 5000);
+    return () => {
+      clearTimeout(timer)
+    }
   }, []);
 
   return (
