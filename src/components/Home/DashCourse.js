@@ -277,7 +277,7 @@ const DashCourse = () => {
               data={
                 searchData
                   ? records.filter((item) =>
-                      item.Name.toLowerCase().includes(searchData.toLowerCase())
+                      item?.name.toLowerCase().includes(searchData.toLowerCase())
                     )
                   : records
               }
