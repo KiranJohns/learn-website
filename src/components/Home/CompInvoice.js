@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import DataTable from "react-data-table-component";
-import Button from 'react-bootstrap/Button';
+import Button from "react-bootstrap/Button";
 import { FaEye } from "react-icons/fa";
 import fetchData from "../../axios";
-import Spinner from 'react-bootstrap/Spinner';
+import Spinner from "react-bootstrap/Spinner";
 
 const customStyles = {
   headRow: {
@@ -30,7 +30,8 @@ const customStyles = {
 const CompInvoice = () => {
   const [records, setRecords] = useState([]);
   const [filterRecords, setFilterRecords] = useState([]);
- 
+
+  const [searchString, setSearchString] = React.useState("");
   const [pending, setPending] = React.useState(true);
   const handleFilter = (event) => {
     const newData = filterRecords.filter((row) =>
@@ -42,12 +43,12 @@ const CompInvoice = () => {
   useEffect(() => {
     const getData = async () => {
       try {
-        console.clear()
+        console.clear();
         let makeRequest = fetchData();
         const res = await makeRequest("GET", "/cart/get-invoice");
         setRecords(res.data.response.reverse());
         setFilterRecords(res.data);
-        setPending(false)
+        setPending(false);
       } catch (err) {
         console.log(err);
       }
@@ -65,7 +66,7 @@ const CompInvoice = () => {
     },
     {
       name: "User",
-      selector: (row, idx) => row.first_name.concat(" ",row.last_name),
+      selector: (row, idx) => row.first_name.concat(" ", row.last_name),
       center: true,
       width: "130px",
     },
@@ -77,14 +78,23 @@ const CompInvoice = () => {
     },
     {
       name: "Time",
-      selector: (row) => new Date(row.date).toLocaleTimeString("en-GB", { timeZone: "Europe/London", hour12: true }),
+      selector: (row) =>
+        new Date(row.date).toLocaleTimeString("en-GB", {
+          timeZone: "Europe/London",
+          hour12: true,
+        }),
       center: true,
     },
     {
       name: "Action",
       selector: (row) => (
-        <Button style={{ background: "#212a50", color: "white" }} variant="success btn-icon-xxs">
-          <a target="_blank" href={row.img}><FaEye /></a>
+        <Button
+          style={{ background: "#212a50", color: "white" }}
+          variant="success btn-icon-xxs"
+        >
+          <a target="_blank" href={row.img}>
+            <FaEye />
+          </a>
         </Button>
       ),
       center: true,
@@ -94,13 +104,16 @@ const CompInvoice = () => {
   return (
     <div className="">
       <div className="dash-shadow">
-        <div style={{position:"relative"}} className=" row g-3  min-vh-100  d-flex justify-content-center mt-20">
+        <div
+          style={{ position: "relative" }}
+          className=" row g-3  min-vh-100  d-flex justify-content-center mt-20"
+        >
           <h2
             style={{
               color: "#212450",
               display: "flex",
               justifyContent: "center",
-              position: 'absolute',
+              position: "absolute",
               fontSize: 36,
             }}
           >
@@ -113,12 +126,12 @@ const CompInvoice = () => {
             >
               <form action="">
                 <input
-                  style={{ background: '#edeef3', }}
+                  style={{ background: "#edeef3" }}
                   className="d-block mr-10"
                   type="text"
                   placeholder="Search..."
-                  // value={searchString}
-                  // onChange={handleSearch}
+                  value={searchString}
+                  onChange={(e) => setSearchString(e.target.value)}
                 />
                 <button type="submit">
                   <i className="fas fa-search"></i>
@@ -126,19 +139,27 @@ const CompInvoice = () => {
               </form>
             </div>
             <DataTable
-             progressPending={pending}
-             progressComponent={
-              pending ? 
-              (<div style={{ padding: "1rem" }}>
-                <Spinner animation="border" variant="primary" />
-              </div>) : (null)
-            }
+              progressPending={pending}
+              progressComponent={
+                pending ? (
+                  <div style={{ padding: "1rem" }}>
+                    <Spinner animation="border" variant="primary" />
+                  </div>
+                ) : null
+              }
               persistTableHead={true}
               columns={columns}
-              data={records}
+              data={
+                searchString
+                  ? records.filter((item) =>
+                      item.first_name
+                        .toLowerCase()
+                        .startsWith(searchString.toLowerCase())
+                    )
+                  : records
+              }
               customStyles={customStyles}
               pagination
-              
               noDataComponent={" "}
             />
           </div>
@@ -149,5 +170,3 @@ const CompInvoice = () => {
 };
 
 export default CompInvoice;
-
-
