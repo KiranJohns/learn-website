@@ -17,7 +17,7 @@ const SuccessLayout = () => {
   useEffect(() => {
     if (localStorage.getItem("reload")) {
       localStorage.removeItem("reload");
-      window.location.reload();
+      // window.location.reload();
     }
   }, []);
 
