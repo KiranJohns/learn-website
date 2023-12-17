@@ -217,7 +217,7 @@ const IndCourse = () => {
             data={
               searchData
                 ? records.filter((item) =>
-                    item.Name.toLowerCase().includes(searchData.toLowerCase())
+                    (item?.Name || item?.name).toLowerCase().startsWith(searchData.toLowerCase())
                   )
                 : records
             }

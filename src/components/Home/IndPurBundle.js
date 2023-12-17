@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import DataTable from "react-data-table-component";
 import fetchData from "../../axios";
-import Button from 'react-bootstrap/Button';
+import Button from "react-bootstrap/Button";
 import { FaEye } from "react-icons/fa";
 import { Suspense } from "react";
 import Spinner from "react-bootstrap/Spinner";
@@ -31,6 +31,7 @@ const IndPurBundle = () => {
   const [records, setRecords] = useState([]);
   const [filterRecords, setFilterRecords] = useState([]);
 
+  const [searchString, setSearchString] = React.useState("");
   const [pending, setPending] = React.useState(true);
 
   const handleFilter = (event) => {
@@ -47,7 +48,7 @@ const IndPurBundle = () => {
         console.log(res);
         setRecords(res.data.response);
         setFilterRecords(res.data);
-        setPending(false)
+        setPending(false);
       })
       .catch((err) => {
         console.log(err);
@@ -100,7 +101,7 @@ const IndPurBundle = () => {
               color: "#212450",
               display: "flex",
               justifyContent: "center",
-              position: 'absolute',
+              position: "absolute",
               fontSize: 38,
             }}
           >
@@ -129,11 +130,12 @@ const IndPurBundle = () => {
             >
               <form action="">
                 <input
-                  style={{ background: '#edeef3', }}
+                  style={{ background: "#edeef3" }}
                   className="d-block mr-10"
                   type="text"
                   placeholder="Search..."
-                  onChange={handleFilter}
+                  value={searchString}
+                  onChange={(e) => setSearchString(e.target.value)}
                 />
                 <button type="submit">
                   <i className="fas fa-search"></i>
@@ -141,16 +143,25 @@ const IndPurBundle = () => {
               </form>
             </div>
             <DataTable
-                progressPending={pending}
-                progressComponent={
-                  pending ? 
-                  (<div style={{ padding: "1rem" }}>
+              progressPending={pending}
+              progressComponent={
+                pending ? (
+                  <div style={{ padding: "1rem" }}>
                     <Spinner animation="border" variant="primary" />
-                  </div>) : (null)
-                }
+                  </div>
+                ) : null
+              }
               noDataComponent={" "}
               columns={columns}
-              data={records}
+              data={
+                searchString
+                  ? records.filter((item) =>
+                      (item?.name || item?.bundle_name)
+                        .toLowerCase()
+                        .startsWith(searchString.toLowerCase())
+                    )
+                  : records
+              }
               customStyles={customStyles}
               pagination
               persistTableHead={true}

@@ -3,7 +3,7 @@ import axios from "axios";
 import DataTable from "react-data-table-component";
 import BasicExample from "../About/button1";
 import fetchData, { getUserType } from "../../axios";
-import Button from 'react-bootstrap/Button';
+import Button from "react-bootstrap/Button";
 import { FaEye } from "react-icons/fa";
 import Spinner from "react-bootstrap/Spinner";
 
@@ -36,10 +36,9 @@ const customStyles = {
 
 const IndCAvail = () => {
   const [records, setRecords] = useState([]);
-  const [filterRecords, setFilterRecords] = useState([]);
+  const [searchData,setSearchData] = useState("");
 
   const [pending, setPending] = React.useState(true);
-
 
   const makeRequest = fetchData();
 
@@ -49,58 +48,62 @@ const IndCAvail = () => {
 
   const getData = () => {
     let url1 = "/course/get-all-bought-course";
-    Promise.all([
-      makeRequest("GET", url1),
-    ]).then((res) => {
-      let arr = [
-        ...res[0].data.response,
-      ];
+    Promise.all([makeRequest("GET", url1)]).then((res) => {
+      let arr = [...res[0].data.response];
       console.log(res);
       setRecords(() => {
-        return arr.reverse()  
+        return arr.reverse();
       });
-      setPending(false)
+      setPending(false);
     });
   };
-  
-  
+
   const columns = [
     {
       name: "ID",
       selector: (row, idx) => ++idx,
       sortable: true,
-      width:"90px",
-      center:true,
+      width: "90px",
+      center: true,
     },
     {
       name: "Courses",
       selector: (row) => row.Name,
       sortable: true,
-      width:"420px",
-      center:true,
+      width: "420px",
+      center: true,
     },
     {
       name: "validity",
-      center:true,
-      selector: (row) => row.validity
+      center: true,
+      selector: (row) => row.validity,
     },
     {
       name: "catagory",
       selector: (row) => row.category,
-      width:"350px",
-      center:true,
+      width: "350px",
+      center: true,
     },
     {
       name: "Actions",
-      center:true,
-      cell: (id) => <a href="https://test.learnforcare.co.uk/course-all"><Button style={{background:"#212a50", color:'#fff'}} variant=""><FaEye /></Button></a> ,
+      center: true,
+      cell: (id) => (
+        <a href="https://test.learnforcare.co.uk/course-all">
+          <Button style={{ background: "#212a50", color: "#fff" }} variant="">
+            <FaEye />
+          </Button>
+        </a>
+      ),
     },
   ];
 
   return (
     <div className="">
       <div className="dash-shadow">
-        <div style={{position:'relative'}} className=" row g-3  min-vh-100  d-flex justify-content-center mt-20">
+        <div
+          style={{ position: "relative" }}
+          className=" row g-3  min-vh-100  d-flex justify-content-center mt-20"
+        >
           <h2
             style={{
               color: "#212450",
@@ -110,7 +113,7 @@ const IndCAvail = () => {
               fontSize: 36,
             }}
           >
-           Purchased Courses
+            Purchased Courses
           </h2>
           <div style={{ padding: "", backgroundColor: "" }}>
             <div
@@ -123,6 +126,8 @@ const IndCAvail = () => {
                   className="d-block mr-10"
                   type="text"
                   placeholder="Search..."
+                  value={searchData}
+                  onChange={(e) => setSearchData(e.target.value)}
                 />
                 <button type="submit">
                   <i className="fas fa-search"></i>
@@ -130,20 +135,28 @@ const IndCAvail = () => {
               </form>
             </div>
             <DataTable
-               progressPending={pending}
-               progressComponent={
-                 pending ? 
-                 (<div style={{ padding: "1rem" }}>
-                   <Spinner animation="border" variant="primary" />
-                 </div>) : (null)
-               }   
+              progressPending={pending}
+              progressComponent={
+                pending ? (
+                  <div style={{ padding: "1rem" }}>
+                    <Spinner animation="border" variant="primary" />
+                  </div>
+                ) : null
+              }
               noDataComponent={" "}
-            persistTableHead={true}
+              persistTableHead={true}
               columns={columns}
-              data={records}
+              data={
+                searchData
+                  ? records.filter((item) =>
+                      (item?.Name)
+                        .toLowerCase()
+                        .startsWith(searchData.toLowerCase())
+                    )
+                  : records
+              }
               customStyles={customStyles}
               pagination
-              
             />
           </div>
         </div>{" "}
