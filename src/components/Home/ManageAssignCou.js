@@ -438,9 +438,9 @@ const ManagerAssignCourse = () => {
               data={
                 searchString
                   ? records.filter((item) =>
-                      item.name
+                  (item.name || item.Name)
                         .toLowerCase()
-                        .includes(searchString.toLowerCase())
+                        .startsWith(searchString.toLowerCase())
                     )
                   : records
               }
