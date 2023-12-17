@@ -1,14 +1,13 @@
-
 import axios from "axios";
 import DataTable from "react-data-table-component";
 import Link from "next/link";
 import BasicExample from "../About/button1";
 import fetchData from "../../axios";
-import Button from 'react-bootstrap/Button';
+import Button from "react-bootstrap/Button";
 import { getMonth } from "../../utils/month";
 import { Suspense } from "react";
 import React, { useState, useEffect } from "react";
-import Spinner from 'react-bootstrap/Spinner';
+import Spinner from "react-bootstrap/Spinner";
 
 const customStyles = {
   headRow: {
@@ -48,11 +47,14 @@ const CompMonthRep = () => {
     const getData = async () => {
       try {
         let makeRequest = fetchData();
-        const res = await makeRequest("GET", "/info/get-all-transactions-by-month");
+        const res = await makeRequest(
+          "GET",
+          "/info/get-all-transactions-by-month"
+        );
         console.log(res);
         setRecords(res.data.response);
         setFilterRecords(res.data);
-        setPending(false)
+        setPending(false);
       } catch (err) {
         console.log(err);
       }
@@ -66,7 +68,7 @@ const CompMonthRep = () => {
       name: "Sl",
       selector: (row, idx) => ++idx,
       center: true,
-      width: '100px',
+      width: "100px",
     },
     {
       name: "year",
@@ -99,7 +101,7 @@ const CompMonthRep = () => {
               color: "#212450",
               display: "flex",
               justifyContent: "center",
-              position: 'absolute',
+              position: "absolute",
               fontSize: 36,
             }}
           >
@@ -112,10 +114,10 @@ const CompMonthRep = () => {
             >
               <form action="">
                 <input
-                  style={{ background: '#edeef3', }}
+                  style={{ background: "#edeef3" }}
                   className="d-block mr-10"
                   type="text"
-                  placeholder="Search..."
+                  placeholder="Search by month"
                   value={searchString}
                   onChange={(e) => setSearchString(e.target.value)}
                 />
@@ -127,19 +129,23 @@ const CompMonthRep = () => {
             <DataTable
               progressPending={pending}
               progressComponent={
-               pending ? 
-               (<div style={{ padding: "1rem" }}>
-                 <Spinner animation="border" variant="primary" />
-               </div>) : (null)
-             }
+                pending ? (
+                  <div style={{ padding: "1rem" }}>
+                    <Spinner animation="border" variant="primary" />
+                  </div>
+                ) : null
+              }
               persistTableHead={true}
               columns={columns}
-              data={searchString ? records.filter((item) =>
-                item.month
-                  .toLowerCase()
-                  .startsWith(searchString.toLowerCase())
-              )
-            : records}
+              data={
+                searchString
+                  ? records.filter((item) =>
+                      getMonth(item.month)
+                        .toLowerCase()
+                        .startsWith(searchString.toLowerCase())
+                    )
+                  : records
+              }
               pagination
               noDataComponent={" "}
               customStyles={customStyles}
