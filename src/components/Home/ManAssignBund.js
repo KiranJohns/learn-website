@@ -263,7 +263,7 @@ const ManAssignBund = () => {
                     {courseName}
                   </h5>{" "}
                   <h5 style={{ color: "#212a50", marginRight: "1rem" }}>
-                    Available Course Count:{}
+                    Available Bundle Count: {selectedBundleCount}
                   </h5>
                 </div>
                 <div>
