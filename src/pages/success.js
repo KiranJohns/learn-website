@@ -10,7 +10,7 @@ import MyCart from "../components/MyCart/MyCartMain";
 import fetchData from "../axios";
 
 const Success = () => {
-  const makeRequest = fetchData()
+  const makeRequest = fetchData();
   const [reloadKey, setReloadKey] = useState(0);
 
   const forceReload = () => {
@@ -35,11 +35,11 @@ const Success = () => {
   }
   useEffect(() => {
     let timer = setTimeout(() => {
-      getCartItem()
+      getCartItem();
     }, 5000);
     return () => {
-      clearTimeout(timer)
-    }
+      clearTimeout(timer);
+    };
   }, []);
 
   return (
@@ -47,17 +47,17 @@ const Success = () => {
       <div style={{ position: "absolute" }}>
         <NoSSR>
           <div key={reloadKey}>
-            <HeaderOpaque />
+            <Header />
           </div>
         </NoSSR>
         {/* <NoSSR>
         <div style={{ visibility: "hidden" }}>
           <HeaderSuccess />
-        </div>
+          </div>
       </NoSSR> */}
         <NoSSR>
           <div key={reloadKey} className="behind-content-background">
-            <Header />
+            <HeaderOpaque />
           </div>
         </NoSSR>
 
