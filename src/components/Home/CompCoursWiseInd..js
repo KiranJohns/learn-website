@@ -8,7 +8,7 @@ import fetchData from "../../axios";
 import BasicExample from "../About/button1";
 import Link from "next/link";
 import { Suspense } from "react";
-import Spinner from 'react-bootstrap/Spinner';
+import Spinner from "react-bootstrap/Spinner";
 
 const customStyles = {
   headRow: {
@@ -55,7 +55,7 @@ const CWIndReport = () => {
         console.log(res.data.response);
         setRecords(res.data.response);
         setFilterRecords(res.data);
-        setPending(false)
+        setPending(false);
       })
       .catch((err) => console.log(err));
   };
@@ -63,14 +63,14 @@ const CWIndReport = () => {
   const columns = [
     {
       name: "SL",
-      selector: (row,id) => id,
+      selector: (row, id) => id,
       sortable: true,
       center: true,
-      width:"120px"
+      width: "120px",
     },
     {
       name: "CODE",
-      selector: (row,id) => id,
+      selector: (row, id) => row.code,
       sortable: true,
       center: true,
     },
@@ -101,7 +101,10 @@ const CWIndReport = () => {
           pauseOnHover
           theme="light"
         />
-        <div style={{ position: "relative" }} className=" row g-3  min-vh-100  d-flex justify-content-center mt-20">
+        <div
+          style={{ position: "relative" }}
+          className=" row g-3  min-vh-100  d-flex justify-content-center mt-20"
+        >
           <h2
             style={{
               color: "#212450",
@@ -111,10 +114,13 @@ const CWIndReport = () => {
               fontSize: 36,
             }}
           >
-           Course Wise Individual
+            Course Wise Individual
           </h2>
           <div style={{ padding: "", backgroundColor: "" }}>
-            <div style={{ float: "right", marginBottom: "1.4rem" }} className="p-relative d-inline header__search">
+            <div
+              style={{ float: "right", marginBottom: "1.4rem" }}
+              className="p-relative d-inline header__search"
+            >
               <form action="">
                 <input
                   style={{ background: "#edeef3" }}
@@ -130,27 +136,30 @@ const CWIndReport = () => {
               </form>
             </div>
             <Suspense fallback={<Loading />}>
-            <DataTable
-             progressPending={pending}
-             progressComponent={
-              pending ? 
-              (<div style={{ padding: "1rem" }}>
-                <Spinner animation="border" variant="primary" />
-              </div>) : (null)
-            }
-               noDataComponent={" "}
-              columns={columns}
-              data={
-                searchString
-                  ? records.filter((item) =>
-                      item.name.toLowerCase().includes(searchString.toLowerCase())
-                    )
-                  : records
-              }
-              customStyles={customStyles}
-              pagination
-              persistTableHead ={true}
-            />
+              <DataTable
+                progressPending={pending}
+                progressComponent={
+                  pending ? (
+                    <div style={{ padding: "1rem" }}>
+                      <Spinner animation="border" variant="primary" />
+                    </div>
+                  ) : null
+                }
+                noDataComponent={" "}
+                columns={columns}
+                data={
+                  searchString
+                    ? records.filter((item) =>
+                        item.course_name
+                          .toLowerCase()
+                          .startsWith(searchString.toLowerCase())
+                      )
+                    : records
+                }
+                customStyles={customStyles}
+                pagination
+                persistTableHead={true}
+              />
             </Suspense>
           </div>
         </div>{" "}
