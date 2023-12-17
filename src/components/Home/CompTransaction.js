@@ -30,6 +30,7 @@ const CompTransaction = () => {
   const [records, setRecords] = useState([]);
   const [filterRecords, setFilterRecords] = useState([]);
   const [pending, setPending] = React.useState(true);
+  const [searchString, setSearchString] = React.useState("");
 
   const handleFilter = (event) => {
     const newData = filterRecords.filter((row) =>
@@ -119,8 +120,8 @@ const CompTransaction = () => {
                   className="d-block mr-10"
                   type="text"
                   placeholder="Search..."
-                  // value={searchString}
-                  // onChange={handleSearch}
+                  value={searchString}
+                  onChange={(e) => setSearchString(e.target.value)}
                 />
                 <button type="submit">
                   <i className="fas fa-search"></i>
@@ -137,7 +138,12 @@ const CompTransaction = () => {
              }
               persistTableHead={true}
               columns={columns}
-              data={records}
+              data={searchString ? records.filter((item) =>
+                item.first_name
+                  .toLowerCase()
+                  .startsWith(searchString.toLowerCase())
+              )
+            : records}
               pagination
               noDataComponent={" "}
               customStyles={customStyles}
