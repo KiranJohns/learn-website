@@ -44,7 +44,7 @@ const Success = () => {
 
   return (
     <>
-      <div style={{ position: "absolute" }}>
+      <div style={{ position: "relative" }}>
         <NoSSR>
           <div key={reloadKey}>
             <Header />
