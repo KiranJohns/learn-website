@@ -139,13 +139,7 @@ function DashIndividual() {
     },
     {
       name: "validity",
-      selector: (row) => {
-        let date = row.validity
-          .split("/")
-          .map((d) => (d.length <= 1 ? "0" + d : d));
-        let newDate = `${date[1]}/${date[0]}/${date[2]}`;
-        return newDate;
-      },
+      selector: (row) => row.validity
     },
     {
       name: "Action",
@@ -432,7 +426,7 @@ function DashIndividual() {
                   data={
                     searchString
                       ? records.filter((item) =>
-                          item.Name.toLowerCase().includes(
+                          (item.name || item.Name).toLowerCase().startsWith(
                             searchString.toLowerCase()
                           )
                         )

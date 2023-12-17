@@ -82,10 +82,7 @@ const IndCAvail = () => {
     {
       name: "validity",
       center:true,
-      selector: (row) => {
-        let date = row.validity.split("/")
-        return `${date[1]}/${date[0]}/${date[2]}`
-      },
+      selector: (row) => row.validity
     },
     {
       name: "catagory",
