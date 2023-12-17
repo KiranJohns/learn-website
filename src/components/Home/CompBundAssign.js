@@ -658,7 +658,7 @@ const CompAssignBund = () => {
                 data={
                   searchString
                     ? records.filter((item) =>
-                        item.name
+                        (item?.bundle_name)
                           .toLowerCase()
                           .includes(searchString.toLowerCase())
                       )
