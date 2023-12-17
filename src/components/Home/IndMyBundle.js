@@ -27,7 +27,8 @@ const customStyles = {
 const IndMyBundle = () => {
   const [records, setRecords] = useState([]);
   const [filterRecords, setFilterRecords] = useState([]);
-
+  
+  const [searchString, setSearchString] = React.useState("");
   const [pending, setPending] = React.useState(true);
 
   const handleFilter = (event) => {
@@ -100,13 +101,7 @@ const IndMyBundle = () => {
     {
       name: "validity",
       center: true,
-      selector: (row) => {
-        let newDt = new Date(row.validity)
-          .toLocaleDateString()
-          .split("/")
-          .map((d) => (d.length <= 1 ? "0" + d : d));
-        return newDt[1] + "/" + newDt[0] + "/" + newDt[2];
-      },
+      selector: (row) => row.validity
     },
     {
       name: "Actions",
@@ -157,7 +152,8 @@ const IndMyBundle = () => {
                   className="d-block mr-10"
                   type="text"
                   placeholder="Search..."
-                  onChange={handleFilter}
+                  value={searchString}
+                  onChange={(e) => setSearchString(e.target.value)}
                 />
                 <button type="submit">
                   <i className="fas fa-search"></i>
@@ -174,7 +170,13 @@ const IndMyBundle = () => {
                   }
               noDataComponent={" "}
               columns={columns}
-              data={records}
+              data={searchString
+                ? records.filter((item) =>
+                    (item?.name || item?.bundle_name).toLowerCase().startsWith(
+                      searchString.toLowerCase()
+                    )
+                  )
+                : records}
               customStyles={customStyles}
               pagination
               persistTableHead={true}
