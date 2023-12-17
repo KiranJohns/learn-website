@@ -36,7 +36,7 @@ const Success = () => {
   useEffect(() => {
     let timer = setTimeout(() => {
       getCartItem()
-    }, 3000);
+    }, 5000);
     return () => {
       clearTimeout(timer)
     }
