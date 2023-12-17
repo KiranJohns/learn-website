@@ -38,6 +38,7 @@ const customStyles = {
 
 const CompanyBundle = () => {
   const [records, setRecords] = useState([]);
+  const [searchString, setSearchString] = useState("");
   const [filterRecords, setFilterRecords] = useState([]);
 
   const [user, setUser] = useState(() => {
@@ -180,8 +181,8 @@ const CompanyBundle = () => {
                   className="d-block mr-10"
                   type="text"
                   placeholder="Search..."
-                  // value={searchString}
-                  // onChange={handleSearch}
+                  value={searchString}
+                  onChange={(e) => setSearchString(e.target.value)}
                 />
                 <button type="submit">
                   <i className="fas fa-search"></i>
@@ -200,7 +201,15 @@ const CompanyBundle = () => {
                 }
                 noDataComponent={" "}
                 columns={columns}
-                data={records}
+                data={
+                  searchString
+                    ? records.filter((item) =>
+                        (item?.name || item?.bundle_name).toLowerCase().startsWith(
+                          searchString.toLowerCase()
+                        )
+                      )
+                    : records
+                }
                 customStyles={customStyles}
                 pagination
                 persistTableHead={true}
