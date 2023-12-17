@@ -164,9 +164,9 @@ const ManagerReport = () => {
                 data={
                   searchString
                     ? records.filter((item) =>
-                        item.name
+                        item.first_name
                           .toLowerCase()
-                          .includes(searchString.toLowerCase())
+                          .startsWith(searchString.toLowerCase())
                       )
                     : records
                 }
