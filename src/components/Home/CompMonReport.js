@@ -35,6 +35,7 @@ const CompMonthRep = () => {
   const [records, setRecords] = useState([]);
   const [filterRecords, setFilterRecords] = useState([]);
   const [pending, setPending] = React.useState(true);
+  const [searchString, setSearchString] = React.useState("");
 
   const handleFilter = (event) => {
     const newData = filterRecords.filter((row) =>
@@ -115,8 +116,8 @@ const CompMonthRep = () => {
                   className="d-block mr-10"
                   type="text"
                   placeholder="Search..."
-                  // value={searchString}
-                  // onChange={handleSearch}
+                  value={searchString}
+                  onChange={(e) => setSearchString(e.target.value)}
                 />
                 <button type="submit">
                   <i className="fas fa-search"></i>
@@ -133,7 +134,12 @@ const CompMonthRep = () => {
              }
               persistTableHead={true}
               columns={columns}
-              data={records}
+              data={searchString ? records.filter((item) =>
+                item.month
+                  .toLowerCase()
+                  .startsWith(searchString.toLowerCase())
+              )
+            : records}
               pagination
               noDataComponent={" "}
               customStyles={customStyles}
