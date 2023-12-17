@@ -30,6 +30,7 @@ const customStyles = {
 const ManTransaction = () => {
   const [records, setRecords] = useState([]);
   const [filterRecords, setFilterRecords] = useState([]);
+  const [searchString, setSearchString] = useState("");
   const [pending, setPending] = React.useState(true);
   
 
@@ -117,7 +118,8 @@ const ManTransaction = () => {
                   className="d-block mr-10"
                   type="text"
                   placeholder="Search..."
-                  onChange={handleFilter}
+                  value={searchString}
+                  onChange={(e) => setSearchString(e.target.value)}
                 />
                 <button type="submit">
                   <i className="fas fa-search"></i>
@@ -135,7 +137,11 @@ const ManTransaction = () => {
               noDataComponent={" "}
               persistTableHead={true}
               columns={columns}
-              data={records}
+              data={searchString
+                ? records.filter((item) =>
+                    item.first_name.toLowerCase().startsWith(searchString.toLowerCase())
+                  )
+                : records}
               customStyles={customStyles}
               pagination
             />
