@@ -7,8 +7,10 @@ import NoSSR from "react-no-ssr";
 import ShopingCart from "../components/Layout/Header/ShopingCart";
 import { useRouter } from "next/router";
 import MyCart from "../components/MyCart/MyCartMain";
+import fetchData from "../axios";
 
 const Success = () => {
+  const makeRequest = fetchData()
   const [reloadKey, setReloadKey] = useState(0);
 
   const forceReload = () => {
@@ -34,7 +36,7 @@ const Success = () => {
   useEffect(() => {
     let timer = setTimeout(() => {
       getCartItem()
-    }, 5000);
+    }, 3000);
     return () => {
       clearTimeout(timer)
     }
