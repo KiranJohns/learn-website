@@ -109,13 +109,7 @@ class ManageDash extends Component {
       },
       {
         name: "validity",
-        selector: (row) => {
-          let date = new Date(row.validity).toLocaleDateString()
-            .split("/")
-            .map((d) => (d.length <= 1 ? "0" + d : d));
-          let newDate = `${date[1]}/${date[0]}/${date[2]}`;
-          return newDate;
-        },
+        selector: (row) => row.validity
       },
       {
         name: "Action",
