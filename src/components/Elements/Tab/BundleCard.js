@@ -10,13 +10,43 @@ function BundleCard({ item }) {
   const { cart } = useSelector((state) => state.cart);
   const [fakeCount, setFakeCount] = useState(0);
   const [bundles, setBundles] = useState([]);
+  const [routes, setRoutes] = useState({
+    "care-bundle": "course-grid",
+    "mandatory-bundle": "course-mandatory",
+    "special-bundle": "course-specialised",
+    "recovery-bundle": "course-recovery",
+    "child-bundle": "course-child",
+    "bundle-Online": "course-online",
+  });
 
-  
+  function goTo(route) {
+    switch (route) {
+      case "care-bundle":
+        location.href = "/course-grid";
+        break;
+      case "mandatory-bundle":
+        location.href = "/course-mandatory";
+        break;
+      case "special-bundle":
+        location.href = "/course-specialised";
+        break;
+      case "recovery-bundle":
+        location.href = "/course-recovery";
+        break;
+      case "child-bundle":
+        location.href = "/course-child";
+        break;
+      case "bundle-Online":
+        location.href = "/course-online";
+        break;
+      default:
+        break;
+    }
+  }
 
   function getCartItem() {
     makeRequest("GET", "/cart/get")
       .then((res) => {
-
         console.log(res.data.response);
         store.dispatch({
           type: "SET_CART",
@@ -32,11 +62,9 @@ function BundleCard({ item }) {
       });
   }
 
-
-
-
-
   useEffect(() => {
+    console.log(location.pathname);
+    console.log(routes[location.pathname.split("/").pop()]);
     getAllBundles();
   }, []);
 
@@ -44,7 +72,7 @@ function BundleCard({ item }) {
     makeRequest("GET", "/bundle/get-all-bundles")
       .then((res) => {
         setBundles(res.data.response);
-        console.log(res.data.response); 
+        console.log(res.data.response);
       })
       .catch((err) => {
         console.log(err);
@@ -56,7 +84,12 @@ function BundleCard({ item }) {
       let cartItem = cart.find((cartItem) => cartItem.course_id == item.id);
 
       if (cartItem) {
-        updateCount(Number(cartItem.id), Number(item.id), Number(fakeCount),cartItem.item_type);
+        updateCount(
+          Number(cartItem.id),
+          Number(item.id),
+          Number(fakeCount),
+          cartItem.item_type
+        );
       } else {
         addToCart(item.id);
       }
@@ -64,7 +97,7 @@ function BundleCard({ item }) {
   }
 
   function addToCart(id) {
-    console.log('bundle id ', id);
+    console.log("bundle id ", id);
     console.log(fakeCount, id);
     const data = new FormData();
     data.append("course", JSON.stringify([{ count: fakeCount, id: id }]));
@@ -79,7 +112,10 @@ function BundleCard({ item }) {
           store.dispatch({
             type: "ADD_TO_CART",
             payload: {
-              course: {...bundles.find((item) => item.id === id),item_type: "bundle"},
+              course: {
+                ...bundles.find((item) => item.id === id),
+                item_type: "bundle",
+              },
               count: fakeCount,
             },
           });
@@ -120,11 +156,16 @@ function BundleCard({ item }) {
     <div key={item.id} className="col-xxl-4 col-xl-4 col-lg-4 col-md-6">
       <div className="course__item white-bg mb-30 fix">
         <div className="course__thumb w-img p-relative fix">
-          <Link href={`/course-grid`}>
+          <span
+            onClick={() => {
+              // console.log(location.pathname.split("/").pop());
+              goTo(location.pathname.split("/").pop());
+            }}
+          >
             <a>
               <img src={item.image} alt="img not found" />
             </a>
-          </Link>
+          </span>
           {/* <div className="course__tag">
                         <Link href="/course-details">
                           <a className="orange">{item.course_tags}</a>
@@ -133,19 +174,21 @@ function BundleCard({ item }) {
         </div>
         <div className="course__content">
           <h3 className="homee__title" title={item.name}>
-            <Link href={`/course-grid`}>
+            <span onClick={() => goTo(location.pathname.split("/").pop())}>
               <a>{item.name}</a>
               {/* <a>{item.name.slice(0, 20) + "..."}</a> */}
-            </Link>
+            </span>
           </h3>
           <div className="course__teacher d-flex align-items-center">
             {/* <div className="course__teacher-thumb mr-15">
                                  <img src="assets/img/course/teacher/teacher-5.jpg" alt="img not found"/>
                               </div> */}
             <h6>
-              <Link href={`/course-grid`}>
+              <span
+                onClick={() => goTo(location.pathname.split("/").pop())}
+              >
                 <a>{item?.description?.slice(0, 150) + "..."}</a>
-              </Link>
+              </span>
             </h6>
           </div>
         </div>
@@ -197,5 +240,3 @@ function BundleCard({ item }) {
 }
 
 export default BundleCard;
-
-

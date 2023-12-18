@@ -173,7 +173,7 @@ function CourseSidebar({ addToCart }) {
             <div className="course__video-meta mb-25 d-flex align-items-center justify-content-between">
               <div className="course__video-price">
                 <h5>
-                  £{course?.price}{" "}
+                  £{parseFloat(course?.price).toFixed(2)}{" "}
                 </h5>
                 <h5 style={{color:'#c75342'}} className="old-price">
                 £{parseFloat(course?.RRP).toFixed(2)}
@@ -249,7 +249,7 @@ function CourseSidebar({ addToCart }) {
                     className="sky-blue mb-3"
                     style={{ marginBottom: "1px" }}
                   >
-                    £{course?.price}
+                    £{parseFloat(course?.price).toFixed(2)}
                   </span>
                 </div>
                 <span style={{ marginTop: "2px" }}>
