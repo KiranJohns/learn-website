@@ -55,7 +55,7 @@ class IndCertificate extends Component {
       .then((res) => {
         console.log(res.data);
         this.setState({
-          records: res.data.response,
+          records: res.data.response.reverse(),
           filterRecords: res.data,
         });
       })
@@ -84,7 +84,11 @@ class IndCertificate extends Component {
       },
       {
         name: "Actions",
-        selector: (row) => <a className="btn btn-success" target="_blank" href={row.image}>view</a>,
+        selector: (row) => (
+          <a className="btn btn-success" target="_blank" href={row.image}>
+            view
+          </a>
+        ),
       },
     ];
 
@@ -129,12 +133,12 @@ class IndCertificate extends Component {
                     style={{ background: "#edeef3" }}
                     className="d-block mr-10"
                     type="text"
-                    onChange={(e) =>
+                    onChange={(e) => {
                       this.setState({
                         ...this.state,
                         searchData: e.target.value,
-                      })
-                    }
+                      });
+                    }}
                     placeholder="Search..."
                     // value={searchString}
                     // onChange={handleSearch}

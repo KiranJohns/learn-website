@@ -82,8 +82,9 @@ const OnlineExam = () => {
     form.append("enrolled_course_id", router.query.user);
     form.append("question_id", questionId);
     makeRequest("POST", "/exam/validate", form)
-      .then((res) => {
-        console.log(res.data);
+    .then((res) => {
+      console.log(res.data);
+      setClick(false);
         localStorage.setItem(
           "wrong-answers",
           JSON.stringify({
