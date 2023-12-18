@@ -12,6 +12,9 @@ import Dropdown from "react-bootstrap/Dropdown";
 const HeaderOpaque = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [shopOpen, setShopOpen] = useState(false);
+  const [searchProduct, setSearchProduct] = useState([]);
+  const [searchString, setSearchString] = useState("");
+  const [course, setCourse] = useState([]);
 
   const router = useRouter();
   const [path, setPath] = useState("");
@@ -27,6 +30,32 @@ const HeaderOpaque = () => {
     localStorage.removeItem("userType");
     location.pathname = "/";
   };
+
+
+  function handleSearch(e) {
+    e.persist();
+    setSearchString(() => e.target?.value);
+    setSearchProduct(() =>
+      course.filter((item) =>
+        item?.name?.toLowerCase()?.startsWith(e.target?.value?.toLowerCase())
+      )
+    );
+  }
+
+  useEffect(() => {
+    getAllCourse();
+  }, []);
+
+  function getAllCourse() {
+    makeRequest("GET", "/course/get-all-course")
+      .then((res) => {
+        setCourse(res.data.response);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
 
   useEffect(() => {
     console.log(location.pathname);
@@ -348,7 +377,7 @@ const HeaderOpaque = () => {
                   </div>
                   <div className="header__search p-relative ml-50 d-none d-md-block">
                     <form action="#">
-                      <input type="text" placeholder="Search course..." />
+                      <input type="text" placeholder="Search course..." onChange={handleSearch}/>
                       <button type="submit">
                         <i className="fas fa-search"></i>
                       </button>
@@ -377,6 +406,21 @@ const HeaderOpaque = () => {
                         </span>
                       </span>
                     </div>
+                    {searchString ? (
+                        <div className="search-suggestions position-absolute w-100">
+                          <ul class="list-group w-100" style={{zIndex: '1001'}}>
+                            {searchProduct?.map((item) => (
+                              <a href={`/course/${item.id}`}>
+                                <li class="list-group-item w-100 bg-white text-black" style={{zIndex: '1001'}}>
+                                  {item.name}
+                                </li>
+                              </a>
+                            ))}
+                          </ul>
+                        </div>
+                      ) : (
+                        <></>
+                      )}
                   </div>
                   <div className="header__cart header__cart--responsive">
                     <span
