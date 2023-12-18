@@ -11,6 +11,8 @@ function BundleCard({ item }) {
   const [fakeCount, setFakeCount] = useState(0);
   const [bundles, setBundles] = useState([]);
 
+  
+
   function getCartItem() {
     makeRequest("GET", "/cart/get")
       .then((res) => {

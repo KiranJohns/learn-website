@@ -11,11 +11,11 @@ class CourseGridOnline extends Component {
         return (
             <main>
 	            {/* breadcrumb-start */}
-				<Breadcrumb pageTitle="Online Care Bundle Package" />
+				<Breadcrumb pageTitle="Online Care Bundle" />
 				{/* <Breadcrumb pageTitle="Mandatory Care Courses" type=""/> */}
 				{/* breadcrumb-end */}
 
-				<BundleOnline name="Online Care Bundle Package"/>
+				<BundleOnline name="Online Care Bundle"/>
 
                 {/* course tab-start */}
 				<CourseGridTab category="Mandatory Care Courses"/>

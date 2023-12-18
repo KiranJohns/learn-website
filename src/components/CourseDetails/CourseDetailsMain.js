@@ -280,8 +280,8 @@ function CourseDetailsMain() {
                                 <li>
                                   Learners will have access to the present
                                   course for up to nine months from the date of
-                                  joining. There's no pressure to completer the
-                                  course in a short time.
+                                  joining. There's no pressure to 
+                                  finish the course in a short time.
                                 </li>
                               </ul>
                             </div>

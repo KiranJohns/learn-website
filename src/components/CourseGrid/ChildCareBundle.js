@@ -12,12 +12,13 @@ class ChildCBundle extends Component {
 
         return (
             <main>
-	            {/* breadcrumb-start */}
+
+                 <Breadcrumb pageTitle="Child Care Bundle"/>  
+
+
+	          
                 <BundleChild name="Child Care Bundle"/>
-				{/* breadcrumb-end */}
-                
-             
-           
+		   
               
                 {/* cta-start */}
 				<Cta />
