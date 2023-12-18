@@ -7,6 +7,7 @@ import WhyChoose from '../HomeTwo/WhyChooseSection';
 import Counter from '../Elements/Counter/CounterStyleTwo';
 import Banner from '../Home/BannerSection';
 import dynamic from 'next/dynamic';
+
 const BrandWithNoSSR = dynamic(() => import('../Elements/Brand/BrandSection'), {
   ssr: false
 })
