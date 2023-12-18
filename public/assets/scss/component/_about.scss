@@ -401,3 +401,29 @@ margin-left: 12rem;
 
 
 
+.course-page-ppt{
+width: 840px;
+height: 472px;
+margin: 0 auto;
+}
+
+@media screen and (max-width:650px) {
+  .course-page-ppt{
+    width: 504px;
+    height: 300px;
+    }
+}
+
+@media screen and (max-width:500px) {
+  .course-page-ppt{
+    width: 450px;
+    height: 270px;
+    }
+}
+
+@media screen and (max-width:450px) {
+  .course-page-ppt{
+    width: 405px;
+    height: 253px;
+    }
+}

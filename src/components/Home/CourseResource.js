@@ -112,7 +112,7 @@ const CourseResource = () => {
             ></iframe>
           </div> */}
           <div style={{position:'relative'}} className="row">
-          <div className="mt-4 blog-box-shadow col-6" style={containerStyless}>
+          <div className="mt-4 blog-box-shadow col-6 course-page-ppt" >
             <ImageSlider style={{padding:"1rem"}} slides={slides} />
           </div>
           </div>
