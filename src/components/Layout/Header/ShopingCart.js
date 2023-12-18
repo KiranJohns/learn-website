@@ -188,7 +188,7 @@ const ShopingCart = ({ setShopOpen, shopOpen }) => {
                           </div>
                           <div className="product__sm-price-wrapper">
                             <span className="product__sm-price">
-                              £{item.amount}
+                              £{parseFloat(item.amount).toFixed(2)}
                             </span>
                           </div>
                         </div>
@@ -207,7 +207,7 @@ const ShopingCart = ({ setShopOpen, shopOpen }) => {
             <div className="cartmini__checkout">
               <div className="cartmini__checkout-title mb-30">
                 <h4>Subtotal:</h4>
-                <span>£{totalPrice}</span>
+                <span>£{parseFloat(totalPrice).toFixed(2)}</span>
               </div>
               <div className="cartmini__checkout-btn">
                 <Link href="/cart">

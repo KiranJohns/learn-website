@@ -5,6 +5,7 @@ import CourseCard from "../Elements/Tab/CourseCard";
 import { useEffect } from "react";
 import fetchData from "../../axios";
 import BundleCard from "../Elements/Tab/BundleCard";
+import SingleBundleCard from "../Elements/Tab/SingleBundleCard";
 
 function BundleSpecialised({ name }) {
   const [fakeCount, setFakeCount] = useState(0);
@@ -83,7 +84,7 @@ function BundleSpecialised({ name }) {
           </div> */}
         </div>
          <div className="col-md-2"></div>
-        {bundle && <BundleCard className="col-md-6" item={bundle} />}
+        {bundle && <SingleBundleCard className="col-md-6" item={bundle} />}
     
       </div>
     </div>

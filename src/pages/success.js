@@ -9,6 +9,7 @@ import { useRouter } from "next/router";
 import MyCart from "../components/MyCart/MyCartMain";
 import fetchData from "../axios";
 import Spinner from "react-bootstrap/Spinner";
+import store from "../redux/store";
 
 const Success = () => {
   const makeRequest = fetchData();
