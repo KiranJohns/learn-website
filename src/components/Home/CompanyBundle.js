@@ -40,6 +40,7 @@ const CompanyBundle = () => {
   const [records, setRecords] = useState([]);
   const [searchString, setSearchString] = useState("");
   const [filterRecords, setFilterRecords] = useState([]);
+  const [refresh, setRefresh] = useState(0);
 
   const [user, setUser] = useState(() => {
     let token = localStorage.getItem(`learnforcare_access`);
@@ -86,7 +87,7 @@ const CompanyBundle = () => {
     };
 
     fetchDataAsync();
-  }, []);
+  }, [refresh]);
 
   const handleStartBundle = (id) => {
     let makeRequest = fetchData();
@@ -167,6 +168,7 @@ const CompanyBundle = () => {
               position: "absolute",
               fontSize: 36,
             }}
+            onClick={() => setRefresh((prev) => ++prev)}
           >
             My Bundle
           </h2>
@@ -204,9 +206,9 @@ const CompanyBundle = () => {
                 data={
                   searchString
                     ? records.filter((item) =>
-                        (item?.name || item?.bundle_name).toLowerCase().startsWith(
-                          searchString.toLowerCase()
-                        )
+                        (item?.name || item?.bundle_name)
+                          .toLowerCase()
+                          .startsWith(searchString.toLowerCase())
                       )
                     : records
                 }

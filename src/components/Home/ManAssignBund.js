@@ -77,7 +77,7 @@ const ManAssignBund = () => {
                 ...res.data.response.filter((item) => (item.course_count >= 1 && item.owner != user.id)),
               ];
             });
-            console.log(purchasedRes.data.response, res.data.response);
+            console.log(purchasedRes.data.response, res.data.response.filter((item) => (item.course_count >= 1 && item.owner != user.id)));
           })
           .catch((err) => {
             console.log(err);
@@ -117,6 +117,7 @@ const ManAssignBund = () => {
     )
       .then((res) => {
         getData();
+        setShowModal()
         console.log(res);
         toast("Bundle Assigned");
       })
@@ -136,6 +137,7 @@ const ManAssignBund = () => {
     makeRequest("POST", "/info/assign-course-to-manager-individual", form)
       .then((res) => {
         getData();
+        setShowModal()
         console.log(res);
         toast("Bundle Assigned");
       })
