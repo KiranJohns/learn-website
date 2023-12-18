@@ -107,8 +107,8 @@ const BundleResource = () => {
             ></iframe>
           </div> */}
 
-          <div  style={containerStyless}>
-            <ImageSlider slides={slides} />
+          <div  className="mt-4 blog-box-shadow col-6 course-page-ppt">
+            <ImageSlider style={{padding:"1rem"}} slides={slides} />
           </div>
 
           <div className="blog-box-shadow mt-50 p-4">
