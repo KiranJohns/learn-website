@@ -15,7 +15,7 @@ class About extends Component {
                            <h5> <span>8,200+</span> five ster reviews</h5>
                         </div> */}
                         <div className="about__thumb ml-100">
-                           <img src="assets/img/about/about.jpg" alt="img not found" />
+                           <img src="assets/img/about/AboutUs.jpg" alt="img not found" />
                         </div>
                         {/* <div className="about__banner mt--210">
                            <img src="assets/img/about/about-banner.jpg" alt="img not found" />
