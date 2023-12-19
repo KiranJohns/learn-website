@@ -19,6 +19,10 @@ const MyCart = () => {
   const [offerPrice, setOfferPrice] = useState("");
   useEffect(() => {
     getCartItem();
+
+    return () => {
+      removeCouponHandler()
+    }
   }, []);
 
   function getCartItem() {
