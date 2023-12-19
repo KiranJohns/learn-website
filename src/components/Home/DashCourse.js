@@ -136,14 +136,7 @@ const DashCourse = () => {
     {
       name: "validity",
       center: true,
-      selector: (row) => {
-        let date = new Date(row.validity)
-          .toLocaleDateString()
-          .split("/")
-          .map((d) => (d.length <= 1 ? "0" + d : d));
-        let newDate = `${date[1]}/${date[0]}/${date[2]}`;
-        return newDate;
-      },
+      selector: (row) => row.validity
     },
     {
       name: "Progress",
@@ -170,11 +163,7 @@ const DashCourse = () => {
           ) : (
             <button
               onClick={() => {
-                if (row?.from_purchased) {
-                  handleStart(row?.id, "purchased");
-                } else {
-                  handleStart(row?.id, "manager");
-                }
+                handleStart(row?.id, "assigned");
               }}
               className="btn btn-success"
               style={{ width: "7rem" }}
@@ -277,7 +266,9 @@ const DashCourse = () => {
               data={
                 searchData
                   ? records.filter((item) =>
-                      item?.name.toLowerCase().startsWith(searchData.toLowerCase())
+                      item?.name
+                        .toLowerCase()
+                        .startsWith(searchData.toLowerCase())
                     )
                   : records
               }

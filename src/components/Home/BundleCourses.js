@@ -35,7 +35,7 @@ const customStyles = {
 const BundleCour = () => {
   const [records, setRecords] = useState([]);
   const [filterRecords, setFilterRecords] = useState([]);
-  const [data, setData] = useState();
+  const [data, setData] = useState({});
   const [searchData, setSearchData] = useState("");
   const [openModal, setOpenModal] = useState(false);
 
@@ -104,7 +104,7 @@ const BundleCour = () => {
     },
     {
       name: "Attempts",
-      selector: (row) => row?.attempts,
+      selector: (row) => row?.attempts + "/" + 20,
       center:"true",
     },
     {
@@ -123,10 +123,11 @@ const BundleCour = () => {
         >
           <a
             onClick={() => {}}
-            className="btn btn-success"
+            className={`btn btn-success${row?.attempts < 20 ? "" : ""}`}
             style={{ width: "7rem" }}
-          >
-            {data?.finished_course?.includes(row.id) ? "finished" : "start"}
+          >{row?.attempts < 20 ? 
+            data?.finished_course?.includes(row.id) ? "finished" : "start"
+          : 'No try'}
           </a>
         </Link>
       )},
