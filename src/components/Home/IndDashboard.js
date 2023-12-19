@@ -150,7 +150,7 @@ function DashIndividual() {
             }}
             className="btn btn-success"
           >
-            {row.state == "pass" ? 'continue' : 'finished'}
+            {row.progress >= 80 ? 'finished' : 'continue'}
           </span>
       ),
     },
