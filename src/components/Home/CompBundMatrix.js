@@ -119,7 +119,7 @@ const MatrixBundComp = () => {
               }}
               className="redd"
             >
-             not started
+             Not Started
             </div>
             <div
               style={{
@@ -131,7 +131,7 @@ const MatrixBundComp = () => {
               }}
               className="redd"
             >
-              in progress
+              In Progress
             </div>
             <div
               style={{
@@ -143,7 +143,7 @@ const MatrixBundComp = () => {
               }}
               className="redd"
             >
-              completed
+              Completed
             </div>
           </span>
         </div>
