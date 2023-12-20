@@ -17,11 +17,21 @@ const MyCart = () => {
   const [coupon, setCoupon] = useState("");
   const [couponData, setCouponData] = useState({ coupon_code: "XXXX" });
   const [offerPrice, setOfferPrice] = useState("");
+
+  console.log(cart);
   useEffect(() => {
     getCartItem();
 
     return () => {
-      removeCouponHandler()
+      makeRequest("POST", "/coupon/remove-coupon")
+      .then((res) => {
+        setCoupon("");
+        setOfferPrice();
+        setCouponData({ coupon_code: "XXXX" });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     }
   }, []);
 
@@ -387,6 +397,9 @@ const MyCart = () => {
                         onChange={(e) => setCoupon(e.target.value)}
                         className="input-text"
                         value={coupon}
+                        onKeyUp={(e) => {
+                          if (e.key === "Enter") applyCoupon();
+                        }}
                         name="coupon_code"
                         placeholder="Coupon code"
                         type="text"
