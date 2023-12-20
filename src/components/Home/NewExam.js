@@ -121,20 +121,22 @@ const NewExam = () => {
                             />{" "}
                             <p
                               name="option"
-                              style={{ marginLeft: "1px", overflow: "auto" }}
+                              style={{ marginLeft: "10px", overflow: "auto" }}
                             >
-                              {String.fromCharCode(97 + i)}. {option}
+                              {String.fromCharCode(97 + i)} {")   "} {option}
                             </p>
                           </span>
                         </div>
                       </div>
                     ))}
                   </form>
-                </div>
+                </div >
               ))}
-            <span className="btn btn-success mt-3 float-right" onClick={handleSubmit}>
+              <div style={{ display: "flex", justifyContent: "center" }}>
+            <span className="btn btn-success mt-3 " onClick={handleSubmit}>
               submit
             </span>
+            </div>
             
           </div>
         </div>
