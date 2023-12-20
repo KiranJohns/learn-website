@@ -59,7 +59,7 @@ const CompTransaction = () => {
 
   const columns = [
     {
-      name: "SL",
+      name: "SL No.",
       selector: (row, idx) => ++idx,
       center: true,
       width: "100px"

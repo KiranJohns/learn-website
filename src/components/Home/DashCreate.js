@@ -36,7 +36,7 @@ const DashCreate = () => {
         phone: Number(userData.phone),
       })
         .then((res) => {
-          toast.success("User Created");
+          toast.success("Individual Created");
         })
         .catch((err) => {
           toast.error(err.data);
@@ -47,7 +47,7 @@ const DashCreate = () => {
         phone: Number(userData.phone),
       })
         .then((res) => {
-          toast.success("manager created");
+          toast.success("Manager Created");
         })
         .catch((err) => {
           console.log(err.data);

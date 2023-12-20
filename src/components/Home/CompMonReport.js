@@ -65,7 +65,7 @@ const CompMonthRep = () => {
 
   const columns = [
     {
-      name: "Sl",
+      name: "Sl No.",
       selector: (row, idx) => ++idx,
       center: true,
       width: "100px",

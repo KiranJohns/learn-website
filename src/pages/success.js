@@ -76,7 +76,9 @@ const Success = () => {
             </div>
 
             <NoSSR>
+              <div style={{display:"flex", justifyContent:"center", alignItems:"center", height:"100vh"}}>
               <SuccessLayout />
+              </div>
             </NoSSR>
           </div>
         </>

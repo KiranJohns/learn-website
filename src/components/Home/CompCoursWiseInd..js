@@ -62,8 +62,8 @@ const CWIndReport = () => {
 
   const columns = [
     {
-      name: "SL",
-      selector: (row, id) => id,
+      name: "SL No.",
+      selector: (row, id) => ++id,
       sortable: true,
       center: true,
       width: "120px",

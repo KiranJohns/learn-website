@@ -59,6 +59,12 @@ const CompIndReport = () => {
 
   const columns = [
     {
+      name: "SL No.",
+      selector: (row,id) => ++id,
+      width:"80px",
+      center: true,
+    },
+    {
       name: "Name",
       selector: (row) => row.first_name + " " + row.last_name,
       sortable: true,

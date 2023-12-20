@@ -63,9 +63,9 @@ const CWManager = () => {
 
   const columns = [
     {
-      name: "SL",
+      name: "SL No.",
       selector: (row,id) => ++id,
-      width:"70px",
+      width:"95px",
       center: true,
     },
     {
