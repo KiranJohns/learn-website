@@ -6,19 +6,28 @@ import { useEffect } from "react";
 import fetchData from "../../axios";
 import BundleCard from "../Elements/Tab/BundleCard";
 import SingleBundleCard from "../Elements/Tab/SingleBundleCard";
+import { TabPanel, Tabs } from "react-tabs";
+import { useLocation } from "react-router-dom";
+import { useRouter } from "next/router";
 
 function BundleRecover({ name }) {
   const [fakeCount, setFakeCount] = useState(0);
   const [bundle, setBundle] = useState({});
-  const makeRequest = fetchData()
+  const [course, setCourse] = useState([]);
+  const makeRequest = fetchData();
+  const route = useRouter()
   useEffect(() => {
-    makeRequest("GET","/bundle/get-all-bundles").then(res => {
-      console.log(res);
-      setBundle(res.data.response.filter(bundle => bundle.name==name)[0])
-    }).catch(err => {
-      console.log(err);
-    })
-  },[])
+    let bundleId = route?.query?.id ? route.query.id : "recovery care bundle";
+    makeRequest("GET", `/bundle/get-bundle-courses/${bundleId}`)
+      .then((res) => {
+        console.log(res.data.response);
+        setCourse(res.data.response.allCourses);
+        setBundle(res.data.response.bundle);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
   function handleClick() {}
   return (
     <div className="container mt-100">
@@ -26,13 +35,15 @@ function BundleRecover({ name }) {
         <div className="col-xxl-5  col-xl-4 col-lg-4 col-md-4 col-sm-0 text-center">
           <h1 style={{ marginBottom: "1rem" }}>Recovery Care Course</h1>
           <h1></h1>
-          <p style={{textAlign:"center"}}>
-          The Recovery Care Courses are delivered through our simple to use, 
-          online Learning Management System (LMS) that records and evidences the information needed for 
-          every of the two standards. In addition, we've created workbooks which offer guidance on what 
-          aspects of every Recovery Care Courses standard ought to be determined within the workplace. 
-          This is far and away the foremost efficient and value effective methodology to deliver the Recovery Care 
-          Courses in your organisation.
+          <p style={{ textAlign: "center" }}>
+            The Recovery Care Courses are delivered through our simple to use,
+            online Learning Management System (LMS) that records and evidences
+            the information needed for every of the two standards. In addition,
+            we've created workbooks which offer guidance on what aspects of
+            every Recovery Care Courses standard ought to be determined within
+            the workplace. This is far and away the foremost efficient and value
+            effective methodology to deliver the Recovery Care Courses in your
+            organisation.
           </p>
           {/* <div style={{ display: "flex", justifyContent: "center" }}>
             <div
@@ -77,14 +88,39 @@ function BundleRecover({ name }) {
                 >
                   Add
                 </button>
+
               </span>
             </div>
           </div> */}
         </div>
-         <div className="col-md-2"></div>
-        {bundle && <SingleBundleCard className="col-md-6" item={bundle} />}
-    
+        <div className="col-md-2"></div>
+        {bundle[0] && (
+          <SingleBundleCard className="col-md-6" item={bundle[0]} />
+        )}
       </div>
+      <section className="course__area pt-50 pb-60 grey-bg">
+        <Tabs variant="enclosed" id="react-tabs-276">
+          <div className="container">
+            <div style={{ textAlign: "center" }}>
+              <h5 style={{ fontSize: "30px" }}>Courses We Offer</h5>
+            </div>
+            <div className="row align-items-end">
+              <div className="col-xxl-5 col-xl-6 col-lg-6">
+                <div className="section__title-wrapper mb-60"></div>
+              </div>
+            </div>
+
+            <TabPanel>
+              <div className="row">
+                {course &&
+                  course.map((item) => {
+                    return <CourseCard item={item} />;
+                  })}
+              </div>
+            </TabPanel>
+          </div>
+        </Tabs>
+      </section>
     </div>
   );
 }

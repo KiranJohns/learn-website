@@ -6,19 +6,29 @@ import { useEffect } from "react";
 import fetchData from "../../axios";
 import BundleCard from "../Elements/Tab/BundleCard";
 import SingleBundleCard from "../Elements/Tab/SingleBundleCard";
+import { TabPanel, Tabs } from "react-tabs";
+import { useLocation } from "react-router-dom";
+import { useRouter } from "next/router";
 
 function BundleSpecialised({ name }) {
   const [fakeCount, setFakeCount] = useState(0);
   const [bundle, setBundle] = useState({});
-  const makeRequest = fetchData()
+  const [course, setCourse] = useState([]);
+  const makeRequest = fetchData();
+  const route = useRouter()
+
   useEffect(() => {
-    makeRequest("GET","/bundle/get-all-bundles").then(res => {
-      console.log(res);
-      setBundle(res.data.response.filter(bundle => bundle.name==name)[0])
-    }).catch(err => {
-      console.log(err);
-    })
-  },[])
+    let bundleId = route?.query?.id ? route.query.id : "specialised care bundle";
+    makeRequest("GET", `/bundle/get-bundle-courses/${bundleId}`)
+      .then((res) => {
+        console.log(res.data.response);
+        setCourse(res.data.response.allCourses);
+        setBundle(res.data.response.bundle);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
   function handleClick() {}
   return (
     <div className="container mt-100">
@@ -26,14 +36,18 @@ function BundleSpecialised({ name }) {
         <div className="col-xxl-5  col-xl-4 col-lg-4 col-md-4 col-sm-0 text-center">
           <h1 style={{ marginBottom: "1rem" }}>Specialised Care Course</h1>
           <h1></h1>
-          <p style={{textAlign:"center"}}>
-          When working within the care sector, it's crucial that the proper care and support is afforded to each patient.
-           Our choice of Specialist Carer training courses can provide the skills and knowledge necessary to complete a range of specialist tasks, 
-           including the management of instances about conflict or challenging behaviour. </p>
+          <p style={{ textAlign: "center" }}>
+            When working within the care sector, it's crucial that the proper
+            care and support is afforded to each patient. Our choice of
+            Specialist Carer training courses can provide the skills and
+            knowledge necessary to complete a range of specialist tasks,
+            including the management of instances about conflict or challenging
+            behaviour.{" "}
+          </p>
 
-           <p style={{textAlign:"center"}}>
-           If the particular course that you're searching for isn't listed below,
-            please do contact one amongst our training specialists.
+          <p style={{ textAlign: "center" }}>
+            If the particular course that you're searching for isn't listed
+            below, please do contact one amongst our training specialists.
           </p>
 
           {/* <div style={{ display: "flex", justifyContent: "center" }}>
@@ -83,10 +97,32 @@ function BundleSpecialised({ name }) {
             </div>
           </div> */}
         </div>
-         <div className="col-md-2"></div>
-        {bundle && <SingleBundleCard className="col-md-6" item={bundle} />}
-    
+        <div className="col-md-2"></div>
+        {bundle[0] && <SingleBundleCard className="col-md-6" item={bundle[0]} />}
       </div>
+      <section className="course__area pt-50 pb-60 grey-bg">
+        <Tabs variant="enclosed" id="react-tabs-276">
+          <div className="container">
+            <div style={{ textAlign: "center" }}>
+              <h5 style={{ fontSize: "30px" }}>Courses We Offer</h5>
+            </div>
+            <div className="row align-items-end">
+              <div className="col-xxl-5 col-xl-6 col-lg-6">
+                <div className="section__title-wrapper mb-60"></div>
+              </div>
+            </div>
+
+            <TabPanel>
+              <div className="row">
+                {course &&
+                  course.map((item) => {
+                    return <CourseCard item={item} />;
+                  })}
+              </div>
+            </TabPanel>
+          </div>
+        </Tabs>
+      </section>
     </div>
   );
 }

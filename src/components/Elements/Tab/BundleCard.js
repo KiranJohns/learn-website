@@ -4,12 +4,15 @@ import { useSelector } from "react-redux";
 import fetchData from "../../../axios";
 import store from "../../../redux/store";
 import { ToastContainer, toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/router";
 
 function BundleCard({ item }) {
   const makeRequest = fetchData();
   const { cart } = useSelector((state) => state.cart);
   const [fakeCount, setFakeCount] = useState(0);
   const [bundles, setBundles] = useState([]);
+  const router = useRouter();
   const [routes, setRoutes] = useState({
     "care-bundle": "course-grid",
     "mandatory-bundle": "course-mandatory",
@@ -19,25 +22,31 @@ function BundleCard({ item }) {
     "bundle-Online": "course-online",
   });
 
-  function goTo(route) {
+  function goTo(route, id) {
     switch (route) {
-      case "care-bundle":
-        location.href = "/course-grid";
+      case "Care Bundle":
+        router.push({pathname: "/bundle/care-bundle",  query: { id } });
+        // location.href = "/course-grid";
         break;
-      case "mandatory-bundle":
-        location.href = "/course-mandatory";
+      case "Mandatory Care Bundle":
+        router.push({pathname: "/bundle/mandatory-bundle",  query: { id } });
+        // location.href = "/course-mandatory";
         break;
-      case "special-bundle":
-        location.href = "/course-specialised";
+      case "Specialised Care Bundle":
+        router.push({pathname: "/bundle/special-bundle",  query: { id } });
+        // location.href = "/course-specialised";
         break;
-      case "recovery-bundle":
-        location.href = "/course-recovery";
+      case "Recovery Care Bundle":
+        router.push({pathname: "/bundle/recovery-bundle",  query: { id } });
+        // location.href = "/course-recovery";
         break;
-      case "child-bundle":
-        location.href = "/course-child";
+      case "Child Care Bundle":
+        router.push({pathname: "/bundle/child-bundle", query: { id } });
+        // location.href = "/course-child";
         break;
-      case "bundle-Online":
-        location.href = "/course-online";
+      case "Online Care Bundle":
+        router.push({pathname: "/bundle/bundle-Online",  query: { id } });
+        // location.href = "/course-online";
         break;
       default:
         break;
@@ -159,8 +168,9 @@ function BundleCard({ item }) {
           <span
             onClick={() => {
               // console.log(location.pathname.split("/").pop());
-              goTo(location.pathname.split("/").pop());
+              goTo(item.name, item.id);
             }}
+            style={{ cursor: "pointer" }}
           >
             <a>
               <img src={item.image} alt="img not found" />
@@ -174,7 +184,10 @@ function BundleCard({ item }) {
         </div>
         <div className="course__content">
           <h3 className="homee__title" title={item.name}>
-            <span onClick={() => goTo(location.pathname.split("/").pop())}>
+            <span
+              onClick={() => goTo(item.name, item.id)}
+              style={{ cursor: "pointer" }}
+            >
               <a>{item.name}</a>
               {/* <a>{item.name.slice(0, 20) + "..."}</a> */}
             </span>
@@ -185,7 +198,8 @@ function BundleCard({ item }) {
                               </div> */}
             <h6>
               <span
-                onClick={() => goTo(location.pathname.split("/").pop())}
+                onClick={() => goTo(item.name, item.id)}
+                style={{ cursor: "pointer" }}
               >
                 <a>{item?.description?.slice(0, 150) + "..."}</a>
               </span>
