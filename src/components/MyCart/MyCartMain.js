@@ -9,7 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 import store from "../../redux/store";
 import { ImCross } from "react-icons/im";
 import { FaTrash } from "react-icons/fa";
-
+import { useRouter } from "next/router";
 
 const MyCart = () => {
   const makeRequest = fetchData();
@@ -17,6 +17,38 @@ const MyCart = () => {
   const [coupon, setCoupon] = useState("");
   const [couponData, setCouponData] = useState({ coupon_code: "XXXX" });
   const [offerPrice, setOfferPrice] = useState("");
+  const router = useRouter()
+
+  function goTo(route, id) {
+    switch (route) {
+      case "Care Bundle":
+        router.push({ pathname: "/bundle/care-bundle", query: { id } });
+        // location.href = "/course-grid";
+        break;
+      case "Mandatory Care Bundle":
+        router.push({ pathname: "/bundle/mandatory-bundle", query: { id } });
+        // location.href = "/course-mandatory";
+        break;
+      case "Specialised Care Bundle":
+        router.push({ pathname: "/bundle/special-bundle", query: { id } });
+        // location.href = "/course-specialised";
+        break;
+      case "Recovery Care Bundle":
+        router.push({ pathname: "/bundle/recovery-bundle", query: { id } });
+        // location.href = "/course-recovery";
+        break;
+      case "Child Care Bundle":
+        router.push({ pathname: "/bundle/child-bundle", query: { id } });
+        // location.href = "/course-child";
+        break;
+      case "Online Care Bundle":
+        router.push({ pathname: "/bundle/bundle-Online", query: { id } });
+        // location.href = "/course-online";
+        break;
+      default:
+        break;
+    }
+  }
 
   console.log(cart);
   useEffect(() => {
@@ -24,20 +56,21 @@ const MyCart = () => {
 
     return () => {
       makeRequest("POST", "/coupon/remove-coupon")
-      .then((res) => {
-        setCoupon("");
-        setOfferPrice();
-        setCouponData({ coupon_code: "XXXX" });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    }
+        .then((res) => {
+          setCoupon("");
+          setOfferPrice();
+          setCouponData({ coupon_code: "XXXX" });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
   }, []);
 
   function getCartItem() {
     makeRequest("GET", "/cart/get")
       .then((res) => {
+        console.log(res.data.response);
         store.dispatch({
           type: "SET_CART",
           payload: JSON.stringify(res.data.response),
@@ -110,7 +143,7 @@ const MyCart = () => {
         } else {
           let per = parseFloat(
             (parseFloat(totalPrice) * parseFloat(res.data.response.amount)) /
-            100
+              100
           );
           setOfferPrice(parseFloat(parseInt(totalPrice) - per).toFixed(2));
         }
@@ -208,23 +241,40 @@ const MyCart = () => {
                         return (
                           <tr key={{ id }}>
                             <td className="product-thumbnail">
-                              <Link href={`/course/${item.course_id}`}>
+                              <span
+                              style={{cursor: 'pointer'}}
+                                onClick={() => {
+                                  item.item_type == "course" ?
+                                    location.href = `/course/${item.course_id}`
+                                    : goTo(item.name, item.course_id)
+                                }}
+                              >
                                 <a>
                                   <img
                                     src={item.thumbnail}
                                     alt="img not found"
                                   />
                                 </a>
-                              </Link>
+                              </span>
                             </td>
                             <td className="product-name">
-                              <Link href={`/course/${item.course_id}`}>
+                              <span
+                              style={{cursor: 'pointer'}}
+                                onClick={() => {
+                                  item.item_type == "course" ?
+                                    location.href = `/course/${item.course_id}`
+                                    : goTo(item.name, item.course_id)
+                                }}
+                              >
                                 <a>{item.name}</a>
-                              </Link>
+                              </span>
                             </td>
                             <td className="product-price">
                               <span className="amount">
-                                £{parseFloat(item.amount / item.product_count).toFixed(2)}
+                                £
+                                {parseFloat(
+                                  item.amount / item.product_count
+                                ).toFixed(2)}
                               </span>
                             </td>
                             <td className="product-quantity text-center">
@@ -273,7 +323,9 @@ const MyCart = () => {
                               </div>
                             </td>
                             <td className="product-subtotal">
-                              <span className="amount ">£{parseFloat(item.amount).toFixed(2)}</span>
+                              <span className="amount ">
+                                £{parseFloat(item.amount).toFixed(2)}
+                              </span>
                             </td>
                             <td className="product-remove">
                               <span onClick={() => removeItem(item.id)}>
@@ -291,101 +343,157 @@ const MyCart = () => {
                   </tbody>
                 </table>
 
-                <div className="cart-card-display" style={{ marginTop: "1rem", padding: "1rem" }}>
-                  <div style={{display:"flex", justifyContent:"center"}} className="row">
+                <div
+                  className="cart-card-display"
+                  style={{ marginTop: "1rem", padding: "1rem" }}
+                >
+                  <div
+                    style={{ display: "flex", justifyContent: "center" }}
+                    className="row"
+                  >
                     {/* <div style={{display:'flex'}} className="col-12"> */}
-                 
+
                     {cart &&
                       cart.map((item, id) => {
                         return (
-                          <div key={{ id }} style={{ width: "28em", height: "20rem", position: "relative",marginTop:"1rem" }} className="cart-card-shadow col-10 ">
-
-                            <div style={{ position: 'absolute', right: "0", padding: ".5rem" }}>
+                          <div
+                            key={{ id }}
+                            style={{
+                              width: "28em",
+                              height: "20rem",
+                              position: "relative",
+                              marginTop: "1rem",
+                            }}
+                            className="cart-card-shadow col-10 "
+                          >
+                            <div
+                              style={{
+                                position: "absolute",
+                                right: "0",
+                                padding: ".5rem",
+                              }}
+                            >
                               <span onClick={() => removeItem(item.id)}>
                                 <FaTrash
                                   style={{
                                     fontSize: "1rem",
                                     cursor: "pointer",
-                                    color: "#212a50"
+                                    color: "#212a50",
                                   }}
                                 />
                               </span>
                             </div>
 
-                            <div style={{ display: 'flex',justifyContent:"space-evenly", alignItems:'center' }}>
-                              <div style={{ padding: '1rem' }}>
+                            <div
+                              style={{
+                                display: "flex",
+                                justifyContent: "space-evenly",
+                                alignItems: "center",
+                              }}
+                            >
+                              <div style={{ padding: "1rem" }}>
                                 <Link href={`/course/${item.course_id}`}>
-                                  <img style={{ height: "8rem", width: "13rem" }} src={item.thumbnail} alt="" />
+                                  <img
+                                    style={{ height: "8rem", width: "13rem" }}
+                                    src={item.thumbnail}
+                                    alt=""
+                                  />
                                 </Link>
                               </div>
 
-
                               <div style={{ marginTop: "2.5rem" }}>
-                                <h4 className="unit-font-s" style={{ color: "#212a50" }}>Unit Price</h4>
+                                <h4
+                                  className="unit-font-s"
+                                  style={{ color: "#212a50" }}
+                                >
+                                  Unit Price
+                                </h4>
                                 <div>
-                                  <span style={{ textAlign: 'center' }} className="amount"><p>£{parseFloat(item.amount / item.product_count).toFixed(2)}</p></span></div>
-                              </div>
-                            </div>
-
-                            <div style={{display:"flex", justifyContent:'center'}}> 
-                               <div style={{ }}><h4 style={{ color: '#212a50', marginTop: '1rem' }}>  <Link href={`/course/${item.course_id}`}>
-                              <a >{item.name}</a>
-                            </Link></h4>
-                              <div>
-                                {/* <strong>Quantity: {item.quantity}</strong> */}
-                                <div className="product-quantity-form d-flex flex-column align-items-center">
-                                  <button
-                                    style={{
-                                      cursor: "pointer",
-                                    }}
-                                    className="cart-minus"
-                                    onClick={() =>
-                                      decrement(
-                                        item.course_id,
-                                        item.id,
-                                        item.item_type
-                                      )
-                                    }
+                                  <span
+                                    style={{ textAlign: "center" }}
+                                    className="amount"
                                   >
-                                    <i className="fas fa-minus"></i>
-                                  </button>
-                                  <p
-                                    style={{
-                                      padding: "0.8rem",
-                                      marginTop: "0.4rem",
-                                    }}
-                                  >
-                                    {item.product_count}
-                                  </p>
-                                  {/* <p>{this.state.num}</p> */}
-                                  <button
-                                    style={{
-                                      cursor: "pointer",
-                                    }}
-                                    className="cart-plus"
-                                    onClick={() =>
-                                      increment(
-                                        item.course_id,
-                                        item.id,
-                                        item.item_type
-                                      )
-                                    }
-                                  >
-                                    <i className="fas fa-plus"></i>
-                                  </button>
+                                    <p>
+                                      £
+                                      {parseFloat(
+                                        item.amount / item.product_count
+                                      ).toFixed(2)}
+                                    </p>
+                                  </span>
                                 </div>
                               </div>
                             </div>
+
+                            <div
+                              style={{
+                                display: "flex",
+                                justifyContent: "center",
+                              }}
+                            >
+                              <div style={{}}>
+                                <h4
+                                  style={{
+                                    color: "#212a50",
+                                    marginTop: "1rem",
+                                  }}
+                                >
+                                  {" "}
+                                  <Link href={`/course/${item.course_id}`}>
+                                    <a>{item.name}</a>
+                                  </Link>
+                                </h4>
+                                <div>
+                                  {/* <strong>Quantity: {item.quantity}</strong> */}
+                                  <div className="product-quantity-form d-flex flex-column align-items-center">
+                                    <button
+                                      style={{
+                                        cursor: "pointer",
+                                      }}
+                                      className="cart-minus"
+                                      onClick={() =>
+                                        decrement(
+                                          item.course_id,
+                                          item.id,
+                                          item.item_type
+                                        )
+                                      }
+                                    >
+                                      <i className="fas fa-minus"></i>
+                                    </button>
+                                    <p
+                                      style={{
+                                        padding: "0.8rem",
+                                        marginTop: "0.4rem",
+                                      }}
+                                    >
+                                      {item.product_count}
+                                    </p>
+                                    {/* <p>{this.state.num}</p> */}
+                                    <button
+                                      style={{
+                                        cursor: "pointer",
+                                      }}
+                                      className="cart-plus"
+                                      onClick={() =>
+                                        increment(
+                                          item.course_id,
+                                          item.id,
+                                          item.item_type
+                                        )
+                                      }
+                                    >
+                                      <i className="fas fa-plus"></i>
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
                             </div>
-
-
                           </div>
-                        )
+                        );
                       })}
                     {/* </div> */}
                   </div>
                 </div>
-
               </div>
               <div className="row">
                 <div className="col-12">
@@ -473,8 +581,8 @@ const MyCart = () => {
                         Subtotal
                         <h4>
                           <span
-                           className="discount-font"
-                            style={{ color: "#212a50",  }}
+                            className="discount-font"
+                            style={{ color: "#212a50" }}
                           >
                             £ {parseFloat(totalPrice).toFixed(2)}
                           </span>
@@ -489,8 +597,8 @@ const MyCart = () => {
                         Discount
                         <h4>
                           <span
-                          className="discount-font"
-                            style={{ color: "#212a50", }}
+                            className="discount-font"
+                            style={{ color: "#212a50" }}
                           >
                             £{" "}
                             {offerPrice
@@ -509,10 +617,13 @@ const MyCart = () => {
                         Grand Total
                         <h4>
                           <span
-                          className="grand-total-f"
+                            className="grand-total-f"
                             style={{ color: "#212a50", fontSize: "1.2rem" }}
                           >
-                            £ {offerPrice ? parseFloat(offerPrice).toFixed(2) : parseFloat(totalPrice).toFixed(2)}
+                            £{" "}
+                            {offerPrice
+                              ? parseFloat(offerPrice).toFixed(2)
+                              : parseFloat(totalPrice).toFixed(2)}
                           </span>
                           {/* {couponData && <span style={{textDecoration:"line-through",color:`${couponData ? 'red' : 'green'}` }}>£ {totalPrice}</span>} */}
                         </h4>
