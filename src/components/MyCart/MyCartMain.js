@@ -156,7 +156,11 @@ const MyCart = () => {
         setCouponData(res.data.response);
       })
       .catch((err) => {
-        toast("Invalid Coupon");
+        if (err?.data?.errors[0].message === "please login") {
+          toast.warn("Please Login");
+        } else {
+          toast.warn("Invalid Coupon");
+        }
         console.log(err?.data);
       });
   }
