@@ -33,18 +33,10 @@ function SignUpMain() {
   const [otp, setOtp] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
-  const [check, setCheck] = useState(true);
+  const [check, setCheck] = useState(false);
 
-  function myCheck() {
-    var checkBox = document.getElementById("m-agree");
-    console.log(values?.terms);
-    if (checkBox.checked == false) {
-      setCheck(false);
-      values.terms = check;
-    } else {
-      setCheck(true);
-      values.terms = check;
-    }
+  function myCheck(e) {
+    setCheck(prev => !prev)
   }
 
 
@@ -113,12 +105,15 @@ function SignUpMain() {
   const handleSignUp = async (e) => {
     try {
       e.persist();
+      if(!check) {
+        return toast.warn("Please Acescent Terms & Conditions")
+      }
       const method = "POST"; // Specify the HTTP method
       const url = "/auth/registration"; // Specify the API endpoint URL
       const data = values; // Send form values as data
 
       if(values.password !== values.confirmPassword) {
-        toast.error("password is not matching")
+        toast.error("Password Is Not Matching")
         return
       }
 
@@ -492,8 +487,8 @@ function SignUpMain() {
                           type="checkbox"
                           id="m-agree"
                           name="terms"
-                          onClick={myCheck}
-                          value={check}
+                          onChange={myCheck}
+                          checked={check}
                           required
                         />
                         <label className="m-check-label" htmlFor="m-agree">
