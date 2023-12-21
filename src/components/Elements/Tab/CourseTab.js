@@ -35,7 +35,7 @@ export default () => {
         let text = res.data.response[0];
         let offerText = text.offer_text;
         let highLightText = text.hight_light_text;
-        let newText = offerText.replace(text.hight_light_text, "##$")
+        let newText = offerText.replace(text.hight_light_text, "##$##")
         newText = newText.split("##");
         console.log(newText);
         setCoupon({ text: newText, highLight: highLightText });
