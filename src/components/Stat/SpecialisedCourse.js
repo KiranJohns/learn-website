@@ -10,14 +10,15 @@ import { TabPanel, Tabs } from "react-tabs";
 import { useLocation } from "react-router-dom";
 import { useRouter } from "next/router";
 
-function BundleRecover({ name }) {
+function SpecialisedCourse({ name }) {
   const [fakeCount, setFakeCount] = useState(0);
   const [bundle, setBundle] = useState({});
   const [course, setCourse] = useState([]);
   const makeRequest = fetchData();
   const route = useRouter()
+
   useEffect(() => {
-    let bundleId = route?.query?.id ? route.query.id : "recovery care bundle";
+    let bundleId = route?.query?.id ? route.query.id : "specialised care bundle";
     makeRequest("GET", `/bundle/get-bundle-courses/${bundleId}`)
       .then((res) => {
         console.log(res.data.response);
@@ -33,18 +34,22 @@ function BundleRecover({ name }) {
     <div className="container mt-100">
       <div className="row">
         <div className="col-xxl-5  col-xl-4 col-lg-4 col-md-4 col-sm-0 text-center">
-          <h1 style={{ marginBottom: "1rem" }}>Recovery Care Bundle</h1>
+          <h1 style={{ marginBottom: "1rem" }}>Specialised Care Course</h1>
           <h1></h1>
           <p style={{ textAlign: "center" }}>
-            The Recovery Care Courses are delivered through our simple to use,
-            online Learning Management System (LMS) that records and evidences
-            the information needed for every of the two standards. In addition,
-            we've created workbooks which offer guidance on what aspects of
-            every Recovery Care Courses standard ought to be determined within
-            the workplace. This is far and away the foremost efficient and value
-            effective methodology to deliver the Recovery Care Courses in your
-            organisation.
+            When working within the care sector, it's crucial that the proper
+            care and support is afforded to each patient. Our choice of
+            Specialist Carer training courses can provide the skills and
+            knowledge necessary to complete a range of specialist tasks,
+            including the management of instances about conflict or challenging
+            behaviour.{" "}
           </p>
+
+          <p style={{ textAlign: "center" }}>
+            If the particular course that you're searching for isn't listed
+            below, please do contact one amongst our training specialists.
+          </p>
+
           {/* <div style={{ display: "flex", justifyContent: "center" }}>
             <div
               className="course__more d-flex justify-content-around"
@@ -88,17 +93,14 @@ function BundleRecover({ name }) {
                 >
                   Add
                 </button>
-
               </span>
             </div>
           </div> */}
         </div>
         <div className="col-md-2"></div>
-        {bundle[0] && (
-          <SingleBundleCard className="col-md-6" item={bundle[0]} />
-        )}
+        {bundle[0] && <SingleBundleCard className="col-md-6" item={bundle[0]} />}
       </div>
-      <section className="course__area pt-50 pb-60 grey-bg">
+      {/* <section className="course__area pt-50 pb-60 grey-bg">
         <Tabs variant="enclosed" id="react-tabs-276">
           <div className="container">
             <div style={{ textAlign: "center" }}>
@@ -120,9 +122,9 @@ function BundleRecover({ name }) {
             </TabPanel>
           </div>
         </Tabs>
-      </section>
+      </section> */}
     </div>
   );
 }
 
-export default BundleRecover;
+export default SpecialisedCourse;
