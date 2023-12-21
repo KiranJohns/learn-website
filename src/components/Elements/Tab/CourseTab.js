@@ -35,9 +35,10 @@ export default () => {
         let text = res.data.response[0];
         let offerText = text.offer_text;
         let highLightText = text.hight_light_text;
-        let t = offerText.replace(text.hight_light_text, ",");
-        let textArr = t.split(",");
-        setCoupon({ text: textArr, highLight: highLightText });
+        let newText = offerText.replace(text.hight_light_text, "##$")
+        newText = newText.split("##");
+        console.log(newText);
+        setCoupon({ text: newText, highLight: highLightText });
       })
       .catch((err) => {
         console.log(err);
@@ -63,9 +64,14 @@ export default () => {
               style={{ color: "#212a50", fontSize: "19px", fontWeight: "600" }}
               scrollamount="10"
             >
-              {coupon.text[0]}{" "}
-              <span className="animated-text">{coupon.highLight} </span>{" "}
-              {coupon.text[1]}{" "}
+              {coupon.text && coupon.text.map(item => {
+                console.log(coupon.text);
+                if(item == "$") {
+                  return <span className="animated-text">{coupon.highLight + " "} </span>
+                } else {
+                  return <span>{item + " "}</span>
+                }
+              })}
             </marquee>
           </div>
           <div style={{ position: "relative" }} className="row align-items-end">
