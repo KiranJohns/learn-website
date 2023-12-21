@@ -80,7 +80,7 @@ const [pending, setPending] = React.useState(true);
     makeRequest("GET", "/info/get-all-individuals-under-company")
       .then((res) => {
         console.log(res.data.response);
-        setRecords(res.data.response.flat(1));
+        setRecords(res.data.response.flat(1).filter(item => item.type_of_account != 'manager'));
         setFilterRecords(res.data);
         setPending(false)
       })

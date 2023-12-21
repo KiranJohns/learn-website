@@ -17,7 +17,8 @@ const MyCart = () => {
   const [coupon, setCoupon] = useState("");
   const [couponData, setCouponData] = useState({ coupon_code: "XXXX" });
   const [offerPrice, setOfferPrice] = useState("");
-  const router = useRouter()
+  const [tocheckout, setToCheckout] = useState(false);
+  const router = useRouter();
 
   function goTo(route, id) {
     switch (route) {
@@ -55,15 +56,18 @@ const MyCart = () => {
     getCartItem();
 
     return () => {
-      makeRequest("POST", "/coupon/remove-coupon")
-        .then((res) => {
-          setCoupon("");
-          setOfferPrice();
-          setCouponData({ coupon_code: "XXXX" });
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      if (!tocheckout) {
+        makeRequest("POST", "/coupon/remove-coupon")
+          .then((res) => {
+            setCoupon("");
+            setOfferPrice();
+            setCouponData({ coupon_code: "XXXX" });
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+      setToCheckout(false);
     };
   }, []);
 
@@ -200,6 +204,7 @@ const MyCart = () => {
         console.log(res.data.response);
         localStorage.removeItem("learnfrocarecart");
         localStorage.setItem("reload", true);
+        setToCheckout(true);
         setInterval(() => {
           location.href = res.data.response;
         }, 1000);
@@ -242,11 +247,11 @@ const MyCart = () => {
                           <tr key={{ id }}>
                             <td className="product-thumbnail">
                               <span
-                              style={{cursor: 'pointer'}}
+                                style={{ cursor: "pointer" }}
                                 onClick={() => {
-                                  item.item_type == "course" ?
-                                    location.href = `/course/${item.course_id}`
-                                    : goTo(item.name, item.course_id)
+                                  item.item_type == "course"
+                                    ? (location.href = `/course/${item.course_id}`)
+                                    : goTo(item.name, item.course_id);
                                 }}
                               >
                                 <a>
@@ -259,11 +264,11 @@ const MyCart = () => {
                             </td>
                             <td className="product-name">
                               <span
-                              style={{cursor: 'pointer'}}
+                                style={{ cursor: "pointer" }}
                                 onClick={() => {
-                                  item.item_type == "course" ?
-                                    location.href = `/course/${item.course_id}`
-                                    : goTo(item.name, item.course_id)
+                                  item.item_type == "course"
+                                    ? (location.href = `/course/${item.course_id}`)
+                                    : goTo(item.name, item.course_id);
                                 }}
                               >
                                 <a>{item.name}</a>

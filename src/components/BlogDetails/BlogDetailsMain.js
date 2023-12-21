@@ -29,7 +29,7 @@ class BlogDetailsMain extends Component {
   state = {
     allBlogs: [],
     recentBlogs: [],
-    timer: null
+    timer: null,
   };
 
   constructor(props) {
@@ -74,7 +74,9 @@ class BlogDetailsMain extends Component {
     ReactGA.pageview(location.pathname + location.search);
 
     this.state.timer = setTimeout(() => {
-      makeRequest("POST", "/blog/update-blog-view-count",{blog_id: this.props.slug})
+      makeRequest("POST", "/blog/update-blog-view-count", {
+        blog_id: this.props.slug,
+      })
         .then((res) => {
           console.log(res);
         })
@@ -131,17 +133,27 @@ class BlogDetailsMain extends Component {
                       <div className="blog__text mb-40">
                         <h3>{article.header}</h3>
                         <p>
-                          <BsTagsFill
-                            style={{
-                              fontSize: "1rem",
-                              marginBottom: ".4rem",
-                              color: "#212a50",
-                            }}
-                          />{" "}
-                          #global #education #research
+                          {JSON.parse(article.tags).map((tag) => (
+                            <span style={{
+                              marginRight: "0.5rem"
+                            }}>
+                              <BsTagsFill
+                                style={{
+                                  fontSize: "1rem",
+                                  marginBottom: ".4rem",
+                                  color: "#212a50",
+                                }}
+                              />{" "}
+                              {tag.replace("#", "")}
+                            </span>
+                          ))}
                         </p>
-                        
-                        <p dangerouslySetInnerHTML={{ __html: article.content.replace(/\n/g, '</br>') }}></p>
+
+                        <p
+                          dangerouslySetInnerHTML={{
+                            __html: article.content.replace(/\n/g, "</br>"),
+                          }}
+                        ></p>
                         <p style={{ display: "inline-block" }}>
                           <FaRegCalendarDays
                             style={{
