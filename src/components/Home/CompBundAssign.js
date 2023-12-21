@@ -103,8 +103,8 @@ const CompAssignBund = () => {
           ...res[1].data.response,
         ].filter(item => item.owner != user.id)
           .reverse();
-          console.log(res[0].data.response,
-            res[1].data.response);
+          // console.log(res[0].data.response,
+          //   res[1].data.response);
         setRecords(newRes);
         setPending(false);
       })
@@ -159,7 +159,7 @@ const CompAssignBund = () => {
     form.append("userId", id);
     form.append("count", 1);
 
-    console.log(assignData);
+    // console.log(assignData);
     makeRequest("POST", "/info/assign-course-to-manager-individual", form)
       .then((res) => {
         getData();
@@ -186,7 +186,7 @@ const CompAssignBund = () => {
     )
       .then((res) => {
         getData();
-        console.log(res);
+        // console.log(res);
         openModal();
         toast.success("Bundle Assigned");
       })
@@ -205,7 +205,7 @@ const CompAssignBund = () => {
     makeRequest("POST", "/info/assign-course-to-manager-from-assigned", form)
       .then((res) => {
         getData();
-        console.log(res);
+        // console.log(res);
         toast.success("Bundle Assigned");
         openModal();
       })
