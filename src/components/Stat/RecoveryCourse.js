@@ -10,7 +10,7 @@ import { TabPanel, Tabs } from "react-tabs";
 import { useLocation } from "react-router-dom";
 import { useRouter } from "next/router";
 
-function BundleRecover({ name }) {
+function RecoveryCourses({ name }) {
   const [fakeCount, setFakeCount] = useState(0);
   const [bundle, setBundle] = useState({});
   const [course, setCourse] = useState([]);
@@ -33,7 +33,7 @@ function BundleRecover({ name }) {
     <div className="container mt-100">
       <div className="row">
         <div className="col-xxl-5  col-xl-4 col-lg-4 col-md-4 col-sm-0 text-center">
-          <h1 style={{ marginBottom: "1rem" }}>Recovery Care Bundle</h1>
+          <h1 style={{ marginBottom: "1rem" }}>Recovery Care Course</h1>
           <h1></h1>
           <p style={{ textAlign: "center" }}>
             The Recovery Care Courses are delivered through our simple to use,
@@ -98,7 +98,7 @@ function BundleRecover({ name }) {
           <SingleBundleCard className="col-md-6" item={bundle[0]} />
         )}
       </div>
-      <section className="course__area pt-50 pb-60 grey-bg">
+      {/* <section className="course__area pt-50 pb-60 grey-bg">
         <Tabs variant="enclosed" id="react-tabs-276">
           <div className="container">
             <div style={{ textAlign: "center" }}>
@@ -120,9 +120,9 @@ function BundleRecover({ name }) {
             </TabPanel>
           </div>
         </Tabs>
-      </section>
+      </section> */}
     </div>
   );
 }
 
-export default BundleRecover;
+export default RecoveryCourses;
