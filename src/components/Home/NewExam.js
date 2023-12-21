@@ -10,12 +10,21 @@ const NewExam = () => {
   const [exam, setExam] = useState([]);
   const [examResult, setExamResult] = useState([]);
   const [questionId, setQuestionId] = useState(null);
+  const [state, setState] = useState("");
+  const [click, setClick] = useState(false);
 
   const [open, setOpen] = useState(false);
 
-  const onOpenModal = () => setOpen(true);
-  const onCloseModal = () => setOpen(false);
- 
+  const onOpenModal = (state) => {
+    setState(state);
+    setOpen(true);
+  };
+  const onCloseModal = (state) => {
+    setTimeout(() => {
+      setState(false);
+    }, 1000);
+    setOpen(false);
+  };
 
   useEffect(() => {
     const form = new FormData();
@@ -26,8 +35,8 @@ const NewExam = () => {
       .then((res) => {
         console.log(JSON.parse(res.data.response[0].exam));
         let exam = JSON.parse(res.data.response[0].exam);
-        setQuestionId(res.data.response[0].id)
-        console.log(res.data.response[0].id)
+        setQuestionId(res.data.response[0].id);
+        console.log(res.data.response[0].id);
         setExam(exam);
         exam.forEach((item) => {
           setExamResult((prev) => {
@@ -38,9 +47,9 @@ const NewExam = () => {
       .catch((err) => {
         console.log(err);
       });
-      return () => {
-        setExamResult([])
-      }
+    return () => {
+      setExamResult([]);
+    };
   }, []);
 
   function setAnswer(question, answer) {
@@ -48,7 +57,7 @@ const NewExam = () => {
     setExamResult((prev) =>
       prev.filter((item) => {
         if (item.question == question) {
-          item['answer'] = answer
+          item["answer"] = answer;
           return item;
         } else {
           return item;
@@ -60,23 +69,78 @@ const NewExam = () => {
   function handleSubmit() {
     console.log(router.query.bundleId);
     const form = new FormData();
+    setClick(true);
     form.append("answer", JSON.stringify(examResult));
     form.append("question_id", questionId);
     form.append("enrolled_course_id", Number(router.query.bundleId));
     makeRequest("POST", "/bundle/validate-exam", form)
       .then((res) => {
-        localStorage.setItem('wrong-answers',JSON.stringify({questions: res.data.response.wrongAnswers,courseName: router.query.courseName, per: res.data.response.per}))
-        location.pathname = "learnCourse/result"
+        setClick(false);
+        localStorage.setItem(
+          "wrong-answers",
+          JSON.stringify({
+            questions: res.data.response.wrongAnswers,
+            courseName: router.query.courseName,
+            per: res.data.response.per,
+          })
+        );
+        location.pathname = "learnCourse/result";
         console.log(res.data);
       })
       .catch((err) => {
         console.log(err);
       });
   }
+  function validateAnswers() {
+    console.log(examResult);
+    if (examResult.find((item) => item.answer == "")) {
+      onOpenModal(true);
+    } else {
+      onOpenModal(false);
+    }
+  }
   return (
     <div>
-       <Modal open={open} onClose={onCloseModal} center>
-        <h2>Simple centered modal</h2>
+      <Modal open={open} onClose={onCloseModal} center>
+        <>
+          {state ? (
+            <>
+              <div style={{ padding: "1rem", color: "#212a50" }}>
+                Please select one option in each question
+              </div>
+            </>
+          ) : (
+            <>
+              <p
+                style={{
+                  padding: ".5rem",
+                  margin: ".5rem",
+                  textAlign: "center",
+                }}
+              >
+                Once you submit , you will no longer be able to change
+                <br />
+                your answers for this attempt. <br />
+              </p>
+              <div style={{ display: "flex", justifyContent: "center" }}>
+                <button
+                  class="btn btn-primary"
+                  type="button"
+                  onClick={handleSubmit}
+                >
+                  {click && (
+                    <span
+                      class="spinner-border spinner-border-sm"
+                      role="status"
+                      aria-hidden="true"
+                    ></span>
+                  )}
+                  {click ? "Loading..." : "Submit"}
+                </button>
+              </div>
+            </>
+          )}
+        </>
       </Modal>
       <div className="row">
         <div className="col-md-12 ">
@@ -130,14 +194,13 @@ const NewExam = () => {
                       </div>
                     ))}
                   </form>
-                </div >
+                </div>
               ))}
-              <div style={{ display: "flex", justifyContent: "center" }}>
-            <span className="btn btn-success mt-3 " onClick={handleSubmit}>
-              submit
-            </span>
+            <div style={{ display: "flex", justifyContent: "center" }}>
+              <span className="btn btn-success mt-3 " onClick={validateAnswers}>
+                Submit
+              </span>
             </div>
-            
           </div>
         </div>
       </div>
