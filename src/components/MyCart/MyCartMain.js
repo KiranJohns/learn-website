@@ -542,7 +542,7 @@ const MyCart = () => {
                               marginLeft: ".2rem",
                               padding: ".75rem",
                               background: "#5a9676",
-                              color: "#700004",
+                              color: "#fff",
                               cursor: "pointer",
                               alignContent: "center",
                             }}

@@ -304,7 +304,7 @@ const ManCoursMatrix = () => {
               }}
               className="redd"
             >
-              not started
+              Not Started
             </div>
             <div
               style={{
@@ -316,7 +316,7 @@ const ManCoursMatrix = () => {
               }}
               className="redd"
             >
-              in progress
+              In Progress
             </div>
             <div
               style={{
@@ -328,7 +328,7 @@ const ManCoursMatrix = () => {
               }}
               className="redd"
             >
-              completed
+              Completed
             </div>
           </span>
         </div>
@@ -381,7 +381,7 @@ const ManCoursMatrix = () => {
                   style={{ background: "#212a50", color: "white" }}
                   colSpan={60}
                 >
-                  Bundle Name
+                  Course Name
                 </th>
               </tr>
             </thead>
