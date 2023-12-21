@@ -106,7 +106,7 @@ function SignUpMain() {
     try {
       e.persist();
       if(!check) {
-        return toast.warn("Please Acescent Terms & Conditions")
+        return toast.warn("Please Accept Terms & Conditions")
       }
       const method = "POST"; // Specify the HTTP method
       const url = "/auth/registration"; // Specify the API endpoint URL
