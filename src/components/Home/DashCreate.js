@@ -37,6 +37,7 @@ const DashCreate = () => {
       })
         .then((res) => {
           toast.success("Individual Created");
+          location.href = '/company/showuser'
         })
         .catch((err) => {
           toast.error(err.data);
@@ -48,6 +49,7 @@ const DashCreate = () => {
       })
         .then((res) => {
           toast.success("Manager Created");
+          location.href = '/company/managers'
         })
         .catch((err) => {
           console.log(err.data);
