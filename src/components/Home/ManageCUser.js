@@ -36,6 +36,7 @@ const ManageCreateU = () => {
     })
       .then((res) => {
         toast.success("User Created");
+        location.href = '/manager/individuals'
       })
       .catch((err) => {
         console.log(err.data);
