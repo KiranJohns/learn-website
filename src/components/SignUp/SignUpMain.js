@@ -15,6 +15,7 @@ import Row from "react-bootstrap/Row";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { BsFillEyeFill, BsEyeSlashFill } from "react-icons/bs";
+import ReCAPTCHA from "react-google-recaptcha";
 
 const initialValues = {
   first_name: "",
@@ -28,6 +29,10 @@ const initialValues = {
   type_of_account: "",
   terms: "",
 };
+
+function onChange(value) {
+  console.log("Captcha value:", value);
+}
 
 function SignUpMain() {
   const [otp, setOtp] = useState("");
@@ -105,14 +110,14 @@ function SignUpMain() {
   const handleSignUp = async (e) => {
     try {
       e.persist();
-      if(!check) {
+      if (!check) {
         return toast.warn("Please Accept Terms & Conditions")
       }
       const method = "POST"; // Specify the HTTP method
       const url = "/auth/registration"; // Specify the API endpoint URL
       const data = values; // Send form values as data
 
-      if(values.password !== values.confirmPassword) {
+      if (values.password !== values.confirmPassword) {
         toast.error("Password Is Not Matching")
         return
       }
@@ -236,13 +241,13 @@ function SignUpMain() {
                     </div>
 
                     <div className="mt-4">
-                     <span>Didn't recieve? </span>
+                      <span>Didn't recieve? </span>
                       <a
                         style={{ cursor: "pointer" }}
                         onClick={resend}
                         className="text-primary mt-2 width-100"
                       >
-                        Resend 
+                        Resend
                       </a>
                     </div>
                   </div>
@@ -456,7 +461,7 @@ function SignUpMain() {
                           style={{ cursor: "pointer" }}
                           onClick={() => setShowPassword((prev) => !prev)}
                         >
-                           {showPassword ? <BsEyeSlashFill/>:<BsFillEyeFill /> }
+                          {showPassword ? <BsEyeSlashFill /> : <BsFillEyeFill />}
                         </div>
                       </div>
 
@@ -500,6 +505,13 @@ function SignUpMain() {
                         <small className="text-primary">{errors.terms}</small>
                       )} */}
                       <br />
+                    </div>
+
+                    <div className="mb-20">
+                      <ReCAPTCHA
+                        sitekey="6LfhdDkpAAAAADgd41-6T2kLEPpzxGLXTlgNE3v5"
+                        onChange={onChange}
+                      />
                     </div>
 
                     <button
