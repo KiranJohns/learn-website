@@ -6,6 +6,11 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { useEffect } from "react";
 import fetchData from "../../axios";
+import { BsFiletypeDocx } from "react-icons/bs";
+import { CiImageOn } from "react-icons/ci";
+import { CiVideoOn } from "react-icons/ci";
+import { FaRegFilePdf } from "react-icons/fa";
+import { BsFiletypeTxt } from "react-icons/bs";
 
 const CourseResource = () => {
   const [slides, setSlides] = useState([]);
@@ -46,6 +51,24 @@ const CourseResource = () => {
         // console.log(err);
       });
   }, []);
+
+  function GetIcon(type) {
+    if(type == "docx") {
+      return <BsFiletypeDocx />
+    }
+    if(type == "video") {
+      return <CiVideoOn />
+    }
+    if(type == "pdf") {
+      return <FaRegFilePdf />
+    }
+    if(type == "txt") {
+      return <BsFiletypeTxt />
+    }
+    if(type == "image") {
+      return <CiImageOn />
+    }
+  }
 
   return (
     <div>
@@ -126,7 +149,8 @@ const CourseResource = () => {
               course?.resource?.map((item, i) => (
                 <div  style={{ margin: " 1rem .5rem" }}>
                   <p>
-                  &#x2022;{" "}
+                  {/* &#x2022;{" "} */}
+                  {GetIcon(item.type)}
                     <a
                       href={item.url}
                       style={{ color: "#1b85b8" }}
