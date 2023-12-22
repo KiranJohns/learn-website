@@ -17,6 +17,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { BsFillEyeFill, BsEyeSlashFill } from "react-icons/bs";
 import ReCAPTCHA from "react-google-recaptcha";
 
+
 const initialValues = {
   first_name: "",
   last_name: "",
@@ -29,6 +30,8 @@ const initialValues = {
   type_of_account: "",
   terms: "",
 };
+
+ 
 
 function onChange(value) {
   console.log("Captcha value:", value);
@@ -44,6 +47,60 @@ function SignUpMain() {
     setCheck(prev => !prev)
   }
 
+
+
+  const [timer, setTimer] = useState("00:00:45")
+  const Ref = useRef()
+
+  function getTimeRemaining(e){
+    const total = Date.parse(e) - Date.parse(new Date())
+    const hour = Math.floor(total/(1000* 60 * 60 ) % 24 );
+    const seconds = Math.floor((total /1000)% 60);
+    const minute = Math.floor((total / (1000 * 60 )) % 60);
+    
+    return {total, hour, minute, seconds};
+  }
+
+  function startTimer(e){
+    let {total, hour, minute, seconds} = getTimeRemaining(e);
+
+    if(total>=0){
+   setTimer(
+    (hour> 9 ? hour : '0' + hour) + ':'+
+    (minute > 9 ? minute : '0' + minute)+ ':'+
+    (seconds > 9 ? seconds : '0'+ seconds)
+   )
+    }
+  }
+
+  function clearTimer(e){
+    setTimer("00:00:45")
+    if(Ref.current) {
+      clearInterval(Ref.current)
+    }
+ 
+      const id = setInterval(()=>{
+        startTimer(e)
+      },1000)
+      Ref.current = id;
+    
+
+  }
+
+  function getDeadTime(){
+    let deadline = new Date();
+    deadline.setSeconds(deadline.getSeconds()+45); 
+    return deadline;
+  }
+
+  function Reset(){
+    clearTimer(getDeadTime())
+  }
+ 
+  useEffect(()=>{
+   clearTimer(getDeadTime())
+  },[])
+  
 
   function resend(event) {
     event.preventDefault();
@@ -240,7 +297,10 @@ function SignUpMain() {
                       </button>
                     </div>
 
+                 
+
                     <div className="mt-4">
+                      
                       <span>Didn't recieve? </span>
                       <a
                         style={{ cursor: "pointer" }}
@@ -249,7 +309,12 @@ function SignUpMain() {
                       >
                         Resend
                       </a>
+                      <div className="my-4">
+                      <h5>{timer}</h5>
+                      <button  className="btn btn-primary" onClick={Reset}>Reset</button>
                     </div>
+                    </div>
+                    
                   </div>
                 </div>
               </div>
@@ -555,3 +620,5 @@ function SignUpMain() {
 }
 
 export default SignUpMain;
+
+
