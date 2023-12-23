@@ -75,9 +75,10 @@ const ManagerAssignCourse = () => {
       .then((res) => {
         console.log(res[0].data.response);
         console.log(res[1].data.response);
-        let newRes = [...res[0].data.response, ...res[1].data.response.filter(item => item.owner != user.id)].filter(
-          (item) => item?.course_count >= 1
-        );
+        let newRes = [
+          ...res[0].data.response,
+          ...res[1].data.response.filter((item) => item.owner != user.id),
+        ].filter((item) => item?.course_count >= 1);
         console.log(newRes);
         setRecords(newRes);
         setPending(false);
@@ -150,7 +151,10 @@ const ManagerAssignCourse = () => {
     console.log("from ", from);
     let form = new FormData();
     form.append("id", assignData.course_id);
-    form.append("from", from == "purchased" ? "manager-purchased" : "manager-assigned");
+    form.append(
+      "from",
+      from == "purchased" ? "manager-purchased" : "manager-assigned"
+    );
     form.append("count", 1);
 
     makeRequest("POST", "/info/manager-self-assign-course", form)
@@ -357,7 +361,14 @@ const ManagerAssignCourse = () => {
                         <span>{user.email}</span>
                         <span
                           onClick={() => {
-                            selfAssign();
+                            if (selectedBundleCount < 1) {
+                              toast.warn(
+                                "Remaining Course Count " + selectedBundleCount
+                              );
+                              return;
+                            } else {
+                              selfAssign();
+                            }
                           }}
                           style={{
                             width: "fit-content",
@@ -378,12 +389,20 @@ const ManagerAssignCourse = () => {
                               <span>{item.email}</span>
                               <span
                                 onClick={() => {
-                                  if (from == "purchased") {
-                                    assignCourseToManagerIndividual(item.id);
-                                  } else {
-                                    assignCourseToManagerIndividualFromAssigned(
-                                      item.id
+                                  if (selectedBundleCount < 1) {
+                                    toast.warn(
+                                      "Remaining Course Count " +
+                                        selectedBundleCount
                                     );
+                                    return;
+                                  } else {
+                                    if (from == "purchased") {
+                                      assignCourseToManagerIndividual(item.id);
+                                    } else {
+                                      assignCourseToManagerIndividualFromAssigned(
+                                        item.id
+                                      );
+                                    }
                                   }
                                 }}
                                 style={{ width: "fit-content" }}
@@ -432,7 +451,7 @@ const ManagerAssignCourse = () => {
               data={
                 searchString
                   ? records.filter((item) =>
-                  (item.name || item.Name)
+                      (item.name || item.Name)
                         .toLowerCase()
                         .startsWith(searchString.toLowerCase())
                     )

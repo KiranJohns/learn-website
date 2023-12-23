@@ -76,7 +76,7 @@ const CompAssignCourse = () => {
 
   const makeRequest = fetchData();
 
-  useEffect(() => { 
+  useEffect(() => {
     getData();
   }, []);
 
@@ -93,9 +93,10 @@ const CompAssignCourse = () => {
         setPending(false);
         // console.log(res[0].data.response);
         // console.log(res[1].data.response);
-        let newRes = [...res[0].data.response, ...res[1].data.response.filter(
-          (item) => (item?.course_count != 1)
-        )]
+        let newRes = [
+          ...res[0].data.response,
+          ...res[1].data.response.filter((item) => item?.course_count != 1),
+        ];
         let resArr = newRes?.reverse();
         console.log(res[0].data.response, res[1].data.response);
         setRecords(resArr);
@@ -124,10 +125,12 @@ const CompAssignCourse = () => {
   }
 
   function selfAssign() {
-    console.log("hi ");
     let form = new FormData();
     form.append("id", assignData.course_id);
-    form.append("from", from == "purchased" ? "company-purchased" : "company-assigned");
+    form.append(
+      "from",
+      from == "purchased" ? "company-purchased" : "company-assigned"
+    );
     form.append("count", 1);
 
     makeRequest("POST", "/info/manager-self-assign-course", form)
@@ -334,6 +337,7 @@ const CompAssignCourse = () => {
             setAssignData((prev) => {
               return {
                 ...prev,
+                count: 1,
                 course_id: row.id,
               };
             });
@@ -507,7 +511,15 @@ const CompAssignCourse = () => {
                               <span>{user?.email}</span>
                               <span
                                 onClick={() => {
-                                  selfAssign();
+                                  if (selectedBundleCount < assignData.count) {
+                                    toast.warn(
+                                      "Remaining Course Count " +
+                                        selectedBundleCount
+                                    );
+                                    return;
+                                  } else {
+                                    selfAssign();
+                                  }
                                 }}
                                 style={{
                                   width: "fit-content",
@@ -528,15 +540,24 @@ const CompAssignCourse = () => {
                                     <span>{item.email}</span>
                                     <span
                                       onClick={() => {
-                                        console.log(from);
-                                        if (from == "assigned") {
-                                          assignCourseToManagerIndividualFromAssigned(
-                                            item.id
+                                        if (
+                                          selectedBundleCount < assignData.count
+                                        ) {
+                                          toast.warn(
+                                            "Remaining Course Count " +
+                                              selectedBundleCount
                                           );
+                                          return;
                                         } else {
-                                          assignCourseToManagerIndividual(
-                                            item.id
-                                          );
+                                          if (from == "assigned") {
+                                            assignCourseToManagerIndividualFromAssigned(
+                                              item.id
+                                            );
+                                          } else {
+                                            assignCourseToManagerIndividual(
+                                              item.id
+                                            );
+                                          }
                                         }
                                       }}
                                       style={{
@@ -570,7 +591,7 @@ const CompAssignCourse = () => {
                             style={{ width: "5.9rem", textAlign: "center" }}
                             onChange={(e) => {
                               if (
-                                Number(e.target.value) <= selectedBundleCount
+                                Number(e.target.value) <= selectedBundleCount && Number(e.target.value) >= 1
                               ) {
                                 setAssignData((prev) => {
                                   return {
@@ -679,12 +700,22 @@ const CompAssignCourse = () => {
                                     style={{ width: "fit-content" }}
                                     className="btn btn-success"
                                     onClick={() => {
-                                      if (from == "assigned") {
-                                        assignCourseToManagerFromAssigned(
-                                          item.id
+                                      if (
+                                        selectedBundleCount < assignData.count
+                                      ) {
+                                        toast.warn(
+                                          "Remaining Course Count " +
+                                            selectedBundleCount
                                         );
+                                        return;
                                       } else {
-                                        assignCourseToManager(item.id);
+                                        if (from == "assigned") {
+                                          assignCourseToManagerFromAssigned(
+                                            item.id
+                                          );
+                                        } else {
+                                          assignCourseToManager(item.id);
+                                        }
                                       }
                                     }}
                                   >

@@ -74,7 +74,10 @@ const CompAssignBund = () => {
   function selfAssign() {
     let form = new FormData();
     form.append("id", assignData.course_id);
-    form.append("from", from == "purchased" ? "company-purchased" : "company-assigned");
+    form.append(
+      "from",
+      from == "purchased" ? "company-purchased" : "company-assigned"
+    );
     form.append("count", 1);
 
     makeRequest("POST", "/info/manager-self-assign-course", form)
@@ -98,13 +101,11 @@ const CompAssignBund = () => {
     );
     Promise.all([purchasedRes, assignedRes])
       .then((res) => {
-        let newRes = [
-          ...res[0].data.response,
-          ...res[1].data.response,
-        ].filter(item => item.owner != user.id)
+        let newRes = [...res[0].data.response, ...res[1].data.response]
+          .filter((item) => item.owner != user.id)
           .reverse();
-          // console.log(res[0].data.response,
-          //   res[1].data.response);
+        // console.log(res[0].data.response,
+        //   res[1].data.response);
         setRecords(newRes);
         setPending(false);
       })
@@ -201,7 +202,6 @@ const CompAssignBund = () => {
     form.append("userId", id);
     form.append("count", assignData.count);
 
-    console.log(assignData);
     makeRequest("POST", "/info/assign-course-to-manager-from-assigned", form)
       .then((res) => {
         getData();
@@ -254,6 +254,7 @@ const CompAssignBund = () => {
             setAssignData((prev) => {
               return {
                 ...prev,
+                count: 1,
                 course_id: row.id,
               };
             });
@@ -430,7 +431,15 @@ const CompAssignBund = () => {
                             <span>{user.email}</span>
                             <span
                               onClick={() => {
-                                selfAssign();
+                                if (selectedBundleCount < assignData.count) {
+                                  toast.warn(
+                                    "Remaining Course Count " +
+                                      selectedBundleCount
+                                  );
+                                  return;
+                                } else {
+                                  selfAssign();
+                                }
                               }}
                               style={{
                                 width: "fit-content",
@@ -451,14 +460,24 @@ const CompAssignBund = () => {
                                   <span>{item.email}</span>
                                   <span
                                     onClick={() => {
-                                      if (from == "assigned") {
-                                        assignCourseToManagerIndividualFromAssigned(
-                                          item.id
+                                      if (
+                                        selectedBundleCount < assignData.count
+                                      ) {
+                                        toast.warn(
+                                          "Remaining Course Count " +
+                                            selectedBundleCount
                                         );
+                                        return;
                                       } else {
-                                        assignCourseToManagerIndividual(
-                                          item.id
-                                        );
+                                        if (from == "assigned") {
+                                          assignCourseToManagerIndividualFromAssigned(
+                                            item.id
+                                          );
+                                        } else {
+                                          assignCourseToManagerIndividual(
+                                            item.id
+                                          );
+                                        }
                                       }
                                     }}
                                     style={{
@@ -491,7 +510,7 @@ const CompAssignBund = () => {
                             style={{ width: "5.9rem", textAlign: "center" }}
                             onChange={(e) => {
                               if (
-                                Number(e.target.value) <= selectedBundleCount
+                                Number(e.target.value) <= selectedBundleCount && Number(e.target.value) >= 1
                               ) {
                                 setAssignData((prev) => {
                                   return {
@@ -506,7 +525,7 @@ const CompAssignBund = () => {
                             className="form-control"
                             id="exampleInputEmail1"
                             aria-describedby="emailHelp"
-                            placeholder="0"
+                            placeholder="1"
                           />
                         </div>
                         <div
@@ -603,12 +622,22 @@ const CompAssignBund = () => {
                                     }}
                                     className="btn btn-success"
                                     onClick={() => {
-                                      if (from == "assigned") {
-                                        assignCourseToManagerFromAssigned(
-                                          item.id
+                                      if (
+                                        selectedBundleCount < assignData.count
+                                      ) {
+                                        toast.warn(
+                                          "Remaining Course Count " +
+                                            selectedBundleCount
                                         );
+                                        return;
                                       } else {
-                                        assignCourseToManager(item.id);
+                                        if (from == "assigned") {
+                                          assignCourseToManagerFromAssigned(
+                                            item.id
+                                          );
+                                        } else {
+                                          assignCourseToManager(item.id);
+                                        }
                                       }
                                     }}
                                   >

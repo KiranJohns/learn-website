@@ -74,10 +74,17 @@ const ManAssignBund = () => {
                 ...purchasedRes.data.response.filter(
                   (item) => item.course_count >= 1
                 ),
-                ...res.data.response.filter((item) => (item.course_count >= 1 && item.owner != user.id)),
+                ...res.data.response.filter(
+                  (item) => item.course_count >= 1 && item.owner != user.id
+                ),
               ];
             });
-            console.log(purchasedRes.data.response, res.data.response.filter((item) => (item.course_count >= 1 && item.owner != user.id)));
+            console.log(
+              purchasedRes.data.response,
+              res.data.response.filter(
+                (item) => item.course_count >= 1 && item.owner != user.id
+              )
+            );
           })
           .catch((err) => {
             console.log(err);
@@ -117,7 +124,7 @@ const ManAssignBund = () => {
     )
       .then((res) => {
         getData();
-        setShowModal()
+        setShowModal();
         console.log(res);
         toast("Bundle Assigned");
       })
@@ -137,7 +144,7 @@ const ManAssignBund = () => {
     makeRequest("POST", "/info/assign-course-to-manager-individual", form)
       .then((res) => {
         getData();
-        setShowModal()
+        setShowModal();
         console.log(res);
         toast("Bundle Assigned");
       })
@@ -359,7 +366,14 @@ const ManAssignBund = () => {
                         <span>{user.email}</span>
                         <span
                           onClick={() => {
-                            selfAssign();
+                            if (selectedBundleCount < 1) {
+                              toast.warn(
+                                "Remaining Course Count " + selectedBundleCount
+                              );
+                              return;
+                            } else {
+                              selfAssign();
+                            }
                           }}
                           style={{
                             width: "fit-content",
@@ -381,12 +395,20 @@ const ManAssignBund = () => {
                               <span
                                 onClick={() => {
                                   // ABC
-                                  if (fromAssignedTable) {
-                                    assignCourseToManagerIndividualFromManager(
-                                      item.id
+                                  if (selectedBundleCount < 1) {
+                                    toast.warn(
+                                      "Remaining Course Count " +
+                                        selectedBundleCount
                                     );
+                                    return;
                                   } else {
-                                    assignCourseToManagerIndividual(item.id);
+                                    if (fromAssignedTable) {
+                                      assignCourseToManagerIndividualFromManager(
+                                        item.id
+                                      );
+                                    } else {
+                                      assignCourseToManagerIndividual(item.id);
+                                    }
                                   }
                                 }}
                                 style={{ width: "fit-content" }}
