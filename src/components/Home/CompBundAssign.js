@@ -245,30 +245,48 @@ const CompAssignBund = () => {
     {
       name: "action",
       center: true,
-      selector: (row) => (
-        <a
-          className="btn btn-primary"
-          onClick={() => {
-            openModal();
-            setCourseName(row.bundle_name);
-            setAssignData((prev) => {
-              return {
-                ...prev,
-                count: 1,
-                course_id: row.id,
-              };
-            });
-            if (row.from_purchased) {
-              setFrom("purchased");
-            } else {
-              setFrom("assigned");
-            }
-            setSelectedBundleCount(row.course_count);
-          }}
-        >
-          Assign To
-        </a>
-      ),
+      selector: (row) => {
+        let flag = false;
+        let title = "Expired";
+        let validity = row.validity.split("/").reverse();
+        if (new Date(validity) > new Date()) {
+          flag = true;
+        } else {
+          flag = false;
+        }
+        return (
+          <>
+            {flag ? (
+              <a
+                className="btn btn-primary"
+                onClick={() => {
+                  openModal();
+                  setCourseName(row.bundle_name);
+                  setAssignData((prev) => {
+                    return {
+                      ...prev,
+                      count: 1,
+                      course_id: row.id,
+                    };
+                  });
+                  if (row.from_purchased) {
+                    setFrom("purchased");
+                  } else {
+                    setFrom("assigned");
+                  }
+                  setSelectedBundleCount(row.course_count);
+                }}
+              >
+                Assign To
+              </a>
+            ) : (
+              <>
+                <a className="btn btn-danger">{title}</a>
+              </>
+            )}
+          </>
+        );
+      },
     },
   ];
 
@@ -510,7 +528,8 @@ const CompAssignBund = () => {
                             style={{ width: "5.9rem", textAlign: "center" }}
                             onChange={(e) => {
                               if (
-                                Number(e.target.value) <= selectedBundleCount && Number(e.target.value) >= 1
+                                Number(e.target.value) <= selectedBundleCount &&
+                                Number(e.target.value) >= 1
                               ) {
                                 setAssignData((prev) => {
                                   return {
