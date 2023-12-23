@@ -105,32 +105,48 @@ const BundleCour = () => {
     {
       name: "Attempts",
       selector: (row) => row?.attempts + "/" + 20,
-      center:"true",
+      center: "true",
     },
     {
       name: "Action",
       cell: (row) => {
         console.log(row);
         return (
-        <Link
-          href={{
-            pathname: "/learnCourse/bundleCourse",
-            query: {
-              course_id: row.id,
-              bundleId: router.query.id,
-            },
-          }}
-        >
-          <a
-            onClick={() => {}}
-            className={`btn btn-success${row?.attempts < 20 ? "" : ""}`}
-            style={{ width: "7rem" }}
-          >{row?.attempts < 20 ? 
-            data?.finished_course?.includes(row.id) ? "finished" : "start"
-          : 'No try'}
-          </a>
-        </Link>
-      )},
+          <>
+            {!data?.finished_course?.includes(row.id) ? (
+              <>
+                {row?.attempts < 20 ? (
+                  <Link
+                    href={{
+                      pathname: "/learnCourse/bundleCourse",
+                      query: {
+                        course_id: row.id,
+                        bundleId: router.query.id,
+                      },
+                    }}
+                  >
+                    <a
+                      onClick={() => {}}
+                      className={`btn btn-success`}
+                      style={{ width: "7rem" }}
+                    >
+                      Start
+                    </a>
+                  </Link>
+                ) : (
+                  <>
+                    <a className="btn btn-danger">Expired</a>
+                  </>
+                )}
+              </>
+            ) : (
+              <>
+                <a className="btn btn-danger">Expired</a>
+              </>
+            )}
+          </>
+        );
+      },
     },
   ];
 
