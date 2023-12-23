@@ -147,7 +147,8 @@ const DashCourse = () => {
     {
       name: "Action",
       center: true,
-      cell: (row) => (
+      cell: (row) => {
+        return (
         <>
           {row?.progress ? (
             <Link
@@ -157,7 +158,7 @@ const DashCourse = () => {
               }}
             >
               <a style={{ width: "7rem" }} className="btn btn-success">
-                continue
+                Start
               </a>
             </Link>
           ) : (
@@ -168,7 +169,7 @@ const DashCourse = () => {
               className="btn btn-success"
               style={{ width: "7rem" }}
             >
-              start
+              Start
             </button>
           )}
         </>
@@ -180,7 +181,7 @@ const DashCourse = () => {
         // >
         //   start
         // </a>
-      ),
+      )},
     },
   ];
 
