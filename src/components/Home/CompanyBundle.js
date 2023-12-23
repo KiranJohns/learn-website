@@ -201,7 +201,7 @@ const CompanyBundle = () => {
                     </div>
                   ) : null
                 }
-                noDataComponent={" "}
+                noDataComponent={"No records to display"}
                 columns={columns}
                 data={
                   searchString

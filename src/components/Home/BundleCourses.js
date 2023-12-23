@@ -180,7 +180,7 @@ const BundleCour = () => {
             </form>
           </div>
           <DataTable
-            noDataComponent={" "}
+            noDataComponent={"No records to display"}
             columns={columns}
             data={
               searchData

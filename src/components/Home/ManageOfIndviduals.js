@@ -169,7 +169,7 @@ const ManageIndList = () => {
                    <Spinner animation="border" variant="primary" />
                  </div>) : (null)
                }
-              noDataComponent={" "}
+              noDataComponent={"No records to display"}
               columns={columns}
               data={
                 searchString

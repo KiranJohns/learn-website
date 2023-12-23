@@ -451,7 +451,7 @@ const ManAssignBund = () => {
                   </div>
                 ) : null
               }
-              noDataComponent={" "}
+              noDataComponent={"No records to display"}
               persistTableHead={true}
               columns={columns}
               data={

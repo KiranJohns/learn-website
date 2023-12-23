@@ -147,7 +147,7 @@ const CompMonthRep = () => {
                   : records
               }
               pagination
-              noDataComponent={" "}
+              noDataComponent={"No records to display"}
               customStyles={customStyles}
             />
           </div>

@@ -208,6 +208,7 @@ const AttemptsExam = () => {
             </form>
           </div>
           <DataTable
+          noDataComponent={"No records to display"}
             persistTableHead={true}
             columns={columns}
             data={records}

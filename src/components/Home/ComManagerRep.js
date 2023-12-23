@@ -158,7 +158,7 @@ const ManagerReport = () => {
                    <Spinner animation="border" variant="primary" />
                  </div>) : (null)
                }
-                noDataComponent={" "}
+                noDataComponent={"No records to display"}
                 persistTableHead={true}
                 columns={columns}
                 data={

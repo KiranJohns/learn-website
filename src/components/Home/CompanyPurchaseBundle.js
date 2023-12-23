@@ -132,6 +132,7 @@ class CompanyPurBundle extends Component {
             </form>
           </div>
           <DataTable
+          noDataComponent={"No records to display"}
             columns={columns}
             data={this.state.records}
             customStyles={customStyles}

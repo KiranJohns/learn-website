@@ -988,7 +988,7 @@ const CompAssignCourse = () => {
                   ) : null
                 }
                 persistTableHead={true}
-                noDataComponent={" "}
+                noDataComponent={"No records to display"}
                 columns={columns}
                 data={
                   searchString

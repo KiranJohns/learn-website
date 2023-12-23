@@ -212,7 +212,7 @@ const [pending, setPending] = React.useState(true);
                         <Spinner animation="border" variant="primary" />
                       </div>) : (null)
                     }
-            noDataComponent={" "}
+            noDataComponent={"No records to display"}
              persistTableHead={true}
               columns={columns}
               data={

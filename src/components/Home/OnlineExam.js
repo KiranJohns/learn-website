@@ -128,7 +128,7 @@ const OnlineExam = () => {
                         role="status"
                         aria-hidden="true"
                       ></span>}
-                      {click ? "Loading..." : "submit"}
+                      {click ? "Loading..." : "Submit"}
                     </button></div>
                   </>
                 )}
@@ -189,7 +189,7 @@ const OnlineExam = () => {
               ))}
             <div style={{ display: "flex", justifyContent: "center" }}>
               <span className="btn btn-success mt-3" onClick={validateAnswers}>
-                submit
+                Submit
               </span>
             </div>
           </div>

@@ -399,7 +399,7 @@ class DashTest extends Component {
                   fontSize: 35,
                 }}
               >
-                My Courses
+                Ongoing Courses
               </h4>
               <div className="p-relative d-inline header__search">
                 <form className="your-element" action="">
@@ -446,7 +446,7 @@ class DashTest extends Component {
                 </div>
                 <div>      
                     <DataTable
-                     noDataComponent={" "}
+                     noDataComponent={"No records to display"}
                       persistTableHead={true}
                       columns={columns}
                       data={

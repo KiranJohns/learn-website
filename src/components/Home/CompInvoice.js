@@ -160,7 +160,7 @@ const CompInvoice = () => {
               }
               customStyles={customStyles}
               pagination
-              noDataComponent={" "}
+              noDataComponent={"No records to display"}
             />
           </div>
         </div>{" "}

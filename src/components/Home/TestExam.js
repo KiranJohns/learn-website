@@ -123,7 +123,7 @@ const TestExam = () => {
               ))}
               <div style={{display:'flex', justifyContent:'center'}}>
             <span className="btn btn-success mt-3" onClick={handleSubmit}>
-              submit
+              Submit
             </span>
             </div>
           </div>

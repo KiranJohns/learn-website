@@ -155,7 +155,7 @@ class Transaction extends Component {
                 </form>
               </div>
               <DataTable
-                noDataComponent={" "}
+                noDataComponent={"No records to display"}
                 persistTableHead={true}
                 columns={columns}
                 data={

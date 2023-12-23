@@ -421,7 +421,7 @@ function DashIndividual() {
               </div>
               <div style={{ padding: ".2rem" }}>
                 <DataTable
-                  noDataComponent={" "}
+                  noDataComponent={"No records to display"}
                   columns={columns}
                   data={
                     searchString

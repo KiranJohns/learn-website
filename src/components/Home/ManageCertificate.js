@@ -145,7 +145,7 @@ class ManageCertificate extends Component {
                 </form>
               </div>
               <DataTable
-                noDataComponent={" "}
+                noDataComponent={"No records to display"}
                 columns={columns}
                 persistTableHead={true}
                 data={
