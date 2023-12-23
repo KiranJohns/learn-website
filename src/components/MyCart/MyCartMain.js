@@ -51,7 +51,6 @@ const MyCart = () => {
     }
   }
 
-  console.log(cart);
   useEffect(() => {
     getCartItem();
 
@@ -96,6 +95,7 @@ const MyCart = () => {
       .then((res) => {
         console.log(res.data);
         getCartItem();
+        removeCoupon();
         store.dispatch({
           type: "REMOVE_ITEM",
           payload: id,
@@ -121,6 +121,7 @@ const MyCart = () => {
     })
       .then((res) => {
         getCartItem();
+        removeCoupon();
         console.log(res.data);
       })
       .catch((err) => {
@@ -156,23 +157,39 @@ const MyCart = () => {
         setCouponData(res.data.response);
       })
       .catch((err) => {
-        if (err?.data?.errors[0].message === "please login") {
-          toast.warn("Please Login");
-        } else {
+        if (err?.data?.data?.response === "Minimum purchase is required.") {
+          toast.warn("Add More Items To Cart To Apply Coupon");
+        } else if (err?.data?.data?.response === "coupon not fount") {
           toast.warn("Invalid Coupon");
+        } else if (err?.data?.data?.response === "Please Provide Coupon Code") {
+          toast.warn("Please Provide Coupon Code");
+        } else {
+          toast.warn("Please Login");
         }
-        console.log(err?.data);
       });
   }
 
   function removeCouponHandler() {
-    console.log("remove coupon");
+    // console.log("remove coupon");
     makeRequest("POST", "/coupon/remove-coupon")
       .then((res) => {
         setCoupon("");
         toast("Coupon Removed");
         setOfferPrice();
         setCouponData({ coupon_code: "XXXX" });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  function removeCoupon() {
+    // console.log("remove coupon");
+    makeRequest("POST", "/coupon/remove-coupon")
+      .then((res) => {
+        setCoupon("");
+        setOfferPrice();
+        // setCouponData({ coupon_code: "XXXX" });
       })
       .catch((err) => {
         console.log(err);
@@ -187,6 +204,7 @@ const MyCart = () => {
     })
       .then((res) => {
         getCartItem();
+        removeCoupon();
         console.log(res.data);
       })
       .catch((err) => {
