@@ -120,27 +120,41 @@ class ManageDash extends Component {
           let validity = row.validity.split("/").reverse();
           let flag = false;
           let title = "Start";
-          if (new Date(validity) > new Date()) {
-            if (row.progress <= 80) {
-              if (row.attempts < 20) {
-                flag = true;
-                title = "Start";
-              } else {
-                flag = false;
-                title = "Expired";
-              }
-            } else {
-              title = "Expired";
-              flag = false;
-            }
-          } else {
-            title = "Finished";
+          // if (new Date(validity) > new Date()) {
+          //   if (row.progress <= 80) {
+          //     if (row.attempts < 20) {
+          //       flag = true;
+          //       title = "Start";
+          //     } else {
+          //       flag = false;
+          //       title = "Expired";
+          //     }
+          //   } else {
+          //     title = "Expired";
+          //     flag = false;
+          //   }
+          // } else {
+          //   title = "Completed";
+          //   flag = false;
+          // }
+
+          if (new Date(validity) <= new Date() || row?.attempts >= 20) {
+            title = "Expired";
             flag = false;
+          } else {
+            title = "Start";
+            flag = true;
+            if (row.progress >= 80) {
+              title = "Completed";
+              flag = true;
+            }
           }
+
           return (
             <>
               {flag ? (
                 <a
+                  style={{ width: "7rem" }}
                   onClick={() => {
                     location.href = `/learnCourse/coursepage/?courseId=${row.id}`;
                   }}
@@ -150,7 +164,9 @@ class ManageDash extends Component {
                 </a>
               ) : (
                 <>
-                  <a className="btn btn-danger">{title}</a>
+                  <a style={{ width: "7rem" }} className="btn btn-danger">
+                    {title}
+                  </a>
                 </>
               )}
             </>

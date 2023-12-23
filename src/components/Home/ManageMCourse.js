@@ -120,31 +120,32 @@ const ManageMyCourse = () => {
         let validity = row.validity.split("/").reverse();
         let flag = false;
         let title = "Start";
-        
+
         if (new Date(validity) <= new Date() || row?.attempts >= 20) {
           title = "Expired";
           flag = false;
         } else {
-          title = "Finished";
+          title = "Completed";
           flag = true;
         }
 
-        
         return (
           <>
             {flag ? (
               <>
                 {row?.progress ? (
-                  <Link
-                    href={{
-                      pathname: "/learnCourse/coursepage",
-                      query: { courseId: row?.on_going_course_id },
-                    }}
-                  >
-                    <a style={{ width: "7rem" }} className="btn btn-success">
-                      Start
-                    </a>
-                  </Link>
+                  <>
+                    <Link
+                      href={{
+                        pathname: "/learnCourse/coursepage",
+                        query: { courseId: row?.on_going_course_id },
+                      }}
+                    >
+                      <a style={{ width: "7rem" }} className="btn btn-success">
+                        {row?.progress >= 80 ? 'Completed' : 'Start'}
+                      </a>
+                    </Link>
+                  </>
                 ) : (
                   <button
                     onClick={() => {

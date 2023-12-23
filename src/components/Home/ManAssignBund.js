@@ -201,30 +201,48 @@ const ManAssignBund = () => {
     {
       name: "action",
       center: true,
-      selector: (row) => (
-        <a
-          className="btn btn-primary"
-          onClick={() => {
-            openModal();
-            setCourseName(row.bundle_name);
-            setAssignData((prev) => {
-              return {
-                ...prev,
-                course_id: row.id,
-              };
-            });
+      selector: (row) => {
+        let flag = false;
+        let title = "Start";
+        let validity = row.validity.split("/").reverse();
+        if (new Date(validity) > new Date()) {
+          flag = true;
+        } else {
+          flag = false;
+        }
+        return (
+          <>
+            {flag ? (
+              <a
+                className="btn btn-primary"
+                onClick={() => {
+                  openModal();
+                  setCourseName(row.bundle_name);
+                  setAssignData((prev) => {
+                    return {
+                      ...prev,
+                      course_id: row.id,
+                    };
+                  });
 
-            if (row?.from_assigned_table) {
-              setFromAssignedTable(true);
-            } else {
-              setFromAssignedTable(false);
-            }
-            setSelectedBundleCount(row.course_count);
-          }}
-        >
-          Assign To
-        </a>
-      ),
+                  if (row?.from_assigned_table) {
+                    setFromAssignedTable(true);
+                  } else {
+                    setFromAssignedTable(false);
+                  }
+                  setSelectedBundleCount(row.course_count);
+                }}
+              >
+                Assign To
+              </a>
+            ) : (
+              <>
+                <a className="btn btn-danger">{title}</a>
+              </>
+            )}
+          </>
+        );
+      },
     },
   ];
 
