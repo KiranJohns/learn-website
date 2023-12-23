@@ -196,30 +196,48 @@ const ManagerAssignCourse = () => {
     {
       name: "action",
       center: true,
-      selector: (row) => (
-        <a
-          className="btn btn-primary"
-          onClick={() => {
-            openModal();
-            setCourseName(row.Name || row.name);
-            console.log("row", row.id);
-            setAssignData((prev) => {
-              return {
-                ...prev,
-                course_id: row.id,
-              };
-            });
-            if (row.from_purchased) {
-              setFrom("purchased");
-            } else {
-              setFrom("assigned");
-            }
-            setSelectedBundleCount(row.course_count);
-          }}
-        >
-          Assign To
-        </a>
-      ),
+      selector: (row) => {
+        let validity = row.validity.split("/").reverse();
+        let flag = false;
+        let title = "Start";
+        if (new Date(validity) > new Date()) {
+          flag = true;
+        } else {
+          flag = false;
+        }
+        return (
+          <>
+            {flag ? (
+              <a
+                className="btn btn-primary"
+                onClick={() => {
+                  openModal();
+                  setCourseName(row.Name || row.name);
+                  console.log("row", row.id);
+                  setAssignData((prev) => {
+                    return {
+                      ...prev,
+                      course_id: row.id,
+                    };
+                  });
+                  if (row.from_purchased) {
+                    setFrom("purchased");
+                  } else {
+                    setFrom("assigned");
+                  }
+                  setSelectedBundleCount(row.course_count);
+                }}
+              >
+                Assign To
+              </a>
+            ) : (
+              <>
+                <a className="btn btn-danger">Expired</a>
+              </>
+            )}
+          </>
+        );
+      },
     },
   ];
 
