@@ -203,7 +203,7 @@ const ManAssignBund = () => {
       center: true,
       selector: (row) => {
         let flag = false;
-        let title = "Start";
+        let title = "Expired";
         let validity = row.validity.split("/").reverse();
         if (new Date(validity) > new Date()) {
           flag = true;

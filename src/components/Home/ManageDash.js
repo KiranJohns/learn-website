@@ -137,7 +137,6 @@ class ManageDash extends Component {
           //   title = "Completed";
           //   flag = false;
           // }
-
           if (new Date(validity) <= new Date() || row?.attempts >= 20) {
             title = "Expired";
             flag = false;
@@ -148,7 +147,7 @@ class ManageDash extends Component {
               title = "Completed";
               flag = true;
             }
-          }
+          } 
 
           return (
             <>

@@ -136,7 +136,7 @@ const DashCourse = () => {
     {
       name: "validity",
       center: true,
-      selector: (row) => row.validity
+      selector: (row) => row.validity,
     },
     {
       name: "Progress",
@@ -148,40 +148,40 @@ const DashCourse = () => {
       name: "Action",
       center: true,
       cell: (row) => {
+        let validity = row.validity.split("/").reverse();
         return (
-        <>
-          {row?.progress ? (
-            <Link
-              href={{
-                pathname: "/learnCourse/coursepage",
-                query: { courseId: row?.on_going_course_id },
-              }}
-            >
-              <a style={{ width: "7rem" }} className="btn btn-success">
-                Start
-              </a>
-            </Link>
-          ) : (
-            <button
-              onClick={() => {
-                handleStart(row?.id, "assigned");
-              }}
-              className="btn btn-success"
-              style={{ width: "7rem" }}
-            >
-              Start
-            </button>
-          )}
-        </>
-        // <a
-        //   onClick={() => {
-        //     handleStart(row?.id, "assigned");
-        //   }}
-        //   className="btn btn-success"
-        // >
-        //   start
-        // </a>
-      )},
+          <>
+            {new Date(validity.join("-")) > new Date() ? (
+              <>
+                {row?.progress ? (
+                  <Link
+                    href={{
+                      pathname: "/learnCourse/coursepage",
+                      query: { courseId: row?.on_going_course_id },
+                    }}
+                  >
+                    <a style={{ width: "7rem" }} className="btn btn-success">
+                      Start
+                    </a>
+                  </Link>
+                ) : (
+                  <button
+                    onClick={() => {
+                      handleStart(row?.id, "assigned");
+                    }}
+                    className="btn btn-success"
+                    style={{ width: "7rem" }}
+                  >
+                    Start
+                  </button>
+                )}
+              </>
+            ) : (
+              <a className="btn btn-danger">Expired</a>
+            )}
+          </>
+        );
+      },
     },
   ];
 
