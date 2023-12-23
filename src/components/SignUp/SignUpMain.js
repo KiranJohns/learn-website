@@ -17,7 +17,6 @@ import "react-toastify/dist/ReactToastify.css";
 import { BsFillEyeFill, BsEyeSlashFill } from "react-icons/bs";
 import ReCAPTCHA from "react-google-recaptcha";
 
-
 const initialValues = {
   first_name: "",
   last_name: "",
@@ -31,76 +30,80 @@ const initialValues = {
   terms: "",
 };
 
- 
-
-function onChange(value) {
+function CaptchaOnChange(value) {
   console.log("Captcha value:", value);
+  setNotARobot(value);
 }
 
 function SignUpMain() {
   const [otp, setOtp] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [activeSubmit, setActiveSubmit] = useState(true);
+  const [timerValue, setTimerValue] = useState({ seconds: 45 });
 
   const [check, setCheck] = useState(false);
 
   function myCheck(e) {
-    setCheck(prev => !prev)
+    setCheck((prev) => !prev);
   }
 
+  const [timer, setTimer] = useState("00:00:45");
+  const Ref = useRef();
 
-
-  const [timer, setTimer] = useState("00:00:45")
-  const Ref = useRef()
-
-  function getTimeRemaining(e){
-    const total = Date.parse(e) - Date.parse(new Date())
-    const hour = Math.floor(total/(1000* 60 * 60 ) % 24 );
-    const seconds = Math.floor((total /1000)% 60);
-    const minute = Math.floor((total / (1000 * 60 )) % 60);
-    
-    return {total, hour, minute, seconds};
+  function getTimeRemaining(e) {
+    const total = Date.parse(e) - Date.parse(new Date());
+    const hour = Math.floor((total / (1000 * 60 * 60)) % 24);
+    const seconds = Math.floor((total / 1000) % 60);
+    const minute = Math.floor((total / (1000 * 60)) % 60);
+    setTimerValue((prev) => {
+      console.log(prev);
+      return { seconds: --prev.seconds };
+    });
+    return { total, hour, minute, seconds };
   }
 
-  function startTimer(e){
-    let {total, hour, minute, seconds} = getTimeRemaining(e);
-
-    if(total>=0){
-   setTimer(
-    (hour> 9 ? hour : '0' + hour) + ':'+
-    (minute > 9 ? minute : '0' + minute)+ ':'+
-    (seconds > 9 ? seconds : '0'+ seconds)
-   )
+  function startTimer(e) {
+    let { total, hour, minute, seconds } = getTimeRemaining(e);
+    if (total >= 0) {
+      setTimer(
+        (hour > 9 ? hour : "0" + hour) +
+          ":" +
+          (minute > 9 ? minute : "0" + minute) +
+          ":" +
+          (seconds > 9 ? seconds : "0" + seconds)
+      );
+    } else {
+      if (activeSubmit == true) {
+        setActiveSubmit(false);
+      }
     }
   }
 
-  function clearTimer(e){
-    setTimer("00:00:45")
-    if(Ref.current) {
-      clearInterval(Ref.current)
+  function clearTimer(e) {
+    setTimer("00:00:45");
+    if (Ref.current) {
+      clearInterval(Ref.current);
     }
- 
-      const id = setInterval(()=>{
-        startTimer(e)
-      },1000)
-      Ref.current = id;
-    
 
+    const id = setInterval(() => {
+      startTimer(e);
+    }, 1000);
+    Ref.current = id;
   }
 
-  function getDeadTime(){
+  function getDeadTime() {
     let deadline = new Date();
-    deadline.setSeconds(deadline.getSeconds()+45); 
+    deadline.setSeconds(deadline.getSeconds() + 45);
     return deadline;
   }
 
-  function Reset(){
-    clearTimer(getDeadTime())
+  function Reset() {
+    clearTimer(getDeadTime());
   }
- 
-  useEffect(()=>{
-   clearTimer(getDeadTime())
-  },[])
-  
+
+  useEffect(() => {
+    clearTimer(getDeadTime());
+  }, []);
 
   function resend(event) {
     event.preventDefault();
@@ -108,6 +111,9 @@ function SignUpMain() {
       email: values.email,
     })
       .then(() => {
+        Reset();
+        setTimerValue({seconds: 45})
+        setActiveSubmit(true);
         toast.success("A new OTP send to your email");
       })
       .catch((error) => {
@@ -118,8 +124,8 @@ function SignUpMain() {
   const [error, setError] = useState(null);
 
   const [showA, setShowA] = useState(true);
+  const [notARobot, setNotARobot] = useState(null);
   const toggleShowA = () => setShowA(!showA);
-
   const [open, setOpen] = useState(false);
   let signupInfo = useSelector((state) => state.user.signup);
 
@@ -147,11 +153,11 @@ function SignUpMain() {
     })
       .then((res) => {
         console.log(res);
-        toast("OTP is Accepted")
+        toast("OTP is Accepted");
         location.pathname = "/sign-in";
       })
       .catch((err) => {
-        toast('OTP is Incorrect');
+        toast("OTP is Incorrect");
       });
     console.log(otp);
   };
@@ -168,15 +174,19 @@ function SignUpMain() {
     try {
       e.persist();
       if (!check) {
-        return toast.warn("Please Accept Terms & Conditions")
+        return toast.warn("Please Accept Terms & Conditions");
+      }
+      if (notARobot == "") {
+        toast.warn("Verify you're not a robot");
+        return;
       }
       const method = "POST"; // Specify the HTTP method
       const url = "/auth/registration"; // Specify the API endpoint URL
       const data = values; // Send form values as data
 
       if (values.password !== values.confirmPassword) {
-        toast.error("Password Is Not Matching")
-        return
+        toast.error("Password Is Not Matching");
+        return;
       }
 
       store.dispatch({
@@ -292,29 +302,33 @@ function SignUpMain() {
                         type="button"
                         className="my-4 width-100 btn btn-primary"
                         onClick={handleOtp}
+                        disabled={timerValue.seconds >= 0 ? false : true}
                       >
                         Submit
                       </button>
                     </div>
 
-                 
-
                     <div className="mt-4">
-                      
-                      <span>Didn't recieve? </span>
-                      <a
-                        style={{ cursor: "pointer" }}
-                        onClick={resend}
-                        className="text-primary mt-2 width-100"
-                      >
-                        Resend
-                      </a>
-                      <div className="my-4">
-                      <h5>{timer}</h5>
-                      <button  className="btn btn-primary" onClick={Reset}>Reset</button>
+                      {timerValue.seconds <= 0 ? (
+                        <>
+                          <span>Didn't recieve? </span>
+                          <a
+                            style={{ cursor: "pointer" }}
+                            onClick={resend}
+                            className="text-primary mt-2 width-100"
+                          >
+                            Resend
+                          </a>
+                        </>
+                      ) : (
+                        <div className="my-4">
+                          <h5>{timer}</h5>
+                          {/* <button className="btn btn-primary" onClick={}>
+                          Reset
+                        </button> */}
+                        </div>
+                      )}
                     </div>
-                    </div>
-                    
                   </div>
                 </div>
               </div>
@@ -526,11 +540,17 @@ function SignUpMain() {
                           style={{ cursor: "pointer" }}
                           onClick={() => setShowPassword((prev) => !prev)}
                         >
-                          {showPassword ? <BsEyeSlashFill /> : <BsFillEyeFill />}
+                          {showPassword ? (
+                            <BsEyeSlashFill />
+                          ) : (
+                            <BsFillEyeFill />
+                          )}
                         </div>
                       </div>
 
-                      {errors.confirmPassword && <small>{errors.confirmPassword}</small>}
+                      {errors.confirmPassword && (
+                        <small>{errors.confirmPassword}</small>
+                      )}
                       <br />
                     </div>
                     <div className="sign__input-wrapper ">
@@ -562,7 +582,8 @@ function SignUpMain() {
                           required
                         />
                         <label className="m-check-label" htmlFor="m-agree">
-                          I agree to the <a href="#">Terms & Conditions & privacy policy</a>
+                          I agree to the{" "}
+                          <a href="#">Terms & Conditions & privacy policy</a>
                         </label>
                       </div>
                       <br className="d-block " />
@@ -575,7 +596,7 @@ function SignUpMain() {
                     <div className="mb-20">
                       <ReCAPTCHA
                         sitekey="6LfhdDkpAAAAADgd41-6T2kLEPpzxGLXTlgNE3v5"
-                        onChange={onChange}
+                        onChange={CaptchaOnChange}
                       />
                     </div>
 
@@ -620,5 +641,3 @@ function SignUpMain() {
 }
 
 export default SignUpMain;
-
-
