@@ -153,27 +153,50 @@ const DashCourse = () => {
           <>
             {new Date(validity.join("-")) > new Date() ? (
               <>
-                {row?.progress ? (
-                  <Link
-                    href={{
-                      pathname: "/learnCourse/coursepage",
-                      query: { courseId: row?.on_going_course_id },
-                    }}
-                  >
-                    <a style={{ width: "7rem" }} className="btn btn-success">
-                      Start
-                    </a>
-                  </Link>
+                {row.attempts < 20 ? (
+                  <>
+                    {row?.progress ? (
+                      <Link
+                        href={{
+                          pathname: "/learnCourse/coursepage",
+                          query: { courseId: row?.on_going_course_id },
+                        }}
+                      >
+                        <a
+                          style={{ width: "7rem" }}
+                          className="btn btn-success"
+                        >
+                          {row.progress < 80 ? "Start" : "Completed"}
+                        </a>
+                      </Link>
+                    ) : (
+                      <button
+                        onClick={() => {
+                          handleStart(row?.id, "assigned");
+                        }}
+                        className="btn btn-success"
+                        style={{ width: "7rem" }}
+                      >
+                        Start
+                      </button>
+                    )}
+                  </>
                 ) : (
-                  <button
-                    onClick={() => {
-                      handleStart(row?.id, "assigned");
-                    }}
-                    className="btn btn-success"
-                    style={{ width: "7rem" }}
-                  >
-                    Start
-                  </button>
+                  <>
+                    {row.attempts >= 20 ? (
+                      <a className="btn btn-danger">Expired</a>
+                    ) : (
+                      <button
+                        onClick={() => {
+                          handleStart(row?.id, "assigned");
+                        }}
+                        className="btn btn-success"
+                        style={{ width: "7rem" }}
+                      >
+                        Start
+                      </button>
+                    )}
+                  </>
                 )}
               </>
             ) : (

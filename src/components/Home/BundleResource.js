@@ -6,6 +6,29 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { useEffect } from "react";
 import fetchData from "../../axios";
+import { BsFiletypeDocx } from "react-icons/bs";
+import { CiImageOn } from "react-icons/ci";
+import { CiVideoOn } from "react-icons/ci";
+import { FaRegFilePdf } from "react-icons/fa";
+import { BsFiletypeTxt } from "react-icons/bs";
+
+function getIcon(type) {
+  if(type == "docx") {
+    return <BsFiletypeDocx />
+  }
+  if(type == "video") {
+    return <CiVideoOn />
+  }
+  if(type == "pdf") {
+    return <FaRegFilePdf />
+  }
+  if(type == "txt") {
+    return <BsFiletypeTxt />
+  }
+  if(type == "image") {
+    return <CiImageOn />
+  }
+}
 
 const BundleResource = () => {
   const [slides, setSlides] = useState([]);
@@ -117,9 +140,12 @@ const BundleResource = () => {
               <h4>Resources</h4>
             </div>
             {course &&
-              course?.resource?.map((item, i) => (
+              course?.resource?.map((item, i) => {
+                console.log(item);
+                return (
                 <div style={{ margin: " 1rem .5rem" }}>
                   <p>
+                    {getIcon(item.type)}
                     <a
                       href={item.url}
                       style={{ color: "#1b85b8" }}
@@ -131,7 +157,7 @@ const BundleResource = () => {
                     </a>
                   </p>
                 </div>
-              ))}
+              )})}
           </div>
           <div
             className="mt-4 py-4  px-1"

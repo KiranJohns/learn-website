@@ -138,7 +138,7 @@ const CompanyBundle = () => {
           <>
             {new Date(validity) > new Date() ? (
               <>
-                {row.progress < 100 ? (
+                {(!row?.progress || row?.progress < 100) ? (
                   <a
                     className="btn btn-success"
                     style={{

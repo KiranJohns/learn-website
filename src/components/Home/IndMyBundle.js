@@ -112,7 +112,7 @@ const IndMyBundle = () => {
           <>
             {new Date(validity) > new Date() ? (
               <>
-                {row.progress < 100 ? (
+                {!row.progress || row.progress < 100 ? (
                   <span
                     onClick={() => {
                       console.log(row);
@@ -130,7 +130,7 @@ const IndMyBundle = () => {
                   </span>
                 ) : (
                   <>
-                    <a className="btn btn-danger">Finished</a>
+                    <a className="btn btn-danger">Completed</a>
                   </>
                 )}
               </>
