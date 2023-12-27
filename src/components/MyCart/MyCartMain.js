@@ -158,7 +158,7 @@ const MyCart = () => {
       })
       .catch((err) => {
         if (err?.data?.data?.response === "Minimum purchase is required.") {
-          toast.warn("Add more items to Cart for applying Coupon");
+          toast.warn("Add more items to cart for this applying coupon");
         } else if (err?.data?.data?.response === "coupon not fount") {
           toast.warn("Invalid Coupon");
         } else if (err?.data?.data?.response === "Please Provide Coupon Code") {

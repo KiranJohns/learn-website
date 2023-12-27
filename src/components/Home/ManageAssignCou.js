@@ -381,7 +381,7 @@ const ManagerAssignCourse = () => {
                           onClick={() => {
                             if (selectedBundleCount < 1) {
                               toast.warn(
-                                "Remaining Course Count " + selectedBundleCount
+                                "Remaining Course Count: " + selectedBundleCount
                               );
                               return;
                             } else {
@@ -409,7 +409,7 @@ const ManagerAssignCourse = () => {
                                 onClick={() => {
                                   if (selectedBundleCount < 1) {
                                     toast.warn(
-                                      "Remaining Course Count " +
+                                      "Remaining Course Count: " +
                                         selectedBundleCount
                                     );
                                     return;
