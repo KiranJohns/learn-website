@@ -94,7 +94,7 @@ const AttemptsExam = () => {
       purchased_course_id: purchased_course_id,
     })
       .then((res) => {
-        toast.success("course assigned");
+        toast.success("Course Assigned");
         getData();
         setOpenModal(!openModal);
         console.log(res);

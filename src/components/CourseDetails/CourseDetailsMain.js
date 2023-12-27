@@ -63,7 +63,7 @@ function CourseDetailsMain() {
           console.log("hi");
           if (Array.isArray(cart)) {
             if (cart?.find((item) => item.id == slug)) {
-              return toast.warn("already added to the cart");
+              return toast.warn("Already added to the cart");
             }
           }
           store.dispatch({
