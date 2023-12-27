@@ -49,7 +49,8 @@ export default () => {
     <section className="course__area pt-50 pb-60 grey-bg">
       <Tabs variant="enclosed" id="react-tabs-276">
         <div className="container">
-          <div
+
+          {/* <div
             style={{
               display: "flex",
               justifyContent: "center",
@@ -73,7 +74,27 @@ export default () => {
                 }
               })}
             </marquee>
+          </div> */}
+
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              position: "relative",
+              background: "",
+              padding: ".5rem",
+            }}
+            className="col-12"
+          >
+            <marquee
+              style={{ color: "#212a50", fontSize: "19px", fontWeight: "600" }}
+              scrollamount="10"
+            >
+             <img src="/assets/img/course/group-1.png" alt="" />
+            </marquee>
           </div>
+            
           <div style={{ position: "relative" }} className="row align-items-end">
             <div style={{ marginBottom: "2rem" }}></div>
             <div className="col-xxl-5 col-xl-6 col-lg-6">
