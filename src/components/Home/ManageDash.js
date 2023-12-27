@@ -8,7 +8,7 @@ import fetchData from "../../axios";
 import DataTable from "react-data-table-component";
 import { BsSearch } from "react-icons/bs";
 import { IoHandLeft } from "react-icons/io5";
-import Button from 'react-bootstrap/Button';
+import Button from "react-bootstrap/Button";
 import { FaEye } from "react-icons/fa";
 
 const customStyles = {
@@ -41,7 +41,7 @@ class ManageDash extends Component {
       records: [],
       filterRecords: [],
       searchString: "",
-      info: {}
+      info: {},
     };
   }
 
@@ -73,7 +73,7 @@ class ManageDash extends Component {
 
       makeRequest("GET", "/info/data")
         .then((res) => {
-          this.setState({...this.state,info: res.data.response[0]});
+          this.setState({ ...this.state, info: res.data.response[0] });
         })
         .catch((err) => {
           console.log(err);
@@ -82,7 +82,6 @@ class ManageDash extends Component {
       console.log(error);
     }
   };
-
 
   render() {
     const columns = [
@@ -104,25 +103,74 @@ class ManageDash extends Component {
       },
       {
         name: "Attempts",
-        selector: (row) => <a href={`/learnCourse/examAttempts/?courseId=${row.id}`}>{row.attempts+"/20"}</a>,
+        selector: (row) => (
+          <a href={`/learnCourse/examAttempts/?courseId=${row.id}`}>
+            {row.attempts + "/20"}
+          </a>
+        ),
         center: true,
       },
       {
         name: "validity",
-        selector: (row) => row.validity
+        selector: (row) => row.validity,
       },
       {
         name: "Action",
-        cell: (row) => (
-            <a
-              onClick={() => {
-                location.href = `/learnCourse/coursepage/?courseId=${row.id}`;
-              }}
-              className="btn btn-success"
-            >
-              {row.state == "pass" ? 'finished' : 'continue' }
-            </a>
-        ),
+        cell: (row) => {
+          let validity = row.validity.split("/").reverse();
+          let flag = false;
+          let title = "Start";
+          // if (new Date(validity) > new Date()) {
+          //   if (row.progress <= 80) {
+          //     if (row.attempts < 20) {
+          //       flag = true;
+          //       title = "Start";
+          //     } else {
+          //       flag = false;
+          //       title = "Expired";
+          //     }
+          //   } else {
+          //     title = "Expired";
+          //     flag = false;
+          //   }
+          // } else {
+          //   title = "Completed";
+          //   flag = false;
+          // }
+          if (new Date(validity) <= new Date() || row?.attempts >= 20) {
+            title = "Expired";
+            flag = false;
+          } else {
+            title = "Start";
+            flag = true;
+            if (row.progress >= 80) {
+              title = "Completed";
+              flag = true;
+            }
+          } 
+
+          return (
+            <>
+              {flag ? (
+                <a
+                  style={{ width: "7rem" }}
+                  onClick={() => {
+                    location.href = `/learnCourse/coursepage/?courseId=${row.id}`;
+                  }}
+                  className="btn btn-success"
+                >
+                  {title}
+                </a>
+              ) : (
+                <>
+                  <a style={{ width: "7rem" }} className="btn btn-danger">
+                    {title}
+                  </a>
+                </>
+              )}
+            </>
+          );
+        },
       },
     ];
 
@@ -138,7 +186,10 @@ class ManageDash extends Component {
           <h3
             style={{ color: "#212450", marginTop: ".3rem", display: "inline" }}
           >
-            Hello {(this.state.info.first_name && this.state.info.last_name)?(this.state.info.first_name + " " + this.state.info.last_name):" "}{" "}
+            Hello{" "}
+            {this.state.info.first_name && this.state.info.last_name
+              ? this.state.info.first_name + " " + this.state.info.last_name
+              : " "}{" "}
             <IoHandLeft style={{ color: "#f1c27d", marginBottom: ".5rem" }} />
           </h3>
           <div style={{}}>
@@ -218,7 +269,10 @@ class ManageDash extends Component {
                 className="ag-courses_item-comp"
                 style={{ marginLeft: ".5rem" }}
               >
-                <a href="/manager/individuals" className="ag-courses-item_link-comp">
+                <a
+                  href="/manager/individuals"
+                  className="ag-courses-item_link-comp"
+                >
                   <div className="ag-courses-item_bg-comp"></div>
                   <div
                     className="bi bi-person-circle ag-courses-item_date-box-new"
@@ -247,7 +301,10 @@ class ManageDash extends Component {
               }}
             >
               <div className="ag-courses_item-comp" style={{ marginLeft: "" }}>
-                <a href="/manager/ceritificates" className="ag-courses-item_link-comp">
+                <a
+                  href="/manager/ceritificates"
+                  className="ag-courses-item_link-comp"
+                >
                   <div className="ag-courses-item_bg-comp"></div>
                   <div
                     className="bi bi-patch-check-fill  ag-courses-item_date-box-new"
@@ -267,8 +324,14 @@ class ManageDash extends Component {
                 </a>
               </div>
 
-              <div className="ag-courses_item-comp" style={{ marginLeft: ".5rem" }}>
-                <a href="/manager/myCourses" className="ag-courses-item_link-comp">
+              <div
+                className="ag-courses_item-comp"
+                style={{ marginLeft: ".5rem" }}
+              >
+                <a
+                  href="/manager/myCourses"
+                  className="ag-courses-item_link-comp"
+                >
                   <div className="ag-courses-item_bg-comp"></div>
                   <div
                     className="bi bi-book ag-courses-item_date-box-new"
@@ -288,8 +351,14 @@ class ManageDash extends Component {
                 </a>
               </div>
 
-              <div className="ag-courses_item-comp " style={{ marginLeft: ".5rem" }}>
-                <a href="/manager/myBundle" className="ag-courses-item_link-comp">
+              <div
+                className="ag-courses_item-comp "
+                style={{ marginLeft: ".5rem" }}
+              >
+                <a
+                  href="/manager/myBundle"
+                  className="ag-courses-item_link-comp"
+                >
                   <div className="ag-courses-item_bg-comp"></div>
                   <div
                     className="bi bi-stack ag-courses-item_date-box-new"
@@ -337,7 +406,7 @@ class ManageDash extends Component {
                 style={{ display: "none" }}
                 className="p-relative d-inline header__search"
               >
-                <form  className="your-element" action="">
+                <form className="your-element" action="">
                   <input
                     className="d-block mr-25"
                     type="text"
@@ -381,15 +450,15 @@ class ManageDash extends Component {
                 </div>
                 <div>
                   <DataTable
-                  noDataComponent={"No records to display"}
-                   persistTableHead={true}
+                    noDataComponent={"No records to display"}
+                    persistTableHead={true}
                     columns={columns}
                     data={
                       this.state.searchString
                         ? this.state.records.filter((item) =>
-                            (item.Name || item.name).toLowerCase().startsWith(
-                              this.state.searchString.toLowerCase()
-                            )
+                            (item.Name || item.name)
+                              .toLowerCase()
+                              .startsWith(this.state.searchString.toLowerCase())
                           )
                         : this.state.records
                     }

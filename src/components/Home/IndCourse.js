@@ -33,7 +33,6 @@ const customStyles = {
 };
 
 const IndCourse = () => {
-  
   const [records, setRecords] = useState([]);
   const [filterRecords, setFilterRecords] = useState([]);
   const [subUsers, setSubUsers] = useState([]);
@@ -56,24 +55,24 @@ const IndCourse = () => {
 
   const getData = async () => {
     try {
-      let onGoingCourseUrl = "/on-going-course/get-all-on-going-courses";
+      // let onGoingCourseUrl = "/on-going-course/get-all-on-going-courses";
       let url1 = "/course/get-bought-course";
       let url2 = "/course/get-all-assigned-course";
       Promise.all([
-        makeRequest("GET", onGoingCourseUrl),
+        // makeRequest("GET", onGoingCourseUrl),
         makeRequest("GET", url1),
         makeRequest("GET", url2),
       ]).then((res) => {
-        console.log(res[1].data.response,res[2].data.response);
+        console.log(res[0].data.response, res[1].data.response);
         let arr = [
-          ...res[0].data.response,
-          ...res[1].data.response.filter(item => item?.course_count >= 1),
-          ...res[2].data.response.filter(item => item?.course_count >= 1),
+          // ...res[0].data.response,
+          ...res[0].data.response.filter((item) => item?.course_count >= 1),
+          ...res[1].data.response.filter((item) => item?.course_count >= 1),
         ];
         console.log(res);
         setRecords(arr.reverse());
         setFilterRecords(arr.reverse());
-        setPending(false)
+        setPending(false);
       });
     } catch (error) {
       console.log(error);
@@ -106,57 +105,71 @@ const IndCourse = () => {
     {
       name: "No",
       selector: (row, idx) => idx + 1,
-      width:"90px",
-      center:true,
+      width: "90px",
+      center: true,
     },
     {
       name: "name",
       selector: (row) => row.name || row.Name,
       sortable: true,
-      width:"400px",
-      center:true,
+      width: "400px",
+      center: true,
     },
- 
+
     {
       name: "category",
       selector: (row) => row.category,
     },
-   
+
     {
       name: "validity",
-      center:true,
-      selector: (row) => row.validity
+      center: true,
+      selector: (row) => row.validity,
     },
     {
       name: "Action",
-      center:true,
-      cell: (row) => (
-        <>
-          {row?.progress ? (
-            <Link
-              href={{
-                pathname: "/learnCourse/coursepage",
-                query: { courseId: row.on_going_course_id,from: "course" },
-              }}
-            >
-              <a className="btn btn-success">continue</a>
-            </Link>
-          ) : (
-            <a
-              onClick={() => {
-                if (row.from_purchased) {
-                  handleStart(row.id, "purchased");
-                } else {
-                  handleStart(row.id, "assigned");
-                }
-              }}
-              className="btn btn-success"
-            >
-              start
-            </a>
-          )}
-        </>
-      ),
+      center: true,
+      cell: (row) => {
+        let validity = row.validity.split("/").reverse();
+        return (
+          <>
+            {new Date(validity.join("-")) > new Date() ? (
+              <>
+                {row?.progress ? (
+                  <Link
+                    href={{
+                      pathname: "/learnCourse/coursepage",
+                      query: {
+                        courseId: row.on_going_course_id,
+                        from: "course",
+                      },
+                    }}
+                  >
+                    <a className="btn btn-success">
+                      {row?.progress >= 80 ? "Finished" : "Start"}
+                    </a>
+                  </Link>
+                ) : (
+                  <a
+                    onClick={() => {
+                      if (row.from_purchased) {
+                        handleStart(row.id, "purchased");
+                      } else {
+                        handleStart(row.id, "assigned");
+                      }
+                    }}
+                    className="btn btn-success"
+                  >
+                    Start
+                  </a>
+                )}{" "}
+              </>
+            ) : (
+              <a className="btn btn-danger">Expired</a>
+            )}
+          </>
+        );
+      },
     },
   ];
 
@@ -206,18 +219,21 @@ const IndCourse = () => {
             </form>
           </div>
           <DataTable
-           progressPending={pending}
-           progressComponent={
-             pending ? 
-             (<div style={{ padding: "1rem" }}>
-               <Spinner animation="border" variant="primary" />
-             </div>) : (null)
-           }
+            progressPending={pending}
+            progressComponent={
+              pending ? (
+                <div style={{ padding: "1rem" }}>
+                  <Spinner animation="border" variant="primary" />
+                </div>
+              ) : null
+            }
             columns={columns}
             data={
               searchData
                 ? records.filter((item) =>
-                    (item?.Name || item?.name).toLowerCase().startsWith(searchData.toLowerCase())
+                    (item?.Name || item?.name)
+                      .toLowerCase()
+                      .startsWith(searchData.toLowerCase())
                   )
                 : records
             }

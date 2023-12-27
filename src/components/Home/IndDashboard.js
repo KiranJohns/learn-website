@@ -65,9 +65,7 @@ function DashIndividual() {
       makeRequest("GET", "/on-going-course/get-all-on-going-courses")
         .then((res) => {
           console.log(res.data.response);
-          setRecords(
-            res.data.response.reverse()
-          );
+          setRecords(res.data.response.reverse());
           setFilterRecords(res.data);
         })
         .catch((err) => {
@@ -134,25 +132,48 @@ function DashIndividual() {
     },
     {
       name: "Attempts",
-      selector: (row) => <a href={`/learnCourse/examAttempts/?courseId=${row.id}`}>{row.attempts+"/20"}</a>,
+      selector: (row) => (
+        <a href={`/learnCourse/examAttempts/?courseId=${row.id}`}>
+          {row.attempts + "/20"}
+        </a>
+      ),
       center: true,
     },
     {
       name: "validity",
-      selector: (row) => row.validity
+      selector: (row) => row.validity,
     },
     {
       name: "Action",
-      cell: (row) => (
-          <span
-            onClick={() => {
-              location.href = `/learnCourse/coursepage/?courseId=${row.id}`;
-            }}
-            className="btn btn-success"
-          >
-            {row.progress >= 80 ? 'finished' : 'continue'}
-          </span>
-      ),
+      cell: (row) => {
+        let validity = row.validity.split("/").reverse();
+        return (
+          <>
+            {new Date(validity) > new Date() ? (
+              <>
+                {row.progress < 80 ? (
+                  <span
+                    onClick={() => {
+                      location.href = `/learnCourse/coursepage/?courseId=${row.id}`;
+                    }}
+                    className="btn btn-success"
+                  >
+                    Start
+                  </span>
+                ) : (
+                  <>
+                    <a className="btn btn-danger">Expired</a>
+                  </>
+                )}
+              </>
+            ) : (
+              <>
+                <a className="btn btn-danger">Expired</a>
+              </>
+            )}
+          </>
+        );
+      },
     },
   ];
 
@@ -170,7 +191,10 @@ function DashIndividual() {
           <h3
             style={{ color: "#212450", marginTop: ".3rem", display: "inline" }}
           >
-            Hello {(info.first_name && info.last_name)?(info.first_name + " " + info.last_name):" "}{" "}
+            Hello{" "}
+            {info.first_name && info.last_name
+              ? info.first_name + " " + info.last_name
+              : " "}{" "}
             <IoHandLeft style={{ color: "#f1c27d", marginBottom: ".5rem" }} />
           </h3>
           <div className="headd-element" style={{}}>
@@ -284,7 +308,6 @@ function DashIndividual() {
               flexWrap: "nowrap",
             }}
           >
-          
             <div className="ag-courses_item-sec " style={{ marginLeft: "" }}>
               <a
                 href="/individual/mycourses"
@@ -339,11 +362,8 @@ function DashIndividual() {
                 </div>
               </a>
             </div>
-     
-
           </div>
         </div>
-
 
         {/* <div className="ag-courses_box dash-shadow">
           <div className="ag-courses_item">
@@ -401,7 +421,7 @@ function DashIndividual() {
                     fontSize: 35,
                   }}
                 >
-                  Courses 
+                  Courses
                 </h4>
                 <div style={{}} className="p-relative d-inline header__search ">
                   <form className="your-element" action="">
@@ -426,9 +446,9 @@ function DashIndividual() {
                   data={
                     searchString
                       ? records.filter((item) =>
-                          (item.name || item.Name).toLowerCase().startsWith(
-                            searchString.toLowerCase()
-                          )
+                          (item.name || item.Name)
+                            .toLowerCase()
+                            .startsWith(searchString.toLowerCase())
                         )
                       : records
                   }

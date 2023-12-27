@@ -53,7 +53,6 @@ const ManagerBundle = () => {
         ),
         ...onGoingRes.data.response,
       ]);
-      console.log(resAssigned.data.response, onGoingRes.data.response);
       setFilterRecords(resAssigned.data);
       setPending(false);
     } catch (err) {
@@ -108,23 +107,42 @@ const ManagerBundle = () => {
     {
       name: "Action",
       center: true,
-      selector: (row) => (
-        <button
-          className="btn btn-success"
-          style={{
-            width: "7rem",
-          }}
-          onClick={() => {
-            if (row?.form_ongoing) {
-              location.href = `/learnCourse/bundleList/?id=${row.id}`;
-            } else {
-              handleStartBundle(row.id);
-            }
-          }}
-        >
-          {row?.form_ongoing ? "Continue" : "Start"}
-        </button>
-      ),
+      selector: (row) => {
+        let validity = row.validity.split("/").reverse();
+        return (
+          <>
+            {new Date(validity) > new Date() ? (
+              <>
+                {!row.progress || row?.progress < 100 ? (
+                  <button
+                    className="btn btn-success"
+                    style={{
+                      width: "7rem",
+                    }}
+                    onClick={() => {
+                      if (row?.form_ongoing) {
+                        location.href = `/learnCourse/bundleList/?id=${row.id}`;
+                      } else {
+                        handleStartBundle(row.id);
+                      }
+                    }}
+                  >
+                    Start
+                  </button>
+                ) : (
+                  <>
+                    <a className="btn btn-danger">Completed</a>
+                  </>
+                )}
+              </>
+            ) : (
+              <>
+                <a className="btn btn-danger">Expired</a>
+              </>
+            )}
+          </>
+        );
+      },
     },
   ];
 
@@ -176,13 +194,15 @@ const ManagerBundle = () => {
               }
               noDataComponent={"No records to display"}
               columns={columns}
-              data={searchString
-                ? records.filter((item) =>
-                    (item.bundle_name || item.name).toLowerCase().startsWith(
-                      searchString.toLowerCase()
+              data={
+                searchString
+                  ? records.filter((item) =>
+                      (item.bundle_name || item.name)
+                        .toLowerCase()
+                        .startsWith(searchString.toLowerCase())
                     )
-                  )
-                : records}
+                  : records
+              }
               customStyles={customStyles}
               pagination
               persistTableHead={true}

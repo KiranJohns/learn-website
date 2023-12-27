@@ -101,27 +101,56 @@ class DashTest extends Component {
         name: "Attempts",
         selector: (row) => (
           <a href={`/learnCourse/examAttempts/?courseId=${row.id}`}>
-            {row.attempts+"/20"}
+            {row.attempts + "/20"}
           </a>
         ),
         center: true,
       },
       {
         name: "validity",
-        selector: (row) => row.validity
+        selector: (row) => row.validity,
       },
       {
         name: "Action",
-        cell: (row) => (
-          <a
-            onClick={() => {
-              location.href = `/learnCourse/coursepage/?courseId=${row.id}`;
-            }}
-            className="btn btn-success"
-          >
-            continue
-          </a>
-        ),
+        cell: (row) => {
+          let validity = row.validity.split("/").reverse();
+          let flag = false;
+          let title = "Start";
+
+          if (new Date(validity) <= new Date() || row?.attempts >= 20) {
+            title = "Expired";
+            flag = false;
+          } else {
+            title = "Start";
+            flag = true;
+            if (row.progress >= 80) {
+              title = "Completed";
+              flag = true;
+            }
+          }
+          
+          return (
+            <>
+              {flag ? (
+                <a
+                  style={{ width: "7rem" }}
+                  onClick={() => {
+                    location.href = `/learnCourse/coursepage/?courseId=${row.id}`;
+                  }}
+                  className="btn btn-success"
+                >
+                  {title}
+                </a>
+              ) : (
+                <>
+                  <a style={{ width: "7rem" }} className="btn btn-danger">
+                    {title}
+                  </a>
+                </>
+              )}
+            </>
+          );
+        },
       },
     ];
 
@@ -444,23 +473,23 @@ class DashTest extends Component {
                     }}
                   /> */}
                 </div>
-                <div>      
-                    <DataTable
-                     noDataComponent={"No records to display"}
-                      persistTableHead={true}
-                      columns={columns}
-                      data={
-                        this.state.searchString
-                          ? this.state.records.filter((item) =>
-                              (item.Name || item.name).toLowerCase().includes(
-                                this.state.searchString.toLowerCase()
-                              )
-                            )
-                          : this.state.records
-                      }
-                      customStyles={customStyles}
-                      pagination
-                    />              
+                <div>
+                  <DataTable
+                    noDataComponent={"No records to display"}
+                    persistTableHead={true}
+                    columns={columns}
+                    data={
+                      this.state.searchString
+                        ? this.state.records.filter((item) =>
+                            (item.Name || item.name)
+                              .toLowerCase()
+                              .includes(this.state.searchString.toLowerCase())
+                          )
+                        : this.state.records
+                    }
+                    customStyles={customStyles}
+                    pagination
+                  />
                 </div>
               </div>
             </div>
@@ -471,7 +500,6 @@ class DashTest extends Component {
   }
 }
 export default DashTest;
-
 
 {
   /* <div>  

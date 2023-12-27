@@ -327,31 +327,49 @@ const CompAssignCourse = () => {
     {
       name: "action",
       center: true,
-      selector: (row) => (
-        <a
-          className="btn btn-primary"
-          onClick={() => {
-            openModal();
-            console.log(row);
-            setCourseName(row.name || row.Name);
-            setAssignData((prev) => {
-              return {
-                ...prev,
-                count: 1,
-                course_id: row.id,
-              };
-            });
-            if (row.from_purchased) {
-              setFrom("purchased");
-            } else {
-              setFrom("assigned");
-            }
-            setSelectedBundleCount(row.course_count);
-          }}
-        >
-          Assign
-        </a>
-      ),
+      selector: (row) => {
+        let validity = row.validity.split("/").reverse();
+        let flag = false;
+        let title = "Start";
+        if (new Date(validity) > new Date()) {
+          flag = true;
+        } else {
+          flag = false;
+        }
+        return (
+          <>
+            {flag ? (
+              <a
+                className="btn btn-primary"
+                onClick={() => {
+                  openModal();
+                  console.log(row);
+                  setCourseName(row.name || row.Name);
+                  setAssignData((prev) => {
+                    return {
+                      ...prev,
+                      count: 1,
+                      course_id: row.id,
+                    };
+                  });
+                  if (row.from_purchased) {
+                    setFrom("purchased");
+                  } else {
+                    setFrom("assigned");
+                  }
+                  setSelectedBundleCount(row.course_count);
+                }}
+              >
+                Assign
+              </a>
+            ) : (
+              <>
+                <a className="btn btn-danger">Expired</a>
+              </>
+            )}
+          </>
+        );
+      },
     },
   ];
 
@@ -591,7 +609,8 @@ const CompAssignCourse = () => {
                             style={{ width: "5.9rem", textAlign: "center" }}
                             onChange={(e) => {
                               if (
-                                Number(e.target.value) <= selectedBundleCount && Number(e.target.value) >= 1
+                                Number(e.target.value) <= selectedBundleCount &&
+                                Number(e.target.value) >= 1
                               ) {
                                 setAssignData((prev) => {
                                   return {

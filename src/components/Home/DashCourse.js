@@ -136,7 +136,7 @@ const DashCourse = () => {
     {
       name: "validity",
       center: true,
-      selector: (row) => row.validity
+      selector: (row) => row.validity,
     },
     {
       name: "Progress",
@@ -147,40 +147,64 @@ const DashCourse = () => {
     {
       name: "Action",
       center: true,
-      cell: (row) => (
-        <>
-          {row?.progress ? (
-            <Link
-              href={{
-                pathname: "/learnCourse/coursepage",
-                query: { courseId: row?.on_going_course_id },
-              }}
-            >
-              <a style={{ width: "7rem" }} className="btn btn-success">
-                continue
-              </a>
-            </Link>
-          ) : (
-            <button
-              onClick={() => {
-                handleStart(row?.id, "assigned");
-              }}
-              className="btn btn-success"
-              style={{ width: "7rem" }}
-            >
-              start
-            </button>
-          )}
-        </>
-        // <a
-        //   onClick={() => {
-        //     handleStart(row?.id, "assigned");
-        //   }}
-        //   className="btn btn-success"
-        // >
-        //   start
-        // </a>
-      ),
+      cell: (row) => {
+        let validity = row.validity.split("/").reverse();
+        return (
+          <>
+            {new Date(validity.join("-")) > new Date() ? (
+              <>
+                {row.attempts < 20 ? (
+                  <>
+                    {row?.progress ? (
+                      <Link
+                        href={{
+                          pathname: "/learnCourse/coursepage",
+                          query: { courseId: row?.on_going_course_id },
+                        }}
+                      >
+                        <a
+                          style={{ width: "7rem" }}
+                          className="btn btn-success"
+                        >
+                          {row.progress < 80 ? "Start" : "Completed"}
+                        </a>
+                      </Link>
+                    ) : (
+                      <button
+                        onClick={() => {
+                          handleStart(row?.id, "assigned");
+                        }}
+                        className="btn btn-success"
+                        style={{ width: "7rem" }}
+                      >
+                        Start
+                      </button>
+                    )}
+                  </>
+                ) : (
+                  <>
+                    {row.attempts >= 20 ? (
+                      <a className="btn btn-danger">Expired</a>
+                    ) : (
+                      <button
+                        onClick={() => {
+                          handleStart(row?.id, "assigned");
+                        }}
+                        className="btn btn-success"
+                        style={{ width: "7rem" }}
+                      >
+                        Start
+                      </button>
+                    )}
+                  </>
+                )}
+              </>
+            ) : (
+              <a className="btn btn-danger">Expired</a>
+            )}
+          </>
+        );
+      },
     },
   ];
 

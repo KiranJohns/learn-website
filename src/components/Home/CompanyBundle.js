@@ -132,23 +132,42 @@ const CompanyBundle = () => {
     },
     {
       name: "Action",
-      cell: (row) => (
-        <a
-          className="btn btn-success"
-          style={{
-            width: "7rem",
-          }}
-          onClick={() => {
-            if (row?.form_ongoing) {
-              location.href = `/learnCourse/bundleList/?id=${row.id}`;
-            } else {
-              handleStartBundle(row.id);
-            }
-          }}
-        >
-          {row?.form_ongoing ? "Continue" : "Start"}
-        </a>
-      ),
+      cell: (row) => {
+        let validity = row.validity.split("/").reverse();
+        return (
+          <>
+            {new Date(validity) > new Date() ? (
+              <>
+                {(!row?.progress || row?.progress < 100) ? (
+                  <a
+                    className="btn btn-success"
+                    style={{
+                      width: "7rem",
+                    }}
+                    onClick={() => {
+                      if (row?.form_ongoing) {
+                        location.href = `/learnCourse/bundleList/?id=${row.id}`;
+                      } else {
+                        handleStartBundle(row.id);
+                      }
+                    }}
+                  >
+                    Start
+                  </a>
+                ) : (
+                  <>
+                    <a className="btn btn-danger">Finished</a>
+                  </>
+                )}
+              </>
+            ) : (
+              <>
+                <a className="btn btn-danger">Expired</a>
+              </>
+            )}
+          </>
+        );
+      },
       center: true,
     },
   ];

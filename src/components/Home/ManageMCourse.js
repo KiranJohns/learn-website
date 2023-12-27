@@ -73,7 +73,9 @@ const ManageMyCourse = () => {
 
         console.log(assignedRes.data.response, onGoingCourse.data.response);
         let newRes = [
-          ...assignedRes.data.response.filter((item) => (item.owner == user.id && item.count >= 1)),
+          ...assignedRes.data.response.filter(
+            (item) => item.owner == user.id && item.count >= 1
+          ),
           ...onGoingCourse.data.response,
         ];
 
@@ -114,36 +116,60 @@ const ManageMyCourse = () => {
     },
     {
       name: "Actions",
-      cell: (row) => (
-        <>
-          {row?.progress ? (
-            <Link
-              href={{
-                pathname: "/learnCourse/coursepage",
-                query: { courseId: row?.on_going_course_id },
-              }}
-            >
-              <a style={{ width: "7rem" }} className="btn btn-success">
-                continue
-              </a>
-            </Link>
-          ) : (
-            <button
-              onClick={() => {
-                if (row?.from_purchased) {
-                  handleStart(row?.id, "purchased");
-                } else {
-                  handleStart(row?.id, "manager");
-                }
-              }}
-              className="btn btn-success"
-              style={{ width: "7rem" }}
-            >
-              start
-            </button>
-          )}
-        </>
-      ),
+      cell: (row) => {
+        let validity = row.validity.split("/").reverse();
+        let flag = false;
+        let title = "Start";
+
+        if (new Date(validity) <= new Date() || row?.attempts >= 20) {
+          title = "Expired";
+          flag = false;
+        } else {
+          title = "Completed";
+          flag = true;
+        }
+
+        return (
+          <>
+            {flag ? (
+              <>
+                {row?.progress ? (
+                  <>
+                    <Link
+                      href={{
+                        pathname: "/learnCourse/coursepage",
+                        query: { courseId: row?.on_going_course_id },
+                      }}
+                    >
+                      <a style={{ width: "7rem" }} className="btn btn-success">
+                        {row?.progress >= 80 ? 'Completed' : 'Start'}
+                      </a>
+                    </Link>
+                  </>
+                ) : (
+                  <button
+                    onClick={() => {
+                      if (row?.from_purchased) {
+                        handleStart(row?.id, "purchased");
+                      } else {
+                        handleStart(row?.id, "manager");
+                      }
+                    }}
+                    className="btn btn-success"
+                    style={{ width: "7rem" }}
+                  >
+                    Start
+                  </button>
+                )}
+              </>
+            ) : (
+              <>
+                <a className="btn btn-danger">{title}</a>
+              </>
+            )}
+          </>
+        );
+      },
     },
   ];
 
@@ -192,13 +218,15 @@ const ManageMyCourse = () => {
               }
               noDataComponent={"No records to display"}
               columns={columns}
-              data={searchString
-                ? records.filter((item) =>
-                    (item.Name || item.name).toLowerCase().startsWith(
-                      searchString.toLowerCase()
+              data={
+                searchString
+                  ? records.filter((item) =>
+                      (item.Name || item.name)
+                        .toLowerCase()
+                        .startsWith(searchString.toLowerCase())
                     )
-                  )
-                : records}
+                  : records
+              }
               customStyles={customStyles}
               pagination
               persistTableHead={true}
