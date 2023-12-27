@@ -36,7 +36,7 @@ function ForgotPass() {
   function handleClick() {
     setLoading((prev) => true);
     if (userData.password !== userData.confirmPass) {
-      toast.error("password not match");
+      toast.error("Password not matching");
       return;
     }
     makeRequest("POST", "/auth/change-password", {

@@ -531,7 +531,7 @@ const CompAssignCourse = () => {
                                 onClick={() => {
                                   if (selectedBundleCount < assignData.count) {
                                     toast.warn(
-                                      "Remaining Course Count " +
+                                      "Remaining Course Count: " +
                                         selectedBundleCount
                                     );
                                     return;
@@ -562,7 +562,7 @@ const CompAssignCourse = () => {
                                           selectedBundleCount < assignData.count
                                         ) {
                                           toast.warn(
-                                            "Remaining Course Count " +
+                                            "Remaining Course Count: " +
                                               selectedBundleCount
                                           );
                                           return;
@@ -723,7 +723,7 @@ const CompAssignCourse = () => {
                                         selectedBundleCount < assignData.count
                                       ) {
                                         toast.warn(
-                                          "Remaining Course Count " +
+                                          "Remaining Course Count: " +
                                             selectedBundleCount
                                         );
                                         return;

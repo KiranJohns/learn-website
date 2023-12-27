@@ -98,7 +98,7 @@ class DashCourse extends Component {
       purchased_course_id: this.purchased_course_id,
     })
       .then((res) => {
-        toast.success("course assigned")
+        toast.success("Course Assigned")
         this.getData();
         this.setState({
           ...this.state,
