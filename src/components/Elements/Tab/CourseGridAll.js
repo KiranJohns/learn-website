@@ -28,6 +28,7 @@ export default () => {
 
   const [searchText, setSearchText] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("");
+  const [image, setImage] = useState("");
 
   const [coupon, setCoupon] = useState({ text: "", highLight: "" });
 
@@ -36,12 +37,16 @@ export default () => {
       .then((res) => {
         console.log("coupon ", res.data.response);
         let text = res.data.response[0];
-        let offerText = text.offer_text;
-        let highLightText = text.hight_light_text;
-        let newText = offerText.replace(text.hight_light_text, "##$##");
-        newText = newText.split("##");
-        console.log(newText);
-        setCoupon({ text: newText, highLight: highLightText });
+        if (text.image != "") {
+          setImage(text.image);
+        } else {
+          let offerText = text.offer_text;
+          let highLightText = text.hight_light_text;
+          let newText = offerText.replace(text.hight_light_text, "##$##");
+          newText = newText.split("##");
+          console.log(newText);
+          setCoupon({ text: newText, highLight: highLightText });
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -235,7 +240,66 @@ export default () => {
           </div>
           {/* offer text */}
           <div style={{ marginBottom: "1rem", marginTop: "1rem" }}>
+          {!image ? (
             <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                position: "relative",
+                background: "",
+                padding: ".5rem",
+              }}
+              className="col-12"
+            >
+              <marquee
+                style={{
+                  color: "#212a50",
+                  fontSize: "19px",
+                  fontWeight: "600",
+                }}
+                scrollamount="10"
+              >
+                {coupon.text &&
+                  coupon.text.map((item) => {
+                    console.log(coupon.text);
+                    if (item == "$") {
+                      return (
+                        <span className="animated-text">
+                          {coupon.highLight + " "}{" "}
+                        </span>
+                      );
+                    } else {
+                      return <span>{item + " "}</span>;
+                    }
+                  })}
+              </marquee>
+            </div>
+          ) : (
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                position: "relative",
+                background: "",
+                padding: ".5rem",
+              }}
+              className="col-12"
+            >
+              <marquee
+                style={{
+                  color: "#212a50",
+                  fontSize: "19px",
+                  fontWeight: "600",
+                }}
+                scrollamount="10"
+              >
+                <img src={image} alt="" />
+              </marquee>
+            </div>
+          )}
+            {/* <div
               style={{
                 display: "flex",
                 justifyContent: "center",
@@ -264,7 +328,7 @@ export default () => {
                     }
                   })}
               </marquee>
-            </div>
+            </div> */}
           </div>
           <div className="row align-items-end">
             <div className="col-xxl-5 col-xl-6 col-lg-6">

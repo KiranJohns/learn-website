@@ -13,6 +13,7 @@ import CourseCard from "./CourseCard";
 export default () => {
   const { cart } = useSelector((store) => store.cart);
   const [course, setCourse] = useState([]);
+  const [image, setImage] = useState("");
   const [coupon, setCoupon] = useState({ text: "", highLight: "" });
 
   const makeRequest = fetchData();
@@ -33,12 +34,16 @@ export default () => {
       .then((res) => {
         console.log("coupon ", res.data.response);
         let text = res.data.response[0];
-        let offerText = text.offer_text;
-        let highLightText = text.hight_light_text;
-        let newText = offerText.replace(text.hight_light_text, "##$##")
-        newText = newText.split("##");
-        console.log(newText);
-        setCoupon({ text: newText, highLight: highLightText });
+        if (text.image != "") {
+          setImage(text.image);
+        } else {
+          let offerText = text.offer_text;
+          let highLightText = text.hight_light_text;
+          let newText = offerText.replace(text.hight_light_text, "##$##");
+          newText = newText.split("##");
+          console.log(newText);
+          setCoupon({ text: newText, highLight: highLightText });
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -49,52 +54,66 @@ export default () => {
     <section className="course__area pt-50 pb-60 grey-bg">
       <Tabs variant="enclosed" id="react-tabs-276">
         <div className="container">
-
-          {/* <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              position: "relative",
-              background: "",
-              padding: ".5rem",
-            }}
-            className="col-12"
-          >
-            <marquee
-              style={{ color: "#212a50", fontSize: "19px", fontWeight: "600" }}
-              scrollamount="10"
+          {!image ? (
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                position: "relative",
+                background: "",
+                padding: ".5rem",
+              }}
+              className="col-12"
             >
-              {coupon.text && coupon.text.map(item => {
-                console.log(coupon.text);
-                if(item == "$") {
-                  return <span className="animated-text">{coupon.highLight + " "} </span>
-                } else {
-                  return <span>{item + " "}</span>
-                }
-              })}
-            </marquee>
-          </div> */}
-
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              position: "relative",
-              background: "",
-              padding: ".5rem",
-            }}
-            className="col-12"
-          >
-            <marquee
-              style={{ color: "#212a50", fontSize: "19px", fontWeight: "600" }}
-              scrollamount="10"
+              <marquee
+                style={{
+                  color: "#212a50",
+                  fontSize: "19px",
+                  fontWeight: "600",
+                }}
+                scrollamount="10"
+              >
+                {coupon.text &&
+                  coupon.text.map((item) => {
+                    console.log(coupon.text);
+                    if (item == "$") {
+                      return (
+                        <span className="animated-text">
+                          {coupon.highLight + " "}{" "}
+                        </span>
+                      );
+                    } else {
+                      return <span>{item + " "}</span>;
+                    }
+                  })}
+              </marquee>
+            </div>
+          ) : (
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                position: "relative",
+                background: "",
+                padding: ".5rem",
+              }}
+              className="col-12"
             >
-             <img src="/assets/img/course/group-1.png" alt="" />
-            </marquee>
-          </div>
-            
+              <marquee
+                style={{
+                  color: "#212a50",
+                  fontSize: "19px",
+                  fontWeight: "600",
+                }}
+                scrollamount="10"
+              >
+                <img src={image} alt="" />
+              </marquee>
+            </div>
+          )}
+
           <div style={{ position: "relative" }} className="row align-items-end">
             <div style={{ marginBottom: "2rem" }}></div>
             <div className="col-xxl-5 col-xl-6 col-lg-6">
