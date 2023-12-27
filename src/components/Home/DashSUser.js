@@ -93,9 +93,9 @@ const [pending, setPending] = React.useState(true);
     console.log(id);
     if (block) {
       url = "/info/unblock-user";
-      message = "user unblocked";
+      message = "User Unblocked";
     } else {
-      message = "user blocked";
+      message = "User Blocked";
       url = "/info/block-user";
     }
     makeRequest("POST", url, {
