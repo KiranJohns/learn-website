@@ -176,7 +176,7 @@ function IndProfile() {
         </Row>
         <div style={{ display: "flex", justifyContent: "center" }}>
           <Button variant="primary" type="button" onClick={handleSubmit}>
-            Save changes
+            Save Changes
           </Button>
         </div>
       </Form>
