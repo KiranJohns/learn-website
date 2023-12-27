@@ -72,17 +72,13 @@ const CompInvoice = () => {
     },
     {
       name: "Date",
-      selector: (row) => new Date(row.date).toLocaleDateString(),
+      selector: (row) => row.date,
       center: true,
       sortable: true,
     },
     {
       name: "Time",
-      selector: (row) =>
-        new Date(row.date).toLocaleTimeString("en-GB", {
-          timeZone: "Europe/London",
-          hour12: true,
-        }),
+      selector: (row) => row.time,
       center: true,
     },
     {
