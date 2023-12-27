@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { getUserType } from "../../../axios";
+import fetchData, { getUserType } from "../../../axios";
 
 const BurgerMenus = ({ setMenuOpen, menuOpen }) => {
   const [home, setHome] = useState(false);
@@ -10,6 +10,10 @@ const BurgerMenus = ({ setMenuOpen, menuOpen }) => {
   const [pages, setPages] = useState(false);
   const [bundles, setbundles] = useState(false);
   const [dashboard, setDashboard] = useState(false);
+  const [course, setCourse] = useState([]);
+  const [searchString, setSearchString] = useState("");
+  const [searchProduct, setSearchProduct] = useState([]);
+  const makeRequest = fetchData();
 
   const router = useRouter();
   const [path, setPath] = useState("");
@@ -28,7 +32,6 @@ const BurgerMenus = ({ setMenuOpen, menuOpen }) => {
     localStorage.removeItem("userType");
     location.pathname = "/sign-in";
   };
-
 
   const openMobileMenu = (menu) => {
     if (menu == "home") {
@@ -72,6 +75,29 @@ const BurgerMenus = ({ setMenuOpen, menuOpen }) => {
     }
   };
 
+  useEffect(() => {
+    function getAllCourse() {
+      makeRequest("GET", "/course/get-all-course")
+        .then((res) => {
+          setCourse(res.data.response);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+    getAllCourse();
+  }, []);
+
+  function handleSearch(e) {
+    e.persist();
+    setSearchString(() => e.target?.value);
+    setSearchProduct(() =>
+      course.filter((item) =>
+        item?.name?.toLowerCase()?.startsWith(e.target?.value?.toLowerCase())
+      )
+    );
+  }
+
   return (
     <div className={menuOpen ? "sidebar__area open" : "sidebar__area"}>
       <div className="sidebar__wrapper">
@@ -101,10 +127,29 @@ const BurgerMenus = ({ setMenuOpen, menuOpen }) => {
           </div>
           <div className="sidebar__search p-relative mt-40 ">
             <form action="#">
-              <input type="text" placeholder="Search..." />
+              <input
+                type="text"
+                placeholder="Search..."
+                onChange={handleSearch}
+              />
               <button type="submit">
                 <i className="fas fa-search"></i>
               </button>
+              {searchString ? (
+                <div className="search-suggestions position-absolute w-100" style={{backgroundColor: '#fff', zIndex: '10001'}}>
+                  <ul class="list-group w-100">
+                    {searchProduct?.map((item) => (
+                      <a href={`/course/${item.id}`}>
+                        <li class="list-group-item w-100 bg-white text-black">
+                          {item.name}
+                        </li>
+                      </a>
+                    ))}
+                  </ul>
+                </div>
+              ) : (
+                <></>
+              )}
             </form>
           </div>
           <div className="mm-menu">
@@ -259,10 +304,9 @@ const BurgerMenus = ({ setMenuOpen, menuOpen }) => {
                 </li>
               )}
 
-
               {getUserType() && (
-                <li >
-                  <Link href="" >
+                <li>
+                  <Link href="">
                     <a
                       onClick={() => {
                         localStorage.removeItem("learnfrocarecart");
@@ -271,19 +315,18 @@ const BurgerMenus = ({ setMenuOpen, menuOpen }) => {
                       }}
                     >
                       Dashboard
-                    </a></Link>
-                </li>
-              )}
-
-
-              {getUserType() && (
-                <li style={{ backgroundColor: "#fff" }}>
-                  <Link href="" >
-                    <a onClick={handleLogout}>Logout</a>
+                    </a>
                   </Link>
                 </li>
               )}
 
+              {getUserType() && (
+                <li style={{ backgroundColor: "#fff" }}>
+                  <Link href="">
+                    <a onClick={handleLogout}>Logout</a>
+                  </Link>
+                </li>
+              )}
             </ul>
           </div>
 
