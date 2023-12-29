@@ -7,6 +7,8 @@ import fetchData from "../../axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Spinner from "react-bootstrap/Spinner";
+import { FaLock } from "react-icons/fa";
+import { FaUnlock } from "react-icons/fa";
 
 const customStyles = {
   headRow: {
@@ -62,9 +64,9 @@ const ManageIndList = () => {
     console.log(id);
     if (block) {
       url = "/info/unblock-user";
-      message = "user unblocked";
+      message = "User Unblocked";
     } else {
-      message = "user blocked";
+      message = "User Blocked";
       url = "/info/block-user";
     }
     makeRequest("POST", url, {
@@ -108,7 +110,7 @@ const ManageIndList = () => {
           onClick={() => handleBlock(row.block, row.id)}
           className={row.block ? `btn btn-danger` : `btn btn-success`}
         >
-          {row.block ? "unblock" : "block"}
+          {row.block ? <FaLock /> : <FaUnlock />}
         </button>
       ),
     },
