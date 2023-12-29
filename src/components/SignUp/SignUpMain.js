@@ -302,7 +302,7 @@ function SignUpMain() {
                         type="button"
                         className="my-4 width-100 btn btn-primary"
                         onClick={handleOtp}
-                        disabled={timerValue.seconds >= 0 ? false : true}
+                        disabled={!timerValue.seconds >= 0 ? false : true}
                       >
                         Submit
                       </button>
