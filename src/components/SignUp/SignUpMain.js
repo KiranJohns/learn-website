@@ -265,8 +265,10 @@ function SignUpMain() {
             styles={{
               modal: {
                 maxWidth: "unset",
-                width: "50%",
+                minWidth: "35%",
+                background:"#fff",
                 padding: "unset",
+                borderRadius:"1rem"
               },
               overlay: {
                 background: "rgba(0, 0, 0, 0.5)",
