@@ -21,6 +21,11 @@ function onlineExam() {
 
   const router = useRouter();
 
+  // window.history.
+  // window.addEventListener('popstate', function (event) {
+  //     event.preventDefault()
+  // });
+
   useEffect(() => {
     if (!routes.includes(logedIn)) {
       router.push("/sign-in");

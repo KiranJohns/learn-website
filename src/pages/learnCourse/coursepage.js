@@ -24,6 +24,16 @@ const coursepage = () => {
   const router = useRouter();
 
   useEffect(() => {
+
+    document.onkeydown = () => {
+      return false;
+    }
+
+    window.addEventListener("contextmenu", e => e.preventDefault());
+
+  }, []);
+
+  useEffect(() => {
     if (!routes.includes(logedIn)) {
       router.push("/sign-in");
     }
