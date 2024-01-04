@@ -4,7 +4,7 @@ export const getToken = () => localStorage.getItem(`learnforcare_access`);
 export const getUserType = () => localStorage.getItem("userType");
 export default function fetchData() {
   let BASEURL = "";
-  BASEURL = "https://admin.learnforcare.co.uk/api/user";
+  BASEURL = "https://backend.learnforcare.co.uk/api/user";
   // BASEURL = "http://localhost:3002/api/user";
 
   // /www.learnforcare.co.uk
