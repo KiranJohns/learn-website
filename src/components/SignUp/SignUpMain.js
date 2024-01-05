@@ -281,7 +281,7 @@ function SignUpMain() {
           >
             <div className="main p-5">
               <div className="heading">
-                <h4>One time Password (OTP) verification</h4>
+                <h4>One Time Password (OTP) verification</h4>
               </div>
               <div className="info">
                 An OTP has been sent to your registered email address.

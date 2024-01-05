@@ -421,7 +421,7 @@ function DashIndividual() {
                     fontSize: 35,
                   }}
                 >
-                  Courses
+                  Ongoing Courses
                 </h4>
                 <div style={{}} className="p-relative d-inline header__search ">
                   <form className="your-element" action="">
