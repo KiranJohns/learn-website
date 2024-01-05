@@ -129,6 +129,8 @@ function SignUpMain() {
   const [open, setOpen] = useState(false);
   let signupInfo = useSelector((state) => state.user.signup);
 
+  const makeRequest = fetchData();
+
   const onOpenModal = () => {
     setOpen(true);
   };
@@ -142,7 +144,6 @@ function SignUpMain() {
     }
   }, [signupInfo.loading]);
 
-  const makeRequest = fetchData();
 
   const handleOtp = (event) => {
     event.persist();
