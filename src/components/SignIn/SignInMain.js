@@ -24,6 +24,7 @@ function SignInMain() {
     makeRequest("POST", "/auth/forgot-password", { email })
       .then((res) => {
         toast.info("Link sent to your email");
+        setShowEmailModal(false)
         console.log(res);
       })
       .catch((err) => {
