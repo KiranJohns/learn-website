@@ -180,9 +180,9 @@ function SignUpMain() {
         toast.warn("Verify you're not a robot");
         return;
       }
-      const method = "POST"; // Specify the HTTP method
+      const method = "POST"; // Specify the HTTP methods
       const url = "/auth/registration"; // Specify the API endpoint URL
-      const data = values; // Send form values as data
+      const data = values; // Send form values as data 
 
       if (values.password !== values.confirmPassword) {
         toast.error("Password Is Not Matching");
