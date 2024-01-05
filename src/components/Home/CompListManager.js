@@ -54,7 +54,7 @@ const CompListManager = () => {
     makeRequest("GET", "/info/get-all-managers")
       .then((res) => {
         console.log(res.data.response);
-        setRecords(res.data.response);
+        setRecords(res.data.response.reverse());
         setPending(false)
       })
       .catch((err) => console.log(err));
