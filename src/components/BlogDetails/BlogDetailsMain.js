@@ -162,10 +162,7 @@ class BlogDetailsMain extends Component {
                               color: "#212a50",
                             }}
                           />{" "}
-                          {new Date(article.date)
-                            .toLocaleDateString()
-                            .split("/")
-                            .join("-")}
+                          {article.date}
                         </p>
                         <p style={{ display: "block", float: "right" }}>
                           <FaUser

@@ -36,7 +36,7 @@ function DashProfile() {
     let url = "/info/data"
     makeRequest("GET", url)
       .then((res) => {
-        // console.log(res.data.response[0]);
+        console.log(res.data.response[0]);
         setInfo(res.data.response[0]);
       })
       .catch((err) => {
