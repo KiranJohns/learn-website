@@ -27,6 +27,7 @@ const Success = () => {
       })
       .catch((err) => {
         if (err?.data?.errors[0].message === "please login") {
+          setLoading(false);
           store.dispatch({
             type: "SET_CART",
           });
