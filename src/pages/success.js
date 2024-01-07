@@ -35,6 +35,9 @@ const Success = () => {
       });
   }
   useEffect(() => {
+    store.dispatch({
+      type: "SET_CART",
+    });
     let timer = setTimeout(() => {
       getCartItem();
     }, 5000);
