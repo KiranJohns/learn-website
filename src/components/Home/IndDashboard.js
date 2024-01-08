@@ -162,13 +162,13 @@ function DashIndividual() {
                   </span>
                 ) : (
                   <>
-                    <a className="btn btn-danger">Expired</a>
+                    <a className="btn btn-success">Completed</a>
                   </>
                 )}
               </>
             ) : (
               <>
-                <a className="btn btn-danger">Completed</a>
+                <a className="btn btn-danger">Expired</a>
               </>
             )}
           </>
