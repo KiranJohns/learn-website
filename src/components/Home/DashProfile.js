@@ -85,10 +85,6 @@ function DashProfile() {
       >
         My Profile
       </h2>
-      {/* <div style={{ padding: "0 20px" }} onClick={handleImage}>
-        <img style={{width:'70px',height:'70px',borderRadius:'70px',cursor:'pointer'}} src="/assets/img/testimonial/profilePic.webp" alt="" />
-        <input type="file" ref={inputRef} style={{display:'none'}}/>
-      </div> */}
       <ToastContainer
         position="top-right"
         autoClose={5000}
