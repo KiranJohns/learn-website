@@ -10,11 +10,11 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function DashProfile() {
+  const inputRef = useRef(null);
+
   const handleImage = () => {
     inputRef.current.click();
   };
-
-  const inputRef = useRef(null);
 
   const [info, setInfo] = useState({
     email: "",
