@@ -133,7 +133,7 @@ const AttemptsExam = () => {
     {
       name: "Date",
       center: true,
-      selector: (row) => new Date(row.date).toLocaleDateString(),
+      selector: (row) => row.date,
     },
     {
       name: "Marks Obtained",
