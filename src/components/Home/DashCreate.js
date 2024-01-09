@@ -15,7 +15,7 @@ const DashCreate = () => {
     phone: "",
     user_type: "",
   });
- 
+
   const [showPassword, setShowPassword] = useState(false);
 
   const handleOnchange = (e) => {
@@ -30,32 +30,31 @@ const DashCreate = () => {
 
   const handleSubmit = (e) => {
     e.persist();
+
+    let url = "";
     if (userData.user_type === "individual") {
-      mackRequest("POST", "/info/create-manager-individual", {
-        ...userData,
-        phone: Number(userData.phone),
-      })
-        .then((res) => {
-          toast.success("Individual Created");
-          location.href = '/company/showuser'
-        })
-        .catch((err) => {
-          toast.error(err.data);
-        });
-    } else if (userData.user_type === "manager") {
-      mackRequest("POST", "/info/create-manager", {
-        ...userData,
-        phone: Number(userData.phone),
-      })
-        .then((res) => {
-          toast.success("Manager Created");
-          location.href = '/company/managers'
-        })
-        .catch((err) => {
-          console.log(err.data);
-          toast.error(err.data.data.response);
-        });
+      url = "/info/create-manager-individual";
+    } else {
+      url = "/info/create-manager";
     }
+
+    mackRequest("POST", url, {
+      ...userData,
+      phone: Number(userData.phone),
+    })
+      .then((res) => {
+        if (userData.user_type === "individual") {
+          toast.success("Individual Created");
+          location.href = "/company/showuser";
+        } else {
+          toast.success("Manager Created");
+          location.href = "/company/managers";
+        }
+      })
+      .catch((err) => {
+        console.log(err.data);
+        toast.error(err.data.data.response);
+      });
   };
 
   return (
@@ -207,29 +206,25 @@ const DashCreate = () => {
                   <label className="text-black" htmlFor="FormControlInput1">
                     Password
                   </label>
-                  <div style={{position:"relative"}}>
-                  <input
-                    style={{ background: "#f7fbff" }}
-                    onChange={handleOnchange}
-                    type={showPassword ? "text" : "password"}
-                    className="form-control border border-black"
-                    id="password"
-                    name="password"
-                    placeholder="Password"
-                    value={userData.password}
-                  />
-                     <div
-                          id="pasToggle"
-                          style={{ cursor: "pointer" }}
-                          onClick={() => setShowPassword((prev) => !prev)}
-                        >
-                          {showPassword ? (
-                            <BsEyeSlashFill />
-                          ) : (
-                            <BsFillEyeFill />
-                          )}
-                        </div>
-                        </div>
+                  <div style={{ position: "relative" }}>
+                    <input
+                      style={{ background: "#f7fbff" }}
+                      onChange={handleOnchange}
+                      type={showPassword ? "text" : "password"}
+                      className="form-control border border-black"
+                      id="password"
+                      name="password"
+                      placeholder="Password"
+                      value={userData.password}
+                    />
+                    <div
+                      id="pasToggle"
+                      style={{ cursor: "pointer" }}
+                      onClick={() => setShowPassword((prev) => !prev)}
+                    >
+                      {showPassword ? <BsEyeSlashFill /> : <BsFillEyeFill />}
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
