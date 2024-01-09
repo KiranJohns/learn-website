@@ -138,7 +138,7 @@ const CompanyBundle = () => {
           <>
             {new Date(validity) > new Date() ? (
               <>
-                {(!row?.progress || row?.progress < 100) ? (
+                {!row?.progress || row?.progress < 100 ? (
                   <a
                     className="btn btn-success"
                     style={{
@@ -156,7 +156,18 @@ const CompanyBundle = () => {
                   </a>
                 ) : (
                   <>
-                    <a className="btn btn-danger">Finished</a>
+                    <a
+                      onClick={() => {
+                        if (row?.form_ongoing) {
+                          location.href = `/learnCourse/bundleList/?id=${row.id}`;
+                        } else {
+                          handleStartBundle(row.id);
+                        }
+                      }}
+                      className="btn btn-danger"
+                    >
+                      Completed
+                    </a>
                   </>
                 )}
               </>
