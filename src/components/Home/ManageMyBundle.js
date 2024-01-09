@@ -113,7 +113,7 @@ const ManagerBundle = () => {
           <>
             {new Date(validity) > new Date() ? (
               <>
-                {!row.progress || row?.progress < 100 ? (
+                {!row.progress || row?.progress <= 100 ? (
                   <button
                     className="btn btn-success"
                     style={{
