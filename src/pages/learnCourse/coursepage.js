@@ -23,15 +23,15 @@ const coursepage = () => {
 
   const router = useRouter();
 
-  useEffect(() => {
+  // useEffect(() => {
 
-    document.onkeydown = () => {
-      return false;
-    }
+  //   document.onkeydown = () => {
+  //     return false;
+  //   }
 
-    window.addEventListener("contextmenu", e => e.preventDefault());
+  //   window.addEventListener("contextmenu", e => e.preventDefault());
 
-  }, []);
+  // }, []);
 
   useEffect(() => {
     if (!routes.includes(logedIn)) {

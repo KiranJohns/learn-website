@@ -40,7 +40,7 @@ const ManageCreateU = () => {
       })
       .catch((err) => {
         console.log(err.data);
-        toast.error(err.data);
+        toast.error(err.data.data.response);
       });
   };
 
