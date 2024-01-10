@@ -112,7 +112,7 @@ const IndCourse = () => {
       name: "name",
       selector: (row) => row.name || row.Name,
       sortable: true,
-      width: "400px",
+      width: "280px",
       center: true,
     },
 
@@ -187,22 +187,25 @@ const IndCourse = () => {
         pauseOnHover
         theme="light"
       />
-      <div className=" row g-3  min-vh-100  d-flex justify-content-center dash-shadow mt-10">
-        <div style={{ padding: "", backgroundColor: "" }}>
-          <h2
-            className="dash-head-center"
+      <div style={{ position:'relative' }} className=" row g-3  min-vh-100  d-flex justify-content-center dash-shadow mt-10">
+      <h2
+            className=""
             style={{
-              padding: "",
               color: "#212450",
+              display: "flex",
+              justifyContent: "center",
+              position: "absolute",
               fontSize: 36,
             }}
           >
             My Courses
           </h2>
+        <div  >
+        
 
           <div
             style={{ float: "right", marginBottom: "1.4rem" }}
-            className="p-relative d-inline header__search"
+            className="p-relative d-inline header__search searchbar-hidden"
           >
             <form action="">
               <input
@@ -219,6 +222,8 @@ const IndCourse = () => {
             </form>
           </div>
           <DataTable
+
+          responsive={true}
             progressPending={pending}
             progressComponent={
               pending ? (

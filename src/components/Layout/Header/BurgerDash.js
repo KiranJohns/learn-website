@@ -3,6 +3,9 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import fetchData, { getUserType } from "../../../axios";
 import DashboardBar from "../../Sidebar/DashboardBar";
+import NewInDash from "../../Sidebar/BarDummy";
+import ManagerBar from "../../Sidebar/ManagerBar";
+
 
 const BurgerDash = ({ setMenuOpen, menuOpen }) => {
   const [home, setHome] = useState(false);
@@ -114,8 +117,10 @@ const BurgerDash = ({ setMenuOpen, menuOpen }) => {
         <div className=""
                   style={{ backgroundColor: "#212450" }}
                 >
+                {getUserType() == "individual" && <NewInDash />}
+                  {getUserType() == "manager" && <ManageBar />}
+                  {getUserType() == "company" && <DashboardBar />}
         
-         <DashboardBar/>
       </div>
       
       </div>

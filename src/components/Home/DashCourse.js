@@ -131,7 +131,7 @@ const DashCourse = () => {
       selector: (row) => row.name,
       sortable: true,
       center: true,
-      width: "400px",
+      width: "340px",
     },
     {
       name: "validity",

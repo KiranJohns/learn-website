@@ -13,6 +13,7 @@ import { Auth } from "../auth";
 import CompanyPurBundle from "../../components/Home/CompanyPurchaseBundle";
 import DashHeader from "../../components/Layout/Header/DasnboardHeader";
 
+
 function purchasedBundle() {
   const [logedIn, setlogedIn] = useState(() => {
     return getUserType();

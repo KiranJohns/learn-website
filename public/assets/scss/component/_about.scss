@@ -514,3 +514,15 @@ margin: 0 auto;
     display: none;
     }
    }
+
+   @media screen and (max-width:860px) {
+    .searchbar-hidden1{
+    visibility: hidden !important;
+    }
+   }
+
+   @media screen and (max-width:955px) {
+    .searchbar-hidden2{
+    visibility: hidden !important;
+    }
+   }

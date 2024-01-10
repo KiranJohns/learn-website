@@ -65,9 +65,10 @@ class IndCertificate extends Component {
   render() {
     const columns = [
       {
-        name: "ID",
-        selector: (row) => row.id,
+        name: "SL No.",
+        selector: (row, idx) => idx+1,
         sortable: true,
+
       },
       {
         name: "Courses",
@@ -126,7 +127,7 @@ class IndCertificate extends Component {
           </div> */}
               <div
                 style={{ float: "right", marginBottom: "1.4rem" }}
-                className="p-relative d-inline header__search"
+                className="p-relative d-inline header__search searchbar-hidden1"
               >
                 <form action="">
                   <input
@@ -163,7 +164,7 @@ class IndCertificate extends Component {
                 }
                 customStyles={customStyles}
                 pagination
-                selectableRows
+    
               />
             </div>
           </div>{" "}

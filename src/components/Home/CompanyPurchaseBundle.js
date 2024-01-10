@@ -116,6 +116,7 @@ class CompanyPurBundle extends Component {
                 customStyles={customStyles}
                 pagination
                 selectableRows
+               
               />
             </div>
 

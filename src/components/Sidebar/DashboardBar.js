@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 import { MdVerifiedUser } from "react-icons/md";
 import fetchData from "../../axios";
 import { MdArrowDropDownCircle } from "react-icons/md";
-
+import { getToken, getUserType } from "../../axios";
 
 // import {imgg} from '../../../public/assets/img'
 

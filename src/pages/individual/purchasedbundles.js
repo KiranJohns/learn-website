@@ -13,6 +13,7 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import IndPurBundle from "../../components/Home/IndPurBundle";
+import DashHeader from "../../components/Layout/Header/DasnboardHeader";
 
 function PurchasedBundle() {
   const [logedIn, setlogedIn] = useState(() => {
@@ -38,7 +39,7 @@ function PurchasedBundle() {
             }}
           >
             <NoSSR>
-              <Header />
+              <DashHeader/>
             </NoSSR>
             <div
               className="container-fluid"
@@ -46,12 +47,12 @@ function PurchasedBundle() {
             >
               <div className="row justify-content-md-center">
                 <div
-                  className="col-sm-12 col-md-12 col-lg-2 p-0"
+                  className="col-sm-12 col-md-12 col-lg-2 p-0 sidebar-hidden"
                   style={{ backgroundColor: "#212450" }}
                 >
                   <NewInDash />
                 </div>
-                <div className="col-sm col-md-9 bg-white">
+                <div className="col-sm col-md-12 col-lg-11 col-xl-9  bg-white">
                   <IndPurBundle />
                 </div>
               </div>
