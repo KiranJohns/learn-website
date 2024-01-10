@@ -80,7 +80,7 @@ const BundleResource = () => {
           display: "flex",
           borderRadius: ".4rem",
           flexDirection: "column",
-          margin: "3rem 0rem",
+          margin: "0 auto",
         }}
       >
         <h4 style={{ padding: "1rem", textAlign: "center" }}>{course?.name}</h4>

@@ -28,15 +28,15 @@ const bundlecourse = () => {
   //       router.push("/sign-in");
   //     }
   //   }, []);
-  useEffect(() => {
+  // useEffect(() => {
 
-    document.onkeydown = () => {
-      return false;
-    }
+  //   document.onkeydown = () => {
+  //     return false;
+  //   }
 
-    window.addEventListener("contextmenu", e => e.preventDefault());
+  //   window.addEventListener("contextmenu", e => e.preventDefault());
 
-  }, []);
+  // }, []);
   return (
     <>
       {/* {routes.includes(logedIn) && ( */}
