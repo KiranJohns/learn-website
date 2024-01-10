@@ -51,7 +51,7 @@ const AttemptsExam = () => {
     makeRequest("GET", `/on-going-course/get-attempts/${courseId}`)
       .then((res) => {
         console.log(res.data.response);
-        setRecords(res.data.response);
+        setRecords(res.data.response.reverse());
         setFilterRecords(res.data.response);
       })
       .catch((err) => {
@@ -118,8 +118,8 @@ const AttemptsExam = () => {
 
   const columns = [
     {
-      name: "Id",
-      selector: (row, idx) => row.id,
+      name: "NO.",
+      selector: (row, idx) => ++idx,
       center: true,
       width: "170px",
     },
