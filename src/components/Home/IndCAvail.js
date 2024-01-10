@@ -115,7 +115,7 @@ const IndCAvail = () => {
           >
             Purchased Courses
           </h2>
-          <div style={{ padding: "", backgroundColor: "" }}>
+          <div className="reacttable-hidden" style={{ padding: "", backgroundColor: "" }}>
             <div
               style={{ float: "right", marginBottom: "1.4rem" }}
               className="p-relative d-inline header__search searchbar-hidden"
@@ -159,6 +159,47 @@ const IndCAvail = () => {
               pagination
             />
           </div>
+          {
+            searchData
+              ? records.filter((item) =>
+                  (item?.Name)
+                    .toLowerCase()
+                    .startsWith(searchData.toLowerCase())
+                ).map(item => {
+                  return (
+                    <div style={{paddingTop:'1rem',marginTop:"3rem", display:'flex', flexDirection:'column'}}>
+                      <div className="new-table-shadow new-table-res new-table-hidden">
+                        <div style={{display:'flex',justifyContent:'space-between'}}>
+                          <p style={{paddingTop:"1.5rem",paddingLeft:".4rem", color:'#212a50', fontWeight:'bold',}}>{item?.Name}</p>
+                          <a style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}} href="https://test.learnforcare.co.uk/course-all">
+                            <Button style={{ background: "#212a50", color: "#fff" }} variant="">
+                              <FaEye />
+                            </Button>
+                          </a>
+                          {/* <button className="btn btn-success" style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}>View</button> */}
+                        </div>
+                      </div>
+                    </div>
+                  )
+                })
+              : records.map(item => {
+                return (
+                  <div style={{paddingTop:'1rem',marginTop:"3rem", display:'flex', flexDirection:'column'}}>
+                    <div className="new-table-shadow new-table-res new-table-hidden">
+                      <div style={{display:'flex',justifyContent:'space-between'}}>
+                        <p style={{paddingTop:"1.5rem",paddingLeft:".4rem", color:'#212a50', fontWeight:'bold',}}>{item?.Name}</p>
+                        <a style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}} href="https://test.learnforcare.co.uk/course-all">
+                          <Button style={{ background: "#212a50", color: "#fff" }} variant="">
+                            <FaEye />
+                          </Button>
+                        </a>
+                        {/* <button className="btn btn-success" style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}>View</button> */}
+                      </div>
+                    </div>
+                  </div>
+                )
+              })
+          }
         </div>{" "}
       </div>
     </div>
