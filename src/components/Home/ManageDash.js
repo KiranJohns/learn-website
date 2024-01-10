@@ -192,7 +192,7 @@ class ManageDash extends Component {
               : " "}{" "}
             <IoHandLeft style={{ color: "#f1c27d", marginBottom: ".5rem" }} />
           </h3>
-          <div style={{}}>
+          <div className="dashboard-hidden" style={{}}>
             <h2
               style={{
                 padding: "0",
@@ -302,7 +302,7 @@ class ManageDash extends Component {
             >
               <div className="ag-courses_item-comp" style={{ marginLeft: "" }}>
                 <a
-                  href="/manager/ceritificates"
+                  href="/manager/certificates"
                   className="ag-courses-item_link-comp"
                 >
                   <div className="ag-courses-item_bg-comp"></div>
@@ -400,7 +400,7 @@ class ManageDash extends Component {
                   fontSize: 35,
                 }}
               >
-                Courses
+             Ongoing Courses
               </h4>
               <div
                 style={{ display: "none" }}
@@ -464,7 +464,6 @@ class ManageDash extends Component {
                     }
                     customStyles={customStyles}
                     pagination
-                    selectableRows
                   />
                 </div>
               </div>

@@ -115,7 +115,7 @@ const ManCWIndReport = () => {
            Course Wise Individual
           </h2>
           <div style={{ padding: "", backgroundColor: "" }}>
-            <div style={{ float: "right", marginBottom: "1.4rem" }} className="p-relative d-inline header__search">
+            <div style={{ float: "right", marginBottom: "1.4rem" }} className="p-relative d-inline header__search searchbar-hidden3">
               <form action="">
                 <input
                   style={{ background: "#edeef3" }}

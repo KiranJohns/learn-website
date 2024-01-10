@@ -16,6 +16,7 @@ import { useEffect } from "react";
 import Sidebar from "../../components/Sidebar/SampleSidebar";
 import mybundle from "../company/mybundle";
 import ManAssignBund from "../../components/Home/ManAssignBund";
+import DashHeader from "../../components/Layout/Header/DasnboardHeader";
 
 function myBundle() {
   const [logedIn, setlogedIn] = useState(() => {
@@ -49,12 +50,12 @@ function myBundle() {
             >
               <div className="row justify-content-md-center">
                 <div
-                  className="col-sm-12 col-md-12 col-lg-2 p-0"
+                  className="col-sm-12 col-md-12 col-lg-2 p-0 sidebar-hidden"
                   style={{ backgroundColor: "#212450" }}
                 >
                   <ManageBar />
                 </div>
-                <div className="col-sm col-md-9 bg-white">
+                <div className="col-sm col-md-12 col-lg-11 col-xl-9  bg-white">
                   <ManAssignBund />
                 </div>
               </div>

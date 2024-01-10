@@ -118,7 +118,7 @@ const BurgerDash = ({ setMenuOpen, menuOpen }) => {
                   style={{ backgroundColor: "#212450" }}
                 >
                 {getUserType() == "individual" && <NewInDash />}
-                  {getUserType() == "manager" && <ManageBar />}
+                  {getUserType() == "manager" && <ManagerBar />}
                   {getUserType() == "company" && <DashboardBar />}
         
       </div>

@@ -184,7 +184,7 @@ const ManAssignBund = () => {
     {
       name: "bundle name",
       selector: (row) => row.bundle_name,
-      width: "400px",
+      width: "350px",
       sortable: true,
       center: true,
     },
@@ -192,6 +192,7 @@ const ManAssignBund = () => {
       name: "validity",
       selector: (row) => row.validity,
       center: true,
+    
     },
     {
       name: "count",
@@ -444,7 +445,7 @@ const ManAssignBund = () => {
             </Modal>
             <div
               style={{ float: "right", marginBottom: "1.4rem" }}
-              className="p-relative d-inline header__search"
+              className="p-relative d-inline header__search searchbar-hidden2"
             >
               <form action="">
                 <input
@@ -483,6 +484,7 @@ const ManAssignBund = () => {
               }
               customStyles={customStyles}
               pagination
+              responsive={true}
             />
           </div>
         </div>{" "}

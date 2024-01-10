@@ -526,3 +526,15 @@ margin: 0 auto;
     visibility: hidden !important;
     }
    }
+  
+   @media screen and (max-width:1085px) {
+    .searchbar-hidden3{
+    visibility: hidden !important;
+    }
+   }
+
+   @media screen and (max-width:440px) {
+    .dashboard-hidden{
+    display: none ;
+    }
+   }

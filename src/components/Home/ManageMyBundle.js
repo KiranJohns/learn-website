@@ -91,7 +91,7 @@ const ManagerBundle = () => {
       name: "Bundle name",
       selector: (row) => row.bundle_name || row.name,
       sortable: true,
-      width: "420px",
+      width: "340px",
       center: true,
     },
     {
@@ -167,7 +167,7 @@ const ManagerBundle = () => {
           <div style={{ padding: "", backgroundColor: "" }}>
             <div
               style={{ float: "right", marginBottom: "1.4rem" }}
-              className="p-relative d-inline header__search"
+              className="p-relative d-inline header__search searchbar-hidden1"
             >
               <form action="">
                 <input
