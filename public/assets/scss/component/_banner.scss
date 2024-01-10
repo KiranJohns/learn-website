@@ -292,3 +292,27 @@ display: none;
   top: -9999px;
   /* Add other background properties */
 }
+
+.new-table-shadow{
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-radius: .5rem;
+}
+
+.new-table-res{
+  display: flex;
+  flex-direction: column;
+  max-width: 550px;
+  height: 70px;
+  margin-left: .3rem;
+  margin-right: .3rem;
+}
+
+.new-table-hidden{
+  display: none;
+}
+
+@media screen and (max-width:600px) {
+  .new-table-hidden{
+  display: block;
+  }
+ }

@@ -94,9 +94,9 @@ class CompanyPurBundle extends Component {
             >
               Purchased Bundle
             </h2>
-            <div style={{ padding: "", backgroundColor: "" }}>
-              <div style={{ float: 'right', marginBottom: '1.4rem' }} className="p-relative d-inline header__search">
-                <form action="">
+            <div className="reacttable-hidden" style={{ padding: "", backgroundColor: "",  }}>
+              <div style={{ float: 'right', marginBottom: '1.4rem' }} className="p-relative d-inline header__search searchbar-hidden">
+                <form action="" >
                   <input style={{ background: '#edeef3', }}
                     className="d-block mr-10"
                     type="text"
@@ -118,6 +118,18 @@ class CompanyPurBundle extends Component {
                 selectableRows
               />
             </div>
+
+             <div style={{paddingTop:'1rem',marginTop:"3rem", display:'flex', flexDirection:'column'}}>
+
+                 <div className="new-table-shadow new-table-res new-table-hidden">
+                    <div style={{display:'flex',justifyContent:'space-between'}}>
+                      <p style={{paddingTop:"1.5rem",paddingLeft:".4rem", color:'#212a50', fontWeight:'bold',}}>Course Name</p>
+                      <button className="btn btn-success" style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}>View</button>
+                    </div>
+                 </div>
+                  
+             </div>
+
           </div>
         </div>
       </div>

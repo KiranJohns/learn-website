@@ -475,6 +475,7 @@ class DashTest extends Component {
                 </div>
                 <div>
                   <DataTable
+                   responsive={true}
                     noDataComponent={"No records to display"}
                     persistTableHead={true}
                     columns={columns}

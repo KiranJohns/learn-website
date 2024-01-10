@@ -306,22 +306,7 @@
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
-.course-player{
- width: 87%;
- aspect-ratio:16/9 ;
- padding: 1rem;
- box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
- 
-}
 
-@media screen and (max-width:650px) {
-    .course-player{
-        width: 92%;
-        aspect-ratio:16/9 ;
-        padding: .5rem;
-        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;   
-       }
-  }
 
 .activate-sidebar{
     background-color: #ffffff;
@@ -402,13 +387,29 @@ margin-left: 12rem;
 
 
 .course-page-ppt{
-width: 840px;
-height: 472px;
+width: 880px;
+height: 498px;
 margin: 0 auto;
 }
 
-@media screen and (max-width:650px) {
+@media screen and (max-width:950px) {
   .course-page-ppt{
+    width: 680px;
+    height: 390px;
+    }
+}
+
+
+@media screen and (max-width:792px) {
+  .course-page-ppt{
+    width: 612px;
+    height: 350px;
+    }
+}
+
+
+@media screen and (max-width:650px) {
+  .course-page-ppt, .course-player{
     width: 504px;
     height: 300px;
     }
@@ -416,14 +417,90 @@ margin: 0 auto;
 
 @media screen and (max-width:500px) {
   .course-page-ppt{
-    width: 450px;
-    height: 270px;
+    width: 405px;
+    height: 243px;
     }
 }
 
-@media screen and (max-width:450px) {
+@media screen and (max-width:465px) {
   .course-page-ppt{
-    width: 405px;
-    height: 253px;
+    width: 375px;
+    height: 225px;
     }
 }
+
+@media screen and (max-width:420px) {
+  .course-page-ppt{
+    width: 345px;
+    height: 200px;
+    }
+}
+
+
+.course-player{
+  width: 80%;
+  aspect-ratio:16/9 ;
+  padding: 0rem;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  
+ }
+
+ @media screen and (max-width:800px) {
+  .course-player{
+      width: 100%;
+      aspect-ratio:16/9 ;
+      padding: 0rem;
+      box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;   
+     }
+}
+
+@media screen and (max-width:970px) {
+  .course-player{
+      width: 110%;
+      aspect-ratio:16/9 ;
+      padding: 0rem;
+      box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;   
+     }
+}
+
+@media screen and (max-width:1100px) {
+  .course-player{
+      width: 120%;
+      aspect-ratio:16/9 ;
+      padding: 0rem;
+      box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;   
+     }
+}
+
+
+ @media screen and (max-width:650px) {
+     .course-player{
+         width: 115%;
+         aspect-ratio:16/9 ;
+        //  padding: .5rem;
+         box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;   
+        }
+   }
+
+
+
+   @media screen and (max-width:1200px) {
+   .sidebar-hidden{
+    display: none;
+   }
+  }
+  .searchbar-hidden{
+    display: block;
+   }
+
+  @media screen and (max-width:900px) {
+    .searchbar-hidden{
+    visibility: hidden !important;
+    }
+   }
+
+   @media screen and (max-width:600px) {
+    .reacttable-hidden{
+    display: none;
+    }
+   }
