@@ -210,6 +210,8 @@ const IndMyBundle = () => {
               persistTableHead={true}
             />
           </div>
+          
+          <div style={{marginTop:'4rem'}}>
           {searchString
             ? records
                 .filter((item) =>
@@ -220,8 +222,8 @@ const IndMyBundle = () => {
                 .map((item) => {
                   return <div
                     style={{
-                      paddingTop: "1rem",
-                      marginTop: "0.5rem",
+                      // paddingTop: "1.4rem",
+                      // marginTop: "2rem",
                       display: "flex",
                       flexDirection: "column",
                     }}
@@ -283,10 +285,9 @@ const IndMyBundle = () => {
             : records.map((item) => {
               return <div
                 style={{
-                  paddingTop: "1rem",
-                  marginTop: "0.5rem",
-                  display: "flex",
-                  flexDirection: "column",
+                  paddingTop: ".1rem",
+                  marginTop: ".3rem",
+                
                 }}
               >
                 <div className="new-table-shadow new-table-res new-table-hidden">
@@ -344,6 +345,8 @@ const IndMyBundle = () => {
               </div>;
             }) 
             }
+        </div>
+
         </div>{" "}
       </div>
     </div>

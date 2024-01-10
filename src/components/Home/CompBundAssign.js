@@ -224,7 +224,7 @@ const CompAssignBund = () => {
       name: "Bundle Name",
       selector: (row) => row.bundle_name,
       center: true,
-      width: "400px",
+      width: "345px",
     },
     {
       name: "Purchased",
@@ -674,7 +674,7 @@ const CompAssignBund = () => {
             </Modal>
             <div
               style={{ float: "right", marginBottom: "1.4rem" }}
-              className="p-relative d-inline header__search"
+              className="p-relative d-inline header__search searchbar-hidden2"
             >
               <form action="">
                 <input
