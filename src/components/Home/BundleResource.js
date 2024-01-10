@@ -101,13 +101,13 @@ const BundleResource = () => {
         }}
       >
         <div style={{ padding: "1.2rem", }}>
-          <div style={{ display: "flex", justifyContent: "center" }}>
+          <div style={{ display: "flex", justifyContent: "center",padding:"1rem", margin:'1rem' }}>
             <video
               onContextMenu={(e) => e.preventDefault()}
               config={{ file: { attributes: { controlsList: "nodownload" } } }}
               className="course-player"
               controls
-              src={course.video}
+              src={course?.video}
             ></video>
           </div>
 
@@ -129,9 +129,10 @@ const BundleResource = () => {
               controls="0"
             ></iframe>
           </div> */}
-
+         <div style={{position:'relative'}} className="row">
           <div  className="mt-4 blog-box-shadow col-6 course-page-ppt">
             <ImageSlider style={{padding:"1rem"}} slides={slides} />
+          </div>
           </div>
 
           <div className="blog-box-shadow mt-50 p-4">

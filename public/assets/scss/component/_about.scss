@@ -409,7 +409,7 @@ margin: 0 auto;
 
 
 @media screen and (max-width:650px) {
-  .course-page-ppt, .course-player{
+  .course-page-ppt{
     width: 504px;
     height: 300px;
     }
@@ -431,8 +431,8 @@ margin: 0 auto;
 
 @media screen and (max-width:420px) {
   .course-page-ppt{
-    width: 345px;
-    height: 200px;
+    width: 338px;
+    height: 190px;
     }
 }
 
@@ -481,6 +481,16 @@ margin: 0 auto;
          box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;   
         }
    }
+
+   @media screen and (max-width:500px) {
+    .course-player{
+        width: 122%;
+        aspect-ratio:16/9 ;
+       //  padding: .5rem;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;   
+       }
+  }
+
 
 
 
