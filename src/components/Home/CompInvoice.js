@@ -114,7 +114,7 @@ const CompInvoice = () => {
               display: "flex",
               justifyContent: "center",
               position: "absolute",
-              fontSize: 36,
+              fontSize: 35,
             }}
           >
             Invoice
@@ -122,7 +122,7 @@ const CompInvoice = () => {
           <div style={{ padding: "", backgroundColor: "" }}>
             <div
               style={{ float: "right", marginBottom: "1.4rem" }}
-              className="p-relative d-inline header__search"
+              className="p-relative d-inline header__search searchbar-hidden1"
             >
               <form action="">
                 <input
