@@ -148,7 +148,10 @@ const IndMyBundle = () => {
   return (
     <div className="">
       <div className="dash-shadow">
-        <div style={{position:'relative'}} className=" row g-3  min-vh-100  d-flex justify-content-center mt-20">
+        <div
+          style={{ position: "relative" }}
+          className=" row g-3  min-vh-100  d-flex justify-content-center mt-20"
+        >
           <h2
             style={{
               color: "#212450",
@@ -160,7 +163,10 @@ const IndMyBundle = () => {
           >
             My Bundle
           </h2>
-          <div style={{ padding: "", backgroundColor: "" }}>
+          <div
+            className="reacttable-hidden"
+            style={{ padding: "", backgroundColor: "" }}
+          >
             <div
               style={{ float: "right", marginBottom: "1.4rem" }}
               className="p-relative d-inline header__search searchbar-hidden"
@@ -204,6 +210,140 @@ const IndMyBundle = () => {
               persistTableHead={true}
             />
           </div>
+          {searchString
+            ? records
+                .filter((item) =>
+                  (item?.name || item?.bundle_name)
+                    .toLowerCase()
+                    .startsWith(searchString.toLowerCase())
+                )
+                .map((item) => {
+                  return <div
+                    style={{
+                      paddingTop: "1rem",
+                      marginTop: "0.5rem",
+                      display: "flex",
+                      flexDirection: "column",
+                    }}
+                  >
+                    <div className="new-table-shadow new-table-res new-table-hidden">
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                        }}
+                      >
+                        <p
+                          style={{
+                            paddingTop: "1.5rem",
+                            paddingLeft: ".4rem",
+                            color: "#212a50",
+                            fontWeight: "bold",
+                          }}
+                        >
+                          {item?.name || item?.bundle_name}
+                        </p>
+                        <>
+                          {new Date(item.validity.split("/").reverse()) > new Date() ? (
+                            <>
+                              {!item.progress || item.progress < 100 ? (
+                                <span
+                                  onClick={() => {
+                                    console.log(item);
+                                    if (item?.form_ongoing) {
+                                      location.href = `/learnCourse/bundleList/?id=${item.id}`;
+                                    } else if (item?.from_purchased) {
+                                      handleStartBundle(item.id, "purchased");
+                                    } else {
+                                      handleStartBundle(item.id, "assigned");
+                                    }
+                                  }}
+                                  style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}
+                                  className="btn btn-success"
+                                >
+                                  Start
+                                </span>
+                              ) : (
+                                <>
+                                  <a style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}} className="btn btn-danger">Completed</a>
+                                </>
+                              )}
+                            </>
+                          ) : (
+                            <>
+                              <a style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}} className="btn btn-danger">Expired</a>
+                            </>
+                          )}
+                        </>
+                        {/* <button className="btn btn-success" style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}>View</button> */}
+                      </div>
+                    </div>
+                  </div>;
+                })
+            : records.map((item) => {
+              return <div
+                style={{
+                  paddingTop: "1rem",
+                  marginTop: "0.5rem",
+                  display: "flex",
+                  flexDirection: "column",
+                }}
+              >
+                <div className="new-table-shadow new-table-res new-table-hidden">
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                    }}
+                  >
+                    <p
+                      style={{
+                        paddingTop: "1.5rem",
+                        paddingLeft: ".4rem",
+                        color: "#212a50",
+                        fontWeight: "bold",
+                      }}
+                    >
+                      {item?.name || item?.bundle_name}
+                    </p>
+                    <>
+                      {new Date(item.validity.split("/").reverse()) > new Date() ? (
+                        <>
+                          {!item.progress || item.progress < 100 ? (
+                            <span
+                              onClick={() => {
+                                console.log(item);
+                                if (item?.form_ongoing) {
+                                  location.href = `/learnCourse/bundleList/?id=${item.id}`;
+                                } else if (item?.from_purchased) {
+                                  handleStartBundle(item.id, "purchased");
+                                } else {
+                                  handleStartBundle(item.id, "assigned");
+                                }
+                              }}
+                              style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}
+                              className="btn btn-success"
+                            >
+                              Start
+                            </span>
+                          ) : (
+                            <>
+                              <a style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}} className="btn btn-danger">Completed</a>
+                            </>
+                          )}
+                        </>
+                      ) : (
+                        <>
+                          <a style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}} className="btn btn-danger">Expired</a>
+                        </>
+                      )}
+                    </>
+                    {/* <button className="btn btn-success" style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}>View</button> */}
+                  </div>
+                </div>
+              </div>;
+            }) 
+            }
         </div>{" "}
       </div>
     </div>
