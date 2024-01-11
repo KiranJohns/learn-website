@@ -192,7 +192,6 @@ const ManAssignBund = () => {
       name: "validity",
       selector: (row) => row.validity,
       center: true,
-    
     },
     {
       name: "count",
@@ -266,7 +265,10 @@ const ManAssignBund = () => {
           >
             Purchased Bundle
           </h2>
-          <div className="reacttable-hidden" style={{ padding: "", backgroundColor: "" }}>
+          <div
+            className="reacttable-hidden"
+            style={{ padding: "", backgroundColor: "" }}
+          >
             <Modal
               styles={{ padding: "2rem" }}
               open={showModal}
@@ -443,7 +445,7 @@ const ManAssignBund = () => {
                 </div>
               </div>
             </Modal>
-            <div 
+            <div
               style={{ float: "right", marginBottom: "1.4rem" }}
               className="p-relative d-inline header__search searchbar-hidden2"
             >
@@ -490,25 +492,151 @@ const ManAssignBund = () => {
 
           {/* mobile component */}
 
-         
-          <div style={{paddingTop:'1rem',marginTop:"2.7rem", display:'flex', flexDirection:'column'}}>
-
-                <div className="new-table-shadow new-table-res new-table-hidden mt-2">
-                  <div style= {{display:'flex',justifyContent:'space-between'}}>
-                    <p style={{paddingTop:"1.5rem",paddingLeft:".4rem", color:'#212a50', fontWeight:'bold',}}>Course Name</p>
-                    <button className="btn btn-success" style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}>View</button>
-                  </div>
-                </div>
-
+          {searchString
+            ? records
+                .filter((item) =>
+                  item.bundle_name
+                    .toLowerCase()
+                    .startsWith(searchString.toLowerCase())
+                )
+                .map((item) => {
+                  let flag = false;
+                  let title = "Expired";
+                  let validity = item.validity.split("/").reverse();
+                  if (new Date(validity) > new Date()) {
+                    flag = true;
+                  } else {
+                    flag = false;
+                  }
+                  return <div
+                    style={{
+                      paddingTop: "1rem",
+                      marginTop: "2.7rem",
+                      display: "flex",
+                      flexDirection: "column",
+                    }}
+                  >
                     <div className="new-table-shadow new-table-res new-table-hidden mt-2">
-                  <div style= {{display:'flex',justifyContent:'space-between'}}>
-                    <p style={{paddingTop:"1.5rem",paddingLeft:".4rem", color:'#212a50', fontWeight:'bold',}}>Course Name</p>
-                    <button className="btn btn-success" style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}>View</button>
-                  </div>
-                </div>
-            </div>
-        
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                        }}
+                      >
+                        <p
+                          style={{
+                            paddingTop: "1.5rem",
+                            paddingLeft: ".4rem",
+                            color: "#212a50",
+                            fontWeight: "bold",
+                          }}
+                        >
+                          {item.bundle_name}
+                        </p>
+                        <>
+                          {flag ? (
+                            <a
+                              style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}
+                              className="btn btn-primary"
+                              onClick={() => {
+                                openModal();
+                                setCourseName(item.bundle_name);
+                                setAssignData((prev) => {
+                                  return {
+                                    ...prev,
+                                    course_id: item.id,
+                                  };
+                                });
 
+                                if (item?.from_assigned_table) {
+                                  setFromAssignedTable(true);
+                                } else {
+                                  setFromAssignedTable(false);
+                                }
+                                setSelectedBundleCount(item.course_count);
+                              }}
+                            >
+                              Assign To
+                            </a>
+                          ) : (
+                            <>
+                              <a style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}} className="btn btn-danger">{title}</a>
+                            </>
+                          )}
+                        </>
+                      </div>
+                    </div>
+                  </div>;
+                })
+            : records?.map((item) => {
+                let flag = false;
+                let title = "Expired";
+                let validity = item.validity.split("/").reverse();
+                if (new Date(validity) > new Date()) {
+                  flag = true;
+                } else {
+                  flag = false;
+                }
+                return <div
+                  style={{
+                    paddingTop: "1rem",
+                    marginTop: "2.7rem",
+                    display: "flex",
+                    flexDirection: "column",
+                  }}
+                >
+                  <div className="new-table-shadow new-table-res new-table-hidden mt-2">
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      <p
+                        style={{
+                          paddingTop: "1.5rem",
+                          paddingLeft: ".4rem",
+                          color: "#212a50",
+                          fontWeight: "bold",
+                        }}
+                      >
+                        {item.bundle_name}
+                      </p>
+                      <>
+                        {flag ? (
+                          <a
+                            style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}
+                            className="btn btn-primary"
+                            onClick={() => {
+                              openModal();
+                              setCourseName(item.bundle_name);
+                              setAssignData((prev) => {
+                                return {
+                                  ...prev,
+                                  course_id: item.id,
+                                };
+                              });
+
+                              if (item?.from_assigned_table) {
+                                setFromAssignedTable(true);
+                              } else {
+                                setFromAssignedTable(false);
+                              }
+                              setSelectedBundleCount(item.course_count);
+                            }}
+                          >
+                            Assign To
+                          </a>
+                        ) : (
+                          <>
+                            <a style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}} className="btn btn-danger">{title}</a>
+                          </>
+                        )}
+                      </>
+                    </div>
+                  </div>
+                </div>;
+              })}
         </div>{" "}
       </div>
     </div>
