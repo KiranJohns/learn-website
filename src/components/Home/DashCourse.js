@@ -147,6 +147,7 @@ const DashCourse = () => {
     {
       name: "Action",
       center: true,
+      width:'150px',
       cell: (row) => {
         let validity = row.validity.split("/").reverse();
         return (
@@ -259,7 +260,7 @@ const DashCourse = () => {
           </h2>
           <div
             style={{ float: "right", marginBottom: "1.4rem" }}
-            className="p-relative d-inline header__search"
+            className="p-relative d-inline header__search searchbar-hidden3"
           >
             <form action="">
               <input

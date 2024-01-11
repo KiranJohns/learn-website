@@ -63,7 +63,7 @@ const ManagerReport = () => {
       .catch((err) => console.log(err));
   };
 
-  const handleBlock = (block, id) => {};
+  const handleBlock = (block, id) => { };
 
   const columns = [
     {
@@ -133,7 +133,7 @@ const ManagerReport = () => {
                 float: "right",
                 marginBottom: "1.4rem",
               }}
-              className="p-relative d-inline header__search"
+              className="p-relative d-inline header__search searchbar-hidden"
             >
               <form action="">
                 <input
@@ -153,21 +153,21 @@ const ManagerReport = () => {
               <DataTable
                 progressPending={pending}
                 progressComponent={
-                 pending ? 
-                 (<div style={{ padding: "1rem" }}>
-                   <Spinner animation="border" variant="primary" />
-                 </div>) : (null)
-               }
+                  pending ?
+                    (<div style={{ padding: "1rem" }}>
+                      <Spinner animation="border" variant="primary" />
+                    </div>) : (null)
+                }
                 noDataComponent={"No records to display"}
                 persistTableHead={true}
                 columns={columns}
                 data={
                   searchString
                     ? records.filter((item) =>
-                        item.first_name
-                          .toLowerCase()
-                          .startsWith(searchString.toLowerCase())
-                      )
+                      item.first_name
+                        .toLowerCase()
+                        .startsWith(searchString.toLowerCase())
+                    )
                     : records
                 }
                 customStyles={customStyles}

@@ -68,7 +68,7 @@ const CompTransaction = () => {
       name: "User",
       selector: (row, idx) => row.first_name.concat(" ",row.last_name),
       center: true,
-      width: "100px"
+      width: "225px"
     },
     {
       name: "Date",
@@ -112,7 +112,7 @@ const CompTransaction = () => {
           <div style={{ padding: "", backgroundColor: "" }}>
             <div
               style={{ float: "right", marginBottom: "1.4rem" }}
-              className="p-relative d-inline header__search"
+              className="p-relative d-inline header__search searchbar-hidden2 "
             >
               <form action="">
                 <input

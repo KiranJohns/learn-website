@@ -205,7 +205,7 @@ const CompanyBundle = () => {
           <div style={{ padding: "", backgroundColor: "" }}>
             <div
               style={{ float: "right", marginBottom: "1.4rem" }}
-              className="p-relative d-inline header__search"
+              className="p-relative d-inline header__search searchbar-hidden1"
             >
               <form action="">
                 <input

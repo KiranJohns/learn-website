@@ -111,7 +111,8 @@ const CWIndReport = () => {
               display: "flex",
               justifyContent: "center",
               position: "absolute",
-              fontSize: 36,
+              fontSize: 33,
+              marginTop:'1.4rem'
             }}
           >
             Course Wise Individual
@@ -119,7 +120,7 @@ const CWIndReport = () => {
           <div style={{ padding: "", backgroundColor: "" }}>
             <div
               style={{ float: "right", marginBottom: "1.4rem" }}
-              className="p-relative d-inline header__search"
+              className="p-relative d-inline header__search searchbar-hidden2"
             >
               <form action="">
                 <input
