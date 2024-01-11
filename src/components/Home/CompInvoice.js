@@ -138,30 +138,135 @@ const CompInvoice = () => {
                 </button>
               </form>
             </div>
-            <DataTable
-              progressPending={pending}
-              progressComponent={
-                pending ? (
-                  <div style={{ padding: "1rem" }}>
-                    <Spinner animation="border" variant="primary" />
-                  </div>
-                ) : null
-              }
-              persistTableHead={true}
-              columns={columns}
-              data={
-                searchString
-                  ? records.filter((item) =>
-                      item.first_name
-                        .toLowerCase()
-                        .startsWith(searchString.toLowerCase())
-                    )
-                  : records
-              }
-              customStyles={customStyles}
-              pagination
-              noDataComponent={"No records to display"}
-            />
+            <div className="reacttable-hidden">
+              <DataTable
+                progressPending={pending}
+                progressComponent={
+                  pending ? (
+                    <div style={{ padding: "1rem" }}>
+                      <Spinner animation="border" variant="primary" />
+                    </div>
+                  ) : null
+                }
+                persistTableHead={true}
+                columns={columns}
+                data={
+                  searchString
+                    ? records.filter((item) =>
+                        item.first_name
+                          .toLowerCase()
+                          .startsWith(searchString.toLowerCase())
+                      )
+                    : records
+                }
+                customStyles={customStyles}
+                pagination
+                noDataComponent={"No records to display"}
+              />
+            </div>
+            {searchString
+              ? records
+                  .filter((item) =>
+                    item.first_name
+                      .toLowerCase()
+                      .startsWith(searchString.toLowerCase())
+                  )
+                  .map((item) => {
+                    return (
+                      <div
+                        style={{
+                          paddingTop: "1rem",
+                          marginTop: "3rem",
+                          display: "flex",
+                          flexDirection: "column",
+                          width: "100%",
+                        }}
+                      >
+                        <div className="new-table-shadow new-table-res new-table-hidden">
+                          <div
+                            style={{
+                              display: "flex",
+                              justifyContent: "space-between",
+                            }}
+                          >
+                            <p
+                              style={{
+                                paddingTop: "1.5rem",
+                                paddingLeft: ".4rem",
+                                color: "#212a50",
+                                fontWeight: "bold",
+                              }}
+                            >
+                              {item.first_name.concat(" ", item.last_name)}
+                            </p>
+                            {/* <button className="btn btn-success" style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}>View</button> */}
+                            <Button
+                              style={{
+                                background: "#212a50",
+                                color: "white",
+                                height: "35px",
+                                marginTop: "1rem",
+                                marginRight: ".4rem",
+                              }}
+                              variant="success btn-icon-xxs"
+                            >
+                              <a target="_blank" href={item.img}>
+                                <FaEye />
+                              </a>
+                            </Button>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })
+              : records.map((item) => {
+                  return (
+                    <div
+                      style={{
+                        paddingTop: "1rem",
+                        marginTop: "3rem",
+                        display: "flex",
+                        flexDirection: "column",
+                        width: "100%",
+                      }}
+                    >
+                      <div className="new-table-shadow new-table-res new-table-hidden">
+                        <div
+                          style={{
+                            display: "flex",
+                            justifyContent: "space-between",
+                          }}
+                        >
+                          <p
+                            style={{
+                              paddingTop: "1.5rem",
+                              paddingLeft: ".4rem",
+                              color: "#212a50",
+                              fontWeight: "bold",
+                            }}
+                          >
+                            {item.first_name.concat(" ", item.last_name)}
+                          </p>
+                          {/* <button className="btn btn-success" style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}>View</button> */}
+                          <Button
+                            style={{
+                              background: "#212a50",
+                              color: "white",
+                              height: "35px",
+                              marginTop: "1rem",
+                              marginRight: ".4rem",
+                            }}
+                            variant="success btn-icon-xxs"
+                          >
+                            <a target="_blank" href={item.img}>
+                              <FaEye />
+                            </a>
+                          </Button>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
           </div>
         </div>{" "}
       </div>
