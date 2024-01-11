@@ -4,12 +4,12 @@ import DataTable from "react-data-table-component";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import fetchData from "../../axios";
-import Button from 'react-bootstrap/Button';
+import Button from "react-bootstrap/Button";
 import { CSVLink, CSVDownload } from "react-csv";
 import { FaLock } from "react-icons/fa";
 import { FaUnlock } from "react-icons/fa";
 import { Suspense } from "react";
-import Spinner from 'react-bootstrap/Spinner';
+import Spinner from "react-bootstrap/Spinner";
 
 const customStyles = {
   headRow: {
@@ -38,36 +38,31 @@ const DashSUser = () => {
   const [searchString, setSearchString] = useState("");
   const makeRequest = fetchData();
 
-  const[csvf,setCsvf] = useState([])
+  const [csvf, setCsvf] = useState([]);
 
-  useEffect(()=>{
-    fetch('https://jsonplaceholder.typicode.com/users')
-      .then(response => response.json())
-      .then(json => {
-      let data =[];
-      json.forEach((item)=>{
-        let object ={
-          id: item.id,
-          name: item.name,
-          username: item.username,
-          email: item.email
-        }
-        data.push(object)
-  })
-  setCsvf(data);
+  useEffect(() => {
+    fetch("https://jsonplaceholder.typicode.com/users")
+      .then((response) => response.json())
+      .then((json) => {
+        let data = [];
+        json.forEach((item) => {
+          let object = {
+            id: item.id,
+            name: item.name,
+            username: item.username,
+            email: item.email,
+          };
+          data.push(object);
+        });
+        setCsvf(data);
+      });
+  }, []);
 
-})
-},[])
-
-const [pending, setPending] = React.useState(true);
-
-
-
+  const [pending, setPending] = React.useState(true);
 
   useEffect(() => {
     getData();
   }, []);
-
 
   const handleFilter = (event) => {
     const newData = filterRecords.filter((row) =>
@@ -80,9 +75,14 @@ const [pending, setPending] = React.useState(true);
     makeRequest("GET", "/info/get-all-individuals-under-company")
       .then((res) => {
         console.log(res.data.response);
-        setRecords(res.data.response.flat(1).filter(item => item.type_of_account != 'manager').reverse());
+        setRecords(
+          res.data.response
+            .flat(1)
+            .filter((item) => item.type_of_account != "manager")
+            .reverse()
+        );
         setFilterRecords(res.data);
-        setPending(false)
+        setPending(false);
       })
       .catch((err) => console.log(err));
   };
@@ -112,28 +112,28 @@ const [pending, setPending] = React.useState(true);
     {
       name: "ID",
       selector: (row) => row.id,
-      center:"true", 
-       width:"100px"
+      center: "true",
+      width: "100px",
     },
     {
       name: "User",
       selector: (row) => row.first_name + " " + row.last_name,
-  
-      center:"true", 
+
+      center: "true",
     },
     {
       name: "city",
       selector: (row) => row.city,
-      center:"true", 
+      center: "true",
     },
     {
       name: "Email",
       selector: (row) => row.email,
-      center:"true", 
+      center: "true",
     },
     {
       name: "Action",
-      center:"true", 
+      center: "true",
       cell: (row) => (
         <a
           onClick={() => handleBlock(row.block, row.id)}
@@ -164,7 +164,10 @@ const [pending, setPending] = React.useState(true);
           pauseOnHover
           theme="light"
         />
-        <div style={{position:'relative'}} className=" row g-3  min-vh-100  d-flex justify-content-center mt-20">
+        <div
+          style={{ position: "relative" }}
+          className=" row g-3  min-vh-100  d-flex justify-content-center mt-20"
+        >
           <h2
             style={{
               color: "#212450",
@@ -177,7 +180,6 @@ const [pending, setPending] = React.useState(true);
             Individuals
           </h2>
           <div style={{ padding: "", backgroundColor: "" }}>
-
             {/* CSV export*/}
             {/* <span style={{ marginLeft: "1rem", paddingTop: '.5rem', position:"absolute", outline:'none', border:'none' }}>
               <CSVLink data={csvf}>
@@ -185,7 +187,7 @@ const [pending, setPending] = React.useState(true);
               </CSVLink>
             </span> */}
 
-          <div
+            <div
               style={{ float: "right", marginBottom: "1.4rem" }}
               className="p-relative d-inline header__search searchbar-hidden1"
             >
@@ -203,32 +205,127 @@ const [pending, setPending] = React.useState(true);
                 </button>
               </form>
             </div>
-            <Suspense fallback={<Loading />}>
-            <DataTable
-                    progressPending={pending}
-                    progressComponent={
-                      pending ? 
-                      (<div style={{ padding: "1rem" }}>
+            <div className="reacttable-hidden">
+              <Suspense fallback={<Loading />}>
+                <DataTable
+                  progressPending={pending}
+                  progressComponent={
+                    pending ? (
+                      <div style={{ padding: "1rem" }}>
                         <Spinner animation="border" variant="primary" />
-                      </div>) : (null)
-                    }
-            noDataComponent={"No records to display"}
-             persistTableHead={true}
-              columns={columns}
-              data={
-                searchString
-                  ? records.filter((item) =>
-                      item.first_name
-                        .toLowerCase()
-                        .startsWith(searchString.toLowerCase())
-                    )
-                  : records
-              }
-              customStyles={customStyles}
-              pagination
-             
-            />
-            </Suspense>
+                      </div>
+                    ) : null
+                  }
+                  noDataComponent={"No records to display"}
+                  persistTableHead={true}
+                  columns={columns}
+                  data={
+                    searchString
+                      ? records.filter((item) =>
+                          item.first_name
+                            .toLowerCase()
+                            .startsWith(searchString.toLowerCase())
+                        )
+                      : records
+                  }
+                  customStyles={customStyles}
+                  pagination
+                />
+              </Suspense>
+            </div>
+            {searchString
+              ? records
+                  .filter((item) =>
+                    item.first_name
+                      .toLowerCase()
+                      .startsWith(searchString.toLowerCase())
+                  )
+                  .map((item) => {
+                    return (
+                      <div
+                        style={{
+                          paddingTop: "1rem",
+                          marginTop: "3rem",
+                          display: "flex",
+                          flexDirection: "column",
+                          width: "100%",
+                        }}
+                      >
+                        <div className="new-table-shadow new-table-res new-table-hidden">
+                          <div
+                            style={{
+                              display: "flex",
+                              justifyContent: "space-between",
+                            }}
+                          >
+                            <p
+                              style={{
+                                paddingTop: "1.5rem",
+                                paddingLeft: ".4rem",
+                                color: "#212a50",
+                                fontWeight: "bold",
+                              }}
+                            >
+                              {item.first_name + " " + item.last_name}
+                            </p>
+                            <a
+                              onClick={() => handleBlock(item.block, item.id)}
+                              className={
+                                item.block
+                                  ? "btn btn-danger"
+                                  : "btn btn-success"
+                              }
+                              style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}
+                            >
+                              {item.block ? <FaLock /> : <FaUnlock />}
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })
+              : records.map((item) => {
+                  return (
+                    <div
+                      style={{
+                        paddingTop: "1rem",
+                        marginTop: "3rem",
+                        display: "flex",
+                        flexDirection: "column",
+                        width: "100%",
+                      }}
+                    >
+                      <div className="new-table-shadow new-table-res new-table-hidden">
+                        <div
+                          style={{
+                            display: "flex",
+                            justifyContent: "space-between",
+                          }}
+                        >
+                          <p
+                            style={{
+                              paddingTop: "1.5rem",
+                              paddingLeft: ".4rem",
+                              color: "#212a50",
+                              fontWeight: "bold",
+                            }}
+                          >
+                            {item.first_name + " " + item.last_name}
+                          </p>
+                          <a
+                          style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}
+                            onClick={() => handleBlock(item.block, item.id)}
+                            className={
+                              item.block ? "btn btn-danger" : "btn btn-success"
+                            }
+                          >
+                            {item.block ? <FaLock /> : <FaUnlock />}
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
           </div>
         </div>{" "}
       </div>
@@ -238,12 +335,12 @@ const [pending, setPending] = React.useState(true);
 
 export default DashSUser;
 
-
 function Loading() {
   return <h2>🌀 Loading...</h2>;
 }
 
-  {/* <div
+{
+  /* <div
             className="pb-2 smth"
             style={{ display: "flex", justifyContent: "left" }}
           >
@@ -258,4 +355,5 @@ function Loading() {
                 overflow: "hidden",
               }}
             />
-          </div> */}
+          </div> */
+}

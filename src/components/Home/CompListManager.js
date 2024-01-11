@@ -8,7 +8,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { FaLock } from "react-icons/fa";
 import { FaUnlock } from "react-icons/fa";
-import Spinner from 'react-bootstrap/Spinner';
+import Spinner from "react-bootstrap/Spinner";
 
 const customStyles = {
   headRow: {
@@ -48,21 +48,17 @@ const CompListManager = () => {
     setRecords(newData);
   };
 
-  
-
   const getData = () => {
     makeRequest("GET", "/info/get-all-managers")
       .then((res) => {
         console.log(res.data.response);
         setRecords(res.data.response.reverse());
-        setPending(false)
+        setPending(false);
       })
       .catch((err) => console.log(err));
   };
 
   const [pending, setPending] = React.useState(true);
-	
-
 
   const handleBlock = (block, id) => {
     let url = null;
@@ -89,28 +85,28 @@ const CompListManager = () => {
     {
       name: "ID",
       selector: (row) => row.id,
-      width:"110px",
-      center:'true',
+      width: "110px",
+      center: "true",
     },
     {
       name: "Name",
       selector: (row) => row.first_name + " " + row.last_name,
       sortable: true,
-      center:'true',
+      center: "true",
     },
     {
       name: "City",
       selector: (row) => row.city,
-      center:'true',
+      center: "true",
     },
     {
       name: "Email",
       selector: (row) => row.email,
-      center:'true'
+      center: "true",
     },
     {
       name: "Action",
-      center:'true',
+      center: "true",
       cell: (row) => (
         <a
           onClick={() => handleBlock(row.block, row.id)}
@@ -137,7 +133,10 @@ const CompListManager = () => {
           pauseOnHover
           theme="light"
         />
-        <div style={{position:"relative"}} className=" row g-3  min-vh-100  d-flex justify-content-center mt-20">
+        <div
+          style={{ position: "relative" }}
+          className=" row g-3  min-vh-100  d-flex justify-content-center mt-20"
+        >
           <h2
             style={{
               color: "#212450",
@@ -147,7 +146,7 @@ const CompListManager = () => {
               fontSize: 36,
             }}
           >
-         Managers
+            Managers
           </h2>
           <div style={{ padding: "", backgroundColor: "" }}>
             <div
@@ -168,28 +167,129 @@ const CompListManager = () => {
                 </button>
               </form>
             </div>
-            <Suspense fallback={<Spinner animation="border" variant="primary" />}>
-              <DataTable
-                progressPending={pending}
-                progressComponent={
-                  pending ? 
-                  (<div style={{ padding: "1rem" }}>
-                    <Spinner animation="border" variant="primary" />
-                  </div>) : (null)
-                }
-                columns={columns}
-                data={
-                  searchString
-                    ? records.filter((item) =>
-                        item.first_name.toLowerCase().startsWith(searchString.toLowerCase())
-                      )
-                    : records
-                }
-                customStyles={customStyles}
-                pagination
-                persistTableHead={true}
-              />
-            </Suspense>
+            <div className="reacttable-hidden">
+              <Suspense
+                fallback={<Spinner animation="border" variant="primary" />}
+              >
+                <DataTable
+                  progressPending={pending}
+                  progressComponent={
+                    pending ? (
+                      <div style={{ padding: "1rem" }}>
+                        <Spinner animation="border" variant="primary" />
+                      </div>
+                    ) : null
+                  }
+                  columns={columns}
+                  data={
+                    searchString
+                      ? records.filter((item) =>
+                          item.first_name
+                            .toLowerCase()
+                            .startsWith(searchString.toLowerCase())
+                        )
+                      : records
+                  }
+                  customStyles={customStyles}
+                  pagination
+                  persistTableHead={true}
+                />
+              </Suspense>
+            </div>
+
+            {searchString
+              ? records
+                  .filter((item) =>
+                    item.first_name
+                      .toLowerCase()
+                      .startsWith(searchString.toLowerCase())
+                  )
+                  .map((item) => {
+                    return (
+                      <div
+                        style={{
+                          paddingTop: "1rem",
+                          marginTop: "3rem",
+                          display: "flex",
+                          flexDirection: "column",
+                          width: "100%",
+                        }}
+                      >
+                        <div className="new-table-shadow new-table-res new-table-hidden">
+                          <div
+                            style={{
+                              display: "flex",
+                              justifyContent: "space-between",
+                            }}
+                          >
+                            <p
+                              style={{
+                                paddingTop: "1.5rem",
+                                paddingLeft: ".4rem",
+                                color: "#212a50",
+                                fontWeight: "bold",
+                              }}
+                            >
+                              {item.first_name + " " + item.last_name}
+                            </p>
+                            <a
+                              onClick={() => handleBlock(item.block, item.id)}
+                              className={
+                                item.block
+                                  ? "btn btn-danger"
+                                  : "btn btn-success"
+                              }
+                              style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}
+                            >
+                              {item.block ? <FaLock /> : <FaUnlock />}
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })
+              : records.map((item) => {
+                  return (
+                    <div
+                      style={{
+                        paddingTop: "1rem",
+                        marginTop: "3rem",
+                        display: "flex",
+                        flexDirection: "column",
+                        width: "100%",
+                      }}
+                    >
+                      <div className="new-table-shadow new-table-res new-table-hidden">
+                        <div
+                          style={{
+                            display: "flex",
+                            justifyContent: "space-between",
+                          }}
+                        >
+                          <p
+                            style={{
+                              paddingTop: "1.5rem",
+                              paddingLeft: ".4rem",
+                              color: "#212a50",
+                              fontWeight: "bold",
+                            }}
+                          >
+                            {item.first_name + " " + item.last_name}
+                          </p>
+                          <a
+                          style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}
+                            onClick={() => handleBlock(item.block, item.id)}
+                            className={
+                              item.block ? "btn btn-danger" : "btn btn-success"
+                            }
+                          >
+                            {item.block ? <FaLock /> : <FaUnlock />}
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
           </div>
         </div>{" "}
       </div>
