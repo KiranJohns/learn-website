@@ -221,32 +221,238 @@ const CompanyBundle = () => {
                 </button>
               </form>
             </div>
-            <Suspense fallback={<Loading />}>
-              <DataTable
-                progressPending={pending}
-                progressComponent={
-                  pending ? (
-                    <div style={{ padding: "1rem" }}>
-                      <Spinner animation="border" variant="primary" />
+            <div
+              className="reacttable-hidden"
+              style={{ padding: "", backgroundColor: "" }}
+            >
+              <Suspense fallback={<Loading />}>
+                <DataTable
+                  progressPending={pending}
+                  progressComponent={
+                    pending ? (
+                      <div style={{ padding: "1rem" }}>
+                        <Spinner animation="border" variant="primary" />
+                      </div>
+                    ) : null
+                  }
+                  noDataComponent={"No records to display"}
+                  columns={columns}
+                  data={
+                    searchString
+                      ? records.filter((item) =>
+                          (item?.name || item?.bundle_name)
+                            .toLowerCase()
+                            .startsWith(searchString.toLowerCase())
+                        )
+                      : records
+                  }
+                  customStyles={customStyles}
+                  pagination
+                  persistTableHead={true}
+                />
+              </Suspense>
+            </div>
+            {searchString
+              ? records
+                  .filter((item) =>
+                    (item?.name || item?.bundle_name)
+                      .toLowerCase()
+                      .startsWith(searchString.toLowerCase())
+                  )
+                  .map((item) => {
+                    let validity = item.validity.split("/").reverse();
+
+                    return (
+                      <div
+                        style={{
+                          paddingTop: "1rem",
+                          width: '100%',
+                          marginTop: "3rem",
+                          display: "flex",
+                          flexDirection: "column",
+                        }}
+                      >
+                        <div className="new-table-shadow new-table-res new-table-hidden">
+                          <div
+                            style={{
+                              display: "flex",
+                              justifyContent: "space-between",
+                            }}
+                          >
+                            <p
+                              style={{
+                                paddingTop: "1.5rem",
+                                paddingLeft: ".4rem",
+                                color: "#212a50",
+                                fontWeight: "bold",
+                              }}
+                            >
+                              {item?.name || item?.bundle_name}
+                            </p>
+                            {/* <button className="btn btn-success" style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}>View</button> */}
+                            <>
+                              {new Date(validity) > new Date() ? (
+                                <>
+                                  {!item?.progress || item?.progress < 100 ? (
+                                    <a
+                                      className="btn btn-success"
+                                      style={{
+                                        width: "7rem",
+                                        height: "35px",
+                                        marginTop: "1rem",
+                                        marginRight: ".4rem",
+                                      }}
+                                      onClick={() => {
+                                        if (item?.form_ongoing) {
+                                          location.href = `/learnCourse/bundleList/?id=${item.id}`;
+                                        } else {
+                                          handleStartBundle(item.id);
+                                        }
+                                      }}
+                                    >
+                                      Start
+                                    </a>
+                                  ) : (
+                                    <>
+                                      <a
+                                        onClick={() => {
+                                          if (item?.form_ongoing) {
+                                            location.href = `/learnCourse/bundleList/?id=${item.id}`;
+                                          } else {
+                                            handleStartBundle(item.id);
+                                          }
+                                        }}
+                                        className="btn btn-danger"
+                                        style={{
+                                          width: "7rem",
+                                          height: "35px",
+                                          marginTop: "1rem",
+                                          marginRight: ".4rem",
+                                        }}
+                                      >
+                                        Completed
+                                      </a>
+                                    </>
+                                  )}
+                                </>
+                              ) : (
+                                <>
+                                  <a
+                                    style={{
+                                      width: "7rem",
+                                      height: "35px",
+                                      marginTop: "1rem",
+                                      marginRight: ".4rem",
+                                    }}
+                                    className="btn btn-danger"
+                                  >
+                                    Expired
+                                  </a>
+                                </>
+                              )}
+                            </>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })
+              : records.map((item) => {
+                  let validity = item.validity.split("/").reverse();
+
+                  return (
+                    <div
+                      style={{
+                        width: '100%',
+                        paddingTop: "1rem",
+                        marginTop: "3rem",
+                        display: "flex",
+                        flexDirection: "column",
+                      }}
+                    >
+                      <div className="new-table-shadow new-table-res new-table-hidden">
+                        <div
+                          style={{
+                            display: "flex",
+                            justifyContent: "space-between",
+                          }}
+                        >
+                          <p
+                            style={{
+                              paddingTop: "1.5rem",
+                              paddingLeft: ".4rem",
+                              color: "#212a50",
+                              fontWeight: "bold",
+                            }}
+                          >
+                            {item?.name || item?.bundle_name}
+                          </p>
+                          {/* <button className="btn btn-success" style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}>View</button> */}
+                          <>
+                            {new Date(validity) > new Date() ? (
+                              <>
+                                {!item?.progress || item?.progress < 100 ? (
+                                  <a
+                                    className="btn btn-success"
+                                    style={{
+                                      width: "7rem",
+                                      height: "35px",
+                                      marginTop: "1rem",
+                                      marginRight: ".4rem",
+                                    }}
+                                    onClick={() => {
+                                      if (item?.form_ongoing) {
+                                        location.href = `/learnCourse/bundleList/?id=${item.id}`;
+                                      } else {
+                                        handleStartBundle(item.id);
+                                      }
+                                    }}
+                                  >
+                                    Start
+                                  </a>
+                                ) : (
+                                  <>
+                                    <a
+                                      onClick={() => {
+                                        if (item?.form_ongoing) {
+                                          location.href = `/learnCourse/bundleList/?id=${item.id}`;
+                                        } else {
+                                          handleStartBundle(item.id);
+                                        }
+                                      }}
+                                      className="btn btn-danger"
+                                      style={{
+                                        width: "7rem",
+                                        height: "35px",
+                                        marginTop: "1rem",
+                                        marginRight: ".4rem",
+                                      }}
+                                    >
+                                      Completed
+                                    </a>
+                                  </>
+                                )}
+                              </>
+                            ) : (
+                              <>
+                                <a
+                                  style={{
+                                    width: "7rem",
+                                    height: "35px",
+                                    marginTop: "1rem",
+                                    marginRight: ".4rem",
+                                  }}
+                                  className="btn btn-danger"
+                                >
+                                  Expired
+                                </a>
+                              </>
+                            )}
+                          </>
+                        </div>
+                      </div>
                     </div>
-                  ) : null
-                }
-                noDataComponent={"No records to display"}
-                columns={columns}
-                data={
-                  searchString
-                    ? records.filter((item) =>
-                        (item?.name || item?.bundle_name)
-                          .toLowerCase()
-                          .startsWith(searchString.toLowerCase())
-                      )
-                    : records
-                }
-                customStyles={customStyles}
-                pagination
-                persistTableHead={true}
-              />
-            </Suspense>
+                  );
+                })}
           </div>
         </div>{" "}
       </div>
