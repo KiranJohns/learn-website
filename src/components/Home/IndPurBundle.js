@@ -107,7 +107,10 @@ const IndPurBundle = () => {
           >
             Purchased Bundles
           </h2>
-          <div style={{ padding: "", backgroundColor: "" }}>
+          <div
+            className="reacttable-hidden"
+            style={{ padding: "", backgroundColor: "" }}
+          >
             {/* <div
               className="pb-2 smth"
               style={{ display: "flex", justifyContent: "left" }}
@@ -166,6 +169,105 @@ const IndPurBundle = () => {
               pagination
               persistTableHead={true}
             />
+          </div>
+          <div style={{marginTop: '2rem'}}>
+            {searchString
+              ? records
+                  .filter((item) =>
+                    (item?.name || item?.bundle_name)
+                      .toLowerCase()
+                      .startsWith(searchString.toLowerCase())
+                  )
+                  .map((item) => {
+                    return (
+                      <div
+                        style={{
+                          paddingTop: "1rem",
+                          marginTop: "0.5rem",
+                          display: "flex",
+                          flexDirection: "column",
+                        }}
+                      >
+                        <div className="new-table-shadow new-table-res new-table-hidden">
+                          <div
+                            style={{
+                              display: "flex",
+                              justifyContent: "space-between",
+                            }}
+                          >
+                            <p
+                              style={{
+                                paddingTop: "1.5rem",
+                                paddingLeft: ".4rem",
+                                color: "#212a50",
+                                fontWeight: "bold",
+                              }}
+                            >
+                              {item?.name || item?.bundle_name}
+                            </p>
+                            <a
+                              style={{
+                                height: "35px",
+                                marginTop: "1rem",
+                                marginRight: ".4rem",
+                              }}
+                              href="https://test.learnforcare.co.uk/bundle/bundle-all"
+                            >
+                              <Button style={{ background: "#212a50" }}>
+                                <FaEye />
+                              </Button>
+                            </a>
+                            {/* <button className="btn btn-success" style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}>View</button> */}
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })
+              : records.map((item) => {
+                  return (
+                    <div
+                      style={{
+                        paddingTop: "1rem",
+                        marginTop: "0.5rem",
+                        display: "flex",
+                        flexDirection: "column",
+                      }}
+                    >
+                      <div className="new-table-shadow new-table-res new-table-hidden">
+                        <div
+                          style={{
+                            display: "flex",
+                            justifyContent: "space-between",
+                          }}
+                        >
+                          <p
+                            style={{
+                              paddingTop: "1.5rem",
+                              paddingLeft: ".4rem",
+                              color: "#212a50",
+                              fontWeight: "bold",
+                            }}
+                          >
+                            {item?.name || item?.bundle_name}
+                          </p>
+                          <a
+                            style={{
+                              height: "35px",
+                              marginTop: "1rem",
+                              marginRight: ".4rem",
+                            }}
+                            href="https://test.learnforcare.co.uk/bundle/bundle-all"
+                          >
+                            <Button style={{ background: "#212a50" }}>
+                              <FaEye />
+                            </Button>
+                          </a>
+                          {/* <button className="btn btn-success" style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}>View</button> */}
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
           </div>
         </div>{" "}
       </div>
