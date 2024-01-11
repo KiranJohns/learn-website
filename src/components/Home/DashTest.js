@@ -63,7 +63,7 @@ class DashTest extends Component {
       makeRequest("GET", "/info/data")
         .then((res) => {
           console.log(res.data.response[0]);
-          this.setState({ ...this.state, user: res.data.response[0] });
+          this?.setState({ ...this.state, user: res.data.response[0] });
         })
         .catch((err) => {
           console.log(err);
@@ -71,9 +71,9 @@ class DashTest extends Component {
       makeRequest("GET", "/on-going-course/get-all-on-going-courses")
         .then((res) => {
           console.log(res);
-          this.setState({
-            records: res.data.response,
-            filterRecords: res.data,
+          this?.setState({
+            records: res.data.response || [],
+            filterRecords: res.data || [],
           });
         })
         .catch((err) => {
@@ -128,7 +128,7 @@ class DashTest extends Component {
               flag = true;
             }
           }
-          
+
           return (
             <>
               {flag ? (
@@ -452,13 +452,14 @@ class DashTest extends Component {
               </div>
             </div>
 
-            <div className=" row g-3  min-vh-100   ag-format-container">
-              <div style={{}}>
-                <div
-                  className="pb-2"
-                  style={{ display: "flex", justifyContent: "right" }}
-                >
-                  {/* <input
+            <div className="reacttable-hidden">
+              <div className=" row g-3  min-vh-100   ag-format-container">
+                <div style={{}}>
+                  <div
+                    className="pb-2"
+                    style={{ display: "flex", justifyContent: "right" }}
+                  >
+                    {/* <input
                     type="text"
                     className=""
                     placeholder="Search course"
@@ -472,28 +473,204 @@ class DashTest extends Component {
                       background: "#EDEEF3",
                     }}
                   /> */}
-                </div>
-                <div>
-                  <DataTable
-                   responsive={true}
-                    noDataComponent={"No records to display"}
-                    persistTableHead={true}
-                    columns={columns}
-                    data={
-                      this.state.searchString
-                        ? this.state.records.filter((item) =>
-                            (item.Name || item.name)
-                              .toLowerCase()
-                              .includes(this.state.searchString.toLowerCase())
-                          )
-                        : this.state.records
-                    }
-                    customStyles={customStyles}
-                    pagination
-                  />
+                  </div>
+                  <div>
+                    <DataTable
+                      responsive={true}
+                      noDataComponent={"No records to display"}
+                      persistTableHead={true}
+                      columns={columns}
+                      data={
+                        this.state.searchString
+                          ? this.state.records.filter((item) =>
+                              (item.Name || item.name)
+                                .toLowerCase()
+                                .includes(this.state.searchString.toLowerCase())
+                            )
+                          : this.state.records
+                      }
+                      customStyles={customStyles}
+                      pagination
+                    />
+                  </div>
                 </div>
               </div>
             </div>
+            {this.state.searchString
+              ? this.state.records
+                  .filter((item) =>
+                    (item.Name || item.name)
+                      .toLowerCase()
+                      .includes(this.state.searchString.toLowerCase())
+                  )
+                  .map((item) => {
+                    let validity = item.validity.split("/").reverse();
+                    let flag = false;
+                    let title = "Start";
+
+                    if (
+                      new Date(validity) <= new Date() ||
+                      item?.attempts >= 20
+                    ) {
+                      title = "Expired";
+                      flag = false;
+                    } else {
+                      title = "Start";
+                      flag = true;
+                      if (item.progress >= 80) {
+                        title = "Completed";
+                        flag = true;
+                      }
+                    }
+
+                    return (
+                      <div
+                        style={{
+                          paddingTop: "1rem",
+                          marginTop: "3rem",
+                          display: "flex",
+                          flexDirection: "column",
+                        }}
+                      >
+                        <div className="new-table-shadow new-table-res new-table-hidden">
+                          <div
+                            style={{
+                              display: "flex",
+                              justifyContent: "space-between",
+                            }}
+                          >
+                            <p
+                              style={{
+                                paddingTop: "1.5rem",
+                                paddingLeft: ".4rem",
+                                color: "#212a50",
+                                fontWeight: "bold",
+                              }}
+                            >
+                              {item?.Name || item?.name}
+                            </p>
+                            {/* <button className="btn btn-success" style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}>View</button> */}
+                            <>
+                              {flag ? (
+                                <a
+                                  style={{
+                                    width: "7rem",
+                                    height: "35px",
+                                    marginTop: "1rem",
+                                    marginRight: ".4rem",
+                                  }}
+                                  onClick={() => {
+                                    location.href = `/learnCourse/coursepage/?courseId=${item.id}`;
+                                  }}
+                                  className="btn btn-success"
+                                >
+                                  {title}
+                                </a>
+                              ) : (
+                                <>
+                                  <a
+                                    style={{
+                                      width: "7rem",
+                                      height: "35px",
+                                      marginTop: "1rem",
+                                      marginRight: ".4rem",
+                                    }}
+                                    className="btn btn-danger"
+                                  >
+                                    {title}
+                                  </a>
+                                </>
+                              )}
+                            </>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })
+              : this.state.records.map((item) => {
+                let validity = item.validity.split("/").reverse();
+                let flag = false;
+                let title = "Start";
+
+                if (
+                  new Date(validity) <= new Date() ||
+                  item?.attempts >= 20
+                ) {
+                  title = "Expired";
+                  flag = false;
+                } else {
+                  title = "Start";
+                  flag = true;
+                  if (item.progress >= 80) {
+                    title = "Completed";
+                    flag = true;
+                  }
+                }
+
+                return (
+                  <div
+                    style={{
+                      paddingTop: "1rem",
+                      marginTop: "3rem",
+                      display: "flex",
+                      flexDirection: "column",
+                    }}
+                  >
+                    <div className="new-table-shadow new-table-res new-table-hidden">
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                        }}
+                      >
+                        <p
+                          style={{
+                            paddingTop: "1.5rem",
+                            paddingLeft: ".4rem",
+                            color: "#212a50",
+                            fontWeight: "bold",
+                          }}
+                        >
+                          {item?.Name || item?.name}
+                        </p>
+                        {/* <button className="btn btn-success" style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}>View</button> */}
+                        <>
+                          {flag ? (
+                            <a
+                              style={{
+                                width: "7rem",
+                                height: "35px",
+                                marginTop: "1rem",
+                                marginRight: ".4rem",
+                              }}
+                              onClick={() => {
+                                location.href = `/learnCourse/coursepage/?courseId=${item.id}`;
+                              }}
+                              className="btn btn-success"
+                            >
+                              {title}
+                            </a>
+                          ) : (
+                            <>
+                              <a
+                                style={{
+                                  width: "7rem",
+                                  height: "35px",
+                                  marginTop: "1rem",
+                                  marginRight: ".4rem",
+                                }}
+                                className="btn btn-danger"
+                              >
+                                {title}
+                              </a>
+                            </>
+                          )}
+                        </>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
           </div>
         </div>
       </div>

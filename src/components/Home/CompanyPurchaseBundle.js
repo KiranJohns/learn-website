@@ -120,14 +120,13 @@ class CompanyPurBundle extends Component {
                
               />
             </div>
-            
-           <div style={{paddingTop:'1rem',marginTop:"3rem", display:'flex', flexDirection:'column'}}>
-                <div className="new-table-shadow new-table-res new-table-hidden">
-                  <div style= {{display:'flex',justifyContent:'space-between'}}>
-                    <p style={{paddingTop:"1.5rem",paddingLeft:".4rem", color:'#212a50', fontWeight:'bold',}}>Course Name</p>
-                    <button className="btn btn-success" style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}>View</button>
-                  </div>
+            <div style={{paddingTop:'1rem',marginTop:"3rem", display:'flex', flexDirection:'column'}}>
+              <div className="new-table-shadow new-table-res new-table-hidden">
+                <div style= {{display:'flex',justifyContent:'space-between'}}>
+                  <p style={{paddingTop:"1.5rem",paddingLeft:".4rem", color:'#212a50', fontWeight:'bold',}}>Course Name</p>
+                  <button className="btn btn-success" style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}>View</button>
                 </div>
+              </div>
             </div>
 
           </div>
