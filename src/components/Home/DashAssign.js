@@ -996,32 +996,144 @@ const CompAssignCourse = () => {
                 </button>
               </form>
             </div>
-            <Suspense fallback={<Loading />}>
-              <DataTable
-                progressPending={pending}
-                progressComponent={
-                  pending ? (
-                    <div style={{ padding: "1rem" }}>
-                      <Spinner animation="border" variant="primary" />
+            <div
+              className="reacttable-hidden"
+              style={{ padding: "", backgroundColor: "" }}
+            >
+              <Suspense fallback={<Loading />}>
+                <DataTable
+                  progressPending={pending}
+                  progressComponent={
+                    pending ? (
+                      <div style={{ padding: "1rem" }}>
+                        <Spinner animation="border" variant="primary" />
+                      </div>
+                    ) : null
+                  }
+                  persistTableHead={true}
+                  noDataComponent={"No records to display"}
+                  columns={columns}
+                  data={
+                    searchString
+                      ? records.filter((item) =>
+                          (item.name || item.Name)
+                            .toLowerCase()
+                            .startsWith(searchString.toLowerCase())
+                        )
+                      : records
+                  }
+                  customStyles={customStyles}
+                  pagination
+                />
+              </Suspense>
+            </div>
+            {searchString
+              ? records.filter((item) =>
+                  (item.name || item.Name)
+                    .toLowerCase()
+                    .startsWith(searchString.toLowerCase())
+                ).map(item => {
+                  let validity = item.validity.split("/").reverse();
+                  let flag = false;
+                  let title = "Start";
+                  if (new Date(validity) > new Date()) {
+                    flag = true;
+                  } else {
+                    flag = false;
+                  }
+
+                  return <div style={{paddingTop:'1rem',marginTop:"3rem", display:'flex', flexDirection:'column'}}>
+                    <div className="new-table-shadow new-table-res new-table-hidden">
+                      <div style= {{display:'flex',justifyContent:'space-between'}}>
+                        <p style={{paddingTop:"1.5rem",paddingLeft:".4rem", color:'#212a50', fontWeight:'bold',}}>{item.name || item.Name}</p>
+                        {/* <button className="btn btn-success" style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}>View</button> */}
+                        <>
+                          {flag ? (
+                            <a
+                              className="btn btn-primary"
+                              onClick={() => {
+                                openModal();
+                                console.log(item);
+                                setCourseName(item.name || item.Name);
+                                setAssignData((prev) => {
+                                  return {
+                                    ...prev,
+                                    count: 1,
+                                    course_id: item.id,
+                                  };
+                                });
+                                if (item.from_purchased) {
+                                  setFrom("purchased");
+                                } else {
+                                  setFrom("assigned");
+                                }
+                                setSelectedBundleCount(item.course_count);
+                              }}
+                              style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}
+                            >
+                              Assign
+                            </a>
+                          ) : (
+                            <>
+                              <a style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}} className="btn btn-danger">Expired</a>
+                            </>
+                          )}
+                        </>
+                      </div>
                     </div>
-                  ) : null
+                  </div>
+                })
+              : records.map(item => {
+                let validity = item.validity.split("/").reverse();
+                let flag = false;
+                let title = "Start";
+                if (new Date(validity) > new Date()) {
+                  flag = true;
+                } else {
+                  flag = false;
                 }
-                persistTableHead={true}
-                noDataComponent={"No records to display"}
-                columns={columns}
-                data={
-                  searchString
-                    ? records.filter((item) =>
-                        (item.name || item.Name)
-                          .toLowerCase()
-                          .startsWith(searchString.toLowerCase())
-                      )
-                    : records
-                }
-                customStyles={customStyles}
-                pagination
-              />
-            </Suspense>
+
+                return <div style={{paddingTop:'1rem',marginTop:"3rem", display:'flex', flexDirection:'column'}}>
+                  <div className="new-table-shadow new-table-res new-table-hidden">
+                    <div style= {{display:'flex',justifyContent:'space-between'}}>
+                      <p style={{paddingTop:"1.5rem",paddingLeft:".4rem", color:'#212a50', fontWeight:'bold',}}>{item.name || item.Name}</p>
+                      {/* <button className="btn btn-success" style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}>View</button> */}
+                      <>
+                        {flag ? (
+                          <a
+                            className="btn btn-primary"
+                            onClick={() => {
+                              openModal();
+                              console.log(item);
+                              setCourseName(item.name || item.Name);
+                              setAssignData((prev) => {
+                                return {
+                                  ...prev,
+                                  count: 1,
+                                  course_id: item.id,
+                                };
+                              });
+                              if (item.from_purchased) {
+                                setFrom("purchased");
+                              } else {
+                                setFrom("assigned");
+                              }
+                              setSelectedBundleCount(item.course_count);
+                            }}
+                            style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}
+                          >
+                            Assign
+                          </a>
+                        ) : (
+                          <>
+                            <a style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}} className="btn btn-danger">Expired</a>
+                          </>
+                        )}
+                      </>
+                    </div>
+                  </div>
+                </div>
+              })}
           </div>
         </div>{" "}
       </div>
