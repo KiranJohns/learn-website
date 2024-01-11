@@ -9,6 +9,7 @@ import Modal from "react-responsive-modal";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
 import { useRouter } from "next/router";
+import { Button } from "react-bootstrap";
 
 const customStyles = {
   headRow: {
@@ -64,7 +65,7 @@ const BundleCour = () => {
       console.log(router.query);
       makeRequest("GET", `/bundle/get-started-bundle/${router.query.id}`)
         .then((res) => {
-          setRecords(res.data.response.courses);
+          setRecords(res?.data?.response?.courses || []);
           console.log(res.data.response);
           setData(res.data.response.bundle[0]);
           // location.href = `/individual/bundleCourses/?id=${res.data.response.id}`;
@@ -172,6 +173,7 @@ const BundleCour = () => {
             style={{
               padding: "",
               color: "#212450",
+              margin: '0',
               fontSize: 37,
             }}
           >
@@ -179,37 +181,143 @@ const BundleCour = () => {
           </h2>
 
           <div
-            style={{ float: "right", marginBottom: "1.4rem" }}
-            className="p-relative d-inline header__search"
+            className="reacttable-hidden"
+            style={{ padding: "", backgroundColor: "" }}
           >
-            <form action="">
-              <input
-                style={{ background: "#edeef3" }}
-                className="d-block  "
-                type="text"
-                placeholder="Search..."
-                value={searchData}
-                onChange={(e) => setSearchData(e.target.value)}
-              />
-              <button type="submit">
-                <i className="fas fa-search"></i>
-              </button>
-            </form>
+            <div
+              style={{ float: "right", marginBottom: "1.4rem" }}
+              className="p-relative d-inline header__search"
+            >
+              <form action="">
+                <input
+                  style={{ background: "#edeef3" }}
+                  className="d-block  "
+                  type="text"
+                  placeholder="Search..."
+                  value={searchData}
+                  onChange={(e) => setSearchData(e.target.value)}
+                />
+                <button type="submit">
+                  <i className="fas fa-search"></i>
+                </button>
+              </form>
+            </div>
+            <DataTable
+              noDataComponent={"No records to display"}
+              columns={columns}
+              data={
+                searchData
+                  ? records.filter((item) =>
+                      item.Name.toLowerCase().includes(searchData.toLowerCase())
+                    )
+                  : records
+              }
+              customStyles={customStyles}
+              pagination
+              persistTableHead={true}
+            />
           </div>
-          <DataTable
-            noDataComponent={"No records to display"}
-            columns={columns}
-            data={
-              searchData
-                ? records.filter((item) =>
-                    item.Name.toLowerCase().includes(searchData.toLowerCase())
-                  )
-                : records
-            }
-            customStyles={customStyles}
-            pagination
-            persistTableHead={true}
-          />
+          {searchData
+            ? records
+                .filter((item) =>
+                  item.Name.toLowerCase().includes(searchData.toLowerCase())
+                )
+                .map((item) => {
+                  return (
+                    <div
+                      style={{
+                        paddingTop: "1rem",
+                        marginTop: "3rem",
+                        display: "flex",
+                        flexDirection: "column",
+                      }}
+                    >
+                      <div className="new-table-shadow new-table-res new-table-hidden">
+                        <div
+                          style={{
+                            display: "flex",
+                            justifyContent: "space-between",
+                          }}
+                        >
+                          <p
+                            style={{
+                              paddingTop: "1.5rem",
+                              paddingLeft: ".4rem",
+                              color: "#212a50",
+                              fontWeight: "bold",
+                            }}
+                          >
+                            {item.Name || item.name}
+                          </p>
+                          {/* <button className="btn btn-success" style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}>View</button> */}
+                          <a
+                            style={{
+                              height: "35px",
+                              marginTop: "1rem",
+                              marginRight: ".4rem",
+                            }}
+                            href="https://test.learnforcare.co.uk/bundle/bundle-all"
+                          >
+                            <Button
+                              style={{ background: "#212a50", color: "#fff" }}
+                              variant=""
+                            >
+                              View
+                            </Button>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })
+            : records.map((item) => {
+                return (
+                  <div
+                    style={{
+                      paddingTop: "1rem",
+                      marginTop: "3rem",
+                      display: "flex",
+                      flexDirection: "column",
+                    }}
+                  >
+                    <div className="new-table-shadow new-table-res new-table-hidden">
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                        }}
+                      >
+                        <p
+                          style={{
+                            paddingTop: "1.5rem",
+                            paddingLeft: ".4rem",
+                            color: "#212a50",
+                            fontWeight: "bold",
+                          }}
+                        >
+                          {item.Name || item.name}
+                        </p>
+                        {/* <button className="btn btn-success" style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}>View</button> */}
+                        <a
+                          style={{
+                            height: "35px",
+                            marginTop: "1rem",
+                            marginRight: ".4rem",
+                          }}
+                          href="https://test.learnforcare.co.uk/bundle/bundle-all"
+                        >
+                          <Button
+                            style={{ background: "#212a50", color: "#fff" }}
+                            variant=""
+                          >
+                            View
+                          </Button>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
         </div>
       </div>
     </div>
