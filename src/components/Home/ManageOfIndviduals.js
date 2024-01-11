@@ -93,7 +93,7 @@ const ManageIndList = () => {
     {
       name: "User",
       selector: (row) => row.first_name + " " + row.last_name,
-      minWidth:"250px",
+  
       center:true,
     },
     {
@@ -151,7 +151,7 @@ const ManageIndList = () => {
           </h2>
           <div style={{ padding: "", backgroundColor: "" }}>
             <div
-              style={{ float: "right", marginBottom: "1.4rem" }}
+              style={{ float: "right", marginBottom: ".8rem" }}
               className="p-relative d-inline header__search searchbar-hidden1"
             >
               <form action="">
@@ -192,6 +192,8 @@ const ManageIndList = () => {
               pagination
             />
             </div>
+
+            <div>
             {searchString
               ? records
                   .filter((item) =>
@@ -203,8 +205,7 @@ const ManageIndList = () => {
                     return (
                       <div
                         style={{
-                          paddingTop: "1rem",
-                          marginTop: "3rem",
+  
                           display: "flex",
                           flexDirection: "column",
                           width: "100%",
@@ -247,8 +248,7 @@ const ManageIndList = () => {
                   return (
                     <div
                       style={{
-                        paddingTop: "1rem",
-                        marginTop: "3rem",
+                        marginTop:".5rem",
                         display: "flex",
                         flexDirection: "column",
                         width: "100%",
@@ -285,6 +285,8 @@ const ManageIndList = () => {
                     </div>
                   );
                 })}
+             </div>
+
           </div>
         </div>{" "}
       </div>

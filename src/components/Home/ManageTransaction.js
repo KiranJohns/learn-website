@@ -56,32 +56,36 @@ const ManTransaction = () => {
 
   const columns = [
     {
-      name: "SL",
+      name: "SL No.",
       selector: (row, idx) => ++idx,
       center: true,
-      width: "100px",
+      width: "80px",
+      hide:"md",
     },
     {
       name: "User",
       selector: (row, idx) => row.first_name.concat(" ", row.last_name),
       center: true,
-      width: "100px",
+      width: "250px",
+      hide:"sm",
     },
     {
       name: "Date",
       selector: (row) => row.date,
       center: true,
+      sortable: true,
     },
     {
       name: "Time",
       selector: (row) => row.time,
       center: true,
-      sortable: true,
+      hide:"md",
     },
     {
       name: "Quantity",
       selector: (row) => row.count,
       center: true,
+      hide:"sm",
     },
     {
       name: "Amount",
@@ -93,7 +97,7 @@ const ManTransaction = () => {
   return (
     <div className="">
       <div className="dash-shadow">
-        <div className="relative row g-3  min-vh-100  d-flex justify-content-center mt-20">
+        <div style={{position:'relative'}} className="row g-3  min-vh-100  d-flex justify-content-center mt-20">
           <h2
             style={{
               color: "#212450",

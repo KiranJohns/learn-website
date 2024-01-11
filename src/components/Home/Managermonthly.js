@@ -61,6 +61,7 @@ const ManageMonthRep = () => {
       selector: (row, idx) => ++idx,
       width: "80px",
       center: true,
+      hide:"sm",
     },
     {
       name: "year",
@@ -76,6 +77,7 @@ const ManageMonthRep = () => {
       name: "Quantity",
       selector: (row) => row.total_fake_count,
       center: true,
+      hide:"sm",
     },
     {
       name: "amount",
@@ -87,14 +89,14 @@ const ManageMonthRep = () => {
   return (
     <div className="">
       <div className="dash-shadow">
-        <div className=" row g-3  min-vh-100  d-flex justify-content-center mt-20">
+        <div style={{position:'relative'}} className=" row g-3  min-vh-100  d-flex justify-content-center mt-20">
           <h2
             style={{
               color: "#212450",
               display: "flex",
               justifyContent: "center",
               position: "absolute",
-              fontSize: 38,
+              fontSize: 33,
             }}
           >
             Month Wise Report

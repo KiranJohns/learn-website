@@ -109,21 +109,24 @@ const CompanyBundle = () => {
 
   const columns = [
     {
-      name: "NO",
+      name: "Sl No.",
       selector: (row, idx) => ++idx,
-      sortable: true,
       center: true,
+      width:'80px',
+      hide:"lg",
     },
+
     {
       name: "Bundle Name",
       selector: (row) => row.bundle_name || row.name,
-      sortable: true,
       center: true,
+
     },
     {
       name: "validity",
       selector: (row) => row.validity,
       center: true,
+      hide:"md",
     },
     {
       name: "Progress",
@@ -157,6 +160,9 @@ const CompanyBundle = () => {
                 ) : (
                   <>
                     <a
+                     style={{
+                      width: "7rem",
+                    }}
                       onClick={() => {
                         if (row?.form_ongoing) {
                           location.href = `/learnCourse/bundleList/?id=${row.id}`;
@@ -196,7 +202,8 @@ const CompanyBundle = () => {
               display: "flex",
               justifyContent: "center",
               position: "absolute",
-              fontSize: 36,
+              fontSize: 35,
+              marginTop:'1.2rem'
             }}
             onClick={() => setRefresh((prev) => ++prev)}
           >
@@ -204,7 +211,7 @@ const CompanyBundle = () => {
           </h2>
           <div style={{ padding: "", backgroundColor: "" }}>
             <div
-              style={{ float: "right", marginBottom: "1.4rem" }}
+              style={{ float: "right", marginBottom: ".5rem" }}
               className="p-relative d-inline header__search searchbar-hidden1"
             >
               <form action="">
@@ -363,10 +370,9 @@ const CompanyBundle = () => {
                     <div
                       style={{
                         width: '100%',
-                        paddingTop: "1rem",
-                        marginTop: "3rem",
                         display: "flex",
                         flexDirection: "column",
+                        marginTop:'.6rem'
                       }}
                     >
                       <div className="new-table-shadow new-table-res new-table-hidden">

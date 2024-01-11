@@ -15,7 +15,7 @@ const customStyles = {
   },
   headCells: {
     style: {
-      fontSize: "16px",
+      fontSize: "13px",
       fontWeight: "600",
       textTransform: "uppercase",
     },
@@ -63,7 +63,6 @@ const ManIndReport = () => {
     {
       name: "Name",
       selector: (row) => row.first_name + " " + row.last_name,
-      sortable: true,
       center: true,
     },
     {
@@ -71,16 +70,19 @@ const ManIndReport = () => {
       selector: (row) => row.course_count,
       sortable: true,
       center: true,
+      hide:"sm",
     },
     {
       name: "Bundles Assigned",
       selector: (row) => row.bundle_count,
       center: true,
+      hide:"sm",
     },
     {
       name: "Certificates",
       cell: (row) => row.certificates,
-      center: 'true'
+      center: true,
+    
     }
   ];
 
