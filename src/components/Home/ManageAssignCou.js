@@ -436,48 +436,198 @@ const ManagerAssignCourse = () => {
                 </div>
               </div>
             </Modal>
-            <div
-              style={{ float: "right", marginBottom: "1.4rem" }}
-              className="p-relative d-inline header__search searchbar-hidden"
-            >
-              <form action="">
-                <input
-                  style={{ background: "#edeef3" }}
-                  className="d-block mr-10"
-                  type="text"
-                  placeholder="Search..."
-                  value={searchString}
-                  onChange={(e) => setSearchString(e.target.value)}
-                />
-                <button type="submit">
-                  <i className="fas fa-search"></i>
-                </button>
-              </form>
+            <div className="reacttable-hidden">
+              <div
+                style={{ float: "right", marginBottom: "1.4rem" }}
+                className="p-relative d-inline header__search searchbar-hidden"
+              >
+                <form action="">
+                  <input
+                    style={{ background: "#edeef3" }}
+                    className="d-block mr-10"
+                    type="text"
+                    placeholder="Search..."
+                    value={searchString}
+                    onChange={(e) => setSearchString(e.target.value)}
+                  />
+                  <button type="submit">
+                    <i className="fas fa-search"></i>
+                  </button>
+                </form>
+              </div>
+              <DataTable
+                progressPending={pending}
+                progressComponent={
+                  pending ? (
+                    <div style={{ padding: "1rem" }}>
+                      <Spinner animation="border" variant="primary" />
+                    </div>
+                  ) : null
+                }
+                noDataComponent={"No records to display"}
+                persistTableHead={true}
+                columns={columns}
+                data={
+                  searchString
+                    ? records.filter((item) =>
+                        (item.name || item.Name)
+                          .toLowerCase()
+                          .startsWith(searchString.toLowerCase())
+                      )
+                    : records
+                }
+                customStyles={customStyles}
+                pagination
+              />
             </div>
-            <DataTable
-              progressPending={pending}
-              progressComponent={
-                pending ? (
-                  <div style={{ padding: "1rem" }}>
-                    <Spinner animation="border" variant="primary" />
+            {searchString
+              ? records
+                  .filter((item) =>
+                    (item.name || item.Name)
+                      .toLowerCase()
+                      .startsWith(searchString.toLowerCase())
+                  )
+                  .map((item) => {
+                    let validity = item.validity.split("/").reverse();
+                    let flag = false;
+                    let title = "Start";
+                    if (new Date(validity) > new Date()) {
+                      flag = true;
+                    } else {
+                      flag = false;
+                    }
+                    return (
+                      <div
+                        style={{
+                          paddingTop: "1rem",
+                          marginTop: "3rem",
+                          display: "flex",
+                          flexDirection: "column",
+                        }}
+                      >
+                        <div className="new-table-shadow new-table-res new-table-hidden">
+                          <div
+                            style={{
+                              display: "flex",
+                              justifyContent: "space-between",
+                            }}
+                          >
+                            <p
+                              style={{
+                                paddingTop: "1.5rem",
+                                paddingLeft: ".4rem",
+                                color: "#212a50",
+                                fontWeight: "bold",
+                              }}
+                            >
+                              {item.name || item.Name}
+                            </p>
+                            <>
+                              {flag ? (
+                                <a
+                                  className="btn btn-primary"
+                                  onClick={() => {
+                                    openModal();
+                                    setCourseName(item.Name || item.name);
+                                    setAssignData((prev) => {
+                                      return {
+                                        ...prev,
+                                        course_id: item.id,
+                                      };
+                                    });
+                                    if (item.from_purchased) {
+                                      setFrom("purchased");
+                                    } else {
+                                      setFrom("assigned");
+                                    }
+                                    setSelectedBundleCount(item.course_count);
+                                  }}
+                                >
+                                  Assign To
+                                </a>
+                              ) : (
+                                <>
+                                  <a className="btn btn-danger">Expired</a>
+                                </>
+                              )}
+                            </>
+                            {/* <button className="btn btn-success" style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}>View</button> */}
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })
+              : records.map((item) => {
+                let validity = item.validity.split("/").reverse();
+                let flag = false;
+                let title = "Start";
+                if (new Date(validity) > new Date()) {
+                  flag = true;
+                } else {
+                  flag = false;
+                }
+                return (
+                  <div
+                    style={{
+                      paddingTop: "1rem",
+                      marginTop: "3rem",
+                      display: "flex",
+                      flexDirection: "column",
+                    }}
+                  >
+                    <div className="new-table-shadow new-table-res new-table-hidden">
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                        }}
+                      >
+                        <p
+                          style={{
+                            paddingTop: "1.5rem",
+                            paddingLeft: ".4rem",
+                            color: "#212a50",
+                            fontWeight: "bold",
+                          }}
+                        >
+                          {item.name || item.Name}
+                        </p>
+                        <>
+                          {flag ? (
+                            <a
+                              className="btn btn-primary"
+                              onClick={() => {
+                                openModal();
+                                setCourseName(item.Name || item.name);
+                                setAssignData((prev) => {
+                                  return {
+                                    ...prev,
+                                    course_id: item.id,
+                                  };
+                                });
+                                if (item.from_purchased) {
+                                  setFrom("purchased");
+                                } else {
+                                  setFrom("assigned");
+                                }
+                                setSelectedBundleCount(item.course_count);
+                              }}
+                              style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}
+                            >
+                              Assign To
+                            </a>
+                          ) : (
+                            <>
+                              <a style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}} className="btn btn-danger">Expired</a>
+                            </>
+                          )}
+                        </>
+                        {/* <button className="btn btn-success" style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}>View</button> */}
+                      </div>
+                    </div>
                   </div>
-                ) : null
-              }
-              noDataComponent={"No records to display"}
-              persistTableHead={true}
-              columns={columns}
-              data={
-                searchString
-                  ? records.filter((item) =>
-                      (item.name || item.Name)
-                        .toLowerCase()
-                        .startsWith(searchString.toLowerCase())
-                    )
-                  : records
-              }
-              customStyles={customStyles}
-              pagination
-            />
+                );
+              })}
           </div>
         </div>{" "}
       </div>
