@@ -90,16 +90,20 @@ class ManageDash extends Component {
         selector: (row, idx) => idx + 1,
         center: true,
         width: "90px",
+        hide:"lg"
       },
       {
         name: "Name",
         selector: (row) => (row.name ? row.name : row.Name),
         center: true,
+        width: "310px",
+        compact:true
       },
       {
         name: "category",
         selector: (row) => row.category,
         center: true,
+        hide:"md"
       },
       {
         name: "Attempts",
@@ -113,9 +117,12 @@ class ManageDash extends Component {
       {
         name: "validity",
         selector: (row) => row.validity,
+        hide:"md",
+        center:"true"
       },
       {
         name: "Action",
+        compact:true,
         cell: (row) => {
           // if (new Date(validity) > new Date()) {
           //   if (row.progress <= 80) {
@@ -497,7 +504,7 @@ class ManageDash extends Component {
                           return (
                             <div
                               style={{
-                                paddingTop: "1rem",
+                                // paddingTop: "1rem",
                                 marginTop: "3rem",
                                 display: "flex",
                                 flexDirection: "column",

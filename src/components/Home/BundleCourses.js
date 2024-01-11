@@ -92,17 +92,19 @@ const BundleCour = () => {
       selector: (row, idx) => idx + 1,
       center: "true",
       width: "90px",
+      hide:"md",
     },
     {
       name: "name",
       selector: (row) => row.name || row.Name,
       center: "true",
-      width: "400px",
+      width: "330px",
     },
     {
       name: "category",
       selector: (row) => row.category,
       center: "true",
+      hide:"md",
     },
     {
       name: "Attempts",
@@ -186,7 +188,7 @@ const BundleCour = () => {
           >
             <div
               style={{ float: "right", marginBottom: "1.4rem" }}
-              className="p-relative d-inline header__search"
+              className="p-relative d-inline header__search searchbar-hidden1"
             >
               <form action="">
                 <input

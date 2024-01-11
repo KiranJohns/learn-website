@@ -17,6 +17,7 @@ import Sidebar from "../../components/Sidebar/SampleSidebar";
 import mybundle from "../company/mybundle";
 import ManAssignBund from "../../components/Home/ManAssignBund";
 import DashHeader from "../../components/Layout/Header/DasnboardHeader";
+import DashHeader from "../../components/Layout/Header/DasnboardHeader";
 
 function myBundle() {
   const [logedIn, setlogedIn] = useState(() => {
@@ -41,8 +42,8 @@ function myBundle() {
               backgroundImage: "linear-gradient(to left, #EDEEF3, #EDEEF3)",
             }}
           >
-            <NoSSR>
-              <Header />
+             <NoSSR>
+              <DashHeader/>
             </NoSSR>
             <div
               className="container-fluid "

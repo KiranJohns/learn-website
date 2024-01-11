@@ -82,10 +82,11 @@ const ManagerBundle = () => {
 
   const columns = [
     {
-      name: "ID",
+      name: "SL No.",
       selector: (row, idx) => ++idx,
-      width: "70px",
+      width: "80px",
       center: true,
+      hide:"md",
     },
     {
       name: "Bundle name",
@@ -98,6 +99,7 @@ const ManagerBundle = () => {
       name: "validity",
       selector: (row) => row.validity,
       center: true,
+      hide:"md",
     },
     {
       name: "Progress",
@@ -211,6 +213,8 @@ const ManagerBundle = () => {
               persistTableHead={true}
             />
           </div>
+
+          <div style={{marginTop:'3rem', paddingTop:'1rem'}}>
           {searchString
             ? records
                 .filter((item) =>
@@ -254,6 +258,9 @@ const ManagerBundle = () => {
                                     className="btn btn-success"
                                     style={{
                                       width: "7rem",
+                                      height: "35px",
+                                      marginTop: "1rem",
+                                      marginRight: ".4rem",
                                     }}
                                     onClick={() => {
                                       if (item?.form_ongoing) {
@@ -261,11 +268,6 @@ const ManagerBundle = () => {
                                       } else {
                                         handleStartBundle(row.id);
                                       }
-                                    }}
-                                    style={{
-                                      height: "35px",
-                                      marginTop: "1rem",
-                                      marginRight: ".4rem",
                                     }}
                                   >
                                     Start
@@ -310,8 +312,8 @@ const ManagerBundle = () => {
               return (
                 <div
                   style={{
-                    paddingTop: "1rem",
-                    marginTop: "3rem",
+                   
+                    marginTop: ".5rem",
                     display: "flex",
                     flexDirection: "column",
                   }}
@@ -342,6 +344,9 @@ const ManagerBundle = () => {
                                 className="btn btn-success"
                                 style={{
                                   width: "7rem",
+                                  height: "35px",
+                                  marginTop: "1rem",
+                                  marginRight: ".4rem",
                                 }}
                                 onClick={() => {
                                   if (item?.form_ongoing) {
@@ -350,11 +355,7 @@ const ManagerBundle = () => {
                                     handleStartBundle(item.id);
                                   }
                                 }}
-                                style={{
-                                  height: "35px",
-                                  marginTop: "1rem",
-                                  marginRight: ".4rem",
-                                }}
+                              
                               >
                                 Start
                               </button>
@@ -394,6 +395,8 @@ const ManagerBundle = () => {
                 </div>
               );
             })}
+            </div>
+
         </div>{" "}
       </div>
     </div>
