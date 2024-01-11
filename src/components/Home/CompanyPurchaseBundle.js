@@ -38,6 +38,7 @@ class CompanyPurBundle extends Component {
     this.setState({ records: newData });
   };
 
+  
   componentDidMount() {
     let makeRequest = fetchData();
     makeRequest("GET", "/info/get-purchased-bundles")
