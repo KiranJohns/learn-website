@@ -117,9 +117,6 @@ class ManageDash extends Component {
       {
         name: "Action",
         cell: (row) => {
-          let validity = row.validity.split("/").reverse();
-          let flag = false;
-          let title = "Start";
           // if (new Date(validity) > new Date()) {
           //   if (row.progress <= 80) {
           //     if (row.attempts < 20) {
@@ -137,6 +134,9 @@ class ManageDash extends Component {
           //   title = "Completed";
           //   flag = false;
           // }
+          let validity = row.validity.split("/").reverse();
+          let flag = false;
+          let title = "Start";
           if (new Date(validity) <= new Date() || row?.attempts >= 20) {
             title = "Expired";
             flag = false;
@@ -381,31 +381,31 @@ class ManageDash extends Component {
           </div>
 
           <div className="dash-shadow">
-          <div className=" row g-3  min-vh-100  d-flex justify-content-center mt-30">
-            <div
-              style={{
-                display: "flex",
-                marginTop: "2.5rem",
-                justifyContent: "space-between",
-                alignItems: "center",
-              }}
-            >
-              <h4
+            <div className=" row g-3  min-vh-100  d-flex justify-content-center mt-30">
+              <div
                 style={{
-                  margin: 0,
-                  color: "#212450",
-                  fontSize: 35,
-                  marginLeft:'1.2rem'
+                  display: "flex",
+                  marginTop: "2.5rem",
+                  justifyContent: "space-between",
+                  alignItems: "center",
                 }}
               >
-                Ongoing Courses
-              </h4>
-              
-              {/* <div
+                <h4
+                  style={{
+                    margin: 0,
+                    color: "#212450",
+                    fontSize: 35,
+                    marginLeft: "1.2rem",
+                  }}
+                >
+                  Ongoing Courses
+                </h4>
+
+                {/* <div
                 className="reacttable-hidden"
                 style={{ padding: "", backgroundColor: "" }}
               > */}
-             
+
                 <div className="p-relative d-inline header__search">
                   <form className="your-element" action="">
                     <input
@@ -426,15 +426,15 @@ class ManageDash extends Component {
                     </button>
                   </form>
                 </div>
-                </div>
+              </div>
 
-                <div className="row g-3  min-vh-100 ag-format-container">
-                  <div style={{}}>
-                    <div
-                      className="pb-2"
-                      style={{ display: "flex", justifyContent: "right" }}
-                    >
-                      {/* <input
+              <div className="row g-3  min-vh-100 ag-format-container">
+                <div style={{}}>
+                  <div
+                    className="pb-2"
+                    style={{ display: "flex", justifyContent: "right" }}
+                  >
+                    {/* <input
                     type="text"
                     className=""
                     placeholder="Search course"
@@ -448,32 +448,180 @@ class ManageDash extends Component {
                       background: "#EDEEF3",
                     }}
                   /> */}
-                    </div>
-                    <div className="reacttable-hidden">
-                      <DataTable
-                        noDataComponent={"No records to display"}
-                        persistTableHead={true}
-                        columns={columns}
-                        data={
-                          this.state.searchString
-                            ? this.state.records.filter((item) =>
-                                (item.Name || item.name)
-                                  .toLowerCase()
-                                  .startsWith(
-                                    this.state.searchString.toLowerCase()
-                                  )
-                              )
-                            : this.state.records
-                        }
-                        customStyles={customStyles}
-                        pagination
-                      />
-                    </div>
                   </div>
+                  <div className="reacttable-hidden">
+                    <DataTable
+                      noDataComponent={"No records to display"}
+                      persistTableHead={true}
+                      columns={columns}
+                      data={
+                        this.state.searchString
+                          ? this.state.records.filter((item) =>
+                              (item.Name || item.name)
+                                .toLowerCase()
+                                .startsWith(
+                                  this.state.searchString.toLowerCase()
+                                )
+                            )
+                          : this.state.records
+                      }
+                      customStyles={customStyles}
+                      pagination
+                    />
+                  </div>
+                  {this.state.searchString
+                    ? this.state.records
+                        .filter((item) =>
+                          (item.Name || item.name)
+                            .toLowerCase()
+                            .startsWith(this.state.searchString.toLowerCase())
+                        )
+                        .map((item) => {
+                          let validity = item.validity.split("/").reverse();
+                          let flag = false;
+                          let title = "Start";
+                          if (
+                            new Date(validity) <= new Date() ||
+                            item?.attempts >= 20
+                          ) {
+                            title = "Expired";
+                            flag = false;
+                          } else {
+                            title = "Start";
+                            flag = true;
+                            if (item.progress >= 80) {
+                              title = "Completed";
+                              flag = true;
+                            }
+                          }
+                          return (
+                            <div
+                              style={{
+                                paddingTop: "1rem",
+                                marginTop: "3rem",
+                                display: "flex",
+                                flexDirection: "column",
+                              }}
+                            >
+                              <div className="new-table-shadow new-table-res new-table-hidden">
+                                <div
+                                  style={{
+                                    display: "flex",
+                                    justifyContent: "space-between",
+                                  }}
+                                >
+                                  <p
+                                    style={{
+                                      paddingTop: "1.5rem",
+                                      paddingLeft: ".4rem",
+                                      color: "#212a50",
+                                      fontWeight: "bold",
+                                    }}
+                                  >
+                                    {item.Name || item.name}
+                                  </p>
+                                  <>
+                                    {flag ? (
+                                      <a
+                                        onClick={() => {
+                                          location.href = `/learnCourse/coursepage/?courseId=${item.id}`;
+                                        }}
+                                        className="btn btn-success"
+                                        style={{width: "7rem", height:'35px',marginTop:"1rem", marginRight:'.4rem'}}
+                                      >
+                                        {title}
+                                      </a>
+                                    ) : (
+                                      <>
+                                        <a
+                                          className="btn btn-danger"
+                                          style={{width: "7rem", height:'35px',marginTop:"1rem", marginRight:'.4rem'}}
+                                        >
+                                          {title}
+                                        </a>
+                                      </>
+                                    )}
+                                  </>
+                                </div>
+                              </div>
+                            </div>
+                          );
+                        })
+                    : this.state.records.map((item) => {
+                      let validity = item.validity.split("/").reverse();
+                      let flag = false;
+                      let title = "Start";
+                      if (
+                        new Date(validity) <= new Date() ||
+                        item?.attempts >= 20
+                      ) {
+                        title = "Expired";
+                        flag = false;
+                      } else {
+                        title = "Start";
+                        flag = true;
+                        if (item.progress >= 80) {
+                          title = "Completed";
+                          flag = true;
+                        }
+                      }
+                      return (
+                        <div
+                          style={{
+                            paddingTop: "1rem",
+                            marginTop: ".4rem",
+                            display: "flex",
+                            flexDirection: "column",
+                          }}
+                        >
+                          <div className="new-table-shadow new-table-res new-table-hidden">
+                            <div
+                              style={{
+                                display: "flex",
+                                justifyContent: "space-between",
+                              }}
+                            >
+                              <p
+                                style={{
+                                  paddingTop: "1.5rem",
+                                  paddingLeft: ".4rem",
+                                  color: "#212a50",
+                                  fontWeight: "bold",
+                                }}
+                              >
+                                {item.Name || item.name}
+                              </p>
+                              <>
+                                {flag ? (
+                                  <a
+                                    onClick={() => {
+                                      location.href = `/learnCourse/coursepage/?courseId=${item.id}`;
+                                    }}
+                                    className="btn btn-success"
+                                    style={{width: "7rem", height:'35px',marginTop:"1rem", marginRight:'.4rem'}}
+                                  >
+                                    {title}
+                                  </a>
+                                ) : (
+                                  <>
+                                    <a
+                                      className="btn btn-danger"
+                                      style={{width: "7rem", height:'35px',marginTop:"1rem", marginRight:'.4rem'}}
+                                    >
+                                      {title}
+                                    </a>
+                                  </>
+                                )}
+                              </>
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })}
                 </div>
+              </div>
               {/* </div> */}
-           
-          </div>
+            </div>
           </div>
         </div>
       </div>
