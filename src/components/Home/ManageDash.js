@@ -147,7 +147,7 @@ class ManageDash extends Component {
               title = "Completed";
               flag = true;
             }
-          } 
+          }
 
           return (
             <>
@@ -400,40 +400,43 @@ class ManageDash extends Component {
                   fontSize: 35,
                 }}
               >
-             Ongoing Courses
+                Ongoing Courses
               </h4>
               <div
-                style={{ display: "none" }}
-                className="p-relative d-inline header__search"
+                className="reacttable-hidden"
+                style={{ padding: "", backgroundColor: "" }}
               >
-                <form className="your-element" action="">
-                  <input
-                    className="d-block mr-25"
-                    type="text"
-                    placeholder="Search..."
-                    value={this.state.searchString}
-                    onChange={(e) =>
-                      this.setState({
-                        ...this.state,
-                        searchString: e.target.value,
-                      })
-                    }
-                    style={{ background: "#edeef3" }}
-                  />
-                  <button type="submit">
-                    <i className="fas fa-search"></i>
-                  </button>
-                </form>
-              </div>
-            </div>
-
-            <div className=" row g-3  min-vh-100   ag-format-container">
-              <div style={{}}>
                 <div
-                  className="pb-2"
-                  style={{ display: "flex", justifyContent: "right" }}
+                  style={{ display: "none" }}
+                  className="p-relative d-inline header__search"
                 >
-                  {/* <input
+                  <form className="your-element" action="">
+                    <input
+                      className="d-block mr-25"
+                      type="text"
+                      placeholder="Search..."
+                      value={this.state.searchString}
+                      onChange={(e) =>
+                        this.setState({
+                          ...this.state,
+                          searchString: e.target.value,
+                        })
+                      }
+                      style={{ background: "#edeef3" }}
+                    />
+                    <button type="submit">
+                      <i className="fas fa-search"></i>
+                    </button>
+                  </form>
+                </div>
+
+                <div className=" row g-3  min-vh-100   ag-format-container">
+                  <div style={{}}>
+                    <div
+                      className="pb-2"
+                      style={{ display: "flex", justifyContent: "right" }}
+                    >
+                      {/* <input
                     type="text"
                     className=""
                     placeholder="Search course"
@@ -447,24 +450,28 @@ class ManageDash extends Component {
                       background: "#EDEEF3",
                     }}
                   /> */}
-                </div>
-                <div>
-                  <DataTable
-                    noDataComponent={"No records to display"}
-                    persistTableHead={true}
-                    columns={columns}
-                    data={
-                      this.state.searchString
-                        ? this.state.records.filter((item) =>
-                            (item.Name || item.name)
-                              .toLowerCase()
-                              .startsWith(this.state.searchString.toLowerCase())
-                          )
-                        : this.state.records
-                    }
-                    customStyles={customStyles}
-                    pagination
-                  />
+                    </div>
+                    <div>
+                      <DataTable
+                        noDataComponent={"No records to display"}
+                        persistTableHead={true}
+                        columns={columns}
+                        data={
+                          this.state.searchString
+                            ? this.state.records.filter((item) =>
+                                (item.Name || item.name)
+                                  .toLowerCase()
+                                  .startsWith(
+                                    this.state.searchString.toLowerCase()
+                                  )
+                              )
+                            : this.state.records
+                        }
+                        customStyles={customStyles}
+                        pagination
+                      />
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

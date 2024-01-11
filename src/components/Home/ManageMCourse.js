@@ -354,6 +354,7 @@ const ManageMyCourse = () => {
                   );
                 })
             : records.map((item) => {
+              console.log(item);
               let validity = item.validity.split("/").reverse();
               let flag = false;
               let title = "Start";
