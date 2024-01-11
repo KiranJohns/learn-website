@@ -185,14 +185,15 @@ const AttemptsExam = () => {
             style={{
               padding: "",
               color: "#212450",
-              fontSize: 36,
+              fontSize: 35,
+              marginTop:".5rem"
             }}
           >
             Exam Results
           </h2>
           <div
             style={{ float: "right", marginBottom: "1.4rem" }}
-            className="p-relative d-inline header__search"
+            className="p-relative d-inline header__search searchbar-hidden3"
           >
             <form action="">
               <input
