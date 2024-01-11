@@ -69,12 +69,14 @@ class Transaction extends Component {
         selector: (row, idx) => ++idx,
         width: "70px",
         center: true,
+        hide:'lg'
       },
       {
         name: "User",
         selector: (row, idx) => row.first_name.concat(" ", row.last_name),
-        width: "130px",
+        width: "210px",
         center: true,
+        hide:'sm'
       },
       {
         name: "Date",
@@ -87,6 +89,7 @@ class Transaction extends Component {
         selector: (row) => row.time,
         center: true,
         sortable: true,
+        hide:'md'
       },
       {
         name: "Quantity",

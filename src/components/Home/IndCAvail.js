@@ -81,7 +81,6 @@ const IndCAvail = () => {
     {
       name: "catagory",
       selector: (row) => row.category,
-      width: "350px",
       center: true,
       hide:'md'
     },

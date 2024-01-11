@@ -65,24 +65,25 @@ class IndMonthRep extends Component {
         name: "NO",
         selector: (row, idx) => ++idx,
         center: true,
-        width: "90px",
+        width: "85px",
+        hide:'sm'
       },
       {
         name: "year",
         selector: (row) => row.year,
-        sortable: true,
         center: true,
       },
       {
         name: "month",
         selector: (row) => getMonth(row.month),
-        sortable: true,
         center: true,
+        
       },
       {
         name: "Quantity",
         selector: (row) => row.total_fake_count,
         center: true,
+        hide:'sm'
       },
       {
         name: "amount",
