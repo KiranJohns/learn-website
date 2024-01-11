@@ -118,17 +118,20 @@ function DashIndividual() {
       name: "No",
       selector: (row, idx) => idx + 1,
       center: true,
-      width: "90px",
+      width: "70px",
+      hide:'lg'
     },
     {
       name: "Name",
       selector: (row) => (row.name ? row.name : row.Name),
       center: true,
+      width:'320px',
     },
     {
       name: "category",
       selector: (row) => row.category,
       center: true,
+      hide:'md'
     },
     {
       name: "Attempts",
@@ -138,10 +141,12 @@ function DashIndividual() {
         </a>
       ),
       center: true,
+      hide:'sm'
     },
     {
       name: "validity",
       selector: (row) => row.validity,
+      hide:'md'
     },
     {
       name: "Action",
@@ -437,11 +442,11 @@ function DashIndividual() {
                       <i className="fas fa-search"></i>
                     </button>
                   </form>
-                </div>
+                </div> 
               </div>
-              <div
-                className="reacttable-hidden"
-                style={{ padding: "", backgroundColor: "" }}
+
+              <div  className=""
+             style={{ padding: "", backgroundColor: "" }}
               >
                 <div style={{ padding: ".2rem" }}>
                   <DataTable

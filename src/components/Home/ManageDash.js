@@ -381,6 +381,7 @@ class ManageDash extends Component {
           </div>
 
           <div className="dash-shadow">
+          <div className=" row g-3  min-vh-100  d-flex justify-content-center mt-30">
             <div
               style={{
                 display: "flex",
@@ -391,25 +392,21 @@ class ManageDash extends Component {
             >
               <h4
                 style={{
-                  padding: "1.5rem",
-                  marginTop: ".7rem",
+                  margin: 0,
                   color: "#212450",
-                  display: "flex",
-                  justifyContent: "flex-start",
-
                   fontSize: 35,
+                  marginLeft:'1.2rem'
                 }}
               >
                 Ongoing Courses
               </h4>
-              <div
+              
+              {/* <div
                 className="reacttable-hidden"
                 style={{ padding: "", backgroundColor: "" }}
-              >
-                <div
-                  style={{ display: "none" }}
-                  className="p-relative d-inline header__search"
-                >
+              > */}
+             
+                <div className="p-relative d-inline header__search">
                   <form className="your-element" action="">
                     <input
                       className="d-block mr-25"
@@ -429,8 +426,9 @@ class ManageDash extends Component {
                     </button>
                   </form>
                 </div>
+                </div>
 
-                <div className=" row g-3  min-vh-100   ag-format-container">
+                <div className="row g-3  min-vh-100 ag-format-container">
                   <div style={{}}>
                     <div
                       className="pb-2"
@@ -451,7 +449,7 @@ class ManageDash extends Component {
                     }}
                   /> */}
                     </div>
-                    <div>
+                    <div className="reacttable-hidden">
                       <DataTable
                         noDataComponent={"No records to display"}
                         persistTableHead={true}
@@ -473,8 +471,9 @@ class ManageDash extends Component {
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
+              {/* </div> */}
+           
+          </div>
           </div>
         </div>
       </div>

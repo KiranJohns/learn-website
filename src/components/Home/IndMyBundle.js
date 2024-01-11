@@ -97,6 +97,7 @@ const IndMyBundle = () => {
       sortable: true,
       width: "400px",
       center: true,
+      
     },
     {
       name: "validity",
