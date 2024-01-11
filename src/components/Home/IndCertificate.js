@@ -4,6 +4,7 @@ import DataTable from "react-data-table-component";
 import Link from "next/link";
 import BasicExample from "../About/button1";
 import fetchData from "../../axios";
+import { FaEye } from "react-icons/fa";
 
 const customStyles = {
   headRow: {
@@ -67,27 +68,36 @@ class IndCertificate extends Component {
       {
         name: "SL No.",
         selector: (row, idx) => idx+1,
-        sortable: true,
-
+        center: true,
+        hide:'md',
+        width:'85px'
       },
       {
         name: "Courses",
         selector: (row) => row.course_name,
         sortable: true,
+        center: true,
+      
+        minWidth:'250px'
       },
       {
         name: "Date",
         selector: (row) => row.date,
+        center: true,
+        hide:'md',
       },
       {
         name: "Percentage",
         selector: (row) => row.percentage,
+        center: true,
+        hide:'sm',
       },
       {
         name: "Actions",
+        center: true,
         selector: (row) => (
           <a className="btn btn-success" target="_blank" href={row.image}>
-            view
+           <FaEye />
           </a>
         ),
       },
@@ -96,7 +106,7 @@ class IndCertificate extends Component {
     return (
       <div className="">
         <div className="dash-shadow">
-          <div className=" row g-3  min-vh-100  d-flex justify-content-center mt-20">
+          <div style={{position:'relative'}} className=" row g-3  min-vh-100  d-flex justify-content-center mt-20">
             <h2
               style={{
                 color: "#212450",
@@ -164,7 +174,7 @@ class IndCertificate extends Component {
                 }
                 customStyles={customStyles}
                 pagination
-    
+               responsive={true}
               />
             </div>
           </div>{" "}

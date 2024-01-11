@@ -61,18 +61,20 @@ const IndPurBundle = () => {
       selector: (row, idx) => ++idx,
       width: "70px",
       center: true,
+      hide:'md'
     },
     {
       name: "Bundles",
       selector: (row) => row.bundle_name,
       sortable: true,
-      width: "410px",
+      width: "340px",
       center: true,
     },
     {
       name: "validity",
       selector: (row) => row.validity,
       center: true,
+      hide:'md'
     },
     {
       name: "count",
@@ -95,7 +97,8 @@ const IndPurBundle = () => {
   return (
     <div className="">
       <div className="dash-shadow">
-        <div className=" row g-3  min-vh-100  d-flex justify-content-center mt-20">
+        <div  style={{ position: "relative" }}
+        className=" row g-3  min-vh-100  d-flex justify-content-center mt-20">
           <h2
             style={{
               color: "#212450",
@@ -170,7 +173,7 @@ const IndPurBundle = () => {
               persistTableHead={true}
             />
           </div>
-          <div style={{marginTop: '2rem'}}>
+          <div style={{marginTop: '2.8rem'}}>
             {searchString
               ? records
                   .filter((item) =>

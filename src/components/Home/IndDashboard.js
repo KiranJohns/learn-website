@@ -448,7 +448,7 @@ function DashIndividual() {
               <div  className=""
              style={{ padding: "", backgroundColor: "" }}
               >
-                <div style={{ padding: ".2rem" }}>
+                <div className="reacttable-hidden" style={{ padding: ".2rem" }}>
                   <DataTable
                     noDataComponent={"No records to display"}
                     columns={columns}

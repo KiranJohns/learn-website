@@ -107,6 +107,7 @@ const IndCourse = () => {
       selector: (row, idx) => idx + 1,
       width: "90px",
       center: true,
+      hide:'md'
     },
     {
       name: "name",
@@ -119,6 +120,7 @@ const IndCourse = () => {
     {
       name: "category",
       selector: (row) => row.category,
+      hide:'md'
     },
 
     {

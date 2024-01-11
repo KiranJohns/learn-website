@@ -6,6 +6,7 @@ import BasicExample from "../About/button1";
 import fetchData from "../../axios";
 import Button from "react-bootstrap/Button";
 import Spinner from "react-bootstrap/Spinner";
+import { FaEye } from "react-icons/fa";
 
 const customStyles = {
   headRow: {
@@ -66,13 +67,13 @@ class Transaction extends Component {
       {
         name: "SL",
         selector: (row, idx) => ++idx,
-        width: "100px",
+        width: "70px",
         center: true,
       },
       {
         name: "User",
         selector: (row, idx) => row.first_name.concat(" ", row.last_name),
-        width: "100px",
+        width: "130px",
         center: true,
       },
       {
@@ -102,14 +103,14 @@ class Transaction extends Component {
     return (
       <div className="">
         <div className="dash-shadow">
-          <div className=" row g-3  min-vh-100  d-flex justify-content-center mt-20">
+          <div style={{position:'relative'}} className=" row g-3  min-vh-100  d-flex justify-content-center mt-20">
             <h2
               style={{
                 color: "#212450",
                 display: "flex",
                 justifyContent: "center",
                 position: "absolute",
-                fontSize: 38,
+                fontSize: 36,
               }}
             >
               Transactions

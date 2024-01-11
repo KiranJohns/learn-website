@@ -4,6 +4,7 @@ import DataTable from "react-data-table-component";
 import Link from "next/link";
 import BasicExample from "../About/button1";
 import fetchData from "../../axios";
+import { FaEye } from "react-icons/fa";
 
 const customStyles = {
   headRow: {
@@ -65,40 +66,49 @@ class DashCertificate extends Component {
   render() {
     const columns = [
       {
-        name: "ID",
-        selector: (row) => row.id,
-        sortable: true,
+        name: "Sl No.",
+        selector: (row, idx) => idx+1,
+        center:true,
+        hide:'md',
+        compact:true,
       },
       {
         name: "Courses",
         selector: (row) => row.course_name,
         sortable: true,
+        center:true,
       },
       {
         name: "Date",
         selector: (row) => row.date,
+        center:true,
+        hide:"md"
       },
       {
         name: "Percentage",
         selector: (row) => row.percentage,
+        center:true,
+        hide:"sm"
       },
       {
         name: "Actions",
-        selector: (row) => <a className="btn btn-success" target="_blank" href={row.image}>view</a>,
+        center:true,
+        selector: (row) => <a className="btn btn-success" target="_blank" href={row.image}><FaEye /></a>,
       },
     ];
 
     return (
       <div className="">
         <div className="dash-shadow">
-          <div className=" row g-3  min-vh-100  d-flex justify-content-center mt-20">
+          <div style={{position:'relative'}} className=" row g-3  min-vh-100  d-flex justify-content-center mt-20">
             <h2
               style={{
                 color: "#212450",
                 display: "flex",
                 justifyContent: "center",
                 position: "absolute",
-                fontSize: 42,
+                fontSize: 36,
+                marginTop:"1.5rem"
               }}
             >
               Certificates
@@ -122,7 +132,7 @@ class DashCertificate extends Component {
           </div> */}
               <div
                 style={{ float: "right", marginBottom: "1.4rem" }}
-                className="p-relative d-inline header__search"
+                className="p-relative d-inline header__search searchbar-hidden1"
               >
                 <form action="">
                   <input
@@ -158,7 +168,7 @@ class DashCertificate extends Component {
                 }
                 customStyles={customStyles}
                 pagination
-                selectableRows
+                
               />
             </div>
           </div>{" "}

@@ -62,15 +62,15 @@ const IndCAvail = () => {
     {
       name: "ID",
       selector: (row, idx) => ++idx,
-      sortable: true,
-      width: "90px",
+      width: "70px",
       center: true,
+      hide:'lg'
     },
     {
       name: "Courses",
       selector: (row) => row.Name,
       sortable: true,
-      width: "420px",
+      width: "340px",
       center: true,
     },
     {
@@ -83,6 +83,7 @@ const IndCAvail = () => {
       selector: (row) => row.category,
       width: "350px",
       center: true,
+      hide:'md'
     },
     {
       name: "Actions",
@@ -159,6 +160,7 @@ const IndCAvail = () => {
               pagination
             />
           </div>
+          <div style={{paddingTop:'1rem',marginTop:"3rem",}}>
           {
             searchData
               ? records.filter((item) =>
@@ -167,7 +169,7 @@ const IndCAvail = () => {
                     .startsWith(searchData.toLowerCase())
                 ).map(item => {
                   return (
-                    <div style={{paddingTop:'1rem',marginTop:"3rem", display:'flex', flexDirection:'column'}}>
+                    <div style={{marginTop:".8rem", display:'flex', flexDirection:'column'}}>
                       <div className="new-table-shadow new-table-res new-table-hidden">
                         <div style={{display:'flex',justifyContent:'space-between'}}>
                           <p style={{paddingTop:"1.5rem",paddingLeft:".4rem", color:'#212a50', fontWeight:'bold',}}>{item?.Name}</p>
@@ -184,7 +186,7 @@ const IndCAvail = () => {
                 })
               : records.map(item => {
                 return (
-                  <div style={{paddingTop:'1rem',marginTop:"3rem", display:'flex', flexDirection:'column'}}>
+                  <div style={{marginTop:".8rem",display:'flex', flexDirection:'column'}}>
                     <div className="new-table-shadow new-table-res new-table-hidden">
                       <div style={{display:'flex',justifyContent:'space-between'}}>
                         <p style={{paddingTop:"1.5rem",paddingLeft:".4rem", color:'#212a50', fontWeight:'bold',}}>{item?.Name}</p>
@@ -200,6 +202,8 @@ const IndCAvail = () => {
                 )
               })
           }
+         </div>
+         
         </div>{" "}
       </div>
     </div>

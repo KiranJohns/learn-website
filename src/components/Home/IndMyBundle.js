@@ -90,14 +90,13 @@ const IndMyBundle = () => {
       selector: (row, idx) => ++idx,
       width: "90px",
       center: true,
+      hide:'md'
     },
     {
       name: "bundle name",
       selector: (row) => row?.name || row?.bundle_name,
-      sortable: true,
-      width: "400px",
+      width: "340px",
       center: true,
-      
     },
     {
       name: "validity",
