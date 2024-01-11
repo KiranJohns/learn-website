@@ -67,37 +67,37 @@ class IndCertificate extends Component {
     const columns = [
       {
         name: "SL No.",
-        selector: (row, idx) => idx + 1,
+        selector: (row, idx) => idx+1,
         center: true,
-        hide: "md",
-        width: "85px",
+        hide:'md',
+        width:'85px'
       },
       {
         name: "Courses",
         selector: (row) => row.course_name,
         sortable: true,
         center: true,
-
-        minWidth: "250px",
+      
+        minWidth:'250px'
       },
       {
         name: "Date",
         selector: (row) => row.date,
         center: true,
-        hide: "md",
+        hide:'md',
       },
       {
         name: "Percentage",
         selector: (row) => row.percentage,
         center: true,
-        hide: "sm",
+        hide:'sm',
       },
       {
         name: "Actions",
         center: true,
         selector: (row) => (
           <a className="btn btn-success" target="_blank" href={row.image}>
-            <FaEye />
+           <FaEye />
           </a>
         ),
       },
@@ -106,10 +106,7 @@ class IndCertificate extends Component {
     return (
       <div className="">
         <div className="dash-shadow">
-          <div
-            style={{ position: "relative" }}
-            className=" row g-3  min-vh-100  d-flex justify-content-center mt-20"
-          >
+          <div style={{position:'relative'}} className=" row g-3  min-vh-100  d-flex justify-content-center mt-20">
             <h2
               style={{
                 color: "#212450",
@@ -166,25 +163,26 @@ class IndCertificate extends Component {
                 className="reacttable-hidden"
                 style={{ padding: "", backgroundColor: "" }}
               >
-                <DataTable
-                  noDataComponent={"No records to display"}
-                  columns={columns}
-                  persistTableHead={true}
-                  data={
-                    this.state.searchData
-                      ? this.state.records.filter((item) =>
-                          item.course_name
-                            .toLowerCase()
-                            .startsWith(this.state.searchData.toLowerCase())
-                        )
-                      : this.state.records
-                  }
-                  customStyles={customStyles}
-                  pagination
-                  responsive={true}
-                />
+              <DataTable
+                noDataComponent={"No records to display"}
+                columns={columns}
+                persistTableHead={true}
+                data={
+                  this.state.searchData
+                    ? this.state.records.filter((item) =>
+                        item.course_name
+                          .toLowerCase()
+                          .startsWith(this.state.searchData.toLowerCase())
+                      )
+                    : this.state.records
+                }
+                customStyles={customStyles}
+                pagination
+               responsive={true}
+              />
               </div>
 
+                <div>
               {this.state.searchData
                 ? this.state.records
                     .filter((item) =>
@@ -197,7 +195,6 @@ class IndCertificate extends Component {
                         <div
                           style={{
                             paddingTop: "1rem",
-                            marginTop: "3rem",
                             display: "flex",
                             flexDirection: "column",
                             width: "100%",
@@ -243,7 +240,7 @@ class IndCertificate extends Component {
                       <div
                         style={{
                           paddingTop: "1rem",
-                          marginTop: "3rem",
+                          // marginTop: "0.5rem",
                           display: "flex",
                           flexDirection: "column",
                           width: "100%",
@@ -284,6 +281,7 @@ class IndCertificate extends Component {
                       </div>
                     );
                   })}
+            </div>
             </div>
           </div>{" "}
         </div>
