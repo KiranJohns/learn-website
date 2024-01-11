@@ -55,17 +55,17 @@ const IndCourse = () => {
 
   const getData = async () => {
     try {
-      // let onGoingCourseUrl = "/on-going-course/get-all-on-going-courses";
+      let onGoingCourseUrl = "/on-going-course/get-all-on-going-courses";
       let url1 = "/course/get-bought-course";
       let url2 = "/course/get-all-assigned-course";
       Promise.all([
-        // makeRequest("GET", onGoingCourseUrl),
+        makeRequest("GET", onGoingCourseUrl),
         makeRequest("GET", url1),
         makeRequest("GET", url2),
       ]).then((res) => {
         console.log(res[0].data.response, res[1].data.response);
         let arr = [
-          // ...res[0].data.response,
+          ...res[0].data.response,
           ...res[0].data.response.filter((item) => item?.course_count >= 1),
           ...res[1].data.response.filter((item) => item?.course_count >= 1),
         ];
@@ -107,7 +107,7 @@ const IndCourse = () => {
       selector: (row, idx) => idx + 1,
       width: "90px",
       center: true,
-      hide:'md'
+      hide: "md",
     },
     {
       name: "name",
@@ -118,9 +118,9 @@ const IndCourse = () => {
     },
 
     {
-      name: "category",
-      selector: (row) => row.category,
-      hide:'md'
+      name: "Progress",
+      selector: (row) => (row?.progress ? row?.progress + "%" : 0 + "%"),
+      hide: "md",
     },
 
     {
@@ -132,6 +132,7 @@ const IndCourse = () => {
       name: "Action",
       center: true,
       cell: (row) => {
+        console.log(row);
         let validity = row.validity.split("/").reverse();
         return (
           <>
@@ -147,12 +148,13 @@ const IndCourse = () => {
                       },
                     }}
                   >
-                    <a className="btn btn-success">
+                    <a style={{ width: "7rem" }} className="btn btn-success">
                       {row?.progress >= 80 ? "Completed" : "Start"}
                     </a>
                   </Link>
                 ) : (
                   <a
+                    style={{ width: "7rem" }}
                     onClick={() => {
                       if (row.from_purchased) {
                         handleStart(row.id, "purchased");
@@ -167,7 +169,9 @@ const IndCourse = () => {
                 )}{" "}
               </>
             ) : (
-              <a className="btn btn-danger">Expired</a>
+              <a style={{ width: "7rem" }} className="btn btn-danger">
+                Expired
+              </a>
             )}
           </>
         );
@@ -253,15 +257,109 @@ const IndCourse = () => {
               persistTableHead={true}
             />
           </div>
-          <div style={{marginTop: '2rem'}}>
-          {searchData
-            ? records
-                .filter((item) =>
-                  (item?.Name || item?.name)
-                    .toLowerCase()
-                    .startsWith(searchData.toLowerCase())
-                )
-                .map((item) => {
+          <div style={{ marginTop: "2rem" }}>
+            {searchData
+              ? records
+                  .filter((item) =>
+                    (item?.Name || item?.name)
+                      .toLowerCase()
+                      .startsWith(searchData.toLowerCase())
+                  )
+                  .map((item) => {
+                    return (
+                      <div
+                        style={{
+                          paddingTop: "1rem",
+                          marginTop: "0.2rem",
+                          display: "flex",
+                          flexDirection: "column",
+                        }}
+                      >
+                        <div className="new-table-shadow new-table-res new-table-hidden">
+                          <div
+                            style={{
+                              display: "flex",
+                              justifyContent: "space-between",
+                            }}
+                          >
+                            <p
+                              style={{
+                                paddingTop: "1.5rem",
+                                paddingLeft: ".4rem",
+                                color: "#212a50",
+                                fontWeight: "bold",
+                              }}
+                            >
+                              {item?.Name || item?.name}
+                            </p>
+                            <>
+                              {new Date(
+                                item?.validity.split("/").reverse().join("-")
+                              ) > new Date() ? (
+                                <>
+                                  {item?.progress ? (
+                                    <Link
+                                      href={{
+                                        pathname: "/learnCourse/coursepage",
+                                        query: {
+                                          courseId: item.on_going_course_id,
+                                          from: "course",
+                                        },
+                                      }}
+                                    >
+                                      <a
+                                        style={{
+                                          height: "35px",
+                                          marginTop: "1rem",
+                                          marginRight: ".4rem",
+                                        }}
+                                        className="btn btn-success"
+                                      >
+                                        {item?.progress >= 80
+                                          ? "Completed"
+                                          : "Start"}
+                                      </a>
+                                    </Link>
+                                  ) : (
+                                    <a
+                                      onClick={() => {
+                                        if (item.from_purchased) {
+                                          handleStart(item.id, "purchased");
+                                        } else {
+                                          handleStart(item.id, "assigned");
+                                        }
+                                      }}
+                                      style={{
+                                        height: "35px",
+                                        marginTop: "1rem",
+                                        marginRight: ".4rem",
+                                      }}
+                                      className="btn btn-success"
+                                    >
+                                      Start
+                                    </a>
+                                  )}{" "}
+                                </>
+                              ) : (
+                                <a
+                                  className="btn btn-danger"
+                                  style={{
+                                    height: "35px",
+                                    marginTop: "1rem",
+                                    marginRight: ".4rem",
+                                  }}
+                                >
+                                  Expired
+                                </a>
+                              )}
+                            </>
+                            {/* <button className="btn btn-success" style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}>View</button> */}
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })
+              : records.map((item) => {
                   return (
                     <div
                       style={{
@@ -354,101 +452,7 @@ const IndCourse = () => {
                       </div>
                     </div>
                   );
-                })
-            : records.map((item) => {
-                return (
-                  <div
-                    style={{
-                      paddingTop: "1rem",
-                      marginTop: "0.2rem",
-                      display: "flex",
-                      flexDirection: "column",
-                    }}
-                  >
-                    <div className="new-table-shadow new-table-res new-table-hidden">
-                      <div
-                        style={{
-                          display: "flex",
-                          justifyContent: "space-between",
-                        }}
-                      >
-                        <p
-                          style={{
-                            paddingTop: "1.5rem",
-                            paddingLeft: ".4rem",
-                            color: "#212a50",
-                            fontWeight: "bold",
-                          }}
-                        >
-                          {item?.Name || item?.name}
-                        </p>
-                        <>
-                          {new Date(
-                            item?.validity.split("/").reverse().join("-")
-                          ) > new Date() ? (
-                            <>
-                              {item?.progress ? (
-                                <Link
-                                  href={{
-                                    pathname: "/learnCourse/coursepage",
-                                    query: {
-                                      courseId: item.on_going_course_id,
-                                      from: "course",
-                                    },
-                                  }}
-                                >
-                                  <a
-                                    style={{
-                                      height: "35px",
-                                      marginTop: "1rem",
-                                      marginRight: ".4rem",
-                                    }}
-                                    className="btn btn-success"
-                                  >
-                                    {item?.progress >= 80
-                                      ? "Completed"
-                                      : "Start"}
-                                  </a>
-                                </Link>
-                              ) : (
-                                <a
-                                  onClick={() => {
-                                    if (item.from_purchased) {
-                                      handleStart(item.id, "purchased");
-                                    } else {
-                                      handleStart(item.id, "assigned");
-                                    }
-                                  }}
-                                  style={{
-                                    height: "35px",
-                                    marginTop: "1rem",
-                                    marginRight: ".4rem",
-                                  }}
-                                  className="btn btn-success"
-                                >
-                                  Start
-                                </a>
-                              )}{" "}
-                            </>
-                          ) : (
-                            <a
-                              className="btn btn-danger"
-                              style={{
-                                height: "35px",
-                                marginTop: "1rem",
-                                marginRight: ".4rem",
-                              }}
-                            >
-                              Expired
-                            </a>
-                          )}
-                        </>
-                        {/* <button className="btn btn-success" style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}>View</button> */}
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
+                })}
           </div>
         </div>
       </div>
