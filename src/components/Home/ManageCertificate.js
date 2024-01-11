@@ -4,6 +4,7 @@ import DataTable from "react-data-table-component";
 import Link from "next/link";
 import BasicExample from "../About/button1";
 import fetchData from "../../axios";
+import { FaEye } from "react-icons/fa";
 
 const customStyles = {
   headRow: {
@@ -84,7 +85,11 @@ class ManageCertificate extends Component {
       },
       {
         name: "Actions",
-        selector: (row) => <a className="btn btn-success" target="_blank" href={row.image}>view</a>,
+        selector: (row) => (
+          <a className="btn btn-success" target="_blank" href={row.image}>
+            view
+          </a>
+        ),
       },
     ];
 
@@ -144,23 +149,127 @@ class ManageCertificate extends Component {
                   </button>
                 </form>
               </div>
-              <DataTable
-                noDataComponent={"No records to display"}
-                columns={columns}
-                persistTableHead={true}
-                data={
-                  this.state.searchData
-                    ? this.state.records.filter((item) =>
-                        item.name
-                          .toLowerCase()
-                          .includes(this.state.searchData.toLowerCase())
-                      )
-                    : this.state.records
-                }
-                customStyles={customStyles}
-                pagination
-                selectableRows
-              />
+              <div
+                className="reacttable-hidden"
+                style={{ padding: "", backgroundColor: "" }}
+              >
+                <DataTable
+                  noDataComponent={"No records to display"}
+                  columns={columns}
+                  persistTableHead={true}
+                  data={
+                    this.state.searchData
+                      ? this.state.records.filter((item) =>
+                          item.name
+                            .toLowerCase()
+                            .includes(this.state.searchData.toLowerCase())
+                        )
+                      : this.state.records
+                  }
+                  customStyles={customStyles}
+                  pagination
+                  selectableRows
+                />
+              </div>
+              {this.state.searchData
+                ? this.state.records
+                    .filter((item) =>
+                      item.name
+                        .toLowerCase()
+                        .includes(this.state.searchData.toLowerCase())
+                    )
+                    .map((item) => {
+                      return (
+                        <div
+                          style={{
+                            paddingTop: "1rem",
+                            marginTop: "3rem",
+                            display: "flex",
+                            flexDirection: "column",
+                            width: "100%",
+                          }}
+                        >
+                          <div className="new-table-shadow new-table-res new-table-hidden">
+                            <div
+                              style={{
+                                display: "flex",
+                                justifyContent: "space-between",
+                              }}
+                            >
+                              <p
+                                style={{
+                                  paddingTop: "1.5rem",
+                                  paddingLeft: ".4rem",
+                                  color: "#212a50",
+                                  fontWeight: "bold",
+                                }}
+                              >
+                                {item.course_name}
+                              </p>
+                              {/* <button className="btn btn-success" style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}>View</button> */}
+                              <a
+                                style={{
+                                  height: "35px",
+                                  marginTop: "1rem",
+                                  marginRight: ".4rem",
+                                }}
+                                className="btn btn-success"
+                                target="_blank"
+                                href={item.image}
+                              >
+                                <FaEye />
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })
+                : this.state.records.map((item) => {
+                    return (
+                      <div
+                        style={{
+                          paddingTop: "1rem",
+                          marginTop: "3rem",
+                          display: "flex",
+                          flexDirection: "column",
+                          width: "100%",
+                        }}
+                      >
+                        <div className="new-table-shadow new-table-res new-table-hidden">
+                          <div
+                            style={{
+                              display: "flex",
+                              justifyContent: "space-between",
+                            }}
+                          >
+                            <p
+                              style={{
+                                paddingTop: "1.5rem",
+                                paddingLeft: ".4rem",
+                                color: "#212a50",
+                                fontWeight: "bold",
+                              }}
+                            >
+                              {item.course_name}
+                            </p>
+                            {/* <button className="btn btn-success" style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}>View</button> */}
+                            <a
+                              style={{
+                                height: "35px",
+                                marginTop: "1rem",
+                                marginRight: ".4rem",
+                              }}
+                              className="btn btn-success"
+                              target="_blank"
+                              href={item.image}
+                            >
+                              <FaEye />
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
             </div>
           </div>{" "}
         </div>
