@@ -92,7 +92,7 @@ const BundleCour = () => {
       selector: (row, idx) => idx + 1,
       center: "true",
       width: "90px",
-      hide:"md",
+      hide: "md",
     },
     {
       name: "name",
@@ -104,7 +104,7 @@ const BundleCour = () => {
       name: "category",
       selector: (row) => row.category,
       center: "true",
-      hide:"md",
+      hide: "md",
     },
     {
       name: "Attempts",
@@ -175,7 +175,7 @@ const BundleCour = () => {
             style={{
               padding: "",
               color: "#212450",
-              margin: '0',
+              margin: "0",
               fontSize: 37,
             }}
           >
@@ -210,7 +210,7 @@ const BundleCour = () => {
               data={
                 searchData
                   ? records.filter((item) =>
-                      item.Name.toLowerCase().includes(searchData.toLowerCase())
+                      (item?.Name || item?.name).toLowerCase().includes(searchData.toLowerCase())
                     )
                   : records
               }
@@ -222,7 +222,7 @@ const BundleCour = () => {
           {searchData
             ? records
                 .filter((item) =>
-                  item.Name.toLowerCase().includes(searchData.toLowerCase())
+                (item?.Name || item?.name).toLowerCase().includes(searchData.toLowerCase())
                 )
                 .map((item) => {
                   return (
@@ -252,21 +252,64 @@ const BundleCour = () => {
                             {item.Name || item.name}
                           </p>
                           {/* <button className="btn btn-success" style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}>View</button> */}
-                          <a
-                            style={{
-                              height: "35px",
-                              marginTop: "1rem",
-                              marginRight: ".4rem",
-                            }}
-                            href="https://test.learnforcare.co.uk/bundle/bundle-all"
-                          >
-                            <Button
-                              style={{ background: "#212a50", color: "#fff" }}
-                              variant=""
-                            >
-                              View
-                            </Button>
-                          </a>
+                          <>
+                            {!data?.finished_course?.includes(item.id) ? (
+                              <>
+                                {item?.attempts < 20 ? (
+                                  <Link
+                                    href={{
+                                      pathname: "/learnCourse/bundleCourse",
+                                      query: {
+                                        course_id: item.id,
+                                        bundleId: router.query.id,
+                                      },
+                                    }}
+                                  >
+                                    <a
+                                      onClick={() => {}}
+                                      className={`btn btn-success`}
+                                      style={{
+                                        width: "7rem",
+                                        height: "35px",
+                                        marginTop: "1rem",
+                                        marginRight: ".4rem",
+                                      }}
+                                    >
+                                      Start
+                                    </a>
+                                  </Link>
+                                ) : (
+                                  <>
+                                    <a
+                                      style={{
+                                        width: "7rem",
+                                        height: "35px",
+                                        marginTop: "1rem",
+                                        marginRight: ".4rem",
+                                      }}
+                                      className="btn btn-danger"
+                                    >
+                                      Expired
+                                    </a>
+                                  </>
+                                )}
+                              </>
+                            ) : (
+                              <>
+                                <a
+                                  style={{
+                                    width: "7rem",
+                                    height: "35px",
+                                    marginTop: "1rem",
+                                    marginRight: ".4rem",
+                                  }}
+                                  className="btn btn-danger"
+                                >
+                                  Completed
+                                </a>
+                              </>
+                            )}
+                          </>
                         </div>
                       </div>
                     </div>
@@ -300,21 +343,64 @@ const BundleCour = () => {
                           {item.Name || item.name}
                         </p>
                         {/* <button className="btn btn-success" style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}>View</button> */}
-                        <a
-                          style={{
-                            height: "35px",
-                            marginTop: "1rem",
-                            marginRight: ".4rem",
-                          }}
-                          href="https://test.learnforcare.co.uk/bundle/bundle-all"
-                        >
-                          <Button
-                            style={{ background: "#212a50", color: "#fff" }}
-                            variant=""
-                          >
-                            View
-                          </Button>
-                        </a>
+                        <>
+                          {!data?.finished_course?.includes(item.id) ? (
+                            <>
+                              {item?.attempts < 20 ? (
+                                <Link
+                                  href={{
+                                    pathname: "/learnCourse/bundleCourse",
+                                    query: {
+                                      course_id: item.id,
+                                      bundleId: router.query.id,
+                                    },
+                                  }}
+                                >
+                                  <a
+                                    onClick={() => {}}
+                                    className={`btn btn-success`}
+                                    style={{
+                                      width: "7rem",
+                                      height: "35px",
+                                      marginTop: "1rem",
+                                      marginRight: ".4rem",
+                                    }}
+                                  >
+                                    Start
+                                  </a>
+                                </Link>
+                              ) : (
+                                <>
+                                  <a
+                                    style={{
+                                      width: "7rem",
+                                      height: "35px",
+                                      marginTop: "1rem",
+                                      marginRight: ".4rem",
+                                    }}
+                                    className="btn btn-danger"
+                                  >
+                                    Expired
+                                  </a>
+                                </>
+                              )}
+                            </>
+                          ) : (
+                            <>
+                              <a
+                                style={{
+                                  width: "7rem",
+                                  height: "35px",
+                                  marginTop: "1rem",
+                                  marginRight: ".4rem",
+                                }}
+                                className="btn btn-danger"
+                              >
+                                Completed
+                              </a>
+                            </>
+                          )}
+                        </>
                       </div>
                     </div>
                   </div>
