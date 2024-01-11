@@ -171,22 +171,24 @@ const ManagerAssignCourse = () => {
 
   const columns = [
     {
-      name: "No",
+      name: "Sl No.",
       selector: (row, idx) => ++idx,
       center: true,
-      width: "70px",
+      width: "80px",
+      hide:"md",
     },
     {
       name: "course",
       selector: (row) => row.name || row.Name,
       sortable: true,
       center: true,
-      width: "400px",
+      width: "350px",
     },
     {
       name: "validity",
       selector: (row) => row.validity,
       center: true,
+      hide:"md",
     },
     {
       name: "count",
@@ -255,6 +257,7 @@ const ManagerAssignCourse = () => {
               display: "flex",
               justifyContent: "center",
               position: "absolute",
+              marginTop:"1.2rem",
               fontSize: 36,
             }}
           >
@@ -480,6 +483,8 @@ const ManagerAssignCourse = () => {
                 pagination
               />
             </div>
+            <div style={{    paddingTop: "1rem",
+                        marginTop: "3rem",}}>
             {searchString
               ? records
                   .filter((item) =>
@@ -569,8 +574,7 @@ const ManagerAssignCourse = () => {
                 return (
                   <div
                     style={{
-                      paddingTop: "1rem",
-                      marginTop: "3rem",
+                       marginTop:".7rem",
                       display: "flex",
                       flexDirection: "column",
                     }}
@@ -628,6 +632,7 @@ const ManagerAssignCourse = () => {
                   </div>
                 );
               })}
+              </div>
           </div>
         </div>{" "}
       </div>

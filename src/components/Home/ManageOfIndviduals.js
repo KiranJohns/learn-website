@@ -85,26 +85,32 @@ const ManageIndList = () => {
 
   const columns = [
     {
-      name: "ID",
-      selector: (row) => row.id,
-      sortable: true,
+      name: "Sl No.",
+      selector: (row, idx) =>++idx,
+      center:true,
+      hide:"lg",
     },
     {
       name: "User",
       selector: (row) => row.first_name + " " + row.last_name,
-      sortable: true,
+      minWidth:"250px",
+      center:true,
     },
     {
       name: "City",
       selector: (row) => row.city,
-      sortable: true,
+      center:true,
+      hide:"md",
     },
     {
       name: "Email",
       selector: (row) => row.email,
+      center:true,
+      minWidth:"315px",
     },
     {
       name: "Action",
+      center:true,
       cell: (row) => (
         <button
           onClick={() => handleBlock(row.block, row.id)}
@@ -131,14 +137,14 @@ const ManageIndList = () => {
           pauseOnHover
           theme="light"
         />
-        <div className=" row g-3  min-vh-100  d-flex justify-content-center mt-20">
+        <div style={{position:'relative'}} className=" row g-3  min-vh-100  d-flex justify-content-center mt-20">
           <h2
             style={{
               color: "#212450",
               display: "flex",
               justifyContent: "center",
               position: "absolute",
-              fontSize: 37,
+              fontSize: 36,
             }}
           >
             Individuals

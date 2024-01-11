@@ -92,22 +92,24 @@ const ManageMyCourse = () => {
 
   const columns = [
     {
-      name: "No",
+      name: "Sl No.",
       selector: (row, idx) => ++idx,
       center: true,
-      width: "70px",
+      width: "80px",
+      hide:'md',
     },
     {
       name: "Courses",
       selector: (row) => row?.Name || row?.name,
       sortable: true,
       center: true,
-      width: "400px",
+      width: "350px",
     },
     {
       name: "validity",
       selector: (row) => row?.validity,
       center: true,
+      hide:'md',
     },
     {
       name: "progress",
@@ -235,6 +237,9 @@ const ManageMyCourse = () => {
               persistTableHead={true}
             />
           </div>
+          
+          <div style={{  paddingTop: "1rem",
+                        marginTop: "3rem",}}>
           {searchString
             ? records
                 .filter((item) =>
@@ -260,8 +265,7 @@ const ManageMyCourse = () => {
                   return (
                     <div
                       style={{
-                        paddingTop: "1rem",
-                        marginTop: "3rem",
+                      
                         display: "flex",
                         flexDirection: "column",
                       }}
@@ -372,8 +376,7 @@ const ManageMyCourse = () => {
               return (
                 <div
                   style={{
-                    paddingTop: "1rem",
-                    marginTop: "3rem",
+                    marginTop:'.7rem',
                     display: "flex",
                     flexDirection: "column",
                   }}
@@ -465,6 +468,8 @@ const ManageMyCourse = () => {
                 </div>
               );
             })}
+            </div>
+
         </div>{" "}
       </div>
     </div>

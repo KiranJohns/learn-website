@@ -193,6 +193,7 @@ const ManAssignBund = () => {
       name: "validity",
       selector: (row) => row.validity,
       center: true,
+      hide:"md",
     },
     {
       name: "count",
@@ -370,7 +371,7 @@ const ManAssignBund = () => {
                         >
                           Name
                         </span>
-                        <span style={{ textAlign: "center" }}>Email</span>
+                        <span  style={{ textAlign: "center" }}>Email</span>
                         <span
                           style={{ width: "fit-content", marginRight: "1rem" }}
                         >
@@ -492,7 +493,7 @@ const ManAssignBund = () => {
           </div>
 
           {/* mobile component */}
-
+          <div style={{marginTop: "2.7rem", paddingTop:'1rem'}}>
           {searchString
             ? records
                 .filter((item) =>
@@ -511,8 +512,7 @@ const ManAssignBund = () => {
                   }
                   return <div
                     style={{
-                      paddingTop: "1rem",
-                      marginTop: "2.7rem",
+                  
                       display: "flex",
                       flexDirection: "column",
                     }}
@@ -580,8 +580,7 @@ const ManAssignBund = () => {
                 }
                 return <div
                   style={{
-                    paddingTop: "1rem",
-                    marginTop: "2.7rem",
+                
                     display: "flex",
                     flexDirection: "column",
                   }}
@@ -638,6 +637,8 @@ const ManAssignBund = () => {
                   </div>
                 </div>;
               })}
+              </div>
+
         </div>{" "}
       </div>
     </div>

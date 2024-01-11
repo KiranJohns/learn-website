@@ -538,3 +538,10 @@ margin: 0 auto;
     display: none ;
     }
    }
+
+
+   @media screen and (max-width:810px) {
+    .modal-assign-hidden{
+    display: none ;
+    }
+   }
