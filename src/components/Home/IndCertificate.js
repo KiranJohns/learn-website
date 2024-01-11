@@ -67,37 +67,37 @@ class IndCertificate extends Component {
     const columns = [
       {
         name: "SL No.",
-        selector: (row, idx) => idx+1,
+        selector: (row, idx) => idx + 1,
         center: true,
-        hide:'md',
-        width:'85px'
+        hide: "md",
+        width: "85px",
       },
       {
         name: "Courses",
         selector: (row) => row.course_name,
         sortable: true,
         center: true,
-      
-        minWidth:'250px'
+
+        minWidth: "250px",
       },
       {
         name: "Date",
         selector: (row) => row.date,
         center: true,
-        hide:'md',
+        hide: "md",
       },
       {
         name: "Percentage",
         selector: (row) => row.percentage,
         center: true,
-        hide:'sm',
+        hide: "sm",
       },
       {
         name: "Actions",
         center: true,
         selector: (row) => (
           <a className="btn btn-success" target="_blank" href={row.image}>
-           <FaEye />
+            <FaEye />
           </a>
         ),
       },
@@ -106,7 +106,10 @@ class IndCertificate extends Component {
     return (
       <div className="">
         <div className="dash-shadow">
-          <div style={{position:'relative'}} className=" row g-3  min-vh-100  d-flex justify-content-center mt-20">
+          <div
+            style={{ position: "relative" }}
+            className=" row g-3  min-vh-100  d-flex justify-content-center mt-20"
+          >
             <h2
               style={{
                 color: "#212450",
@@ -159,23 +162,128 @@ class IndCertificate extends Component {
                   </button>
                 </form>
               </div>
-              <DataTable
-                noDataComponent={"No records to display"}
-                columns={columns}
-                persistTableHead={true}
-                data={
-                  this.state.searchData
-                    ? this.state.records.filter((item) =>
-                        item.course_name
-                          .toLowerCase()
-                          .startsWith(this.state.searchData.toLowerCase())
-                      )
-                    : this.state.records
-                }
-                customStyles={customStyles}
-                pagination
-               responsive={true}
-              />
+              <div
+                className="reacttable-hidden"
+                style={{ padding: "", backgroundColor: "" }}
+              >
+                <DataTable
+                  noDataComponent={"No records to display"}
+                  columns={columns}
+                  persistTableHead={true}
+                  data={
+                    this.state.searchData
+                      ? this.state.records.filter((item) =>
+                          item.course_name
+                            .toLowerCase()
+                            .startsWith(this.state.searchData.toLowerCase())
+                        )
+                      : this.state.records
+                  }
+                  customStyles={customStyles}
+                  pagination
+                  responsive={true}
+                />
+              </div>
+
+              {this.state.searchData
+                ? this.state.records
+                    .filter((item) =>
+                      item.name
+                        .toLowerCase()
+                        .includes(this.state.searchData.toLowerCase())
+                    )
+                    .map((item) => {
+                      return (
+                        <div
+                          style={{
+                            paddingTop: "1rem",
+                            marginTop: "3rem",
+                            display: "flex",
+                            flexDirection: "column",
+                            width: "100%",
+                          }}
+                        >
+                          <div className="new-table-shadow new-table-res new-table-hidden">
+                            <div
+                              style={{
+                                display: "flex",
+                                justifyContent: "space-between",
+                              }}
+                            >
+                              <p
+                                style={{
+                                  paddingTop: "1.5rem",
+                                  paddingLeft: ".4rem",
+                                  color: "#212a50",
+                                  fontWeight: "bold",
+                                }}
+                              >
+                                {item.course_name}
+                              </p>
+                              {/* <button className="btn btn-success" style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}>View</button> */}
+                              <a
+                                style={{
+                                  height: "35px",
+                                  marginTop: "1rem",
+                                  marginRight: ".4rem",
+                                }}
+                                className="btn btn-success"
+                                target="_blank"
+                                href={item.image}
+                              >
+                                <FaEye />
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })
+                : this.state.records.map((item) => {
+                    return (
+                      <div
+                        style={{
+                          paddingTop: "1rem",
+                          marginTop: "3rem",
+                          display: "flex",
+                          flexDirection: "column",
+                          width: "100%",
+                        }}
+                      >
+                        <div className="new-table-shadow new-table-res new-table-hidden">
+                          <div
+                            style={{
+                              display: "flex",
+                              justifyContent: "space-between",
+                            }}
+                          >
+                            <p
+                              style={{
+                                paddingTop: "1.5rem",
+                                paddingLeft: ".4rem",
+                                color: "#212a50",
+                                fontWeight: "bold",
+                              }}
+                            >
+                              {item.course_name}
+                            </p>
+                            {/* <button className="btn btn-success" style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}>View</button> */}
+                            <a
+                              style={{
+                                height: "35px",
+                                marginTop: "1rem",
+                                marginRight: ".4rem",
+                              }}
+                              className="btn btn-success"
+                              target="_blank"
+                              href={item.image}
+                            >
+                              <FaEye />
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
             </div>
           </div>{" "}
         </div>
