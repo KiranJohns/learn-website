@@ -176,10 +176,11 @@ const ManAssignBund = () => {
 
   const columns = [
     {
-      name: "ID",
+      name: "SL No.",
       selector: (row, idx) => ++idx,
-      width: "70px",
+      width: "80px",
       center: true,
+      hide:"md",
     },
     {
       name: "bundle name",
