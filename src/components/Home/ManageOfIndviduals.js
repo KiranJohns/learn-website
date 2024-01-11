@@ -168,6 +168,7 @@ const ManageIndList = () => {
                 </button>
               </form>
             </div>
+            <div className="reacttable-hidden">
             <DataTable
              persistTableHead={true}
                progressPending={pending}
@@ -181,7 +182,7 @@ const ManageIndList = () => {
               columns={columns}
               data={
                 searchString
-                  ? records.filter((item) =>
+                ? records.filter((item) =>
                       item.first_name.toLowerCase()
                         .startsWith(searchString.toLowerCase())
                     )
@@ -190,6 +191,100 @@ const ManageIndList = () => {
               customStyles={customStyles}
               pagination
             />
+            </div>
+            {searchString
+              ? records
+                  .filter((item) =>
+                    item.first_name
+                      .toLowerCase()
+                      .startsWith(searchString.toLowerCase())
+                  )
+                  .map((item) => {
+                    return (
+                      <div
+                        style={{
+                          paddingTop: "1rem",
+                          marginTop: "3rem",
+                          display: "flex",
+                          flexDirection: "column",
+                          width: "100%",
+                        }}
+                      >
+                        <div className="new-table-shadow new-table-res new-table-hidden">
+                          <div
+                            style={{
+                              display: "flex",
+                              justifyContent: "space-between",
+                            }}
+                          >
+                            <p
+                              style={{
+                                paddingTop: "1.5rem",
+                                paddingLeft: ".4rem",
+                                color: "#212a50",
+                                fontWeight: "bold",
+                              }}
+                            >
+                              {item.first_name + " " + item.last_name}
+                            </p>
+                            <a
+                              onClick={() => handleBlock(item.block, item.id)}
+                              className={
+                                item.block
+                                  ? "btn btn-danger"
+                                  : "btn btn-success"
+                              }
+                              style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}
+                            >
+                              {item.block ? <FaLock /> : <FaUnlock />}
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })
+              : records.map((item) => {
+                  return (
+                    <div
+                      style={{
+                        paddingTop: "1rem",
+                        marginTop: "3rem",
+                        display: "flex",
+                        flexDirection: "column",
+                        width: "100%",
+                      }}
+                    >
+                      <div className="new-table-shadow new-table-res new-table-hidden">
+                        <div
+                          style={{
+                            display: "flex",
+                            justifyContent: "space-between",
+                          }}
+                        >
+                          <p
+                            style={{
+                              paddingTop: "1.5rem",
+                              paddingLeft: ".4rem",
+                              color: "#212a50",
+                              fontWeight: "bold",
+                            }}
+                          >
+                            {item.first_name + " " + item.last_name}
+                          </p>
+                          <a
+                          style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}
+                            onClick={() => handleBlock(item.block, item.id)}
+                            className={
+                              item.block ? "btn btn-danger" : "btn btn-success"
+                            }
+                          >
+                            {item.block ? <FaLock /> : <FaUnlock />}
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
           </div>
         </div>{" "}
       </div>
