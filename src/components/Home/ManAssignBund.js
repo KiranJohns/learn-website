@@ -266,7 +266,7 @@ const ManAssignBund = () => {
           >
             Purchased Bundle
           </h2>
-          <div style={{ padding: "", backgroundColor: "" }}>
+          <div className="reacttable-hidden" style={{ padding: "", backgroundColor: "" }}>
             <Modal
               styles={{ padding: "2rem" }}
               open={showModal}
@@ -443,7 +443,7 @@ const ManAssignBund = () => {
                 </div>
               </div>
             </Modal>
-            <div
+            <div 
               style={{ float: "right", marginBottom: "1.4rem" }}
               className="p-relative d-inline header__search searchbar-hidden2"
             >
@@ -487,6 +487,28 @@ const ManAssignBund = () => {
               responsive={true}
             />
           </div>
+
+          {/* mobile component */}
+
+         
+          <div style={{paddingTop:'1rem',marginTop:"2.7rem", display:'flex', flexDirection:'column'}}>
+
+                <div className="new-table-shadow new-table-res new-table-hidden mt-2">
+                  <div style= {{display:'flex',justifyContent:'space-between'}}>
+                    <p style={{paddingTop:"1.5rem",paddingLeft:".4rem", color:'#212a50', fontWeight:'bold',}}>Course Name</p>
+                    <button className="btn btn-success" style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}>View</button>
+                  </div>
+                </div>
+
+                    <div className="new-table-shadow new-table-res new-table-hidden mt-2">
+                  <div style= {{display:'flex',justifyContent:'space-between'}}>
+                    <p style={{paddingTop:"1.5rem",paddingLeft:".4rem", color:'#212a50', fontWeight:'bold',}}>Course Name</p>
+                    <button className="btn btn-success" style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}>View</button>
+                  </div>
+                </div>
+            </div>
+        
+
         </div>{" "}
       </div>
     </div>
