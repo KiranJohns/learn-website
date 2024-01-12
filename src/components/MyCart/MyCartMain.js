@@ -170,7 +170,6 @@ const MyCart = () => {
   }
 
   function removeCouponHandler() {
-    // console.log("remove coupon");
     makeRequest("POST", "/coupon/remove-coupon")
       .then((res) => {
         setCoupon("");
@@ -183,10 +182,15 @@ const MyCart = () => {
       });
   }
 
+  useEffect(() => {
+    removeCoupon()
+  },[])
+
   function removeCoupon() {
-    // console.log("remove coupon");
+    // console.log("remove coupon function");
     makeRequest("POST", "/coupon/remove-coupon")
       .then((res) => {
+        console.log('coupon removed');
         setCoupon("");
         setOfferPrice();
         // setCouponData({ coupon_code: "XXXX" });

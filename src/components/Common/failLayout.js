@@ -3,6 +3,18 @@ import { IoMdCloseCircle } from "react-icons/io";
 import Confetti from 'react-confetti';
 
 class FailedLayout extends Component {
+    componentDidMount() {
+        function removeCouponHandler() {
+            makeRequest("POST", "/coupon/remove-coupon")
+              .then((res) => {
+                
+              })
+              .catch((err) => {
+                console.log(err);
+              });
+          }
+          removeCouponHandler()
+    }
     render() {
 
 

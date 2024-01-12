@@ -27,7 +27,6 @@ const initialValues = {
   country: "",
   password: "",
   confirmPassword: "",
-  terms: "",
 };
 
 function CaptchaOnChange(value) {
@@ -37,6 +36,7 @@ function CaptchaOnChange(value) {
 
 function SignUpMain() {
   const [otp, setOtp] = useState("");
+  const [loadingSignup, setLoadingSignup] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [activeSubmit, setActiveSubmit] = useState(true);
   const [timerValue, setTimerValue] = useState({ seconds: 45 });
@@ -74,6 +74,7 @@ function SignUpMain() {
       );
     } else {
       if (activeSubmit == true) {
+        setLoadingSignup(false)
         setActiveSubmit(false);
       }
     }
@@ -101,9 +102,9 @@ function SignUpMain() {
     clearTimer(getDeadTime());
   }
 
-  useEffect(() => {
-    clearTimer(getDeadTime());
-  }, []);
+  // useEffect(() => {
+  //    clearTimer(getDeadTime());
+  // }, []);
 
   function resend(event) {
     event.preventDefault();
@@ -111,6 +112,7 @@ function SignUpMain() {
       email: values.email,
     })
       .then(() => {
+        setLoadingSignup(true)
         Reset();
         setTimerValue({ seconds: 45 });
         setActiveSubmit(true);
@@ -120,8 +122,6 @@ function SignUpMain() {
         toast(error.errors[0].message);
       });
   }
-
-  const [error, setError] = useState(null);
 
   const [showA, setShowA] = useState(true);
   const [notARobot, setNotARobot] = useState(null);
@@ -171,6 +171,13 @@ function SignUpMain() {
   });
 
   const handleSignUp = async (e) => {
+
+    if(loadingSignup) {
+      toast.warn(`Sign up in progress, please wait before trying again`);
+      return
+    }
+
+    setLoadingSignup(true)
     try {
       e.persist();
       for (const key in initialValues) {
@@ -206,6 +213,7 @@ function SignUpMain() {
       makeRequest(method, url, data)
         .then((res) => {
           console.log(res);
+          clearTimer(getDeadTime());
           store.dispatch({
             type: "SET_RESPONSE",
             payload: res,
