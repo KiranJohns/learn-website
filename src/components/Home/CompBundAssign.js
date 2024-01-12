@@ -348,7 +348,7 @@ const CompAssignBund = () => {
                   onSelect={(k) => setKey(k)}
                   className="mb-3"
                 >
-                  <Tab eventKey="individual" title="Individual">
+                  <Tab  eventKey="individual" title="Individual">
                     <div style={{ background: "white" }}>
                       <div className="form-control dash-shadow d-flex gap-3 p-3">
                         <div className="d-flex">
@@ -431,7 +431,7 @@ const CompAssignBund = () => {
                             >
                               Name
                             </span>
-                            <span style={{ textAlign: "center" }}>Email</span>
+                            <span style={{ textAlign: "center", }}>Email</span>
                             <span
                               style={{
                                 width: "fit-content",
@@ -724,6 +724,8 @@ const CompAssignBund = () => {
                 />
               </Suspense>
             </div>
+
+            <div style={{marginTop:"3rem"}}>
             {searchString
               ? records
                   .filter((item) =>
@@ -907,6 +909,7 @@ const CompAssignBund = () => {
                       </div>
                     </div>;
                   })}
+                  </div>
           </div>
         </div>{" "}
       </div>

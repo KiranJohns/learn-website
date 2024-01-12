@@ -8,6 +8,7 @@ import Header from "../../components/Layout/Header/Header";
 import NoSSR from "react-no-ssr";
 import DashTest from "../../components/Home/DashTest";
 import DashMatrix from "../../components/Home/DashMatrix";
+import DashHeader from "../../components/Layout/Header/DasnboardHeader";
 
 class matrix extends React.Component {
   static getInitialProps({ store }) {}
@@ -18,26 +19,27 @@ class matrix extends React.Component {
     return (
       <React.Fragment>
         <main
-          className="p-4"
+          className="p-4 "
           style={{
+            height:"100%",
             backgroundImage: "linear-gradient(to right, #EDEEF3, #EDEEF3)",
           }}
         >
           <NoSSR>
-            <Header />
+            <DashHeader/>
           </NoSSR>
           <div
-            className="container-fluid "
-            style={{ borderRadius: "22px", marginTop: "120px" }}
+            className="container-fluid matrix-viewport"
+            style={{ borderRadius: "22px", marginTop: "120px",}}
           >
             <div className="row justify-content-md-center">
               <div 
-              className="col-sm-12 col-md-12 col-lg-2 p-0"
+              className="col-sm-12 col-md-12 col-lg-2 p-0 sidebar-hidden"
               style={{ backgroundColor: "#212450" }} >
 
                 <DashboardBar />
               </div>
-              <div className="col-sm col-md-9 bg-white">
+              <div className="col-sm col-md-12 col-lg-11 col-xl-9 bg-white">
                 <DashMatrix />
               </div>
             </div>

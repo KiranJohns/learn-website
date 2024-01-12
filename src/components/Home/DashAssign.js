@@ -288,27 +288,30 @@ const CompAssignCourse = () => {
   // }
   const columns = [
     {
-      name: "No",
+      name: "Sl No.",
       selector: (row, idx) => ++idx,
-      width: "70px",
+      width: "80px",
       center: true,
+      hide:1255,
     },
     {
       name: "name",
       selector: (row) => row.name || row.Name,
       sortable: true,
       center: true,
-      width: "420px",
+      width: "310px",
     },
     {
       name: "Purchased No",
       selector: (row) => row.fake_count,
       center: true,
+      hide:800,
     },
     {
       name: "Assigned No",
       selector: (row) => row.fake_count - row.course_count,
       center: true,
+      hide:960,
     },
 
     {
@@ -378,14 +381,14 @@ const CompAssignCourse = () => {
       <ToastContainer position="top-center" />
 
       <div className="dash-shadow ">
-        <div className=" row g-3  min-vh-100  d-flex justify-content-center mt-20">
+        <div style={{position:"relative"}} className=" row g-3  min-vh-100  d-flex justify-content-center mt-20">
           <h2
             style={{
               color: "#212450",
               display: "flex",
               justifyContent: "center",
               position: "absolute",
-              fontSize: 36,
+              fontSize: 35,
             }}
           >
             Purchased Courses

@@ -16,6 +16,7 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 import Sidebar from "../../components/Sidebar/SampleSidebar";
 import ManCoursMatrix from "../../components/Home/ManagerMatrix";
+import DashHeader from "../../components/Layout/Header/DasnboardHeader";
 
 function CoursMatrix() {
   const [logedIn, setlogedIn] = useState(() => {
@@ -41,20 +42,20 @@ function CoursMatrix() {
             }}
           >
             <NoSSR>
-              <Header />
+              <DashHeader/>
             </NoSSR>
             <div
-              className="container-fluid "
+              className="container-fluid matrix-viewport"
               style={{ borderRadius: "22px", marginTop: "120px" }}
             >
               <div className="row justify-content-md-center">
                 <div
-                  className="col-sm-12 col-md-12 col-lg-2 p-0"
+                  className="col-sm-12 col-md-12 col-lg-2 p-0 sidebar-hidden"
                   style={{ backgroundColor: "#212450" }}
                 >
                   <ManageBar />
                 </div>
-                <div className="col-sm col-md-9 bg-white">
+                <div className="col-sm col-md-12 col-lg-11 col-xl-9 bg-white">
                   <ManCoursMatrix />
                 </div>
               </div>

@@ -134,6 +134,7 @@ const CompTransaction = () => {
                 </button>
               </form>
             </div>
+            <div  style={{marginTop:'3.3rem'}}>
             <DataTable
               progressPending={pending}
               progressComponent={
@@ -154,6 +155,7 @@ const CompTransaction = () => {
               noDataComponent={"No records to display"}
               customStyles={customStyles}
             />
+            </div>
           </div>
         </div>{" "}
       </div>
