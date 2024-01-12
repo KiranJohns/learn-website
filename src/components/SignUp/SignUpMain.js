@@ -21,12 +21,12 @@ const initialValues = {
   first_name: "",
   last_name: "",
   email: "",
-  country: "",
-  city: "",
-  password: "",
   phone: "",
-  confirmPassword: "",
   type_of_account: "",
+  city: "",
+  country: "",
+  password: "",
+  confirmPassword: "",
   terms: "",
 };
 
@@ -112,7 +112,7 @@ function SignUpMain() {
     })
       .then(() => {
         Reset();
-        setTimerValue({seconds: 45})
+        setTimerValue({ seconds: 45 });
         setActiveSubmit(true);
         toast.success("A new OTP send to your email");
       })
@@ -144,7 +144,6 @@ function SignUpMain() {
     }
   }, [signupInfo.loading]);
 
-
   const handleOtp = (event) => {
     event.persist();
     event.preventDefault();
@@ -174,6 +173,16 @@ function SignUpMain() {
   const handleSignUp = async (e) => {
     try {
       e.persist();
+      for (const key in initialValues) {
+        if (values[key] == "") {
+          let title = key;
+          if (key == "type_of_account") {
+            title = "type";
+          }
+          toast.warn(`Please provide a valid ${title.replace("_", " ")}`);
+          return;
+        }
+      }
       if (!check) {
         return toast.warn("Please Accept Terms & Conditions");
       }
@@ -183,7 +192,7 @@ function SignUpMain() {
       }
       const method = "POST"; // Specify the HTTP methods
       const url = "/auth/registration"; // Specify the API endpoint URL
-      const data = values; // Send form values as data 
+      const data = values; // Send form values as data
 
       if (values.password !== values.confirmPassword) {
         toast.error("Password Is Not Matching");
@@ -267,9 +276,9 @@ function SignUpMain() {
               modal: {
                 maxWidth: "unset",
                 minWidth: "35%",
-                background:"#fff",
+                background: "#fff",
                 padding: "unset",
-                borderRadius:"1rem"
+                borderRadius: "1rem",
               },
               overlay: {
                 background: "rgba(0, 0, 0, 0.5)",
