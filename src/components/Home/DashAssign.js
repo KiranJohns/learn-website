@@ -288,27 +288,30 @@ const CompAssignCourse = () => {
   // }
   const columns = [
     {
-      name: "No",
+      name: "Sl No.",
       selector: (row, idx) => ++idx,
-      width: "70px",
+      width: "80px",
       center: true,
+      hide:1255,
     },
     {
       name: "name",
       selector: (row) => row.name || row.Name,
       sortable: true,
       center: true,
-      width: "420px",
+      width: "310px",
     },
     {
       name: "Purchased No",
       selector: (row) => row.fake_count,
       center: true,
+      hide:800,
     },
     {
       name: "Assigned No",
       selector: (row) => row.fake_count - row.course_count,
       center: true,
+      hide:960,
     },
 
     {
@@ -378,14 +381,14 @@ const CompAssignCourse = () => {
       <ToastContainer position="top-center" />
 
       <div className="dash-shadow ">
-        <div className=" row g-3  min-vh-100  d-flex justify-content-center mt-20">
+        <div style={{position:"relative"}} className=" row g-3  min-vh-100  d-flex justify-content-center mt-20">
           <h2
             style={{
               color: "#212450",
               display: "flex",
               justifyContent: "center",
               position: "absolute",
-              fontSize: 36,
+              fontSize: 35,
             }}
           >
             Purchased Courses
@@ -1027,6 +1030,8 @@ const CompAssignCourse = () => {
                 />
               </Suspense>
             </div>
+
+            <div style={{marginTop:"2.8rem", paddingTop:"1rem"}}>
             {searchString
               ? records.filter((item) =>
                   (item.name || item.Name)
@@ -1069,13 +1074,13 @@ const CompAssignCourse = () => {
                                 }
                                 setSelectedBundleCount(item.course_count);
                               }}
-                              style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}
+                              style={{height:'35px', width: "7rem",marginTop:"1rem", marginRight:'.4rem'}}
                             >
                               Assign
                             </a>
                           ) : (
                             <>
-                              <a style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}} className="btn btn-danger">Expired</a>
+                              <a style={{height:'35px', width: "7rem",marginTop:"1rem", marginRight:'.4rem'}} className="btn btn-danger">Expired</a>
                             </>
                           )}
                         </>
@@ -1093,7 +1098,7 @@ const CompAssignCourse = () => {
                   flag = false;
                 }
 
-                return <div style={{paddingTop:'1rem',marginTop:"3rem", display:'flex', flexDirection:'column'}}>
+                return <div style={{ display:'flex', flexDirection:'column'}}>
                   <div className="new-table-shadow new-table-res new-table-hidden">
                     <div style= {{display:'flex',justifyContent:'space-between'}}>
                       <p style={{paddingTop:"1.5rem",paddingLeft:".4rem", color:'#212a50', fontWeight:'bold',}}>{item.name || item.Name}</p>
@@ -1120,13 +1125,13 @@ const CompAssignCourse = () => {
                               }
                               setSelectedBundleCount(item.course_count);
                             }}
-                            style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}
+                            style={{height:'35px', width: "7rem",marginTop:"1rem", marginRight:'.4rem'}}
                           >
                             Assign
                           </a>
                         ) : (
                           <>
-                            <a style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}} className="btn btn-danger">Expired</a>
+                            <a style={{height:'35px', width: "7rem",marginTop:"1rem", marginRight:'.4rem'}} className="btn btn-danger">Expired</a>
                           </>
                         )}
                       </>
@@ -1134,6 +1139,7 @@ const CompAssignCourse = () => {
                   </div>
                 </div>
               })}
+                </div>
           </div>
         </div>{" "}
       </div>

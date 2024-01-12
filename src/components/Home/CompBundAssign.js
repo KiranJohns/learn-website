@@ -26,7 +26,7 @@ const customStyles = {
   },
   headCells: {
     style: {
-      fontSize: "16px",
+      fontSize: "14px",
       fontWeight: "600",
       textTransform: "uppercase",
     },
@@ -215,26 +215,29 @@ const CompAssignBund = () => {
   }
   const columns = [
     {
-      name: "No",
+      name: "Sl No.",
       selector: (row, idx) => ++idx,
       center: true,
-      width: "70px",
+      width: "80px",
+      hide:'lg',
     },
     {
       name: "Bundle Name",
       selector: (row) => row.bundle_name,
       center: true,
-      width: "345px",
+      minWidth: "300px",
     },
     {
       name: "Purchased",
       selector: (row) => row.fake_count,
       center: true,
+      hide:'sm',
     },
     {
       name: "Assigned",
       selector: (row) => row.fake_count - row.course_count,
       center: true,
+      hide:'md',
     },
 
     {
@@ -304,7 +307,7 @@ const CompAssignBund = () => {
               display: "flex",
               justifyContent: "center",
               position: "absolute",
-              fontSize: 36,
+              fontSize: 35,
             }}
           >
             Purchased Bundle
@@ -345,7 +348,7 @@ const CompAssignBund = () => {
                   onSelect={(k) => setKey(k)}
                   className="mb-3"
                 >
-                  <Tab eventKey="individual" title="Individual">
+                  <Tab  eventKey="individual" title="Individual">
                     <div style={{ background: "white" }}>
                       <div className="form-control dash-shadow d-flex gap-3 p-3">
                         <div className="d-flex">
@@ -428,7 +431,7 @@ const CompAssignBund = () => {
                             >
                               Name
                             </span>
-                            <span style={{ textAlign: "center" }}>Email</span>
+                            <span style={{ textAlign: "center", }}>Email</span>
                             <span
                               style={{
                                 width: "fit-content",
@@ -673,7 +676,7 @@ const CompAssignBund = () => {
               </div>
             </Modal>
             <div
-              style={{ float: "right", marginBottom: "1.4rem" }}
+              style={{ float: "right", marginBottom: ".7rem" }}
               className="p-relative d-inline header__search searchbar-hidden2"
             >
               <form action="">
@@ -721,6 +724,8 @@ const CompAssignBund = () => {
                 />
               </Suspense>
             </div>
+
+            <div style={{marginTop:"3rem"}}>
             {searchString
               ? records
                   .filter((item) =>
@@ -740,8 +745,8 @@ const CompAssignBund = () => {
                     return <div
                       style={{
                         width: '100%',
-                        paddingTop: "1rem",
-                        marginTop: "3rem",
+                        // paddingTop: "1rem",
+                        // marginTop: "3rem",
                         display: "flex",
                         flexDirection: "column",
                       }}
@@ -831,8 +836,8 @@ const CompAssignBund = () => {
                     return <div
                       style={{
                         width: '100%',
-                        paddingTop: "1rem",
-                        marginTop: "3rem",
+                        // paddingTop: "1rem",
+                        marginTop: ".5rem",
                         display: "flex",
                         flexDirection: "column",
                       }}
@@ -904,6 +909,7 @@ const CompAssignBund = () => {
                       </div>
                     </div>;
                   })}
+                  </div>
           </div>
         </div>{" "}
       </div>

@@ -21,7 +21,7 @@ const customStyles = {
   },
   headCells: {
     style: {
-      fontSize: "16px",
+      fontSize: "14px",
       fontWeight: "600",
       textTransform: "uppercase",
       justifyContent: "center",
@@ -29,7 +29,7 @@ const customStyles = {
   },
   cells: {
     style: {
-      fontSize: "15px",
+      fontSize: "14px",
       justifyContent: "center",
     },
   },
@@ -87,18 +87,21 @@ class DashTest extends Component {
   render() {
     const columns = [
       {
-        name: "No",
+        name: "SL No",
         selector: (row, idx) => idx + 1,
         center: true,
-        width: "90px",
+        width: "80px",
+        hide:"lg",
       },
       {
         name: "Name",
         selector: (row) => (row.name ? row.name : row.Name),
         center: true,
+        minwdth:"300px"
       },
       {
         name: "Attempts",
+        hide:"sm",
         selector: (row) => (
           <a href={`/learnCourse/examAttempts/?courseId=${row.id}`}>
             {row.attempts + "/20"}
@@ -109,6 +112,7 @@ class DashTest extends Component {
       {
         name: "validity",
         selector: (row) => row.validity,
+        hide:"md",
       },
       {
         name: "Action",
@@ -424,7 +428,6 @@ class DashTest extends Component {
                   color: "#212450",
                   display: "flex",
                   justifyContent: "flex-start",
-
                   fontSize: 35,
                 }}
               >
@@ -526,8 +529,6 @@ class DashTest extends Component {
                     return (
                       <div
                         style={{
-                          paddingTop: "1rem",
-                          marginTop: "3rem",
                           display: "flex",
                           flexDirection: "column",
                         }}
@@ -610,8 +611,7 @@ class DashTest extends Component {
                 return (
                   <div
                     style={{
-                      paddingTop: "1rem",
-                      marginTop: "3rem",
+                      marginTop:".45rem",
                       display: "flex",
                       flexDirection: "column",
                     }}
@@ -625,7 +625,7 @@ class DashTest extends Component {
                       >
                         <p
                           style={{
-                            paddingTop: "1.5rem",
+                            paddingTop: "1.4rem",
                             paddingLeft: ".4rem",
                             color: "#212a50",
                             fontWeight: "bold",

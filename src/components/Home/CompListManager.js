@@ -83,10 +83,11 @@ const CompListManager = () => {
 
   const columns = [
     {
-      name: "ID",
-      selector: (row) => row.id,
-      width: "110px",
+      name: "Sl No.",
+      selector: (row, idx) => ++idx,
+      width: "80px",
       center: "true",
+      hide:1090,
     },
     {
       name: "Name",
@@ -98,6 +99,7 @@ const CompListManager = () => {
       name: "City",
       selector: (row) => row.city,
       center: "true",
+      hide:945,
     },
     {
       name: "Email",
@@ -143,14 +145,15 @@ const CompListManager = () => {
               display: "flex",
               justifyContent: "center",
               position: "absolute",
-              fontSize: 36,
+              fontSize: 34,
+              marginTop:"1.2rem"
             }}
           >
             Managers
           </h2>
           <div style={{ padding: "", backgroundColor: "" }}>
             <div
-              style={{ float: "right", marginBottom: "1.4rem" }}
+              style={{ float: "right", marginBottom: ".8rem" }}
               className="p-relative d-inline header__search searchbar-hidden1"
             >
               <form action="">
@@ -208,8 +211,8 @@ const CompListManager = () => {
                     return (
                       <div
                         style={{
-                          paddingTop: "1rem",
-                          marginTop: "3rem",
+                          // paddingTop: "1rem",
+                          // marginTop: "3rem",
                           display: "flex",
                           flexDirection: "column",
                           width: "100%",
@@ -252,8 +255,8 @@ const CompListManager = () => {
                   return (
                     <div
                       style={{
-                        paddingTop: "1rem",
-                        marginTop: "3rem",
+                        // paddingTop: "1rem",
+                        marginTop: ".6rem",
                         display: "flex",
                         flexDirection: "column",
                         width: "100%",

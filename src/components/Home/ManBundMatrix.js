@@ -92,8 +92,8 @@ const ManBundMatrix = () => {
   }, []);
   return (
     <div className="row p-3">
-      <div style={{ position: "relative" }} className="dash-neww ">
-      <div style={{ position: "absolute" }} className="">
+      <div style={{ position: "relative" }} className="dash-neww">
+      <div style={{ position: "absolute" }} className="manager-matrix">
           <span className="m-3" style={{ display: "flex" }}>
             <div
               style={{

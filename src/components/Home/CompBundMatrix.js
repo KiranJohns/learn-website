@@ -106,8 +106,8 @@ const MatrixBundComp = () => {
   }, [manager]);
   return (
     <div className="row p-3">
-      <div style={{ position: "relative" }} className="dash-neww ">
-      <div style={{ position: "absolute" }} className="">
+      <div style={{ position: "relative" }} className="dash-neww bg-white">
+      <div style={{ position: "absolute" }} className="matrix-hidden">
           <span className="m-3" style={{ display: "flex" }}>
             <div
               style={{
@@ -149,7 +149,7 @@ const MatrixBundComp = () => {
         </div>
         <div className="col-12 p-2 m-2">
           <div style={{ position: "relative" }}>
-            <div className="d-flex justify-content-center my-2 ">
+            <div className="matrix-head my-2 ">
               <h4>Bundle Matrix</h4>
             </div>
 

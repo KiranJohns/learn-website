@@ -21,7 +21,7 @@ const customStyles = {
   },
   headCells: {
     style: {
-      fontSize: "16px",
+      fontSize: "15px",
       fontWeight: "600",
       textTransform: "uppercase",
     },
@@ -67,16 +67,16 @@ const ManagerReport = () => {
 
   const columns = [
     {
-      name: "no.",
+      name: "Sl No.",
       selector: (row, idx) => ++idx,
-      width: "70px",
+      width: "80px",
       center: true,
+      hide:1000,
     },
     {
       name: "Name",
       selector: (row) => row.first_name + " " + row.last_name,
-      sortable: true,
-      width: "370px",
+      maxWidth: "320px",
       center: true,
     },
     {
@@ -84,11 +84,13 @@ const ManagerReport = () => {
       selector: (row) => row.course_count,
       sortable: true,
       center: true,
+      hide:670,
     },
     {
       name: "Bundles Assigned",
       selector: (row) => row.bundle_count,
       center: true,
+      hide:800,
     },
     {
       name: "Individuals",
@@ -122,7 +124,7 @@ const ManagerReport = () => {
               display: "flex",
               justifyContent: "center",
               position: "absolute",
-              fontSize: 36,
+              fontSize: 35,
             }}
           >
             Manager Report

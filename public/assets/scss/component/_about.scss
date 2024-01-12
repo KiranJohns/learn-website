@@ -527,6 +527,12 @@ margin: 0 auto;
     }
    }
   
+   @media screen and (max-width:600px) {
+    .searchbar-hidden2{
+    display: none !important;
+    }
+   }
+
    @media screen and (max-width:1085px) {
     .searchbar-hidden3{
     visibility: hidden !important;
@@ -545,3 +551,35 @@ margin: 0 auto;
     display: none ;
     }
    }
+
+   @media screen and (max-width:865px) {
+    .matrix-hidden{
+    display: none ;
+    }
+   }
+
+
+    .matrix-head{
+      display: flex;
+   justify-content: center;
+    }
+
+
+    @media screen and (max-width:595px) {
+      .matrix-head{
+        justify-content: start;
+         }
+     }
+
+     @media screen and (max-width:1200px) {
+      .matrix-viewport{
+          height: 100vh;
+         }
+     }
+
+
+     @media screen and (max-width:800px) {
+      .manager-matrix{
+          display: none;
+         }
+     }

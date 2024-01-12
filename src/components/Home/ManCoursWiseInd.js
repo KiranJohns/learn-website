@@ -20,14 +20,14 @@ const customStyles = {
   },
   headCells: {
     style: {
-      fontSize: "16px",
+      fontSize: "13px",
       fontWeight: "600",
       textTransform: "uppercase",
     },
   },
   cells: {
     style: {
-      fontSize: "15px",
+      fontSize: "14px",
     },
   },
 };
@@ -67,18 +67,19 @@ const ManCWIndReport = () => {
       selector: (row,id) => id,
       width:"100px",
       center: true,
+      hide:"md",
     },
     {
       name: "CODE",
       selector: (row,id) => row.code,
-     
+      hide:"sm",
       center: true,
     },
     {
       name: "Course Name",
       selector: (row) => row.course_name,
-      width:"430px",
       center: true,
+
     },
     {
       name: "Individuals Count",
@@ -109,7 +110,7 @@ const ManCWIndReport = () => {
               display: "flex",
               justifyContent: "center",
               position: "absolute",
-              fontSize: 36,
+              fontSize: 32,
             }}
           >
            Course Wise Individual
