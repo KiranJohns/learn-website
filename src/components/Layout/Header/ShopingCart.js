@@ -57,7 +57,7 @@ const ShopingCart = ({ setShopOpen, shopOpen }) => {
       id,
       type,
       count: 1,
-      courseId
+      courseId,
     })
       .then((res) => {
         getCartItem();
@@ -79,12 +79,12 @@ const ShopingCart = ({ setShopOpen, shopOpen }) => {
       });
   }
   function decrement(id, type, courseId) {
-    console.log('hi');
+    console.log("hi");
     makeRequest("PATCH", "/cart/update-cart-count", {
       id,
       type,
       count: -1,
-      courseId
+      courseId,
     })
       .then((res) => {
         getCartItem();
@@ -116,15 +116,47 @@ const ShopingCart = ({ setShopOpen, shopOpen }) => {
         localStorage.setItem("reload", true);
         setTimeout(() => {
           location.href = res.data.response;
-        },100);
+        }, 100);
       })
       .catch((err) => {
         if (err?.data?.errors[0].message === "please login") {
-          localStorage.setItem("from-checkout",true)
+          localStorage.setItem("from-checkout", true);
           location = "/sign-in";
         }
       });
   }
+
+  function goTo(route, id) {
+    switch (route) {
+      case "Care Bundle":
+        router.push({ pathname: "/bundle/care-bundle", query: { id } });
+        // location.href = "/course-grid";
+        break;
+      case "Mandatory Care Bundle":
+        router.push({ pathname: "/bundle/mandatory-bundle", query: { id } });
+        // location.href = "/course-mandatory";
+        break;
+      case "Specialised Care Bundle":
+        router.push({ pathname: "/bundle/special-bundle", query: { id } });
+        // location.href = "/course-specialised";
+        break;
+      case "Recovery Care Bundle":
+        router.push({ pathname: "/bundle/recovery-bundle", query: { id } });
+        // location.href = "/course-recovery";
+        break;
+      case "Child Care Bundle":
+        router.push({ pathname: "/bundle/child-bundle", query: { id } });
+        // location.href = "/course-child";
+        break;
+      case "Online Care Bundle":
+        router.push({ pathname: "/bundle/bundle-Online", query: { id } });
+        // location.href = "/course-online";
+        break;
+      default:
+        break;
+    }
+  }
+
   return (
     <div className={shopOpen ? "sidebar__areas open" : "sidebar__areas"}>
       <div className="cartmini__area">
@@ -133,7 +165,8 @@ const ShopingCart = ({ setShopOpen, shopOpen }) => {
             <h4>Shopping cart</h4>
           </div>
           <div className="cartmini__close">
-            <button  style={{transition:".3s"}}
+            <button
+              style={{ transition: ".3s" }}
               type="button"
               className="cartmini__close-btn"
               onClick={() => setShopOpen(false)}
@@ -146,16 +179,43 @@ const ShopingCart = ({ setShopOpen, shopOpen }) => {
               <ul>
                 {cart &&
                   cart.map((item) => {
+                    console.log(item);
                     return (
                       <li>
                         <div className="cartmini__thumb">
-                          <a href={`/course/${item.course_id}`}>
+                          <a
+                            style={{
+                              cursor: "pointer",
+                            }}
+                            onClick={() => {
+                              if (item.item_type == "bundle") {
+                                goTo(item.name, item.id);
+                              } else {
+                                location.href = `/course/${item.course_id}`;
+                              }
+                            }}
+                            //  href={`/${item.item_type == "bundle" ? 'bundle' : 'course' }/${item.course_id}`}
+                          >
                             <img src={item.thumbnail} alt="img not found" />
                           </a>
                         </div>
                         <div className="cartmini__content">
                           <h5>
-                            <a href={`/course/${item.course_id}`}>{item.name} </a>
+                            <span
+                              style={{
+                                cursor: "pointer",
+                              }}
+                              onClick={() => {
+                                if (item.item_type == "bundle") {
+                                  goTo(item.name, item.id);
+                                } else {
+                                  location.href = `/course/${item.course_id}`;
+                                }
+                              }}
+                              // href={`/${item.item_type == "bundle" ? 'bundle' : 'course' }/${item.course_id}`}
+                            >
+                              {item.name}
+                            </span>
                           </h5>
                           <div className="product-quantity mt-10 mb-10">
                             <span
@@ -192,7 +252,8 @@ const ShopingCart = ({ setShopOpen, shopOpen }) => {
                             </span>
                           </div>
                         </div>
-                        <a style={{transition:""}}
+                        <a
+                          style={{ transition: "" }}
                           href="#"
                           className="cartmini__del"
                           onClick={() => removeItem(item.id)}
