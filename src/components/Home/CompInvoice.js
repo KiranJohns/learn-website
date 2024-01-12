@@ -59,16 +59,17 @@ const CompInvoice = () => {
 
   const columns = [
     {
-      name: "SL",
+      name: "Sl No.",
       selector: (row, idx) => ++idx,
       center: true,
-      width: "130px",
+      width: "80px",
+      hide:945,
     },
     {
       name: "User",
       selector: (row, idx) => row.first_name.concat(" ", row.last_name),
       center: true,
-      width: "130px",
+      maxWidth: "310px",
     },
     {
       name: "Date",
@@ -78,6 +79,7 @@ const CompInvoice = () => {
     },
     {
       name: "Time",
+      hide:755,
       selector: (row) =>
         new Date(row.time).toLocaleTimeString("en-GB", {
           timeZone: "Europe/London",
@@ -115,13 +117,14 @@ const CompInvoice = () => {
               justifyContent: "center",
               position: "absolute",
               fontSize: 35,
+              marginTop:"1.4rem"
             }}
           >
             Invoice
           </h2>
           <div style={{ padding: "", backgroundColor: "" }}>
             <div
-              style={{ float: "right", marginBottom: "1.4rem" }}
+              style={{ float: "right", marginBottom: ".7rem" }}
               className="p-relative d-inline header__search searchbar-hidden1"
             >
               <form action="">
@@ -223,8 +226,8 @@ const CompInvoice = () => {
                   return (
                     <div
                       style={{
-                        paddingTop: "1rem",
-                        marginTop: "3rem",
+                      // paddingTop: "1rem",
+                        marginTop: ".5rem",  
                         display: "flex",
                         flexDirection: "column",
                         width: "100%",

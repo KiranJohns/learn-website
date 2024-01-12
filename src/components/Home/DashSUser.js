@@ -110,21 +110,22 @@ const DashSUser = () => {
 
   const columns = [
     {
-      name: "ID",
+      name: "Sl No.",
       selector: (row) => row.id,
       center: "true",
-      width: "100px",
+      width: "80px",
+      hide:1090,
     },
     {
       name: "User",
       selector: (row) => row.first_name + " " + row.last_name,
-
       center: "true",
     },
     {
       name: "city",
       selector: (row) => row.city,
       center: "true",
+      hide:900,
     },
     {
       name: "Email",
@@ -244,8 +245,8 @@ const DashSUser = () => {
                     return (
                       <div
                         style={{
-                          paddingTop: "1rem",
-                          marginTop: "3rem",
+                          // paddingTop: "1rem",
+                          // marginTop: "3rem",
                           display: "flex",
                           flexDirection: "column",
                           width: "100%",
@@ -288,8 +289,8 @@ const DashSUser = () => {
                   return (
                     <div
                       style={{
-                        paddingTop: "1rem",
-                        marginTop: "3rem",
+                        // paddingTop: "1rem",
+                        marginTop: ".5rem",
                         display: "flex",
                         flexDirection: "column",
                         width: "100%",

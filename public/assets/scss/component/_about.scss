@@ -527,6 +527,12 @@ margin: 0 auto;
     }
    }
   
+   @media screen and (max-width:600px) {
+    .searchbar-hidden2{
+    display: none !important;
+    }
+   }
+
    @media screen and (max-width:1085px) {
     .searchbar-hidden3{
     visibility: hidden !important;

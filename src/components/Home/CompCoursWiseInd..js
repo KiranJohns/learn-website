@@ -19,14 +19,14 @@ const customStyles = {
   },
   headCells: {
     style: {
-      fontSize: "16px",
+      fontSize: "14px",
       fontWeight: "600",
       textTransform: "uppercase",
     },
   },
   cells: {
     style: {
-      fontSize: "15px",
+      fontSize: "14px",
     },
   },
 };
@@ -64,15 +64,15 @@ const CWIndReport = () => {
     {
       name: "SL No.",
       selector: (row, id) => ++id,
-      sortable: true,
       center: true,
-      width: "120px",
+      width: "80px",
+      hide:940,
     },
     {
       name: "CODE",
       selector: (row, id) => row.code,
-      sortable: true,
       center: true,
+      hide:700,
     },
     {
       name: "Course Name",

@@ -21,7 +21,7 @@ const customStyles = {
   },
   headCells: {
     style: {
-      fontSize: "16px",
+      fontSize: "14px",
       fontWeight: "600",
       textTransform: "uppercase",
       justifyContent: "center",
@@ -121,10 +121,11 @@ const DashCourse = () => {
 
   const columns = [
     {
-      name: "No",
+      name: "Sl No.",
       selector: (row, idx) => idx + 1,
       center: true,
       width: "80px",
+      hide:"md",
     },
     {
       name: "Name",
@@ -137,11 +138,11 @@ const DashCourse = () => {
       name: "validity",
       center: true,
       selector: (row) => row.validity,
+      hide:750,
     },
     {
       name: "Progress",
       selector: (row) => (row.progress || 0) + "%",
-      sortable: true,
       center: true,
     },
     {
@@ -246,14 +247,16 @@ const DashCourse = () => {
           </ul>
         </div>
       </Modal>
-      <div className=" row g-3  min-vh-100  d-flex justify-content-center dash-shadow mt-10">
-        <div style={{ padding: "", backgroundColor: "" }}>
+      <div className="dash-shadow">
+      <div style={{position:'relative'}} className=" row g-3  min-vh-100  d-flex justify-content-center  mt-10">
+        {/* <div  style={{  position:"relative" }}> */}
           <h2
-            className="dash-head-center"
             style={{
-              padding: "",
               color: "#212450",
-              fontSize: 38,
+              display: "flex",
+              justifyContent: "center",
+              position: "absolute",
+              fontSize: 35,   
             }}
           >
             My Courses
@@ -303,6 +306,7 @@ const DashCourse = () => {
               />
             </Suspense>
           </div>
+          <div style={{marginTop:"2.9rem", paddingTop:"1rem"}}>
           {searchData
             ? records
                 .filter((item) =>
@@ -313,8 +317,8 @@ const DashCourse = () => {
                   return (
                     <div
                       style={{
-                        paddingTop: "1rem",
-                        marginTop: "3rem",
+                        // paddingTop: "1rem",
+                        // marginTop: "3rem",
                         display: "flex",
                         flexDirection: "column",
                       }}
@@ -429,8 +433,8 @@ const DashCourse = () => {
               return (
                 <div
                   style={{
-                    paddingTop: "1rem",
-                    marginTop: "3rem",
+                    // paddingTop: "1rem",
+                    // marginTop: "3rem",
                     display: "flex",
                     flexDirection: "column",
                   }}
@@ -541,6 +545,7 @@ const DashCourse = () => {
               );
             })}
         </div>
+      </div>
       </div>
     </div>
   );

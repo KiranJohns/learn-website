@@ -63,6 +63,7 @@ const CompIndReport = () => {
       selector: (row,id) => ++id,
       width:"80px",
       center: true,
+      hide:1050,
     },
     {
       name: "Name",
@@ -75,11 +76,13 @@ const CompIndReport = () => {
       selector: (row) => row.course,
       sortable: true,
       center: true,
+      hide:640,
     },
     {
       name: "Bundles Assigned",
       selector: (row) => row.bundle,
       center: true,
+      hide:840,
     },
     {
       name: "Certificates",
@@ -114,6 +117,7 @@ const CompIndReport = () => {
               justifyContent: "center",
               position: "absolute",
               fontSize: 36,
+              marginTop:"1.35rem"
             }}
           >
             Individual Report

@@ -19,14 +19,14 @@ const customStyles = {
   },
   headCells: {
     style: {
-      fontSize: "16px",
+      fontSize: "14px",
       fontWeight: "600",
       textTransform: "uppercase",
     },
   },
   cells: {
     style: {
-      fontSize: "15px",
+      fontSize: "14px",
     },
   },
 };
@@ -65,19 +65,19 @@ const CWManager = () => {
     {
       name: "SL No.",
       selector: (row,id) => ++id,
-      width:"95px",
+      width:"85px",
       center: true,
+      hide:900,
     },
     {
       name: "CODE",
-      selector: (row,id) => row.course_code
-      ,
+      selector: (row,id) => row.course_code,
       center: true,
+      hide:780,
     },
     {
       name: "Course Name",
       selector: (row) => row.course_name,
-      width:"380px",
       center: true,
     },
     {
@@ -110,6 +110,7 @@ const CWManager = () => {
               justifyContent: "center",
               position: "absolute",
               fontSize: 34,
+              marginTop:"1.4rem"
             }}
           >
            Course Wise Manager

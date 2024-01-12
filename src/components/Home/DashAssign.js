@@ -1027,6 +1027,8 @@ const CompAssignCourse = () => {
                 />
               </Suspense>
             </div>
+
+            <div style={{marginTop:"2.8rem", paddingTop:"1rem"}}>
             {searchString
               ? records.filter((item) =>
                   (item.name || item.Name)
@@ -1069,13 +1071,13 @@ const CompAssignCourse = () => {
                                 }
                                 setSelectedBundleCount(item.course_count);
                               }}
-                              style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}
+                              style={{height:'35px', width: "7rem",marginTop:"1rem", marginRight:'.4rem'}}
                             >
                               Assign
                             </a>
                           ) : (
                             <>
-                              <a style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}} className="btn btn-danger">Expired</a>
+                              <a style={{height:'35px', width: "7rem",marginTop:"1rem", marginRight:'.4rem'}} className="btn btn-danger">Expired</a>
                             </>
                           )}
                         </>
@@ -1093,7 +1095,7 @@ const CompAssignCourse = () => {
                   flag = false;
                 }
 
-                return <div style={{paddingTop:'1rem',marginTop:"3rem", display:'flex', flexDirection:'column'}}>
+                return <div style={{ display:'flex', flexDirection:'column'}}>
                   <div className="new-table-shadow new-table-res new-table-hidden">
                     <div style= {{display:'flex',justifyContent:'space-between'}}>
                       <p style={{paddingTop:"1.5rem",paddingLeft:".4rem", color:'#212a50', fontWeight:'bold',}}>{item.name || item.Name}</p>
@@ -1120,13 +1122,13 @@ const CompAssignCourse = () => {
                               }
                               setSelectedBundleCount(item.course_count);
                             }}
-                            style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}
+                            style={{height:'35px', width: "7rem",marginTop:"1rem", marginRight:'.4rem'}}
                           >
                             Assign
                           </a>
                         ) : (
                           <>
-                            <a style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}} className="btn btn-danger">Expired</a>
+                            <a style={{height:'35px', width: "7rem",marginTop:"1rem", marginRight:'.4rem'}} className="btn btn-danger">Expired</a>
                           </>
                         )}
                       </>
@@ -1134,6 +1136,7 @@ const CompAssignCourse = () => {
                   </div>
                 </div>
               })}
+                </div>
           </div>
         </div>{" "}
       </div>

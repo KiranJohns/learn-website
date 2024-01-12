@@ -62,30 +62,35 @@ const CompTransaction = () => {
       name: "SL No.",
       selector: (row, idx) => ++idx,
       center: true,
-      width: "100px"
+      width: "80px",
+      hide:890,
     },
     {
       name: "User",
       selector: (row, idx) => row.first_name.concat(" ",row.last_name),
       center: true,
-      width: "225px"
+      width: "225px",
+      hide:550,
     },
     {
       name: "Date",
       selector: (row) => row.date,
       center: true,
       sortable: true,
+    
     },
     {
       name: "Time",
       selector: (row) => row.time,
       center: true,
       sortable: true,
+      hide:890,
     },
     {
       name: "Quantity",
       selector: (row) => row.count,
       center: true,
+      hide:700,
     },
     {
       name: "Amount",
@@ -97,14 +102,15 @@ const CompTransaction = () => {
   return (
     <div className="">
       <div className="dash-shadow">
-        <div className=" row g-3  min-vh-100  d-flex justify-content-center mt-20">
+        <div style={{position:'relative'}} className=" row g-3  min-vh-100  d-flex justify-content-center mt-20">
           <h2
             style={{
               color: "#212450",
               display: "flex",
               justifyContent: "center",
               position: "absolute",
-              fontSize: 36,
+              fontSize: 35,
+              marginTop:'1.3rem'
             }}
           >
             Transaction Report
