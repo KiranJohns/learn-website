@@ -53,6 +53,11 @@ function SignInMain() {
       type: "SET_LOADING_FOR_SIGN_IN",
     });
 
+    if(loginData.email == "" && loginData.password == "") {
+      toast.error("Please provide valid email and password");
+      return;
+    }
+
     setLoading((prev) => true);
     makeRequest("POST", url, loginData)
       .then(async (res) => {
