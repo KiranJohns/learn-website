@@ -125,6 +125,7 @@ const CompanyBundle = () => {
       selector: (row) => row.validity,
       center: true,
     },
+    
     {
       name: "Progress",
       selector: (row) => (row?.progress || 0) + "%",
