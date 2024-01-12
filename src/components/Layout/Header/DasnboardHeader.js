@@ -10,12 +10,9 @@ import NoSSRWrapper from "../../noSSR";
 import Dropdown from "react-bootstrap/Dropdown";
 import BurgerDash from "./BurgerDash";
 
-
-
 import allProduct from "../../../../sampleProduct.json";
 import fetchData, { getUserType } from "../../../axios";
 import store from "../../../redux/store";
-
 
 const DashHeader = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -87,7 +84,7 @@ const DashHeader = () => {
         Promise.all([courseResponse, bundleResponse])
           .then((res) => {
             getCartItem();
-            localStorage.removeItem("learnfrocarecart")
+            localStorage.removeItem("learnfrocarecart");
             console.log(res);
           })
           .catch((err) => {
@@ -328,10 +325,10 @@ const DashHeader = () => {
                               <a>Blog</a>
                             </Link>
                           </li>
-                           <li>
-                               <Link href="/about">
-                                <a>About Us</a>
-                           </Link>
+                          <li>
+                            <Link href="/about">
+                              <a>About Us</a>
+                            </Link>
                           </li>
                           {/* <li className="has-dropdown">
                           <Link href="/course-grid">
@@ -433,8 +430,8 @@ const DashHeader = () => {
                             </svg>
                           </div>
                           <span className="cart-item">
-                          {cartCount && cartCount}
-                          {/* {cartCount && location.pathname == "/success"
+                            {cartCount && cartCount}
+                            {/* {cartCount && location.pathname == "/success"
                             ? "0"
                             : cartCount} */}
                           </span>
@@ -443,13 +440,24 @@ const DashHeader = () => {
                       {searchString ? (
                         <div className="search-suggestions position-absolute w-100">
                           <ul class="list-group w-100">
-                            {searchProduct?.map((item) => (
-                              <a href={`/course/${item.id}`}>
-                                <li class="list-group-item w-100 bg-white text-black">
-                                  {item.name}
+                            {searchProduct.length > 0 ? (
+                              searchProduct?.map((item) => (
+                                <a href={`/course/${item.id}`}>
+                                  <li class="list-group-item w-100 bg-white text-black">
+                                    {item.name}
+                                  </li>
+                                </a>
+                              ))
+                            ) : (
+                              <a>
+                                <li
+                                  class="list-group-item w-100 bg-white text-black"
+                                  style={{ zIndex: "1001" }}
+                                >
+                                  No Results...
                                 </li>
                               </a>
-                            ))}
+                            )}
                           </ul>
                         </div>
                       ) : (

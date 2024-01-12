@@ -83,7 +83,7 @@ const Header = () => {
         Promise.all([courseResponse, bundleResponse])
           .then((res) => {
             getCartItem();
-            localStorage.removeItem("learnfrocarecart")
+            localStorage.removeItem("learnfrocarecart");
             console.log(res);
           })
           .catch((err) => {
@@ -132,6 +132,7 @@ const Header = () => {
   function handleSearch(e) {
     e.persist();
     setSearchString(() => e.target?.value);
+    console.log(searchString);
     setSearchProduct(() =>
       course.filter((item) =>
         item?.name?.toLowerCase()?.startsWith(e.target?.value?.toLowerCase())
@@ -324,10 +325,10 @@ const Header = () => {
                               <a>Blog</a>
                             </Link>
                           </li>
-                           <li>
-                               <Link href="/about">
-                                <a>About Us</a>
-                           </Link>
+                          <li>
+                            <Link href="/about">
+                              <a>About Us</a>
+                            </Link>
                           </li>
                           {/* <li className="has-dropdown">
                           <Link href="/course-grid">
@@ -429,8 +430,8 @@ const Header = () => {
                             </svg>
                           </div>
                           <span className="cart-item">
-                          {cartCount && cartCount}
-                          {/* {cartCount && location.pathname == "/success"
+                            {cartCount && cartCount}
+                            {/* {cartCount && location.pathname == "/success"
                             ? "0"
                             : cartCount} */}
                           </span>
@@ -439,13 +440,24 @@ const Header = () => {
                       {searchString ? (
                         <div className="search-suggestions position-absolute w-100">
                           <ul class="list-group w-100">
-                            {searchProduct?.map((item) => (
-                              <a href={`/course/${item.id}`}>
-                                <li class="list-group-item w-100 bg-white text-black">
-                                  {item.name}
+                            {searchProduct.length > 0 ? (
+                              searchProduct?.map((item) => (
+                                <a href={`/course/${item.id}`}>
+                                  <li class="list-group-item w-100 bg-white text-black">
+                                    {item.name}
+                                  </li>
+                                </a>
+                              ))
+                            ) : (
+                              <a>
+                                <li
+                                  class="list-group-item w-100 bg-white text-black"
+                                  style={{ zIndex: "1001" }}
+                                >
+                                  No Results...
                                 </li>
                               </a>
-                            ))}
+                            )}
                           </ul>
                         </div>
                       ) : (

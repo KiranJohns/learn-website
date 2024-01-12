@@ -31,10 +31,10 @@ const HeaderOpaque = () => {
     location.pathname = "/";
   };
 
-
   function handleSearch(e) {
     e.persist();
     setSearchString(() => e.target?.value);
+    console.log(searchString);
     setSearchProduct(() =>
       course.filter((item) =>
         item?.name?.toLowerCase()?.startsWith(e.target?.value?.toLowerCase())
@@ -55,7 +55,6 @@ const HeaderOpaque = () => {
         console.log(err);
       });
   }
-
 
   useEffect(() => {
     console.log(location.pathname);
@@ -91,7 +90,7 @@ const HeaderOpaque = () => {
         Promise.all([courseResponse, bundleResponse])
           .then((res) => {
             getCartItem();
-            localStorage.getItem("learnfrocarecart")
+            localStorage.getItem("learnfrocarecart");
             console.log(res);
           })
           .catch((err) => {
@@ -130,8 +129,6 @@ const HeaderOpaque = () => {
         console.log(err);
       });
   }
-
-  
 
   useEffect(() => {
     getCartItem();
@@ -377,7 +374,12 @@ const HeaderOpaque = () => {
                   </div>
                   <div className="header__search p-relative ml-50 d-none d-md-block">
                     <form action="#">
-                      <input type="text" placeholder="Search course..." onChange={handleSearch}/>
+                      <input
+                        type="text"
+                        placeholder="Search course..."
+                        value={searchString}
+                        onChange={handleSearch}
+                      />
                       <button type="submit">
                         <i className="fas fa-search"></i>
                       </button>
@@ -407,20 +409,34 @@ const HeaderOpaque = () => {
                       </span>
                     </div>
                     {searchString ? (
-                        <div className="search-suggestions position-absolute w-100">
-                          <ul class="list-group w-100" style={{zIndex: '1001'}}>
-                            {searchProduct?.map((item) => (
+                      <div className="search-suggestions position-absolute w-100">
+                        <ul class="list-group w-100" style={{ zIndex: "1001" }}>
+                          {searchProduct.length > 0 ? (
+                            searchProduct?.map((item) => (
                               <a href={`/course/${item.id}`}>
-                                <li class="list-group-item w-100 bg-white text-black" style={{zIndex: '1001'}}>
+                                <li
+                                  class="list-group-item w-100 bg-white text-black"
+                                  style={{ zIndex: "1001" }}
+                                >
                                   {item.name}
                                 </li>
                               </a>
-                            ))}
-                          </ul>
-                        </div>
-                      ) : (
-                        <></>
-                      )}
+                            ))
+                          ) : (
+                            <a>
+                              <li
+                                class="list-group-item w-100 bg-white text-black"
+                                style={{ zIndex: "1001" }}
+                              >
+                                No Results...
+                              </li>
+                            </a>
+                          )}
+                        </ul>
+                      </div>
+                    ) : (
+                      <></>
+                    )}
                   </div>
                   <div className="header__cart header__cart--responsive">
                     <span
