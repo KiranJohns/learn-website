@@ -408,13 +408,13 @@ const CompAssignCourse = () => {
               }}
             >
               <div
-                className="dash-shadow p-3 m-3"
+                className="dash-shadow p-2 m-3"
                 style={{ maxHeight: "200rem" }}
               >
                 <div
                   style={{ display: "flex", justifyContent: "space-between" }}
                 >
-                  <h5 style={{ color: "#212a50", marginLeft: "1rem" }}>
+                  <h5 className="assign-cname" style={{ color: "#212a50", marginLeft: "1rem" }}>
                     {courseName}
                   </h5>{" "}
                   <h5 style={{ color: "#212a50", marginRight: "1rem" }}>
@@ -428,7 +428,7 @@ const CompAssignCourse = () => {
                   onSelect={(k) => setKey(k)}
                   className="mb-3"
                 >
-                  <Tab eventKey="individual" title="Individual">
+                  <Tab className="assign-width" eventKey="individual" title="Individual">
                     <div style={{ background: "white" }}>
                       <div className="form-control dash-shadow d-flex gap-3 p-3">
                         <div className="form-group">
@@ -449,8 +449,9 @@ const CompAssignCourse = () => {
                           />
                         </div>
                         <div
-                          style={{ marginLeft: "16rem" }}
-                          className="form-group"
+                        
+                          // style={{ marginLeft: "16rem" }}
+                          className="form-group assign-ml"
                         >
                           <label
                             style={{ visibility: "hidden" }}
@@ -473,7 +474,7 @@ const CompAssignCourse = () => {
                                 )
                               }
                               type="text"
-                              className="form-control"
+                              className="form-control assign-search"
                               id="exampleInputEmail1"
                               aria-describedby="emailHelp"
                               placeholder="search by name"
@@ -510,7 +511,7 @@ const CompAssignCourse = () => {
                               >
                                 Name
                               </span>
-                              <span style={{ textAlign: "center" }}>Email</span>
+                              <span className="assign-modal" style={{ textAlign: "center" }}>Email</span>
                               <span
                                 style={{
                                   width: "fit-content",
@@ -529,7 +530,7 @@ const CompAssignCourse = () => {
                               <span style={{ width: "fit-content" }}>
                                 {user?.first_name + " " + user?.last_name}
                               </span>
-                              <span>{user?.email}</span>
+                              <span className="assign-modal">{user?.email}</span>
                               <span
                                 onClick={() => {
                                   if (selectedBundleCount < assignData.count) {
@@ -558,7 +559,7 @@ const CompAssignCourse = () => {
                                     <span style={{ width: "fit-content" }}>
                                       {item.first_name + " " + item.last_name}
                                     </span>
-                                    <span>{item.email}</span>
+                                    <span className="assign-modal">{item.email}</span>
                                     <span
                                       onClick={() => {
                                         if (
@@ -598,7 +599,7 @@ const CompAssignCourse = () => {
                     </div>
                   </Tab>
                   {/* manager */}
-                  <Tab eventKey="manager" title="Manager">
+                  <Tab className="assign-width" eventKey="manager" title="Manager">
                     <div style={{ background: "white" }}>
                       <div className="form-control dash-shadow d-flex gap-3 p-3">
                         <div className="form-group">
@@ -632,8 +633,8 @@ const CompAssignCourse = () => {
                           />
                         </div>
                         <div
-                          style={{ marginLeft: "16rem" }}
-                          className="form-group"
+                          // style={{ marginLeft: "16rem" }}
+                          className="form-group assign-ml"
                         >
                           <label
                             style={{ visibility: "hidden" }}
@@ -656,7 +657,7 @@ const CompAssignCourse = () => {
                                 )
                               }
                               type="text"
-                              className="form-control"
+                              className="form-control assign-search"
                               id="exampleInputEmail1"
                               aria-describedby="emailHelp"
                               placeholder="search by name"
@@ -691,7 +692,7 @@ const CompAssignCourse = () => {
                             >
                               Name
                             </span>
-                            <span style={{ textAlign: "center" }}>Email</span>
+                            <span className="assign-modal" style={{ textAlign: "center" }}>Email</span>
                             <span
                               style={{
                                 width: "fit-content",
@@ -717,7 +718,7 @@ const CompAssignCourse = () => {
                                   >
                                     {item.first_name + " " + item.last_name}
                                   </span>
-                                  <span>{item.email}</span>
+                                  <span className="assign-modal">{item.email}</span>
                                   <span
                                     style={{ width: "fit-content" }}
                                     className="btn btn-success"
