@@ -278,7 +278,7 @@ const MyCart = () => {
                               >
                                 <a>
                                   <img
-                                    src={item.thumbnail}
+                                    src={item?.thumbnail ? item?.thumbnail : item?.image}
                                     alt="img not found"
                                   />
                                 </a>

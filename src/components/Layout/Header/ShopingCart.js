@@ -196,7 +196,7 @@ const ShopingCart = ({ setShopOpen, shopOpen }) => {
                             }}
                             //  href={`/${item.item_type == "bundle" ? 'bundle' : 'course' }/${item.course_id}`}
                           >
-                            <img src={item.thumbnail} alt="img not found" />
+                            <img src={item?.thumbnail ? item?.thumbnail : item?.image } alt="img not found" />
                           </a>
                         </div>
                         <div className="cartmini__content">
