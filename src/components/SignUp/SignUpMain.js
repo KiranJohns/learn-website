@@ -48,6 +48,7 @@ function SignUpMain() {
   }
 
   const [timer, setTimer] = useState("00:00:45");
+  const [timerInSec, setTimerInSec] = useState(0);
   const Ref = useRef();
 
   function getTimeRemaining(e) {
@@ -56,7 +57,6 @@ function SignUpMain() {
     const seconds = Math.floor((total / 1000) % 60);
     const minute = Math.floor((total / (1000 * 60)) % 60);
     setTimerValue((prev) => {
-      console.log(prev);
       return { seconds: --prev.seconds };
     });
     return { total, hour, minute, seconds };
@@ -74,7 +74,7 @@ function SignUpMain() {
       );
     } else {
       if (activeSubmit == true) {
-        setLoadingSignup(false)
+        setLoadingSignup(false);
         setActiveSubmit(false);
       }
     }
@@ -88,6 +88,7 @@ function SignUpMain() {
 
     const id = setInterval(() => {
       startTimer(e);
+      setTimerInSec((prev) => --prev);
     }, 1000);
     Ref.current = id;
   }
@@ -99,6 +100,7 @@ function SignUpMain() {
   }
 
   function Reset() {
+    setTimerInSec(45);
     clearTimer(getDeadTime());
   }
 
@@ -112,7 +114,7 @@ function SignUpMain() {
       email: values.email,
     })
       .then(() => {
-        setLoadingSignup(true)
+        setLoadingSignup(true);
         Reset();
         setTimerValue({ seconds: 45 });
         setActiveSubmit(true);
@@ -171,13 +173,8 @@ function SignUpMain() {
   });
 
   const handleSignUp = async (e) => {
-
-    if(loadingSignup) {
-      toast.warn(`Sign up in progress, please wait before trying again`);
-      return
-    }
-
-    setLoadingSignup(true)
+    console.log(timerInSec);
+    setLoadingSignup(true);
     try {
       e.persist();
       for (const key in initialValues) {
@@ -206,6 +203,13 @@ function SignUpMain() {
         return;
       }
 
+      if (timerInSec > 0) {
+        toast.warn(`Sign up in progress, please wait before trying again`);
+        return;
+      }
+
+      setTimerInSec(45);
+
       store.dispatch({
         type: "SET_LOADING",
       });
@@ -220,6 +224,7 @@ function SignUpMain() {
           });
         })
         .catch((error) => {
+          setTimerInSec(0);
           console.log(error?.data?.errors[0]);
           console.log(error);
           store.dispatch({
@@ -329,7 +334,7 @@ function SignUpMain() {
                     </div>
 
                     <div className="mt-4">
-                      {timerValue.seconds <= 0 ? (
+                      {timerInSec <= 0 ? (
                         <>
                           <span>Didn't recieve? </span>
                           <a
@@ -342,7 +347,10 @@ function SignUpMain() {
                         </>
                       ) : (
                         <div className="my-4">
-                          <h5>{timer}</h5>
+                          <h5>
+                            00:00:
+                            {timerInSec < 10 ? "0" + timerInSec : timerInSec}
+                          </h5>
                           {/* <button className="btn btn-primary" onClick={}>
                           Reset
                         </button> */}
@@ -430,7 +438,10 @@ function SignUpMain() {
                           name="email"
                           value={values.email}
                           onBlur={handleBlur}
-                          onChange={handleChange}
+                          onChange={(e) => {
+                            setTimerInSec(0);
+                            handleChange(e);
+                          }}
                           placeholder="E-mail"
                         />
                         <i className="fas fa-envelope"></i>
