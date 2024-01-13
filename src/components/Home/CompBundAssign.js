@@ -315,7 +315,7 @@ const CompAssignBund = () => {
           <div style={{ padding: "", backgroundColor: "" }}>
             <Modal
               className=""
-              styles={{ padding: "2rem" }}
+              styles={{ padding: "1rem" }}
               open={showModal}
               onClose={() => {
                 setShowModal(false);
@@ -328,13 +328,13 @@ const CompAssignBund = () => {
               }}
             >
               <div
-                className="dash-shadow p-3 m-3"
+                className="dash-shadow p-2 m-3"
                 style={{ maxHeight: "220rem" }}
               >
                 <div
                   style={{ display: "flex", justifyContent: "space-between" }}
                 >
-                  <h5 style={{ color: "#212a50", marginLeft: "1rem" }}>
+                  <h5 className="assign-cname" style={{ color: "#212a50", marginLeft: "1rem" }}>
                     {courseName}
                   </h5>{" "}
                   <h5 style={{ color: "#212a50", marginRight: "1rem" }}>
@@ -348,23 +348,23 @@ const CompAssignBund = () => {
                   onSelect={(k) => setKey(k)}
                   className="mb-3"
                 >
-                  <Tab  eventKey="individual" title="Individual">
-                    <div style={{ background: "white" }}>
+                  <Tab className="assign-width" eventKey="individual" title="Individual">
+                    <div  style={{ background: "white", }}>
                       <div className="form-control dash-shadow d-flex gap-3 p-3">
-                        <div className="d-flex">
+                        <div style={{display:"flex", flexDirection:"row", }}>
                           <span style={{}}>
                             {" "}
                             <label
-                              style={{ fontSize: ".66rem" }}
+                              style={{ fontSize: ".66rem", width:"6rem" }}
                               for="exampleInputEmail1"
                             >
                               Assign Bundle Count
                             </label>
-                            <input
-                              style={{ width: "5.9rem", textAlign: "center" }}
+                            <input 
+                              style={{ width: "4rem", textAlign: "center", marginLeft:"1rem" }}
                               disabled
                               type="text"
-                              className="form-control"
+                              className="form-control "
                               id="exampleInputEmail1"
                               aria-describedby="emailHelp"
                               placeholder="1"
@@ -372,8 +372,9 @@ const CompAssignBund = () => {
                           </span>
                         </div>
                         <div
-                          style={{ marginLeft: "16rem" }}
-                          className="form-group"
+                          
+                          // style={{ marginLeft: "16rem" }}
+                          className="form-group assign-ml"
                         >
                           <label
                             style={{ visibility: "hidden" }}
@@ -383,7 +384,7 @@ const CompAssignBund = () => {
                           </label>
                           <div className="p-relative d-inline ">
                             <input
-                              style={{ width: "18rem" }}
+                        
                               onChange={(e) =>
                                 setFilteredCompanyIndividuals(
                                   companyIndividuals.filter((item) =>
@@ -396,19 +397,19 @@ const CompAssignBund = () => {
                                 )
                               }
                               type="text"
-                              className="form-control d-block mr-10"
+                              className="form-control d-block mr-10 assign-search"
                               id="exampleInputEmail1"
                               aria-describedby="emailHelp"
-                              placeholder="search by name"
+                              placeholder=" search name"
                             />
-                            <i
+                            {/* <i
                               style={{
                                 position: "absolute",
-                                left: "13.3rem",
-                                top: "2.2rem",
+                               
+                               bottom:"0"
                               }}
                               className="bi bi-search"
-                            ></i>
+                            ></i> */}
                           </div>
                         </div>
                       </div>
@@ -431,7 +432,7 @@ const CompAssignBund = () => {
                             >
                               Name
                             </span>
-                            <span style={{ textAlign: "center", }}>Email</span>
+                            <span className="assign-modal" style={{ textAlign: "center", }}>Email</span>
                             <span
                               style={{
                                 width: "fit-content",
@@ -449,7 +450,7 @@ const CompAssignBund = () => {
                             <span style={{ width: "fit-content" }}>
                               {user.first_name + " " + user.last_name}
                             </span>
-                            <span>{user.email}</span>
+                            <span className="assign-modal">{user.email}</span>
                             <span
                               onClick={() => {
                                 if (selectedBundleCount < assignData.count) {
@@ -478,7 +479,7 @@ const CompAssignBund = () => {
                                   <span style={{ width: "fit-content" }}>
                                     {item.first_name + " " + item.last_name}
                                   </span>
-                                  <span>{item.email}</span>
+                                  <span className="assign-modal">{item.email}</span>
                                   <span
                                     onClick={() => {
                                       if (
@@ -517,16 +518,16 @@ const CompAssignBund = () => {
                     </div>
                   </Tab>
 
-                  <Tab eventKey="manager" title="Manager">
+                  <Tab className="assign-width" eventKey="manager" title="Manager">
                     <div style={{ background: "white" }}>
                       <div className="form-control dash-shadow d-flex gap-3 p-3">
                         <div className="form-group">
-                          <label
+                          <small
                             style={{ fontSize: ".66rem" }}
                             for="exampleInputEmail1"
                           >
                             Assign Bundle Count
-                          </label>
+                          </small>
                           <input
                             style={{ width: "5.9rem", textAlign: "center" }}
                             onChange={(e) => {
@@ -551,8 +552,8 @@ const CompAssignBund = () => {
                           />
                         </div>
                         <div
-                          style={{ marginLeft: "16rem" }}
-                          className="form-group"
+                          // style={{ marginLeft: "16rem" }}
+                          className="form-group assign-ml"
                         >
                           <label
                             style={{ visibility: "hidden" }}
@@ -575,19 +576,19 @@ const CompAssignBund = () => {
                                 )
                               }
                               type="text"
-                              className="form-control d-block mr-10"
+                              className="form-control d-block mr-10 assign-search"
                               id="exampleInputEmail1"
                               aria-describedby="emailHelp"
-                              placeholder="Search by name"
+                              placeholder="Search name"
                             />
-                            <i
+                            {/* <i
                               style={{
                                 position: "absolute",
                                 left: "13.3rem",
                                 top: "2.2rem",
                               }}
                               className="bi bi-search"
-                            ></i>
+                            ></i> */}
                           </div>
                         </div>
                       </div>
@@ -610,7 +611,7 @@ const CompAssignBund = () => {
                             >
                               Name
                             </span>
-                            <span style={{ textAlign: "center" }}>Email</span>
+                            <span className="assign-modal" style={{ textAlign: "center" }}>Email</span>
                             <span
                               style={{
                                 width: "fit-content",
@@ -636,7 +637,7 @@ const CompAssignBund = () => {
                                   >
                                     {item.first_name + " " + item.last_name}
                                   </span>
-                                  <span>{item.email}</span>
+                                  <span className="assign-modal">{item.email}</span>
                                   <span
                                     style={{
                                       width: "fit-content",
