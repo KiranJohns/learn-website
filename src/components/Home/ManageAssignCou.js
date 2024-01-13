@@ -279,12 +279,12 @@ const ManagerAssignCourse = () => {
             >
               <div
                 style={{ maxHeight: "220rem" }}
-                className="dash-shadow p-3 mt-4 "
+                className="dash-shadow p-3 mt-4 assign-width"
               >
                 <div
                   style={{ display: "flex", justifyContent: "space-between" }}
                 >
-                  <h5 style={{ color: "#212a50", marginLeft: "1rem" }}>
+                  <h5 className="assign-cname" style={{ color: "#212a50", marginLeft: "1rem" }}>
                     {courseName}
                   </h5>{" "}
                   <h5 style={{ color: "#212a50", marginRight: "1rem" }}>
@@ -310,7 +310,7 @@ const ManagerAssignCourse = () => {
                         placeholder="1"
                       />
                     </div>
-                    <div style={{ marginLeft: "16rem" }} className="form-group">
+                    <div  className="form-group assign-ml">
                       <label
                         style={{ visibility: "hidden" }}
                         for="exampleInputEmail1"
@@ -332,7 +332,7 @@ const ManagerAssignCourse = () => {
                             )
                           }
                           type="text"
-                          className="form-control"
+                          className="form-control assign-search"
                           id="exampleInputEmail1"
                           aria-describedby="emailHelp"
                           placeholder="enter user name"
@@ -364,7 +364,7 @@ const ManagerAssignCourse = () => {
                         >
                           Name
                         </span>
-                        <span style={{ textAlign: "center" }}>Email</span>
+                        <span className="assign-modal" style={{ textAlign: "center" }}>Email</span>
                         <span
                           style={{ width: "fit-content", marginRight: "1rem" }}
                         >
@@ -379,7 +379,7 @@ const ManagerAssignCourse = () => {
                         <span style={{ width: "fit-content" }}>
                           {user.first_name + " " + user.last_name}
                         </span>
-                        <span>{user.email}</span>
+                        <span className="assign-modal">{user.email}</span>
                         <span
                           onClick={() => {
                             if (selectedBundleCount < 1) {
@@ -407,7 +407,7 @@ const ManagerAssignCourse = () => {
                               <span style={{ width: "fit-content" }}>
                                 {item.first_name + " " + item.last_name}
                               </span>
-                              <span>{item.email}</span>
+                              <span className="assign-modal">{item.email}</span>
                               <span
                                 onClick={() => {
                                   if (selectedBundleCount < 1) {
