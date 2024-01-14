@@ -170,7 +170,9 @@ class ManageDash extends Component {
                 </a>
               ) : (
                 <>
-                  <a style={{ width: "7rem" }} className="btn btn-danger">
+                  <a style={{ width: "7rem" }}
+                  className={`btn ${title == 'Completed' ? 'btn-success' :'btn-danger'}`}
+                  >
                     {title}
                   </a>
                 </>

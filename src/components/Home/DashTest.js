@@ -91,17 +91,17 @@ class DashTest extends Component {
         selector: (row, idx) => idx + 1,
         center: true,
         width: "80px",
-        hide:"lg",
+        hide: "lg",
       },
       {
         name: "Name",
         selector: (row) => (row.name ? row.name : row.Name),
         center: true,
-        minwdth:"300px"
+        minwdth: "300px",
       },
       {
         name: "Attempts",
-        hide:"sm",
+        hide: "sm",
         selector: (row) => (
           <a href={`/learnCourse/examAttempts/?courseId=${row.id}`}>
             {row.attempts + "/20"}
@@ -112,7 +112,7 @@ class DashTest extends Component {
       {
         name: "validity",
         selector: (row) => row.validity,
-        hide:"md",
+        hide: "md",
       },
       {
         name: "Action",
@@ -147,7 +147,12 @@ class DashTest extends Component {
                 </a>
               ) : (
                 <>
-                  <a style={{ width: "7rem" }} className="btn btn-danger">
+                  <a
+                    style={{ width: "7rem" }}
+                    className={`btn ${
+                      title == "Completed" ? "btn-success" : "btn-danger"
+                    }`}
+                  >
                     {title}
                   </a>
                 </>
@@ -589,69 +594,53 @@ class DashTest extends Component {
                     );
                   })
               : this.state.records.map((item) => {
-                let validity = item.validity.split("/").reverse();
-                let flag = false;
-                let title = "Start";
+                  let validity = item.validity.split("/").reverse();
+                  let flag = false;
+                  let title = "Start";
 
-                if (
-                  new Date(validity) <= new Date() ||
-                  item?.attempts >= 20
-                ) {
-                  title = "Expired";
-                  flag = false;
-                } else {
-                  title = "Start";
-                  flag = true;
-                  if (item.progress >= 80) {
-                    title = "Completed";
+                  if (
+                    new Date(validity) <= new Date() ||
+                    item?.attempts >= 20
+                  ) {
+                    title = "Expired";
+                    flag = false;
+                  } else {
+                    title = "Start";
                     flag = true;
+                    if (item.progress >= 80) {
+                      title = "Completed";
+                      flag = true;
+                    }
                   }
-                }
 
-                return (
-                  <div
-                    style={{
-                      marginTop:".45rem",
-                      display: "flex",
-                      flexDirection: "column",
-                    }}
-                  >
-                    <div className="new-table-shadow new-table-res new-table-hidden">
-                      <div
-                        style={{
-                          display: "flex",
-                          justifyContent: "space-between",
-                        }}
-                      >
-                        <p
+                  return (
+                    <div
+                      style={{
+                        marginTop: ".45rem",
+                        display: "flex",
+                        flexDirection: "column",
+                      }}
+                    >
+                      <div className="new-table-shadow new-table-res new-table-hidden">
+                        <div
                           style={{
-                            paddingTop: "1.4rem",
-                            paddingLeft: ".4rem",
-                            color: "#212a50",
-                            fontWeight: "bold",
+                            display: "flex",
+                            justifyContent: "space-between",
                           }}
                         >
-                          {item?.Name || item?.name}
-                        </p>
-                        {/* <button className="btn btn-success" style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}>View</button> */}
-                        <>
-                          {flag ? (
-                            <a
-                              style={{
-                                width: "7rem",
-                                height: "35px",
-                                marginTop: "1rem",
-                                marginRight: ".4rem",
-                              }}
-                              onClick={() => {
-                                location.href = `/learnCourse/coursepage/?courseId=${item.id}`;
-                              }}
-                              className="btn btn-success"
-                            >
-                              {title}
-                            </a>
-                          ) : (
-                            <>
+                          <p
+                            style={{
+                              paddingTop: "1.4rem",
+                              paddingLeft: ".4rem",
+                              color: "#212a50",
+                              fontWeight: "bold",
+                            }}
+                          >
+                            {item?.Name || item?.name}
+                          </p>
+                          {/* <button className="btn btn-success" style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}>View</button> */}
+                          <>
+                            {flag ? (
                               <a
                                 style={{
                                   width: "7rem",
@@ -659,18 +648,38 @@ class DashTest extends Component {
                                   marginTop: "1rem",
                                   marginRight: ".4rem",
                                 }}
-                                className="btn btn-danger"
+                                onClick={() => {
+                                  location.href = `/learnCourse/coursepage/?courseId=${item.id}`;
+                                }}
+                                className="btn btn-success"
                               >
                                 {title}
                               </a>
-                            </>
-                          )}
-                        </>
+                            ) : (
+                              <>
+                                <a
+                                  style={{
+                                    width: "7rem",
+                                    height: "35px",
+                                    marginTop: "1rem",
+                                    marginRight: ".4rem",
+                                  }}
+                                  className={`btn ${
+                                    title == "Completed"
+                                      ? "btn-success"
+                                      : "btn-danger"
+                                  }`}
+                                >
+                                  {title}
+                                </a>
+                              </>
+                            )}
+                          </>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                );
-              })}
+                  );
+                })}
           </div>
         </div>
       </div>
