@@ -87,8 +87,8 @@ const IndCAvail = () => {
     {
       name: "Actions",
       center: true,
-      cell: (id) => (
-        <a href="https://test.learnforcare.co.uk/course-all">
+      cell: (row) => (
+        <a href={`https://learnforcare.co.uk/course/${row.course_id}`}>
           <Button style={{ background: "#212a50", color: "#fff" }} variant="">
             <FaEye />
           </Button>
