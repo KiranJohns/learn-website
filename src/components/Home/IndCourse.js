@@ -118,7 +118,7 @@ const IndCourse = () => {
     },
     {
       name: "Attempts",
-      selector: (row) => row?.attempts || 0,
+      selector: (row) => (row?.attempts || 0) + "/20",
       hide: "md",
     },
 
