@@ -26,7 +26,8 @@ const customStyles = {
   },
   cells: {
     style: {
-      fontSize: "14px",
+      fontSize: "13.7px",
+
     },
   },
 };
@@ -109,13 +110,13 @@ const CWManager = () => {
               display: "flex",
               justifyContent: "center",
               position: "absolute",
-              fontSize: 34,
+              fontSize: 33,
               marginTop:"1.4rem"
             }}
           >
            Course Wise Manager
           </h2>
-          <div style={{ padding: "", backgroundColor: "" }}>
+          <div style={{ padding: "", backgroundColor: "", }}>
             <div style={{ float: "right", marginBottom: "1.4rem" }} className="p-relative d-inline header__search searchbar-hidden3">
               <form action="">
                 <input
