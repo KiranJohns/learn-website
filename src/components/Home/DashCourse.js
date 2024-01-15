@@ -141,8 +141,8 @@ const DashCourse = () => {
       hide:750,
     },
     {
-      name: "Progress",
-      selector: (row) => (row.progress || 0) + "%",
+      name: "Attempts",
+      selector: (row) => row?.attempts || 0,
       center: true,
     },
     {
@@ -150,6 +150,7 @@ const DashCourse = () => {
       center: true,
       width: "150px",
       cell: (row) => {
+        // console.log(row)
         let validity = row.validity.split("/").reverse();
         return (
           <>

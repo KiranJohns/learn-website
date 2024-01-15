@@ -112,11 +112,13 @@ const ManageMyCourse = () => {
       hide:'md',
     },
     {
-      name: "progress",
-      selector: (row) => (row?.progress || "0") + "%",
       center: true,
+      name: "Attempts",
+      selector: (row) => row?.attempts || 0,
+      hide: "md",
     },
     {
+      center: true,
       name: "Actions",
       cell: (row) => {
         let validity = row.validity.split("/").reverse();

@@ -128,7 +128,6 @@ const CompanyBundle = () => {
       center: true,
       hide:"md",
     },
-    
     {
       name: "Progress",
       selector: (row) => (row?.progress || 0) + "%",
@@ -171,7 +170,7 @@ const CompanyBundle = () => {
                           handleStartBundle(row.id);
                         }
                       }}
-                      className="btn btn-danger"
+                      className="btn btn-success"
                     >
                       Completed
                     </a>

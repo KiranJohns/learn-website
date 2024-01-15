@@ -104,6 +104,11 @@ const IndMyBundle = () => {
       selector: (row) => row.validity,
     },
     {
+      name: "Progress",
+      selector: (row) => (row?.progress || 0) + "%",
+      center: true,
+    },
+    {
       name: "Actions",
       center: true,
       cell: (row) => {
@@ -114,6 +119,7 @@ const IndMyBundle = () => {
               <>
                 {!row.progress || row.progress < 100 ? (
                   <span
+                    style={{ width: "7rem" }}
                     onClick={() => {
                       console.log(row);
                       if (row?.form_ongoing) {
@@ -131,6 +137,7 @@ const IndMyBundle = () => {
                 ) : (
                   <>
                     <a
+                      style={{ width: "7rem" }}
                       onClick={() => {
                         console.log(row);
                         if (row?.form_ongoing) {
@@ -150,7 +157,9 @@ const IndMyBundle = () => {
               </>
             ) : (
               <>
-                <a className="btn btn-danger">Expired</a>
+                <a style={{ width: "7rem" }} className="btn btn-danger">
+                  Expired
+                </a>
               </>
             )}
           </>

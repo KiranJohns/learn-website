@@ -158,6 +158,7 @@ function DashIndividual() {
               <>
                 {row.progress < 80 ? (
                   <span
+                    style={{ width: "7rem" }}
                     onClick={() => {
                       location.href = `/learnCourse/coursepage/?courseId=${row.id}`;
                     }}
@@ -168,6 +169,7 @@ function DashIndividual() {
                 ) : (
                   <>
                     <a
+                      style={{ width: "7rem" }}
                       onClick={() => {
                         location.href = `/learnCourse/coursepage/?courseId=${row.id}`;
                       }}
@@ -180,7 +182,9 @@ function DashIndividual() {
               </>
             ) : (
               <>
-                <a className="btn btn-danger">Expired</a>
+                <a style={{ width: "7rem" }} className="btn btn-danger">
+                  Expired
+                </a>
               </>
             )}
           </>

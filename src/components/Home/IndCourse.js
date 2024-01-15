@@ -116,10 +116,9 @@ const IndCourse = () => {
       width: "280px",
       center: true,
     },
-
     {
-      name: "Progress",
-      selector: (row) => (row?.progress ? row?.progress + "%" : 0 + "%"),
+      name: "Attempts",
+      selector: (row) => row?.attempts || 0,
       hide: "md",
     },
 

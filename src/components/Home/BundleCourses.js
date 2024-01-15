@@ -145,7 +145,24 @@ const BundleCour = () => {
               </>
             ) : (
               <>
-                <a className="btn btn-danger">Completed</a>
+              <Link
+                    href={{
+                      pathname: "/learnCourse/bundleCourse",
+                      query: {
+                        course_id: row.id,
+                        bundleId: router.query.id,
+                      },
+                    }}
+                  >
+                    <a
+                      onClick={() => {}}
+                      className={`btn btn-success`}
+                      style={{ width: "7rem" }}
+                    >
+                      Completed
+                    </a>
+                  </Link>
+                {/* <a className="btn btn-danger">Completed</a> */}
               </>
             )}
           </>
