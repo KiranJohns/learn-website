@@ -150,7 +150,7 @@ const OnlineExam = () => {
                 this, you will not be able to return to the question page to
                 change any of your answers, so make sure that you have checked
                 all of your answers before you finish. At the end of the exam
-                you will immediately receive your score!
+                you will immediately receive your score.<span style={{color:'#b31528'}}> (To obtain a certificate, you must achieve a minimum score of 80%.)</span>
               </small>
             </div>
             {exam &&
