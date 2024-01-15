@@ -69,10 +69,10 @@ const Footer = () => {
                               <div className="footer__widget-body">
                                  <div className="footer__link footer__link-2">
                                     <ul>
-                                       <li><Link href="/"><a>Privacy</a></Link></li>
-                                       <li><Link href="/"><a>Cookies</a></Link></li>                                
-                                       <li><Link href="/"><a>Terms & Conditions</a></Link></li>
-                                       <li><Link href="/"><a>FAQ</a></Link></li>
+                                       <li><Link href="/privacy"><a>Privacy</a></Link></li>
+                                       <li><Link href="/cookies"><a>Cookies</a></Link></li>                                
+                                       <li><Link href="/conditions"><a>Terms & Conditions</a></Link></li>
+                                       <li><Link href="/faq"><a>FAQ</a></Link></li>
                                        <li><Link href="/sign-in"><a>Sign In</a></Link></li>
                                        <li><Link href="/sign-up"><a>Sign Up</a></Link></li>
                                     </ul>
@@ -98,7 +98,7 @@ const Footer = () => {
                                        <li><Link href="/about"><a>FAQs</a></Link></li> */}
                                        <li><IoLocationOutline style={{marginBottom:'.2rem',margin:"4px 0px"}}/> Suite 14, Neals Corner, 2 bath road, <IoLocationOutline className='footer-hidden-icon'/> Hounslow TW3 3HJ</li>
                                        <li><BsTelephone/> +44-2031483007</li>
-                                       <li><Link href="mailto:info@learnforcare.co.uk"><a><AiOutlineMail/> <span style={{visibility:'hidden'}}>''</span>info@learnforcare.co.uk</a></Link></li>
+                                       <li><Link href="mailto:info@learnforcare.co.uk"><a><AiOutlineMail/> <span style={{visibility:'hidden'}}>''</span>support@learnforcare.co.uk</a></Link></li>
                                     </ul>
                                  </div>
                               </div>
