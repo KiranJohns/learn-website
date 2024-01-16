@@ -6,7 +6,8 @@ import { BsFillEyeFill, BsEyeSlashFill } from "react-icons/bs";
 import { useRouter } from "next/router";
 
 const ViewUser = () => {
-  const [userData, setUserData] = useState({
+  const [password, setPassword] = useState("")
+    const [userData, setUserData] = useState({
     first_name: "",
     last_name: "",
     email: "",
@@ -24,7 +25,8 @@ const ViewUser = () => {
     console.log(id, from);
     mackRequest("GET", `/info/get-user-by-id/${id}`).then(res => {
       console.log(res.data.response);
-      setUserData(res.data.response)
+      setUserData(res.data.response);
+      setPassword(res.data.response.password);
     }).catch(err => {
       console.log(err);
     })
@@ -44,6 +46,7 @@ const ViewUser = () => {
 
   const handleSubmit = (e) => {
     e.persist();
+    if(password == userData.password) return;
 
     let url = "/info/updated-user"
     console.log(userData);
@@ -106,6 +109,7 @@ const ViewUser = () => {
                   <input
                     style={{ background: "#f7fbff" }}
                     onChange={handleOnchange}
+                    disabled
                     type="text"
                     className="form-control border border-black"
                     id="first_name"
@@ -122,6 +126,7 @@ const ViewUser = () => {
                   <input
                     style={{ background: "#f7fbff" }}
                     onChange={handleOnchange}
+                    disabled
                     type="email"
                     className="form-control border border-black"
                     id="email"
@@ -138,6 +143,7 @@ const ViewUser = () => {
                   <select
                     style={{ background: "#f7fbff" }}
                     onChange={handleOnchange}
+                    disabled
                     className="form-control border border-black"
                     id="exampleFormControlSelect1"
                     name="country"
@@ -154,6 +160,7 @@ const ViewUser = () => {
                   <select
                     style={{ background: "#f7fbff" }}
                     onChange={handleOnchange}
+                    disabled
                     className="form-control border border-black"
                     id="exampleFormControlSelect1"
                     name="type_of_account"
@@ -173,6 +180,7 @@ const ViewUser = () => {
                   <input
                     style={{ background: "#f7fbff" }}
                     onChange={handleOnchange}
+                    disabled
                     type="text"
                     className="form-control border border-black"
                     id="last_name"
@@ -189,6 +197,7 @@ const ViewUser = () => {
                   <input
                     style={{ background: "#f7fbff" }}
                     onChange={handleOnchange}
+                    disabled
                     type="number"
                     className="form-control border border-black"
                     id="phone"
@@ -205,6 +214,7 @@ const ViewUser = () => {
                   <input
                     style={{ background: "#f7fbff" }}
                     onChange={handleOnchange}
+                    disabled
                     type="text"
                     className="form-control border border-black"
                     id="city"

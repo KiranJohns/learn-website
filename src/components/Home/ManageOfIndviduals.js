@@ -9,6 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Spinner from "react-bootstrap/Spinner";
 import { FaLock } from "react-icons/fa";
 import { FaUnlock } from "react-icons/fa";
+import { useRouter } from "next/router";
 
 const customStyles = {
   headRow: {
@@ -36,7 +37,7 @@ const ManageIndList = () => {
   const [filterRecords, setFilterRecords] = useState([]);
   const [searchString, setSearchString] = useState("");
   const [pending, setPending] = React.useState(true);
-
+  const router = useRouter()
 
   const makeRequest = fetchData();
 
@@ -53,7 +54,7 @@ const ManageIndList = () => {
         console.log(res.data.response);
         setRecords(res.data.response);
         setFilterRecords(res.data);
-        setPending(false)
+        setPending(false);
       })
       .catch((err) => console.log(err));
   };
@@ -86,31 +87,42 @@ const ManageIndList = () => {
   const columns = [
     {
       name: "Sl No.",
-      selector: (row, idx) =>++idx,
-      center:true,
-      hide:"lg",
+      selector: (row, idx) => ++idx,
+      center: true,
+      hide: "lg",
     },
     {
       name: "User",
-      selector: (row) => row.first_name + " " + row.last_name,
-  
-      center:true,
+      selector: (row) => (
+        <span
+          onClick={() => {
+            router.push({
+              pathname: "/viewUser/editUser",
+              query: { id: row.id, from: "company-manager" },
+            });
+          }}
+        >
+          {row.first_name + " " + row.last_name}
+        </span>
+      ),
+
+      center: true,
     },
     {
       name: "City",
       selector: (row) => row.city,
-      center:true,
-      hide:"md",
+      center: true,
+      hide: "md",
     },
     {
       name: "Email",
       selector: (row) => row.email,
-      center:true,
-      minWidth:"315px",
+      center: true,
+      minWidth: "315px",
     },
     {
       name: "Action",
-      center:true,
+      center: true,
       cell: (row) => (
         <button
           onClick={() => handleBlock(row.block, row.id)}
@@ -137,7 +149,10 @@ const ManageIndList = () => {
           pauseOnHover
           theme="light"
         />
-        <div style={{position:'relative'}} className=" row g-3  min-vh-100  d-flex justify-content-center mt-20">
+        <div
+          style={{ position: "relative" }}
+          className=" row g-3  min-vh-100  d-flex justify-content-center mt-20"
+        >
           <h2
             style={{
               color: "#212450",
@@ -169,43 +184,91 @@ const ManageIndList = () => {
               </form>
             </div>
             <div className="reacttable-hidden">
-            <DataTable
-             persistTableHead={true}
-               progressPending={pending}
-               progressComponent={
-                 pending ? 
-                 (<div style={{ padding: "1rem" }}>
-                   <Spinner animation="border" variant="primary" />
-                 </div>) : (null)
-               }
-              noDataComponent={"No records to display"}
-              columns={columns}
-              data={
-                searchString
-                ? records.filter((item) =>
-                      item.first_name.toLowerCase()
-                        .startsWith(searchString.toLowerCase())
-                    )
-                  : records
-              }
-              customStyles={customStyles}
-              pagination
-            />
+              <DataTable
+                persistTableHead={true}
+                progressPending={pending}
+                progressComponent={
+                  pending ? (
+                    <div style={{ padding: "1rem" }}>
+                      <Spinner animation="border" variant="primary" />
+                    </div>
+                  ) : null
+                }
+                noDataComponent={"No records to display"}
+                columns={columns}
+                data={
+                  searchString
+                    ? records.filter((item) =>
+                        item.first_name
+                          .toLowerCase()
+                          .startsWith(searchString.toLowerCase())
+                      )
+                    : records
+                }
+                customStyles={customStyles}
+                pagination
+              />
             </div>
 
             <div>
-            {searchString
-              ? records
-                  .filter((item) =>
-                    item.first_name
-                      .toLowerCase()
-                      .startsWith(searchString.toLowerCase())
-                  )
-                  .map((item) => {
+              {searchString
+                ? records
+                    .filter((item) =>
+                      item.first_name
+                        .toLowerCase()
+                        .startsWith(searchString.toLowerCase())
+                    )
+                    .map((item) => {
+                      return (
+                        <div
+                          style={{
+                            display: "flex",
+                            flexDirection: "column",
+                            width: "100%",
+                          }}
+                        >
+                          <div className="new-table-shadow new-table-res new-table-hidden">
+                            <div
+                              style={{
+                                display: "flex",
+                                justifyContent: "space-between",
+                              }}
+                            >
+                              <p
+                                style={{
+                                  paddingTop: "1.5rem",
+                                  paddingLeft: ".4rem",
+                                  color: "#212a50",
+                                  fontWeight: "bold",
+                                }}
+                              >
+                                {item.first_name + " " + item.last_name}
+                              </p>
+                              <a
+                                onClick={() => handleBlock(item.block, item.id)}
+                                className={
+                                  item.block
+                                    ? "btn btn-danger"
+                                    : "btn btn-success"
+                                }
+                                style={{
+                                  height: "35px",
+                                  marginTop: "1rem",
+                                  marginRight: ".4rem",
+                                }}
+                              >
+                                {item.block ? <FaLock /> : <FaUnlock />}
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })
+                : records.map((item) => {
                     return (
                       <div
                         style={{
-  
+                          marginTop: ".5rem",
                           display: "flex",
                           flexDirection: "column",
                           width: "100%",
@@ -229,13 +292,17 @@ const ManageIndList = () => {
                               {item.first_name + " " + item.last_name}
                             </p>
                             <a
+                              style={{
+                                height: "35px",
+                                marginTop: "1rem",
+                                marginRight: ".4rem",
+                              }}
                               onClick={() => handleBlock(item.block, item.id)}
                               className={
                                 item.block
                                   ? "btn btn-danger"
                                   : "btn btn-success"
                               }
-                              style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}
                             >
                               {item.block ? <FaLock /> : <FaUnlock />}
                             </a>
@@ -243,50 +310,8 @@ const ManageIndList = () => {
                         </div>
                       </div>
                     );
-                  })
-              : records.map((item) => {
-                  return (
-                    <div
-                      style={{
-                        marginTop:".5rem",
-                        display: "flex",
-                        flexDirection: "column",
-                        width: "100%",
-                      }}
-                    >
-                      <div className="new-table-shadow new-table-res new-table-hidden">
-                        <div
-                          style={{
-                            display: "flex",
-                            justifyContent: "space-between",
-                          }}
-                        >
-                          <p
-                            style={{
-                              paddingTop: "1.5rem",
-                              paddingLeft: ".4rem",
-                              color: "#212a50",
-                              fontWeight: "bold",
-                            }}
-                          >
-                            {item.first_name + " " + item.last_name}
-                          </p>
-                          <a
-                          style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}
-                            onClick={() => handleBlock(item.block, item.id)}
-                            className={
-                              item.block ? "btn btn-danger" : "btn btn-success"
-                            }
-                          >
-                            {item.block ? <FaLock /> : <FaUnlock />}
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  );
-                })}
-             </div>
-
+                  })}
+            </div>
           </div>
         </div>{" "}
       </div>

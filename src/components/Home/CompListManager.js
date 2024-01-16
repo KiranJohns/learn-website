@@ -9,6 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { FaLock } from "react-icons/fa";
 import { FaUnlock } from "react-icons/fa";
 import Spinner from "react-bootstrap/Spinner";
+import { useRouter } from "next/router";
 
 const customStyles = {
   headRow: {
@@ -34,7 +35,7 @@ const customStyles = {
 const CompListManager = () => {
   const [records, setRecords] = useState([]);
   const [searchString, setSearchString] = useState("");
-
+  const router = useRouter()
   const makeRequest = fetchData();
 
   useEffect(() => {
