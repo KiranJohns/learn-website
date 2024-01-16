@@ -19,7 +19,7 @@ class Index extends React.Component {
         return (
             <React.Fragment>
             <NoSSR>
-            <HeaderOpaque />
+            <Header />
             </NoSSR>        
             <HomeMain />
             <Footer />
