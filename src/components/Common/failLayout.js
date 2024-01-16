@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { IoMdCloseCircle } from "react-icons/io";
 import Confetti from 'react-confetti';
+import fetchData from '../../axios';
 
 class FailedLayout extends Component {
     componentDidMount() {
+        const makeRequest = fetchData()
         function removeCouponHandler() {
             makeRequest("POST", "/coupon/remove-coupon")
               .then((res) => {
