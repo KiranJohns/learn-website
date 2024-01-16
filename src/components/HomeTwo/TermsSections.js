@@ -283,7 +283,7 @@ class TermsSection extends Component {
                     <p>4.6 All mentioned rates are only for the provision of services; they do not include mileage or any
                         other costs that the customer will be responsible for paying in line with Learn for Care’s internal
                         spending policy. Like that, the customer will get a reimbursement for their travel and lodging
-                        expenses. The customer will get a mileage reimbursement of <mark style={{ backgroundColor: "yellow" }}>75 pence per mile.</mark></p>
+                        expenses. The customer will get a mileage reimbursement of 75 pence per mile.</p>
 
                     <p>4.7 All charges are subject to periodic review and may be changed to account for changes in salaries,
                         materials, and other expenses involved with delivering services. Learning Connect has the right to
@@ -301,10 +301,10 @@ class TermsSection extends Component {
                     <p>4.9 To guarantee a spot in a public course, candidates must pay online via the Learn for Care website
                         within 15 days of the course start date.</p>
 
-                    <p>4.10 <mark style={{ backgroundColor: "yellow" }}>If payment is not made in advance for any public course, Learn for Care has the right to reject
+                    <p>4.10 If payment is not made in advance for any public course, Learn for Care has the right to reject
                         participation. When it comes to in-house training, Learn for Care maintains the right to deny delivery
                         if payment is not received in advance. In such a case, the cancellation policies outlined in paragraph
-                        five will take effect.</mark></p>
+                        five will take effect.</p>
 
 
                     <p>
@@ -345,78 +345,78 @@ class TermsSection extends Component {
                         provide access to the courses.
                     </p>
 
-                    <p><mark style={{ fontWeight: "bold", backgroundColor: "yellow" }}>5. Termination and Cancellation Cancellation</mark></p>
+                    <p>5. Termination and Cancellation Cancellation</p>
 
-                    <p><mark style={{ backgroundColor: "yellow" }}>5.1. The costs listed in the accompanying table are used to calculate cancellation charges, which
-                        include transfers, deferrals, and postponements.</mark></p>
+                    <p>5.1. The costs listed in the accompanying table are used to calculate cancellation charges, which
+                        include transfers, deferrals, and postponements.</p>
 
-                    <p><mark style={{ backgroundColor: "yellow" }}>5.2. The payment applies to the course&#39;s whole list price or regular day rates at the time of
-                        cancellation.</mark></p>
+                    <p>5.2. The payment applies to the course&#39;s whole list price or regular day rates at the time of
+                        cancellation.</p>
 
-                    <p><mark style={{ backgroundColor: "yellow" }}>5.3. Written notification must be submitted to Learn for Care to modify, transfer, postpone, or
-                        terminate services.</mark></p>
+                    <p>5.3. Written notification must be submitted to Learn for Care to modify, transfer, postpone, or
+                        terminate services.</p>
 
-                    <p><mark style={{ backgroundColor: "yellow" }}>5.4. If internal training is cancelled:</mark></p>
+                    <p>5.4. If internal training is cancelled:</p>
 
-                    <p><mark style={{ backgroundColor: "yellow" }}>- 26–30 days in advance: No fees.</mark></p>
+                    <p>- 26–30 days in advance: No fees.</p>
 
-                    <p><mark style={{ backgroundColor: "yellow" }}>- 16–25 days in advance: half of the total cost.</mark></p>
+                    <p>- 16–25 days in advance: half of the total cost.</p>
 
-                    <p><mark style={{ backgroundColor: "yellow" }}>- Less than fifteen days in advance: the whole amount.</mark></p>
+                    <p>- Less than fifteen days in advance: the whole amount.</p>
 
-                    <p><mark style={{ backgroundColor: "yellow" }}>5.5. The cancellation policy is not applicable if</mark></p>
+                    <p>5.5. The cancellation policy is not applicable if</p>
 
-                    <p><mark style={{ backgroundColor: "yellow" }}>- The security seal is broken, or the offered programme has been utilised.</mark></p>
+                    <p>- The security seal is broken, or the offered programme has been utilised.</p>
 
-                    <p><mark style={{ backgroundColor: "yellow" }}>- A service has been rendered.</mark></p>
+                    <p>- A service has been rendered.</p>
 
-                    <p><mark style={{ backgroundColor: "yellow" }}>5.6. Support@learnforcare.co.uk must receive any notice of a course cancellation.</mark></p>
+                    <p>5.6. Support@learnforcare.co.uk must receive any notice of a course cancellation.</p>
 
-                    <p><mark style={{ backgroundColor: "yellow" }}>5.7. Learn for Care retains the right, in its sole discretion, to postpone, cancel, or defer in-house
+                    <p>5.7. Learn for Care retains the right, in its sole discretion, to postpone, cancel, or defer in-house
                         training. An alternative date will be provided in such circumstances. For any costs spent within ten
                         working days of the course date, Learn for Care is not liable. Following that, compensation up to
                         £100 will be given following receipt submission for supporting documentation. There is no
-                        reimbursement for lost time from work or travel owing to cancellations.</mark></p>
+                        reimbursement for lost time from work or travel owing to cancellations.</p>
                     <br />
 
 
-                    <p><mark style={{ fontWeight: "bold", backgroundColor: "yellow" }}>6. Refund Guidelines:</mark></p>
+                    <p>6. Refund Guidelines:</p>
 
-                    <p><mark style={{ backgroundColor: "yellow" }}>
+                    <p>
                         6.1. You may access the learning management system and course details after registering for free.
                         Before making a purchase, we strongly advise you to thoroughly review our website and courses.
                         We&#39;re here to answer any inquiries you may have from our support staff.
-                    </mark></p>
+                    </p>
 
-                    <p><mark style={{ backgroundColor: "yellow" }}>
+                    <p>
                         6.2. At our discretion, we may provide a refund if the programme is unable to operate as intended
                         due to technical issues or platform incompatibilities. You must give us enough information to
                         identify your purchase transaction in order for us to complete a refund (e.g., full name, email
                         address, date of transaction, number of courses purchased, etc.).
-                    </mark></p>
+                    </p>
 
-                    <p><mark style={{ backgroundColor: "yellow" }}>
+                    <p>
                         6.3. You must write us a letter or email confirming your refund demand and providing the reason(s)
                         for your request if you would like to obtain a refund within 30 days after the purchase.
-                    </mark></p>
+                    </p>
 
 
-                    <p><mark style={{ backgroundColor: "yellow" }}>
+                    <p>
                         6.4. You confirm that you have read and understand our refund policy by purchasing courses from
                         Learn for Care. It is incumbent upon you to become acquainted with the policy. 6.5. If you do not
                         agree with or fully accept the terms of this refund policy, we kindly ask that you refrain from placing
                         an order with us.
-                    </mark></p>
+                   </p>
 
-                    <p><mark style={{ backgroundColor: "yellow" }}>
+                    <p>
                         6.5. Please do not place an order with us if you do not agree with or fully understand the conditions
                         of our refund policy.
-                    </mark></p>
+                   </p>
 
-                    <p><mark style={{ backgroundColor: "yellow" }}>
+                    <p>
                         6.6. Please utilise the contact details listed on our website for any questions or correspondence
                         about our refund policy.
-                    </mark></p>
+                    </p>
                     <br />
 
 

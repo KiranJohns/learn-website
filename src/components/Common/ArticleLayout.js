@@ -26,7 +26,7 @@ const ArticleLayout = ({ post }) => {
             </div>
             <div className="blog__author d-flex">
               <div className="blog__author-info">
-                <h5>{post.content.slice(0, 125)} ...</h5>
+                <h5>{post.content.slice(0, 116)} ...</h5>
               </div>
             </div>
           </div>

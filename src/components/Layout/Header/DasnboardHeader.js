@@ -246,32 +246,32 @@ const DashHeader = () => {
                                        </ul> */}
                           </li>
                           <li className="has-dropdown ">
-                            <Link href="/course-all">
+                            <Link href="/all-courses">
                               <a>Courses</a>
                             </Link>
                             <ul className="submenu">
                               <li>
-                                <Link href="/course-grid">
+                                <Link href="/care-certificate-courses">
                                   <a>Care Certificate Courses</a>
                                 </Link>
                               </li>
                               <li>
-                                <Link href="/course-mandatory">
+                                <Link href="/mandatory-care-courses">
                                   <a>Mandatory Care Courses</a>
                                 </Link>
                               </li>
                               <li>
-                                <Link href="/course-specialised">
+                                <Link href="/specialised-care-courses">
                                   <a>Specialised Care Courses</a>
                                 </Link>
                               </li>{" "}
                               <li>
-                                <Link href="/course-recovery">
+                                <Link href="/recovery-care-courses">
                                   <a>Recovery Care Courses</a>
                                 </Link>
                               </li>{" "}
                               <li>
-                                <Link href="/course-child">
+                                <Link href="/child-care-courses">
                                   <a>Child Care Courses</a>
                                 </Link>
                               </li>
@@ -283,7 +283,7 @@ const DashHeader = () => {
                             </ul>
                           </li>
                           <li className="has-dropdown">
-                            <Link href="/bundle/bundle-all">
+                            <Link href="/bundle/all-bundles">
                               <a>Bundles</a>
                             </Link>
                             <ul className="submenu">
@@ -326,7 +326,7 @@ const DashHeader = () => {
                             </Link>
                           </li>
                           <li>
-                            <Link href="/about">
+                            <Link href="/aboutus">
                               <a>About Us</a>
                             </Link>
                           </li>
