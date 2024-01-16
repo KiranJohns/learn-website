@@ -35,7 +35,7 @@ const customStyles = {
 const CompListManager = () => {
   const [records, setRecords] = useState([]);
   const [searchString, setSearchString] = useState("");
-  const router = useRouter()
+  const router = useRouter();
   const makeRequest = fetchData();
 
   useEffect(() => {
@@ -123,6 +123,7 @@ const CompListManager = () => {
       center: "true",
       cell: (row) => (
         <a
+          title={`${row.block ? "Unblock" : "block"}`}
           onClick={() => handleBlock(row.block, row.id)}
           className={row.block ? "btn btn-danger" : "btn btn-success"}
         >
@@ -244,6 +245,15 @@ const CompListManager = () => {
                                 color: "#212a50",
                                 fontWeight: "bold",
                               }}
+                              onClick={() => {
+                                router.push({
+                                  pathname: "/viewUser/editUser",
+                                  query: {
+                                    id: item.id,
+                                    from: "manager-individual",
+                                  },
+                                });
+                              }}
                             >
                               {item.first_name + " " + item.last_name}
                             </p>
@@ -285,7 +295,16 @@ const CompListManager = () => {
                             justifyContent: "space-between",
                           }}
                         >
-                          <p
+                          <p 
+                          onClick={() => {
+                            router.push({
+                              pathname: "/viewUser/editUser",
+                              query: {
+                                id: item.id,
+                                from: "manager-individual",
+                              },
+                            });
+                          }}
                             style={{
                               paddingTop: "1.5rem",
                               paddingLeft: ".4rem",

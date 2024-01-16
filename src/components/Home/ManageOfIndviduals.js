@@ -37,7 +37,7 @@ const ManageIndList = () => {
   const [filterRecords, setFilterRecords] = useState([]);
   const [searchString, setSearchString] = useState("");
   const [pending, setPending] = React.useState(true);
-  const router = useRouter()
+  const router = useRouter();
 
   const makeRequest = fetchData();
 
@@ -125,6 +125,7 @@ const ManageIndList = () => {
       center: true,
       cell: (row) => (
         <button
+          title={`${row.block ? "Unblock" : "block"}`}
           onClick={() => handleBlock(row.block, row.id)}
           className={row.block ? `btn btn-danger` : `btn btn-success`}
         >
@@ -235,6 +236,15 @@ const ManageIndList = () => {
                               }}
                             >
                               <p
+                                onClick={() => {
+                                  router.push({
+                                    pathname: "/viewUser/editUser",
+                                    query: {
+                                      id: item.id,
+                                      from: "manager-individual",
+                                    },
+                                  });
+                                }}
                                 style={{
                                   paddingTop: "1.5rem",
                                   paddingLeft: ".4rem",
@@ -282,6 +292,15 @@ const ManageIndList = () => {
                             }}
                           >
                             <p
+                              onClick={() => {
+                                router.push({
+                                  pathname: "/viewUser/editUser",
+                                  query: {
+                                    id: item.id,
+                                    from: "manager-individual",
+                                  },
+                                });
+                              }}
                               style={{
                                 paddingTop: "1.5rem",
                                 paddingLeft: ".4rem",
