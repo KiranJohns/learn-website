@@ -17,16 +17,18 @@ function CompanyCreate() {
         return getUserType();
     });
 
+    let routes = ["individual", "manager", "company"];
+
     const router = useRouter();
 
     useEffect(() => {
-        if (logedIn !== "company" || logedIn !== "manager") {
+        if (!routes.includes(logedIn)) {
             router.push("/sign-in");
         }
     }, []);
     return (
         <>
-            {(logedIn === "company" || logedIn === "manager") && (
+            {routes.includes(logedIn) && (
                 <React.Fragment>
                     <main
                         className="p-1"
