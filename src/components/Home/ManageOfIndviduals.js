@@ -98,7 +98,7 @@ const ManageIndList = () => {
           onClick={() => {
             router.push({
               pathname: "/viewUser/editUser",
-              query: { id: row.id, from: "company-manager" },
+              query: { id: row.id, from: "manager-individual" },
             });
           }}
         >

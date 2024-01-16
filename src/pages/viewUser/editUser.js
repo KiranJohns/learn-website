@@ -9,6 +9,7 @@ import NoSSR from "react-no-ssr";
 import { getUserType } from "../../axios";
 import { useRouter } from "next/router";
 import DashHeader from "../../components/Layout/Header/DasnboardHeader";
+import ManagerBar from "../../components/Sidebar/ManagerBar";
 
 
 function CompanyCreate() {
@@ -42,7 +43,7 @@ function CompanyCreate() {
                                     className="col-sm-12 col-md-12 col-lg-2 p-0 sidebar-hidden"
                                     style={{ backgroundColor: "#212450" }}
                                 >
-                                    {getUserType() == "manager" && <ManageBar />}
+                                    {getUserType() == "manager" && <ManagerBar />}
                                     {getUserType() == "company" && <DashboardBar />}
                                 </div>
                                 <div className="col-sm col-md-12 col-lg-11 col-xl-9 bg-white">
