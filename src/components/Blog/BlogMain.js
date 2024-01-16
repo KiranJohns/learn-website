@@ -48,7 +48,6 @@ class BlogMain extends Component {
                 <div className="row">
                   {this.state.blogs &&
                     this.state.blogs.map((post, i) => {
-                      console.log(post);
                       return (
                         <div
                           key={i}
