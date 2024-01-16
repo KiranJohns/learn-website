@@ -99,8 +99,6 @@ const links = [
         name: "Monthly Report",
         link: "/individual/monthlyReport",
       },
-      
-   
     ],
   },
   
