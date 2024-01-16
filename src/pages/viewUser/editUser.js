@@ -19,13 +19,13 @@ function CompanyCreate() {
     const router = useRouter();
 
     useEffect(() => {
-        if (logedIn !== "company") {
+        if (logedIn !== "company" || logedIn !== "manager") {
             router.push("/sign-in");
         }
     }, []);
     return (
         <>
-            {logedIn === "company" && (
+            {(logedIn === "company" || logedIn === "manager") && (
                 <React.Fragment>
                     <main
                         className="p-1"
