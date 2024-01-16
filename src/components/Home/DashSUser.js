@@ -113,7 +113,7 @@ const DashSUser = () => {
   const columns = [
     {
       name: "Sl No.",
-      selector: (row) => row.id,
+      selector: (row,idx) => ++idx,
       center: "true",
       width: "80px",
       hide: 1090,
