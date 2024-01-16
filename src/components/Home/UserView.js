@@ -63,7 +63,7 @@ const ViewUser = () => {
         } else if (from === "company-individual") {
           location.href = "/company/showuser";
         } else {
-          location.href = "/manager/showuser";
+          location.href = "/manager/individuals";
         }
       })
       .catch((err) => {
