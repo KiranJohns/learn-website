@@ -115,7 +115,7 @@ class BlogDetailsMain extends Component {
           ))}
 
         {this.state.allBlogs &&
-          this.state.allBlogs.map((article, num) => (
+          this.state.allBlogs.slice(0,10).map((article, num) => (
             <Breadcrumb key={num} pageTitle={article.title} />
           ))}
 
@@ -134,9 +134,11 @@ class BlogDetailsMain extends Component {
                         <h3>{article.header}</h3>
                         <p>
                           {JSON.parse(article.tags).map((tag) => (
-                            <span style={{
-                              marginRight: "0.5rem"
-                            }}>
+                            <span
+                              style={{
+                                marginRight: "0.5rem",
+                              }}
+                            >
                               <BsTagsFill
                                 style={{
                                   fontSize: "1rem",
