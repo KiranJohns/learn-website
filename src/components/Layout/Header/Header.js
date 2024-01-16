@@ -140,12 +140,12 @@ const Header = () => {
     );
   }
   // Sticky Menu Area start
-  useEffect(() => {
-    window.addEventListener("scroll", sticky);
-    return () => {
-      window.removeEventListener("scroll", sticky);
-    };
-  });
+  // useEffect(() => {
+  //   window.addEventListener("scroll", sticky);
+  //   return () => {
+  //     window.removeEventListener("scroll", sticky);
+  //   };
+  // });
 
   const sticky = (e) => {
     const header = document.querySelector(".header__area");

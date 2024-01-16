@@ -96,7 +96,7 @@ const ViewUser = () => {
             fontSize: 38,
           }}
         >
-          Edit User
+          Change Password
         </h2>
         <div>
           <form className="row g-3  d-flex justify-content-end  ">
