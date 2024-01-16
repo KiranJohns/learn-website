@@ -124,7 +124,10 @@ const DashSUser = () => {
         <span
           style={{}}
           onClick={() => {
-            router.push({ pathname: "/viewUser/editUser", query: { id: row.id, from: 'company-manager' } });
+            router.push({
+              pathname: "/viewUser/editUser",
+              query: { id: row.id, from: "company-manager" },
+            });
           }}
         >
           {row.first_name + " " + row.last_name}
@@ -148,6 +151,7 @@ const DashSUser = () => {
       center: "true",
       cell: (row) => (
         <a
+          title={`${row.block ? "Unblock" : "block"}`}
           onClick={() => handleBlock(row.block, row.id)}
           className={row.block ? `btn btn-danger` : `btn btn-success`}
         >
@@ -271,6 +275,15 @@ const DashSUser = () => {
                             }}
                           >
                             <p
+                              onClick={() => {
+                                router.push({
+                                  pathname: "/viewUser/editUser",
+                                  query: {
+                                    id: item.id,
+                                    from: "manager-individual",
+                                  },
+                                });
+                              }}
                               style={{
                                 paddingTop: "1.5rem",
                                 paddingLeft: ".4rem",
@@ -319,6 +332,15 @@ const DashSUser = () => {
                           }}
                         >
                           <p
+                            onClick={() => {
+                              router.push({
+                                pathname: "/viewUser/editUser",
+                                query: {
+                                  id: item.id,
+                                  from: "manager-individual",
+                                },
+                              });
+                            }}
                             style={{
                               paddingTop: "1.5rem",
                               paddingLeft: ".4rem",
