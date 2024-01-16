@@ -47,7 +47,7 @@ function CourseWiseManage() {
                 >
                   <DashboardBar />
                 </div>
-                <div className="col-sm col-md-12 col-lg-11 col-xl-9  bg-white">
+                <div className="col-sm col-md-12 col-lg-11 col-xl-9 bg-white">
                   <CWManager/>
                 </div>
               </div>

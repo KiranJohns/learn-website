@@ -415,24 +415,31 @@ margin: 0 auto;
     }
 }
 
+@media screen and (max-width:550px) {
+  .course-page-ppt{
+    width: 455px;
+    height: 260px;
+    }
+}
+
 @media screen and (max-width:500px) {
   .course-page-ppt{
-    width: 405px;
-    height: 243px;
+    width: 415px;
+    height: 236px;
     }
 }
 
 @media screen and (max-width:465px) {
   .course-page-ppt{
-    width: 375px;
-    height: 225px;
+    width: 385px;
+    height: 220px;
     }
 }
 
 @media screen and (max-width:420px) {
   .course-page-ppt{
-    width: 338px;
-    height: 190px;
+    width: 340px;
+    height: 185px;
     }
 }
 
@@ -655,5 +662,12 @@ margin: 0 auto;
      @media screen and (max-width:850px) {
       .assign-ml{
         margin-left: 8rem;
+       }
+     }
+
+
+     @media screen and (max-width:800px) {
+      .sign-up-hidden{
+       display: none !important;
        }
      }

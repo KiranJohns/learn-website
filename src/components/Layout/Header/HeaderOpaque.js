@@ -511,7 +511,7 @@ const HeaderOpaque = () => {
                       </Link>
                     )}
                   </div>
-                  <div className="header__btn ml-20 d-none d-sm-block">
+                  <div className="sign-up-hidden header__btn ml-20 d-none d-sm-block">
                     {logedIn ? (
                       // <Link href="/company/myprofile" >
                       //   <a className="e-btn ">Profile</a>

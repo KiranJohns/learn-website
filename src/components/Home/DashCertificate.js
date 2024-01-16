@@ -238,8 +238,8 @@ class DashCertificate extends Component {
                     return (
                       <div
                         style={{
-                          paddingTop: "1rem",
-                          marginTop: "3rem",
+                          // paddingTop: "1rem",
+                          // marginTop: "3rem",
                           display: "flex",
                           flexDirection: "column",
                           width: "100%",

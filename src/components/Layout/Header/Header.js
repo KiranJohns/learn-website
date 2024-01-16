@@ -179,7 +179,7 @@ const Header = () => {
           >
             <div className="container-fluid">
               <div className="row align-items-center">
-                <div className="col-xxl-3 col-xl-3 col-lg-4 col-md-2 col-sm-4 col-6">
+                <div className="col-xxl-3 col-xl-3 col-lg-3 col-md-2 col-sm-3 col-6">
                   <div className="header__left d-flex">
                     <div className="logo ">
                       <Link href="/">
@@ -230,7 +230,7 @@ const Header = () => {
                     </div>
                   </div>
                 </div>
-                <div className="col-xxl-9 col-xl-9 col-lg-8 col-md-10 col-sm-8 col-6">
+                <div className="col-xxl-9 col-xl-9 col-lg-9 col-md-10 col-sm-9 col-6">
                   <div className="header__right d-flex justify-content-end align-items-center">
                     <div className="main-menu d-none d-xl-block">
                       <nav id="mobile-menu">
@@ -400,7 +400,7 @@ const Header = () => {
                         </ul>
                       </nav>
                     </div>
-                    <div className="header__search p-relative ml-50 d-none d-md-block">
+                    <div className="header__search p-relative ml-30 d-none d-md-block">
                       <form action="">
                         <input
                           type="text"
@@ -550,7 +550,7 @@ const Header = () => {
                       )}
                     </div>
 
-                    <div className="header__btn ml-20 d-none d-sm-block">
+                    <div className="sign-up-hidden header__btn ml-20 d-none d-sm-block ">
                       {logedIn ? (
                         // <Link href="/company/myprofile" >
                         //   <a className="e-btn ">Profile</a>
@@ -558,7 +558,7 @@ const Header = () => {
 
                         <div></div>
                       ) : (
-                        <Link href="/sign-up">
+                        <Link className="" href="/sign-up">
                           <a className="e-btn">Sign Up</a>
                         </Link>
                       )}
