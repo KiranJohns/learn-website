@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import fetchData from "../../axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { BsFillEyeFill, BsEyeSlashFill } from "react-icons/bs";
+import { useRouter } from "next/router";
 
 const ViewUser = () => {
   const [userData, setUserData] = useState({
@@ -15,6 +16,19 @@ const ViewUser = () => {
     phone: "",
     user_type: "",
   });
+  const route = useRouter();
+  let { id, from } = route?.query;
+
+  useEffect(() => {
+    // let info = route?.query;
+    console.log(id, from);
+    mackRequest("GET", `/info/get-user-by-id/${id}`).then(res => {
+      console.log(res.data.response);
+      setUserData(res.data.response)
+    }).catch(err => {
+      console.log(err);
+    })
+  },[]);
 
   const [showPassword, setShowPassword] = useState(false);
 
@@ -31,24 +45,22 @@ const ViewUser = () => {
   const handleSubmit = (e) => {
     e.persist();
 
-    let url = "";
-    if (userData.user_type === "individual") {
-      url = "/info/create-manager-individual";
-    } else {
-      url = "/info/create-manager";
-    }
+    let url = "/info/updated-user"
+    console.log(userData);
 
     mackRequest("POST", url, {
       ...userData,
+      user_type: userData.type_of_account,
       phone: Number(userData.phone),
     })
       .then((res) => {
-        if (userData.user_type === "individual") {
-          toast.success("Individual Created");
+        toast.success("Successfully updated");
+        if (from === "company-manager") {
+          location.href = "/company/managers";
+        } else if (from === "company-individual") {
           location.href = "/company/showuser";
         } else {
-          toast.success("Manager Created");
-          location.href = "/company/managers";
+          location.href = "/manager/showuser";
         }
       })
       .catch((err) => {
@@ -130,7 +142,7 @@ const ViewUser = () => {
                     id="exampleFormControlSelect1"
                     name="country"
                   >
-                    <option>Select</option>
+                    <option value={userData.country}>{userData.country}</option>
                     <option value="United Kingdom">United Kingdom</option>
                   </select>
                 </div>
@@ -144,9 +156,9 @@ const ViewUser = () => {
                     onChange={handleOnchange}
                     className="form-control border border-black"
                     id="exampleFormControlSelect1"
-                    name="user_type"
+                    name="type_of_account"
                   >
-                    <option>Select</option>
+                    <option value={userData.type_of_account}>{userData.type_of_account}</option>
                     <option value="individual">Individual</option>
                     <option value="manager">Manager</option>
                   </select>

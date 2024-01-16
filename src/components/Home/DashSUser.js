@@ -10,6 +10,7 @@ import { FaLock } from "react-icons/fa";
 import { FaUnlock } from "react-icons/fa";
 import { Suspense } from "react";
 import Spinner from "react-bootstrap/Spinner";
+import { useRouter } from "next/router";
 
 const customStyles = {
   headRow: {
@@ -33,6 +34,7 @@ const customStyles = {
 };
 
 const DashSUser = () => {
+  const router = useRouter();
   const [records, setRecords] = useState([]);
   const [filterRecords, setFilterRecords] = useState([]);
   const [searchString, setSearchString] = useState("");
@@ -114,18 +116,27 @@ const DashSUser = () => {
       selector: (row) => row.id,
       center: "true",
       width: "80px",
-      hide:1090,
+      hide: 1090,
     },
     {
       name: "User",
-      selector: (row) => row.first_name + " " + row.last_name,
+      selector: (row) => (
+        <span
+          style={{}}
+          onClick={() => {
+            router.push({ pathname: "/viewUser/editUser", query: { id: row.id, from: 'company-manager' } });
+          }}
+        >
+          {row.first_name + " " + row.last_name}
+        </span>
+      ),
       center: "true",
     },
     {
       name: "city",
       selector: (row) => row.city,
       center: "true",
-      hide:900,
+      hide: 900,
     },
     {
       name: "Email",
@@ -276,7 +287,11 @@ const DashSUser = () => {
                                   ? "btn btn-danger"
                                   : "btn btn-success"
                               }
-                              style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}
+                              style={{
+                                height: "35px",
+                                marginTop: "1rem",
+                                marginRight: ".4rem",
+                              }}
                             >
                               {item.block ? <FaLock /> : <FaUnlock />}
                             </a>
@@ -314,7 +329,11 @@ const DashSUser = () => {
                             {item.first_name + " " + item.last_name}
                           </p>
                           <a
-                          style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}
+                            style={{
+                              height: "35px",
+                              marginTop: "1rem",
+                              marginRight: ".4rem",
+                            }}
                             onClick={() => handleBlock(item.block, item.id)}
                             className={
                               item.block ? "btn btn-danger" : "btn btn-success"

@@ -87,11 +87,22 @@ const CompListManager = () => {
       selector: (row, idx) => ++idx,
       width: "80px",
       center: "true",
-      hide:1090,
+      hide: 1090,
     },
     {
       name: "Name",
-      selector: (row) => row.first_name + " " + row.last_name,
+      selector: (row) => (
+        <span
+          onClick={() => {
+            router.push({
+              pathname: "/viewUser/editUser",
+              query: { id: row.id, from: "company-manager" },
+            });
+          }}
+        >
+          {row.first_name + " " + row.last_name}
+        </span>
+      ),
       sortable: true,
       center: "true",
     },
@@ -99,7 +110,7 @@ const CompListManager = () => {
       name: "City",
       selector: (row) => row.city,
       center: "true",
-      hide:945,
+      hide: 945,
     },
     {
       name: "Email",
@@ -146,7 +157,7 @@ const CompListManager = () => {
               justifyContent: "center",
               position: "absolute",
               fontSize: 34,
-              marginTop:"1.2rem"
+              marginTop: "1.2rem",
             }}
           >
             Managers
@@ -242,7 +253,11 @@ const CompListManager = () => {
                                   ? "btn btn-danger"
                                   : "btn btn-success"
                               }
-                              style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}
+                              style={{
+                                height: "35px",
+                                marginTop: "1rem",
+                                marginRight: ".4rem",
+                              }}
                             >
                               {item.block ? <FaLock /> : <FaUnlock />}
                             </a>
@@ -280,7 +295,11 @@ const CompListManager = () => {
                             {item.first_name + " " + item.last_name}
                           </p>
                           <a
-                          style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}
+                            style={{
+                              height: "35px",
+                              marginTop: "1rem",
+                              marginRight: ".4rem",
+                            }}
                             onClick={() => handleBlock(item.block, item.id)}
                             className={
                               item.block ? "btn btn-danger" : "btn btn-success"
