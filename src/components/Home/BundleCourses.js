@@ -145,23 +145,19 @@ const BundleCour = () => {
               </>
             ) : (
               <>
-              <Link
-                    href={{
-                      pathname: "/learnCourse/bundleCourse",
-                      query: {
-                        course_id: row.id,
-                        bundleId: router.query.id,
-                      },
-                    }}
+                <Link
+                  href={{
+                    pathname: "/company/certificates",
+                  }}
+                >
+                  <a
+                    onClick={() => {}}
+                    className={`btn btn-success`}
+                    style={{ width: "7rem" }}
                   >
-                    <a
-                      onClick={() => {}}
-                      className={`btn btn-success`}
-                      style={{ width: "7rem" }}
-                    >
-                      Completed
-                    </a>
-                  </Link>
+                    Completed
+                  </a>
+                </Link>
                 {/* <a className="btn btn-danger">Completed</a> */}
               </>
             )}
@@ -227,7 +223,9 @@ const BundleCour = () => {
               data={
                 searchData
                   ? records.filter((item) =>
-                      (item?.Name || item?.name).toLowerCase().includes(searchData.toLowerCase())
+                      (item?.Name || item?.name)
+                        .toLowerCase()
+                        .includes(searchData.toLowerCase())
                     )
                   : records
               }
@@ -239,7 +237,9 @@ const BundleCour = () => {
           {searchData
             ? records
                 .filter((item) =>
-                (item?.Name || item?.name).toLowerCase().includes(searchData.toLowerCase())
+                  (item?.Name || item?.name)
+                    .toLowerCase()
+                    .includes(searchData.toLowerCase())
                 )
                 .map((item) => {
                   return (
@@ -314,6 +314,7 @@ const BundleCour = () => {
                             ) : (
                               <>
                                 <a
+                                  href={"/company/certificates"}
                                   style={{
                                     width: "7rem",
                                     height: "35px",
@@ -405,13 +406,14 @@ const BundleCour = () => {
                           ) : (
                             <>
                               <a
+                                href={"/company/certificates"}
                                 style={{
                                   width: "7rem",
                                   height: "35px",
                                   marginTop: "1rem",
                                   marginRight: ".4rem",
                                 }}
-                                className="btn btn-danger"
+                                className="btn btn-success"
                               >
                                 Completed
                               </a>
