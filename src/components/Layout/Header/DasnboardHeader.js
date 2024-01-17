@@ -293,27 +293,27 @@ const DashHeader = () => {
                                 </Link>
                               </li>
                               <li>
-                                <Link href="/bundle/mandatory-bundle">
+                                <Link href="/bundle/mandatory-care-bundle">
                                   <a>Mandatory Care Bundle</a>
                                 </Link>
                               </li>
                               <li>
-                                <Link href="/bundle/special-bundle">
+                                <Link href="/bundle/specialised-care-bundle">
                                   <a>Specialised Care Bundle</a>
                                 </Link>
                               </li>
                               <li>
-                                <Link href="/bundle/recovery-bundle">
+                                <Link href="/bundle/recovery-care-bundle">
                                   <a>Recovery Care Bundle</a>
                                 </Link>
                               </li>
                               <li>
-                                <Link href="/bundle/child-bundle">
+                                <Link href="/bundle/child-care-bundle">
                                   <a>Child Care Bundle</a>
                                 </Link>
                               </li>
                               <li>
-                                <Link href="/bundle/bundle-Online">
+                                <Link href="/bundle/online-care-bundle">
                                   <a>Online Care Bundle</a>
                                 </Link>
                               </li>
