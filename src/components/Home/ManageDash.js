@@ -90,20 +90,20 @@ class ManageDash extends Component {
         selector: (row, idx) => idx + 1,
         center: true,
         width: "90px",
-        hide:"lg"
+        hide: "lg",
       },
       {
         name: "Name",
         selector: (row) => (row.name ? row.name : row.Name),
         center: true,
         width: "310px",
-        compact:true
+        compact: true,
       },
       {
         name: "category",
         selector: (row) => row.category,
         center: true,
-        hide:"md"
+        hide: "md",
       },
       {
         name: "Attempts",
@@ -117,12 +117,12 @@ class ManageDash extends Component {
       {
         name: "validity",
         selector: (row) => row.validity,
-        hide:"md",
-        center:"true"
+        hide: "md",
+        center: "true",
       },
       {
         name: "Action",
-        compact:true,
+        compact: true,
         cell: (row) => {
           // if (new Date(validity) > new Date()) {
           //   if (row.progress <= 80) {
@@ -152,7 +152,7 @@ class ManageDash extends Component {
             flag = true;
             if (row.progress >= 80) {
               title = "Completed";
-              flag = true;
+              flag = false;
             }
           }
 
@@ -170,11 +170,26 @@ class ManageDash extends Component {
                 </a>
               ) : (
                 <>
-                  <a style={{ width: "7rem" }}
-                  className={`btn ${title == 'Completed' ? 'btn-success' :'btn-danger'}`}
-                  >
-                    {title}
-                  </a>
+                  {title == "Completed" ? (
+                    <a
+                      style={{ width: "7rem" }}
+                      href={"/manager/certificates"}
+                      className={`btn ${
+                        title == "Completed" ? "btn-success" : "btn-danger"
+                      }`}
+                    >
+                      {title}
+                    </a>
+                  ) : (
+                    <a
+                      style={{ width: "7rem" }}
+                      className={`btn ${
+                        title == "Completed" ? "btn-success" : "btn-danger"
+                      }`}
+                    >
+                      {title}
+                    </a>
+                  )}
                 </>
               )}
             </>
@@ -500,13 +515,12 @@ class ManageDash extends Component {
                             flag = true;
                             if (item.progress >= 80) {
                               title = "Completed";
-                              flag = true;
+                              flag = false;
                             }
                           }
                           return (
                             <div
                               style={{
-                                // paddingTop: "1rem",
                                 marginTop: "3rem",
                                 display: "flex",
                                 flexDirection: "column",
@@ -536,18 +550,43 @@ class ManageDash extends Component {
                                           location.href = `/learnCourse/coursepage/?courseId=${item.id}`;
                                         }}
                                         className="btn btn-success"
-                                        style={{width: "7rem", height:'35px',marginTop:"1rem", marginRight:'.4rem'}}
+                                        style={{
+                                          width: "7rem",
+                                          height: "35px",
+                                          marginTop: "1rem",
+                                          marginRight: ".4rem",
+                                        }}
                                       >
                                         {title}
                                       </a>
                                     ) : (
                                       <>
-                                        <a
-                                          className="btn btn-danger"
-                                          style={{width: "7rem", height:'35px',marginTop:"1rem", marginRight:'.4rem'}}
-                                        >
-                                          {title}
-                                        </a>
+                                        {title == "Completed" ? (
+                                          <a
+                                            href={"/manager/certificates"}
+                                            className="btn btn-success"
+                                            style={{
+                                              width: "7rem",
+                                              height: "35px",
+                                              marginTop: "1rem",
+                                              marginRight: ".4rem",
+                                            }}
+                                          >
+                                            {title}
+                                          </a>
+                                        ) : (
+                                          <a
+                                            className="btn btn-danger"
+                                            style={{
+                                              width: "7rem",
+                                              height: "35px",
+                                              marginTop: "1rem",
+                                              marginRight: ".4rem",
+                                            }}
+                                          >
+                                            {title}
+                                          </a>
+                                        )}
                                       </>
                                     )}
                                   </>
@@ -557,76 +596,114 @@ class ManageDash extends Component {
                           );
                         })
                     : this.state.records.map((item) => {
-                      let validity = item.validity.split("/").reverse();
-                      let flag = false;
-                      let title = "Start";
-                      if (
-                        new Date(validity) <= new Date() ||
-                        item?.attempts >= 20
-                      ) {
-                        title = "Expired";
-                        flag = false;
-                      } else {
-                        title = "Start";
-                        flag = true;
-                        if (item.progress >= 80) {
-                          title = "Completed";
+                        let validity = item.validity.split("/").reverse();
+                        let flag = false;
+                        let title = "Start";
+                        if (
+                          new Date(validity) <= new Date() ||
+                          item?.attempts >= 20
+                        ) {
+                          title = "Expired";
+                          flag = false;
+                        } else {
+                          title = "Start";
                           flag = true;
+                          if (item.progress >= 80) {
+                            title = "Completed";
+                            flag = false;
+                          }
                         }
-                      }
-                      return (
-                        <div
-                          style={{
-                            paddingTop: "1rem",
-                            marginTop: ".4rem",
-                            display: "flex",
-                            flexDirection: "column",
-                          }}
-                        >
-                          <div className="new-table-shadow new-table-res new-table-hidden">
-                            <div
-                              style={{
-                                display: "flex",
-                                justifyContent: "space-between",
-                              }}
-                            >
-                              <p
+                        return (
+                          <div
+                            style={{
+                              paddingTop: "1rem",
+                              marginTop: ".4rem",
+                              display: "flex",
+                              flexDirection: "column",
+                            }}
+                          >
+                            <div className="new-table-shadow new-table-res new-table-hidden">
+                              <div
                                 style={{
-                                  paddingTop: "1.5rem",
-                                  paddingLeft: ".4rem",
-                                  color: "#212a50",
-                                  fontWeight: "bold",
+                                  display: "flex",
+                                  justifyContent: "space-between",
                                 }}
                               >
-                                {item.Name || item.name}
-                              </p>
-                              <>
-                                {flag ? (
-                                  <a
-                                    onClick={() => {
-                                      location.href = `/learnCourse/coursepage/?courseId=${item.id}`;
-                                    }}
-                                    className="btn btn-success"
-                                    style={{width: "7rem", height:'35px',marginTop:"1rem", marginRight:'.4rem'}}
-                                  >
-                                    {title}
-                                  </a>
-                                ) : (
-                                  <>
+                                <p
+                                  style={{
+                                    paddingTop: "1.5rem",
+                                    paddingLeft: ".4rem",
+                                    color: "#212a50",
+                                    fontWeight: "bold",
+                                  }}
+                                >
+                                  {item.Name || item.name}
+                                </p>
+                                <>
+                                  {flag ? (
                                     <a
-                                      className="btn btn-danger"
-                                      style={{width: "7rem", height:'35px',marginTop:"1rem", marginRight:'.4rem'}}
+                                      onClick={() => {
+                                        location.href = `/learnCourse/coursepage/?courseId=${item.id}`;
+                                      }}
+                                      className="btn btn-success"
+                                      style={{
+                                        width: "7rem",
+                                        height: "35px",
+                                        marginTop: "1rem",
+                                        marginRight: ".4rem",
+                                      }}
                                     >
                                       {title}
                                     </a>
-                                  </>
-                                )}
-                              </>
+                                  ) : (
+                                    <>
+                                      {title == "Completed" ? (
+                                        <a
+                                          href={"/manager/certificates"}
+                                          className="btn btn-success"
+                                          style={{
+                                            width: "7rem",
+                                            height: "35px",
+                                            marginTop: "1rem",
+                                            marginRight: ".4rem",
+                                          }}
+                                        >
+                                          {title}a
+                                        </a>
+                                      ) : (
+                                        <a
+                                          className="btn btn-danger"
+                                          style={{
+                                            width: "7rem",
+                                            height: "35px",
+                                            marginTop: "1rem",
+                                            marginRight: ".4rem",
+                                          }}
+                                        >
+                                          {title}
+                                        </a>
+                                      )}
+                                    </>
+                                    // <>
+                                    //   <a
+                                    //     className="btn btn-danger"
+                                    //     style={{
+                                    //       width: "7rem",
+                                    //       height: "35px",
+                                    //       marginTop: "1rem",
+                                    //       marginRight: ".4rem",
+                                    //     }}
+                                    //   >
+                                    //     {title}
+                                    //   </a>
+                                    // </>
+                                  )}
+                                </>
+                              </div>
                             </div>
                           </div>
-                        </div>
-                      );
-                    })}
+                        );
+                      })}
                 </div>
               </div>
               {/* </div> */}
