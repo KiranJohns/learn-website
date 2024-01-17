@@ -171,7 +171,7 @@ function DashIndividual() {
                     <a
                       style={{ width: "7rem" }}
                       onClick={() => {
-                        location.href = `/learnCourse/coursepage/?courseId=${row.id}`;
+                        location.href = `/individual/certificate`;
                       }}
                       className="btn btn-success"
                     >
@@ -512,7 +512,7 @@ function DashIndividual() {
                                 {item.name || item.Name}
                               </p>
                               <>
-                                {new Date(item?.validity.split("/").reverse()) >
+                                {new Date(item?.validity.split("/").reverse())>
                                 new Date() ? (
                                   <>
                                     {item?.progress < 80 ? (
@@ -534,7 +534,7 @@ function DashIndividual() {
                                         <a
                                           className="btn btn-success"
                                           onClick={() => {
-                                            location.href = `/learnCourse/coursepage/?courseId=${row.id}`;
+                                            location.href = '/individual/certificates';
                                           }}
                                           style={{
                                             height: "35px",
@@ -617,6 +617,7 @@ function DashIndividual() {
                                   ) : (
                                     <>
                                       <a
+                                        href={'/individual/certificates'}
                                         style={{
                                           height: "35px",
                                           marginTop: "1rem",

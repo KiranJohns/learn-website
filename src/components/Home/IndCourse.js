@@ -138,20 +138,62 @@ const IndCourse = () => {
             {new Date(validity.join("-")) > new Date() ? (
               <>
                 {row?.progress ? (
-                  <Link
-                    href={{
-                      pathname: "/learnCourse/coursepage",
-                      query: {
-                        courseId: row.on_going_course_id,
-                        from: "course",
-                      },
-                    }}
-                  >
-                    <a style={{ width: "7rem" }} className="btn btn-success">
-                      {row?.progress >= 80 ? "Completed" : "Start"}
-                    </a>
-                  </Link>
+                  <>
+                    {row.progress < 80 ? (
+                      <Link
+                        href={{
+                          pathname: "/learnCourse/coursepage",
+                          query: {
+                            courseId: row?.on_going_course_id,
+                          },
+                        }}
+                      >
+                        <a
+                          style={{
+                            width: "7rem",
+                            height: "35px",
+                            marginTop: "1rem",
+                            marginRight: ".4rem",
+                          }}
+                          className="btn btn-success"
+                        >
+                          Start
+                        </a>
+                      </Link>
+                    ) : (
+                      <Link
+                        href={{
+                          pathname: "/individual/certificates",
+                        }}
+                      >
+                        <a
+                          style={{
+                            width: "7rem",
+                            height: "35px",
+                            marginTop: "1rem",
+                            marginRight: ".4rem",
+                          }}
+                          className="btn btn-success"
+                        >
+                          Completed
+                        </a>
+                      </Link>
+                    )}
+                  </>
                 ) : (
+                  // <Link
+                  //   href={{
+                  //     pathname: "/learnCourse/coursepage",
+                  //     query: {
+                  //       courseId: row.on_going_course_id,
+                  //       from: "course",
+                  //     },
+                  //   }}
+                  // >
+                  //   <a style={{ width: "7rem" }} className="btn btn-success">
+                  //     {row?.progress >= 80 ? "Completed" : "Start"}
+                  //   </a>
+                  // </Link>
                   <a
                     style={{ width: "7rem" }}
                     onClick={() => {
@@ -297,29 +339,72 @@ const IndCourse = () => {
                               ) > new Date() ? (
                                 <>
                                   {item?.progress ? (
-                                    <Link
-                                      href={{
-                                        pathname: "/learnCourse/coursepage",
-                                        query: {
-                                          courseId: item.on_going_course_id,
-                                          from: "course",
-                                        },
-                                      }}
-                                    >
-                                      <a
-                                        style={{
-                                          height: "35px",
-                                          marginTop: "1rem",
-                                          marginRight: ".4rem",
-                                        }}
-                                        className="btn btn-success"
-                                      >
-                                        {item?.progress >= 80
-                                          ? "Completed"
-                                          : "Start"}
-                                      </a>
-                                    </Link>
+                                    <>
+                                      {item.progress < 80 ? (
+                                        <Link
+                                          href={{
+                                            pathname: "/learnCourse/coursepage",
+                                            query: {
+                                              courseId:
+                                                item?.on_going_course_id,
+                                            },
+                                          }}
+                                        >
+                                          <a
+                                            style={{
+                                              width: "7rem",
+                                              height: "35px",
+                                              marginTop: "1rem",
+                                              marginRight: ".4rem",
+                                            }}
+                                            className="btn btn-success"
+                                          >
+                                            Start
+                                          </a>
+                                        </Link>
+                                      ) : (
+                                        <Link
+                                          href={{
+                                            pathname: "/manager/certificates",
+                                          }}
+                                        >
+                                          <a
+                                            style={{
+                                              width: "7rem",
+                                              height: "35px",
+                                              marginTop: "1rem",
+                                              marginRight: ".4rem",
+                                            }}
+                                            className="btn btn-success"
+                                          >
+                                            Completed
+                                          </a>
+                                        </Link>
+                                      )}
+                                    </>
                                   ) : (
+                                    // <Link
+                                    //   href={{
+                                    //     pathname: "/learnCourse/coursepage",
+                                    //     query: {
+                                    //       courseId: item.on_going_course_id,
+                                    //       from: "course",
+                                    //     },
+                                    //   }}
+                                    // >
+                                    //   <a
+                                    //     style={{
+                                    //       height: "35px",
+                                    //       marginTop: "1rem",
+                                    //       marginRight: ".4rem",
+                                    //     }}
+                                    //     className="btn btn-success"
+                                    //   >
+                                    //     {item?.progress >= 80
+                                    //       ? "Completed"
+                                    //       : "Start"}
+                                    //   </a>
+                                    // </Link>
                                     <a
                                       onClick={() => {
                                         if (item.from_purchased) {
@@ -391,29 +476,71 @@ const IndCourse = () => {
                             ) > new Date() ? (
                               <>
                                 {item?.progress ? (
-                                  <Link
-                                    href={{
-                                      pathname: "/learnCourse/coursepage",
-                                      query: {
-                                        courseId: item.on_going_course_id,
-                                        from: "course",
-                                      },
-                                    }}
-                                  >
-                                    <a
-                                      style={{
-                                        height: "35px",
-                                        marginTop: "1rem",
-                                        marginRight: ".4rem",
-                                      }}
-                                      className="btn btn-success"
-                                    >
-                                      {item?.progress >= 80
-                                        ? "Completed"
-                                        : "Start"}
-                                    </a>
-                                  </Link>
+                                  <>
+                                    {item.progress < 80 ? (
+                                      <Link
+                                        href={{
+                                          pathname: "/learnCourse/coursepage",
+                                          query: {
+                                            courseId: item?.on_going_course_id,
+                                          },
+                                        }}
+                                      >
+                                        <a
+                                          style={{
+                                            width: "7rem",
+                                            height: "35px",
+                                            marginTop: "1rem",
+                                            marginRight: ".4rem",
+                                          }}
+                                          className="btn btn-success"
+                                        >
+                                          Start
+                                        </a>
+                                      </Link>
+                                    ) : (
+                                      <Link
+                                        href={{
+                                          pathname: "/manager/certificates",
+                                        }}
+                                      >
+                                        <a
+                                          style={{
+                                            width: "7rem",
+                                            height: "35px",
+                                            marginTop: "1rem",
+                                            marginRight: ".4rem",
+                                          }}
+                                          className="btn btn-success"
+                                        >
+                                          Completed
+                                        </a>
+                                      </Link>
+                                    )}
+                                  </>
                                 ) : (
+                                  // <Link
+                                  //   href={{
+                                  //     pathname: "/learnCourse/coursepage",
+                                  //     query: {
+                                  //       courseId: item.on_going_course_id,
+                                  //       from: "course",
+                                  //     },
+                                  //   }}
+                                  // >
+                                  //   <a
+                                  //     style={{
+                                  //       height: "35px",
+                                  //       marginTop: "1rem",
+                                  //       marginRight: ".4rem",
+                                  //     }}
+                                  //     className="btn btn-success"
+                                  //   >
+                                  //     {item?.progress >= 80
+                                  //       ? "Completed"
+                                  //       : "Start"}
+                                  //   </a>
+                                  // </Link>
                                   <a
                                     onClick={() => {
                                       if (item.from_purchased) {
