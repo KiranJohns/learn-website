@@ -95,7 +95,7 @@ class ServiceBundle extends Component {
                </div>
                <div className="d-flex justify-content-center mt-2">
             <div className="btn btn-primary">
-              <Link href="/bundle/bundle-all">View More</Link>
+              <Link href="/bundle/all-bundles">View More</Link>
             </div>
           </div>
             </div>

@@ -160,7 +160,7 @@ export default () => {
           </TabPanel>
           <div className="d-flex justify-content-center ">
             <div className="btn btn-primary">
-              <Link href="/course-all">View More</Link>
+              <Link href="/all-courses">View More</Link>
             </div>
           </div>
           <TabPanel>
