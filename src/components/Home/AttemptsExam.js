@@ -126,7 +126,7 @@ const AttemptsExam = () => {
     },
     {
       name: "status",
-      selector: (row) => row.status,
+      selector: (row) => <span style={{textTransform: 'capitalize'}}>{row.status}</span>,
       center: true,
      
     },
