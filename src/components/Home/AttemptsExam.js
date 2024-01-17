@@ -18,7 +18,7 @@ const customStyles = {
   },
   headCells: {
     style: {
-      fontSize: "16px",
+      fontSize: "14px",
       fontWeight: "600",
       textTransform: "uppercase",
       justifyContent: "center",
@@ -26,7 +26,7 @@ const customStyles = {
   },
   cells: {
     style: {
-      fontSize: "15px",
+      fontSize: "14px",
       justifyContent: "center",
     },
   },
@@ -121,19 +121,20 @@ const AttemptsExam = () => {
       name: "NO.",
       selector: (row, idx) => ++idx,
       center: true,
-      width: "170px",
+      width: "85px",
+      hide:580,
     },
     {
       name: "status",
       selector: (row) => row.status,
-      sortable: true,
       center: true,
-      width: "400px",
+     
     },
     {
       name: "Date",
       center: true,
       selector: (row) => row.date,
+      hide:640,
     },
     {
       name: "Marks Obtained",
@@ -178,19 +179,21 @@ const AttemptsExam = () => {
           </ul>
         </div>
       </Modal>
-      <div className=" row g-3  min-vh-100  d-flex justify-content-center dash-shadow mt-10">
-        <div style={{ padding: "", backgroundColor: "" }}>
-          <h2
-            className="dash-head-center"
-            style={{
-              padding: "",
-              color: "#212450",
-              fontSize: 35,
-              marginTop:".5rem"
-            }}
-          >
+      <div  style={{ position: "relative" }} className=" row g-3  min-vh-100  d-flex justify-content-center dash-shadow mt-10">
+      <h2
+              style={{
+                color: "#212450",
+                display: "flex",
+                justifyContent: "center",
+                position: "absolute",
+                fontSize: 36,
+                marginTop: "1.5rem",
+              }}
+            >
             Exam Results
           </h2>
+        <div style={{ padding: "", backgroundColor: "" }}>
+    
           <div
             style={{ float: "right", marginBottom: "1.4rem" }}
             className="p-relative d-inline header__search searchbar-hidden3"
