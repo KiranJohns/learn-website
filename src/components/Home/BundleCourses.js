@@ -11,6 +11,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { useRouter } from "next/router";
 import { Button } from "react-bootstrap";
 
+
 const customStyles = {
   headRow: {
     style: {
@@ -147,7 +148,7 @@ const BundleCour = () => {
               <>
                 <Link
                   href={{
-                    pathname: "/company/certificates",
+                    pathname: `/${getUserType()}/certificates`,
                   }}
                 >
                   <a
