@@ -125,7 +125,7 @@ const DashCourse = () => {
       selector: (row, idx) => idx + 1,
       center: true,
       width: "80px",
-      hide:"md",
+      hide: "md",
     },
     {
       name: "Name",
@@ -138,7 +138,7 @@ const DashCourse = () => {
       name: "validity",
       center: true,
       selector: (row) => row.validity,
-      hide:750,
+      hide: 750,
     },
     {
       name: "Attempts",
@@ -159,19 +159,36 @@ const DashCourse = () => {
                 {row.attempts < 20 ? (
                   <>
                     {row?.progress ? (
-                      <Link
-                        href={{
-                          pathname: "/learnCourse/coursepage",
-                          query: { courseId: row?.on_going_course_id },
-                        }}
-                      >
-                        <a
-                          style={{ width: "7rem" }}
-                          className="btn btn-success"
-                        >
-                          {row.progress < 80 ? "Start" : "Completed"}
-                        </a>
-                      </Link>
+                      <>
+                        {row.progress < 80 ? (
+                          <Link
+                            href={{
+                              pathname: "/learnCourse/coursepage",
+                              query: { courseId: row?.on_going_course_id },
+                            }}
+                          >
+                            <a
+                              style={{ width: "7rem" }}
+                              className="btn btn-success"
+                            >
+                              Start
+                            </a>
+                          </Link>
+                        ) : (
+                          <Link
+                            href={{
+                              pathname: "/company/certificates",
+                            }}
+                          >
+                            <a
+                              style={{ width: "7rem" }}
+                              className="btn btn-success"
+                            >
+                              Completed
+                            </a>
+                          </Link>
+                        )}
+                      </>
                     ) : (
                       <button
                         onClick={() => {
@@ -249,15 +266,18 @@ const DashCourse = () => {
         </div>
       </Modal>
       <div className="dash-shadow">
-      <div style={{position:'relative'}} className=" row g-3  min-vh-100  d-flex justify-content-center  mt-10">
-        {/* <div  style={{  position:"relative" }}> */}
+        <div
+          style={{ position: "relative" }}
+          className=" row g-3  min-vh-100  d-flex justify-content-center  mt-10"
+        >
+          {/* <div  style={{  position:"relative" }}> */}
           <h2
             style={{
               color: "#212450",
               display: "flex",
               justifyContent: "center",
               position: "absolute",
-              fontSize: 35,   
+              fontSize: 35,
             }}
           >
             My Courses
@@ -307,13 +327,181 @@ const DashCourse = () => {
               />
             </Suspense>
           </div>
-          <div style={{marginTop:"2.9rem", paddingTop:"1rem"}}>
-          {searchData
-            ? records
-                .filter((item) =>
-                  item?.name.toLowerCase().startsWith(searchData.toLowerCase())
-                )
-                .map((item) => {
+          <div style={{ marginTop: "2.9rem", paddingTop: "1rem" }}>
+            {searchData
+              ? records
+                  .filter((item) =>
+                    item?.name
+                      .toLowerCase()
+                      .startsWith(searchData.toLowerCase())
+                  )
+                  .map((item) => {
+                    let validity = item.validity.split("/").reverse();
+                    return (
+                      <div
+                        style={{
+                          // paddingTop: "1rem",
+                          // marginTop: "3rem",
+                          display: "flex",
+                          flexDirection: "column",
+                        }}
+                      >
+                        <div className="new-table-shadow new-table-res new-table-hidden">
+                          <div
+                            style={{
+                              display: "flex",
+                              justifyContent: "space-between",
+                            }}
+                          >
+                            <p
+                              style={{
+                                paddingTop: "1.5rem",
+                                paddingLeft: ".4rem",
+                                color: "#212a50",
+                                fontWeight: "bold",
+                              }}
+                            >
+                              {item?.name}
+                            </p>
+                            {/* <button className="btn btn-success" style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}>View</button> */}
+                            <>
+                              {new Date(validity.join("-")) > new Date() ? (
+                                <>
+                                  {item.attempts < 20 ? (
+                                    <>
+                                      {item?.progress ? (
+                                        <>
+                                          {item?.progress < 80 ? (
+                                            <Link
+                                              href={{
+                                                pathname:
+                                                  "/learnCourse/coursepage",
+                                                query: {
+                                                  courseId:
+                                                    item?.on_going_course_id,
+                                                },
+                                              }}
+                                            >
+                                              <a
+                                                style={{
+                                                  width: "7rem",
+                                                  height: "35px",
+                                                  marginTop: "1rem",
+                                                  marginRight: ".4rem",
+                                                }}
+                                                // style={{ width: "7rem" }}
+                                                className="btn btn-success"
+                                              >
+                                                Start
+                                              </a>
+                                            </Link>
+                                          ) : (
+                                            <Link
+                                              href={{
+                                                pathname:
+                                                  "/company/certificates",
+                                              }}
+                                            >
+                                              <a
+                                                style={{
+                                                  width: "7rem",
+                                                  height: "35px",
+                                                  marginTop: "1rem",
+                                                  marginRight: ".4rem",
+                                                }}
+                                                // style={{ width: "7rem" }}
+                                                className="btn btn-success"
+                                              >
+                                                Completed
+                                              </a>
+                                            </Link>
+                                          )}
+                                        </>
+                                      ) : (
+                                        // <Link
+                                        //   href={{
+                                        //     pathname: "/learnCourse/coursepage",
+                                        //     query: {
+                                        //       courseId:
+                                        //         item?.on_going_course_id,
+                                        //     },
+                                        //   }}
+                                        // >
+                                        //   <a
+                                        // style={{
+                                        //   width: "7rem",
+                                        //   height: "35px",
+                                        //   marginTop: "1rem",
+                                        //   marginRight: ".4rem",
+                                        // }}
+                                        //     className="btn btn-success"
+                                        //   >
+                                        //     {item.progress < 80
+                                        //       ? "Start"
+                                        //       : "Completed"}
+                                        //   </a>
+                                        // </Link>
+                                        <button
+                                          style={{
+                                            width: "7rem",
+                                            height: "35px",
+                                            marginTop: "1rem",
+                                            marginRight: ".4rem",
+                                          }}
+                                          onClick={() => {
+                                            handleStart(item?.id, "assigned");
+                                          }}
+                                          className="btn btn-success"
+                                        >
+                                          Start
+                                        </button>
+                                      )}
+                                    </>
+                                  ) : (
+                                    <>
+                                      {item.attempts >= 20 ? (
+                                        <a className="btn btn-danger">
+                                          Expired
+                                        </a>
+                                      ) : (
+                                        <button
+                                          style={{
+                                            width: "7rem",
+                                            height: "35px",
+                                            marginTop: "1rem",
+                                            marginRight: ".4rem",
+                                          }}
+                                          onClick={() => {
+                                            handleStart(item?.id, "assigned");
+                                          }}
+                                          className="btn btn-success"
+                                        >
+                                          Start
+                                        </button>
+                                      )}
+                                    </>
+                                  )}
+                                </>
+                              ) : (
+                                <a
+                                  style={{
+                                    width: "7rem",
+                                    height: "35px",
+                                    marginTop: "1rem",
+                                    marginRight: ".4rem",
+                                  }}
+                                  className="btn btn-danger"
+                                >
+                                  Expired
+                                </a>
+                              )}
+                            </>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })
+              : records.map((item) => {
                   let validity = item.validity.split("/").reverse();
                   return (
                     <div
@@ -348,29 +536,75 @@ const DashCourse = () => {
                                 {item.attempts < 20 ? (
                                   <>
                                     {item?.progress ? (
-                                      <Link
-                                        href={{
-                                          pathname: "/learnCourse/coursepage",
-                                          query: {
-                                            courseId: item?.on_going_course_id,
-                                          },
-                                        }}
-                                      >
-                                        <a
-                                          style={{
-                                            width: "7rem",
-                                            height: "35px",
-                                            marginTop: "1rem",
-                                            marginRight: ".4rem",
-                                          }}
-                                          className="btn btn-success"
-                                        >
-                                          {item.progress < 80
-                                            ? "Start"
-                                            : "Completed"}
-                                        </a>
-                                      </Link>
+                                      <>
+                                        {item?.progress < 80 ? (
+                                          <Link
+                                            href={{
+                                              pathname:
+                                                "/learnCourse/coursepage",
+                                              query: {
+                                                courseId:
+                                                  item?.on_going_course_id,
+                                              },
+                                            }}
+                                          >
+                                            <a
+                                              style={{
+                                                width: "7rem",
+                                                height: "35px",
+                                                marginTop: "1rem",
+                                                marginRight: ".4rem",
+                                              }}
+                                              // style={{ width: "7rem" }}
+                                              className="btn btn-success"
+                                            >
+                                              Start
+                                            </a>
+                                          </Link>
+                                        ) : (
+                                          <Link
+                                            href={{
+                                              pathname: "/company/certificates",
+                                            }}
+                                          >
+                                            <a
+                                              style={{
+                                                width: "7rem",
+                                                height: "35px",
+                                                marginTop: "1rem",
+                                                marginRight: ".4rem",
+                                              }}
+                                              // style={{ width: "7rem" }}
+                                              className="btn btn-success"
+                                            >
+                                              Completed
+                                            </a>
+                                          </Link>
+                                        )}
+                                      </>
                                     ) : (
+                                      // <Link
+                                      //   href={{
+                                      //     pathname: "/learnCourse/coursepage",
+                                      //     query: {
+                                      //       courseId: item?.on_going_course_id,
+                                      //     },
+                                      //   }}
+                                      // >
+                                      //   <a
+                                      //     style={{
+                                      //       width: "7rem",
+                                      //       height: "35px",
+                                      //       marginTop: "1rem",
+                                      //       marginRight: ".4rem",
+                                      //     }}
+                                      //     className="btn btn-success"
+                                      //   >
+                                      //     {item.progress < 80
+                                      //       ? "Start"
+                                      //       : "Completed"}
+                                      //   </a>
+                                      // </Link>
                                       <button
                                         style={{
                                           width: "7rem",
@@ -428,125 +662,9 @@ const DashCourse = () => {
                       </div>
                     </div>
                   );
-                })
-            : records.map((item) => {
-              let validity = item.validity.split("/").reverse();
-              return (
-                <div
-                  style={{
-                    // paddingTop: "1rem",
-                    // marginTop: "3rem",
-                    display: "flex",
-                    flexDirection: "column",
-                  }}
-                >
-                  <div className="new-table-shadow new-table-res new-table-hidden">
-                    <div
-                      style={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                      }}
-                    >
-                      <p
-                        style={{
-                          paddingTop: "1.5rem",
-                          paddingLeft: ".4rem",
-                          color: "#212a50",
-                          fontWeight: "bold",
-                        }}
-                      >
-                        {item?.name}
-                      </p>
-                      {/* <button className="btn btn-success" style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}>View</button> */}
-                      <>
-                        {new Date(validity.join("-")) > new Date() ? (
-                          <>
-                            {item.attempts < 20 ? (
-                              <>
-                                {item?.progress ? (
-                                  <Link
-                                    href={{
-                                      pathname: "/learnCourse/coursepage",
-                                      query: {
-                                        courseId: item?.on_going_course_id,
-                                      },
-                                    }}
-                                  >
-                                    <a
-                                      style={{
-                                        width: "7rem",
-                                        height: "35px",
-                                        marginTop: "1rem",
-                                        marginRight: ".4rem",
-                                      }}
-                                      className="btn btn-success"
-                                    >
-                                      {item.progress < 80
-                                        ? "Start"
-                                        : "Completed"}
-                                    </a>
-                                  </Link>
-                                ) : (
-                                  <button
-                                    style={{
-                                      width: "7rem",
-                                      height: "35px",
-                                      marginTop: "1rem",
-                                      marginRight: ".4rem",
-                                    }}
-                                    onClick={() => {
-                                      handleStart(item?.id, "assigned");
-                                    }}
-                                    className="btn btn-success"
-                                  >
-                                    Start
-                                  </button>
-                                )}
-                              </>
-                            ) : (
-                              <>
-                                {item.attempts >= 20 ? (
-                                  <a className="btn btn-danger">Expired</a>
-                                ) : (
-                                  <button
-                                    style={{
-                                      width: "7rem",
-                                      height: "35px",
-                                      marginTop: "1rem",
-                                      marginRight: ".4rem",
-                                    }}
-                                    onClick={() => {
-                                      handleStart(item?.id, "assigned");
-                                    }}
-                                    className="btn btn-success"
-                                  >
-                                    Start
-                                  </button>
-                                )}
-                              </>
-                            )}
-                          </>
-                        ) : (
-                          <a
-                            style={{
-                              width: "7rem",
-                              height: "35px",
-                              marginTop: "1rem",
-                              marginRight: ".4rem",
-                            }}
-                            className="btn btn-danger"
-                          >
-                            Expired
-                          </a>
-                        )}
-                      </>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
+                })}
+          </div>
         </div>
-      </div>
       </div>
     </div>
   );
