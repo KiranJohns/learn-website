@@ -99,7 +99,7 @@ function SignInMain() {
       })
       .catch((err) => {
         setLoading((prev) => false);
-        console.log(err?.data?.errors[0]);
+        console.log(err?.data);
 
         toast.error(err?.data?.errors[0].error);
         store.dispatch({

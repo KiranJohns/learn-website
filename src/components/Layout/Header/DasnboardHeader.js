@@ -510,6 +510,7 @@ const DashHeader = () => {
                             <a
                               onClick={() => {
                                 localStorage.removeItem("learnfrocarecart");
+                                
                                 router.push(`/${getUserType()}/dashboard`);
                                 // if ( === "company") {
                               }}

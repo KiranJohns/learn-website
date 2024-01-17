@@ -134,9 +134,12 @@ function NewInDash() {
 
   const handleLogout = () => {
     localStorage.removeItem("learnforcare_access");
+    localStorage.removeItem("userType");
+    localStorage.removeItem(`learnforcare_refresh`);
     location.pathname = "/";
   };
 
+  
   useEffect(() => {
     makeRequest("GET", "/info/data")
       .then((res) => {

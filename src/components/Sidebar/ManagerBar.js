@@ -175,6 +175,8 @@ function  ManagerBar() {
 
   const handleLogout = () => {
     localStorage.removeItem("learnforcare_access");
+    localStorage.removeItem("userType");
+    localStorage.removeItem(`learnforcare_refresh`);
     location.pathname = "/";
   };
 
