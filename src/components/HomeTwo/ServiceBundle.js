@@ -20,7 +20,7 @@ class ServiceBundle extends Component {
                </div>
                <div className="row">
                   <div className="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6" style={{cursor:"pointer",textAlign:'center'}}>
-                  <Link href="/bundle/bundle-Online">
+                  <Link href="/bundle/online-care-bundle">
                      <div className="services__item mb-30"  style={{background:'#212a50'}}>
                         <div className="services__icon">
                         <GoStack/>
@@ -38,7 +38,7 @@ class ServiceBundle extends Component {
                     </Link>
                   </div>
                   <div className="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6" style={{cursor:"pointer",textAlign:'center'}}>
-                  <Link href="/bundle/mandatory-bundle">
+                  <Link href="/bundle/mandatory-care-bundle">
                      <div className="services__item  mb-30" style={{background:'#e04c4c'}}>
                         <div className="services__icon">
                         <GoStack/>
@@ -57,7 +57,7 @@ class ServiceBundle extends Component {
                   </div>
 
                   <div className="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6" style={{cursor:"pointer", textAlign:'center'}}>
-                  <Link href="/bundle/special-bundle">
+                  <Link href="/bundle/specialised-care-bundle">
                      <div className="services__item  mb-30" style={{background:'#e05fa6'}}>
                         <div className="services__icon">
                         <GoStack/>
@@ -75,7 +75,7 @@ class ServiceBundle extends Component {
                      </Link>
                   </div>
                   <div className="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6" style={{cursor:"pointer",textAlign:'center'}}>
-                  <Link href="/bundle/recovery-bundle">
+                  <Link href="/bundle/recovery-care-bundle">
                      <div className="services__item mb-30"  style={{background:'#5a9676'}}>
                         <div className="services__icon">
                         <GoStack/>
