@@ -129,7 +129,7 @@ class DashTest extends Component {
             flag = true;
             if (row.progress >= 80) {
               title = "Completed";
-              flag = true;
+              flag = false;
             }
           }
 
@@ -147,14 +147,19 @@ class DashTest extends Component {
                 </a>
               ) : (
                 <>
-                  <a
-                    style={{ width: "7rem" }}
-                    className={`btn ${
-                      title == "Completed" ? "btn-success" : "btn-danger"
-                    }`}
-                  >
-                    {title}
-                  </a>
+                  {title == "Completed" ? (
+                    <a
+                      href={"/company/certificates"}
+                      style={{ width: "7rem" }}
+                      className={`btn btn-success`}
+                    >
+                      {title}
+                    </a>
+                  ) : (
+                    <a style={{ width: "7rem" }} className={`btn btn-danger`}>
+                      {title}
+                    </a>
+                  )}
                 </>
               )}
             </>
@@ -527,7 +532,7 @@ class DashTest extends Component {
                       flag = true;
                       if (item.progress >= 80) {
                         title = "Completed";
-                        flag = true;
+                        flag = false;
                       }
                     }
 
@@ -574,18 +579,48 @@ class DashTest extends Component {
                                 </a>
                               ) : (
                                 <>
-                                  <a
-                                    style={{
-                                      width: "7rem",
-                                      height: "35px",
-                                      marginTop: "1rem",
-                                      marginRight: ".4rem",
-                                    }}
-                                    className="btn btn-danger"
-                                  >
-                                    {title}
-                                  </a>
+                                  {title == "Completed" ? (
+                                    <a
+                                      href={"/company/certificates"}
+                                      style={{
+                                        width: "7rem",
+                                        height: "35px",
+                                        marginTop: "1rem",
+                                        marginRight: ".4rem",
+                                      }}
+                                      // style={{ width: "7rem" }}
+                                      className={`btn btn-success`}
+                                    >
+                                      {title}
+                                    </a>
+                                  ) : (
+                                    <a
+                                      style={{
+                                        width: "7rem",
+                                        height: "35px",
+                                        marginTop: "1rem",
+                                        marginRight: ".4rem",
+                                      }}
+                                      // style={{ width: "7rem" }}
+                                      className={`btn btn-danger`}
+                                    >
+                                      {title}
+                                    </a>
+                                  )}
                                 </>
+                                // <>
+                                //   <a
+                                //     style={{
+                                //       width: "7rem",
+                                //       height: "35px",
+                                //       marginTop: "1rem",
+                                //       marginRight: ".4rem",
+                                //     }}
+                                //     className="btn btn-danger"
+                                //   >
+                                //     {title}
+                                //   </a>
+                                // </>
                               )}
                             </>
                           </div>
@@ -609,7 +644,7 @@ class DashTest extends Component {
                     flag = true;
                     if (item.progress >= 80) {
                       title = "Completed";
-                      flag = true;
+                      flag = false;
                     }
                   }
 
@@ -657,22 +692,52 @@ class DashTest extends Component {
                               </a>
                             ) : (
                               <>
-                                <a
-                                  style={{
-                                    width: "7rem",
-                                    height: "35px",
-                                    marginTop: "1rem",
-                                    marginRight: ".4rem",
-                                  }}
-                                  className={`btn ${
-                                    title == "Completed"
-                                      ? "btn-success"
-                                      : "btn-danger"
-                                  }`}
-                                >
-                                  {title}
-                                </a>
+                                {title == "Completed" ? (
+                                  <a
+                                    href={"/company/certificates"}
+                                    style={{
+                                      width: "7rem",
+                                      height: "35px",
+                                      marginTop: "1rem",
+                                      marginRight: ".4rem",
+                                    }}
+                                    // style={{ width: "7rem" }}
+                                    className={`btn btn-success`}
+                                  >
+                                    {title}
+                                  </a>
+                                ) : (
+                                  <a
+                                    style={{
+                                      width: "7rem",
+                                      height: "35px",
+                                      marginTop: "1rem",
+                                      marginRight: ".4rem",
+                                    }}
+                                    // style={{ width: "7rem" }}
+                                    className={`btn btn-danger`}
+                                  >
+                                    {title}
+                                  </a>
+                                )}
                               </>
+                              // <>
+                              //   <a
+                              //     style={{
+                              //       width: "7rem",
+                              //       height: "35px",
+                              //       marginTop: "1rem",
+                              //       marginRight: ".4rem",
+                              //     }}
+                              //     className={`btn ${
+                              //       title == "Completed"
+                              //         ? "btn-success"
+                              //         : "btn-danger"
+                              //     }`}
+                              //   >
+                              //     {title}
+                              //   </a>
+                              // </>
                             )}
                           </>
                         </div>
