@@ -171,7 +171,7 @@ function DashIndividual() {
                     <a
                       style={{ width: "7rem" }}
                       onClick={() => {
-                        location.href = `/individual/certificate`;
+                        location.href = `/individual/certificates`;
                       }}
                       className="btn btn-success"
                     >
