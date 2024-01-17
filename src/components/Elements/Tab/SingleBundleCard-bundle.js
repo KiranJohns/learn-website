@@ -159,7 +159,8 @@ function SingleBundleCard({ item }) {
           <span
             onClick={() => {
               // console.log(location.pathname.split("/").pop());
-              goTo(location.pathname.split("/").pop());
+              // goTo(location.pathname.split("/").pop());
+              window.location.reload()
             }}
           >
             <a>
@@ -174,7 +175,9 @@ function SingleBundleCard({ item }) {
         </div>
         <div className="course__content">
           <h3 className="homee__title" title={item.name}>
-            <span onClick={() => goTo(location.pathname.split("/").pop())}>
+            <span onClick={() => {
+              window.location.reload()
+            }}>
               <a>{item.name}</a>
               {/* <a>{item.name.slice(0, 20) + "..."}</a> */}
             </span>
@@ -185,7 +188,9 @@ function SingleBundleCard({ item }) {
                               </div> */}
             <h6>
               <span
-                onClick={() => goTo(location.pathname.split("/").pop())}
+                onClick={() => {
+                  window.location.reload()
+                }}
               >
                 <a>{item?.description?.slice(0, 150) + "..."}</a>
               </span>
