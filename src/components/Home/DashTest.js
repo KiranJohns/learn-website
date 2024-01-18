@@ -750,10 +750,8 @@ class DashTest extends Component {
                       </div>
 
                       <div style={{ display: 'flex', justifyContent: "space-between" }}>
-                        <a href={`/learnCourse/examAttempts/?courseId=${item.id}`}>
-                          <p style={{ color: 'green', marginLeft: ".5rem", fontWeight: "500" }}>Attempts:{" "}{item?.attempts}<a className="my-dashlink">3/20</a></p>
-                        </a>
-                        <p style={{ color: 'green', marginRight: ".5rem", fontWeight: "500" }}>Validity:{" "}{validity}</p>
+                          <p style={{ color: 'green', marginLeft: ".5rem", fontWeight: "500" }}>Attempts:{" "}<a className="my-dashlink" href={`/learnCourse/examAttempts/?courseId=${item.id}`}>{item?.attempts}/20</a></p>
+                        <p style={{ color: 'green', marginRight: ".5rem", fontWeight: "500" }}>Validity:{" "}{item?.validity}</p>
                       </div>
 
                     </div>
