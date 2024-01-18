@@ -436,7 +436,8 @@ class DashTest extends Component {
                   padding: "1.5rem",
                   marginTop: ".7rem",
                   color: "#212450",
-            
+                  display: "flex",
+                  justifyContent: "center",
                   fontSize: 35,
                 }}
               >
@@ -708,7 +709,7 @@ class DashTest extends Component {
                                     marginTop: "1rem",
                                     marginRight: ".4rem",
                                   }}
-                                 
+                                  // style={{ width: "7rem" }}
                                   className={`btn btn-success`}
                                 >
                                   {title}
@@ -721,7 +722,7 @@ class DashTest extends Component {
                                     marginTop: "1rem",
                                     marginRight: ".4rem",
                                   }}
-                                 
+                                  // style={{ width: "7rem" }}
                                   className={`btn btn-danger`}
                                 >
                                   {title}
@@ -750,8 +751,8 @@ class DashTest extends Component {
                       </div>
 
                       <div style={{ display: 'flex', justifyContent: "space-between" }}>
-                          <p style={{ color: 'green', marginLeft: ".5rem", fontWeight: "500" }}>Attempts:{" "}<a className="my-dashlink" href={`/learnCourse/examAttempts/?courseId=${item.id}`}>{item?.attempts}/20</a></p>
-                        <p style={{ color: 'green', marginRight: ".5rem", fontWeight: "500" }}>Validity:{" "}{item?.validity}</p>
+                        <p style={{ color: 'green', marginLeft: ".5rem", fontWeight: "500" }}>Attempts:{" "}<a className="my-dashlink">3/20</a></p>
+                        <p style={{ color: 'green', marginRight: ".5rem", fontWeight: "500" }}>Validity:{" "}17/01/2025</p>
                       </div>
 
                     </div>
