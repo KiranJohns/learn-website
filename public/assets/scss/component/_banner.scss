@@ -327,3 +327,24 @@ display: none;
   
   }
 }
+
+
+.ongoing-center{
+ display: flex;
+ justify-content: flex-start;
+}
+
+
+@media screen and (max-width:600px) {
+  .ongoing-center{   
+    justify-content: center;
+   }
+ }
+
+ 
+
+ @media screen and (max-width:600px) {
+  .dash-search-hidden{   
+    display: none;
+   }
+ }

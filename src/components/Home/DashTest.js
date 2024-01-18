@@ -431,19 +431,18 @@ class DashTest extends Component {
                 flexWrap: "nowrap",
               }}
             >
-              <h4
+              <h4 className="ongoing-center"
                 style={{
                   padding: "1.5rem",
                   marginTop: ".7rem",
                   color: "#212450",
-                  display: "flex",
-                  justifyContent: "flex-start",
+            
                   fontSize: 35,
                 }}
               >
                 Ongoing Courses
               </h4>
-              <div className="p-relative d-inline header__search">
+              <div className="p-relative d-inline header__search dash-search-hidden">
                 <form className="your-element" action="">
                   <input
                     className="d-block mr-25"
@@ -654,9 +653,11 @@ class DashTest extends Component {
                   <div
 
                     style={{
-                      marginTop: ".45rem",
+                      // marginTop: ".4rem",
                       display: "flex",
                       flexDirection: "column",
+                    
+                      padding:".5rem"
                     }}
                   >
                     <div className="new-table-shadow new-table-hidden">
@@ -707,7 +708,7 @@ class DashTest extends Component {
                                     marginTop: "1rem",
                                     marginRight: ".4rem",
                                   }}
-                                  // style={{ width: "7rem" }}
+                                 
                                   className={`btn btn-success`}
                                 >
                                   {title}
@@ -720,7 +721,7 @@ class DashTest extends Component {
                                     marginTop: "1rem",
                                     marginRight: ".4rem",
                                   }}
-                                  // style={{ width: "7rem" }}
+                                 
                                   className={`btn btn-danger`}
                                 >
                                   {title}
