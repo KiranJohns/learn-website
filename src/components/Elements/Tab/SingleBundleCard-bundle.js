@@ -162,7 +162,7 @@ function SingleBundleCard({ item }) {
             }}
           >
             <a>
-              <img src={item.image} alt="img not found" />
+              <img style={{cursor: 'pointer'}} src={item.image} alt="img not found" />
             </a>
           </span>
           {/* <div className="course__tag">
@@ -172,7 +172,7 @@ function SingleBundleCard({ item }) {
                       </div> */}
         </div>
         <div className="course__content">
-          <h3 className="homee__title" title={item.name}>
+          <h3 style={{cursor: 'pointer'}} className="homee__title" title={item.name}>
             <span onClick={() => {
               window.location.reload()
             }}>
@@ -185,7 +185,7 @@ function SingleBundleCard({ item }) {
                                  <img src="assets/img/course/teacher/teacher-5.jpg" alt="img not found"/>
                               </div> */}
             <h6>
-              <span
+              <span style={{cursor: 'pointer'}}
                 onClick={() => {
                   window.location.reload()
                 }}
