@@ -274,11 +274,13 @@ const CompanyBundle = () => {
                     return (
                       <div
                         style={{
-                          paddingTop: "1rem",
+                         
                           width: '100%',
                           marginTop: "3rem",
+
                           display: "flex",
                           flexDirection: "column",
+                          
                         }}
                       >
                         <div className="new-table-shadow new-table-res new-table-hidden">
@@ -374,7 +376,7 @@ const CompanyBundle = () => {
                         width: '100%',
                         display: "flex",
                         flexDirection: "column",
-                        marginTop:'.6rem'
+                      padding:".5rem"
                       }}
                     >
                       <div className="new-table-shadow new-table-hidden">
