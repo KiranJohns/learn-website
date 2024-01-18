@@ -50,7 +50,7 @@ const links = [
       },
       {
         name: "Buy Bundles",
-        link: "/bundle/bundle-all",
+        link: "/bundle/all-bundles",
       },
    
       {
@@ -75,7 +75,7 @@ const links = [
       },
       {
         name: "Buy Course",
-        link: "/course-all/",
+        link: "/all-courses",
       },
       // {
       //   name: "Purchased Courses",

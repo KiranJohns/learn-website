@@ -39,7 +39,7 @@ function mybundle() {
             }}
           >
             <NoSSR>
-              <Header />
+              <DashHeader/>
             </NoSSR>
             <div
               className="container-fluid "

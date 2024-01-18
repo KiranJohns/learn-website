@@ -103,7 +103,7 @@ class DashTest extends Component {
         name: "Attempts",
         hide: "sm",
         selector: (row) => (
-          <a href={`/learnCourse/examAttempts/?courseId=${row.id}`}>
+          <a className="my-dashlink" href={`/learnCourse/examAttempts/?courseId=${row.id}`}>
             {row.attempts + "/20"}
           </a>
         ),
@@ -291,7 +291,7 @@ class DashTest extends Component {
           >
             <div className="ag-courses_item-comp " style={{ marginLeft: "" }}>
               <a
-                href="/bundle/bundle-all"
+                href="/bundle/all-bundles"
                 className="ag-courses-item_link-comp"
               >
                 <div className="ag-courses-item_bg-comp"></div>
@@ -317,7 +317,7 @@ class DashTest extends Component {
               className="ag-courses_item-comp"
               style={{ marginLeft: ".5rem" }}
             >
-              <a href="/course-all" className="ag-courses-item_link-comp">
+              <a href="/all-courses" className="ag-courses-item_link-comp">
                 <div className="ag-courses-item_bg-comp"></div>
                 <div
                   className="bi bi-book ag-courses-item_date-box-new"
@@ -538,12 +538,14 @@ class DashTest extends Component {
 
                     return (
                       <div
+                     
                         style={{
                           display: "flex",
                           flexDirection: "column",
                         }}
                       >
                         <div className="new-table-shadow new-table-res new-table-hidden">
+                         
                           <div
                             style={{
                               display: "flex",
@@ -565,7 +567,7 @@ class DashTest extends Component {
                               {flag ? (
                                 <a
                                   style={{
-                                    width: "7rem",
+                                    width: "5rem",
                                     height: "35px",
                                     marginTop: "1rem",
                                     marginRight: ".4rem",
@@ -583,7 +585,7 @@ class DashTest extends Component {
                                     <a
                                       href={"/company/certificates"}
                                       style={{
-                                        width: "7rem",
+                                        width: "5rem",
                                         height: "35px",
                                         marginTop: "1rem",
                                         marginRight: ".4rem",
@@ -596,7 +598,7 @@ class DashTest extends Component {
                                   ) : (
                                     <a
                                       style={{
-                                        width: "7rem",
+                                        width: "5rem",
                                         height: "35px",
                                         marginTop: "1rem",
                                         marginRight: ".4rem",
@@ -650,19 +652,22 @@ class DashTest extends Component {
 
                   return (
                     <div
+                   
                       style={{
                         marginTop: ".45rem",
                         display: "flex",
                         flexDirection: "column",
                       }}
                     >
-                      <div className="new-table-shadow new-table-res new-table-hidden">
-                        <div
+                      <div className="new-table-shadow new-table-hidden">
+                   
+                        <div 
                           style={{
                             display: "flex",
                             justifyContent: "space-between",
                           }}
                         >
+                         
                           <p
                             style={{
                               paddingTop: "1.4rem",
@@ -673,12 +678,13 @@ class DashTest extends Component {
                           >
                             {item?.Name || item?.name}
                           </p>
+                         
                           {/* <button className="btn btn-success" style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}>View</button> */}
                           <>
                             {flag ? (
                               <a
                                 style={{
-                                  width: "7rem",
+                                  width: "5rem",
                                   height: "35px",
                                   marginTop: "1rem",
                                   marginRight: ".4rem",
@@ -696,7 +702,7 @@ class DashTest extends Component {
                                   <a
                                     href={"/company/certificates"}
                                     style={{
-                                      width: "7rem",
+                                      width: "5rem",
                                       height: "35px",
                                       marginTop: "1rem",
                                       marginRight: ".4rem",
@@ -709,7 +715,7 @@ class DashTest extends Component {
                                 ) : (
                                   <a
                                     style={{
-                                      width: "7rem",
+                                      width: "5rem",
                                       height: "35px",
                                       marginTop: "1rem",
                                       marginRight: ".4rem",
@@ -741,6 +747,12 @@ class DashTest extends Component {
                             )}
                           </>
                         </div>
+                       
+                      <div style={{display:'flex', justifyContent:"space-between"}}>
+                        <p style={{color:'green',marginLeft:".5rem",fontWeight:"500"}}>Attempts:{" "}<a className="my-dashlink">3/20</a></p>
+                        <p style={{color:'green',marginRight:".5rem",fontWeight:"500"}}>Validity:{" "}17/01/2025</p>
+                      </div>  
+                        
                       </div>
                     </div>
                   );
