@@ -750,8 +750,8 @@ class DashTest extends Component {
                       </div>
 
                       <div style={{ display: 'flex', justifyContent: "space-between" }}>
-                        <p style={{ color: 'green', marginLeft: ".5rem", fontWeight: "500" }}>Attempts:{" "}<a className="my-dashlink">3/20</a></p>
-                        <p style={{ color: 'green', marginRight: ".5rem", fontWeight: "500" }}>Validity:{" "}17/01/2025</p>
+                        <p style={{ color: 'green', marginLeft: ".5rem", fontWeight: "500" }}>Attempts:{" "}{row?.attempts}<a className="my-dashlink">3/20</a></p>
+                        <p style={{ color: 'green', marginRight: ".5rem", fontWeight: "500" }}>Validity:{" "}{validity}</p>
                       </div>
 
                     </div>
