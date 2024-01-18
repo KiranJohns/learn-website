@@ -517,7 +517,7 @@ class DashTest extends Component {
               {this.state.records.length <= 0 && (
                 <h4
                   className="no-record-hidden"
-                  style={{ textAlign: "center", padding: "1rem" }}
+                  style={{ textAlign: "center", padding: "1rem", }}
                 >
                   No records to display
                 </h4>

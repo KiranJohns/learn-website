@@ -121,14 +121,14 @@ const AttemptsExam = () => {
       name: "NO.",
       selector: (row, idx) => ++idx,
       center: true,
-      width: "85px",
-      hide:580,
+      width: "80px",
+      hide:374,
     },
     {
       name: "status",
       selector: (row) => <span style={{textTransform: 'capitalize'}}>{row.status}</span>,
       center: true,
-     
+      width: "80px",
     },
     {
       name: "Date",
