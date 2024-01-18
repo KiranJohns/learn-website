@@ -762,7 +762,7 @@ class DashTest extends Component {
                               fontWeight: "500",
                             }}
                           >
-                            Attempts: <a className="my-dashlink">3/20</a>
+                            Attempts: <a className="my-dashlink" href={`/learnCourse/examAttempts/?courseId=${item?.id}`}>{item?.attempts}/20</a>
                           </p>
                           <p
                             style={{
@@ -771,7 +771,7 @@ class DashTest extends Component {
                               fontWeight: "500",
                             }}
                           >
-                            Validity: 17/01/2025
+                            Validity: {item?.validity}
                           </p>
                         </div>
                       </div>
