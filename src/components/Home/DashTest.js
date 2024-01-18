@@ -513,7 +513,16 @@ class DashTest extends Component {
                 </div>
               </div>
             </div>
-            {this.state.records.length <= 0 && <h4 style={{textAlign: 'center',padding: '1rem'}}>No records to display</h4>}
+            <div>
+              {this.state.records.length <= 0 && (
+                <h4
+                  className="no-record-hidden"
+                  style={{ textAlign: "center", padding: "1rem" }}
+                >
+                  No records to display
+                </h4>
+              )}
+            </div>
             {this.state.searchString
               ? this.state.records
                   .filter((item) =>
@@ -762,7 +771,13 @@ class DashTest extends Component {
                               fontWeight: "500",
                             }}
                           >
-                            Attempts: <a className="my-dashlink" href={`/learnCourse/examAttempts/?courseId=${item?.id}`}>{item?.attempts}/20</a>
+                            Attempts:{" "}
+                            <a
+                              className="my-dashlink"
+                              href={`/learnCourse/examAttempts/?courseId=${item?.id}`}
+                            >
+                              {item?.attempts}/20
+                            </a>
                           </p>
                           <p
                             style={{
