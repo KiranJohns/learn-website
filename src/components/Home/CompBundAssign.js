@@ -725,7 +725,7 @@ const CompAssignBund = () => {
                 />
               </Suspense>
             </div>
-
+            {records.length <= 0 && <h4 className="no-record-hidden" style={{textAlign: 'center',marginTop:"5rem",}}>No records to display</h4>}
             <div style={{marginTop:"3rem"}}>
             {searchString
               ? records
@@ -843,7 +843,7 @@ const CompAssignBund = () => {
                         flexDirection: "column",
                       }}
                     >
-                      <div className="new-table-shadow new-table-res new-table-hidden">
+                      <div className="new-table-shadow new-table-hidden">
                         <div
                           style={{
                             display: "flex",
@@ -907,6 +907,13 @@ const CompAssignBund = () => {
                             )}
                           </>
                         </div>
+                         
+                      <div style={{ display: 'flex', justifyContent: "space-between" }}>
+                        <p style={{ color: '#0d6efd', marginLeft: ".5rem", fontWeight: "500" }}>Purchased:{" "}{item?.fake_count }<a className="my-dashlink"></a></p>
+                        <p style={{ color: '#0d6efd', marginRight: ".5rem", fontWeight: "500" }}>Assigned:{" "}{item?.fake_count-item?.course_count}</p>
+                        <p style={{ color: '#0d6efd', marginRight: ".5rem", fontWeight: "500" }}>Remaining:{" "}{item?.course_count}</p>
+                      </div>
+
                       </div>
                     </div>;
                   })}
