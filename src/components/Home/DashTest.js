@@ -496,10 +496,10 @@ class DashTest extends Component {
                       data={
                         this.state.searchString
                           ? this.state.records.filter((item) =>
-                              (item.Name || item.name)
-                                .toLowerCase()
-                                .includes(this.state.searchString.toLowerCase())
-                            )
+                            (item.Name || item.name)
+                              .toLowerCase()
+                              .includes(this.state.searchString.toLowerCase())
+                          )
                           : this.state.records
                       }
                       customStyles={customStyles}
@@ -511,126 +511,12 @@ class DashTest extends Component {
             </div>
             {this.state.searchString
               ? this.state.records
-                  .filter((item) =>
-                    (item.Name || item.name)
-                      .toLowerCase()
-                      .includes(this.state.searchString.toLowerCase())
-                  )
-                  .map((item) => {
-                    let validity = item.validity.split("/").reverse();
-                    let flag = false;
-                    let title = "Start";
-
-                    if (
-                      new Date(validity) <= new Date() ||
-                      item?.attempts >= 20
-                    ) {
-                      title = "Expired";
-                      flag = false;
-                    } else {
-                      title = "Start";
-                      flag = true;
-                      if (item.progress >= 80) {
-                        title = "Completed";
-                        flag = false;
-                      }
-                    }
-
-                    return (
-                      <div
-                     
-                        style={{
-                          display: "flex",
-                          flexDirection: "column",
-                        }}
-                      >
-                        <div className="new-table-shadow new-table-res new-table-hidden">
-                         
-                          <div
-                            style={{
-                              display: "flex",
-                              justifyContent: "space-between",
-                            }}
-                          >
-                            <p
-                              style={{
-                                paddingTop: "1.5rem",
-                                paddingLeft: ".4rem",
-                                color: "#212a50",
-                                fontWeight: "bold",
-                              }}
-                            >
-                              {item?.Name || item?.name}
-                            </p>
-                            {/* <button className="btn btn-success" style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}>View</button> */}
-                            <>
-                              {flag ? (
-                                <a
-                                  style={{
-                                    width: "5rem",
-                                    height: "35px",
-                                    marginTop: "1rem",
-                                    marginRight: ".4rem",
-                                  }}
-                                  onClick={() => {
-                                    location.href = `/learnCourse/coursepage/?courseId=${item.id}`;
-                                  }}
-                                  className="btn btn-success"
-                                >
-                                  {title}
-                                </a>
-                              ) : (
-                                <>
-                                  {title == "Completed" ? (
-                                    <a
-                                      href={"/company/certificates"}
-                                      style={{
-                                        width: "5rem",
-                                        height: "35px",
-                                        marginTop: "1rem",
-                                        marginRight: ".4rem",
-                                      }}
-                                      // style={{ width: "7rem" }}
-                                      className={`btn btn-success`}
-                                    >
-                                      {title}
-                                    </a>
-                                  ) : (
-                                    <a
-                                      style={{
-                                        width: "5rem",
-                                        height: "35px",
-                                        marginTop: "1rem",
-                                        marginRight: ".4rem",
-                                      }}
-                                      // style={{ width: "7rem" }}
-                                      className={`btn btn-danger`}
-                                    >
-                                      {title}
-                                    </a>
-                                  )}
-                                </>
-                                // <>
-                                //   <a
-                                //     style={{
-                                //       width: "7rem",
-                                //       height: "35px",
-                                //       marginTop: "1rem",
-                                //       marginRight: ".4rem",
-                                //     }}
-                                //     className="btn btn-danger"
-                                //   >
-                                //     {title}
-                                //   </a>
-                                // </>
-                              )}
-                            </>
-                          </div>
-                        </div>
-                      </div>
-                    );
-                  })
-              : this.state.records.map((item) => {
+                .filter((item) =>
+                  (item.Name || item.name)
+                    .toLowerCase()
+                    .includes(this.state.searchString.toLowerCase())
+                )
+                .map((item) => {
                   let validity = item.validity.split("/").reverse();
                   let flag = false;
                   let title = "Start";
@@ -652,25 +538,23 @@ class DashTest extends Component {
 
                   return (
                     <div
-                   
+
                       style={{
-                        marginTop: ".45rem",
                         display: "flex",
                         flexDirection: "column",
                       }}
                     >
-                      <div className="new-table-shadow new-table-hidden">
-                   
-                        <div 
+                      <div className="new-table-shadow new-table-res new-table-hidden">
+
+                        <div
                           style={{
                             display: "flex",
                             justifyContent: "space-between",
                           }}
                         >
-                         
                           <p
                             style={{
-                              paddingTop: "1.4rem",
+                              paddingTop: "1.5rem",
                               paddingLeft: ".4rem",
                               color: "#212a50",
                               fontWeight: "bold",
@@ -678,7 +562,6 @@ class DashTest extends Component {
                           >
                             {item?.Name || item?.name}
                           </p>
-                         
                           {/* <button className="btn btn-success" style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}>View</button> */}
                           <>
                             {flag ? (
@@ -735,11 +618,7 @@ class DashTest extends Component {
                               //       marginTop: "1rem",
                               //       marginRight: ".4rem",
                               //     }}
-                              //     className={`btn ${
-                              //       title == "Completed"
-                              //         ? "btn-success"
-                              //         : "btn-danger"
-                              //     }`}
+                              //     className="btn btn-danger"
                               //   >
                               //     {title}
                               //   </a>
@@ -747,16 +626,137 @@ class DashTest extends Component {
                             )}
                           </>
                         </div>
-                       
-                      <div style={{display:'flex', justifyContent:"space-between"}}>
-                        <p style={{color:'green',marginLeft:".5rem",fontWeight:"500"}}>Attempts:{" "}<a className="my-dashlink">3/20</a></p>
-                        <p style={{color:'green',marginRight:".5rem",fontWeight:"500"}}>Validity:{" "}17/01/2025</p>
-                      </div>  
-                        
                       </div>
                     </div>
                   );
-                })}
+                })
+              : this.state.records.map((item) => {
+                let validity = item.validity.split("/").reverse();
+                let flag = false;
+                let title = "Start";
+
+                if (
+                  new Date(validity) <= new Date() ||
+                  item?.attempts >= 20
+                ) {
+                  title = "Expired";
+                  flag = false;
+                } else {
+                  title = "Start";
+                  flag = true;
+                  if (item.progress >= 80) {
+                    title = "Completed";
+                    flag = false;
+                  }
+                }
+
+                return (
+                  <div
+
+                    style={{
+                      marginTop: ".45rem",
+                      display: "flex",
+                      flexDirection: "column",
+                    }}
+                  >
+                    <div className="new-table-shadow new-table-hidden">
+
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                        }}
+                      >
+
+                        <p
+                          style={{
+                            paddingTop: "1.4rem",
+                            paddingLeft: ".4rem",
+                            color: "#212a50",
+                            fontWeight: "bold",
+                          }}
+                        >
+                          {item?.Name || item?.name}
+                        </p>
+
+                        {/* <button className="btn btn-success" style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}>View</button> */}
+                        <>
+                          {flag ? (
+                            <a
+                              style={{
+                                width: "5rem",
+                                height: "35px",
+                                marginTop: "1rem",
+                                marginRight: ".4rem",
+                              }}
+                              onClick={() => {
+                                location.href = `/learnCourse/coursepage/?courseId=${item.id}`;
+                              }}
+                              className="btn btn-success"
+                            >
+                              {title}
+                            </a>
+                          ) : (
+                            <>
+                              {title == "Completed" ? (
+                                <a
+                                  href={"/company/certificates"}
+                                  style={{
+                                    width: "5rem",
+                                    height: "35px",
+                                    marginTop: "1rem",
+                                    marginRight: ".4rem",
+                                  }}
+                                  // style={{ width: "7rem" }}
+                                  className={`btn btn-success`}
+                                >
+                                  {title}
+                                </a>
+                              ) : (
+                                <a
+                                  style={{
+                                    width: "5rem",
+                                    height: "35px",
+                                    marginTop: "1rem",
+                                    marginRight: ".4rem",
+                                  }}
+                                  // style={{ width: "7rem" }}
+                                  className={`btn btn-danger`}
+                                >
+                                  {title}
+                                </a>
+                              )}
+                            </>
+                            // <>
+                            //   <a
+                            //     style={{
+                            //       width: "7rem",
+                            //       height: "35px",
+                            //       marginTop: "1rem",
+                            //       marginRight: ".4rem",
+                            //     }}
+                            //     className={`btn ${
+                            //       title == "Completed"
+                            //         ? "btn-success"
+                            //         : "btn-danger"
+                            //     }`}
+                            //   >
+                            //     {title}
+                            //   </a>
+                            // </>
+                          )}
+                        </>
+                      </div>
+
+                      <div style={{ display: 'flex', justifyContent: "space-between" }}>
+                        <p style={{ color: 'green', marginLeft: ".5rem", fontWeight: "500" }}>Attempts:{" "}<a className="my-dashlink">3/20</a></p>
+                        <p style={{ color: 'green', marginRight: ".5rem", fontWeight: "500" }}>Validity:{" "}17/01/2025</p>
+                      </div>
+
+                    </div>
+                  </div>
+                );
+              })}
           </div>
         </div>
       </div>
