@@ -673,4 +673,17 @@ margin: 0 auto;
      }
 
 
+
+     .no-record-hidden{
+      display: none;
+     }
      
+     
+
+     @media screen and (max-width:600px) {
+      .no-record-hidden{
+        display: block;
+        color:#454545;
+
+       }
+     }

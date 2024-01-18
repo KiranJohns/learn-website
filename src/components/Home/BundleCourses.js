@@ -92,14 +92,14 @@ const BundleCour = () => {
       name: "No",
       selector: (row, idx) => idx + 1,
       center: "true",
-      width: "90px",
+      width: "80px",
       hide: "md",
     },
     {
       name: "name",
       selector: (row) => row.name || row.Name,
       center: "true",
-      width: "330px",
+      width: "300px",
     },
     {
       name: "category",
@@ -344,7 +344,7 @@ const BundleCour = () => {
                       flexDirection: "column",
                     }}
                   >
-                    <div className="new-table-shadow new-table-res new-table-hidden">
+                    <div className="new-table-shadow new-table-hidden">
                       <div
                         style={{
                           display: "flex",
@@ -379,7 +379,7 @@ const BundleCour = () => {
                                     onClick={() => {}}
                                     className={`btn btn-success`}
                                     style={{
-                                      width: "7rem",
+                                      width: "6rem  !important",
                                       height: "35px",
                                       marginTop: "1rem",
                                       marginRight: ".4rem",
@@ -392,7 +392,7 @@ const BundleCour = () => {
                                 <>
                                   <a
                                     style={{
-                                      width: "7rem",
+                                      width: "6rem  !important",
                                       height: "35px",
                                       marginTop: "1rem",
                                       marginRight: ".4rem",
@@ -409,7 +409,7 @@ const BundleCour = () => {
                               <a
                                 href={"/company/certificates"}
                                 style={{
-                                  width: "7rem",
+                                  width: "6rem  !important",
                                   height: "35px",
                                   marginTop: "1rem",
                                   marginRight: ".4rem",
@@ -422,6 +422,13 @@ const BundleCour = () => {
                           )}
                         </>
                       </div>
+                     
+                      <div style={{ display: 'flex', justifyContent: "space-between" }}>
+                        <p style={{ color: 'green', marginLeft: ".5rem", fontWeight: "500" }}>Attempts:{" "}{item?.attempts }{"/20"}<a className="my-dashlink"></a></p>
+                        <p style={{ color: 'green', marginRight: ".5rem", fontWeight: "500" }}>{item?.category}</p>
+                      </div>
+
+
                     </div>
                   </div>
                 );
