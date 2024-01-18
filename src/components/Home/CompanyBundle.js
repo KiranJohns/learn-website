@@ -112,27 +112,25 @@ const CompanyBundle = () => {
       name: "Sl No.",
       selector: (row, idx) => ++idx,
       center: true,
-      width:'80px',
-      hide:"lg",
+      width: "80px",
+      hide: "lg",
     },
 
     {
       name: "Bundle Name",
       selector: (row) => row.bundle_name || row.name,
       center: true,
-
     },
     {
       name: "validity",
       selector: (row) => row.validity,
       center: true,
-  
     },
     {
       name: "Progress",
       selector: (row) => (row?.progress || 0) + "%",
       center: true,
-      hide:"md",
+      hide: "md",
     },
     {
       name: "Action",
@@ -161,9 +159,9 @@ const CompanyBundle = () => {
                 ) : (
                   <>
                     <a
-                     style={{
-                      width: "7rem",
-                    }}
+                      style={{
+                        width: "7rem",
+                      }}
                       onClick={() => {
                         if (row?.form_ongoing) {
                           location.href = `/learnCourse/bundleList/?id=${row.id}`;
@@ -204,7 +202,7 @@ const CompanyBundle = () => {
               justifyContent: "center",
               position: "absolute",
               fontSize: 35,
-              marginTop:'1.2rem'
+              marginTop: "1.2rem",
             }}
             onClick={() => setRefresh((prev) => ++prev)}
           >
@@ -260,7 +258,14 @@ const CompanyBundle = () => {
                 />
               </Suspense>
             </div>
-            {records.length <= 0 && <h4 className="no-record-hidden" style={{textAlign: 'center',padding: '1rem'}}>No records to display</h4>}
+            {records.length <= 0 && (
+              <h4
+                className="no-record-hidden"
+                style={{ textAlign: "center", padding: "1rem" }}
+              >
+                No records to display
+              </h4>
+            )}
             {searchString
               ? records
                   .filter((item) =>
@@ -274,13 +279,11 @@ const CompanyBundle = () => {
                     return (
                       <div
                         style={{
-                         
-                          width: '100%',
+                          width: "100%",
                           marginTop: "3rem",
 
                           display: "flex",
                           flexDirection: "column",
-                          
                         }}
                       >
                         <div className="new-table-shadow new-table-res new-table-hidden">
@@ -373,10 +376,10 @@ const CompanyBundle = () => {
                   return (
                     <div
                       style={{
-                        width: '100%',
+                        width: "100%",
                         display: "flex",
                         flexDirection: "column",
-                      padding:".5rem"
+                        padding: ".5rem",
                       }}
                     >
                       <div className="new-table-shadow new-table-hidden">
@@ -459,11 +462,32 @@ const CompanyBundle = () => {
                             )}
                           </>
                         </div>
-                        <div style={{ display: 'flex', justifyContent: "space-between" }}>
-                        <p style={{ color: 'green', marginLeft: ".5rem", fontWeight: "500" }}>Progress:{" "}{item.progress || 0}%<a className="my-dashlink"></a></p>
-                        <p style={{ color: 'green', marginRight: ".5rem", fontWeight: "500" }}>Validity:{" "}{item.validity}</p>
-                      </div>
-
+                        <div
+                          style={{
+                            display: "flex",
+                            justifyContent: "space-between",
+                          }}
+                        >
+                          <p
+                            style={{
+                              color: "green",
+                              marginLeft: ".5rem",
+                              fontWeight: "500",
+                            }}
+                          >
+                            Progress: {item.progress || 0}%
+                            <a className="my-dashlink"></a>
+                          </p>
+                          <p
+                            style={{
+                              color: "green",
+                              marginRight: ".5rem",
+                              fontWeight: "500",
+                            }}
+                          >
+                            Validity: {item.validity}
+                          </p>
+                        </div>
                       </div>
                     </div>
                   );
