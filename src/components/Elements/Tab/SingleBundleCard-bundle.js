@@ -158,8 +158,6 @@ function SingleBundleCard({ item }) {
         <div className="course__thumb w-img p-relative fix">
           <span
             onClick={() => {
-              // console.log(location.pathname.split("/").pop());
-              // goTo(location.pathname.split("/").pop());
               window.location.reload()
             }}
           >

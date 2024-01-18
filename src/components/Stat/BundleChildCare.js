@@ -5,7 +5,7 @@ import CourseCard from "../Elements/Tab/CourseCard";
 import { useEffect } from "react";
 import fetchData from "../../axios";
 import BundleCard from "../Elements/Tab/BundleCard";
-import SingleBundleCard from "../Elements/Tab/SingleBundleCard";
+import SingleBundleCard from "../Elements/Tab/SingleBundleCard-bundle";
 import { TabPanel, Tabs } from "react-tabs";
 import { useLocation } from "react-router-dom";
 import { useRouter } from "next/router";
