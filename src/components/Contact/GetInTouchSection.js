@@ -183,12 +183,12 @@ function GetInTouch() {
                             support@learnforcare.co.uk
                           </a>
                         </p>
-                        <p>
+                        {/* <p>
                           <a href="mailto:info@educal.com">
                             {" "}
                             info@learnforcare.co.uk
                           </a>
-                        </p>
+                        </p> */}
                       </div>
                     </div>
                   </li>
