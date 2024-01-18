@@ -666,7 +666,9 @@ class DashTest extends Component {
                       <div
                         style={{
                           display: "flex",
-                          justifyContent: "space-between",
+                          justifyContent: "center",
+                          background:"#212a50",
+                          borderRadius:".5rem"
                         }}
                       >
 
@@ -674,7 +676,7 @@ class DashTest extends Component {
                           style={{
                             paddingTop: "1.4rem",
                             paddingLeft: ".4rem",
-                            color: "#212a50",
+                            color: "#fff",
                             fontWeight: "bold",
                           }}
                         >
@@ -682,11 +684,20 @@ class DashTest extends Component {
                         </p>
 
                         {/* <button className="btn btn-success" style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}>View</button> */}
-                        <>
+            
+                      </div>
+
+                      <div style={{ display: 'flex', justifyContent: "space-between",marginTop:".8rem" }}>
+                        <p style={{ color: 'green', marginLeft: ".5rem", fontWeight: "500" }}>Attempts:{" "}<a className="my-dashlink">3/20</a></p>
+                        <p style={{ color: 'green', marginRight: ".5rem", fontWeight: "500" }}>Validity:{" "}17/01/2025</p>
+                      </div>
+
+                      <div style={{marginBottom:".3rem",display:"flex", justifyContent:'center'}}>
+                      <>
                           {flag ? (
                             <a
                               style={{
-                                width: "5rem",
+                                width: "7rem",
                                 height: "35px",
                                 marginTop: "1rem",
                                 marginRight: ".4rem",
@@ -704,7 +715,7 @@ class DashTest extends Component {
                                 <a
                                   href={"/company/certificates"}
                                   style={{
-                                    width: "5rem",
+                                    width: "7rem",
                                     height: "35px",
                                     marginTop: "1rem",
                                     marginRight: ".4rem",
@@ -717,7 +728,7 @@ class DashTest extends Component {
                               ) : (
                                 <a
                                   style={{
-                                    width: "5rem",
+                                    width: "7rem",
                                     height: "35px",
                                     marginTop: "1rem",
                                     marginRight: ".4rem",
@@ -748,11 +759,6 @@ class DashTest extends Component {
                             // </>
                           )}
                         </>
-                      </div>
-
-                      <div style={{ display: 'flex', justifyContent: "space-between" }}>
-                        <p style={{ color: 'green', marginLeft: ".5rem", fontWeight: "500" }}>Attempts:{" "}<a className="my-dashlink">3/20</a></p>
-                        <p style={{ color: 'green', marginRight: ".5rem", fontWeight: "500" }}>Validity:{" "}17/01/2025</p>
                       </div>
 
                     </div>
