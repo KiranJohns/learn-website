@@ -126,12 +126,13 @@ const CompanyBundle = () => {
       name: "validity",
       selector: (row) => row.validity,
       center: true,
-      hide:"md",
+  
     },
     {
       name: "Progress",
       selector: (row) => (row?.progress || 0) + "%",
       center: true,
+      hide:"md",
     },
     {
       name: "Action",
@@ -375,7 +376,7 @@ const CompanyBundle = () => {
                         marginTop:'.6rem'
                       }}
                     >
-                      <div className="new-table-shadow new-table-res new-table-hidden">
+                      <div className="new-table-shadow new-table-hidden">
                         <div
                           style={{
                             display: "flex",
@@ -400,7 +401,7 @@ const CompanyBundle = () => {
                                   <a
                                     className="btn btn-success"
                                     style={{
-                                      width: "7rem",
+                                      width: "6rem  !important",
                                       height: "35px",
                                       marginTop: "1rem",
                                       marginRight: ".4rem",
@@ -427,7 +428,7 @@ const CompanyBundle = () => {
                                       }}
                                       className="btn btn-danger"
                                       style={{
-                                        width: "7rem",
+                                        width: "6rem  !important",
                                         height: "35px",
                                         marginTop: "1rem",
                                         marginRight: ".4rem",
@@ -442,7 +443,7 @@ const CompanyBundle = () => {
                               <>
                                 <a
                                   style={{
-                                    width: "7rem",
+                                    width: "6rem  !important",
                                     height: "35px",
                                     marginTop: "1rem",
                                     marginRight: ".4rem",
@@ -455,6 +456,11 @@ const CompanyBundle = () => {
                             )}
                           </>
                         </div>
+                        <div style={{ display: 'flex', justifyContent: "space-between" }}>
+                        <p style={{ color: 'green', marginLeft: ".5rem", fontWeight: "500" }}>Progress:{" "}{item.progress}<a className="my-dashlink"></a></p>
+                        <p style={{ color: 'green', marginRight: ".5rem", fontWeight: "500" }}>Validity:{" "}{item.validity}</p>
+                      </div>
+
                       </div>
                     </div>
                   );
