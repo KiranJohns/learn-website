@@ -459,7 +459,7 @@ const CompanyBundle = () => {
                         </div>
                         <div style={{ display: 'flex', justifyContent: "space-between" }}>
                         <p style={{ color: 'green', marginLeft: ".5rem", fontWeight: "500" }}>Progress:{" "}{item.progress || 0}%<a className="my-dashlink"></a></p>
-                        <p style={{ color: 'green', marginRight: ".5rem", fontWeight: "500" }}>Validity:{" "}{item.validity}%</p>
+                        <p style={{ color: 'green', marginRight: ".5rem", fontWeight: "500" }}>Validity:{" "}{item.validity}</p>
                       </div>
 
                       </div>
