@@ -326,11 +326,13 @@ const CompAssignCourse = () => {
       center: true,
       selector: (row) => {
         // let date = row.validity.split('/')
-        let validity = date
-        console.log(validity);
+        // let validity = row.validity
+        // console.log(validity);
         let flag = false;
         let title = "Start";
-        if (new Date(validity) > new Date()) {
+        let validity_date = row.validity.split('/')
+        let validity = `${validity_date[1]}-${validity_date[0]}-${validity_date[2]}`
+        if (new Date(validity) > new Date(date)) {
           flag = true;
         } else {
           flag = false;
@@ -838,12 +840,11 @@ const CompAssignCourse = () => {
                         .startsWith(searchString.toLowerCase())
                     )
                     .map((item) => {
-                      // let date = row.validity.split('/')
-                      // let validity = `${date[1]}-${date[0]}-${date[2]}`
-                      let validity = date
+                      let validity_date = item.validity.split('/')
+                      let validity = `${validity_date[1]}-${validity_date[0]}-${validity_date[2]}`
                       let flag = false;
                       let title = "Start";
-                      if (new Date(validity) > new Date()) {
+                      if (new Date(validity) > new Date(date)) {
                         flag = true;
                       } else {
                         flag = false;
@@ -931,10 +932,13 @@ const CompAssignCourse = () => {
                 : records.map((item) => {
                     // let date = item.validity.split('/')
                     // let validity = `${date[1]}-${date[0]}-${date[2]}`
-                    let validity = date
+                    let validity_date = item.validity.split('/')
+                    let validity = `${validity_date[1]}-${validity_date[0]}-${validity_date[2]}`
+                    console.log(new Date(validity) , new Date(date));
+                    // console.log(date);
                     let flag = false;
                     let title = "Start";
-                    if (new Date(validity) > new Date()) {
+                    if (new Date(validity) > new Date(date)) {
                       flag = true;
                     } else {
                       flag = false;
