@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 import DataTable from "react-data-table-component";
 import fetchData from "../../axios";
-import Spinner from 'react-bootstrap/Spinner';
-
-
+import Spinner from "react-bootstrap/Spinner";
 
 const customStyles = {
   headRow: {
@@ -48,7 +46,7 @@ const CompTransaction = () => {
         console.log(res);
         setRecords(res.data.response.reverse());
         setFilterRecords(res.data);
-        setPending(false)
+        setPending(false);
       } catch (err) {
         console.log(err);
       }
@@ -63,34 +61,33 @@ const CompTransaction = () => {
       selector: (row, idx) => ++idx,
       center: true,
       width: "80px",
-      hide:890,
+      hide: 890,
     },
     {
       name: "User",
-      selector: (row, idx) => row.first_name.concat(" ",row.last_name),
+      selector: (row, idx) => row.first_name.concat(" ", row.last_name),
       center: true,
       width: "225px",
-      hide:550,
+      hide: 550,
     },
     {
       name: "Date",
       selector: (row) => row.date,
       center: true,
       sortable: true,
-    
     },
     {
       name: "Time",
       selector: (row) => row.time,
       center: true,
       sortable: true,
-      hide:890,
+      hide: 890,
     },
     {
       name: "Quantity",
       selector: (row) => row.count,
       center: true,
-      hide:700,
+      hide: 700,
     },
     {
       name: "Amount",
@@ -102,7 +99,10 @@ const CompTransaction = () => {
   return (
     <div className="">
       <div className="dash-shadow">
-        <div style={{position:'relative'}} className=" row g-3  min-vh-100  d-flex justify-content-center mt-20">
+        <div
+          style={{ position: "relative" }}
+          className=" row g-3  min-vh-100  d-flex justify-content-center mt-20"
+        >
           <h2
             style={{
               color: "#212450",
@@ -110,7 +110,7 @@ const CompTransaction = () => {
               justifyContent: "center",
               position: "absolute",
               fontSize: 35,
-              marginTop:'1.3rem'
+              marginTop: "1.3rem",
             }}
           >
             Transaction Report
@@ -134,27 +134,122 @@ const CompTransaction = () => {
                 </button>
               </form>
             </div>
-            <div  style={{marginTop:'3.3rem'}}>
-            <DataTable
-              progressPending={pending}
-              progressComponent={
-               pending ? 
-               (<div style={{ padding: "1rem" }}>
-                 <Spinner animation="border" variant="primary" />
-               </div>) : (null)
-             }
-              persistTableHead={true}
-              columns={columns}
-              data={searchString ? records.filter((item) =>
-                item.first_name
-                  .toLowerCase()
-                  .startsWith(searchString.toLowerCase())
-              )
-            : records}
-              pagination
-              noDataComponent={"No records to display"}
-              customStyles={customStyles}
-            />
+            <div style={{ marginTop: "3.3rem" }} className="reacttable-hidden">
+              <DataTable
+                progressPending={pending}
+                progressComponent={
+                  pending ? (
+                    <div style={{ padding: "1rem" }}>
+                      <Spinner animation="border" variant="primary" />
+                    </div>
+                  ) : null
+                }
+                persistTableHead={true}
+                columns={columns}
+                data={
+                  searchString
+                    ? records.filter((item) =>
+                        item.first_name
+                          .toLowerCase()
+                          .startsWith(searchString.toLowerCase())
+                      )
+                    : records
+                }
+                pagination
+                noDataComponent={"No records to display"}
+                customStyles={customStyles}
+              />
+            </div>
+            <div>
+              {records.length <= 0 && (
+                <h4
+                  className="no-record-hidden"
+                  style={{ textAlign: "center", marginTop: "5rem" }}
+                >
+                  No records to display
+                </h4>
+              )}
+              {records.map((item) => {
+                return (
+                  <div
+                    style={{
+                      width: "100%",
+                      display: "flex",
+                      flexDirection: "column",
+                      padding: ".5rem",
+                    }}
+                  >
+                    <div className="new-table-shadow new-table-hidden">
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <p
+                          style={{
+                            paddingTop: ".5rem",
+                            paddingLeft: ".4rem",
+                            color: "#212a50",
+                            fontWeight: "bold",
+                          }}
+                        >
+                          {/* Rahul */}
+                          {item.first_name.concat(" ", item.last_name)}
+                        </p>
+                      </div>
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                        }}
+                      >
+                        <div style={{display: 'flex', padding: '1rem', flexDirection: 'column', align: 'start'}}>
+                          <p
+                            style={{
+                              color: "green",
+                              // marginLeft: ".5rem",
+                              fontWeight: "500",
+                            }}
+                          >
+                            Date: {item.date}
+                            <a className="my-dashlink"></a>
+                          </p>
+                          <p
+                            style={{
+                              color: "green",
+                              // marginRight: ".5rem",
+                              fontWeight: "500",
+                            }}
+                          >
+                            Time: {item.time}
+                          </p>
+                        </div>
+                        <div style={{display: 'flex', padding: '1rem', flexDirection: 'column', align: 'start'}}>
+                          <p
+                            style={{
+                              color: "green",
+                              // marginRight: ".5rem",
+                              fontWeight: "500",
+                            }}
+                          >
+                            Count: {item.count}
+                          </p>
+                          <p
+                            style={{
+                              color: "green",
+                              // marginRight: ".5rem",
+                              fontWeight: "500",
+                            }}
+                          >
+                            amount: {item.amount}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>{" "}
