@@ -132,7 +132,7 @@ const ManagerReport = () => {
             <div
               style={{
                 float: "right",
-                marginBottom: "1.4rem",
+                // marginBottom: "1.4rem",
               }}
               className="p-relative d-inline header__search searchbar-hidden"
             >
@@ -178,8 +178,8 @@ const ManagerReport = () => {
                 />
               </Suspense>
             </div>
-          </div>
-          <div>
+
+            {records.length <= 0 && <h4 className="no-record-hidden" style={{textAlign: 'center',marginTop:"5rem",}}>No records to display</h4>}
             {records.map((item) => {
               return (
                 <div
@@ -187,19 +187,19 @@ const ManagerReport = () => {
                     width: "100%",
                     display: "flex",
                     flexDirection: "column",
-                    padding: ".5rem",
+                    padding: ".5rem",                  
                   }}
                 >
                   <div className="new-table-shadow new-table-hidden">
                     <div
                       style={{
                         display: "flex",
-                        justifyContent: "space-between",
+                        justifyContent: "center",
                       }}
                     >
                       <p
                         style={{
-                          paddingTop: "1.5rem",
+                          paddingTop: ".5rem",
                           paddingLeft: ".4rem",
                           color: "#212a50",
                           fontWeight: "bold",
@@ -208,6 +208,7 @@ const ManagerReport = () => {
                         {/* Rahul */}
                         {item?.first_name + " " + item?.last_name}
                       </p>
+                      </div>
                       <div
                         style={{
                           display: "flex",
@@ -242,12 +243,17 @@ const ManagerReport = () => {
                         >
                           Bundles: {item.bundle_count}
                         </p>
-                      </div>
+                  
                     </div>
                   </div>
                 </div>
               );
             })}
+
+          </div>
+          
+          <div>
+        
           </div>
         </div>{" "}
       </div>
