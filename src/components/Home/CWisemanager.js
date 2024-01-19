@@ -8,7 +8,7 @@ import fetchData from "../../axios";
 import BasicExample from "../About/button1";
 import Link from "next/link";
 import { Suspense } from "react";
-import Spinner from 'react-bootstrap/Spinner';
+import Spinner from "react-bootstrap/Spinner";
 
 const customStyles = {
   headRow: {
@@ -27,7 +27,6 @@ const customStyles = {
   cells: {
     style: {
       fontSize: "13.7px",
-
     },
   },
 };
@@ -51,13 +50,13 @@ const CWManager = () => {
   }, []);
 
   const getData = () => {
-    console.clear()
+    console.clear();
     makeRequest("GET", "/info/get-course-wise-manager-reports")
       .then((res) => {
         console.log(res.data.response);
         setRecords(res.data.response);
         setFilterRecords(res.data);
-        setPending(false)
+        setPending(false);
       })
       .catch((err) => console.log(err));
   };
@@ -65,16 +64,16 @@ const CWManager = () => {
   const columns = [
     {
       name: "SL No.",
-      selector: (row,id) => ++id,
-      width:"85px",
+      selector: (row, id) => ++id,
+      width: "85px",
       center: true,
-      hide:900,
+      hide: 900,
     },
     {
       name: "CODE",
-      selector: (row,id) => row.course_code,
+      selector: (row, id) => row.course_code,
       center: true,
-      hide:780,
+      hide: 780,
     },
     {
       name: "Course Name",
@@ -103,21 +102,27 @@ const CWManager = () => {
           pauseOnHover
           theme="light"
         />
-        <div style={{ position: "relative" }} className=" row g-3  min-vh-100  d-flex justify-content-center mt-20">
+        <div
+          style={{ position: "relative" }}
+          className=" row g-3  min-vh-100  d-flex justify-content-center mt-20"
+        >
           <h2
             style={{
               color: "#212450",
               display: "flex",
               justifyContent: "center",
               position: "absolute",
-              fontSize: 33,
-              marginTop:"1.4rem"
+              fontSize: 32,
+              marginTop: "1.4rem",
             }}
           >
-           Course Wise Manager
+            Course Wise Manager
           </h2>
-          <div style={{ padding: "", backgroundColor: "", }}>
-            <div style={{ float: "right", marginBottom: "1.4rem" }} className="p-relative d-inline header__search searchbar-hidden3">
+          <div style={{ padding: "", backgroundColor: "" }}>
+            <div
+              style={{ float: "right", marginBottom: "1.4rem" }}
+              className="p-relative d-inline header__search searchbar-hidden3"
+            >
               <form action="">
                 <input
                   style={{ background: "#edeef3" }}
@@ -132,29 +137,110 @@ const CWManager = () => {
                 </button>
               </form>
             </div>
-            <Suspense fallback={<Loading />}>
-            <DataTable
-             progressPending={pending}
-             progressComponent={
-              pending ? 
-              (<div style={{ padding: "1rem" }}>
-                <Spinner animation="border" variant="primary" />
-              </div>) : (null)
-            }
-             noDataComponent={"No records to display"}
-              columns={columns}
-              data={
-                searchString
-                  ? records.filter((item) =>
-                      item.course_name.toLowerCase().includes(searchString.toLowerCase())
-                    )
-                  : records
-              }
-              customStyles={customStyles}
-              pagination
-              persistTableHead ={true}
-            />
-            </Suspense>
+            <div className="reacttable-hidden">
+              <Suspense fallback={<Loading />}>
+                <DataTable
+                  progressPending={pending}
+                  progressComponent={
+                    pending ? (
+                      <div style={{ padding: "1rem" }}>
+                        <Spinner animation="border" variant="primary" />
+                      </div>
+                    ) : null
+                  }
+                  noDataComponent={"No records to display"}
+                  columns={columns}
+                  data={
+                    searchString
+                      ? records.filter((item) =>
+                          item.course_name
+                            .toLowerCase()
+                            .includes(searchString.toLowerCase())
+                        )
+                      : records
+                  }
+                  customStyles={customStyles}
+                  pagination
+                  persistTableHead={true}
+                />
+              </Suspense>
+            </div>
+          {records.length <= 0 && (
+            <h4
+              className="no-record-hidden"
+              style={{ textAlign: "center", marginTop: "5rem" }}
+            >
+              No records to display
+            </h4>
+          )}
+          {records.map((item) => {
+            return (
+              <div
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  flexDirection: "column",
+                  padding: ".5rem",
+                }}
+              >
+                <div className="new-table-shadow new-table-hidden">
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <p
+                      style={{
+                        paddingTop: ".5rem",
+                        paddingLeft: ".4rem",
+                        color: "#212a50",
+                        fontWeight: "bold",
+                      }}
+                    >
+                      {/* Rahul */}
+                      {item?.course_name}
+                    </p>
+                  </div>
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                    }}
+                  >
+                    <p
+                      style={{
+                        color: "green",
+                        marginLeft: ".5rem",
+                        fontWeight: "500",
+                      }}
+                    >
+                      Course Code: {item.course_code}
+                      <a className="my-dashlink"></a>
+                    </p>
+                    <p
+                      style={{
+                        color: "green",
+                        marginRight: ".5rem",
+                        fontWeight: "500",
+                      }}
+                    >
+                      Managers Count: {item.managers_count}
+                    </p>
+                    {/* <p
+                      style={{
+                        color: "green",
+                        marginRight: ".5rem",
+                        fontWeight: "500",
+                      }}
+                    >
+                      Bundles: {item.bundle_count}
+                    </p> */}
+                  </div>
+                </div>
+              </div>
+            );
+          })}
           </div>
         </div>{" "}
       </div>
