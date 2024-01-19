@@ -120,7 +120,9 @@ class DashTest extends Component {
       {
         name: "Action",
         cell: (row) => {
-          let validity = row.validity.split("/").reverse();
+          console.log(row.validity)
+          let validity = row.validity;
+          console.log(validity)
           let flag = false;
           let title = "Start";
 
