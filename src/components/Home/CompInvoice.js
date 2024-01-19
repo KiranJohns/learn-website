@@ -227,8 +227,8 @@ const CompInvoice = () => {
                   return (
                     <div
                       style={{
-                      // paddingTop: "1rem",
-                        marginTop: ".5rem",  
+                      padding: ".45rem",
+                        // marginTop: ".5rem",  
                         display: "flex",
                         flexDirection: "column",
                         width: "100%",
