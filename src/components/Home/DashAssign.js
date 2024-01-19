@@ -1370,8 +1370,8 @@ function Loading() {
                   flag = false;
                 }
 
-                return <div style={{ display:'flex', flexDirection:'column', padding:".3rem"}}>
-                  <div className="new-table-shadow  new-table-hidden">
+                return <div style={{ display:'flex', flexDirection:'column'}}>
+                  <div className="new-table-shadow new-table-res new-table-hidden">
                     <div style= {{display:'flex',justifyContent:'space-between'}}>
                       <p style={{paddingTop:"1.5rem",paddingLeft:".4rem", color:'#212a50', fontWeight:'bold',}}>{item.name || item.Name}</p>
                       {/* <button className="btn btn-success" style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}>View</button> */}
@@ -1397,24 +1397,17 @@ function Loading() {
                               }
                               setSelectedBundleCount(item.course_count);
                             }}
-                            style={{height:'35px', width: "6rem  !important",marginTop:"1rem", marginRight:'.4rem'}}
+                            style={{height:'35px', width: "7rem",marginTop:"1rem", marginRight:'.4rem'}}
                           >
                             Assign
                           </a>
                         ) : (
                           <>
-                            <a style={{height:'35px', width: "6rem  !important",marginTop:"1rem", marginRight:'.4rem'}} className="btn btn-danger">Expired</a>
+                            <a style={{height:'35px', width: "7rem",marginTop:"1rem", marginRight:'.4rem'}} className="btn btn-danger">Expired</a>
                           </>
                         )}
                       </>
                     </div>
-
-                    <div style={{ display: 'flex', justifyContent: "space-between" }}>
-                        <p style={{ color: '#0d6efd', marginLeft: ".5rem", fontWeight: "500" }}>Purchased:{" "}{item?.fake_count }<a className="my-dashlink"></a></p>
-                        <p style={{ color: '#0d6efd', marginRight: ".5rem", fontWeight: "500" }}>Assigned:{" "}{item?.fake_count-item?.course_count}</p>
-                        <p style={{ color: '#0d6efd', marginRight: ".5rem", fontWeight: "500" }}>Remaining:{" "}{item?.course_count}</p>
-                      </div>
-
                   </div>
                 </div>
               })}
