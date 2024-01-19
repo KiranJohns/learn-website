@@ -512,7 +512,7 @@ const DashCourse = () => {
                         flexDirection: "column",
                       }}
                     >
-                      <div className="new-table-shadow new-table-res new-table-hidden">
+                      <div className="new-table-shadow new-table-hidden">
                         <div
                           style={{
                             display: "flex",
@@ -659,6 +659,15 @@ const DashCourse = () => {
                             )}
                           </>
                         </div>
+
+
+                        <div style={{ display: 'flex', justifyContent: "space-between" }}>
+                        <p style={{ color: '#0d6efd', marginLeft: ".5rem", fontWeight: "500" }}>Validity:{" "}{item?.validity }<a className="my-dashlink"></a></p>
+                        <p style={{ color: '#0d6efd', marginRight: ".5rem", fontWeight: "500" }}>Attempts:{" "}{item?.attempts}{"/20"}</p>
+                       
+                      </div>
+
+
                       </div>
                     </div>
                   );
