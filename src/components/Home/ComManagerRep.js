@@ -9,8 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { FaLock } from "react-icons/fa";
 import { FaUnlock } from "react-icons/fa";
 import { Suspense } from "react";
-import Spinner from 'react-bootstrap/Spinner';
-
+import Spinner from "react-bootstrap/Spinner";
 
 const customStyles = {
   headRow: {
@@ -58,12 +57,12 @@ const ManagerReport = () => {
         console.log(res.data.response);
         setRecords(res.data.response);
         setFilterRecords(res.data);
-        setPending(false)
+        setPending(false);
       })
       .catch((err) => console.log(err));
   };
 
-  const handleBlock = (block, id) => { };
+  const handleBlock = (block, id) => {};
 
   const columns = [
     {
@@ -71,7 +70,7 @@ const ManagerReport = () => {
       selector: (row, idx) => ++idx,
       width: "80px",
       center: true,
-      hide:1000,
+      hide: 1000,
     },
     {
       name: "Name",
@@ -84,13 +83,13 @@ const ManagerReport = () => {
       selector: (row) => row.course_count,
       sortable: true,
       center: true,
-      hide:670,
+      hide: 670,
     },
     {
       name: "Bundles Assigned",
       selector: (row) => row.bundle_count,
       center: true,
-      hide:800,
+      hide: 800,
     },
     {
       name: "Individuals",
@@ -151,31 +150,104 @@ const ManagerReport = () => {
                 </button>
               </form>
             </div>
-            <Suspense fallback={<Loading />}>
-              <DataTable
-                progressPending={pending}
-                progressComponent={
-                  pending ?
-                    (<div style={{ padding: "1rem" }}>
-                      <Spinner animation="border" variant="primary" />
-                    </div>) : (null)
-                }
-                noDataComponent={"No records to display"}
-                persistTableHead={true}
-                columns={columns}
-                data={
-                  searchString
-                    ? records.filter((item) =>
-                      item.first_name
-                        .toLowerCase()
-                        .startsWith(searchString.toLowerCase())
-                    )
-                    : records
-                }
-                customStyles={customStyles}
-                pagination
-              />
-            </Suspense>
+            <div className="reacttable-hidden">
+              <Suspense fallback={<Loading />}>
+                <DataTable
+                  progressPending={pending}
+                  progressComponent={
+                    pending ? (
+                      <div style={{ padding: "1rem" }}>
+                        <Spinner animation="border" variant="primary" />
+                      </div>
+                    ) : null
+                  }
+                  noDataComponent={"No records to display"}
+                  persistTableHead={true}
+                  columns={columns}
+                  data={
+                    searchString
+                      ? records.filter((item) =>
+                          item.first_name
+                            .toLowerCase()
+                            .startsWith(searchString.toLowerCase())
+                        )
+                      : records
+                  }
+                  customStyles={customStyles}
+                  pagination
+                />
+              </Suspense>
+            </div>
+          </div>
+          <div>
+            {records.map((item) => {
+              return (
+                <div
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    flexDirection: "column",
+                    padding: ".5rem",
+                  }}
+                >
+                  <div className="new-table-shadow new-table-hidden">
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      <p
+                        style={{
+                          paddingTop: "1.5rem",
+                          paddingLeft: ".4rem",
+                          color: "#212a50",
+                          fontWeight: "bold",
+                        }}
+                      >
+                        {/* Rahul */}
+                        {item?.first_name + " " + item?.last_name}
+                      </p>
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                        }}
+                      >
+                        <p
+                          style={{
+                            color: "green",
+                            marginLeft: ".5rem",
+                            fontWeight: "500",
+                          }}
+                        >
+                          Individuals: {item.individuals_count}
+                          <a className="my-dashlink"></a>
+                        </p>
+                        <p
+                          style={{
+                            color: "green",
+                            marginRight: ".5rem",
+                            fontWeight: "500",
+                          }}
+                        >
+                          Courses: {item.course_count}
+                        </p>
+                        <p
+                          style={{
+                            color: "green",
+                            marginRight: ".5rem",
+                            fontWeight: "500",
+                          }}
+                        >
+                          Bundles: {item.bundle_count}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>{" "}
       </div>
@@ -184,7 +256,6 @@ const ManagerReport = () => {
 };
 
 export default ManagerReport;
-
 
 function Loading() {
   return <h2>🌀 Loading...</h2>;
