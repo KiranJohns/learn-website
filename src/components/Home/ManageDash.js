@@ -63,7 +63,7 @@ class ManageDash extends Component {
         .then((res) => {
           console.log(res);
           this.setState({
-            records: res.data.response,
+            records: res.data.response.result,
             filterRecords: res.data,
           });
         })
@@ -89,22 +89,22 @@ class ManageDash extends Component {
         name: "No",
         selector: (row, idx) => idx + 1,
         center: true,
-        width: "90px",
+        width: "80px",
         hide: "lg",
       },
       {
         name: "Name",
         selector: (row) => (row.name ? row.name : row.Name),
         center: true,
-        width: "310px",
-        compact: true,
+
+      
       },
-      {
-        name: "category",
-        selector: (row) => row.category,
-        center: true,
-        hide: "md",
-      },
+      // {
+      //   name: "category",
+      //   selector: (row) => row.category,
+      //   center: true,
+      //   hide: "md",
+      // },
       {
         name: "Attempts",
         selector: (row) => (
@@ -493,6 +493,8 @@ class ManageDash extends Component {
                       pagination
                     />
                   </div>
+                  
+                  {this.state.records.length <= 0 && <h4 className="no-record-hidden" style={{textAlign: 'center',marginTop:"1rem",}}>No records to display</h4>}
                   {this.state.searchString
                     ? this.state.records
                         .filter((item) =>
@@ -622,7 +624,7 @@ class ManageDash extends Component {
                               flexDirection: "column",
                             }}
                           >
-                            <div className="new-table-shadow new-table-res new-table-hidden">
+                            <div className="new-table-shadow  new-table-hidden">
                               <div
                                 style={{
                                   display: "flex",
@@ -647,7 +649,7 @@ class ManageDash extends Component {
                                       }}
                                       className="btn btn-success"
                                       style={{
-                                        width: "7rem",
+                                        width: "6rem  !important",
                                         height: "35px",
                                         marginTop: "1rem",
                                         marginRight: ".4rem",
@@ -662,19 +664,19 @@ class ManageDash extends Component {
                                           href={"/manager/certificates"}
                                           className="btn btn-success"
                                           style={{
-                                            width: "7rem",
+                                            width: "6rem  !important",
                                             height: "35px",
                                             marginTop: "1rem",
                                             marginRight: ".4rem",
                                           }}
                                         >
-                                          {title}a
+                                          {title}
                                         </a>
                                       ) : (
                                         <a
                                           className="btn btn-danger"
                                           style={{
-                                            width: "7rem",
+                                            width: "6rem  !important",
                                             height: "35px",
                                             marginTop: "1rem",
                                             marginRight: ".4rem",
@@ -700,6 +702,12 @@ class ManageDash extends Component {
                                   )}
                                 </>
                               </div>
+
+                              <div style={{ display: 'flex', justifyContent: "space-between" }}>
+                        <p style={{ color: 'green', marginLeft: ".5rem", fontWeight: "500" }}>Attempts:{" "}{item?.attempts || 0}{"/20"}<a className="my-dashlink"></a></p>
+                        <p style={{ color: 'green', marginRight: ".5rem", fontWeight: "500" }}>Validity:{" "}{item?.validity}</p>
+                      </div>
+
                             </div>
                           </div>
                         );

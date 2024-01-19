@@ -493,6 +493,7 @@ const ManAssignBund = () => {
           </div>
 
           {/* mobile component */}
+          {records?.length <= 0 && <h4 className="no-record-hidden" style={{textAlign: 'center',marginTop:"5rem",}}>No records to display</h4>}
           <div style={{marginTop: "2.7rem", paddingTop:'1rem'}}>
           {searchString
             ? records
@@ -580,12 +581,12 @@ const ManAssignBund = () => {
                 }
                 return <div
                   style={{
-                
+                    padding:".5rem",
                     display: "flex",
                     flexDirection: "column",
                   }}
                 >
-                  <div className="new-table-shadow new-table-res new-table-hidden mt-2">
+                  <div className="new-table-shadow new-table-hidden mt-2">
                     <div
                       style={{
                         display: "flex",
@@ -605,7 +606,7 @@ const ManAssignBund = () => {
                       <>
                         {flag ? (
                           <a
-                            style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}
+                            style={{height:'35px',marginTop:"1rem", marginRight:'.4rem', width: "6rem  !important",}}
                             className="btn btn-primary"
                             onClick={() => {
                               openModal();
@@ -629,11 +630,17 @@ const ManAssignBund = () => {
                           </a>
                         ) : (
                           <>
-                            <a style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}} className="btn btn-danger">{title}</a>
+                            <a style={{height:'35px',marginTop:"1rem", marginRight:'.4rem',width: "6rem  !important",}} className="btn btn-danger">{title}</a>
                           </>
                         )}
                       </>
                     </div>
+
+                    <div style={{ display: 'flex', justifyContent: "space-between" }}>
+                        <p style={{ color: 'green', marginLeft: ".5rem", fontWeight: "500" }}>Count:{" "}{item?.course_count}<a className="my-dashlink"></a></p>
+                        <p style={{ color: 'green', marginRight: ".5rem", fontWeight: "500" }}>Validity:{" "}{item?.validity}</p>
+                      </div>
+
                   </div>
                 </div>;
               })}

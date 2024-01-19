@@ -224,7 +224,7 @@ const ManagerBundle = () => {
               persistTableHead={true}
             />
           </div>
-
+          {records.length <= 0 && <h4 className="no-record-hidden" style={{textAlign: 'center',marginTop:"5rem",}}>No records to display</h4>}
           <div style={{ marginTop: "3rem", paddingTop: "1rem" }}>
             {searchString
               ? records
@@ -241,6 +241,7 @@ const ManagerBundle = () => {
                           marginTop: "3rem",
                           display: "flex",
                           flexDirection: "column",
+                          
                         }}
                       >
                         <div className="new-table-shadow new-table-res new-table-hidden">
@@ -256,6 +257,7 @@ const ManagerBundle = () => {
                                 paddingLeft: ".4rem",
                                 color: "#212a50",
                                 fontWeight: "bold",
+                               
                               }}
                             >
                               {item.bundle_name || item.name}
@@ -323,12 +325,13 @@ const ManagerBundle = () => {
                   return (
                     <div
                       style={{
-                        marginTop: ".5rem",
+                     
                         display: "flex",
                         flexDirection: "column",
+                        padding:".5rem"
                       }}
                     >
-                      <div className="new-table-shadow new-table-res new-table-hidden">
+                      <div className="new-table-shadow new-table-hidden">
                         <div
                           style={{
                             display: "flex",
@@ -353,7 +356,7 @@ const ManagerBundle = () => {
                                   <button
                                     className="btn btn-success"
                                     style={{
-                                      width: "7rem",
+                                      width: "6rem  !important",
                                       height: "35px",
                                       marginTop: "1rem",
                                       marginRight: ".4rem",
@@ -375,8 +378,9 @@ const ManagerBundle = () => {
                                         height: "35px",
                                         marginTop: "1rem",
                                         marginRight: ".4rem",
+                                        width: "6rem  !important",
                                       }}
-                                      className="btn btn-danger"
+                                      className="btn btn-success"
                                     >
                                       Completed
                                     </a>
@@ -390,6 +394,7 @@ const ManagerBundle = () => {
                                     height: "35px",
                                     marginTop: "1rem",
                                     marginRight: ".4rem",
+                                    width: "6rem  !important",
                                   }}
                                   className="btn btn-danger"
                                 >
@@ -400,6 +405,13 @@ const ManagerBundle = () => {
                           </>
                           {/* <button className="btn btn-success" style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}>View</button> */}
                         </div>
+
+                        <div style={{ display: 'flex', justifyContent: "space-between" }}>
+                        <p style={{ color: 'green', marginLeft: ".5rem", fontWeight: "500" }}>Attempts:{" "}{item?.progress || 0}{"/20"}<a className="my-dashlink"></a></p>
+                        <p style={{ color: 'green', marginRight: ".5rem", fontWeight: "500" }}>Validity:{" "}{item?.validity}</p>
+                      </div>
+
+
                       </div>
                     </div>
                   );

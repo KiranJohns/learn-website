@@ -210,7 +210,7 @@ const ManageIndList = () => {
                 pagination
               />
             </div>
-
+            {records.length <= 0 && <h4 className="no-record-hidden" style={{textAlign: 'center',marginTop:"5rem",}}>No records to display</h4>}
             <div>
               {searchString
                 ? records
@@ -226,6 +226,7 @@ const ManageIndList = () => {
                             display: "flex",
                             flexDirection: "column",
                             width: "100%",
+                           
                           }}
                         >
                           <div className="new-table-shadow new-table-res new-table-hidden">
@@ -278,13 +279,13 @@ const ManageIndList = () => {
                     return (
                       <div
                         style={{
-                          marginTop: ".5rem",
+                          padding:".5rem",
                           display: "flex",
                           flexDirection: "column",
                           width: "100%",
                         }}
                       >
-                        <div className="new-table-shadow new-table-res new-table-hidden">
+                        <div className="new-table-shadow new-table-hidden">
                           <div
                             style={{
                               display: "flex",
@@ -326,6 +327,14 @@ const ManageIndList = () => {
                               {item.block ? <FaLock /> : <FaUnlock />}
                             </a>
                           </div>
+                          
+                          
+                          <div style={{ display: 'flex', justifyContent: "space-between" }}>
+                        <p style={{ color: 'green', marginLeft: ".5rem", fontWeight: "500" }}>Email:{" "}{item?.email}<a className="my-dashlink"></a></p>
+                        {/* <p style={{ color: 'green', marginRight: ".5rem", fontWeight: "500" }}>City:{" "}{item?.city}</p> */}
+                      </div>
+
+
                         </div>
                       </div>
                     );
