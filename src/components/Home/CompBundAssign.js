@@ -750,6 +750,7 @@ const CompAssignBund = () => {
                         // marginTop: "3rem",
                         display: "flex",
                         flexDirection: "column",
+                      
                       }}
                     >
                       <div className="new-table-shadow new-table-res new-table-hidden">
@@ -841,6 +842,7 @@ const CompAssignBund = () => {
                         marginTop: ".5rem",
                         display: "flex",
                         flexDirection: "column",
+                        padding:".5rem"
                       }}
                     >
                       <div className="new-table-shadow new-table-hidden">

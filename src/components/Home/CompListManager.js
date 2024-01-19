@@ -93,7 +93,9 @@ const CompListManager = () => {
     {
       name: "Name",
       selector: (row) => (
-        <span
+        <span 
+        className="my-dashlink"
+        style={{cursor:"pointer"}}
           onClick={() => {
             router.push({
               pathname: "/viewUser/editUser",
@@ -229,6 +231,7 @@ const CompListManager = () => {
                           display: "flex",
                           flexDirection: "column",
                           width: "100%",
+                        
                         }}
                       >
                         <div className="new-table-shadow new-table-res new-table-hidden">
@@ -282,13 +285,14 @@ const CompListManager = () => {
                     <div
                       style={{
                         // paddingTop: "1rem",
-                        marginTop: ".6rem",
+                        marginTop: ".1rem",
                         display: "flex",
                         flexDirection: "column",
                         width: "100%",
+                        padding:'.4rem'
                       }}
                     >
-                      <div className="new-table-shadow new-table-res new-table-hidden">
+                      <div className="new-table-shadow  new-table-hidden">
                         <div
                           style={{
                             display: "flex",
@@ -310,6 +314,7 @@ const CompListManager = () => {
                               paddingLeft: ".4rem",
                               color: "#212a50",
                               fontWeight: "bold",
+                              cursor:"pointer"
                             }}
                           >
                             {item.first_name + " " + item.last_name}
@@ -328,6 +333,13 @@ const CompListManager = () => {
                             {item.block ? <FaLock /> : <FaUnlock />}
                           </a>
                         </div>
+                     
+                        <div style={{ display: 'flex', justifyContent: "space-between" }}>
+                       
+                        <p style={{ color: '#0d6efd', marginLeft:".5rem", fontWeight: "500" }}>Email:{" "}{item?.email}</p>
+                    
+                      </div>
+
                       </div>
                     </div>
                   );

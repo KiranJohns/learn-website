@@ -132,7 +132,7 @@ const DashCourse = () => {
       selector: (row) => row.name,
       sortable: true,
       center: true,
-      width: "340px",
+      width: "310px",
     },
     {
       name: "validity",
@@ -344,6 +344,7 @@ const DashCourse = () => {
                           // marginTop: "3rem",
                           display: "flex",
                           flexDirection: "column",
+                          
                         }}
                       >
                         <div className="new-table-shadow new-table-res new-table-hidden">
@@ -384,7 +385,7 @@ const DashCourse = () => {
                                             >
                                               <a
                                                 style={{
-                                                  width: "7rem",
+                                                  width: "6rem  !important",
                                                   height: "35px",
                                                   marginTop: "1rem",
                                                   marginRight: ".4rem",
@@ -404,7 +405,7 @@ const DashCourse = () => {
                                             >
                                               <a
                                                 style={{
-                                                  width: "7rem",
+                                                  width: "6rem  !important",
                                                   height: "35px",
                                                   marginTop: "1rem",
                                                   marginRight: ".4rem",
@@ -443,7 +444,7 @@ const DashCourse = () => {
                                         // </Link>
                                         <button
                                           style={{
-                                            width: "7rem",
+                                            width: "6rem  !important",
                                             height: "35px",
                                             marginTop: "1rem",
                                             marginRight: ".4rem",
@@ -466,7 +467,7 @@ const DashCourse = () => {
                                       ) : (
                                         <button
                                           style={{
-                                            width: "7rem",
+                                            width: "6rem  !important",
                                             height: "35px",
                                             marginTop: "1rem",
                                             marginRight: ".4rem",
@@ -485,7 +486,7 @@ const DashCourse = () => {
                               ) : (
                                 <a
                                   style={{
-                                    width: "7rem",
+                                    width: "6rem  !important",
                                     height: "35px",
                                     marginTop: "1rem",
                                     marginRight: ".4rem",
@@ -510,6 +511,7 @@ const DashCourse = () => {
                         // marginTop: "3rem",
                         display: "flex",
                         flexDirection: "column",
+                        padding:".5rem"
                       }}
                     >
                       <div className="new-table-shadow new-table-hidden">
@@ -550,7 +552,7 @@ const DashCourse = () => {
                                           >
                                             <a
                                               style={{
-                                                width: "7rem",
+                                                width: "6rem  !important",
                                                 height: "35px",
                                                 marginTop: "1rem",
                                                 marginRight: ".4rem",
@@ -569,7 +571,7 @@ const DashCourse = () => {
                                           >
                                             <a
                                               style={{
-                                                width: "7rem",
+                                                width: "6rem  !important",
                                                 height: "35px",
                                                 marginTop: "1rem",
                                                 marginRight: ".4rem",
@@ -607,7 +609,7 @@ const DashCourse = () => {
                                       // </Link>
                                       <button
                                         style={{
-                                          width: "7rem",
+                                          width: "6rem  !important",
                                           height: "35px",
                                           marginTop: "1rem",
                                           marginRight: ".4rem",
@@ -628,7 +630,7 @@ const DashCourse = () => {
                                     ) : (
                                       <button
                                         style={{
-                                          width: "7rem",
+                                          width: "6rem  !important",
                                           height: "35px",
                                           marginTop: "1rem",
                                           marginRight: ".4rem",
@@ -647,7 +649,7 @@ const DashCourse = () => {
                             ) : (
                               <a
                                 style={{
-                                  width: "7rem",
+                                  width: "6rem  !important",
                                   height: "35px",
                                   marginTop: "1rem",
                                   marginRight: ".4rem",
