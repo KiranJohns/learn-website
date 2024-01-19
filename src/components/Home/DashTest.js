@@ -533,7 +533,7 @@ class DashTest extends Component {
                       .includes(this.state.searchString.toLowerCase())
                   )
                   .map((item) => {
-                    let validity = item.validity.split("/").reverse();
+                    let validity = item.validity.split("/");
                     let flag = false;
                     let title = "Start";
 
@@ -645,7 +645,7 @@ class DashTest extends Component {
                     );
                   })
               : this.state.records.map((item) => {
-                  let validity = item.validity.split("/").reverse();
+                  let validity = item.validity.split("/");
                   let flag = false;
                   let title = "Start";
 
