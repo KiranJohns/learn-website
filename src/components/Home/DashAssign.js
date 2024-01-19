@@ -325,12 +325,12 @@ const CompAssignCourse = () => {
       name: "action",
       center: true,
       selector: (row) => {
-        let date = row.validity.split('/')
-        let validity = `${date[1]}-${date[0]}-${date[2]}`
+        // let date = row.validity.split('/')
+        let validity = date
         console.log(validity);
         let flag = false;
         let title = "Start";
-        if (new Date(date) > new Date()) {
+        if (new Date(validity) > new Date()) {
           flag = true;
         } else {
           flag = false;
@@ -838,11 +838,12 @@ const CompAssignCourse = () => {
                         .startsWith(searchString.toLowerCase())
                     )
                     .map((item) => {
-                      let date = row.validity.split('/')
-                      let validity = `${date[1]}-${date[0]}-${date[2]}`
+                      // let date = row.validity.split('/')
+                      // let validity = `${date[1]}-${date[0]}-${date[2]}`
+                      let validity = date
                       let flag = false;
                       let title = "Start";
-                      if (new Date(date) > new Date()) {
+                      if (new Date(validity) > new Date()) {
                         flag = true;
                       } else {
                         flag = false;
@@ -928,11 +929,12 @@ const CompAssignCourse = () => {
                       );
                     })
                 : records.map((item) => {
-                    let date = item.validity.split('/')
-                    let validity = `${date[1]}-${date[0]}-${date[2]}`
+                    // let date = item.validity.split('/')
+                    // let validity = `${date[1]}-${date[0]}-${date[2]}`
+                    let validity = date
                     let flag = false;
                     let title = "Start";
-                    if (new Date(date) > new Date()) {
+                    if (new Date(validity) > new Date()) {
                       flag = true;
                     } else {
                       flag = false;
