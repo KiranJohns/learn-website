@@ -235,6 +235,7 @@ const IndMyBundle = () => {
           </div>
 
           <div style={{ marginTop: "4rem" }}>
+          {records.length <= 0 && <h4 className="no-record-hidden" style={{textAlign: 'center',marginTop:"1rem",}}>No records to display</h4>}
             {searchString
               ? records
                   .filter((item) =>
@@ -295,6 +296,7 @@ const IndMyBundle = () => {
                                         height: "35px",
                                         marginTop: "1rem",
                                         marginRight: ".4rem",
+
                                       }}
                                       className="btn btn-success"
                                     >
@@ -340,11 +342,12 @@ const IndMyBundle = () => {
                   return (
                     <div
                       style={{
-                        paddingTop: ".1rem",
-                        marginTop: ".3rem",
+                      
+                        marginTop: ".2rem",
+                        padding:".5rem"
                       }}
                     >
-                      <div className="new-table-shadow new-table-res new-table-hidden">
+                      <div className="new-table-shadow  new-table-hidden">
                         <div
                           style={{
                             display: "flex",
@@ -378,6 +381,7 @@ const IndMyBundle = () => {
                                       }
                                     }}
                                     style={{
+                                      width: "6rem  !important",
                                       height: "35px",
                                       marginTop: "1rem",
                                       marginRight: ".4rem",
@@ -390,6 +394,7 @@ const IndMyBundle = () => {
                                   <>
                                     <a
                                       style={{
+                                        width: "6rem  !important",
                                         height: "35px",
                                         marginTop: "1rem",
                                         marginRight: ".4rem",
@@ -405,6 +410,7 @@ const IndMyBundle = () => {
                               <>
                                 <a
                                   style={{
+                                    width: "6rem  !important",
                                     height: "35px",
                                     marginTop: "1rem",
                                     marginRight: ".4rem",
@@ -418,6 +424,11 @@ const IndMyBundle = () => {
                           </>
                           {/* <button className="btn btn-success" style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}>View</button> */}
                         </div>
+                        <div style={{ display: 'flex', justifyContent: "space-between" }}>
+                        <p style={{ color: 'green', marginLeft: ".5rem", fontWeight: "500" }}>Progress:{" "}{item?.progress || 0}%<a className="my-dashlink"></a></p>
+                        <p style={{ color: 'green', marginRight: ".5rem", fontWeight: "500" }}>Validity:{" "}{item?.validity}</p>
+                      </div>
+
                       </div>
                     </div>
                   );

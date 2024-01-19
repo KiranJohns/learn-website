@@ -113,7 +113,7 @@ class IndCertificate extends Component {
                 display: "flex",
                 justifyContent: "center",
                 position: "absolute",
-                fontSize: 42,
+                fontSize: 35,
               }}
             >
               Certificates
@@ -183,6 +183,7 @@ class IndCertificate extends Component {
               </div>
 
                 <div>
+                  
               {this.state.searchData
                 ? this.state.records
                     .filter((item) =>
@@ -246,7 +247,7 @@ class IndCertificate extends Component {
                           width: "100%",
                         }}
                       >
-                        <div className="new-table-shadow new-table-res new-table-hidden">
+                        <div className="new-table-shadow  new-table-hidden">
                           <div
                             style={{
                               display: "flex",
@@ -276,11 +277,19 @@ class IndCertificate extends Component {
                             >
                               <FaEye />
                             </a>
+                            
                           </div>
+
+                          <div style={{ display: 'flex', justifyContent: "space-between" }}>
+                        <p style={{ color: 'green', marginLeft: ".5rem", fontWeight: "500" }}>Percentage:{" "}{item?.percentage}{"%"}<a className="my-dashlink"></a></p>
+                        <p style={{ color: 'green', marginRight: ".5rem", fontWeight: "500" }}>Date:{" "}{item?.date}</p>
+                      </div>
+
                         </div>
                       </div>
                     );
                   })}
+                  
             </div>
             </div>
           </div>{" "}

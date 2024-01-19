@@ -15,7 +15,7 @@ const customStyles = {
   },
   headCells: {
     style: {
-      fontSize: "16px",
+      fontSize: "15px",
       fontWeight: "600",
       textTransform: "uppercase",
     },
@@ -66,8 +66,7 @@ const IndPurBundle = () => {
     {
       name: "Bundles",
       selector: (row) => row.bundle_name,
-      sortable: true,
-      width: "340px",
+      width: "320px",
       center: true,
     },
     {
@@ -105,7 +104,7 @@ const IndPurBundle = () => {
               display: "flex",
               justifyContent: "center",
               position: "absolute",
-              fontSize: 38,
+              fontSize: 35,
             }}
           >
             Purchased Bundles
@@ -174,6 +173,7 @@ const IndPurBundle = () => {
             />
           </div>
           <div style={{marginTop: '2.8rem'}}>
+          {records.length <= 0 && <h4 className="no-record-hidden" style={{textAlign: 'center',marginTop:"2rem",}}>No records to display</h4>}
             {searchString
               ? records
                   .filter((item) =>
@@ -236,7 +236,7 @@ const IndPurBundle = () => {
                         flexDirection: "column",
                       }}
                     >
-                      <div className="new-table-shadow new-table-res new-table-hidden">
+                      <div className="new-table-shadow  new-table-hidden">
                         <div
                           style={{
                             display: "flex",
@@ -267,6 +267,11 @@ const IndPurBundle = () => {
                           </a>
                           {/* <button className="btn btn-success" style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}>View</button> */}
                         </div>
+                        <div style={{ display: 'flex', justifyContent: "space-between" }}>
+                        <p style={{ color: 'green', marginLeft: ".5rem", fontWeight: "500" }}>Count:{" "}{item?.course_count}<a className="my-dashlink"></a></p>
+                        <p style={{ color: 'green', marginRight: ".5rem", fontWeight: "500" }}>Validity:{" "}{item?.validity}</p>
+                      </div>
+
                       </div>
                     </div>
                   );
