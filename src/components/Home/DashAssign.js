@@ -292,7 +292,7 @@ const CompAssignCourse = () => {
       selector: (row, idx) => ++idx,
       width: "80px",
       center: true,
-      hide:1255,
+      hide: 1255,
     },
     {
       name: "name",
@@ -305,13 +305,13 @@ const CompAssignCourse = () => {
       name: "Purchased No",
       selector: (row) => row.fake_count,
       center: true,
-      hide:800,
+      hide: 800,
     },
     {
       name: "Assigned No",
       selector: (row) => row.fake_count - row.course_count,
       center: true,
-      hide:960,
+      hide: 960,
     },
 
     {
@@ -319,19 +319,13 @@ const CompAssignCourse = () => {
       selector: (row) => row.course_count,
       center: true,
     },
-    // {
-    //   name: "validity",
-    //   selector: (row) => {
-    //     let newDt = new Date(row.validity).toLocaleDateString().split('/').map(d=> d.length <= 1 ? '0'+d : d )
-    //      return newDt[1]+'/'+newDt[0] +'/'+newDt[2]
-
-    //     },
-    // },
     {
       name: "action",
       center: true,
       selector: (row) => {
-        let validity = row.validity.split("/").reverse();
+        let date = row.validity.split('/')
+        let validity = `${date[1]}-${date[0]}-${date[2]}`
+        console.log(validity);
         let flag = false;
         let title = "Start";
         if (new Date(validity) > new Date()) {
@@ -381,7 +375,10 @@ const CompAssignCourse = () => {
       <ToastContainer position="top-center" />
 
       <div className="dash-shadow ">
-        <div style={{position:"relative"}} className=" row g-3  min-vh-100  d-flex justify-content-center mt-20">
+        <div
+          style={{ position: "relative" }}
+          className=" row g-3  min-vh-100  d-flex justify-content-center mt-20"
+        >
           <h2
             style={{
               color: "#212450",
@@ -414,7 +411,10 @@ const CompAssignCourse = () => {
                 <div
                   style={{ display: "flex", justifyContent: "space-between" }}
                 >
-                  <h5 className="assign-cname" style={{ color: "#212a50", marginLeft: "1rem" }}>
+                  <h5
+                    className="assign-cname"
+                    style={{ color: "#212a50", marginLeft: "1rem" }}
+                  >
                     {courseName}
                   </h5>{" "}
                   <h5 style={{ color: "#212a50", marginRight: "1rem" }}>
@@ -428,7 +428,11 @@ const CompAssignCourse = () => {
                   onSelect={(k) => setKey(k)}
                   className="mb-3"
                 >
-                  <Tab className="assign-width" eventKey="individual" title="Individual">
+                  <Tab
+                    className="assign-width"
+                    eventKey="individual"
+                    title="Individual"
+                  >
                     <div style={{ background: "white" }}>
                       <div className="form-control dash-shadow d-flex gap-3 p-3">
                         <div className="form-group">
@@ -449,7 +453,6 @@ const CompAssignCourse = () => {
                           />
                         </div>
                         <div
-                        
                           // style={{ marginLeft: "16rem" }}
                           className="form-group assign-ml"
                         >
@@ -511,7 +514,12 @@ const CompAssignCourse = () => {
                               >
                                 Name
                               </span>
-                              <span className="assign-modal" style={{ textAlign: "center" }}>Email</span>
+                              <span
+                                className="assign-modal"
+                                style={{ textAlign: "center" }}
+                              >
+                                Email
+                              </span>
                               <span
                                 style={{
                                   width: "fit-content",
@@ -530,7 +538,9 @@ const CompAssignCourse = () => {
                               <span style={{ width: "fit-content" }}>
                                 {user?.first_name + " " + user?.last_name}
                               </span>
-                              <span className="assign-modal">{user?.email}</span>
+                              <span className="assign-modal">
+                                {user?.email}
+                              </span>
                               <span
                                 onClick={() => {
                                   if (selectedBundleCount < assignData.count) {
@@ -559,7 +569,9 @@ const CompAssignCourse = () => {
                                     <span style={{ width: "fit-content" }}>
                                       {item.first_name + " " + item.last_name}
                                     </span>
-                                    <span className="assign-modal">{item.email}</span>
+                                    <span className="assign-modal">
+                                      {item.email}
+                                    </span>
                                     <span
                                       onClick={() => {
                                         if (
@@ -599,7 +611,11 @@ const CompAssignCourse = () => {
                     </div>
                   </Tab>
                   {/* manager */}
-                  <Tab className="assign-width" eventKey="manager" title="Manager">
+                  <Tab
+                    className="assign-width"
+                    eventKey="manager"
+                    title="Manager"
+                  >
                     <div style={{ background: "white" }}>
                       <div className="form-control dash-shadow d-flex gap-3 p-3">
                         <div className="form-group">
@@ -692,7 +708,12 @@ const CompAssignCourse = () => {
                             >
                               Name
                             </span>
-                            <span className="assign-modal" style={{ textAlign: "center" }}>Email</span>
+                            <span
+                              className="assign-modal"
+                              style={{ textAlign: "center" }}
+                            >
+                              Email
+                            </span>
                             <span
                               style={{
                                 width: "fit-content",
@@ -718,7 +739,9 @@ const CompAssignCourse = () => {
                                   >
                                     {item.first_name + " " + item.last_name}
                                   </span>
-                                  <span className="assign-modal">{item.email}</span>
+                                  <span className="assign-modal">
+                                    {item.email}
+                                  </span>
                                   <span
                                     style={{ width: "fit-content" }}
                                     className="btn btn-success"
@@ -752,7 +775,255 @@ const CompAssignCourse = () => {
                     </div>
                   </Tab>
                 </Tabs>
-                {/* 
+              </div>
+            </Modal>
+            <div
+              style={{ float: "right", marginBottom: "1.4rem" }}
+              className="p-relative d-inline header__search searchbar-hidden2"
+            >
+              <form action="">
+                <input
+                  style={{ background: "#edeef3" }}
+                  className="d-block mr-10"
+                  type="text"
+                  placeholder="Search..."
+                  value={searchString}
+                  onChange={(e) => setSearchString(e.target.value)}
+                />
+                <button type="submit">
+                  <i className="fas fa-search"></i>
+                </button>
+              </form>
+            </div>
+            <div
+              className="reacttable-hidden"
+              style={{ padding: "", backgroundColor: "" }}
+            >
+              <Suspense fallback={<Loading />}>
+                <DataTable
+                  progressPending={pending}
+                  progressComponent={
+                    pending ? (
+                      <div style={{ padding: "1rem" }}>
+                        <Spinner animation="border" variant="primary" />
+                      </div>
+                    ) : null
+                  }
+                  persistTableHead={true}
+                  noDataComponent={"No records to display"}
+                  columns={columns}
+                  data={
+                    searchString
+                      ? records.filter((item) =>
+                          (item.name || item.Name)
+                            .toLowerCase()
+                            .startsWith(searchString.toLowerCase())
+                        )
+                      : records
+                  }
+                  customStyles={customStyles}
+                  pagination
+                />
+              </Suspense>
+            </div>
+
+            <div style={{ marginTop: "2.8rem", paddingTop: "1rem" }}>
+              {searchString
+                ? records
+                    .filter((item) =>
+                      (item.name || item.Name)
+                        .toLowerCase()
+                        .startsWith(searchString.toLowerCase())
+                    )
+                    .map((item) => {
+                      let date = row.validity.split('/')
+                      let validity = `${date[1]}-${date[0]}-${date[2]}`
+                      let flag = false;
+                      let title = "Start";
+                      if (new Date(validity) > new Date()) {
+                        flag = true;
+                      } else {
+                        flag = false;
+                      }
+
+                      return (
+                        <div
+                          style={{
+                            paddingTop: "1rem",
+                            marginTop: "3rem",
+                            display: "flex",
+                            flexDirection: "column",
+                          }}
+                        >
+                          <div className="new-table-shadow new-table-res new-table-hidden">
+                            <div
+                              style={{
+                                display: "flex",
+                                justifyContent: "space-between",
+                              }}
+                            >
+                              <p
+                                style={{
+                                  paddingTop: "1.5rem",
+                                  paddingLeft: ".4rem",
+                                  color: "#212a50",
+                                  fontWeight: "bold",
+                                }}
+                              >
+                                {item.name || item.Name}
+                              </p>
+                              {/* <button className="btn btn-success" style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}>View</button> */}
+                              <>
+                                {flag ? (
+                                  <a
+                                    className="btn btn-primary"
+                                    onClick={() => {
+                                      openModal();
+                                      console.log(item);
+                                      setCourseName(item.name || item.Name);
+                                      setAssignData((prev) => {
+                                        return {
+                                          ...prev,
+                                          count: 1,
+                                          course_id: item.id,
+                                        };
+                                      });
+                                      if (item.from_purchased) {
+                                        setFrom("purchased");
+                                      } else {
+                                        setFrom("assigned");
+                                      }
+                                      setSelectedBundleCount(item.course_count);
+                                    }}
+                                    style={{
+                                      height: "35px",
+                                      width: "7rem",
+                                      marginTop: "1rem",
+                                      marginRight: ".4rem",
+                                    }}
+                                  >
+                                    Assign
+                                  </a>
+                                ) : (
+                                  <>
+                                    <a
+                                      style={{
+                                        height: "35px",
+                                        width: "7rem",
+                                        marginTop: "1rem",
+                                        marginRight: ".4rem",
+                                      }}
+                                      className="btn btn-danger"
+                                    >
+                                      Expired
+                                    </a>
+                                  </>
+                                )}
+                              </>
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })
+                : records.map((item) => {
+                    let date = item.validity.split('/')
+                    let validity = `${date[1]}-${date[0]}-${date[2]}`
+                    let flag = false;
+                    let title = "Start";
+                    if (new Date(validity) > new Date()) {
+                      flag = true;
+                    } else {
+                      flag = false;
+                    }
+
+                    return (
+                      <div style={{ display: "flex", flexDirection: "column" }}>
+                        <div className="new-table-shadow new-table-res new-table-hidden">
+                          <div
+                            style={{
+                              display: "flex",
+                              justifyContent: "space-between",
+                            }}
+                          >
+                            <p
+                              style={{
+                                paddingTop: "1.5rem",
+                                paddingLeft: ".4rem",
+                                color: "#212a50",
+                                fontWeight: "bold",
+                              }}
+                            >
+                              {item.name || item.Name}
+                            </p>
+                            {/* <button className="btn btn-success" style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}>View</button> */}
+                            <>
+                              {flag ? (
+                                <a
+                                  className="btn btn-primary"
+                                  onClick={() => {
+                                    openModal();
+                                    console.log(item);
+                                    setCourseName(item.name || item.Name);
+                                    setAssignData((prev) => {
+                                      return {
+                                        ...prev,
+                                        count: 1,
+                                        course_id: item.id,
+                                      };
+                                    });
+                                    if (item.from_purchased) {
+                                      setFrom("purchased");
+                                    } else {
+                                      setFrom("assigned");
+                                    }
+                                    setSelectedBundleCount(item.course_count);
+                                  }}
+                                  style={{
+                                    height: "35px",
+                                    width: "7rem",
+                                    marginTop: "1rem",
+                                    marginRight: ".4rem",
+                                  }}
+                                >
+                                  Assign
+                                </a>
+                              ) : (
+                                <>
+                                  <a
+                                    style={{
+                                      height: "35px",
+                                      width: "7rem",
+                                      marginTop: "1rem",
+                                      marginRight: ".4rem",
+                                    }}
+                                    className="btn btn-danger"
+                                  >
+                                    Expired
+                                  </a>
+                                </>
+                              )}
+                            </>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+            </div>
+          </div>
+        </div>{" "}
+      </div>
+    </div>
+  );
+};
+
+export default CompAssignCourse;
+
+function Loading() {
+  return <h2>🌀 Loading...</h2>;
+}
+
+{
+  /* 
                 <div className=" d-flex mb-5">
                 <ButtonGroup aria-label="Basic example">
                   <strong
