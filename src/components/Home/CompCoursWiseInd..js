@@ -66,13 +66,13 @@ const CWIndReport = () => {
       selector: (row, id) => ++id,
       center: true,
       width: "80px",
-      hide:940,
+      hide: 940,
     },
     {
       name: "CODE",
       selector: (row, id) => row.code,
       center: true,
-      hide:700,
+      hide: 700,
     },
     {
       name: "Course Name",
@@ -111,8 +111,8 @@ const CWIndReport = () => {
               display: "flex",
               justifyContent: "center",
               position: "absolute",
-              fontSize: 33,
-              marginTop:'1.4rem'
+              fontSize: 31,
+              marginTop: "1.4rem",
             }}
           >
             Course Wise Individual
@@ -136,32 +136,112 @@ const CWIndReport = () => {
                 </button>
               </form>
             </div>
-            <Suspense fallback={<Loading />}>
-              <DataTable
-                progressPending={pending}
-                progressComponent={
-                  pending ? (
-                    <div style={{ padding: "1rem" }}>
-                      <Spinner animation="border" variant="primary" />
+            <div className="reacttable-hidden">
+              <Suspense fallback={<Loading />}>
+                <DataTable
+                  progressPending={pending}
+                  progressComponent={
+                    pending ? (
+                      <div style={{ padding: "1rem" }}>
+                        <Spinner animation="border" variant="primary" />
+                      </div>
+                    ) : null
+                  }
+                  noDataComponent={"No records to display"}
+                  columns={columns}
+                  data={
+                    searchString
+                      ? records.filter((item) =>
+                          item.course_name
+                            .toLowerCase()
+                            .startsWith(searchString.toLowerCase())
+                        )
+                      : records
+                  }
+                  customStyles={customStyles}
+                  pagination
+                  persistTableHead={true}
+                />
+              </Suspense>
+            </div>
+            <div>
+              {records.length <= 0 && (
+                <h4
+                  className="no-record-hidden"
+                  style={{ textAlign: "center", marginTop: "5rem" }}
+                >
+                  No records to display
+                </h4>
+              )}
+              {records.map((item) => {
+                return (
+                  <div
+                    style={{
+                      width: "100%",
+                      display: "flex",
+                      flexDirection: "column",
+                      padding: ".5rem",
+                    }}
+                  >
+                    <div className="new-table-shadow new-table-hidden">
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <p
+                          style={{
+                            paddingTop: ".5rem",
+                            paddingLeft: ".4rem",
+                            color: "#212a50",
+                            fontWeight: "bold",
+                          }}
+                        >
+                          {/* Rahul */}
+                          {item.course_name}
+                        </p>
+                      </div>
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                        }}
+                      >
+                        <p
+                          style={{
+                            color: "green",
+                            marginLeft: ".5rem",
+                            fontWeight: "500",
+                          }}
+                        >
+                          Course Code: {item.code}
+                          <a className="my-dashlink"></a>
+                        </p>
+                        <p
+                          style={{
+                            color: "green",
+                            marginRight: ".5rem",
+                            fontWeight: "500",
+                          }}
+                        >
+                          Course Count: {item.count}
+                        </p>
+                        {/* <p
+                        style={{
+                          color: "green",
+                          marginRight: ".5rem",
+                          fontWeight: "500",
+                        }}
+                      >
+                        Bundle: {item.bundle}
+                      </p> */}
+                      </div>
                     </div>
-                  ) : null
-                }
-                noDataComponent={"No records to display"}
-                columns={columns}
-                data={
-                  searchString
-                    ? records.filter((item) =>
-                        item.course_name
-                          .toLowerCase()
-                          .startsWith(searchString.toLowerCase())
-                      )
-                    : records
-                }
-                customStyles={customStyles}
-                pagination
-                persistTableHead={true}
-              />
-            </Suspense>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>{" "}
       </div>
