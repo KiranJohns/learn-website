@@ -17,6 +17,7 @@ import Table from "react-bootstrap/Table";
 import { jwtDecode } from "jwt-decode";
 import Spinner from "react-bootstrap/Spinner";
 import { Suspense } from "react";
+import moment from "moment";
 
 const customStyles = {
   headRow: {
@@ -332,7 +333,8 @@ const CompAssignCourse = () => {
         let title = "Start";
         let validity_date = row.validity.split('/')
         let validity = `${validity_date[1]}-${validity_date[0]}-${validity_date[2]}`
-        if (new Date(validity) > new Date(date)) {
+        console.log('from ', moment().format());
+        if (moment().format() > new Date(date)) {
           flag = true;
         } else {
           flag = false;
