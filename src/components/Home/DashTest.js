@@ -42,6 +42,7 @@ class DashTest extends Component {
       records: [],
       filterRecords: [],
       user: {},
+      date: new Date(),
       searchString: "",
     };
   }
@@ -74,6 +75,7 @@ class DashTest extends Component {
           this?.setState({
             records: res.data.response.result || [],
             filterRecords: res.data || [],
+            date: res.data.response.date
           });
         })
         .catch((err) => {
@@ -120,13 +122,12 @@ class DashTest extends Component {
       {
         name: "Action",
         cell: (row) => {
-          console.log(row.validity)
-          let validity = row.validity;
-          console.log(validity)
+          let validity_date = row.validity.split('/')
+          let validity = `${validity_date[1]}-${validity_date[0]}-${validity_date[2]}`
           let flag = false;
           let title = "Start";
 
-          if (new Date(validity) <= new Date() || row?.attempts >= 20) {
+          if (new Date(validity) <= new Date(this.state.date) || row?.attempts >= 20) {
             title = "Expired";
             flag = false;
           } else {
@@ -533,12 +534,15 @@ class DashTest extends Component {
                       .includes(this.state.searchString.toLowerCase())
                   )
                   .map((item) => {
-                    let validity = item.validity.split("/");
+                    let validity_date = item.validity.split('/')
+                    let validity = `${validity_date[1]}-${validity_date[0]}-${validity_date[2]}`
+
+                    // let validity = item.validity.split("/");
                     let flag = false;
                     let title = "Start";
 
                     if (
-                      new Date(validity) <= new Date() ||
+                      new Date(validity) <= new Date(this.state.date) ||
                       item?.attempts >= 20
                     ) {
                       title = "Expired";
@@ -645,12 +649,15 @@ class DashTest extends Component {
                     );
                   })
               : this.state.records.map((item) => {
-                  let validity = item.validity.split("/");
+                  // let validity = item.validity.split("/");
                   let flag = false;
                   let title = "Start";
 
+                  let validity_date = item.validity.split('/')
+                  let validity = `${validity_date[1]}-${validity_date[0]}-${validity_date[2]}`
+
                   if (
-                    new Date(validity) <= new Date() ||
+                    new Date(validity) <= new Date(this.state.date) ||
                     item?.attempts >= 20
                   ) {
                     title = "Expired";

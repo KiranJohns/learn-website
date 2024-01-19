@@ -1030,3 +1030,233 @@ function Loading() {
   return <h2>🌀 Loading...</h2>;
 }
 
+{
+  /* 
+                <div className=" d-flex mb-5">
+                <ButtonGroup aria-label="Basic example">
+                  <strong
+                    className={`btn ${selectUserForAssignCourse == "individual"
+                        ? "btn-success"
+                        : "btn-secondary"
+                      }`}
+                    onClick={() => {
+                      setSelectUserForAssignCourse("individual");
+                      setAssignData((prev) => {
+                        return {
+                          ...prev,
+                          count: 1,
+                        };
+                      });
+                    }}
+                  >
+                    Individual
+                  </strong>
+                  <strong
+                    className={`btn ${selectUserForAssignCourse == "manager"
+                        ? "btn-success"
+                        : "btn-secondary"
+                      }`}
+                    onClick={() => {
+                      setAssignData((prev) => {
+                        return {
+                          ...prev,
+                          count: 1,
+                        };
+                      });
+                      setSelectUserForAssignCourse("manager");
+                    }}
+                  >
+                    Manager
+                  </strong>
+                  </ButtonGroup>
+                </div>
+                {selectUserForAssignCourse === "individual" ? (
+                  <div>
+                    <div className="form-control dash-shadow d-flex gap-3 p-3">
+                      <div className="form-group">
+                        <label  style={{ fontSize: ".74rem" }} for="exampleInputEmail1">Course Count</label>
+                        <input
+                         style={{ width: '4rem',textAlign:"center" }}
+                          disabled
+                          type="number"
+                          className="form-control"
+                          id="exampleInputEmail1"
+                          aria-describedby="emailHelp"
+                          placeholder="1"
+                        />
+                      </div>
+                      <div style={{marginLeft:"16rem"}} className="form-group">
+                        <label style={{ visibility: "hidden" }} for="exampleInputEmail1">Search</label>
+                        <div className="p-relative d-inline ">
+                        <input
+                         style={{ width: "18rem" }}
+                          onChange={(e) =>
+                            setFilteredCompanyIndividuals(
+                              companyIndividuals.filter((item) =>
+                                item.first_name
+                                  .toLocaleLowerCase()
+                                  .startsWith(
+                                    e.target.value.toLocaleLowerCase()
+                                  )
+                              )
+                            )
+                          }
+                          type="text"
+                          className="form-control"
+                          id="exampleInputEmail1"
+                          aria-describedby="emailHelp"
+                          placeholder="search by name"
+                        />
+                        <i style={{ position: 'absolute', left: "13.3rem", top: "2.2rem" }} className="bi bi-search"></i>
+                        </div> 
+                      </div>
+                    </div>
+
+                    <div className="list-group bg-white">
+                      <ul classNAm="list-group">
+
+                      <li style={{background:"#212a50", fontWeight:"700", borderRadius:'.3rem',color:'white'}} class="list-group-item my-2  d-flex justify-content-between">
+                          <span style={{ width: "fit-content", marginLeft: '.7rem' }}>
+                            Name
+                          </span>
+                          <span style={{ textAlign: 'center' }}>Email</span>
+                          <span
+                            style={{ width: "fit-content", marginRight: "1rem" }}
+                          >
+                            Action
+                          </span>
+                        </li>
+                      </ul>
+                    </div>
+
+                    <div className="list-group bg-white">
+                      <ul class="list-group">
+                        {filteredCompanyIndividuals &&
+                          filteredCompanyIndividuals.map((item) => {
+                            return (
+                              <li class="list-group-item bg-white text-black d-flex justify-content-between">
+                                <span style={{ width: "fit-content" }}>
+                                  {item.first_name + " " + item.last_name}
+                                </span>
+                                <span>{item.email}</span>
+                                <span
+                                  onClick={() => {
+                                    if (from == "assigned") {
+                                      assignCourseToManagerIndividualFromAssigned(
+                                        item.id
+                                      );
+                                    } else {
+                                      assignCourseToManagerIndividual(item.id);
+                                    }
+                                  }}
+                                  style={{ width: "fit-content",margin:"0rem .1rem" }}
+                                  className="btn btn-success"
+                                >
+                                  Assign
+                                </span>
+                              </li>
+                            );
+                          })}
+                      </ul>
+                    </div>
+                  </div>
+                ) : (
+                  <div>
+                    <div className="form-control dash-shadow d-flex gap-3 p-3">
+                      <div className="form-group">
+                        <label style={{ fontSize: ".73rem" }} for="exampleInputEmail1">Course Count</label>
+                        <input
+                          style={{ width: '4rem',textAlign:"center" }}
+                          onChange={(e) => {
+                            if (Number(e.target.value) <= selectedBundleCount) {
+                              setAssignData((prev) => {
+                                return {
+                                  ...prev,
+                                  count: e.target.value,
+                                };
+                              });
+                            }
+                          }}
+                          type="number"
+                          value={assignData.count}
+                          className="form-control"
+                          id="exampleInputEmail1"
+                          aria-describedby="emailHelp"
+                          placeholder="0"
+                        />
+                      </div>
+                      <div style={{marginLeft:"16rem"}} className="form-group">
+                        <label style={{visibility:'hidden'}} for="exampleInputEmail1">Search</label>
+                        <div className="p-relative d-inline ">
+                        <input
+                         style={{ width: "18rem" }}
+                          onChange={(e) =>
+                            setFilteredManagers(
+                              allManagers.filter((item) =>
+                                item.first_name
+                                  .toLocaleLowerCase()
+                                  .startsWith(
+                                    e.target.value.toLocaleLowerCase()
+                                  )
+                              )
+                            )
+                          }
+                          type="text"
+                          className="form-control"
+                          id="exampleInputEmail1"
+                          aria-describedby="emailHelp"
+                          placeholder="search by name"
+                        />
+                         <i style={{ position: 'absolute', left: "13.3rem", top: "2.2rem" }} className="bi bi-search"></i>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="list-group bg-white">
+                      <ul class="list-group">
+
+                      <li style={{background:"#212a50", fontWeight:"700", borderRadius:'.3rem',color:'white'}} class="list-group-item my-2  d-flex justify-content-between">
+                          <span style={{ width: "fit-content", marginLeft: '.7rem' }}>
+                            Name
+                          </span>
+                          <span style={{ textAlign: 'center' }}>Email</span>
+                          <span
+                            style={{ width: "fit-content", marginRight: "1rem" }}
+                          >
+                            Action
+                          </span>
+                        </li>
+                      </ul>
+                    </div>
+                    <div className="list-group bg-white">
+                      <ul class="list-group">
+                        {filteredManagers &&
+                          filteredManagers.map((item) => {
+                            return (
+                              <li class="list-group-item bg-white text-black d-flex justify-content-between">
+                                <span style={{ width: "fit-content", marginLeft: '.1rem' }}>
+                                  {item.first_name + " " + item.last_name}
+                                </span>
+                                <span>{item.email}</span>
+                                <span
+                                  style={{ width: "fit-content" }}
+                                  className="btn btn-success"
+                                  onClick={() => {
+                                    if (from == "assigned") {
+                                      assignCourseToManagerFromAssigned(
+                                        item.id
+                                      );
+                                    } else {
+                                      assignCourseToManager(item.id);
+                                    }
+                                  }}
+                                >
+                                  Assign
+                                </span>
+                              </li>
+                            );
+                          })}
+                      </ul>
+                    </div>
+                  </div>
+                )} */
+}
