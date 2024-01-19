@@ -407,11 +407,12 @@ class ManageDash extends Component {
           <div className="dash-shadow">
             <div className=" row g-3  min-vh-100  d-flex justify-content-center mt-30">
               <div
+                  className="search-center-new"
                 style={{
-                  display: "flex",
+                  // display: "flex",
                   marginTop: "2.5rem",
-                  justifyContent: "space-between",
-                  alignItems: "center",
+                  // justifyContent: "space-between",
+                  // alignItems: "center",
                 }}
               >
                 <h4

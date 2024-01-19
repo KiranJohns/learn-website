@@ -423,10 +423,11 @@ function DashIndividual() {
           <div className=" row g-3  min-vh-100  d-flex justify-content-center mt-30">
             <div style={{}}>
               <div
+              className="search-center-new"
                 style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
+                  // display: "flex",
+                  // alignItems: "center",
+                  // justifyContent: "center",
                   margin: "1rem 2rem",
                 }}
               >

@@ -429,6 +429,7 @@ class DashTest extends Component {
         <div className="ag-format-container" style={{ marginTop: "1rem" }}>
           <div className="dash-shadow">
             <div
+               className="search-center-new"
               style={{
                 display: "flex",
                 marginTop: "2.5rem",
