@@ -662,8 +662,8 @@ const DashCourse = () => {
 
 
                         <div style={{ display: 'flex', justifyContent: "space-between" }}>
-                        <p style={{ color: '#0d6efd', marginLeft: ".5rem", fontWeight: "500" }}>Validity:{" "}{item?.validity }<a className="my-dashlink"></a></p>
-                        <p style={{ color: '#0d6efd', marginRight: ".5rem", fontWeight: "500" }}>Attempts:{" "}{item?.attempts}{"/20"}</p>
+                        <p style={{ color: '#0d6efd', marginLeft: ".5rem", fontWeight: "500" }}>Validity:{" "} {item?.validity}</p>
+                        <p style={{ color: '#0d6efd', marginRight: ".5rem", fontWeight: "500" }}>Attempts:{" "}<a href={`/learnCourse/examAttempts/?courseId=${item?.id}`} className="my-dashlink">{item?.attempts || 0}</a>{"/20"}</p>
                        
                       </div>
 
