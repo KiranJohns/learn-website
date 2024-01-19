@@ -104,7 +104,7 @@ const ManTransaction = () => {
               display: "flex",
               justifyContent: "center",
               position: "absolute",
-              fontSize: 36,
+              fontSize: 35,
             }}
           >
             Transaction Report
@@ -128,6 +128,7 @@ const ManTransaction = () => {
                 </button>
               </form>
             </div>
+            <div className="reacttable-hidden">
             <DataTable
               progressPending={pending}
               progressComponent={
@@ -152,6 +153,98 @@ const ManTransaction = () => {
               customStyles={customStyles}
               pagination
             />
+            </div>
+
+            {records.length <= 0 && (
+              <h4
+                className="no-record-hidden"
+                style={{ textAlign: "center", marginTop: "4.5rem" }}
+              >
+                No records to display
+              </h4>
+            )}
+            <div style={{marginTop:"3rem"}}>
+            {records.map((item) => {
+              return (
+                <div
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    flexDirection: "column",
+                    padding: ".5rem",
+                  }}
+                >
+                  <div className="new-table-shadow new-table-hidden">
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      <p
+                        style={{
+                          paddingTop: ".5rem",
+                          paddingLeft: ".4rem",
+                          color: "#212a50",
+                          fontWeight: "bold",
+                        }}
+                      >
+                        {/* Rahul */}
+                        {item.first_name + " " + item.last_name}
+                      </p>
+                      <p
+                        style={{
+                          color: "#212a50",
+                          marginRight: ".5rem",
+                          fontWeight: "500",
+                          paddingTop: ".5rem",
+                        }}
+                      >
+                        Date: {item.date}
+                        <a className=""></a>
+                      </p>
+                    </div>
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      {/* <p
+                        style={{
+                          color: "green",
+                          marginLeft: ".5rem",
+                          fontWeight: "500",
+                        }}
+                      >
+                       Time: {item.time}
+                        <a className="my-dashlink"></a>
+                      </p> */}
+                     <p
+                        style={{
+                          color: "green",
+                          marginLeft: ".5rem",
+                          fontWeight: "500",
+                        }} 
+                      >
+                        Quantity: {item.count}
+                      </p>
+                      <p
+                        style={{
+                          color: "green",
+                          marginRight: ".5rem",
+                          fontWeight: "500",
+                        }}
+                      >
+                        Amount: {item.amount}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+            </div>
+
           </div>
         </div>{" "}
       </div>

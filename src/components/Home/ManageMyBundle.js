@@ -92,19 +92,19 @@ const ManagerBundle = () => {
       name: "Bundle name",
       selector: (row) => row.bundle_name || row.name,
       sortable: true,
-      width: "340px",
+      width: "280px",
       center: true,
     },
     {
       name: "validity",
       selector: (row) => row.validity,
       center: true,
-      hide: "md",
     },
     {
       name: "Progress",
       selector: (row) => (row.progress || 0) + "%",
       center: true,
+      hide: 773,
     },
     {
       name: "Action",

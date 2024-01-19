@@ -95,14 +95,14 @@ class IndMonthRep extends Component {
     return (
       <div className="">
         <div className="dash-shadow">
-          <div className=" row g-3  min-vh-100  d-flex justify-content-center mt-20">
+          <div style={{position:"relative"}} className=" row g-3  min-vh-100  d-flex justify-content-center mt-20">
             <h2
               style={{
                 color: "#212450",
                 display: "flex",
                 justifyContent: "center",
                 position: "absolute",
-                fontSize: 38,
+                fontSize: 35,
               }}
             >
               Month Wise Report
@@ -147,6 +147,8 @@ class IndMonthRep extends Component {
                   </button>
                 </form>
               </div>
+
+              <div className="reacttable-hidden">
               <DataTable
                 noDataComponent={"No records to display"}
                 persistTableHead={true}
@@ -163,6 +165,97 @@ class IndMonthRep extends Component {
                 customStyles={customStyles}
                 pagination
               />
+              </div>
+
+              {this.state.records.length <= 0 && (
+              <h4
+                className="no-record-hidden"
+                style={{ textAlign: "center", marginTop: "4.5rem" }}
+              >
+                No records to display
+              </h4>
+            )}
+            <div style={{marginTop:"3rem"}}>
+            {this.state.records.map((item) => {
+              return (
+                <div
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    flexDirection: "column",
+                    padding: ".5rem",
+                  }}
+                >
+                  <div className="new-table-shadow new-table-hidden">
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      <p
+                        style={{
+                          paddingTop: ".5rem",
+                          paddingLeft: ".4rem",
+                          color: "#212a50",
+                          fontWeight: "bold",
+                        }}
+                      >
+                        {/* Rahul */}
+                       Year: {item.year}
+                      </p>
+                      <p
+                        style={{
+                          color: "#212a50",
+                          marginRight: ".5rem",
+                          fontWeight: "500", 
+                           paddingTop: ".5rem",
+                        }}
+                      >
+                       Month: {item.month}
+                      </p>
+                    </div>
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      {/* <p
+                        style={{
+                          color: "green",
+                          marginLeft: ".5rem",
+                          fontWeight: "500",
+                        }}
+                      >
+                        Course: {item.course_count}
+                        <a className="my-dashlink"></a>
+                      </p> */}
+                      <p
+                        style={{
+                          color: "green",
+                          marginLeft: ".5rem",
+                          fontWeight: "500",
+                        }}
+                      >
+                       Quantity: {item.total_fake_count}
+                      </p>
+                      <p
+                        style={{
+                          color: "green",
+                          marginRight: ".5rem",
+                          fontWeight: "500",
+                        }}
+                      >
+                        Amount: {item.total_amount}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+            </div>
+
             </div>
           </div>{" "}
         </div>

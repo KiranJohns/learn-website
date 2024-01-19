@@ -185,8 +185,8 @@ const IndCAvail = () => {
                 })
               : records.map(item => {
                 return (
-                  <div style={{marginTop:".8rem",display:'flex', flexDirection:'column'}}>
-                    <div className="new-table-shadow new-table-res new-table-hidden">
+                  <div style={{padding:".45rem",display:'flex', flexDirection:'column'}}>
+                    <div className="new-table-shadow  new-table-hidden">
                       <div style={{display:'flex',justifyContent:'space-between'}}>
                         <p style={{paddingTop:"1.5rem",paddingLeft:".4rem", color:'#212a50', fontWeight:'bold',}}>{item?.Name}</p>
                         <a style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}} href="https://test.learnforcare.co.uk/course-all">
@@ -196,6 +196,34 @@ const IndCAvail = () => {
                         </a>
                         {/* <button className="btn btn-success" style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}>View</button> */}
                       </div>
+  
+                      <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "start",
+                      }}
+                    >
+                     
+                     <p
+                        style={{
+                          color: "green",
+                          marginLeft: ".5rem",
+                          fontWeight: "500",
+                        }} 
+                      >
+                        Validity: {item.validity}
+                      </p>
+                      {/* <p
+                        style={{
+                          color: "green",
+                          marginRight: ".5rem",
+                          fontWeight: "500",
+                        }}
+                      >
+                        Category: {item.category}
+                      </p> */}
+                    </div>
+
                     </div>
                   </div>
                 )

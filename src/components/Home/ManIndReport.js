@@ -129,6 +129,7 @@ const ManIndReport = () => {
                 </button>
               </form>
             </div>
+            <div className="reacttable-hidden">
             <DataTable
               progressPending={pending}
               progressComponent={
@@ -152,7 +153,87 @@ const ManIndReport = () => {
               customStyles={customStyles}
               pagination
             />
+            </div>
+            {records.length <= 0 && (
+              <h4
+                className="no-record-hidden"
+                style={{ textAlign: "center", marginTop: "4.5rem" }}
+              >
+                No records to display
+              </h4>
+            )}
+            <div style={{marginTop:"3rem"}}>
+            {records.map((item) => {
+              return (
+                <div
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    flexDirection: "column",
+                    padding: ".5rem",
+                  }}
+                >
+                  <div className="new-table-shadow new-table-hidden">
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <p
+                        style={{
+                          paddingTop: ".5rem",
+                          paddingLeft: ".4rem",
+                          color: "#212a50",
+                          fontWeight: "bold",
+                        }}
+                      >
+                        {/* Rahul */}
+                        {item.first_name + " " + item.last_name}
+                      </p>
+                    </div>
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      <p
+                        style={{
+                          color: "green",
+                          marginLeft: ".5rem",
+                          fontWeight: "500",
+                        }}
+                      >
+                        Course: {item.course_count}
+                        <a className="my-dashlink"></a>
+                      </p>
+                      <p
+                        style={{
+                          color: "green",
+                          marginRight: ".5rem",
+                          fontWeight: "500",
+                        }}
+                      >
+                        Certificates: {item.certificates}
+                      </p>
+                      <p
+                        style={{
+                          color: "green",
+                          marginRight: ".5rem",
+                          fontWeight: "500",
+                        }}
+                      >
+                        Bundle: {item.bundle_count}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+            </div>
           </div>
+      
         </div>{" "}
       </div>
     </div>

@@ -210,14 +210,14 @@ const ManageMyCourse = () => {
   return (
     <div className="">
       <div className="dash-shadow">
-        <div className=" row g-3  min-vh-100  d-flex justify-content-center mt-20">
+        <div style={{position:"relative"}} className=" row g-3  min-vh-100  d-flex justify-content-center mt-20">
           <h2
             style={{
               color: "#212450",
               display: "flex",
               justifyContent: "center",
               position: "absolute",
-              fontSize: 36,
+              fontSize: 34,
             }}
           >
             My Courses
@@ -269,6 +269,15 @@ const ManageMyCourse = () => {
               persistTableHead={true}
             />
           </div>
+
+          {records.length <= 0 && (
+              <h4
+                className="no-record-hidden"
+                style={{ textAlign: "center", marginTop: "4.5rem" }}
+              >
+                No records to display
+              </h4>
+            )}
 
           <div style={{ paddingTop: "1rem", marginTop: "3rem" }}>
             {searchString
@@ -449,7 +458,7 @@ const ManageMyCourse = () => {
                   return (
                     <div
                       style={{
-                        marginTop: ".7rem",
+                      padding: ".5rem",
                         display: "flex",
                         flexDirection: "column",
                       }}
@@ -505,7 +514,7 @@ const ManageMyCourse = () => {
                                       >
                                         <a
                                           style={{
-                                            width: "7rem",
+                                            width: "6rem !important",
                                             height: "35px",
                                             marginTop: "1rem",
                                             marginRight: ".4rem",
@@ -552,7 +561,7 @@ const ManageMyCourse = () => {
                                     }}
                                     className="btn btn-success"
                                     style={{
-                                      width: "7rem",
+                                      width: "6rem !important",
                                       height: "35px",
                                       marginTop: "1rem",
                                       marginRight: ".4rem",
@@ -569,6 +578,7 @@ const ManageMyCourse = () => {
                                     height: "35px",
                                     marginTop: "1rem",
                                     marginRight: ".4rem",
+                                    width: "6rem !important",
                                   }}
                                   className="btn btn-danger"
                                 >

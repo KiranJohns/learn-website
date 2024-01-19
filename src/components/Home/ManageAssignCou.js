@@ -182,7 +182,7 @@ const ManagerAssignCourse = () => {
       selector: (row) => row.name || row.Name,
       sortable: true,
       center: true,
-      width: "350px",
+      width: "310px",
     },
     {
       name: "validity",
@@ -483,6 +483,14 @@ const ManagerAssignCourse = () => {
                 pagination
               />
             </div>
+            {records.length <= 0 && (
+              <h4
+                className="no-record-hidden"
+                style={{ textAlign: "center", marginTop: "4.5rem" }}
+              >
+                No records to display
+              </h4>
+            )}
             <div style={{    paddingTop: "1rem",
                         marginTop: "3rem",}}>
             {searchString
@@ -579,7 +587,7 @@ const ManagerAssignCourse = () => {
                       flexDirection: "column",
                     }}
                   >
-                    <div className="new-table-shadow new-table-res new-table-hidden">
+                    <div className="new-table-shadow  new-table-hidden">
                       <div
                         style={{
                           display: "flex",
@@ -616,18 +624,55 @@ const ManagerAssignCourse = () => {
                                 }
                                 setSelectedBundleCount(item.course_count);
                               }}
-                              style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}
+                              style={{height:'35px',marginTop:"1rem", marginRight:'.4rem',  width: "6rem !important",}}
                             >
                               Assign To
                             </a>
                           ) : (
                             <>
-                              <a style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}} className="btn btn-danger">Expired</a>
+                              <a style={{height:'35px',marginTop:"1rem", marginRight:'.4rem',   width: "6rem !important",}} className="btn btn-danger">Expired</a>
                             </>
                           )}
                         </>
                         {/* <button className="btn btn-success" style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}>View</button> */}
                       </div>
+                     
+                      <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      {/* <p
+                        style={{
+                          color: "green",
+                          marginLeft: ".5rem",
+                          fontWeight: "500",
+                        }}
+                      >
+                       Time: {item.time}
+                        <a className="my-dashlink"></a>
+                      </p> */}
+                     <p
+                        style={{
+                          color: "green",
+                          marginLeft: ".5rem",
+                          fontWeight: "500",
+                        }} 
+                      >
+                        Quantity: {item.count}
+                      </p>
+                      <p
+                        style={{
+                          color: "green",
+                          marginRight: ".5rem",
+                          fontWeight: "500",
+                        }}
+                      >
+                        Amount: {item.amount}
+                      </p>
+                    </div>
+
                     </div>
                   </div>
                 );

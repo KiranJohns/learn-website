@@ -172,8 +172,8 @@ const IndPurBundle = () => {
               persistTableHead={true}
             />
           </div>
-          <div style={{marginTop: '2.8rem'}}>
-          {records.length <= 0 && <h4 className="no-record-hidden" style={{textAlign: 'center',marginTop:"2rem",}}>No records to display</h4>}
+          <div style={{marginTop: '4rem'}}>
+          {records.length <= 0 && <h4 className="no-record-hidden" style={{textAlign: 'center',marginTop:"4rem",}}>No records to display</h4>}
             {searchString
               ? records
                   .filter((item) =>
@@ -230,8 +230,8 @@ const IndPurBundle = () => {
                   return (
                     <div
                       style={{
-                        paddingTop: "1rem",
-                        marginTop: "0.5rem",
+                        padding: ".5rem",
+                        // marginTop: "0.5rem",
                         display: "flex",
                         flexDirection: "column",
                       }}

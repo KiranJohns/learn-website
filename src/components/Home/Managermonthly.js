@@ -120,6 +120,7 @@ const ManageMonthRep = () => {
                 </button>
               </form>
             </div>
+            <div className="reacttable-hidden">
             <DataTable
               progressPending={pending}
               progressComponent={
@@ -144,6 +145,96 @@ const ManageMonthRep = () => {
               customStyles={customStyles}
               pagination
             />
+            </div>
+            {records.length <= 0 && (
+              <h4
+                className="no-record-hidden"
+                style={{ textAlign: "center", marginTop: "4.5rem" }}
+              >
+                No records to display
+              </h4>
+            )}
+            <div style={{marginTop:"3rem"}}>
+            {records.map((item) => {
+              return (
+                <div
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    flexDirection: "column",
+                    padding: ".5rem",
+                  }}
+                >
+                  <div className="new-table-shadow new-table-hidden">
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      <p
+                        style={{
+                          paddingTop: ".5rem",
+                          paddingLeft: ".4rem",
+                          color: "#212a50",
+                          fontWeight: "bold",
+                        }}
+                      >
+                        {/* Rahul */}
+                       Year: {item.year}
+                      </p>
+                      <p
+                        style={{
+                          color: "#212a50",
+                          marginRight: ".5rem",
+                          fontWeight: "500", 
+                           paddingTop: ".5rem",
+                        }}
+                      >
+                       Month: {item.month}
+                      </p>
+                    </div>
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      {/* <p
+                        style={{
+                          color: "green",
+                          marginLeft: ".5rem",
+                          fontWeight: "500",
+                        }}
+                      >
+                        Course: {item.course_count}
+                        <a className="my-dashlink"></a>
+                      </p> */}
+                      <p
+                        style={{
+                          color: "green",
+                          marginLeft: ".5rem",
+                          fontWeight: "500",
+                        }}
+                      >
+                       Quantity: {item.total_fake_count}
+                      </p>
+                      <p
+                        style={{
+                          color: "green",
+                          marginRight: ".5rem",
+                          fontWeight: "500",
+                        }}
+                      >
+                        Amount: {item.total_amount}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+            </div>
+
           </div>
         </div>{" "}
       </div>
