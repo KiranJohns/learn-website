@@ -58,6 +58,7 @@ const CompAssignCourse = () => {
   const [filteredManagers, setFilteredManagers] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [date, setDate] = useState(new Date());
   const [from, setFrom] = useState("");
   const [courseName, setCourseName] = useState("");
   const [selectedBundleCount, setSelectedBundleCount] = useState(0);
@@ -93,9 +94,10 @@ const CompAssignCourse = () => {
         setPending(false);
         // console.log(res[0].data.response);
         // console.log(res[1].data.response);
+        setDate(res[1].data.response.date)
         let newRes = [
-          ...res[0].data.response,
-          ...res[1].data.response.filter((item) => item?.course_count != 1),
+          ...res[0].data.response.result,
+          ...res[1].data.response.result.filter((item) => item?.course_count != 1),
         ];
         let resArr = newRes?.reverse();
         console.log(res[0].data.response, res[1].data.response);
