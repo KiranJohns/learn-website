@@ -167,6 +167,7 @@ const CompInvoice = () => {
                 noDataComponent={"No records to display"}
               />
             </div>
+            {records.length <= 0 && <h4 className="no-record-hidden" style={{textAlign: 'center',marginTop:"5rem",}}>No records to display</h4>}
             {searchString
               ? records
                   .filter((item) =>
@@ -233,7 +234,7 @@ const CompInvoice = () => {
                         width: "100%",
                       }}
                     >
-                      <div className="new-table-shadow new-table-res new-table-hidden">
+                      <div className="new-table-shadow new-table-hidden">
                         <div
                           style={{
                             display: "flex",
@@ -266,6 +267,16 @@ const CompInvoice = () => {
                             </a>
                           </Button>
                         </div>
+
+                        <div style={{ display: 'flex', justifyContent: "space-between" }}>
+                       
+                       <p style={{ color: '#0d6efd', marginLeft:".5rem", fontWeight: "500" }}>Date:{" "}{item?.date}</p>
+                       <p style={{ color: '#0d6efd', marginRight: ".5rem", fontWeight: "500" }}>Time:{" "}{ new Date(item.time).toLocaleTimeString("en-GB", {
+          timeZone: "Europe/London",
+          hour12: true,
+        })}</p>
+                     </div>
+
                       </div>
                     </div>
                   );

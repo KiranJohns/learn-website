@@ -214,7 +214,7 @@ const CompListManager = () => {
                 />
               </Suspense>
             </div>
-
+            {records.length <= 0 && <h4 className="no-record-hidden" style={{textAlign: 'center',marginTop:"5rem",}}>No records to display</h4>}
             {searchString
               ? records
                   .filter((item) =>

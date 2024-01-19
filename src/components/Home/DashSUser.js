@@ -249,6 +249,7 @@ const DashSUser = () => {
                 />
               </Suspense>
             </div>
+            {records.length <= 0 && <h4 className="no-record-hidden" style={{textAlign: 'center',marginTop:"5rem",}}>No records to display</h4>}
             {searchString
               ? records
                   .filter((item) =>
@@ -265,6 +266,8 @@ const DashSUser = () => {
                           display: "flex",
                           flexDirection: "column",
                           width: "100%",
+                          
+
                         }}
                       >
                         <div className="new-table-shadow new-table-res new-table-hidden">
@@ -318,13 +321,14 @@ const DashSUser = () => {
                     <div
                       style={{
                         // paddingTop: "1rem",
-                        marginTop: ".5rem",
+                       
                         display: "flex",
                         flexDirection: "column",
                         width: "100%",
+                        padding:'.4rem'
                       }}
                     >
-                      <div className="new-table-shadow new-table-res new-table-hidden">
+                      <div className="new-table-shadow  new-table-hidden">
                         <div
                           style={{
                             display: "flex",
@@ -361,9 +365,15 @@ const DashSUser = () => {
                               item.block ? "btn btn-danger" : "btn btn-success"
                             }
                           >
-                            {item.block ? <FaLock /> : <FaUnlock />}
+                            {item.block ? <FaLock /> : <FaUnlock/>}
                           </a>
                         </div>
+
+                        <div style={{ display: 'flex', justifyContent: "space-between" }}>               
+                       <p style={{ color: '#0d6efd', marginLeft:".5rem", fontWeight: "500" }}>Email:{" "}{item?.email}</p>     
+                     </div>
+                     
+
                       </div>
                     </div>
                   );

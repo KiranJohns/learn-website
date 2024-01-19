@@ -871,6 +871,7 @@ const CompAssignBund = () => {
                                   height: "35px",
                                   marginTop: "1rem",
                                   marginRight: ".4rem",
+                                  width: "6rem  !important",
                                 }}
                                 className="btn btn-primary"
                                 onClick={() => {
@@ -900,6 +901,7 @@ const CompAssignBund = () => {
                                     height: "35px",
                                     marginTop: "1rem",
                                     marginRight: ".4rem",
+                                    width: "6rem  !important",
                                   }}
                                   className="btn btn-danger"
                                 >
