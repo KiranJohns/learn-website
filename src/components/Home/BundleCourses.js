@@ -424,7 +424,7 @@ const BundleCour = () => {
                       </div>
                      
                       <div style={{ display: 'flex', justifyContent: "space-between" }}>
-                        <p style={{ color: 'green', marginLeft: ".5rem", fontWeight: "500" }}>Attempts:{" "}{item?.attempts }{"/20"}<a className="my-dashlink"></a></p>
+                        <p style={{ color: 'green', marginLeft: ".5rem", fontWeight: "500" }}>Attempts:{" "}{item?.attempts}{"/20"}<a className="my-dashlink"></a></p>
                         <p style={{ color: 'green', marginRight: ".5rem", fontWeight: "500" }}>{item?.category}</p>
                       </div>
 
