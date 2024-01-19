@@ -319,19 +319,13 @@ const CompAssignCourse = () => {
       selector: (row) => row.course_count,
       center: true,
     },
-    // {
-    //   name: "validity",
-    //   selector: (row) => {
-    //     let newDt = new Date(row.validity).toLocaleDateString().split('/').map(d=> d.length <= 1 ? '0'+d : d )
-    //      return newDt[1]+'/'+newDt[0] +'/'+newDt[2]
-
-    //     },
-    // },
     {
       name: "action",
       center: true,
       selector: (row) => {
-        let validity = row.validity.split("/").reverse();
+        let date = row.validity.split('/')
+        let validity = `${date[1]}-${date[0]}-${date[2]}`
+        console.log(validity);
         let flag = false;
         let title = "Start";
         if (new Date(validity) > new Date()) {
@@ -842,7 +836,8 @@ const CompAssignCourse = () => {
                         .startsWith(searchString.toLowerCase())
                     )
                     .map((item) => {
-                      let validity = item.validity.split("/").reverse();
+                      let date = row.validity.split('/')
+                      let validity = `${date[1]}-${date[0]}-${date[2]}`
                       let flag = false;
                       let title = "Start";
                       if (new Date(validity) > new Date()) {
@@ -931,7 +926,8 @@ const CompAssignCourse = () => {
                       );
                     })
                 : records.map((item) => {
-                    let validity = item.validity.split("/").reverse();
+                    let date = item.validity.split('/')
+                    let validity = `${date[1]}-${date[0]}-${date[2]}`
                     let flag = false;
                     let title = "Start";
                     if (new Date(validity) > new Date()) {
