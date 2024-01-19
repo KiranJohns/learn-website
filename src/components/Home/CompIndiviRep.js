@@ -4,8 +4,7 @@ import fetchData from "../../axios";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Suspense } from "react";
-import Spinner from 'react-bootstrap/Spinner';
-
+import Spinner from "react-bootstrap/Spinner";
 
 const customStyles = {
   headRow: {
@@ -48,7 +47,7 @@ const CompIndReport = () => {
         console.log(res.data.response);
         setRecords(res.data.response);
         setFilterRecords(res.data);
-        setPending(false)
+        setPending(false);
       })
       .catch((err) => console.log(err));
   };
@@ -60,10 +59,10 @@ const CompIndReport = () => {
   const columns = [
     {
       name: "SL No.",
-      selector: (row,id) => ++id,
-      width:"80px",
+      selector: (row, id) => ++id,
+      width: "80px",
       center: true,
-      hide:1050,
+      hide: 1050,
     },
     {
       name: "Name",
@@ -76,19 +75,19 @@ const CompIndReport = () => {
       selector: (row) => row.course,
       sortable: true,
       center: true,
-      hide:640,
+      hide: 640,
     },
     {
       name: "Bundles Assigned",
       selector: (row) => row.bundle,
       center: true,
-      hide:840,
+      hide: 840,
     },
     {
       name: "Certificates",
       cell: (row) => row.certificates,
-      center: 'true'
-    }
+      center: "true",
+    },
   ];
 
   return (
@@ -117,7 +116,7 @@ const CompIndReport = () => {
               justifyContent: "center",
               position: "absolute",
               fontSize: 36,
-              marginTop:"1.35rem"
+              marginTop: "1.35rem",
             }}
           >
             Individual Report
@@ -141,29 +140,110 @@ const CompIndReport = () => {
                 </button>
               </form>
             </div>
-            <Suspense fallback={<Spinner animation="border" />}>
-              <DataTable
-              customStyles={customStyles}
-               progressPending={pending}
-               progressComponent={
-                pending ? 
-                (<div style={{ padding: "1rem" }}>
-                  <Spinner animation="border" variant="primary" />
-                </div>) : (null)
-              }
-                noDataComponent={"No records to display"}
-                persistTableHead={true}
-                columns={columns}
-                data={
-                  searchString
-                    ? records.filter((item) =>
-                        item.first_name.toLowerCase().startsWith(searchString.toLowerCase())
-                      )
-                    : records
-                }
-                pagination
-              />
-            </Suspense>
+            <div className="reacttable-hidden">
+              <Suspense fallback={<Spinner animation="border" />}>
+                <DataTable
+                  customStyles={customStyles}
+                  progressPending={pending}
+                  progressComponent={
+                    pending ? (
+                      <div style={{ padding: "1rem" }}>
+                        <Spinner animation="border" variant="primary" />
+                      </div>
+                    ) : null
+                  }
+                  noDataComponent={"No records to display"}
+                  persistTableHead={true}
+                  columns={columns}
+                  data={
+                    searchString
+                      ? records.filter((item) =>
+                          item.first_name
+                            .toLowerCase()
+                            .startsWith(searchString.toLowerCase())
+                        )
+                      : records
+                  }
+                  pagination
+                />
+              </Suspense>
+            </div>
+            {records.length <= 0 && (
+              <h4
+                className="no-record-hidden"
+                style={{ textAlign: "center", marginTop: "5rem" }}
+              >
+                No records to display
+              </h4>
+            )}
+            {records.map((item) => {
+              return (
+                <div
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    flexDirection: "column",
+                    padding: ".5rem",
+                  }}
+                >
+                  <div className="new-table-shadow new-table-hidden">
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <p
+                        style={{
+                          paddingTop: ".5rem",
+                          paddingLeft: ".4rem",
+                          color: "#212a50",
+                          fontWeight: "bold",
+                        }}
+                      >
+                        {/* Rahul */}
+                        {item.first_name + " " + item.last_name}
+                      </p>
+                    </div>
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      <p
+                        style={{
+                          color: "green",
+                          marginLeft: ".5rem",
+                          fontWeight: "500",
+                        }}
+                      >
+                        Course: {item.course}
+                        <a className="my-dashlink"></a>
+                      </p>
+                      <p
+                        style={{
+                          color: "green",
+                          marginRight: ".5rem",
+                          fontWeight: "500",
+                        }}
+                      >
+                        Certificates: {item.certificates}
+                      </p>
+                      <p
+                        style={{
+                          color: "green",
+                          marginRight: ".5rem",
+                          fontWeight: "500",
+                        }}
+                      >
+                        Bundle: {item.bundle}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>{" "}
       </div>
@@ -172,7 +252,6 @@ const CompIndReport = () => {
 };
 
 export default CompIndReport;
-
 
 function Loading() {
   return <h2>🌀 Loading...</h2>;
