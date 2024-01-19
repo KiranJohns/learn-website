@@ -99,7 +99,7 @@ class DashTest extends Component {
         name: "Name",
         selector: (row) => (row.name ? row.name : row.Name),
         center: true,
-        minwdth: "300px",
+        // width: "300px",
       },
       {
         name: "Attempts",
@@ -433,7 +433,7 @@ class DashTest extends Component {
               style={{
                 // display: "flex",
                 marginTop: "2.5rem",
-                justifyContent: "space-between",
+                // justifyContent: "space-between",
                 // alignItems: "center",
                 // flexWrap: "nowrap",
               }}
