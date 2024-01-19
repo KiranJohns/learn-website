@@ -92,15 +92,15 @@ const CompAssignCourse = () => {
       .then((res) => {
         console.log(pending);
         setPending(false);
-        // console.log(res[0].data.response);
-        // console.log(res[1].data.response);
+        console.log(res[0].data.response);
+        console.log(res[1].data.response);
         setDate(res[1].data.response.date)
         let newRes = [
           ...res[0].data.response.result,
           ...res[1].data.response.result.filter((item) => item?.course_count != 1),
         ];
         let resArr = newRes?.reverse();
-        console.log(res[0].data.response, res[1].data.response);
+        // console.log(res[0].data.response, res[1].data.response);
         setRecords(resArr);
       })
       .catch((err) => {
@@ -330,7 +330,7 @@ const CompAssignCourse = () => {
         console.log(validity);
         let flag = false;
         let title = "Start";
-        if (new Date(validity) > new Date()) {
+        if (new Date(date) > new Date()) {
           flag = true;
         } else {
           flag = false;
@@ -842,7 +842,7 @@ const CompAssignCourse = () => {
                       let validity = `${date[1]}-${date[0]}-${date[2]}`
                       let flag = false;
                       let title = "Start";
-                      if (new Date(validity) > new Date()) {
+                      if (new Date(date) > new Date()) {
                         flag = true;
                       } else {
                         flag = false;
@@ -932,7 +932,7 @@ const CompAssignCourse = () => {
                     let validity = `${date[1]}-${date[0]}-${date[2]}`
                     let flag = false;
                     let title = "Start";
-                    if (new Date(validity) > new Date()) {
+                    if (new Date(date) > new Date()) {
                       flag = true;
                     } else {
                       flag = false;
