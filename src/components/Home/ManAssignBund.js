@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+// import axios from "axios";
 import DataTable from "react-data-table-component";
-import Link from "next/link";
-import Dropdown from "react-bootstrap/Dropdown";
-import DropdownButton from "react-bootstrap/DropdownButton";
-import BasicExample from "../About/button1";
+// import Link from "next/link";
+// import Dropdown from "react-bootstrap/Dropdown";
+// import DropdownButton from "react-bootstrap/DropdownButton";
+// import BasicExample from "../About/button1";
 import fetchData from "../../axios";
 import Modal from "react-responsive-modal";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Tab } from "react-bootstrap";
+// import { Tab } from "react-bootstrap";
 import Spinner from "react-bootstrap/Spinner";
 import { jwtDecode } from "jwt-decode";
-import loadConfig from "next/dist/server/config";
+// import loadConfig from "next/dist/server/config";
 
 const customStyles = {
   headRow: {
