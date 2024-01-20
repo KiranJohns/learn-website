@@ -335,42 +335,42 @@ const CompAssignCourse = () => {
       name: "action",
       center: true,
       selector: (row) => {
-        let flag = false;
-        let title = "Start";
+        // let flag = false;
+        // let title = "Start";
 
-        let validity = row.validity.split("/");
-        validity = new Date(`${validity[1]}-${validity[0]}-${validity[2]}`);
-        let valid_year = new Date(validity).getFullYear();
-        let valid_month = new Date(validity).getMonth();
-        let valid_day = new Date(validity).getDate();
+        // let validity = row.validity.split("/");
+        // validity = new Date(`${validity[1]}-${validity[0]}-${validity[2]}`);
+        // let valid_year = new Date(validity).getFullYear();
+        // let valid_month = new Date(validity).getMonth();
+        // let valid_day = new Date(validity).getDate();
 
-        let year = new Date().getFullYear();
-        let month = new Date().getMonth() + 1;
-        let day = new Date().getDate();
-        console.log(valid_day > day);
-        console.log(valid_day, day);
+        // let year = new Date().getFullYear();
+        // let month = new Date().getMonth() + 1;
+        // let day = new Date().getDate();
+        // console.log(valid_day > day);
+        // console.log(valid_day, day);
 
-        if (valid_year > year) {
-          flag = true;
-        } else if (valid_year == year) {
-          if (valid_month > month) {
-            flag = true;
-          } else if (valid_month == month) {
-            if (valid_day > day) {
-              flag = true;
-            } else {
-              flag = false;
-            }
-          } else {
-            flag = false;
-          }
-        } else {
-          flag = false;
-        }
+        // if (valid_year > year) {
+        //   flag = true;
+        // } else if (valid_year == year) {
+        //   if (valid_month > month) {
+        //     flag = true;
+        //   } else if (valid_month == month) {
+        //     if (valid_day > day) {
+        //       flag = true;
+        //     } else {
+        //       flag = false;
+        //     }
+        //   } else {
+        //     flag = false;
+        //   }
+        // } else {
+        //   flag = false;
+        // }
 
         return (
           <>
-            {flag ? (
+            {row.valid ? (
               <a
                 className="btn btn-primary"
                 onClick={() => {
@@ -905,7 +905,7 @@ const CompAssignCourse = () => {
                                   fontWeight: "bold",
                                 }}
                               >
-                                {item.name || item.Name}
+                                {item?.name || item?.Name}
                               </p>
                               {/* <button className="btn btn-success" style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}>View</button> */}
                               <>
@@ -961,37 +961,37 @@ const CompAssignCourse = () => {
                       );
                     })
                 : records.map((item) => {
-                    let flag = false;
-                    let title = "Start";
+                    // let flag = false;
+                    // let title = "Start";
 
-                    let validity = item.validity.split("/");
-                    validity = new Date(
-                      `${validity[1]}-${validity[0]}-${validity[2]}`
-                    );
-                    let valid_year = new Date(validity).getFullYear();
-                    let valid_month = new Date(validity).getMonth();
-                    let valid_day = new Date(validity).getDate();
+                    // let validity = item.validity.split("/");
+                    // validity = new Date(
+                    //   `${validity[1]}-${validity[0]}-${validity[2]}`
+                    // );
+                    // let valid_year = new Date(validity).getFullYear();
+                    // let valid_month = new Date(validity).getMonth();
+                    // let valid_day = new Date(validity).getDate();
 
-                    let year = new Date().getFullYear();
-                    let month = new Date().getMonth() + 1;
-                    let day = new Date().getDate();
-                    if (valid_year > year) {
-                      flag = true;
-                    } else if (valid_year == year) {
-                      if (valid_month > month) {
-                        flag = true;
-                      } else if (valid_month == month) {
-                        if (valid_day > day) {
-                          flag = true;
-                        } else {
-                          flag = false;
-                        }
-                      } else {
-                        flag = false;
-                      }
-                    } else {
-                      flag = false;
-                    }
+                    // let year = new Date().getFullYear();
+                    // let month = new Date().getMonth() + 1;
+                    // let day = new Date().getDate();
+                    // if (valid_year > year) {
+                    //   flag = true;
+                    // } else if (valid_year == year) {
+                    //   if (valid_month > month) {
+                    //     flag = true;
+                    //   } else if (valid_month == month) {
+                    //     if (valid_day > day) {
+                    //       flag = true;
+                    //     } else {
+                    //       flag = false;
+                    //     }
+                    //   } else {
+                    //     flag = false;
+                    //   }
+                    // } else {
+                    //   flag = false;
+                    // }
 
                     return (
                       <div style={{ display: "flex", flexDirection: "column" }}>
@@ -1010,11 +1010,11 @@ const CompAssignCourse = () => {
                                 fontWeight: "bold",
                               }}
                             >
-                              {item.name || item.Name}
+                              {item?.name || item?.Name}
                             </p>
                             {/* <button className="btn btn-success" style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}>View</button> */}
                             <>
-                              {flag ? (
+                              {item.valid ? (
                                 <a
                                   className="btn btn-primary"
                                   onClick={() => {
