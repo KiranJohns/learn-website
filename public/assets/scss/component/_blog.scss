@@ -776,3 +776,11 @@
     border-radius: .6rem;
    
   }
+
+
+  @media screen and (max-width:985px) {
+    .blog-center-new{
+     display: flex;
+   justify-content: center;
+     }
+   }

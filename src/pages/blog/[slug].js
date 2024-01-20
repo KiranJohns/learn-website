@@ -33,7 +33,7 @@ class BlogDetailss extends React.Component {
         
         </main>
       
-        <FooterPad/>
+        <Footer/>
       </React.Fragment>
     );
   }
