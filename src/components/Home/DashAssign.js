@@ -17,7 +17,7 @@ import Table from "react-bootstrap/Table";
 import { jwtDecode } from "jwt-decode";
 import Spinner from "react-bootstrap/Spinner";
 import { Suspense } from "react";
-import moment from "moment";
+
 
 const customStyles = {
   headRow: {
