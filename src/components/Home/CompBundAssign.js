@@ -252,7 +252,7 @@ const CompAssignBund = () => {
         let flag = false;
         let title = "Expired";
         let validity = row.validity.split("/").reverse();
-        if (new Date(validity) > new Date()) {
+        if (row.valid) {
           flag = true;
         } else {
           flag = false;
