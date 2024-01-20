@@ -73,9 +73,8 @@ class DashTest extends Component {
         .then((res) => {
           console.log(res);
           this?.setState({
-            records: res.data.response.result || [],
+            records: res.data.response || [],
             filterRecords: res.data || [],
-            date: res.data.response.date
           });
         })
         .catch((err) => {
@@ -127,7 +126,11 @@ class DashTest extends Component {
           let flag = false;
           let title = "Start";
 
-          if (new Date(validity) <= new Date(this.state.date) || row?.attempts >= 20) {
+
+          if (
+            !row.valid ||
+            row?.attempts >= 20
+          ) {
             title = "Expired";
             flag = false;
           } else {
@@ -542,7 +545,7 @@ class DashTest extends Component {
                     let title = "Start";
 
                     if (
-                      new Date(validity) <= new Date(this.state.date) ||
+                      row.valid ||
                       item?.attempts >= 20
                     ) {
                       title = "Expired";
@@ -657,7 +660,7 @@ class DashTest extends Component {
                   let validity = `${validity_date[1]}-${validity_date[0]}-${validity_date[2]}`
 
                   if (
-                    new Date(validity) <= new Date(this.state.date) ||
+                    !item.valid ||
                     item?.attempts >= 20
                   ) {
                     title = "Expired";
