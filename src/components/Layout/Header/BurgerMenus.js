@@ -185,32 +185,32 @@ const BurgerMenus = ({ setMenuOpen, menuOpen }) => {
                   className={courses ? "sub-menu active" : "sub-menu"}
                 >
                   <li>
-                    <Link href="/course-all">
+                    <Link href="//all-courses">
                       <a>All Courses</a>
                     </Link>
                   </li>
                   <li>
-                    <Link href="/course-grid">
+                    <Link href="/care-certificate-courses">
                       <a>Care Certificate Courses</a>
                     </Link>
                   </li>
                   <li>
-                    <Link href="/course-mandatory">
+                    <Link href="/mandatory-care-courses">
                       <a>Mandatory Care Courses</a>
                     </Link>
                   </li>
                   <li>
-                    <Link href="/course-specialised">
+                    <Link href="/specialised-care-courses">
                       <a>Specialised Care Courses</a>
                     </Link>
                   </li>
                   <li>
-                    <Link href="/course-recovery">
+                    <Link href="/recovery-care-courses">
                       <a>Recovery Care Courses</a>
                     </Link>
                   </li>
                   <li>
-                    <Link href="/course-child">
+                    <Link href="/child-care-courses">
                       <a>Child Care Courses</a>
                     </Link>
                   </li>
@@ -233,7 +233,7 @@ const BurgerMenus = ({ setMenuOpen, menuOpen }) => {
                   className={bundles ? "sub-menu active" : "sub-menu"}
                 >
                   <li>
-                    <Link href="/bundle/bundle-all">
+                    <Link href="/bundle/all-bundles">
                       <a>All Bundles</a>
                     </Link>
                   </li>
@@ -243,27 +243,27 @@ const BurgerMenus = ({ setMenuOpen, menuOpen }) => {
                     </Link>
                   </li>
                   <li>
-                    <Link href="/bundle/mandatory-bundle">
+                    <Link href="/bundle/mandatory-care-bundle">
                       <a>Mandatory Care Bundle</a>
                     </Link>
                   </li>
                   <li>
-                    <Link href="/bundle/special-bundle">
+                    <Link href="/bundle/specialised-care-bundle">
                       <a>Specialised Care Bundle</a>
                     </Link>
                   </li>
                   <li>
-                    <Link href="/bundle/recovery-bundle">
+                    <Link href="/bundle/recovery-care-bundle">
                       <a>Recovery Care Bundle</a>
                     </Link>
                   </li>
                   <li>
-                    <Link href="/bundle/child-bundle">
+                    <Link href="/bundle/child-care-bundle">
                       <a>Child Care Bundle</a>
                     </Link>
                   </li>
                   <li>
-                    <Link href="/bundle/recovery-bundle">
+                    <Link href="/bundle//online-care-bundle">
                       <a>Online Care Bundle</a>
                     </Link>
                   </li>

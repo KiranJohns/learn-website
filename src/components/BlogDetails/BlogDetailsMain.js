@@ -119,10 +119,10 @@ class BlogDetailsMain extends Component {
             <Breadcrumb key={num} pageTitle={article.title} />
           ))}
 
-        <section className="blog__area pt-120 pb-30 pl-80 pr-80">
+        <section className="blog__area pt-120 pb-30 pl-60 pr-60">
           <div className="container-fluid">
             <div className="row">
-              <div className="col-xxl-9 col-xl-7 col-lg-7">
+              <div className="col-xxl-9 col-xl-7 col-lg-8 col-sm-12">
                 {this.state.allBlogs &&
                   this.state.allBlogs.map((article, num) => (
                     <div key={num} className="blog__wrapper">
@@ -151,11 +151,6 @@ class BlogDetailsMain extends Component {
                           ))}
                         </p>
 
-                        <p
-                          dangerouslySetInnerHTML={{
-                            __html: article.content.replace(/\n/g, "</br>"),
-                          }}
-                        ></p>
                         <p style={{ display: "inline-block" }}>
                           <FaRegCalendarDays
                             style={{
@@ -166,7 +161,7 @@ class BlogDetailsMain extends Component {
                           />{" "}
                           {article.date}
                         </p>
-                        <p style={{ display: "block", float: "right" }}>
+                        <p style={{ display: "block", float: "right", }}>
                           <FaUser
                             style={{
                               fontSize: ".9rem",
@@ -176,6 +171,13 @@ class BlogDetailsMain extends Component {
                           />{" "}
                           {article.author}
                         </p>
+
+                        <p
+                          dangerouslySetInnerHTML={{
+                            __html: article.content.replace(/\n/g, "</br>"),
+                          }}
+                        ></p>
+                      
                       </div>
 
                       <div className="blog__line"></div>
@@ -183,7 +185,8 @@ class BlogDetailsMain extends Component {
                     </div>
                   ))}
               </div>
-              <div className="col-xl-3 col-lg-3 ">
+            
+              <div className="col-xl-3 col-lg-4 ">
                 <div className="blog-box-shadow p-2">
                   <div
                     style={{ display: "flex", justifyContent: "center" }}
@@ -197,6 +200,7 @@ class BlogDetailsMain extends Component {
                         console.log(blog);
                         return (
                           <>
+                          <div className="blog-center-new">
                             <div
                               style={{
                                 margin: "0",
@@ -238,6 +242,7 @@ class BlogDetailsMain extends Component {
                                   </small>
                                 </div>
                               </div>
+                            </div>
                             </div>
                             <div style={{ marginTop: "1.7rem" }}></div>
                           </>
