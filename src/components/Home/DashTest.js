@@ -99,7 +99,7 @@ class DashTest extends Component {
         name: "Name",
         selector: (row) => (row.name ? row.name : row.Name),
         center: true,
-        minwdth: "300px",
+        // width: "300px",
       },
       {
         name: "Attempts",
@@ -431,21 +431,20 @@ class DashTest extends Component {
             <div
                className="search-center-new"
               style={{
-                display: "flex",
+                // display: "flex",
                 marginTop: "2.5rem",
-                justifyContent: "space-between",
-                alignItems: "center",
-                flexWrap: "nowrap",
+                // justifyContent: "space-between",
+                // alignItems: "center",
+                // flexWrap: "nowrap",
               }}
             >
               <h4
-                className="ongoing-center"
                 style={{
                   padding: "1.5rem",
                   marginTop: ".7rem",
                   color: "#212450",
-                  display: "flex",
-                  justifyContent: "center",
+                  // display: "flex",
+                  // justifyContent: "center",
                   fontSize: 35,
                 }}
               >

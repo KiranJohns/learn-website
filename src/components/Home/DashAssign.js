@@ -906,7 +906,7 @@ const CompAssignCourse = () => {
                                     }}
                                     style={{
                                       height: "35px",
-                                      width: "7rem",
+                                      width: "6rem !important",
                                       marginTop: "1rem",
                                       marginRight: ".4rem",
                                     }}
@@ -918,7 +918,7 @@ const CompAssignCourse = () => {
                                     <a
                                       style={{
                                         height: "35px",
-                                        width: "7rem",
+                                        width: "6rem !important",
                                         marginTop: "1rem",
                                         marginRight: ".4rem",
                                       }}

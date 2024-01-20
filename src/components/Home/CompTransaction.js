@@ -160,23 +160,25 @@ const CompTransaction = () => {
                 customStyles={customStyles}
               />
             </div>
-            <div>
+            <div style={{marginTop: "4rem"}}>
               {records.length <= 0 && (
                 <h4
                   className="no-record-hidden"
-                  style={{ textAlign: "center", marginTop: "5rem" }}
+                  style={{ textAlign: "center", marginTop: "1rem" }}
                 >
                   No records to display
                 </h4>
               )}
               {records.map((item) => {
                 return (
+                  
                   <div
                     style={{
                       width: "100%",
                       display: "flex",
                       flexDirection: "column",
-                      padding: ".5rem",
+                      padding: ".45rem",
+                    
                     }}
                   >
                     <div className="new-table-shadow new-table-hidden">
@@ -194,7 +196,6 @@ const CompTransaction = () => {
                             fontWeight: "bold",
                           }}
                         >
-                          {/* Rahul */}
                           {item.first_name.concat(" ", item.last_name)}
                         </p>
                       </div>
@@ -248,6 +249,7 @@ const CompTransaction = () => {
                       </div>
                     </div>
                   </div>
+                  
                 );
               })}
             </div>
