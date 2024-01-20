@@ -302,13 +302,7 @@ const CompAssignCourse = () => {
     },
     {
       name: "name",
-      selector: (row) => {
-        let year = new Date().getFullYear();
-        let month = new Date().getMonth() + 1;
-        let day = new Date().getDate();
-        return `year: ${year}, month: ${month}, day: ${day},`;
-        // row.name || row.Name
-      },
+      selector: (row) => row.name || row.Name,
       sortable: true,
       center: true,
       width: "310px",
