@@ -11,6 +11,7 @@ import { IoHandLeft } from "react-icons/io5";
 import Button from "react-bootstrap/Button";
 import { FaEye } from "react-icons/fa";
 import { Suspense } from "react";
+import { Spinner } from "react-bootstrap";
 
 const customStyles = {
   headRow: {
@@ -519,6 +520,7 @@ class DashTest extends Component {
                 </div>
               </div>
             </div>
+            <Spinner animation="border" variant="primary" />
             <div>
               {this.state.records.length <= 0 && (
                 <h4

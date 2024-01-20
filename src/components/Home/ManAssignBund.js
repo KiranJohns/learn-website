@@ -12,6 +12,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { Tab } from "react-bootstrap";
 import Spinner from "react-bootstrap/Spinner";
 import { jwtDecode } from "jwt-decode";
+import loadConfig from "next/dist/server/config";
 
 const customStyles = {
   headRow: {
@@ -37,7 +38,7 @@ const customStyles = {
 const ManAssignBund = () => {
   const [records, setRecords] = useState([]);
   const [searchString, setSearchString] = useState("");
-  const [pending, setPending] = React.useState(true);
+  // const [pending, setPending] = React.useState(true);
   const [companyIndividuals, setCompanyIndividuals] = useState([]);
   const [courseName, setCourseName] = useState("");
   const [filteredCompanyIndividuals, setFilteredCompanyIndividuals] = useState(
@@ -85,11 +86,11 @@ const ManAssignBund = () => {
                 (item) => item.course_count >= 1 && item.owner != user.id
               )
             );
+            // setPending(false);
           })
           .catch((err) => {
             console.log(err);
           });
-        setPending(false);
       })
       .catch((err) => {
         console.log(err);
@@ -180,7 +181,7 @@ const ManAssignBund = () => {
       selector: (row, idx) => ++idx,
       width: "80px",
       center: true,
-      hide:"md",
+      hide: "md",
     },
     {
       name: "bundle name",
@@ -193,7 +194,7 @@ const ManAssignBund = () => {
       name: "validity",
       selector: (row) => row.validity,
       center: true,
-      hide:"md",
+      hide: "md",
     },
     {
       name: "count",
@@ -291,7 +292,10 @@ const ManAssignBund = () => {
                 <div
                   style={{ display: "flex", justifyContent: "space-between" }}
                 >
-                  <h5 className="assign-cname" style={{ color: "#212a50", marginLeft: "1rem" }}>
+                  <h5
+                    className="assign-cname"
+                    style={{ color: "#212a50", marginLeft: "1rem" }}
+                  >
                     {courseName}
                   </h5>{" "}
                   <h5 style={{ color: "#212a50", marginRight: "1rem" }}>
@@ -317,7 +321,7 @@ const ManAssignBund = () => {
                         placeholder="1"
                       />
                     </div>
-                    <div  className="form-group assign-ml">
+                    <div className="form-group assign-ml">
                       <label
                         style={{ visibility: "hidden" }}
                         for="exampleInputEmail1"
@@ -371,7 +375,12 @@ const ManAssignBund = () => {
                         >
                           Name
                         </span>
-                        <span className="assign-modal" style={{ textAlign: "center", }}>Email</span>
+                        <span
+                          className="assign-modal"
+                          style={{ textAlign: "center" }}
+                        >
+                          Email
+                        </span>
                         <span
                           style={{ width: "fit-content", marginRight: "1rem" }}
                         >
@@ -493,159 +502,217 @@ const ManAssignBund = () => {
           </div>
 
           {/* mobile component */}
-          {records?.length <= 0 && <h4 className="no-record-hidden" style={{textAlign: 'center',marginTop:"5rem",}}>No records to display</h4>}
-          <div style={{marginTop: "2.7rem", paddingTop:'1rem'}}>
-          {searchString
-            ? records
-                .filter((item) =>
-                  item.bundle_name
-                    .toLowerCase()
-                    .startsWith(searchString.toLowerCase())
-                )
-                .map((item) => {
+          {records?.length <= 0 && !pending && (
+            <h4
+              className="no-record-hidden"
+              style={{ textAlign: "center", marginTop: "5rem" }}
+            >
+              No records to display
+            </h4>
+          )}
+          <div style={{ marginTop: "2.7rem", paddingTop: "1rem" }}>
+            {searchString
+              ? records
+                  .filter((item) =>
+                    item.bundle_name
+                      .toLowerCase()
+                      .startsWith(searchString.toLowerCase())
+                  )
+                  .map((item) => {
+                    let flag = false;
+                    let title = "Expired";
+                    let validity = item.validity.split("/").reverse();
+                    if (new Date(validity) > new Date()) {
+                      flag = true;
+                    } else {
+                      flag = false;
+                    }
+                    return (
+                      <div
+                        style={{
+                          display: "flex",
+                          flexDirection: "column",
+                        }}
+                      >
+                        <div className="new-table-shadow new-table-res new-table-hidden mt-2">
+                          <div
+                            style={{
+                              display: "flex",
+                              justifyContent: "space-between",
+                            }}
+                          >
+                            <p
+                              style={{
+                                paddingTop: "1.5rem",
+                                paddingLeft: ".4rem",
+                                color: "#212a50",
+                                fontWeight: "bold",
+                              }}
+                            >
+                              {item.bundle_name}
+                            </p>
+                            <>
+                              {flag ? (
+                                <a
+                                  style={{
+                                    height: "35px",
+                                    marginTop: "1rem",
+                                    marginRight: ".4rem",
+                                  }}
+                                  className="btn btn-primary"
+                                  onClick={() => {
+                                    openModal();
+                                    setCourseName(item.bundle_name);
+                                    setAssignData((prev) => {
+                                      return {
+                                        ...prev,
+                                        course_id: item.id,
+                                      };
+                                    });
+
+                                    if (item?.from_assigned_table) {
+                                      setFromAssignedTable(true);
+                                    } else {
+                                      setFromAssignedTable(false);
+                                    }
+                                    setSelectedBundleCount(item.course_count);
+                                  }}
+                                >
+                                  Assign To
+                                </a>
+                              ) : (
+                                <>
+                                  <a
+                                    style={{
+                                      height: "35px",
+                                      marginTop: "1rem",
+                                      marginRight: ".4rem",
+                                    }}
+                                    className="btn btn-danger"
+                                  >
+                                    {title}
+                                  </a>
+                                </>
+                              )}
+                            </>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })
+              : records?.map((item) => {
                   let flag = false;
                   let title = "Expired";
                   let validity = item.validity.split("/").reverse();
-                  if (new Date(validity) > new Date()) {
+                  if (item.valid) {
                     flag = true;
                   } else {
                     flag = false;
                   }
-                  return <div
-                    style={{
-                  
-                      display: "flex",
-                      flexDirection: "column",
-                    }}
-                  >
-                    <div className="new-table-shadow new-table-res new-table-hidden mt-2">
-                      <div
-                        style={{
-                          display: "flex",
-                          justifyContent: "space-between",
-                        }}
-                      >
-                        <p
-                          style={{
-                            paddingTop: "1.5rem",
-                            paddingLeft: ".4rem",
-                            color: "#212a50",
-                            fontWeight: "bold",
-                          }}
-                        >
-                          {item.bundle_name}
-                        </p>
-                        <>
-                          {flag ? (
-                            <a
-                              style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}
-                              className="btn btn-primary"
-                              onClick={() => {
-                                openModal();
-                                setCourseName(item.bundle_name);
-                                setAssignData((prev) => {
-                                  return {
-                                    ...prev,
-                                    course_id: item.id,
-                                  };
-                                });
-
-                                if (item?.from_assigned_table) {
-                                  setFromAssignedTable(true);
-                                } else {
-                                  setFromAssignedTable(false);
-                                }
-                                setSelectedBundleCount(item.course_count);
-                              }}
-                            >
-                              Assign To
-                            </a>
-                          ) : (
-                            <>
-                              <a style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}} className="btn btn-danger">{title}</a>
-                            </>
-                          )}
-                        </>
-                      </div>
-                    </div>
-                  </div>;
-                })
-            : records?.map((item) => {
-                let flag = false;
-                let title = "Expired";
-                let validity = item.validity.split("/").reverse();
-                if (item.valid) {
-                  flag = true;
-                } else {
-                  flag = false;
-                }
-                return <div
-                  style={{
-                    padding:".5rem",
-                    display: "flex",
-                    flexDirection: "column",
-                  }}
-                >
-                  <div className="new-table-shadow new-table-hidden mt-2">
+                  return (
                     <div
                       style={{
+                        padding: ".5rem",
                         display: "flex",
-                        justifyContent: "space-between",
+                        flexDirection: "column",
                       }}
                     >
-                      <p
-                        style={{
-                          paddingTop: "1.5rem",
-                          paddingLeft: ".4rem",
-                          color: "#212a50",
-                          fontWeight: "bold",
-                        }}
-                      >
-                        {item.bundle_name}
-                      </p>
-                      <>
-                        {flag ? (
-                          <a
-                            style={{height:'35px',marginTop:"1rem", marginRight:'.4rem', width: "6rem  !important",}}
-                            className="btn btn-primary"
-                            onClick={() => {
-                              openModal();
-                              setCourseName(item.bundle_name);
-                              setAssignData((prev) => {
-                                return {
-                                  ...prev,
-                                  course_id: item.id,
-                                };
-                              });
-
-                              if (item?.from_assigned_table) {
-                                setFromAssignedTable(true);
-                              } else {
-                                setFromAssignedTable(false);
-                              }
-                              setSelectedBundleCount(item.course_count);
+                      <div className="new-table-shadow new-table-hidden mt-2">
+                        <div
+                          style={{
+                            display: "flex",
+                            justifyContent: "space-between",
+                          }}
+                        >
+                          <p
+                            style={{
+                              paddingTop: "1.5rem",
+                              paddingLeft: ".4rem",
+                              color: "#212a50",
+                              fontWeight: "bold",
                             }}
                           >
-                            Assign To
-                          </a>
-                        ) : (
+                            {item.bundle_name}
+                          </p>
                           <>
-                            <a style={{height:'35px',marginTop:"1rem", marginRight:'.4rem',width: "6rem  !important",}} className="btn btn-danger">{title}</a>
+                            {flag ? (
+                              <a
+                                style={{
+                                  height: "35px",
+                                  marginTop: "1rem",
+                                  marginRight: ".4rem",
+                                  width: "6rem  !important",
+                                }}
+                                className="btn btn-primary"
+                                onClick={() => {
+                                  openModal();
+                                  setCourseName(item.bundle_name);
+                                  setAssignData((prev) => {
+                                    return {
+                                      ...prev,
+                                      course_id: item.id,
+                                    };
+                                  });
+
+                                  if (item?.from_assigned_table) {
+                                    setFromAssignedTable(true);
+                                  } else {
+                                    setFromAssignedTable(false);
+                                  }
+                                  setSelectedBundleCount(item.course_count);
+                                }}
+                              >
+                                Assign To
+                              </a>
+                            ) : (
+                              <>
+                                <a
+                                  style={{
+                                    height: "35px",
+                                    marginTop: "1rem",
+                                    marginRight: ".4rem",
+                                    width: "6rem  !important",
+                                  }}
+                                  className="btn btn-danger"
+                                >
+                                  {title}
+                                </a>
+                              </>
+                            )}
                           </>
-                        )}
-                      </>
-                    </div>
+                        </div>
 
-                    <div style={{ display: 'flex', justifyContent: "space-between" }}>
-                        <p style={{ color: 'green', marginLeft: ".5rem", fontWeight: "500" }}>Count:{" "}{item?.course_count}<a className="my-dashlink"></a></p>
-                        <p style={{ color: 'green', marginRight: ".5rem", fontWeight: "500" }}>Validity:{" "}{item?.validity}</p>
+                        <div
+                          style={{
+                            display: "flex",
+                            justifyContent: "space-between",
+                          }}
+                        >
+                          <p
+                            style={{
+                              color: "green",
+                              marginLeft: ".5rem",
+                              fontWeight: "500",
+                            }}
+                          >
+                            Count: {item?.course_count}
+                            <a className="my-dashlink"></a>
+                          </p>
+                          <p
+                            style={{
+                              color: "green",
+                              marginRight: ".5rem",
+                              fontWeight: "500",
+                            }}
+                          >
+                            Validity: {item?.validity}
+                          </p>
+                        </div>
                       </div>
-
-                  </div>
-                </div>;
-              })}
-              </div>
-
+                    </div>
+                  );
+                })}
+          </div>
         </div>{" "}
       </div>
     </div>
