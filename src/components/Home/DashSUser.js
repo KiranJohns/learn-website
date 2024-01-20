@@ -122,7 +122,8 @@ const DashSUser = () => {
       name: "User",
       selector: (row) => (
         <span
-          style={{}}
+        className="my-dashlink"
+        style={{cursor:"pointer"}}
           onClick={() => {
             router.push({
               pathname: "/viewUser/editUser",

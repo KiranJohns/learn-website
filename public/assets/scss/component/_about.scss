@@ -701,3 +701,23 @@ margin: 0 auto;
 
        }
      }
+
+
+     .course-margin-top{
+      margin-top:0rem;
+     }
+
+     @media screen and (max-width:1150px) {
+      .course-margin-top{
+        margin-top:12rem;
+
+       }
+     }
+
+
+     @media screen and (max-width:990px) {
+      .course-margin-top{
+        margin-top:-3rem;
+
+       }
+     }

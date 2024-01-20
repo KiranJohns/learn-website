@@ -305,7 +305,7 @@ function CourseDetailsMain() {
                   </Tabs>
                 </div>
               </div>
-              <div className="col-xxl-4 col-xl-4 col-lg-4 sticky-sidebar ">
+              <div className="col-xxl-4 col-xl-4 col-lg-4 sticky-sidebar course-margin-top">
                 <CourseSidebar addToCart={addToCart} />
               </div>
             </div>
