@@ -202,7 +202,7 @@ const ManagerAssignCourse = () => {
         let validity = row.validity.split("/").reverse();
         let flag = false;
         let title = "Start";
-        if (new Date(validity) > new Date()) {
+        if (row.valid) {
           flag = true;
         } else {
           flag = false;
@@ -504,7 +504,7 @@ const ManagerAssignCourse = () => {
                     let validity = item.validity.split("/").reverse();
                     let flag = false;
                     let title = "Start";
-                    if (new Date(validity) > new Date()) {
+                    if (item.valid) {
                       flag = true;
                     } else {
                       flag = false;
@@ -574,7 +574,7 @@ const ManagerAssignCourse = () => {
                 let validity = item.validity.split("/").reverse();
                 let flag = false;
                 let title = "Start";
-                if (new Date(validity) > new Date()) {
+                if (item.valid) {
                   flag = true;
                 } else {
                   flag = false;
