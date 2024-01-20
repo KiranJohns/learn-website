@@ -304,9 +304,9 @@ const CompAssignCourse = () => {
       name: "name",
       selector: (row) => {
         let year = new Date().getFullYear();
-        let month = new Date().getMonth();
-        let day = new Date().getDay();
-        return `year: ${year}, year: ${month}, year: ${day},`
+        let month = new Date().getMonth() + 1;
+        let day = new Date().getDate();
+        return `year: ${year}, month: ${month}, day: ${day},`;
         // row.name || row.Name
       },
       sortable: true,
@@ -345,10 +345,17 @@ const CompAssignCourse = () => {
         let valid_day = new Date(validity).getDate();
 
         let year = new Date().getFullYear();
-        let month = new Date().getMonth();
-        let day = new Date().getDay();
-        if (valid_year >= year) {
-          if (valid_month >= month) {
+        let month = new Date().getMonth() + 1;
+        let day = new Date().getDate();
+        console.log(valid_day > day);
+        console.log(valid_day, day);
+
+        if (valid_year > year) {
+          flag = true;
+        } else if (valid_year == year) {
+          if (valid_month > month) {
+            flag = true;
+          } else if (valid_month == month) {
             if (valid_day > day) {
               flag = true;
             } else {
@@ -966,10 +973,14 @@ const CompAssignCourse = () => {
                     let valid_day = new Date(validity).getDate();
 
                     let year = new Date().getFullYear();
-                    let month = new Date().getMonth();
-                    let day = new Date().getDay();
-                    if (valid_year >= year) {
-                      if (valid_month >= month) {
+                    let month = new Date().getMonth() + 1;
+                    let day = new Date().getDate();
+                    if (valid_year > year) {
+                      flag = true;
+                    } else if (valid_year == year) {
+                      if (valid_month > month) {
+                        flag = true;
+                      } else if (valid_month == month) {
                         if (valid_day > day) {
                           flag = true;
                         } else {
