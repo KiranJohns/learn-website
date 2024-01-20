@@ -154,7 +154,7 @@ function DashIndividual() {
         let validity = row.validity.split("/").reverse();
         return (
           <>
-            {new Date(validity) > new Date() ? (
+            {row.valid ? (
               <>
                 {row.progress < 80 ? (
                   <span
@@ -513,8 +513,7 @@ function DashIndividual() {
                                 {item.name || item.Name}
                               </p>
                               <>
-                                {new Date(item?.validity.split("/").reverse())>
-                                new Date() ? (
+                                {item.valid ? (
                                   <>
                                     {item?.progress < 80 ? (
                                       <span
@@ -598,8 +597,7 @@ function DashIndividual() {
                               {item.name || item.Name}
                             </p>
                             <>
-                              {new Date(item?.validity.split("/").reverse()) >
-                              new Date() ? (
+                              {item.valid ? (
                                 <>
                                   {item?.progress < 80 ? (
                                     <span
