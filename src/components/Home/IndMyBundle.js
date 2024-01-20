@@ -115,7 +115,7 @@ const IndMyBundle = () => {
         let validity = row.validity.split("/").reverse();
         return (
           <>
-            {new Date(validity) > new Date() ? (
+            {row.valid ? (
               <>
                 {!row.progress || row.progress < 100 ? (
                   <span
@@ -271,8 +271,7 @@ const IndMyBundle = () => {
                               {item?.name || item?.bundle_name}
                             </p>
                             <>
-                              {new Date(item.validity.split("/").reverse()) >
-                              new Date() ? (
+                              {item.valid ? (
                                 <>
                                   {!item.progress || item.progress < 100 ? (
                                     <span
@@ -365,8 +364,7 @@ const IndMyBundle = () => {
                             {item?.name || item?.bundle_name}
                           </p>
                           <>
-                            {new Date(item.validity.split("/").reverse()) >
-                            new Date() ? (
+                            {item.valid ? (
                               <>
                                 {!item.progress || item.progress < 100 ? (
                                   <span
