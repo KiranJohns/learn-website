@@ -125,7 +125,7 @@ const ManageMyCourse = () => {
         let flag = false;
         let title = "Start";
 
-        if (new Date(validity) <= new Date() || row?.attempts >= 20) {
+        if (!row.valid) {
           title = "Expired";
           flag = false;
         } else {
@@ -293,7 +293,7 @@ const ManageMyCourse = () => {
                     let title = "Start";
 
                     if (
-                      new Date(validity) <= new Date() ||
+                      !item.valid ||
                       item?.attempts >= 20
                     ) {
                       title = "Expired";
@@ -446,7 +446,7 @@ const ManageMyCourse = () => {
                   let title = "Start";
 
                   if (
-                    new Date(validity) <= new Date() ||
+                    !item.valid ||
                     item?.attempts >= 20
                   ) {
                     title = "Expired";
