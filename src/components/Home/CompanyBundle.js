@@ -140,7 +140,7 @@ const CompanyBundle = () => {
         let validity = row.validity.split("/").reverse();
         return (
           <>
-            {new Date(validity) > new Date() ? (
+            {row.valid ? (
               <>
                 {!row?.progress || row?.progress < 100 ? (
                   <a
@@ -302,7 +302,7 @@ const CompanyBundle = () => {
                             </p>
                             {/* <button className="btn btn-success" style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}>View</button> */}
                             <>
-                              {new Date(validity) > new Date() ? (
+                              {item.valid ? (
                                 <>
                                   {!item?.progress || item?.progress < 100 ? (
                                     <a
@@ -398,7 +398,7 @@ const CompanyBundle = () => {
                           </p>
                           {/* <button className="btn btn-success" style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}>View</button> */}
                           <>
-                            {new Date(validity) > new Date() ? (
+                            {item.valid ? (
                               <>
                                 {!item?.progress || item?.progress < 100 ? (
                                   <a
