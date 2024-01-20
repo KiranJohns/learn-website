@@ -154,7 +154,8 @@ const DashCourse = () => {
         let validity = row.validity.split("/").reverse();
         return (
           <>
-            {new Date(validity.join("-")) > new Date() ? (
+            {row.valid
+             ? (
               <>
                 {row.attempts < 20 ? (
                   <>
@@ -533,7 +534,7 @@ const DashCourse = () => {
                           </p>
                           {/* <button className="btn btn-success" style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}>View</button> */}
                           <>
-                            {new Date(validity.join("-")) > new Date() ? (
+                            {item.valid ? (
                               <>
                                 {item.attempts < 20 ? (
                                   <>

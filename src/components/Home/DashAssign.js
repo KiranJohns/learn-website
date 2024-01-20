@@ -95,11 +95,11 @@ const CompAssignCourse = () => {
         setPending(false);
         console.log(res[0].data.response);
         console.log(res[1].data.response);
-        let today = res[1].data.response.date.split("-");
-        setDate(`${today[1]}-${today[0]}-${today[2]}`);
+        // let today = res[1].data.response.date.split("-");
+        // setDate(`${today[1]}-${today[0]}-${today[2]}`);
         let newRes = [
-          ...res[0].data.response.result,
-          ...res[1].data.response.result.filter(
+          ...res[0].data.response,
+          ...res[1].data.response.filter(
             (item) => item?.course_count != 1
           ),
         ];
@@ -903,7 +903,7 @@ const CompAssignCourse = () => {
                               </p>
                               {/* <button className="btn btn-success" style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}>View</button> */}
                               <>
-                                {flag ? (
+                                {item.valid ? (
                                   <a
                                     className="btn btn-primary"
                                     onClick={() => {
