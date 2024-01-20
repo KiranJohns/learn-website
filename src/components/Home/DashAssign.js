@@ -59,7 +59,7 @@ const CompAssignCourse = () => {
   const [filteredManagers, setFilteredManagers] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [date, setDate] = useState(new Date());
+  const [date, setDate] = useState();
   const [from, setFrom] = useState("");
   const [courseName, setCourseName] = useState("");
   const [selectedBundleCount, setSelectedBundleCount] = useState(0);
@@ -95,7 +95,8 @@ const CompAssignCourse = () => {
         setPending(false);
         console.log(res[0].data.response);
         console.log(res[1].data.response);
-        setDate(res[1].data.response.date)
+        let today = res[1].data.response.date.split('-')
+        setDate(`${today[1]}-${today[0]}-${today[2]}`)
         let newRes = [
           ...res[0].data.response.result,
           ...res[1].data.response.result.filter((item) => item?.course_count != 1),
@@ -331,9 +332,11 @@ const CompAssignCourse = () => {
         // console.log(validity);
         let flag = false;
         let title = "Start";
-        let validity_date = row.validity.split('/')
-        let validity = `${validity_date[1]}-${validity_date[0]}-${validity_date[2]}`
-        console.log('from ', moment().format());
+        let validity_date1 = row.validity.split('/').join('-')
+        // console.log('from ',date);
+        // let validity_date2 = date.split('/').join('-')
+        let validity = `${validity_date1[1]}-${validity_date1[0]}-${validity_date1[2]}`
+        let date = `${validity_date1[1]}-${validity_date1[0]}-${validity_date1[2]}`
         if (moment().format() > new Date(date)) {
           flag = true;
         } else {
@@ -936,11 +939,15 @@ const CompAssignCourse = () => {
                     // let validity = `${date[1]}-${date[0]}-${date[2]}`
                     let validity_date = item.validity.split('/')
                     let validity = `${validity_date[1]}-${validity_date[0]}-${validity_date[2]}`
-                    console.log(new Date(validity) , new Date(date));
+                    item.validity = item.validity.split('-').reverse().join('-')
+
+                    console.log('from ',item.validity);
                     // console.log(date);
+                    // let date1 = moment(date.split('-').reverse().join('-'))
+                    // let date2 = moment(item.validity)
                     let flag = false;
                     let title = "Start";
-                    if (new Date(validity) > new Date(date)) {
+                    if (true) {
                       flag = true;
                     } else {
                       flag = false;
@@ -964,6 +971,7 @@ const CompAssignCourse = () => {
                               }}
                             >
                               {item.name || item.Name}
+                              <>{new Date().toLocaleDateString()}</>
                             </p>
                             {/* <button className="btn btn-success" style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}>View</button> */}
                             <>
