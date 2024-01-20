@@ -45,6 +45,7 @@ class DashTest extends Component {
       user: {},
       date: new Date(),
       searchString: "",
+      pending: true
     };
   }
 
@@ -76,6 +77,7 @@ class DashTest extends Component {
           this?.setState({
             records: res.data.response || [],
             filterRecords: res.data || [],
+            pending: false
           });
         })
         .catch((err) => {
@@ -122,16 +124,12 @@ class DashTest extends Component {
       {
         name: "Action",
         cell: (row) => {
-          let validity_date = row.validity.split('/')
-          let validity = `${validity_date[1]}-${validity_date[0]}-${validity_date[2]}`
+          let validity_date = row.validity.split("/");
+          let validity = `${validity_date[1]}-${validity_date[0]}-${validity_date[2]}`;
           let flag = false;
           let title = "Start";
 
-
-          if (
-            !row.valid ||
-            row?.attempts >= 20
-          ) {
+          if (!row.valid || row?.attempts >= 20) {
             title = "Expired";
             flag = false;
           } else {
@@ -433,7 +431,7 @@ class DashTest extends Component {
         <div className="ag-format-container" style={{ marginTop: "1rem" }}>
           <div className="dash-shadow">
             <div
-               className="search-center-new"
+              className="search-center-new"
               style={{
                 // display: "flex",
                 marginTop: "2.5rem",
@@ -521,16 +519,18 @@ class DashTest extends Component {
               </div>
             </div>
 
-            <div  className="no-record-hidden"
-                  style={{ textAlign: "center", padding: "1rem", }}>
-            <Spinner animation="border" variant="primary" />
-            </div>
+            {this.state.pending && <div
+              className="no-record-hidden"
+              style={{ textAlign: "center", padding: "1rem" }}
+            >
+              <Spinner animation="border" variant="primary" />
+            </div>}
 
             <div>
-              {this.state.records.length <= 0 && (
+              {(this.state.records.length <= 0 && !this.state.pending) && (
                 <h4
                   className="no-record-hidden"
-                  style={{ textAlign: "center", padding: "1rem", }}
+                  style={{ textAlign: "center", padding: "1rem" }}
                 >
                   No records to display
                 </h4>
@@ -544,17 +544,14 @@ class DashTest extends Component {
                       .includes(this.state.searchString.toLowerCase())
                   )
                   .map((item) => {
-                    let validity_date = item.validity.split('/')
-                    let validity = `${validity_date[1]}-${validity_date[0]}-${validity_date[2]}`
+                    let validity_date = item.validity.split("/");
+                    let validity = `${validity_date[1]}-${validity_date[0]}-${validity_date[2]}`;
 
                     // let validity = item.validity.split("/");
                     let flag = false;
                     let title = "Start";
 
-                    if (
-                      row.valid ||
-                      item?.attempts >= 20
-                    ) {
+                    if (row.valid || item?.attempts >= 20) {
                       title = "Expired";
                       flag = false;
                     } else {
@@ -663,13 +660,10 @@ class DashTest extends Component {
                   let flag = false;
                   let title = "Start";
 
-                  let validity_date = item.validity.split('/')
-                  let validity = `${validity_date[1]}-${validity_date[0]}-${validity_date[2]}`
+                  let validity_date = item.validity.split("/");
+                  let validity = `${validity_date[1]}-${validity_date[0]}-${validity_date[2]}`;
 
-                  if (
-                    !item.valid ||
-                    item?.attempts >= 20
-                  ) {
+                  if (!item.valid || item?.attempts >= 20) {
                     title = "Expired";
                     flag = false;
                   } else {
