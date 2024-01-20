@@ -63,7 +63,7 @@ class ManageDash extends Component {
         .then((res) => {
           console.log(res);
           this.setState({
-            records: res.data.response.result,
+            records: res.data.response,
             filterRecords: res.data,
           });
         })
@@ -141,10 +141,10 @@ class ManageDash extends Component {
           //   title = "Completed";
           //   flag = false;
           // }
-          let validity = row.validity.split("/").reverse();
+          // let validity = row.validity.split("/").reverse();
           let flag = false;
           let title = "Start";
-          if (new Date(validity) <= new Date() || row?.attempts >= 20) {
+          if (!row.valid) {
             title = "Expired";
             flag = false;
           } else {
@@ -495,7 +495,7 @@ class ManageDash extends Component {
                     />
                   </div>
                   
-                  {this.state.records.length <= 0 && <h4 className="no-record-hidden" style={{textAlign: 'center',marginTop:"1rem",}}>No records to display</h4>}
+                  {this.state.records?.length <= 0 && <h4 className="no-record-hidden" style={{textAlign: 'center',marginTop:"1rem",}}>No records to display</h4>}
                   {this.state.searchString
                     ? this.state.records
                         .filter((item) =>
@@ -508,7 +508,7 @@ class ManageDash extends Component {
                           let flag = false;
                           let title = "Start";
                           if (
-                            new Date(validity) <= new Date() ||
+                            !item.valid ||
                             item?.attempts >= 20
                           ) {
                             title = "Expired";
@@ -603,7 +603,7 @@ class ManageDash extends Component {
                         let flag = false;
                         let title = "Start";
                         if (
-                          new Date(validity) <= new Date() ||
+                          !item.valid ||
                           item?.attempts >= 20
                         ) {
                           title = "Expired";
