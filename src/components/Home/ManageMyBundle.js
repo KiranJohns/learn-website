@@ -113,7 +113,7 @@ const ManagerBundle = () => {
         let validity = row.validity.split("/").reverse();
         return (
           <>
-            {new Date(validity) > new Date() ? (
+            {row.valid ? (
               <>
                 {!row.progress || row?.progress <= 100 ? (
                   <button
@@ -263,8 +263,7 @@ const ManagerBundle = () => {
                               {item.bundle_name || item.name}
                             </p>
                             <>
-                              {new Date(item.validity.split("/").reverse()) >
-                              new Date() ? (
+                              {item.valid ? (
                                 <>
                                   {!item.progress || item?.progress <= 100 ? (
                                     <button
@@ -349,8 +348,7 @@ const ManagerBundle = () => {
                             {item.bundle_name || item.name}
                           </p>
                           <>
-                            {new Date(item.validity.split("/").reverse()) >
-                            new Date() ? (
+                            {item.valid ? (
                               <>
                                 {!item.progress || item?.progress <= 100 ? (
                                   <button
