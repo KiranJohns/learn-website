@@ -135,7 +135,7 @@ const IndCourse = () => {
         let validity = row.validity.split("/").reverse();
         return (
           <>
-            {new Date(validity.join("-")) > new Date() ? (
+            {row.valid ? (
               <>
                 {row?.progress ? (
                   <>
@@ -334,9 +334,7 @@ const IndCourse = () => {
                               {item?.Name || item?.name}
                             </p>
                             <>
-                              {new Date(
-                                item?.validity.split("/").reverse().join("-")
-                              ) > new Date() ? (
+                              {item.valid ? (
                                 <>
                                   {item?.progress ? (
                                     <>
@@ -471,9 +469,7 @@ const IndCourse = () => {
                             {item?.Name || item?.name}
                           </p>
                           <>
-                            {new Date(
-                              item?.validity.split("/").reverse().join("-")
-                            ) > new Date() ? (
+                            {item.valid ? (
                               <>
                                 {item?.progress ? (
                                   <>
