@@ -60,6 +60,7 @@ const ManageMyCourse = () => {
   };
 
   useEffect(() => {
+    setPending(true);
     const fetchDataAsync = async () => {
       try {
         let assignedRes = await makeRequest(
@@ -210,7 +211,10 @@ const ManageMyCourse = () => {
   return (
     <div className="">
       <div className="dash-shadow">
-        <div style={{position:"relative"}} className=" row g-3  min-vh-100  d-flex justify-content-center mt-20">
+        <div
+          style={{ position: "relative" }}
+          className=" row g-3  min-vh-100  d-flex justify-content-center mt-20"
+        >
           <h2
             style={{
               color: "#212450",
@@ -270,14 +274,27 @@ const ManageMyCourse = () => {
             />
           </div>
 
-          {records.length <= 0 && (
-              <h4
-                className="no-record-hidden"
-                style={{ textAlign: "center", marginTop: "4.5rem" }}
-              >
-                No records to display
-              </h4>
-            )}
+          {(records.length <= 0 && !pending) && (
+            <h4
+              className="no-record-hidden"
+              style={{ textAlign: "center", marginTop: "4.5rem" }}
+            >
+              No records to display
+            </h4>
+          )}
+
+          {pending && (
+            <div
+              className="no-record-hidden"
+              style={{
+                textAlign: "center",
+                padding: "1rem",
+                marginTop: "4rem",
+              }}
+            >
+              <Spinner animation="border" variant="primary" />
+            </div>
+          )}
 
           <div style={{ paddingTop: "1rem", marginTop: "3rem" }}>
             {searchString
@@ -292,10 +309,7 @@ const ManageMyCourse = () => {
                     let flag = false;
                     let title = "Start";
 
-                    if (
-                      !item.valid ||
-                      item?.attempts >= 20
-                    ) {
+                    if (!item.valid || item?.attempts >= 20) {
                       title = "Expired";
                       flag = false;
                     } else {
@@ -445,10 +459,7 @@ const ManageMyCourse = () => {
                   let flag = false;
                   let title = "Start";
 
-                  if (
-                    !item.valid ||
-                    item?.attempts >= 20
-                  ) {
+                  if (!item.valid || item?.attempts >= 20) {
                     title = "Expired";
                     flag = false;
                   } else {
@@ -458,7 +469,7 @@ const ManageMyCourse = () => {
                   return (
                     <div
                       style={{
-                      padding: ".5rem",
+                        padding: ".5rem",
                         display: "flex",
                         flexDirection: "column",
                       }}
