@@ -196,7 +196,7 @@ class IndCertificate extends Component {
                 {this.state.records.length <= 0 && !this.state.pending && (
                   <h4
                     className="no-record-hidden"
-                    style={{ textAlign: "center", marginTop: "2rem" }}
+                    style={{ textAlign: "center", marginTop: "4rem" }}
                   >
                     No records to display
                   </h4>
@@ -227,7 +227,7 @@ class IndCertificate extends Component {
                               paddingTop: "1rem",
                               display: "flex",
                               flexDirection: "column",
-                              width: "100%",
+                            
                             }}
                           >
                             <div className="new-table-shadow new-table-res new-table-hidden">
@@ -269,7 +269,7 @@ class IndCertificate extends Component {
                       return (
                         <div
                           style={{
-                            paddingTop: "1rem",
+                            padding: ".5rem",
                             // marginTop: "0.5rem",
                             display: "flex",
                             flexDirection: "column",
@@ -281,6 +281,7 @@ class IndCertificate extends Component {
                               style={{
                                 display: "flex",
                                 justifyContent: "space-between",
+                               
                               }}
                             >
                               <p
@@ -312,6 +313,7 @@ class IndCertificate extends Component {
                               style={{
                                 display: "flex",
                                 justifyContent: "space-between",
+                                
                               }}
                             >
                               <p
