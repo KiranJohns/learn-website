@@ -570,6 +570,7 @@ const IndCourse = () => {
                                       height: "35px",
                                       marginTop: "1rem",
                                       marginRight: ".4rem",
+                                      width: "6rem !important",
                                     }}
                                     className="btn btn-success"
                                   >
@@ -584,6 +585,7 @@ const IndCourse = () => {
                                   height: "35px",
                                   marginTop: "1rem",
                                   marginRight: ".4rem",
+                                  width: "6rem !important",
                                 }}
                               >
                                 Expired
