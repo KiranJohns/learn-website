@@ -41,6 +41,7 @@ const CompTransaction = () => {
     const getData = async () => {
       try {
         console.clear();
+        setPending(true);
         let makeRequest = fetchData();
         const res = await makeRequest("GET", "/info/get-all-transactions");
         console.log(res);
@@ -160,25 +161,35 @@ const CompTransaction = () => {
                 customStyles={customStyles}
               />
             </div>
-            <div style={{marginTop: "4rem"}}>
-              {records.length <= 0 && (
+            <div style={{ marginTop: "4rem" }}>
+              {records.length <= 0 && !pending && (
                 <h4
                   className="no-record-hidden"
-                  style={{ textAlign: "center", marginTop: "1rem" }}
+                  style={{ textAlign: "center", marginTop: "5rem" }}
                 >
                   No records to display
                 </h4>
               )}
+              {pending && (
+                <div
+                  className="no-record-hidden"
+                  style={{
+                    textAlign: "center",
+                    padding: "1rem",
+                    marginTop: "4rem",
+                  }}
+                >
+                  <Spinner animation="border" variant="primary" />
+                </div>
+              )}
               {records.map((item) => {
                 return (
-                  
                   <div
                     style={{
                       width: "100%",
                       display: "flex",
                       flexDirection: "column",
                       padding: ".45rem",
-                    
                     }}
                   >
                     <div className="new-table-shadow new-table-hidden">
@@ -205,7 +216,14 @@ const CompTransaction = () => {
                           justifyContent: "space-between",
                         }}
                       >
-                        <div style={{display: 'flex', padding: '1rem', flexDirection: 'column', align: 'start'}}>
+                        <div
+                          style={{
+                            display: "flex",
+                            padding: "1rem",
+                            flexDirection: "column",
+                            align: "start",
+                          }}
+                        >
                           <p
                             style={{
                               color: "green",
@@ -226,7 +244,14 @@ const CompTransaction = () => {
                             Time: {item.time}
                           </p>
                         </div>
-                        <div style={{display: 'flex', padding: '1rem', flexDirection: 'column', align: 'start'}}>
+                        <div
+                          style={{
+                            display: "flex",
+                            padding: "1rem",
+                            flexDirection: "column",
+                            align: "start",
+                          }}
+                        >
                           <p
                             style={{
                               color: "green",
@@ -249,7 +274,6 @@ const CompTransaction = () => {
                       </div>
                     </div>
                   </div>
-                  
                 );
               })}
             </div>
