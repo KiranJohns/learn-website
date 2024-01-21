@@ -55,6 +55,7 @@ const IndMyBundle = () => {
   };
 
   useEffect(() => {
+    setPending(true)
     let makeRequest = fetchData();
     makeRequest("GET", "/info/get-purchased-bundles")
       .then((res) => {
@@ -235,7 +236,19 @@ const IndMyBundle = () => {
           </div>
 
           <div style={{ marginTop: "4rem" }}>
-          {records.length <= 0 && <h4 className="no-record-hidden" style={{textAlign: 'center',marginTop:"1rem",}}>No records to display</h4>}
+          {pending && (
+              <div
+                className="no-record-hidden"
+                style={{
+                  textAlign: "center",
+                  padding: "1rem",
+                  marginTop: "4rem",
+                }}
+              >
+                <Spinner animation="border" variant="primary" />
+              </div>
+            )}
+          {(records.length <= 0 && !pending) && <h4 className="no-record-hidden" style={{textAlign: 'center',marginTop:"1rem",}}>No records to display</h4>}
             {searchString
               ? records
                   .filter((item) =>
