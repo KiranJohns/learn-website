@@ -495,7 +495,7 @@ const ManagerAssignCourse = () => {
             {records.length <= 0 && !pending && (
               <h4
                 className="no-record-hidden"
-                style={{ textAlign: "center", marginTop: "2rem" }}
+                style={{ textAlign: "center", marginTop: "4rem" }}
               >
                 No records to display
               </h4>

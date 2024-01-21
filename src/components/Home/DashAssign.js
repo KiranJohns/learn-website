@@ -1005,7 +1005,7 @@ const CompAssignCourse = () => {
                     // }
 
                     return (
-                      <div style={{ display: "flex", flexDirection: "column", manager: '1rem' }}>
+                      <div style={{ display: "flex", flexDirection: "column", padding:'.45rem' }}>
                         <div className="new-table-shadow  new-table-hidden">
                           <div
                             style={{
@@ -1015,7 +1015,7 @@ const CompAssignCourse = () => {
                           >
                             <p
                               style={{
-                                paddingTop: "1.5rem",
+                                paddingTop: "1.3rem",
                                 paddingLeft: ".4rem",
                                 color: "#212a50",
                                 fontWeight: "bold",
