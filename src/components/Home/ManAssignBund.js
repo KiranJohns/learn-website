@@ -47,6 +47,7 @@ const ManAssignBund = () => {
   const [fromAssignedTable, setFromAssignedTable] = useState(false);
   const [filteredManagers, setFilteredManagers] = useState([]);
   const [showModal, setShowModal] = useState(false);
+  const [pending, setPending] = useState(false);
   const [selectedBundleCount, setSelectedBundleCount] = useState(0);
   const [user, setUser] = useState(() => {
     let token = localStorage.getItem(`learnforcare_access`);
@@ -66,10 +67,12 @@ const ManAssignBund = () => {
 
   const makeRequest = fetchData();
   function getData() {
+    setPending(true)
     makeRequest("GET", "/info/get-purchased-bundles")
       .then((purchasedRes) => {
         makeRequest("GET", "/info/get-assigned-bundle")
           .then((res) => {
+            setPending(false)
             setRecords((prev) => {
               return [
                 ...purchasedRes.data.response.filter(
@@ -510,6 +513,18 @@ const ManAssignBund = () => {
               No records to display
             </h4>
           )}
+          {pending && (
+              <div
+                className="no-record-hidden"
+                style={{
+                  textAlign: "center",
+                  padding: "1rem",
+                  marginTop: "4rem",
+                }}
+              >
+                <Spinner animation="border" variant="primary" />
+              </div>
+            )}
           <div style={{ marginTop: "2.7rem", paddingTop: "1rem" }}>
             {searchString
               ? records
