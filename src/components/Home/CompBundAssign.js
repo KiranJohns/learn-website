@@ -725,7 +725,15 @@ const CompAssignBund = () => {
                 />
               </Suspense>
             </div>
-            {records.length <= 0 && <h4 className="no-record-hidden" style={{textAlign: 'center',marginTop:"5rem",}}>No records to display</h4>}
+             {pending && (
+              <div
+                className="no-record-hidden"
+                style={{ textAlign: "center", marginTop: "5rem" }}
+              >
+                <Spinner animation="border" variant="primary" />
+              </div>
+            )}
+            {records.length <= 0 && !pending && ( <h4 className="no-record-hidden" style={{textAlign: 'center',marginTop:"5rem",}}>No records to display</h4> )}
             <div style={{marginTop:"3rem"}}>
             {searchString
               ? records
