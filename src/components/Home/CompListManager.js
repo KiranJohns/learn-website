@@ -42,7 +42,7 @@ const CompListManager = () => {
   useEffect(() => {
     getData();
   }, []);
-  
+
   const handleFilter = (event) => {
     const newData = records.filter((row) =>
       row.name.toLowerCase().includes(event.target.value.toLowerCase())
@@ -51,7 +51,7 @@ const CompListManager = () => {
   };
 
   const getData = () => {
-    setPending(true)
+    setPending(true);
     makeRequest("GET", "/info/get-all-managers")
       .then((res) => {
         console.log(res.data.response);
@@ -60,7 +60,6 @@ const CompListManager = () => {
       })
       .catch((err) => console.log(err));
   };
-
 
   const handleBlock = (block, id) => {
     let url = null;
@@ -94,9 +93,9 @@ const CompListManager = () => {
     {
       name: "Name",
       selector: (row) => (
-        <span 
-        className="my-dashlink"
-        style={{cursor:"pointer"}}
+        <span
+          className="my-dashlink"
+          style={{ cursor: "pointer" }}
           onClick={() => {
             router.push({
               pathname: "/viewUser/editUser",
@@ -218,12 +217,23 @@ const CompListManager = () => {
             {pending && (
               <div
                 className="no-record-hidden"
-                style={{ textAlign: "center", padding: "1rem", marginTop: '4rem' }}
+                style={{
+                  textAlign: "center",
+                  padding: "1rem",
+                  marginTop: "4rem",
+                }}
               >
                 <Spinner animation="border" variant="primary" />
               </div>
             )}
-            {records.length <= 0 && <h4 className="no-record-hidden" style={{textAlign: 'center',marginTop:"5rem",}}>No records to display</h4>}
+            {(records.length <= 0 && !pending) && (
+              <h4
+                className="no-record-hidden"
+                style={{ textAlign: "center", marginTop: "5rem" }}
+              >
+                No records to display
+              </h4>
+            )}
             {searchString
               ? records
                   .filter((item) =>
@@ -240,7 +250,6 @@ const CompListManager = () => {
                           display: "flex",
                           flexDirection: "column",
                           width: "100%",
-                        
                         }}
                       >
                         <div className="new-table-shadow new-table-res new-table-hidden">
@@ -298,7 +307,7 @@ const CompListManager = () => {
                         display: "flex",
                         flexDirection: "column",
                         width: "100%",
-                        padding:'.4rem'
+                        padding: ".4rem",
                       }}
                     >
                       <div className="new-table-shadow  new-table-hidden">
@@ -308,22 +317,22 @@ const CompListManager = () => {
                             justifyContent: "space-between",
                           }}
                         >
-                          <p 
-                          onClick={() => {
-                            router.push({
-                              pathname: "/viewUser/editUser",
-                              query: {
-                                id: item.id,
-                                from: "manager-individual",
-                              },
-                            });
-                          }}
+                          <p
+                            onClick={() => {
+                              router.push({
+                                pathname: "/viewUser/editUser",
+                                query: {
+                                  id: item.id,
+                                  from: "manager-individual",
+                                },
+                              });
+                            }}
                             style={{
                               paddingTop: "1.5rem",
                               paddingLeft: ".4rem",
                               color: "#212a50",
                               fontWeight: "bold",
-                              cursor:"pointer"
+                              cursor: "pointer",
                             }}
                           >
                             {item.first_name + " " + item.last_name}
@@ -342,13 +351,23 @@ const CompListManager = () => {
                             {item.block ? <FaLock /> : <FaUnlock />}
                           </a>
                         </div>
-                     
-                        <div style={{ display: 'flex', justifyContent: "space-between" }}>
-                       
-                        <p style={{ color: '#0d6efd', marginLeft:".5rem", fontWeight: "500" }}>Email:{" "}{item?.email}</p>
-                    
-                      </div>
 
+                        <div
+                          style={{
+                            display: "flex",
+                            justifyContent: "space-between",
+                          }}
+                        >
+                          <p
+                            style={{
+                              color: "#0d6efd",
+                              marginLeft: ".5rem",
+                              fontWeight: "500",
+                            }}
+                          >
+                            Email: {item?.email}
+                          </p>
+                        </div>
                       </div>
                     </div>
                   );
