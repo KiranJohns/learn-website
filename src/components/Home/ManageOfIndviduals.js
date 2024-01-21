@@ -49,7 +49,6 @@ const ManageIndList = () => {
   };
 
   const getData = () => {
-    setPending(true)
     makeRequest("GET", "/info/get-all-manager-individual")
       .then((res) => {
         console.log(res.data.response);
@@ -82,6 +81,7 @@ const ManageIndList = () => {
   };
 
   useEffect(() => {
+    setPending(true)
     getData();
   }, []); // Run once when component mounts
 
