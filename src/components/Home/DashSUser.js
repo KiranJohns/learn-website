@@ -63,6 +63,7 @@ const DashSUser = () => {
 
 
   useEffect(() => {
+    setPending(true)
     getData();
   }, []);
 
@@ -74,7 +75,6 @@ const DashSUser = () => {
   };
 
   const getData = () => {
-    setPending(true)
     makeRequest("GET", "/info/get-all-individuals-under-company")
       .then((res) => {
         console.log(res.data.response);
@@ -259,7 +259,7 @@ const DashSUser = () => {
                 <Spinner animation="border" variant="primary" />
               </div>
             )}
-            {records.length <= 0 && <h4 className="no-record-hidden" style={{textAlign: 'center',marginTop:"5rem",}}>No records to display</h4>}
+            {(records.length <= 0 && !pending) && <h4 className="no-record-hidden" style={{textAlign: 'center',marginTop:"5rem",}}>No records to display</h4>}
             {searchString
               ? records
                   .filter((item) =>
