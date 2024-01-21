@@ -41,6 +41,7 @@ const CompInvoice = () => {
   };
 
   useEffect(() => {
+    setPending(true);
     const getData = async () => {
       try {
         console.clear();
@@ -63,7 +64,7 @@ const CompInvoice = () => {
       selector: (row, idx) => ++idx,
       center: true,
       width: "80px",
-      hide:945,
+      hide: 945,
     },
     {
       name: "User",
@@ -79,7 +80,7 @@ const CompInvoice = () => {
     },
     {
       name: "Time",
-      hide:755,
+      hide: 755,
       selector: (row) =>
         new Date(row.time).toLocaleTimeString("en-GB", {
           timeZone: "Europe/London",
@@ -117,7 +118,7 @@ const CompInvoice = () => {
               justifyContent: "center",
               position: "absolute",
               fontSize: 35,
-              marginTop:"1.4rem"
+              marginTop: "1.4rem",
             }}
           >
             Invoice
@@ -167,7 +168,26 @@ const CompInvoice = () => {
                 noDataComponent={"No records to display"}
               />
             </div>
-            {records.length <= 0 && <h4 className="no-record-hidden" style={{textAlign: 'center',marginTop:"5rem",}}>No records to display</h4>}
+            {records.length <= 0 && !pending && (
+              <h4
+                className="no-record-hidden"
+                style={{ textAlign: "center", marginTop: "5rem" }}
+              >
+                No records to display
+              </h4>
+            )}
+            {pending && (
+              <div
+                className="no-record-hidden"
+                style={{
+                  textAlign: "center",
+                  padding: "1rem",
+                  marginTop: "4rem",
+                }}
+              >
+                <Spinner animation="border" variant="primary" />
+              </div>
+            )}
             {searchString
               ? records
                   .filter((item) =>
@@ -227,8 +247,8 @@ const CompInvoice = () => {
                   return (
                     <div
                       style={{
-                      padding: ".45rem",
-                        // marginTop: ".5rem",  
+                        padding: ".45rem",
+                        // marginTop: ".5rem",
                         display: "flex",
                         flexDirection: "column",
                         width: "100%",
@@ -268,15 +288,35 @@ const CompInvoice = () => {
                           </Button>
                         </div>
 
-                        <div style={{ display: 'flex', justifyContent: "space-between" }}>
-                       
-                       <p style={{ color: '#0d6efd', marginLeft:".5rem", fontWeight: "500" }}>Date:{" "}{item?.date}</p>
-                       <p style={{ color: '#0d6efd', marginRight: ".5rem", fontWeight: "500" }}>Time:{" "}{ new Date(item.time).toLocaleTimeString("en-GB", {
-          timeZone: "Europe/London",
-          hour12: true,
-        })}</p>
-                     </div>
-
+                        <div
+                          style={{
+                            display: "flex",
+                            justifyContent: "space-between",
+                          }}
+                        >
+                          <p
+                            style={{
+                              color: "#0d6efd",
+                              marginLeft: ".5rem",
+                              fontWeight: "500",
+                            }}
+                          >
+                            Date: {item?.date}
+                          </p>
+                          <p
+                            style={{
+                              color: "#0d6efd",
+                              marginRight: ".5rem",
+                              fontWeight: "500",
+                            }}
+                          >
+                            Time:{" "}
+                            {new Date(item.time).toLocaleTimeString("en-GB", {
+                              timeZone: "Europe/London",
+                              hour12: true,
+                            })}
+                          </p>
+                        </div>
                       </div>
                     </div>
                   );
