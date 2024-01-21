@@ -51,6 +51,7 @@ const CWManager = () => {
 
   const getData = () => {
     console.clear();
+    setPending(true)
     makeRequest("GET", "/info/get-course-wise-manager-reports")
       .then((res) => {
         console.log(res.data.response);
@@ -165,7 +166,7 @@ const CWManager = () => {
                 />
               </Suspense>
             </div>
-          {records.length <= 0 && (
+          {(records.length <= 0 && !pending) && (
             <h4
               className="no-record-hidden"
               style={{ textAlign: "center", marginTop: "5rem" }}
@@ -173,6 +174,14 @@ const CWManager = () => {
               No records to display
             </h4>
           )}
+          {pending && (
+              <div
+                className="no-record-hidden"
+                style={{ textAlign: "center", padding: "1rem", marginTop: '4rem' }}
+              >
+                <Spinner animation="border" variant="primary" />
+              </div>
+            )}
           {records.map((item) => {
             return (
               <div
