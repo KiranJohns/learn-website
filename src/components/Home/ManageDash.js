@@ -238,6 +238,7 @@ class ManageDash extends Component {
 
         <div className="ag-format-container" style={{ marginTop: "1rem" }}>
           <div className="team-shadow">
+            
             <div
               className=""
               style={{
