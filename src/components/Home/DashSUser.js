@@ -63,6 +63,7 @@ const DashSUser = () => {
 
 
   useEffect(() => {
+    setPending(true)
     getData();
   }, []);
 
@@ -74,7 +75,6 @@ const DashSUser = () => {
   };
 
   const getData = () => {
-    setPending(true)
     makeRequest("GET", "/info/get-all-individuals-under-company")
       .then((res) => {
         console.log(res.data.response);
