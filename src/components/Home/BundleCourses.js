@@ -10,7 +10,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
 import { useRouter } from "next/router";
 import { Button } from "react-bootstrap";
-
+import Spinner from "react-bootstrap/Spinner";
 
 const customStyles = {
   headRow: {
@@ -40,6 +40,7 @@ const BundleCour = () => {
   const [filterRecords, setFilterRecords] = useState([]);
   const [data, setData] = useState({});
   const [searchData, setSearchData] = useState("");
+  const [pending, setPending] = useState(true);
   const [openModal, setOpenModal] = useState(false);
 
   const makeRequest = fetchData();
@@ -63,12 +64,15 @@ const BundleCour = () => {
       // form.append("from", from);
       // form.append("bundle_id", id);
 
+      setPending(true)
+
       console.log(router.query);
       makeRequest("GET", `/bundle/get-started-bundle/${router.query.id}`)
         .then((res) => {
           setRecords(res?.data?.response?.courses || []);
           console.log(res.data.response);
           setData(res.data.response.bundle[0]);
+          setPending(false)
           // location.href = `/individual/bundleCourses/?id=${res.data.response.id}`;
         })
         .catch((err) => {
@@ -235,6 +239,18 @@ const BundleCour = () => {
               persistTableHead={true}
             />
           </div>
+          {pending && (
+              <div
+                className="no-record-hidden"
+                style={{
+                  textAlign: "center",
+                  padding: "1rem",
+                  marginTop: "4rem",
+                }}
+              >
+                <Spinner animation="border" variant="primary" />
+              </div>
+            )}
           {searchData
             ? records
                 .filter((item) =>

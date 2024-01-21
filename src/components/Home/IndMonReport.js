@@ -6,6 +6,7 @@ import BasicExample from "../About/button1";
 import fetchData from "../../axios";
 import Button from "react-bootstrap/Button";
 import { getMonth } from "../../utils/month";
+import Spinner from "react-bootstrap/Spinner";
 
 const customStyles = {
   headRow: {
@@ -35,6 +36,7 @@ class IndMonthRep extends Component {
       records: [],
       filterRecords: [],
       searchString: "",
+      pending: true
     };
   }
 
@@ -46,12 +48,17 @@ class IndMonthRep extends Component {
   };
 
   componentDidMount() {
+    this.setState({
+      ...this.state,
+      pending: true
+    });
     let makeRequest = fetchData();
     makeRequest("GET", "/info/get-all-transactions-by-month")
       .then((res) => {
         this.setState({
           records: res.data.response.reverse(),
           filterRecords: res.data,
+          pending: false
         });
       })
       .catch((err) => {
@@ -66,7 +73,7 @@ class IndMonthRep extends Component {
         selector: (row, idx) => ++idx,
         center: true,
         width: "85px",
-        hide:'sm'
+        hide: "sm",
       },
       {
         name: "year",
@@ -77,13 +84,12 @@ class IndMonthRep extends Component {
         name: "month",
         selector: (row) => getMonth(row.month),
         center: true,
-        
       },
       {
         name: "Quantity",
         selector: (row) => row.total_fake_count,
         center: true,
-        hide:'sm'
+        hide: "sm",
       },
       {
         name: "amount",
@@ -95,7 +101,10 @@ class IndMonthRep extends Component {
     return (
       <div className="">
         <div className="dash-shadow">
-          <div style={{position:"relative"}} className=" row g-3  min-vh-100  d-flex justify-content-center mt-20">
+          <div
+            style={{ position: "relative" }}
+            className=" row g-3  min-vh-100  d-flex justify-content-center mt-20"
+          >
             <h2
               style={{
                 color: "#212450",
@@ -149,79 +158,91 @@ class IndMonthRep extends Component {
               </div>
 
               <div className="reacttable-hidden">
-              <DataTable
-                noDataComponent={"No records to display"}
-                persistTableHead={true}
-                columns={columns}
-                data={
-                  this.state.searchString
-                    ? this.state.records.filter((item) =>
-                        getMonth(item.month)
-                          .toLowerCase()
-                          .startsWith(this.state.searchString.toLowerCase())
-                      )
-                    : this.state.records
-                }
-                customStyles={customStyles}
-                pagination
-              />
+                <DataTable
+                  noDataComponent={"No records to display"}
+                  persistTableHead={true}
+                  columns={columns}
+                  data={
+                    this.state.searchString
+                      ? this.state.records.filter((item) =>
+                          getMonth(item.month)
+                            .toLowerCase()
+                            .startsWith(this.state.searchString.toLowerCase())
+                        )
+                      : this.state.records
+                  }
+                  customStyles={customStyles}
+                  pagination
+                />
               </div>
 
-              {this.state.records.length <= 0 && (
-              <h4
-                className="no-record-hidden"
-                style={{ textAlign: "center", marginTop: "4.5rem" }}
-              >
-                No records to display
-              </h4>
-            )}
-            <div style={{marginTop:"3rem"}}>
-            {this.state.records.map((item) => {
-              return (
+              {(this.state.records.length <= 0 && !this.state.pending) && (
+                <h4
+                  className="no-record-hidden"
+                  style={{ textAlign: "center", marginTop: "4.5rem" }}
+                >
+                  No records to display
+                </h4>
+              )}
+              {this.state.pending && (
                 <div
+                  className="no-record-hidden"
                   style={{
-                    width: "100%",
-                    display: "flex",
-                    flexDirection: "column",
-                    padding: ".5rem",
+                    textAlign: "center",
+                    padding: "1rem",
+                    marginTop: "4rem",
                   }}
                 >
-                  <div className="new-table-shadow new-table-hidden">
+                  <Spinner animation="border" variant="primary" />
+                </div>
+              )}
+              <div style={{ marginTop: "3rem" }}>
+                {this.state.records.map((item) => {
+                  return (
                     <div
                       style={{
+                        width: "100%",
                         display: "flex",
-                        justifyContent: "space-between",
+                        flexDirection: "column",
+                        padding: ".5rem",
                       }}
                     >
-                      <p
-                        style={{
-                          paddingTop: ".5rem",
-                          paddingLeft: ".4rem",
-                          color: "#212a50",
-                          fontWeight: "bold",
-                        }}
-                      >
-                        {/* Rahul */}
-                       Year: {item.year}
-                      </p>
-                      <p
-                        style={{
-                          color: "#212a50",
-                          marginRight: ".5rem",
-                          fontWeight: "500", 
-                           paddingTop: ".5rem",
-                        }}
-                      >
-                       Month: {item.month}
-                      </p>
-                    </div>
-                    <div
-                      style={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                      }}
-                    >
-                      {/* <p
+                      <div className="new-table-shadow new-table-hidden">
+                        <div
+                          style={{
+                            display: "flex",
+                            justifyContent: "space-between",
+                          }}
+                        >
+                          <p
+                            style={{
+                              paddingTop: ".5rem",
+                              paddingLeft: ".4rem",
+                              color: "#212a50",
+                              fontWeight: "bold",
+                            }}
+                          >
+                            {/* Rahul */}
+                            Year: {item.year}
+                          </p>
+                          <p
+                            style={{
+                              color: "#212a50",
+                              marginRight: ".5rem",
+                              fontWeight: "500",
+                              paddingTop: ".5rem",
+                            }}
+                          >
+                            Month: {item.month}
+                          </p>
+                        </div>
+                        <div
+                          style={{
+                            display: "flex",
+                            justifyContent: "space-between",
+                          }}
+                        >
+                          {/* <p
                         style={{
                           color: "green",
                           marginLeft: ".5rem",
@@ -231,31 +252,30 @@ class IndMonthRep extends Component {
                         Course: {item.course_count}
                         <a className="my-dashlink"></a>
                       </p> */}
-                      <p
-                        style={{
-                          color: "green",
-                          marginLeft: ".5rem",
-                          fontWeight: "500",
-                        }}
-                      >
-                       Quantity: {item.total_fake_count}
-                      </p>
-                      <p
-                        style={{
-                          color: "green",
-                          marginRight: ".5rem",
-                          fontWeight: "500",
-                        }}
-                      >
-                        Amount: {item.total_amount}
-                      </p>
+                          <p
+                            style={{
+                              color: "green",
+                              marginLeft: ".5rem",
+                              fontWeight: "500",
+                            }}
+                          >
+                            Quantity: {item.total_fake_count}
+                          </p>
+                          <p
+                            style={{
+                              color: "green",
+                              marginRight: ".5rem",
+                              fontWeight: "500",
+                            }}
+                          >
+                            Amount: {item.total_amount}
+                          </p>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
-              );
-            })}
-            </div>
-
+                  );
+                })}
+              </div>
             </div>
           </div>{" "}
         </div>
