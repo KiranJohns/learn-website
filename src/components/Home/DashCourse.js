@@ -143,7 +143,14 @@ const DashCourse = () => {
     },
     {
       name: "Attempts",
-      selector: (row) => (row?.attempts || 0) + "/20",
+      selector: (row) => (
+        <a
+          className="my-dashlink"
+          href={`/learnCourse/examAttempts/?courseId=${row.id}`}
+        >
+          {row.attempts + "/20"}
+        </a>
+      ),
       center: true,
     },
     {
@@ -155,8 +162,7 @@ const DashCourse = () => {
         let validity = row.validity.split("/").reverse();
         return (
           <>
-            {row.valid
-             ? (
+            {row.valid ? (
               <>
                 {row.attempts < 20 ? (
                   <>
@@ -286,7 +292,11 @@ const DashCourse = () => {
           </h2>
           <div className="reacttable-hidden">
             <div
-              style={{ float: "right", marginBottom: "1.4rem",marginRight:"1rem" }}
+              style={{
+                float: "right",
+                marginBottom: "1.4rem",
+                marginRight: "1rem",
+              }}
               className="p-relative d-inline header__search searchbar-hidden3 "
             >
               <form action="">
@@ -330,21 +340,25 @@ const DashCourse = () => {
             </Suspense>
           </div>
           {records.length <= 0 && !pending && (
-              <h4
+            <h4
               className="no-record-hidden"
               style={{ textAlign: "center", marginTop: "5rem" }}
-              >
-                No records to display
-              </h4>
-            )}
+            >
+              No records to display
+            </h4>
+          )}
           {pending && (
-              <div
-                className="no-record-hidden"
-                style={{ textAlign: "center", padding: "1rem", marginTop: '4rem' }}
-              >
-                <Spinner animation="border" variant="primary" />
-              </div>
-            )}
+            <div
+              className="no-record-hidden"
+              style={{
+                textAlign: "center",
+                padding: "1rem",
+                marginTop: "4rem",
+              }}
+            >
+              <Spinner animation="border" variant="primary" />
+            </div>
+          )}
           <div style={{ marginTop: "2.9rem", paddingTop: "1rem" }}>
             {searchData
               ? records
@@ -362,7 +376,6 @@ const DashCourse = () => {
                           // marginTop: "3rem",
                           display: "flex",
                           flexDirection: "column",
-                          
                         }}
                       >
                         <div className="new-table-shadow new-table-res new-table-hidden">
@@ -529,7 +542,7 @@ const DashCourse = () => {
                         // marginTop: "3rem",
                         display: "flex",
                         flexDirection: "column",
-                        padding:".5rem"
+                        padding: ".5rem",
                       }}
                     >
                       <div className="new-table-shadow new-table-hidden">
@@ -680,11 +693,38 @@ const DashCourse = () => {
                           </>
                         </div>
 
-                        <div style={{ display: 'flex', justifyContent: "space-between" }}>
-                        <p style={{ color: '#0d6efd', marginLeft: ".5rem", fontWeight: "500" }}>Validity:{" "} {item?.validity}</p>
-                        <p style={{ color: '#0d6efd', marginRight: ".5rem", fontWeight: "500" }}>Attempts:{" "}<a href={`/learnCourse/examAttempts/?courseId=${item?.id}`} className="my-dashlink">{item?.attempts || 0}</a>{"/20"}</p>   
-                      </div>
-
+                        <div
+                          style={{
+                            display: "flex",
+                            justifyContent: "space-between",
+                          }}
+                        >
+                          <p
+                            style={{
+                              color: "#0d6efd",
+                              marginLeft: ".5rem",
+                              fontWeight: "500",
+                            }}
+                          >
+                            Validity: {item?.validity}
+                          </p>
+                          <p
+                            style={{
+                              color: "#0d6efd",
+                              marginRight: ".5rem",
+                              fontWeight: "500",
+                            }}
+                          >
+                            Attempts:{" "}
+                            <a
+                              href={`/learnCourse/examAttempts/?courseId=${item?.id}`}
+                              className="my-dashlink"
+                            >
+                              {item?.attempts || 0}
+                            </a>
+                            {"/20"}
+                          </p>
+                        </div>
                       </div>
                     </div>
                   );

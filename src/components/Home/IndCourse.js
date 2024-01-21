@@ -119,7 +119,14 @@ const IndCourse = () => {
     },
     {
       name: "Attempts",
-      selector: (row) => (row?.attempts || 0) + "/20",
+      selector: (row) => (
+        <a
+          className="my-dashlink"
+          href={`/learnCourse/examAttempts/?courseId=${row.id}`}
+        >
+          {row.attempts + "/20"}
+        </a>
+      ),
       hide: "md",
     },
 
