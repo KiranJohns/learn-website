@@ -84,6 +84,7 @@ const CompAssignCourse = () => {
 
   async function getData() {
     console.clear();
+    setPending(true)
     let assignedRes = await makeRequest(
       "GET",
       "/course/get-all-assigned-course"
@@ -856,6 +857,22 @@ const CompAssignCourse = () => {
               </Suspense>
             </div>
 
+            {records.length <= 0 && !pending && (
+              <h4
+              className="no-record-hidden"
+              style={{ textAlign: "center", marginTop: "5rem" }}
+              >
+                No records to display
+              </h4>
+            )}
+            {pending && (
+              <div
+                className="no-record-hidden"
+                style={{ textAlign: "center", padding: "1rem", marginTop: '4rem' }}
+              >
+                <Spinner animation="border" variant="primary" />
+              </div>
+            )}
             <div style={{ marginTop: "2.8rem", paddingTop: "1rem" }}>
               {searchString
                 ? records
