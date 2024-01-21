@@ -61,6 +61,7 @@ const CompanyBundle = () => {
   useEffect(() => {
     const fetchDataAsync = async () => {
       let makeRequest = fetchData();
+      setPending(true);
 
       try {
         const onGoingRes = await makeRequest(
@@ -257,19 +258,18 @@ const CompanyBundle = () => {
                 />
               </Suspense>
             </div>
-
-              {pending && (
-                <div
-                  className="no-record-hidden"
-                  style={{ textAlign: "center", padding: "1rem" }}
-                >
-                  <Spinner animation="border" variant="primary" />
-                </div>
-              )}
+            {pending && (
+              <div
+                className="no-record-hidden"
+                style={{ textAlign: "center", padding: "1rem" }}
+              >
+                <Spinner animation="border" variant="primary" />
+              </div>
+            )}
             {records.length <= 0 && !pending && (
               <h4
-                className="no-record-hidden"
-                style={{ textAlign: "center", marginTop: "5rem" }}
+              className="no-record-hidden"
+              style={{ textAlign: "center", marginTop: "5rem" }}
               >
                 No records to display
               </h4>

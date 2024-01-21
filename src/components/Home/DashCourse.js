@@ -55,6 +55,7 @@ const DashCourse = () => {
 
   const getData = async () => {
     try {
+      setPending(true);
       const [assignedCourses, onGoingCourse] = await Promise.all([
         makeRequest("GET", "/course/get-all-assigned-course"),
         makeRequest("GET", "/on-going-course/get-all-on-going-courses"),
@@ -328,6 +329,22 @@ const DashCourse = () => {
               />
             </Suspense>
           </div>
+          {records.length <= 0 && !pending && (
+              <h4
+              className="no-record-hidden"
+              style={{ textAlign: "center", marginTop: "5rem" }}
+              >
+                No records to display
+              </h4>
+            )}
+          {pending && (
+              <div
+                className="no-record-hidden"
+                style={{ textAlign: "center", padding: "1rem", marginTop: '4rem' }}
+              >
+                <Spinner animation="border" variant="primary" />
+              </div>
+            )}
           <div style={{ marginTop: "2.9rem", paddingTop: "1rem" }}>
             {searchData
               ? records
