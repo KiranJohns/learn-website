@@ -146,7 +146,7 @@ const ManageMonthRep = () => {
               pagination
             />
             </div>
-            {records.length <= 0 && (
+            {(records.length <= 0 && !pending) && (
               <h4
                 className="no-record-hidden"
                 style={{ textAlign: "center", marginTop: "4.5rem" }}
