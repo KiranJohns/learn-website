@@ -1005,7 +1005,7 @@ const CompAssignCourse = () => {
                     // }
 
                     return (
-                      <div style={{ display: "flex", flexDirection: "column" }}>
+                      <div style={{ display: "flex", flexDirection: "column", manager: '1rem' }}>
                         <div className="new-table-shadow  new-table-hidden">
                           <div
                             style={{
