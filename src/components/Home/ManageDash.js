@@ -10,6 +10,7 @@ import { BsSearch } from "react-icons/bs";
 import { IoHandLeft } from "react-icons/io5";
 import Button from "react-bootstrap/Button";
 import { FaEye } from "react-icons/fa";
+import Spinner from "react-bootstrap/Spinner";
 
 const customStyles = {
   headRow: {
@@ -42,6 +43,7 @@ class ManageDash extends Component {
       filterRecords: [],
       searchString: "",
       info: {},
+      pending: true,
     };
   }
 
@@ -58,6 +60,10 @@ class ManageDash extends Component {
 
   getData = () => {
     try {
+      this.setState({
+        ...this.state,
+        pending: true,
+      });
       const makeRequest = fetchData();
       makeRequest("GET", "/on-going-course/get-all-on-going-courses")
         .then((res) => {
@@ -65,6 +71,7 @@ class ManageDash extends Component {
           this.setState({
             records: res.data.response,
             filterRecords: res.data,
+            pending: false,
           });
         })
         .catch((err) => {
@@ -96,8 +103,6 @@ class ManageDash extends Component {
         name: "Name",
         selector: (row) => (row.name ? row.name : row.Name),
         center: true,
-
-      
       },
       // {
       //   name: "category",
@@ -407,7 +412,7 @@ class ManageDash extends Component {
           <div className="dash-shadow">
             <div className=" row g-3  min-vh-100  d-flex justify-content-center mt-30">
               <div
-                  className="search-center-new"
+                className="search-center-new"
                 style={{
                   // display: "flex",
                   marginTop: "2.5rem",
@@ -494,8 +499,26 @@ class ManageDash extends Component {
                       pagination
                     />
                   </div>
-                  
-                  {this.state.records?.length <= 0 && <h4 className="no-record-hidden" style={{textAlign: 'center',marginTop:"1rem",}}>No records to display</h4>}
+                  {this.state.pending && (
+                    <div
+                      className="no-record-hidden"
+                      style={{
+                        textAlign: "center",
+                        padding: "1rem",
+                        marginTop: "4rem",
+                      }}
+                    >
+                      <Spinner animation="border" variant="primary" />
+                    </div>
+                  )}
+                  {(this.state.records?.length <= 0 && !this.state.pending) && (
+                    <h4
+                      className="no-record-hidden"
+                      style={{ textAlign: "center", marginTop: "1rem" }}
+                    >
+                      No records to display
+                    </h4>
+                  )}
                   {this.state.searchString
                     ? this.state.records
                         .filter((item) =>
@@ -507,10 +530,7 @@ class ManageDash extends Component {
                           let validity = item.validity.split("/").reverse();
                           let flag = false;
                           let title = "Start";
-                          if (
-                            !item.valid ||
-                            item?.attempts >= 20
-                          ) {
+                          if (!item.valid || item?.attempts >= 20) {
                             title = "Expired";
                             flag = false;
                           } else {
@@ -602,10 +622,7 @@ class ManageDash extends Component {
                         let validity = item.validity.split("/").reverse();
                         let flag = false;
                         let title = "Start";
-                        if (
-                          !item.valid ||
-                          item?.attempts >= 20
-                        ) {
+                        if (!item.valid || item?.attempts >= 20) {
                           title = "Expired";
                           flag = false;
                         } else {
@@ -704,11 +721,33 @@ class ManageDash extends Component {
                                 </>
                               </div>
 
-                              <div style={{ display: 'flex', justifyContent: "space-between" }}>
-                        <p style={{ color: 'green', marginLeft: ".5rem", fontWeight: "500" }}>Attempts:{" "}{item?.attempts || 0}{"/20"}<a className="my-dashlink"></a></p>
-                        <p style={{ color: 'green', marginRight: ".5rem", fontWeight: "500" }}>Validity:{" "}{item?.validity}</p>
-                      </div>
-
+                              <div
+                                style={{
+                                  display: "flex",
+                                  justifyContent: "space-between",
+                                }}
+                              >
+                                <p
+                                  style={{
+                                    color: "green",
+                                    marginLeft: ".5rem",
+                                    fontWeight: "500",
+                                  }}
+                                >
+                                  Attempts: {item?.attempts || 0}
+                                  {"/20"}
+                                  <a className="my-dashlink"></a>
+                                </p>
+                                <p
+                                  style={{
+                                    color: "green",
+                                    marginRight: ".5rem",
+                                    fontWeight: "500",
+                                  }}
+                                >
+                                  Validity: {item?.validity}
+                                </p>
+                              </div>
                             </div>
                           </div>
                         );
