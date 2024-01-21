@@ -9,6 +9,7 @@ import DataTable from "react-data-table-component";
 import { useRouter } from "next/router";
 import { IoHandLeft } from "react-icons/io5";
 import { decryptData } from "../../utils/crtyper";
+import { Spinner } from "react-bootstrap";
 
 const customStyles = {
   headRow: {
@@ -37,6 +38,7 @@ function DashIndividual() {
   const [records, setRecords] = useState([]);
   const [searchString, setSearchString] = useState("");
   const [filterRecords, setFilterRecords] = useState([]);
+  const [pending, setPending] = useState(true);
   const [info, setInfo] = useState({});
   const route = useRouter();
 
@@ -61,12 +63,14 @@ function DashIndividual() {
   const makeRequest = fetchData();
 
   const getData = () => {
+    setPending(true);
     try {
       makeRequest("GET", "/on-going-course/get-all-on-going-courses")
         .then((res) => {
           console.log(res.data.response);
           setRecords(res.data.response.reverse());
           setFilterRecords(res.data);
+          setPending(false);
         })
         .catch((err) => {
           console.log(err);
@@ -423,7 +427,7 @@ function DashIndividual() {
           <div className=" row g-3  min-vh-100  d-flex justify-content-center mt-30">
             <div style={{}}>
               <div
-              className="search-center-new"
+                className="search-center-new"
                 style={{
                   // display: "flex",
                   // alignItems: "center",
@@ -477,7 +481,26 @@ function DashIndividual() {
                   />
                 </div>
               </div>
-              {records.length <= 0 && <h4 className="no-record-hidden" style={{textAlign: 'center',marginTop:"2rem",}}>No records to display</h4>}
+              {records.length <= 0 && !pending && (
+                <h4
+                  className="no-record-hidden"
+                  style={{ textAlign: "center", marginTop: "2rem" }}
+                >
+                  No records to display
+                </h4>
+              )}
+              {pending && (
+              <div
+                className="no-record-hidden"
+                style={{
+                  textAlign: "center",
+                  padding: "1rem",
+                  marginTop: "4rem",
+                }}
+              >
+                <Spinner animation="border" variant="primary" />
+              </div>
+            )}
               {searchString
                 ? records
                     .filter((item) =>
@@ -534,7 +557,8 @@ function DashIndividual() {
                                         <a
                                           className="btn btn-success"
                                           onClick={() => {
-                                            location.href = '/individual/certificates';
+                                            location.href =
+                                              "/individual/certificates";
                                           }}
                                           style={{
                                             height: "35px",
@@ -616,7 +640,7 @@ function DashIndividual() {
                                   ) : (
                                     <>
                                       <a
-                                        href={'/individual/certificates'}
+                                        href={"/individual/certificates"}
                                         style={{
                                           height: "35px",
                                           marginTop: "1rem",
