@@ -47,6 +47,7 @@ const IndCAvail = () => {
   }, []);
 
   const getData = () => {
+    setPending(true)
     let url1 = "/course/get-all-bought-course";
     Promise.all([makeRequest("GET", url1)]).then((res) => {
       let arr = [...res[0].data.response];
@@ -160,8 +161,27 @@ const IndCAvail = () => {
             />
           </div>
           <div style={{paddingTop:'1rem',marginTop:"3rem",}}>
-          {
-            searchData
+          {records.length <= 0 && !pending && (
+              <h4
+                className="no-record-hidden"
+                style={{ textAlign: "center", marginTop: "2rem" }}
+              >
+                No records to display
+              </h4>
+            )}
+            {pending && (
+              <div
+                className="no-record-hidden"
+                style={{
+                  textAlign: "center",
+                  padding: "1rem",
+                  marginTop: "4rem",
+                }}
+              >
+                <Spinner animation="border" variant="primary" />
+              </div>
+            )}
+          {searchData
               ? records.filter((item) =>
                   (item?.Name)
                     .toLowerCase()
