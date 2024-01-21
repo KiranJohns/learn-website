@@ -472,7 +472,7 @@ const IndCourse = () => {
                         flexDirection: "column",
                       }}
                     >
-                      <div className="new-table-shadow new-table-res new-table-hidden">
+                      <div className="new-table-shadow  new-table-hidden">
                         <div
                           style={{
                             display: "flex",
@@ -592,6 +592,12 @@ const IndCourse = () => {
                           </>
                           {/* <button className="btn btn-success" style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}>View</button> */}
                         </div>
+                      
+                        <div style={{ display: 'flex', justifyContent: "space-between" }}>
+                        <p style={{ color: '#0d6efd', marginLeft: ".5rem", fontWeight: "500" }}>Validity:{" "} {item?.validity}</p>
+                        <p style={{ color: '#0d6efd', marginRight: ".5rem", fontWeight: "500" }}>Attempts:{" "}<a href={`/learnCourse/examAttempts/?courseId=${item?.id}`} className="my-dashlink">{item?.attempts || 0}</a>{"/20"}</p>   
+                      </div>
+
                       </div>
                     </div>
                   );

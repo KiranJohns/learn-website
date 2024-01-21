@@ -286,8 +286,8 @@ const DashCourse = () => {
           </h2>
           <div className="reacttable-hidden">
             <div
-              style={{ float: "right", marginBottom: "1.4rem" }}
-              className="p-relative d-inline header__search searchbar-hidden3"
+              style={{ float: "right", marginBottom: "1.4rem",marginRight:"1rem" }}
+              className="p-relative d-inline header__search searchbar-hidden3 "
             >
               <form action="">
                 <input
@@ -680,13 +680,10 @@ const DashCourse = () => {
                           </>
                         </div>
 
-
                         <div style={{ display: 'flex', justifyContent: "space-between" }}>
                         <p style={{ color: '#0d6efd', marginLeft: ".5rem", fontWeight: "500" }}>Validity:{" "} {item?.validity}</p>
-                        <p style={{ color: '#0d6efd', marginRight: ".5rem", fontWeight: "500" }}>Attempts:{" "}<a href={`/learnCourse/examAttempts/?courseId=${item?.id}`} className="my-dashlink">{item?.attempts || 0}</a>{"/20"}</p>
-                       
+                        <p style={{ color: '#0d6efd', marginRight: ".5rem", fontWeight: "500" }}>Attempts:{" "}<a href={`/learnCourse/examAttempts/?courseId=${item?.id}`} className="my-dashlink">{item?.attempts || 0}</a>{"/20"}</p>   
                       </div>
-
 
                       </div>
                     </div>

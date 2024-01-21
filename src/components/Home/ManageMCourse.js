@@ -104,19 +104,21 @@ const ManageMyCourse = () => {
       selector: (row) => row?.Name || row?.name,
       sortable: true,
       center: true,
-      width: "350px",
+      width: "310px",
     },
     {
       name: "validity",
       selector: (row) => row?.validity,
       center: true,
-      hide: "md",
+
+      width: "110px",
+      // hide: "md",
     },
     {
       center: true,
       name: "Attempts",
       selector: (row) => (row?.attempts || 0) + "/20",
-      hide: "md",
+      hide: 725,
     },
     {
       center: true,
@@ -474,7 +476,7 @@ const ManageMyCourse = () => {
                         flexDirection: "column",
                       }}
                     >
-                      <div className="new-table-shadow new-table-res new-table-hidden">
+                      <div className="new-table-shadow  new-table-hidden">
                         <div
                           style={{
                             display: "flex",
@@ -600,6 +602,11 @@ const ManageMyCourse = () => {
                           </>
                           {/* <button className="btn btn-success" style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}>View</button> */}
                         </div>
+                        
+                        <div style={{ display: 'flex', justifyContent: "space-between" }}>
+                        <p style={{ color: '#0d6efd', marginLeft: ".5rem", fontWeight: "500" }}>Validity:{" "} {item?.validity}</p>
+                        <p style={{ color: '#0d6efd', marginRight: ".5rem", fontWeight: "500" }}>Attempts:{" "}<a href={`/learnCourse/examAttempts/?courseId=${item?.id}`} className="my-dashlink">{item?.attempts || 0}</a>{"/20"}</p>   
+                      </div>
                       </div>
                     </div>
                   );

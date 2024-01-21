@@ -1006,7 +1006,7 @@ const CompAssignCourse = () => {
 
                     return (
                       <div style={{ display: "flex", flexDirection: "column" }}>
-                        <div className="new-table-shadow new-table-res new-table-hidden">
+                        <div className="new-table-shadow  new-table-hidden">
                           <div
                             style={{
                               display: "flex",
@@ -1072,6 +1072,52 @@ const CompAssignCourse = () => {
                               )}
                             </>
                           </div>
+                        
+                          <div
+                            style={{
+                              display: "flex",
+                              justifyContent: "space-between",
+                            }}
+                          >
+                            {/* <p
+                        style={{
+                          color: "green",
+                          marginLeft: ".5rem",
+                          fontWeight: "500",
+                        }}
+                      >
+                       Time: {item.time}
+                        <a className="my-dashlink"></a>
+                      </p> */}
+                            <p
+                              style={{
+                                color: "#0d6efd",
+                                marginLeft: ".5rem",
+                                fontWeight: "500",
+                              }}
+                            >
+                              Purchased: {item.fake_count}
+                            </p>
+                            <p
+                              style={{
+                                color: "#0d6efd",
+                                marginRight: ".5rem",
+                                fontWeight: "500",
+                              }}
+                            >
+                              Assigned: {item.fake_count-item.course_count}
+                            </p>
+                            <p
+                              style={{
+                                color: "#0d6efd",
+                                marginRight: ".5rem",
+                                fontWeight: "500",
+                              }}
+                            >
+                              Remaning: {item.course_count}
+                            </p>
+                          </div>
+
                         </div>
                       </div>
                     );

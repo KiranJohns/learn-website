@@ -176,7 +176,7 @@ const ManagerAssignCourse = () => {
       selector: (row, idx) => ++idx,
       center: true,
       width: "80px",
-      hide: "md",
+      hide: 1000,
     },
     {
       name: "course",
@@ -189,7 +189,7 @@ const ManagerAssignCourse = () => {
       name: "validity",
       selector: (row) => row.validity,
       center: true,
-      hide: "md",
+      hide: 708,
     },
     {
       name: "count",
@@ -695,7 +695,7 @@ const ManagerAssignCourse = () => {
                                 fontWeight: "500",
                               }}
                             >
-                              Quantity: {item.count}
+                              Validity: {item.validity}
                             </p>
                             <p
                               style={{
@@ -704,7 +704,7 @@ const ManagerAssignCourse = () => {
                                 fontWeight: "500",
                               }}
                             >
-                              Amount: {item.amount}
+                             Count: {item.course_count}
                             </p>
                           </div>
                         </div>
