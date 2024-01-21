@@ -66,6 +66,7 @@ const ManagerAssignCourse = () => {
 
   const makeRequest = fetchData();
   async function getData() {
+    setPending(true);
     let purchasedRes = await makeRequest("GET", "/course/get-bought-course");
     let assignedRes = await makeRequest(
       "GET",
@@ -175,7 +176,7 @@ const ManagerAssignCourse = () => {
       selector: (row, idx) => ++idx,
       center: true,
       width: "80px",
-      hide:"md",
+      hide: "md",
     },
     {
       name: "course",
@@ -188,7 +189,7 @@ const ManagerAssignCourse = () => {
       name: "validity",
       selector: (row) => row.validity,
       center: true,
-      hide:"md",
+      hide: "md",
     },
     {
       name: "count",
@@ -257,7 +258,7 @@ const ManagerAssignCourse = () => {
               display: "flex",
               justifyContent: "center",
               position: "absolute",
-              marginTop:"1.2rem",
+              marginTop: "1.2rem",
               fontSize: 36,
             }}
           >
@@ -284,7 +285,10 @@ const ManagerAssignCourse = () => {
                 <div
                   style={{ display: "flex", justifyContent: "space-between" }}
                 >
-                  <h5 className="assign-cname" style={{ color: "#212a50", marginLeft: "1rem" }}>
+                  <h5
+                    className="assign-cname"
+                    style={{ color: "#212a50", marginLeft: "1rem" }}
+                  >
                     {courseName}
                   </h5>{" "}
                   <h5 style={{ color: "#212a50", marginRight: "1rem" }}>
@@ -310,7 +314,7 @@ const ManagerAssignCourse = () => {
                         placeholder="1"
                       />
                     </div>
-                    <div  className="form-group assign-ml">
+                    <div className="form-group assign-ml">
                       <label
                         style={{ visibility: "hidden" }}
                         for="exampleInputEmail1"
@@ -364,7 +368,12 @@ const ManagerAssignCourse = () => {
                         >
                           Name
                         </span>
-                        <span className="assign-modal" style={{ textAlign: "center" }}>Email</span>
+                        <span
+                          className="assign-modal"
+                          style={{ textAlign: "center" }}
+                        >
+                          Email
+                        </span>
                         <span
                           style={{ width: "fit-content", marginRight: "1rem" }}
                         >
@@ -483,24 +492,105 @@ const ManagerAssignCourse = () => {
                 pagination
               />
             </div>
-            {records.length <= 0 && (
+            {records.length <= 0 && !pending && (
               <h4
                 className="no-record-hidden"
-                style={{ textAlign: "center", marginTop: "4.5rem" }}
+                style={{ textAlign: "center", marginTop: "2rem" }}
               >
                 No records to display
               </h4>
             )}
-            <div style={{    paddingTop: "1rem",
-                        marginTop: "3rem",}}>
-            {searchString
-              ? records
-                  .filter((item) =>
-                    (item.name || item.Name)
-                      .toLowerCase()
-                      .startsWith(searchString.toLowerCase())
-                  )
-                  .map((item) => {
+            {pending && (
+              <div
+                className="no-record-hidden"
+                style={{
+                  textAlign: "center",
+                  padding: "1rem",
+                  marginTop: "4rem",
+                }}
+              >
+                <Spinner animation="border" variant="primary" />
+              </div>
+            )}
+            <div style={{ paddingTop: "1rem", marginTop: "3rem" }}>
+              {searchString
+                ? records
+                    .filter((item) =>
+                      (item.name || item.Name)
+                        .toLowerCase()
+                        .startsWith(searchString.toLowerCase())
+                    )
+                    .map((item) => {
+                      let validity = item.validity.split("/").reverse();
+                      let flag = false;
+                      let title = "Start";
+                      if (item.valid) {
+                        flag = true;
+                      } else {
+                        flag = false;
+                      }
+                      return (
+                        <div
+                          style={{
+                            paddingTop: "1rem",
+                            marginTop: "3rem",
+                            display: "flex",
+                            flexDirection: "column",
+                          }}
+                        >
+                          <div className="new-table-shadow new-table-res new-table-hidden">
+                            <div
+                              style={{
+                                display: "flex",
+                                justifyContent: "space-between",
+                              }}
+                            >
+                              <p
+                                style={{
+                                  paddingTop: "1.5rem",
+                                  paddingLeft: ".4rem",
+                                  color: "#212a50",
+                                  fontWeight: "bold",
+                                }}
+                              >
+                                {item.name || item.Name}
+                              </p>
+                              <>
+                                {flag ? (
+                                  <a
+                                    className="btn btn-primary"
+                                    onClick={() => {
+                                      openModal();
+                                      setCourseName(item.Name || item.name);
+                                      setAssignData((prev) => {
+                                        return {
+                                          ...prev,
+                                          course_id: item.id,
+                                        };
+                                      });
+                                      if (item.from_purchased) {
+                                        setFrom("purchased");
+                                      } else {
+                                        setFrom("assigned");
+                                      }
+                                      setSelectedBundleCount(item.course_count);
+                                    }}
+                                  >
+                                    Assign To
+                                  </a>
+                                ) : (
+                                  <>
+                                    <a className="btn btn-danger">Expired</a>
+                                  </>
+                                )}
+                              </>
+                              {/* <button className="btn btn-success" style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}>View</button> */}
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })
+                : records.map((item) => {
                     let validity = item.validity.split("/").reverse();
                     let flag = false;
                     let title = "Start";
@@ -512,13 +602,12 @@ const ManagerAssignCourse = () => {
                     return (
                       <div
                         style={{
-                          paddingTop: "1rem",
-                          marginTop: "3rem",
+                          marginTop: ".7rem",
                           display: "flex",
                           flexDirection: "column",
                         }}
                       >
-                        <div className="new-table-shadow new-table-res new-table-hidden">
+                        <div className="new-table-shadow  new-table-hidden">
                           <div
                             style={{
                               display: "flex",
@@ -555,95 +644,41 @@ const ManagerAssignCourse = () => {
                                     }
                                     setSelectedBundleCount(item.course_count);
                                   }}
+                                  style={{
+                                    height: "35px",
+                                    marginTop: "1rem",
+                                    marginRight: ".4rem",
+                                    width: "6rem !important",
+                                  }}
                                 >
                                   Assign To
                                 </a>
                               ) : (
                                 <>
-                                  <a className="btn btn-danger">Expired</a>
+                                  <a
+                                    style={{
+                                      height: "35px",
+                                      marginTop: "1rem",
+                                      marginRight: ".4rem",
+                                      width: "6rem !important",
+                                    }}
+                                    className="btn btn-danger"
+                                  >
+                                    Expired
+                                  </a>
                                 </>
                               )}
                             </>
                             {/* <button className="btn btn-success" style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}>View</button> */}
                           </div>
-                        </div>
-                      </div>
-                    );
-                  })
-              : records.map((item) => {
-                let validity = item.validity.split("/").reverse();
-                let flag = false;
-                let title = "Start";
-                if (item.valid) {
-                  flag = true;
-                } else {
-                  flag = false;
-                }
-                return (
-                  <div
-                    style={{
-                       marginTop:".7rem",
-                      display: "flex",
-                      flexDirection: "column",
-                    }}
-                  >
-                    <div className="new-table-shadow  new-table-hidden">
-                      <div
-                        style={{
-                          display: "flex",
-                          justifyContent: "space-between",
-                        }}
-                      >
-                        <p
-                          style={{
-                            paddingTop: "1.5rem",
-                            paddingLeft: ".4rem",
-                            color: "#212a50",
-                            fontWeight: "bold",
-                          }}
-                        >
-                          {item.name || item.Name}
-                        </p>
-                        <>
-                          {flag ? (
-                            <a
-                              className="btn btn-primary"
-                              onClick={() => {
-                                openModal();
-                                setCourseName(item.Name || item.name);
-                                setAssignData((prev) => {
-                                  return {
-                                    ...prev,
-                                    course_id: item.id,
-                                  };
-                                });
-                                if (item.from_purchased) {
-                                  setFrom("purchased");
-                                } else {
-                                  setFrom("assigned");
-                                }
-                                setSelectedBundleCount(item.course_count);
-                              }}
-                              style={{height:'35px',marginTop:"1rem", marginRight:'.4rem',  width: "6rem !important",}}
-                            >
-                              Assign To
-                            </a>
-                          ) : (
-                            <>
-                              <a style={{height:'35px',marginTop:"1rem", marginRight:'.4rem',   width: "6rem !important",}} className="btn btn-danger">Expired</a>
-                            </>
-                          )}
-                        </>
-                        {/* <button className="btn btn-success" style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}>View</button> */}
-                      </div>
-                     
-                      <div
-                      style={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                      }}
-                    >
-                      {/* <p
+
+                          <div
+                            style={{
+                              display: "flex",
+                              justifyContent: "space-between",
+                            }}
+                          >
+                            {/* <p
                         style={{
                           color: "green",
                           marginLeft: ".5rem",
@@ -653,31 +688,30 @@ const ManagerAssignCourse = () => {
                        Time: {item.time}
                         <a className="my-dashlink"></a>
                       </p> */}
-                     <p
-                        style={{
-                          color: "green",
-                          marginLeft: ".5rem",
-                          fontWeight: "500",
-                        }} 
-                      >
-                        Quantity: {item.count}
-                      </p>
-                      <p
-                        style={{
-                          color: "green",
-                          marginRight: ".5rem",
-                          fontWeight: "500",
-                        }}
-                      >
-                        Amount: {item.amount}
-                      </p>
-                    </div>
-
-                    </div>
-                  </div>
-                );
-              })}
-              </div>
+                            <p
+                              style={{
+                                color: "green",
+                                marginLeft: ".5rem",
+                                fontWeight: "500",
+                              }}
+                            >
+                              Quantity: {item.count}
+                            </p>
+                            <p
+                              style={{
+                                color: "green",
+                                marginRight: ".5rem",
+                                fontWeight: "500",
+                              }}
+                            >
+                              Amount: {item.amount}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+            </div>
           </div>
         </div>{" "}
       </div>
