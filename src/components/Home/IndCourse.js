@@ -55,6 +55,7 @@ const IndCourse = () => {
 
   const getData = async () => {
     try {
+      setPending(true);
       let onGoingCourseUrl = "/on-going-course/get-all-on-going-courses";
       let url1 = "/course/get-bought-course";
       let url2 = "/course/get-all-assigned-course";
@@ -299,6 +300,26 @@ const IndCourse = () => {
             />
           </div>
           <div style={{ marginTop: "2rem" }}>
+            {records.length <= 0 && !pending && (
+              <h4
+                className="no-record-hidden"
+                style={{ textAlign: "center", marginTop: "2rem" }}
+              >
+                No records to display
+              </h4>
+            )}
+            {pending && (
+              <div
+                className="no-record-hidden"
+                style={{
+                  textAlign: "center",
+                  padding: "1rem",
+                  marginTop: "4rem",
+                }}
+              >
+                <Spinner animation="border" variant="primary" />
+              </div>
+            )}
             {searchData
               ? records
                   .filter((item) =>
