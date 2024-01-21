@@ -248,7 +248,7 @@ class ManageDash extends Component {
             >
               <div className="ag-courses_item-comp " style={{ marginLeft: "" }}>
                 <a
-                  href="/bundle/bundle-all"
+                  href="/bundle/all-bundles"
                   className="ag-courses-item_link-comp"
                 >
                   <div className="ag-courses-item_bg-comp"></div>
@@ -274,7 +274,7 @@ class ManageDash extends Component {
                 className="ag-courses_item-comp"
                 style={{ marginLeft: ".5rem" }}
               >
-                <a href="/course-all" className="ag-courses-item_link-comp">
+                <a href="/all-courses" className="ag-courses-item_link-comp">
                   <div className="ag-courses-item_bg-comp"></div>
                   <div
                     className="bi bi-book ag-courses-item_date-box-new"

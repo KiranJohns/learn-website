@@ -50,11 +50,12 @@ const Footer = () => {
                                        <li><Link href="/aboutus"><a>About Us</a></Link></li>
                                        <li><Link href="/all-courses"><a>Courses</a></Link></li>
                                        
-                                       <li><Link href="/"><a>How it Works</a></Link></li>
+                                       {/* <li><Link href="/"><a>How it Works</a></Link></li> */}
                                        <li><Link href="/blog"><a>Blog</a></Link></li>
                                        <li><Link href="/bundle/all-bundles"><a>Bundles</a></Link></li>
                                       
                                        <li><Link href="/contact"><a>Contact Us</a></Link></li>
+                                       <li><Link href="/faq"><a>FAQ</a></Link></li>
                                     </ul>
                                  </div>
                               </div>
@@ -72,7 +73,7 @@ const Footer = () => {
                                        <li><Link href="/privacy"><a>Privacy</a></Link></li>
                                        <li><Link href="/cookies"><a>Cookies</a></Link></li>                                
                                        <li><Link href="/termsandconditions"><a>Terms & Conditions</a></Link></li>
-                                       <li><Link href="/faq"><a>FAQ</a></Link></li>
+                                      
                                        <li><Link href="/sign-in"><a>Sign In</a></Link></li>
                                        <li><Link href="/sign-up"><a>Sign Up</a></Link></li>
                                     </ul>

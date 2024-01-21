@@ -258,10 +258,11 @@ const CompanyBundle = () => {
                 />
               </Suspense>
             </div>
+            
             {pending && (
               <div
                 className="no-record-hidden"
-                style={{ textAlign: "center", padding: "1rem" }}
+                style={{ textAlign: "center", marginTop: "5rem" }}
               >
                 <Spinner animation="border" variant="primary" />
               </div>
