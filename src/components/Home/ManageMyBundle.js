@@ -41,6 +41,7 @@ const ManagerBundle = () => {
   const getData = async () => {
     console.clear();
     try {
+      setPending(true)
       const onGoingRes = await makeRequest(
         "GET",
         "/bundle/get-on-going-bundles"
@@ -224,7 +225,19 @@ const ManagerBundle = () => {
               persistTableHead={true}
             />
           </div>
-          {records.length <= 0 && <h4 className="no-record-hidden" style={{textAlign: 'center',marginTop:"5rem",}}>No records to display</h4>}
+          {pending && (
+              <div
+                className="no-record-hidden"
+                style={{
+                  textAlign: "center",
+                  padding: "1rem",
+                  marginTop: "4rem",
+                }}
+              >
+                <Spinner animation="border" variant="primary" />
+              </div>
+            )}
+          {(records.length <= 0 && !pending) && <h4 className="no-record-hidden" style={{textAlign: 'center',marginTop:"5rem",}}>No records to display</h4>}
           <div style={{ marginTop: "3rem", paddingTop: "1rem" }}>
             {searchString
               ? records
