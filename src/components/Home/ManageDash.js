@@ -10,6 +10,7 @@ import { BsSearch } from "react-icons/bs";
 import { IoHandLeft } from "react-icons/io5";
 import Button from "react-bootstrap/Button";
 import { FaEye } from "react-icons/fa";
+import Spinner from "react-bootstrap/Spinner";
 
 const customStyles = {
   headRow: {
@@ -96,8 +97,6 @@ class ManageDash extends Component {
         name: "Name",
         selector: (row) => (row.name ? row.name : row.Name),
         center: true,
-
-      
       },
       // {
       //   name: "category",
