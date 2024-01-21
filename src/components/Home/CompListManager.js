@@ -40,6 +40,7 @@ const CompListManager = () => {
   const makeRequest = fetchData();
 
   useEffect(() => {
+    setPending(true);
     getData();
   }, []);
 
