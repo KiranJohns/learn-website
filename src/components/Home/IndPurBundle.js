@@ -42,6 +42,7 @@ const IndPurBundle = () => {
   };
 
   useEffect(() => {
+    setPending(true);
     let makeRequest = fetchData();
     makeRequest("GET", "/info/get-purchased-bundles")
       .then((res) => {
@@ -61,7 +62,7 @@ const IndPurBundle = () => {
       selector: (row, idx) => ++idx,
       width: "70px",
       center: true,
-      hide:'md'
+      hide: "md",
     },
     {
       name: "Bundles",
@@ -73,7 +74,7 @@ const IndPurBundle = () => {
       name: "validity",
       selector: (row) => row.validity,
       center: true,
-      hide:'md'
+      hide: "md",
     },
     {
       name: "count",
@@ -96,8 +97,10 @@ const IndPurBundle = () => {
   return (
     <div className="">
       <div className="dash-shadow">
-        <div  style={{ position: "relative" }}
-        className=" row g-3  min-vh-100  d-flex justify-content-center mt-20">
+        <div
+          style={{ position: "relative" }}
+          className=" row g-3  min-vh-100  d-flex justify-content-center mt-20"
+        >
           <h2
             style={{
               color: "#212450",
@@ -172,8 +175,27 @@ const IndPurBundle = () => {
               persistTableHead={true}
             />
           </div>
-          <div style={{marginTop: '4rem'}}>
-          {records.length <= 0 && <h4 className="no-record-hidden" style={{textAlign: 'center',marginTop:"4rem",}}>No records to display</h4>}
+          <div style={{ marginTop: "4rem" }}>
+            {pending && (
+              <div
+                className="no-record-hidden"
+                style={{
+                  textAlign: "center",
+                  padding: "1rem",
+                  marginTop: "4rem",
+                }}
+              >
+                <Spinner animation="border" variant="primary" />
+              </div>
+            )}
+            {records.length <= 0 && !pending && (
+              <h4
+                className="no-record-hidden"
+                style={{ textAlign: "center", marginTop: "4rem" }}
+              >
+                No records to display
+              </h4>
+            )}
             {searchString
               ? records
                   .filter((item) =>
@@ -267,11 +289,32 @@ const IndPurBundle = () => {
                           </a>
                           {/* <button className="btn btn-success" style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}>View</button> */}
                         </div>
-                        <div style={{ display: 'flex', justifyContent: "space-between" }}>
-                        <p style={{ color: 'green', marginLeft: ".5rem", fontWeight: "500" }}>Count:{" "}{item?.course_count}<a className="my-dashlink"></a></p>
-                        <p style={{ color: 'green', marginRight: ".5rem", fontWeight: "500" }}>Validity:{" "}{item?.validity}</p>
-                      </div>
-
+                        <div
+                          style={{
+                            display: "flex",
+                            justifyContent: "space-between",
+                          }}
+                        >
+                          <p
+                            style={{
+                              color: "green",
+                              marginLeft: ".5rem",
+                              fontWeight: "500",
+                            }}
+                          >
+                            Count: {item?.course_count}
+                            <a className="my-dashlink"></a>
+                          </p>
+                          <p
+                            style={{
+                              color: "green",
+                              marginRight: ".5rem",
+                              fontWeight: "500",
+                            }}
+                          >
+                            Validity: {item?.validity}
+                          </p>
+                        </div>
                       </div>
                     </div>
                   );
