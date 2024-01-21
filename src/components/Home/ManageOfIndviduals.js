@@ -49,6 +49,7 @@ const ManageIndList = () => {
   };
 
   const getData = () => {
+    setPending(true)
     makeRequest("GET", "/info/get-all-manager-individual")
       .then((res) => {
         console.log(res.data.response);
@@ -210,6 +211,19 @@ const ManageIndList = () => {
                 pagination
               />
             </div>
+            
+            {pending && (
+              <div
+                className="no-record-hidden"
+                style={{
+                  textAlign: "center",
+                  padding: "1rem",
+                  marginTop: "4rem",
+                }}
+              >
+                <Spinner animation="border" variant="primary" />
+              </div>
+            )}
             {records.length <= 0 && <h4 className="no-record-hidden" style={{textAlign: 'center',marginTop:"5rem",}}>No records to display</h4>}
             <div>
               {searchString
