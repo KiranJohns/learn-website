@@ -15,8 +15,13 @@ const MyCart = () => {
   const makeRequest = fetchData();
   const { cart, totalPrice } = useSelector((state) => state.cart);
   const [coupon, setCoupon] = useState("");
-  const [couponData, setCouponData] = useState({ coupon_code: "XXXX" });
+  const [couponData, setCouponData] = useState({
+    coupon_code: "XXXX",
+    type: "",
+    amount: "",
+  });
   const [offerPrice, setOfferPrice] = useState("");
+  const [offer, setOffer] = useState("");
   const [tocheckout, setToCheckout] = useState(false);
   const router = useRouter();
 
@@ -71,22 +76,27 @@ const MyCart = () => {
   }, []);
 
   function getCartItem() {
-    makeRequest("GET", "/cart/get")
-      .then((res) => {
-        console.log(res.data.response);
-        store.dispatch({
-          type: "SET_CART",
-          payload: JSON.stringify(res.data.response.filter(item => item.product_count >= 1)),
-        });
-      })
-      .catch((err) => {
-        if (err?.data?.errors[0].message === "please login") {
+    return new Promise((resolve, reject) => {
+      makeRequest("GET", "/cart/get")
+        .then((res) => {
+          console.log(res.data.response);
           store.dispatch({
             type: "SET_CART",
+            payload: JSON.stringify(
+              res.data.response.filter((item) => item.product_count >= 1)
+            ),
           });
-        }
-        console.log(err);
-      });
+          resolve();
+        })
+        .catch((err) => {
+          if (err?.data?.errors[0].message === "please login") {
+            store.dispatch({
+              type: "SET_CART",
+            });
+          }
+          console.log(err);
+        });
+    });
   }
 
   function removeItem(id) {
@@ -113,7 +123,6 @@ const MyCart = () => {
       });
   }
   function increment(courseId, id, type) {
-    getCartItem();
     makeRequest("PATCH", "/cart/update-cart-count", {
       count: 1,
       id,
@@ -121,8 +130,23 @@ const MyCart = () => {
       courseId,
     })
       .then(async (res) => {
+        await getCartItem();
         if (couponData.coupon_code != "XXXX" || couponData.coupon_code != "") {
-          // applyCoupon(couponData.coupon_code);
+          setTimeout(async()=>{
+            await applyCoupon(couponData.coupon_code);
+          },2000)
+          // if (couponData.type == "Cash") {
+          //   setOfferPrice(
+          //     parseFloat(
+          //       parseFloat(totalPrice) - parseFloat(couponData.amount)
+          //     ).toFixed(2)
+          //   );
+          // } else {
+          //   let per = parseFloat(
+          //     (parseFloat(totalPrice) * parseFloat(couponData.amount)) / 100
+          //   );
+          //   setOfferPrice(parseFloat(parseFloat(totalPrice) - per).toFixed(2));
+          // }
         }
         console.log(res.data);
       })
@@ -138,7 +162,6 @@ const MyCart = () => {
       });
   }
   function decrement(courseId, id, type) {
-    getCartItem();
     makeRequest("PATCH", "/cart/update-cart-count", {
       count: -1,
       id,
@@ -146,8 +169,23 @@ const MyCart = () => {
       courseId,
     })
       .then(async (res) => {
+        await getCartItem();
         if (couponData.coupon_code != "XXXX" || couponData.coupon_code != "") {
-          // applyCoupon(couponData.coupon_code);
+          setTimeout(async()=>{
+            await applyCoupon(couponData.coupon_code);
+          },2000)
+          // if (couponData.type == "Cash") {
+          //   setOfferPrice(
+          //     parseFloat(
+          //       parseFloat(totalPrice) - parseFloat(couponData.amount)
+          //     ).toFixed(2)
+          //   );
+          // } else {
+          //   let per = parseFloat(
+          //     (parseFloat(totalPrice) * parseFloat(couponData.amount)) / 100
+          //   );
+          //   setOfferPrice(parseFloat(parseFloat(totalPrice) - per).toFixed(2));
+          // }
         }
         console.log(res.data);
       })
@@ -168,9 +206,23 @@ const MyCart = () => {
     makeRequest("POST", "/coupon/apply-coupon", { code: coupon })
       .then((res) => {
         toast("Coupon Applied");
+        setCouponData((prev) => {
+          return {
+            ...prev,
+            amount: res.data.response.amount,
+            type: res.data.response.coupon_type,
+          };
+        });
         if (res.data.response.coupon_type == "Cash") {
+          console.log(totalPrice - 
+            parseFloat(totalPrice) - parseFloat(res.data.response.amount)
+          );
           setOfferPrice(
-            parseInt(
+            parseFloat(
+              parseFloat(totalPrice) - parseFloat(res.data.response.amount)
+            ).toFixed(2)
+          );
+          setOffer(totalPrice - parseFloat(
               parseFloat(totalPrice) - parseFloat(res.data.response.amount)
             ).toFixed(2)
           );
@@ -179,7 +231,9 @@ const MyCart = () => {
             (parseFloat(totalPrice) * parseFloat(res.data.response.amount)) /
               100
           );
-          setOfferPrice(parseFloat(parseInt(totalPrice) - per).toFixed(2));
+          console.log(totalPrice - parseFloat(parseFloat(totalPrice) - per).toFixed(2));
+          setOffer(totalPrice - parseFloat(parseFloat(totalPrice) - per).toFixed(2));
+          setOfferPrice(parseFloat(parseFloat(totalPrice) - per).toFixed(2));
         }
         setCoupon("");
         console.log(res.data.response);
@@ -223,6 +277,7 @@ const MyCart = () => {
         .then((res) => {
           console.log("coupon removed");
           setCoupon("");
+          setCouponData({ amount: "", coupon_code: "", type: "" });
           setOfferPrice();
           resolve();
           // setCouponData({ coupon_code: "XXXX" });
@@ -558,14 +613,25 @@ const MyCart = () => {
                         placeholder="Coupon code"
                         type="text"
                       />
-                      <button
-                        className="e-btn"
-                        name="apply_coupon"
-                        type="submit"
-                        onClick={() => applyCoupon(coupon)}
-                      >
-                        Apply coupon
-                      </button>
+                      {!offerPrice ? (
+                        <button
+                          className="e-btn"
+                          name="apply_coupon"
+                          type="submit"
+                          onClick={() => applyCoupon(coupon)}
+                        >
+                          Apply coupon
+                        </button>
+                      ) : (
+                        <button
+                          className="e-btn"
+                          name="apply_coupon"
+                          type="submit"
+                          onClick={() => applyCoupon(couponData.coupon_code)}
+                        >
+                          Refresh
+                        </button>
+                      )}
                       {offerPrice && (
                         <div
                           style={{
@@ -648,7 +714,7 @@ const MyCart = () => {
                           >
                             £{" "}
                             {offerPrice
-                              ? parseFloat(totalPrice - offerPrice).toFixed(2)
+                              ? parseFloat(offer).toFixed(2)
                               : 0}
                           </span>
                           {/* {couponData && <span style={{textDecoration:"line-through",color:`${couponData ? 'red' : 'green'}` }}>£ {totalPrice}</span>} */}
