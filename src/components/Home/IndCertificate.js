@@ -42,7 +42,7 @@ class IndCertificate extends Component {
 
   handleFilter = (event) => {
     const newData = this.state.filterRecords.filter((row) =>
-      row.name.toLowerCase().includes(event.target.value.toLowerCase())
+      row.course_name.toLowerCase().includes(event.target.value.toLowerCase())
     );
     this.setState({ records: newData });
   };
@@ -216,7 +216,7 @@ class IndCertificate extends Component {
                 {this.state.searchData
                   ? this.state.records
                       .filter((item) =>
-                        item.name
+                        item.course_name
                           .toLowerCase()
                           .includes(this.state.searchData.toLowerCase())
                       )

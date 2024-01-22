@@ -76,7 +76,7 @@ const MyCart = () => {
         console.log(res.data.response);
         store.dispatch({
           type: "SET_CART",
-          payload: JSON.stringify(res.data.response),
+          payload: JSON.stringify(res.data.response.filter(item => item.product_count >= 1)),
         });
       })
       .catch((err) => {
@@ -113,15 +113,17 @@ const MyCart = () => {
       });
   }
   function increment(courseId, id, type) {
+    getCartItem();
     makeRequest("PATCH", "/cart/update-cart-count", {
       count: 1,
       id,
       type,
       courseId,
     })
-      .then((res) => {
-        getCartItem();
-        removeCoupon();
+      .then(async (res) => {
+        if (couponData.coupon_code != "XXXX" || couponData.coupon_code != "") {
+          // applyCoupon(couponData.coupon_code);
+        }
         console.log(res.data);
       })
       .catch((err) => {
@@ -135,7 +137,34 @@ const MyCart = () => {
         console.log(err?.data);
       });
   }
-  function applyCoupon() {
+  function decrement(courseId, id, type) {
+    getCartItem();
+    makeRequest("PATCH", "/cart/update-cart-count", {
+      count: -1,
+      id,
+      type,
+      courseId,
+    })
+      .then(async (res) => {
+        if (couponData.coupon_code != "XXXX" || couponData.coupon_code != "") {
+          // applyCoupon(couponData.coupon_code);
+        }
+        console.log(res.data);
+      })
+      .catch((err) => {
+        if (err?.data?.errors[0].message === "please login") {
+          console.log("log");
+          store.dispatch({
+            type: "DECREMENT_ITEM_CONT",
+            payload: id,
+          });
+        }
+        console.log(err?.data?.errors);
+        console.log(err?.data);
+      });
+  }
+  function applyCoupon(coupon) {
+    // alert(coupon)
     makeRequest("POST", "/coupon/apply-coupon", { code: coupon })
       .then((res) => {
         toast("Coupon Applied");
@@ -158,6 +187,7 @@ const MyCart = () => {
       })
       .catch((err) => {
         if (err?.data?.data?.response === "Minimum purchase is required.") {
+          removeCoupon();
           toast.warn("Add more items to cart for this applying coupon");
         } else if (err?.data?.data?.response === "coupon not fount") {
           toast.warn("Invalid Coupon");
@@ -183,46 +213,27 @@ const MyCart = () => {
   }
 
   useEffect(() => {
-    removeCoupon()
-  },[])
+    removeCoupon();
+  }, []);
 
   function removeCoupon() {
-    // console.log("remove coupon function");
-    makeRequest("POST", "/coupon/remove-coupon")
-      .then((res) => {
-        console.log('coupon removed');
-        setCoupon("");
-        setOfferPrice();
-        // setCouponData({ coupon_code: "XXXX" });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    return new Promise((resolve, reject) => {
+      // console.log("remove coupon function");
+      makeRequest("POST", "/coupon/remove-coupon")
+        .then((res) => {
+          console.log("coupon removed");
+          setCoupon("");
+          setOfferPrice();
+          resolve();
+          // setCouponData({ coupon_code: "XXXX" });
+        })
+        .catch((err) => {
+          reject();
+          console.log(err);
+        });
+    });
   }
-  function decrement(courseId, id, type) {
-    makeRequest("PATCH", "/cart/update-cart-count", {
-      count: -1,
-      id,
-      type,
-      courseId,
-    })
-      .then((res) => {
-        getCartItem();
-        removeCoupon();
-        console.log(res.data);
-      })
-      .catch((err) => {
-        if (err?.data?.errors[0].message === "please login") {
-          console.log("log");
-          store.dispatch({
-            type: "DECREMENT_ITEM_CONT",
-            payload: id,
-          });
-        }
-        console.log(err?.data?.errors);
-        console.log(err?.data);
-      });
-  }
+
   function handleCheckout(e) {
     e.preventDefault();
     makeRequest("POST", "/cart/checkout")
@@ -282,7 +293,11 @@ const MyCart = () => {
                               >
                                 <a>
                                   <img
-                                    src={item?.thumbnail ? item?.thumbnail : item?.image}
+                                    src={
+                                      item?.thumbnail
+                                        ? item?.thumbnail
+                                        : item?.image
+                                    }
                                     alt="img not found"
                                   />
                                 </a>
@@ -537,7 +552,7 @@ const MyCart = () => {
                         className="input-text"
                         value={coupon}
                         onKeyUp={(e) => {
-                          if (e.key === "Enter") applyCoupon();
+                          if (e.key === "Enter") applyCoupon(coupon);
                         }}
                         name="coupon_code"
                         placeholder="Coupon code"
@@ -547,7 +562,7 @@ const MyCart = () => {
                         className="e-btn"
                         name="apply_coupon"
                         type="submit"
-                        onClick={applyCoupon}
+                        onClick={() => applyCoupon(coupon)}
                       >
                         Apply coupon
                       </button>

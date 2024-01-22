@@ -1,31 +1,40 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import FooterThree from "../components/Layout/Footer/FooterStyleThree";
 import SignInMain from "../components/SignIn/SignInMain";
 import HeaderFour from "../components/Layout/Header/HeaderStyleFour";
 import Header from "../components/Layout/Header/Header";
 import Footer from "../components/Layout/Footer/Footer";
 import NoSSR from "react-no-ssr";
+import { useRouter } from "next/router";
+import { getUserType } from "../axios";
 
-class SignIn extends React.Component {
-  static getInitialProps({ store }) {}
+function SignIn() {
+  const [logedIn, setlogedIn] = useState(() => {
+    return getUserType();
+  });
 
-  constructor(props) {
-    super(props);
-  }
+  const router = useRouter();
 
-  render() {
-    return (
-      <React.Fragment>
-        <NoSSR>
-          <Header />
-        </NoSSR>
-        <NoSSR>
-          <SignInMain />
-        </NoSSR>
-        <Footer />
-      </React.Fragment>
-    );
-  }
+  useEffect(() => {
+    if (logedIn) {
+      router.push(`/`);
+    }
+  }, []);
+  return (
+    <>
+      {!logedIn && (
+        <>
+          <NoSSR>
+            <Header />
+          </NoSSR>
+          <NoSSR>
+            <SignInMain />
+          </NoSSR>
+          <Footer />
+        </>
+      )}
+    </>
+  );
 }
 
 export default SignIn;
