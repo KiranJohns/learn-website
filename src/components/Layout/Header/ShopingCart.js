@@ -108,7 +108,7 @@ const ShopingCart = ({ setShopOpen, shopOpen }) => {
 
   function handleCheckout(e) {
     e.preventDefault();
-    localStorage.removeItem("learnfrocarecart");
+    // localStorage.removeItem("learnfrocarecart");
     makeRequest("POST", "/cart/checkout")
       .then((res) => {
         console.log(res.data.response);
