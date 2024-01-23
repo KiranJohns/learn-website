@@ -309,7 +309,7 @@ const BurgerMenus = ({ setMenuOpen, menuOpen }) => {
                   <Link href="">
                     <a
                       onClick={() => {
-                        localStorage.removeItem("learnfrocarecart");
+                        // localStorage.removeItem("learnfrocarecart");
                         router.push(`/${getUserType()}/dashboard`);
                         // if ( === "company") {
                       }}
