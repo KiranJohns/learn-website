@@ -279,19 +279,11 @@ const MyCart = () => {
           removeCoupon();
           toast.warn("Add more items to cart for this applying coupon");
         } else if (err?.data?.data?.response === "coupon not fount") {
-          setCouponData({
-            coupon_code: "XXXX",
-            type: "",
-            amount: "",
-          });
           toast.warn("Invalid Coupon");
         } else if (err?.data?.data?.response === "Please Provide Coupon Code") {
-          setCouponData({
-            coupon_code: "XXXX",
-            type: "",
-            amount: "",
-          });
           toast.warn("Please Provide Coupon Code");
+        } else if (err?.data?.data?.response === "Coupon is Inactive") {
+          toast.warn("Coupon Expired");
         } else {
           toast.warn("Please Login");
         }
