@@ -124,7 +124,7 @@ const IndCourse = () => {
           className="my-dashlink"
           href={`/learnCourse/examAttempts/?courseId=${row.id}`}
         >
-          {row.attempts + "/20"}
+          {row.attempts ? row.attempts + "/20": "0/20" }
         </a>
       ),
       hide: "md",
@@ -357,6 +357,7 @@ const IndCourse = () => {
                                 paddingLeft: ".4rem",
                                 color: "#212a50",
                                 fontWeight: "bold",
+                                marginRight: ".43rem",
                               }}
                             >
                               {item?.Name || item?.name}

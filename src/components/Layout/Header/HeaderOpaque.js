@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 import store from "../../../redux/store";
 import fetchData, { getUserType } from "../../../axios";
 import Dropdown from "react-bootstrap/Dropdown";
+import { FaArrowAltCircleLeft } from "react-icons/fa";
 
 const HeaderOpaque = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -160,6 +161,7 @@ const HeaderOpaque = () => {
       </Head>
       <header>
         <div id="header-sticky" className="header__area  header__padding">
+        <div style={{position:"relative"}}>  <div style={{position:'absolute'}} className="header-back-button"><button onClick={() => history.back()}> <FaArrowAltCircleLeft className="back-fontsize"  style={{color:"#0d6efd", }}/></button></div></div>
           <div className="container-fluid">
             <div className="row align-items-center">
               <div className="col-xxl-3 col-xl-3 col-lg-4 col-md-2 col-sm-4 col-6">

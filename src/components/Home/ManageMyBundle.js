@@ -356,6 +356,7 @@ const ManagerBundle = () => {
                               paddingLeft: ".4rem",
                               color: "#212a50",
                               fontWeight: "bold",
+                              marginRight: ".44rem",
                             }}
                           >
                             {item.bundle_name || item.name}
