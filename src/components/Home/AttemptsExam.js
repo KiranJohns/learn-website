@@ -137,6 +137,12 @@ const AttemptsExam = () => {
       hide:640,
     },
     {
+      name: "Time",
+      center: true,
+      selector: (row) => row.time,
+      hide:640,
+    },
+    {
       name: "Marks Obtained",
       selector: (row) => row.percentage,
     },
