@@ -137,6 +137,7 @@ const AttemptsExam = () => {
       name: "Date",
       center: true,
       selector: (row) => row.date,
+      width:"100px",
       hide: 640,
     },
     {
@@ -165,6 +166,7 @@ const AttemptsExam = () => {
     },
     {
       name: "Action",
+      width:"90px",
       selector: (row) => {
         return (
           <>
@@ -185,7 +187,7 @@ const AttemptsExam = () => {
         );
       },
       center: true,
-      width: "80px",
+      
     },
   ];
 
@@ -242,7 +244,7 @@ const AttemptsExam = () => {
         >
           Exam Results
         </h2>
-        <div style={{ padding: "", backgroundColor: "" }}>
+        <div className="reacttable-hidden" style={{ padding: "", backgroundColor: "" }}>
           <div
             style={{ float: "right", marginBottom: "1.4rem" }}
             className="p-relative d-inline header__search searchbar-hidden3"
@@ -272,12 +274,12 @@ const AttemptsExam = () => {
         {pending && (
           <div
             className="no-record-hidden"
-            style={{ textAlign: "center", padding: "1rem" }}
+            style={{ textAlign: "center", padding: "1rem", marginTop:"5rem" }}
           >
             <Spinner animation="border" variant="primary" />
           </div>
         )}
-
+      <div style={{marginTop:'5rem'}}>
         {records.length <= 0 && !pending && (
           <h4
             className="no-record-hidden"
@@ -322,7 +324,19 @@ const AttemptsExam = () => {
                       paddingTop: ".5rem",
                     }}
                   >
-                    Month: {item?.month}
+                    {item.certificate ? (
+              <a
+                className="btn btn-success"
+                target="_blank"
+                href={item.certificate}
+              >
+                <FaEye />
+              </a>
+            ) : (
+              <span className="btn btn-secondary">
+                <FaEye style={{ visibility: "hidden" }} />
+              </span>
+            )}
                   </p>
                 </div>
                 <div
@@ -348,7 +362,7 @@ const AttemptsExam = () => {
                       fontWeight: "500",
                     }}
                   >
-                    Quantity: {item?.total_fake_count}
+                   Date: {item?.date}
                   </p>
                   <p
                     style={{
@@ -357,13 +371,50 @@ const AttemptsExam = () => {
                       fontWeight: "500",
                     }}
                   >
-                    Amount: {item?.total_amount}
+                   Time: {item?.time}
+                  </p>
+                </div>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  {/* <p
+                        style={{
+                          color: "green",
+                          marginLeft: ".5rem",
+                          fontWeight: "500",
+                        }}
+                      >
+                        Course: {item?.course_count}
+                        <a className="my-dashlink"></a>
+                      </p> */}
+                  <p
+                    style={{
+                      color: "green",
+                      marginLeft: ".5rem",
+                      fontWeight: "500",
+                    }}
+                  >
+                   Status: {item?.status}
+                  </p>
+                  <p
+                    style={{
+                      color: "green",
+                      marginRight: ".5rem",
+                      fontWeight: "500",
+                    }}
+                  >
+                   Marks: {item?.percentage ? item?.percentage : 0}
                   </p>
                 </div>
               </div>
             </div>
+
           );
         })}
+         </div>
         {/* </div> */}
       </div>
     </div>
