@@ -6,8 +6,8 @@ import { BsFillEyeFill, BsEyeSlashFill } from "react-icons/bs";
 import { useRouter } from "next/router";
 
 const ViewUser = () => {
-  const [password, setPassword] = useState("")
-    const [userData, setUserData] = useState({
+  const [password, setPassword] = useState("");
+  const [userData, setUserData] = useState({
     first_name: "",
     last_name: "",
     email: "",
@@ -23,14 +23,27 @@ const ViewUser = () => {
   useEffect(() => {
     // let info = route?.query;
     console.log(id, from);
-    mackRequest("GET", `/info/get-user-by-id/${id}`).then(res => {
-      console.log(res.data.response);
-      setUserData(res.data.response);
-      setPassword(res.data.response.password);
+    mackRequest("GET", `/info/get-user-by-id/${id}`)
+      .then((res) => {
+        console.log(res.data.response);
+        setUserData(res.data.response);
+        setPassword(res.data.response.password);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  function changePassword() {
+    let url = '/auth/forgot-password'
+    mackRequest("POST",url,{
+      email: userData.email
+    }).then(res => {
+      console.log(res);
     }).catch(err => {
       console.log(err);
     })
-  },[]);
+  }
 
   const [showPassword, setShowPassword] = useState(false);
 
@@ -46,9 +59,9 @@ const ViewUser = () => {
 
   const handleSubmit = (e) => {
     e.persist();
-    if(password == userData.password) return;
+    if (password == userData.password) return;
 
-    let url = "/info/updated-user"
+    let url = "/info/updated-user";
     console.log(userData);
 
     mackRequest("POST", url, {
@@ -109,7 +122,6 @@ const ViewUser = () => {
                   <input
                     style={{ background: "#f7fbff" }}
                     onChange={handleOnchange}
-                    disabled
                     type="text"
                     className="form-control border border-black"
                     id="first_name"
@@ -143,7 +155,6 @@ const ViewUser = () => {
                   <select
                     style={{ background: "#f7fbff" }}
                     onChange={handleOnchange}
-                    disabled
                     className="form-control border border-black"
                     id="exampleFormControlSelect1"
                     name="country"
@@ -160,12 +171,13 @@ const ViewUser = () => {
                   <select
                     style={{ background: "#f7fbff" }}
                     onChange={handleOnchange}
-                    disabled
                     className="form-control border border-black"
                     id="exampleFormControlSelect1"
                     name="type_of_account"
                   >
-                    <option value={userData.type_of_account}>{userData.type_of_account}</option>
+                    <option value={userData.type_of_account}>
+                      {userData.type_of_account}
+                    </option>
                     <option value="individual">Individual</option>
                     <option value="manager">Manager</option>
                   </select>
@@ -180,7 +192,6 @@ const ViewUser = () => {
                   <input
                     style={{ background: "#f7fbff" }}
                     onChange={handleOnchange}
-                    disabled
                     type="text"
                     className="form-control border border-black"
                     id="last_name"
@@ -197,7 +208,6 @@ const ViewUser = () => {
                   <input
                     style={{ background: "#f7fbff" }}
                     onChange={handleOnchange}
-                    disabled
                     type="number"
                     className="form-control border border-black"
                     id="phone"
@@ -214,7 +224,6 @@ const ViewUser = () => {
                   <input
                     style={{ background: "#f7fbff" }}
                     onChange={handleOnchange}
-                    disabled
                     type="text"
                     className="form-control border border-black"
                     id="city"
@@ -237,14 +246,13 @@ const ViewUser = () => {
                       id="password"
                       name="password"
                       placeholder="Password"
-                      value={userData.password}
+                      value={"***************"}
                     />
-                    <div
-                      id="pasToggle"
-                      style={{ cursor: "pointer" }}
-                      onClick={() => setShowPassword((prev) => !prev)}
-                    >
-                      {showPassword ? <BsEyeSlashFill /> : <BsFillEyeFill />}
+                    {/* <button>hi</button> */}
+                    <div class="input-group-append">
+                      <button class="btn btn-outline-secondary" onClick={changePassword} type="button">
+                        Change Password
+                      </button>
                     </div>
                   </div>
                 </div>

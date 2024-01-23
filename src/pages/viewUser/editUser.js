@@ -17,7 +17,7 @@ function CompanyCreate() {
         return getUserType();
     });
 
-    let routes = ["individual", "manager", "company"];
+    let routes = ["manager", "company"];
 
     const router = useRouter();
 
