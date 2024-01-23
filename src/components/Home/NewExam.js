@@ -3,6 +3,7 @@ import Form from "react-bootstrap/Form";
 import fetchData from "../../axios";
 import { useRouter } from "next/router";
 import Modal from "react-responsive-modal";
+import Countdown from "react-countdown";
 
 const NewExam = () => {
   const makeRequest = fetchData();
@@ -64,6 +65,10 @@ const NewExam = () => {
         }
       })
     );
+  }
+
+  function timerExpired() {
+    handleSubmit()
   }
 
   function handleSubmit() {
@@ -143,6 +148,7 @@ const NewExam = () => {
         </>
       </Modal>
       <div className="row">
+      <Countdown onComplete={timerExpired} date={Date.now() + 1800000} />
         <div className="col-md-12 ">
           <div className="dash-shadow p-4 mt-4">
             <div className="dash-shadow p-4 mt-2 col-md-12">

@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Form from "react-bootstrap/Form";
 import fetchData from "../../axios";
 import { useRouter } from "next/router";
 import Modal from "react-responsive-modal";
+import Countdown from "react-countdown";
 
 const OnlineExam = () => {
   const makeRequest = fetchData();
@@ -13,6 +14,7 @@ const OnlineExam = () => {
   const [open, setOpen] = useState(false);
   const [click, setClick] = useState(false);
   const [state, setState] = useState("");
+  const examTimer = useRef();
 
   const onOpenModal = (state) => {
     setState(state);
@@ -24,6 +26,10 @@ const OnlineExam = () => {
     }, 1000);
     setOpen(false);
   };
+
+  function timerExpired() {
+    handleSubmit();
+  }
 
   useEffect(() => {
     const form = new FormData();
@@ -47,6 +53,7 @@ const OnlineExam = () => {
         console.log(err);
       });
     return () => {
+      // clearTimeout(examTimer.current);
       setExamResult([]);
     };
   }, []);
@@ -75,16 +82,16 @@ const OnlineExam = () => {
   }
 
   function handleSubmit() {
-    if(click) return
+    if (click) return;
     setClick(true);
     const form = new FormData();
     form.append("answer", JSON.stringify(examResult));
     form.append("enrolled_course_id", router.query.user);
     form.append("question_id", questionId);
     makeRequest("POST", "/exam/validate", form)
-    .then((res) => {
-      console.log(res.data);
-      setClick(false);
+      .then((res) => {
+        console.log(res.data);
+        setClick(false);
         localStorage.setItem(
           "wrong-answers",
           JSON.stringify({
@@ -92,8 +99,8 @@ const OnlineExam = () => {
             courseName: router.query.courseName,
             per: res.data.response.per,
           })
-          );
-          location.pathname = "learnCourse/result";
+        );
+        location.pathname = "learnCourse/result";
       })
       .catch((err) => {
         setClick(false);
@@ -105,36 +112,52 @@ const OnlineExam = () => {
       <div className="row">
         <div className="col-md-12 ">
           <div className="dash-shadow p-4 mt-4">
-            <Modal  open={open} onClose={onCloseModal} center>
+            <Modal open={open} onClose={onCloseModal} center>
               <>
                 {state ? (
                   <>
-                    <div style={{padding:"1rem", color:"#212a50"}}>Please select one option in each question</div>
-
+                    <div style={{ padding: "1rem", color: "#212a50" }}>
+                      Please select one option in each question
+                    </div>
                   </>
                 ) : (
                   <>
-                  <p style={{padding:".5rem", margin:'.5rem', textAlign:"center"}}>
-                    Once you submit , you will no longer be able to change<br/>your
-                    answers for this attempt. <br /></p>
-                    <div style={{display:'flex', justifyContent:'center'}}>
-                    <button
-                      class="btn btn-primary"
-                      type="button"
-                      onClick={handleSubmit}
+                    <p
+                      style={{
+                        padding: ".5rem",
+                        margin: ".5rem",
+                        textAlign: "center",
+                      }}
                     >
-                      {click && <span
-                        class="spinner-border spinner-border-sm"
-                        role="status"
-                        aria-hidden="true"
-                      ></span>}
-                      {click ? "Loading..." : "Submit"}
-                    </button></div>
+                      Once you submit , you will no longer be able to change
+                      <br />
+                      your answers for this attempt. <br />
+                    </p>
+                    <div style={{ display: "flex", justifyContent: "center" }}>
+                      <button
+                        class="btn btn-primary"
+                        type="button"
+                        onClick={handleSubmit}
+                      >
+                        {click && (
+                          <span
+                            class="spinner-border spinner-border-sm"
+                            role="status"
+                            aria-hidden="true"
+                          ></span>
+                        )}
+                        {click ? "Loading..." : "Submit"}
+                      </button>
+                    </div>
                   </>
                 )}
               </>
             </Modal>
             <div className="dash-shadow p-4 mt-2 col-md-12">
+              <Countdown
+                onComplete={timerExpired}
+                date={Date.now() + 1800000}
+              />
               <div
                 className=""
                 style={{ display: "flex", justifyContent: "space-between" }}
@@ -150,7 +173,12 @@ const OnlineExam = () => {
                 this, you will not be able to return to the question page to
                 change any of your answers, so make sure that you have checked
                 all of your answers before you finish. At the end of the exam
-                you will immediately receive your score.<span style={{color:'#b31528'}}> (To obtain a certificate, you must achieve a minimum score of 80%.)</span>
+                you will immediately receive your score.
+                <span style={{ color: "#b31528" }}>
+                  {" "}
+                  (To obtain a certificate, you must achieve a minimum score of
+                  80%.)
+                </span>
               </small>
             </div>
             {exam &&
