@@ -75,6 +75,12 @@ const MyCart = () => {
     };
   }, []);
 
+  useEffect(() => {
+    if (couponData.coupon_code != "XXXX" && couponData.coupon_code != "") {
+      applyCouponWithoutInfo(couponData.coupon_code);
+    }
+  }, [totalPrice]);
+
   function getCartItem() {
     return new Promise((resolve, reject) => {
       makeRequest("GET", "/cart/get")
@@ -130,25 +136,7 @@ const MyCart = () => {
       courseId,
     })
       .then(async (res) => {
-        await getCartItem();
-        if (couponData.coupon_code != "XXXX" || couponData.coupon_code != "") {
-          setTimeout(async()=>{
-            await applyCoupon(couponData.coupon_code);
-          },2000)
-          // if (couponData.type == "Cash") {
-          //   setOfferPrice(
-          //     parseFloat(
-          //       parseFloat(totalPrice) - parseFloat(couponData.amount)
-          //     ).toFixed(2)
-          //   );
-          // } else {
-          //   let per = parseFloat(
-          //     (parseFloat(totalPrice) * parseFloat(couponData.amount)) / 100
-          //   );
-          //   setOfferPrice(parseFloat(parseFloat(totalPrice) - per).toFixed(2));
-          // }
-        }
-        console.log(res.data);
+        getCartItem();
       })
       .catch((err) => {
         if (err?.data?.errors[0].message === "please login") {
@@ -170,24 +158,6 @@ const MyCart = () => {
     })
       .then(async (res) => {
         await getCartItem();
-        if (couponData.coupon_code != "XXXX" || couponData.coupon_code != "") {
-          setTimeout(async()=>{
-            await applyCoupon(couponData.coupon_code);
-          },2000)
-          // if (couponData.type == "Cash") {
-          //   setOfferPrice(
-          //     parseFloat(
-          //       parseFloat(totalPrice) - parseFloat(couponData.amount)
-          //     ).toFixed(2)
-          //   );
-          // } else {
-          //   let per = parseFloat(
-          //     (parseFloat(totalPrice) * parseFloat(couponData.amount)) / 100
-          //   );
-          //   setOfferPrice(parseFloat(parseFloat(totalPrice) - per).toFixed(2));
-          // }
-        }
-        console.log(res.data);
       })
       .catch((err) => {
         if (err?.data?.errors[0].message === "please login") {
@@ -200,6 +170,59 @@ const MyCart = () => {
         console.log(err?.data?.errors);
         console.log(err?.data);
       });
+  }
+  function applyCouponWithoutInfo(coupon) {
+    // alert(coupon)
+    makeRequest("POST", "/coupon/apply-coupon", { code: coupon })
+      .then((res) => {
+        setCouponData((prev) => {
+          return {
+            ...prev,
+            amount: res.data.response.amount,
+            type: res.data.response.coupon_type,
+          };
+        });
+        if (res.data.response.coupon_type == "Cash") {
+          console.log(
+            totalPrice -
+              parseFloat(totalPrice) -
+              parseFloat(res.data.response.amount)
+          );
+
+          setOfferPrice(
+            parseFloat(
+              parseFloat(totalPrice) - parseFloat(res.data.response.amount)
+            ).toFixed(2)
+          );
+
+          setOffer(
+            totalPrice -
+              parseFloat(
+                parseFloat(totalPrice) - parseFloat(res.data.response.amount)
+              ).toFixed(2)
+          );
+        } else {
+          let per = parseFloat(
+            (parseFloat(totalPrice) * parseFloat(res.data.response.amount)) /
+              100
+          );
+          console.log(
+            totalPrice - parseFloat(parseFloat(totalPrice) - per).toFixed(2)
+          );
+
+          setOffer(
+            totalPrice - parseFloat(parseFloat(totalPrice) - per).toFixed(2)
+          );
+
+          setOfferPrice(parseFloat(parseFloat(totalPrice) - per).toFixed(2));
+        }
+        setCoupon("");
+        console.log(res.data.response);
+        setCouponData(res.data.response);
+      })
+      .catch((err) => {
+
+      })
   }
   function applyCoupon(coupon) {
     // alert(coupon)
@@ -214,25 +237,37 @@ const MyCart = () => {
           };
         });
         if (res.data.response.coupon_type == "Cash") {
-          console.log(totalPrice - 
-            parseFloat(totalPrice) - parseFloat(res.data.response.amount)
+          console.log(
+            totalPrice -
+              parseFloat(totalPrice) -
+              parseFloat(res.data.response.amount)
           );
+
           setOfferPrice(
             parseFloat(
               parseFloat(totalPrice) - parseFloat(res.data.response.amount)
             ).toFixed(2)
           );
-          setOffer(totalPrice - parseFloat(
-              parseFloat(totalPrice) - parseFloat(res.data.response.amount)
-            ).toFixed(2)
+
+          setOffer(
+            totalPrice -
+              parseFloat(
+                parseFloat(totalPrice) - parseFloat(res.data.response.amount)
+              ).toFixed(2)
           );
         } else {
           let per = parseFloat(
             (parseFloat(totalPrice) * parseFloat(res.data.response.amount)) /
               100
           );
-          console.log(totalPrice - parseFloat(parseFloat(totalPrice) - per).toFixed(2));
-          setOffer(totalPrice - parseFloat(parseFloat(totalPrice) - per).toFixed(2));
+          console.log(
+            totalPrice - parseFloat(parseFloat(totalPrice) - per).toFixed(2)
+          );
+
+          setOffer(
+            totalPrice - parseFloat(parseFloat(totalPrice) - per).toFixed(2)
+          );
+
           setOfferPrice(parseFloat(parseFloat(totalPrice) - per).toFixed(2));
         }
         setCoupon("");
@@ -244,8 +279,18 @@ const MyCart = () => {
           removeCoupon();
           toast.warn("Add more items to cart for this applying coupon");
         } else if (err?.data?.data?.response === "coupon not fount") {
+          setCouponData({
+            coupon_code: "XXXX",
+            type: "",
+            amount: "",
+          });
           toast.warn("Invalid Coupon");
         } else if (err?.data?.data?.response === "Please Provide Coupon Code") {
+          setCouponData({
+            coupon_code: "XXXX",
+            type: "",
+            amount: "",
+          });
           toast.warn("Please Provide Coupon Code");
         } else {
           toast.warn("Please Login");
@@ -259,6 +304,7 @@ const MyCart = () => {
         setCoupon("");
         toast("Coupon Removed");
         setOfferPrice();
+        setOffer();
         setCouponData({ coupon_code: "XXXX" });
       })
       .catch((err) => {
@@ -279,6 +325,7 @@ const MyCart = () => {
           setCoupon("");
           setCouponData({ amount: "", coupon_code: "", type: "" });
           setOfferPrice();
+          setOffer();
           resolve();
           // setCouponData({ coupon_code: "XXXX" });
         })
@@ -712,10 +759,7 @@ const MyCart = () => {
                             className="discount-font"
                             style={{ color: "#212a50" }}
                           >
-                            £{" "}
-                            {offerPrice
-                              ? parseFloat(offer).toFixed(2)
-                              : 0}
+                            £ {offerPrice ? parseFloat(offer).toFixed(2) : 0}
                           </span>
                           {/* {couponData && <span style={{textDecoration:"line-through",color:`${couponData ? 'red' : 'green'}` }}>£ {totalPrice}</span>} */}
                         </h4>
