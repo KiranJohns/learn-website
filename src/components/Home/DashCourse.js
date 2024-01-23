@@ -146,7 +146,7 @@ const DashCourse = () => {
       selector: (row) => (
         <a
           className="my-dashlink"
-          href={`/learnCourse/examAttempts/?courseId=${row.id}`}
+          href={`/learnCourse/examAttempts/?courseId=${row.id}&course_name=${(row.name ? row.name : row.Name)}`}
         >
           {row.attempts + "/20"}
         </a>
