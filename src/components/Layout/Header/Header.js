@@ -13,6 +13,7 @@ import allProduct from "../../../../sampleProduct.json";
 import fetchData, { getUserType } from "../../../axios";
 import store from "../../../redux/store";
 import { IoArrowBackOutline } from "react-icons/io5";
+import { FaArrowAltCircleLeft } from "react-icons/fa";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -180,7 +181,7 @@ const Header = () => {
             id="header-sticky"
             className="header__area header__transparent header__padding"
           >
-              <div style={{position:"relative"}}>  <div style={{position:'absolute'}} className="header-back-button"><button onClick={() => history.back()}> <IoArrowBackOutline   className="back-fontsize"  style={{color:"#0d6efd", }}/></button></div></div>
+              <div style={{position:"relative"}}>  <div style={{position:'absolute'}} className="header-back-button"><button onClick={() => history.back()}> <FaArrowAltCircleLeft className="back-fontsize"  style={{color:"#0d6efd", }}/></button></div></div>
             <div className="container-fluid">
               <div className="row align-items-center">
                 <div  className="col-xxl-3 col-xl-3 col-lg-3 col-md-2 col-sm-3 col-6">

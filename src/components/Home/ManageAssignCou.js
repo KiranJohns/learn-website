@@ -620,6 +620,7 @@ const ManagerAssignCourse = () => {
                                 paddingLeft: ".4rem",
                                 color: "#212a50",
                                 fontWeight: "bold",
+                                marginRight: ".44rem",
                               }}
                             >
                               {item.name || item.Name}
