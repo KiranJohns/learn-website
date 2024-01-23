@@ -117,7 +117,16 @@ const ManageMyCourse = () => {
     {
       center: true,
       name: "Attempts",
-      selector: (row) => (row?.attempts || 0) + "/20",
+      selector: (row) => (
+        <a
+          className="my-dashlink"
+          href={`/learnCourse/examAttempts/?courseId=${row.id}&course_name=${
+            row.name ? row.name : row.Name
+          }`}
+        >
+          {row.attempts + "/20"}
+        </a>
+      ),
       hide: 725,
     },
     {
@@ -276,7 +285,7 @@ const ManageMyCourse = () => {
             />
           </div>
 
-          {(records.length <= 0 && !pending) && (
+          {records.length <= 0 && !pending && (
             <h4
               className="no-record-hidden"
               style={{ textAlign: "center", marginTop: "4.5rem" }}
@@ -603,11 +612,39 @@ const ManageMyCourse = () => {
                           </>
                           {/* <button className="btn btn-success" style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}>View</button> */}
                         </div>
-                        
-                        <div style={{ display: 'flex', justifyContent: "space-between" }}>
-                        <p style={{ color: '#0d6efd', marginLeft: ".5rem", fontWeight: "500" }}>Validity:{" "} {item?.validity}</p>
-                        <p style={{ color: '#0d6efd', marginRight: ".5rem", fontWeight: "500" }}>Attempts:{" "}<a href={`/learnCourse/examAttempts/?courseId=${item?.id}`} className="my-dashlink">{item?.attempts || 0}</a>{"/20"}</p>   
-                      </div>
+
+                        <div
+                          style={{
+                            display: "flex",
+                            justifyContent: "space-between",
+                          }}
+                        >
+                          <p
+                            style={{
+                              color: "#0d6efd",
+                              marginLeft: ".5rem",
+                              fontWeight: "500",
+                            }}
+                          >
+                            Validity: {item?.validity}
+                          </p>
+                          <p
+                            style={{
+                              color: "#0d6efd",
+                              marginRight: ".5rem",
+                              fontWeight: "500",
+                            }}
+                          >
+                            Attempts:{" "}
+                            <a
+                              href={`/learnCourse/examAttempts/?courseId=${item?.id}`}
+                              className="my-dashlink"
+                            >
+                              {item?.attempts || 0}
+                            </a>
+                            {"/20"}
+                          </p>
+                        </div>
                       </div>
                     </div>
                   );
