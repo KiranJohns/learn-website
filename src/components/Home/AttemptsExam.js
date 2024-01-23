@@ -8,6 +8,8 @@ import Modal from "react-responsive-modal";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
 import { jwtDecode } from "jwt-decode";
+import { FaEye } from "react-icons/fa";
+import { Spinner } from "react-bootstrap";
 
 const customStyles = {
   headRow: {
@@ -40,21 +42,28 @@ const AttemptsExam = () => {
     jwtDecode(localStorage.getItem(`learnforcare_access`))
   );
   const [searchData, setSearchData] = useState("");
+  const [courseName, setCourseName] = useState("");
   const [openModal, setOpenModal] = useState(false);
+  const [pending, setPending] = useState(true);
 
   const makeRequest = fetchData();
 
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
     const courseId = searchParams.get("courseId");
+    const courseName = searchParams.get("course_name");
+    setCourseName(courseName);
 
+    setPending(true);
     makeRequest("GET", `/on-going-course/get-attempts/${courseId}`)
       .then((res) => {
+        setPending(false);
         console.log(res.data.response);
         setRecords(res.data.response.reverse());
         setFilterRecords(res.data.response);
       })
       .catch((err) => {
+        setPending(false);
         console.log(err);
       });
 
@@ -122,29 +131,61 @@ const AttemptsExam = () => {
       selector: (row, idx) => ++idx,
       center: true,
       width: "80px",
-      hide:374,
-    },
-    {
-      name: "status",
-      selector: (row) => <span style={{textTransform: 'capitalize'}}>{row.status}</span>,
-      center: true,
-      width: "80px",
+      hide: 374,
     },
     {
       name: "Date",
       center: true,
       selector: (row) => row.date,
-      hide:640,
+      hide: 640,
     },
     {
       name: "Time",
       center: true,
       selector: (row) => row.time,
-      hide:640,
+      hide: 640,
+    },
+    {
+      name: "Course Name",
+      center: true,
+      selector: (row) => courseName,
+      hide: 640,
     },
     {
       name: "Marks Obtained",
-      selector: (row) => row.percentage,
+      selector: (row) => (row?.percentage ? row?.percentage : 0),
+    },
+    {
+      name: "status",
+      selector: (row) => (
+        <span style={{ textTransform: "capitalize" }}>{row.status}</span>
+      ),
+      center: true,
+      width: "80px",
+    },
+    {
+      name: "Action",
+      selector: (row) => {
+        return (
+          <>
+            {row.certificate ? (
+              <a
+                className="btn btn-success"
+                target="_blank"
+                href={row.certificate}
+              >
+                <FaEye />
+              </a>
+            ) : (
+              <span className="btn btn-secondary">
+                <FaEye style={{ visibility: "hidden" }} />
+              </span>
+            )}
+          </>
+        );
+      },
+      center: true,
+      width: "80px",
     },
   ];
 
@@ -185,21 +226,23 @@ const AttemptsExam = () => {
           </ul>
         </div>
       </Modal>
-      <div  style={{ position: "relative" }} className=" row g-3  min-vh-100  d-flex justify-content-center dash-shadow mt-10">
-      <h2
-              style={{
-                color: "#212450",
-                display: "flex",
-                justifyContent: "center",
-                position: "absolute",
-                fontSize: 36,
-                marginTop: "1.5rem",
-              }}
-            >
-            Exam Results
-          </h2>
+      <div
+        style={{ position: "relative" }}
+        className=" row g-3  min-vh-100  d-flex justify-content-center dash-shadow mt-10"
+      >
+        <h2
+          style={{
+            color: "#212450",
+            display: "flex",
+            justifyContent: "center",
+            position: "absolute",
+            fontSize: 36,
+            marginTop: "1.5rem",
+          }}
+        >
+          Exam Results
+        </h2>
         <div style={{ padding: "", backgroundColor: "" }}>
-    
           <div
             style={{ float: "right", marginBottom: "1.4rem" }}
             className="p-relative d-inline header__search searchbar-hidden3"
@@ -218,7 +261,7 @@ const AttemptsExam = () => {
             </form>
           </div>
           <DataTable
-          noDataComponent={"No records to display"}
+            noDataComponent={"No records to display"}
             persistTableHead={true}
             columns={columns}
             data={records}
@@ -226,6 +269,102 @@ const AttemptsExam = () => {
             pagination
           />
         </div>
+        {pending && (
+          <div
+            className="no-record-hidden"
+            style={{ textAlign: "center", padding: "1rem" }}
+          >
+            <Spinner animation="border" variant="primary" />
+          </div>
+        )}
+
+        {records.length <= 0 && !pending && (
+          <h4
+            className="no-record-hidden"
+            style={{ textAlign: "center", padding: "1rem" }}
+          >
+            No records to display
+          </h4>
+        )}
+        {/* <div style={{ marginTop: "3rem" }}> */}
+        {records.map((item) => {
+          return (
+            <div
+              style={{
+                width: "100%",
+                display: "flex",
+                flexDirection: "column",
+                padding: ".5rem",
+              }}
+            >
+              <div className="new-table-shadow new-table-hidden">
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <p
+                    style={{
+                      paddingTop: ".5rem",
+                      paddingLeft: ".4rem",
+                      color: "#212a50",
+                      fontWeight: "bold",
+                    }}
+                  >
+                    {courseName}
+                  </p>
+                  <p
+                    style={{
+                      color: "#212a50",
+                      marginRight: ".5rem",
+                      fontWeight: "500",
+                      paddingTop: ".5rem",
+                    }}
+                  >
+                    Month: {item?.month}
+                  </p>
+                </div>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  {/* <p
+                        style={{
+                          color: "green",
+                          marginLeft: ".5rem",
+                          fontWeight: "500",
+                        }}
+                      >
+                        Course: {item?.course_count}
+                        <a className="my-dashlink"></a>
+                      </p> */}
+                  <p
+                    style={{
+                      color: "green",
+                      marginLeft: ".5rem",
+                      fontWeight: "500",
+                    }}
+                  >
+                    Quantity: {item?.total_fake_count}
+                  </p>
+                  <p
+                    style={{
+                      color: "green",
+                      marginRight: ".5rem",
+                      fontWeight: "500",
+                    }}
+                  >
+                    Amount: {item?.total_amount}
+                  </p>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+        {/* </div> */}
       </div>
     </div>
   );
