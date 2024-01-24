@@ -412,7 +412,7 @@ const Header = () => {
                       <form action="">
                         <input
                           type="text"
-                          placeholder="Search..."
+                          placeholder="Search Course..."
                           value={searchString}
                           onChange={handleSearch}
                         />
