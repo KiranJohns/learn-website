@@ -156,21 +156,21 @@ const OnlineExam = () => {
                     style={{ width: "7rem" }}
                     className="btn btn-success"
                     onClick={() => {
-                      setConfirmBack(false);
-                    }}
-                  >
-                    No
-                  </button>
-                  <button
-                    style={{ width: "7rem" }}
-                    className="btn btn-success"
-                    onClick={() => {
                       submitExam().then(() => {
                         history.back();
                       });
                     }}
                   >
                     Yes
+                  </button>
+                  <button
+                    style={{ width: "7rem" }}
+                    className="btn btn-success"
+                    onClick={() => {
+                      setConfirmBack(false);
+                    }}
+                  >
+                    No
                   </button>
                 </div>
               </div>
