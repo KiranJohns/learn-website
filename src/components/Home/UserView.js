@@ -170,7 +170,7 @@ const ViewUser = () => {
                     Type of User
                   </label>
                   <select
-                    style={{ background: "#f7fbff" }}
+                    style={{ background: "#f7fbff", textTransform: 'capitalize' }}
                     onChange={handleOnchange}
                     className="form-control border border-black"
                     id="exampleFormControlSelect1"
@@ -239,7 +239,7 @@ const ViewUser = () => {
                     Password
                   </label>
                   <div style={{ position: "relative" }}>
-                    <input
+                    {/* <input
                       style={{ background: "#f7fbff" }}
                       onChange={handleOnchange}
                       type={showPassword ? "text" : "password"}
@@ -248,10 +248,10 @@ const ViewUser = () => {
                       name="password"
                       placeholder="Password"
                       value={"***************"}
-                    />
+                    /> */}
                     {/* <button>hi</button> */}
                     <div class="input-group-append">
-                      <button class="btn btn-outline-secondary" onClick={changePassword} type="button">
+                      <button class="btn btn-outline-secondary" style={{color: '#212A50', backgroundColor: 'white'}} onClick={changePassword} type="button">
                         Change Password
                       </button>
                     </div>
