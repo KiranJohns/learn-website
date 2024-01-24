@@ -39,6 +39,7 @@ const ViewUser = () => {
     mackRequest("POST",url,{
       email: userData.email
     }).then(res => {
+      toast.success(`Password reset link sent to the user's email`)
       console.log(res);
     }).catch(err => {
       console.log(err);
@@ -109,7 +110,7 @@ const ViewUser = () => {
             fontSize: 38,
           }}
         >
-          Change Password
+          Update User
         </h2>
         <div>
           <form className="row g-3  d-flex justify-content-end  ">
