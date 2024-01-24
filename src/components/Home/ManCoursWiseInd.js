@@ -8,6 +8,7 @@ import fetchData from "../../axios";
 import BasicExample from "../About/button1";
 import Spinner from "react-bootstrap/Spinner";
 import Link from "next/link";
+import Backbutton from "./Backbutton";
 
 
 
@@ -105,6 +106,7 @@ const ManCWIndReport = () => {
           theme="light"
         />
         <div style={{ position: "relative" }} className=" row g-3  min-vh-100  d-flex justify-content-center mt-20">
+        <Backbutton/>
           <h2
             style={{
               color: "#212450",

@@ -113,7 +113,7 @@ class ManageDash extends Component {
       {
         name: "Attempts",
         selector: (row) => (
-          <a href={`/learnCourse/examAttempts/?courseId=${row.id}&course_name=${(row.name ? row.name : row.Name)}`}>
+          <a  className="my-dashlink" href={`/learnCourse/examAttempts/?courseId=${row.id}&course_name=${(row.name ? row.name : row.Name)}`}>
             {row.attempts + "/20"}
           </a>
         ),

@@ -11,6 +11,7 @@ import { useRouter } from "next/router";
 import CompIndReport from "../../components/Home/CompIndiviRep";
 import DashHeader from "../../components/Layout/Header/DasnboardHeader";
 
+
 function Individuals() {
   const [logedIn, setlogedIn] = useState(() => {
     return getUserType();

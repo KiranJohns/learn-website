@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import DataTable from "react-data-table-component";
 import fetchData from "../../axios";
 import Spinner from "react-bootstrap/Spinner";
+import Backbutton from "./Backbutton";
 
 const customStyles = {
   headRow: {
@@ -104,6 +105,7 @@ const CompTransaction = () => {
           style={{ position: "relative" }}
           className=" row g-3  min-vh-100  d-flex justify-content-center mt-20"
         >
+          <Backbutton/>
           <h2
             style={{
               color: "#212450",

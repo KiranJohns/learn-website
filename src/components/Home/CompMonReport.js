@@ -8,6 +8,7 @@ import { getMonth } from "../../utils/month";
 import { Suspense } from "react";
 import React, { useState, useEffect } from "react";
 import Spinner from "react-bootstrap/Spinner";
+import Backbutton from "./Backbutton";
 
 const customStyles = {
   headRow: {
@@ -97,6 +98,7 @@ const CompMonthRep = () => {
     <div className="">
       <div className="dash-shadow">
         <div style={{position:"relative"}} className=" row g-3  min-vh-100  d-flex justify-content-center mt-20">
+        <Backbutton/>
           <h2
             style={{
               color: "#212450",

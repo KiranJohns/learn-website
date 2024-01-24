@@ -129,7 +129,7 @@ function DashIndividual() {
       name: "Name",
       selector: (row) => (row.name ? row.name : row.Name),
       center: true,
-      width: "320px",
+      width: "300px",
     },
     {
       name: "category",
@@ -140,7 +140,7 @@ function DashIndividual() {
     {
       name: "Attempts",
       selector: (row) => (
-        <a href={`/learnCourse/examAttempts/?courseId=${row.id}&course_name=${(row.name ? row.name : row.Name)}`}>
+        <a  className="my-dashlink" href={`/learnCourse/examAttempts/?courseId=${row.id}&course_name=${(row.name ? row.name : row.Name)}`}>
           {row.attempts + "/20"}
         </a>
       ),

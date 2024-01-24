@@ -5,6 +5,7 @@ import fetchData from "../../axios";
 import { Suspense } from "react";
 import Spinner from "react-bootstrap/Spinner";
 import { jwtDecode } from "jwt-decode";
+import Backbutton from "./Backbutton";
 
 const customStyles = {
   headRow: {
@@ -226,6 +227,7 @@ const ManageMyCourse = () => {
           style={{ position: "relative" }}
           className=" row g-3  min-vh-100  d-flex justify-content-center mt-20"
         >
+          <Backbutton/>
           <h2
             style={{
               color: "#212450",

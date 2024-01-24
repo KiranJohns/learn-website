@@ -4,6 +4,7 @@ import DataTable from "react-data-table-component";
 import Button from "react-bootstrap/Button";
 import Spinner from "react-bootstrap/Spinner";
 import fetchData from "../../axios";
+import Backbutton from "./Backbutton";
 
 const customStyles = {
   headRow: {
@@ -99,6 +100,7 @@ const ManTransaction = () => {
     <div className="">
       <div className="dash-shadow">
         <div style={{position:'relative'}} className="row g-3  min-vh-100  d-flex justify-content-center mt-20">
+        <Backbutton/>
           <h2
             style={{
               color: "#212450",

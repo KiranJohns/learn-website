@@ -10,6 +10,7 @@ import NoSSR from "react-no-ssr";
 import { getUserType } from "../../axios";
 import { useRouter } from "next/router";
 
+
 function MonthlyReport() {
   const [logedIn, setlogedIn] = useState(() => {
     return getUserType();

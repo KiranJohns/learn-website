@@ -5,6 +5,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import fetchData from "../../axios";
 import Spinner from "react-bootstrap/Spinner";
+import Backbutton from "./Backbutton";
 
 const customStyles = {
   headRow: {
@@ -103,6 +104,7 @@ const ManIndReport = () => {
           theme="light"
         />
         <div style={{ position: "relative" }} className=" row g-3  min-vh-100  d-flex justify-content-center mt-20">
+        <Backbutton/>
           <h2
             style={{
               color: "#212450",

@@ -4,6 +4,8 @@ import fetchData from "../../axios";
 import Spinner from "react-bootstrap/Spinner";
 import { Suspense } from "react";
 import { jwtDecode } from "jwt-decode";
+import Backbutton from "./Backbutton";
+
 
 const customStyles = {
   headRow: {
@@ -167,6 +169,7 @@ const ManagerBundle = () => {
           style={{ position: "relative" }}
           className=" row g-3  min-vh-100  d-flex justify-content-center mt-20"
         >
+          <Backbutton/>
           <h2
             style={{
               color: "#212450",

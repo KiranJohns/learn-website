@@ -4,6 +4,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { BsFillEyeFill, BsEyeSlashFill } from "react-icons/bs";
 import { useRouter } from "next/router";
+import Backbutton from "./Backbutton";
 
 const ViewUser = () => {
   const [password, setPassword] = useState("");
@@ -87,7 +88,8 @@ const ViewUser = () => {
   };
 
   return (
-    <div className="">
+    <div style={{position:"relative"}} className="">
+       <Backbutton/>
       <ToastContainer
         position="top-right"
         autoClose={5000}

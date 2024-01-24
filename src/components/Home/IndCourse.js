@@ -8,6 +8,7 @@ import Modal from "react-responsive-modal";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
 import Spinner from "react-bootstrap/Spinner";
+import Backbutton from "./Backbutton";
 
 const customStyles = {
   headRow: {
@@ -246,6 +247,7 @@ const IndCourse = () => {
         style={{ position: "relative" }}
         className=" row g-3  min-vh-100  d-flex justify-content-center dash-shadow mt-10"
       >
+        <Backbutton/>
         <h2
           className=""
           style={{

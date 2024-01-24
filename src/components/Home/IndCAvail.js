@@ -6,6 +6,7 @@ import fetchData, { getUserType } from "../../axios";
 import Button from "react-bootstrap/Button";
 import { FaEye } from "react-icons/fa";
 import Spinner from "react-bootstrap/Spinner";
+import Backbutton from "./Backbutton";
 
 const customStyles = {
   headRow: {
@@ -105,6 +106,7 @@ const IndCAvail = () => {
           style={{ position: "relative" }}
           className=" row g-3  min-vh-100  d-flex justify-content-center mt-20"
         >
+          <Backbutton/>
           <h2
             style={{
               color: "#212450",

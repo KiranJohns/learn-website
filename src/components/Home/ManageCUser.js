@@ -3,6 +3,8 @@ import fetchData from "../../axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { BsFillEyeFill, BsEyeSlashFill } from "react-icons/bs";
+import Backbutton from "./Backbutton";
+
 
 const ManageCreateU = () => {
   const [userData, setUserData] = useState({
@@ -58,7 +60,8 @@ const ManageCreateU = () => {
         pauseOnHover
         theme="light"
       />
-      <div className="dash-shadow mt-20 p-4">
+      <div style={{position:"relative"}} className="dash-shadow ">
+      <Backbutton/>
         <h2
           style={{
             padding: "1rem",
@@ -66,12 +69,13 @@ const ManageCreateU = () => {
             display: "flex",
             justifyContent: "center",
             fontSize: 36,
+            marginTop:"4rem"
           }}
         >
           Create User
         </h2>
         <div>
-          <form className="row g-3  d-flex justify-content-end  ">
+          <form className="row g-3  d-flex justify-content-end  p-4">
             <div className="col-12 d-flex mx-auto">
               <div className="col-6">
                 <div className="form-group p-2 mb-4">

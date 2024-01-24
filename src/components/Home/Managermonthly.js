@@ -4,6 +4,7 @@ import fetchData from "../../axios";
 import { getMonth } from "../../utils/month";
 import Button from "react-bootstrap/Button";
 import Spinner from "react-bootstrap/Spinner";
+import Backbutton from "./Backbutton";
 
 const customStyles = {
   headRow: {
@@ -90,6 +91,7 @@ const ManageMonthRep = () => {
     <div className="">
       <div className="dash-shadow">
         <div style={{position:'relative'}} className=" row g-3  min-vh-100  d-flex justify-content-center mt-20">
+        <Backbutton/>
           <h2
             style={{
               color: "#212450",

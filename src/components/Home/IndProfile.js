@@ -8,6 +8,7 @@ import Container from "react-bootstrap/Container";
 import Image from "react-bootstrap/Image";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Backbutton from "./Backbutton";
 
 function IndProfile() {
   const handleImage = () => {
@@ -68,7 +69,8 @@ function IndProfile() {
   }
 
   return (
-    <div className="">
+    <div style={{position:"relative"}} className="">
+      <Backbutton/>
       <h2
         style={{
           padding: "1.5rem",
