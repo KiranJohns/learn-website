@@ -47,12 +47,12 @@ function MyBundle() {
             >
               <div className="row justify-content-md-center">
                 <div
-                  className="col-sm-12 col-md-12 col-lg-2 p-0 sidebar-hidden"
+                  className="col-sm-12 col-md-12 col-lg-2 col-xl-2 col-xxl-2 p-0 sidebar-hidden"
                   style={{ backgroundColor: "#212450" }}
                 >
                   <NewInDash />
                 </div>
-                <div className="col-sm col-md-12 col-lg-11 col-xl-9  bg-white">
+                <div className="col-sm col-md-12 col-lg-11 col-xl-9 col-xxl-9 bg-white">
                   <IndMyBundle />
                 </div>
               </div>

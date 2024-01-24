@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import DataTable from "react-data-table-component";
 import fetchData from "../../axios";
 import Spinner from "react-bootstrap/Spinner";
+import { FaArrowAltCircleLeft } from "react-icons/fa";
 
 const customStyles = {
   headRow: {
@@ -87,7 +88,7 @@ const IndMyBundle = () => {
 
   const columns = [
     {
-      name: "ID",
+      name: "No",
       selector: (row, idx) => ++idx,
       width: "90px",
       center: true,
@@ -96,7 +97,7 @@ const IndMyBundle = () => {
     {
       name: "bundle name",
       selector: (row) => row?.name || row?.bundle_name,
-      width: "340px",
+      width: "260px",
       center: true,
     },
     {
@@ -176,6 +177,7 @@ const IndMyBundle = () => {
           style={{ position: "relative" }}
           className=" row g-3  min-vh-100  d-flex justify-content-center mt-20"
         >
+         <div style={{position:'absolute', marginLeft:"1.2rem", marginTop:".5rem", color:"#212a50"}} className=""><button onClick={() => history.back()}> <FaArrowAltCircleLeft className="back-fontsize"  style={{color:"#212a50" }}/></button></div>
           <h2
             style={{
               color: "#212450",
