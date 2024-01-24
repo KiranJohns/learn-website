@@ -55,6 +55,7 @@ export default () => {
 
   function getCourse(limit) {
     if (limit == 1) {
+      setSelectedCount(1);
       limit = 0;
     } else {
       setSelectedCount(limit);
