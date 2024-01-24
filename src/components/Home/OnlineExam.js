@@ -16,6 +16,7 @@ const OnlineExam = () => {
   const [click, setClick] = useState(false);
   const [state, setState] = useState("");
   const examTimer = useRef();
+  const [confirmback, setConfirmBack] = useState(false);
 
   const onOpenModal = (state) => {
     setState(state);
@@ -82,6 +83,27 @@ const OnlineExam = () => {
     }
   }
 
+  function submitExam() {
+    return new Promise((resolve, reject) => {
+      if (click) return;
+      setClick(true);
+      const form = new FormData();
+      form.append("answer", JSON.stringify(examResult));
+      form.append("enrolled_course_id", router.query.user);
+      form.append("question_id", questionId);
+      makeRequest("POST", "/exam/validate", form)
+        .then((res) => {
+          console.log(res.data);
+          setClick(false);
+          resolve();
+        })
+        .catch((err) => {
+          setClick(false);
+          console.log(err);
+        });
+    });
+  }
+
   function handleSubmit() {
     if (click) return;
     setClick(true);
@@ -113,6 +135,47 @@ const OnlineExam = () => {
       <div className="row">
         <div className="col-md-12 ">
           <div className="dash-shadow p-4 mt-4">
+            <Modal
+              open={confirmback}
+              onClose={() => setConfirmBack(false)}
+              center
+            >
+              <div style={{ padding: "3rem 1rem 2rem 1rem" }}>
+                <h5>
+                  If you go back now, it will be considered as an attempt. Are
+                  you sure you want to go back?
+                </h5>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    marginTop: "1rem",
+                  }}
+                >
+                  <button
+                    style={{ width: "7rem" }}
+                    className="btn btn-success"
+                    onClick={() => {
+                      setConfirmBack(false);
+                    }}
+                  >
+                    No
+                  </button>
+                  <button
+                    style={{ width: "7rem" }}
+                    className="btn btn-success"
+                    onClick={() => {
+                      submitExam().then(() => {
+                        history.back();
+                      });
+                    }}
+                  >
+                    Yes
+                  </button>
+                </div>
+              </div>
+            </Modal>
+
             <Modal open={open} onClose={onCloseModal} center>
               <>
                 {state ? (
@@ -155,28 +218,61 @@ const OnlineExam = () => {
               </>
             </Modal>
             <div className="dash-shadow p-4 mt-2 col-md-12">
-             {/* <Countdown 
+              {/* <Countdown 
                 onComplete={timerExpired}
                 date={Date.now() + 1800000}
               /> */}
-                <div
+              <div
                 className=""
                 style={{ display: "flex", justifyContent: "space-between" }}
               >
-                
-                <div style={{position:'', marginLeft:".2rem",marginBottom:".4rem",marginTop:".3rem" , zIndex:"1001"}} className=""><button style={{background:"white"}} onClick={() => history.back()}> <FaArrowAltCircleLeft className="back-fontsize"  style={{color:"#212a50", }}/></button></div >
-          
-             <div style={{color:"#fff",padding:".5rem", background:"#212a50",borderRadius:"5px",width:"6rem"}}>  <Countdown 
-                onComplete={timerExpired}
-                date={Date.now() + 1800000}
-              /></div> 
+                <div
+                  style={{
+                    position: "",
+                    marginLeft: ".2rem",
+                    marginBottom: ".4rem",
+                    marginTop: ".3rem",
+                    zIndex: "1001",
+                  }}
+                  className=""
+                >
+                  <button
+                    style={{ background: "white" }}
+                    onClick={() => setConfirmBack(true)}
+                  >
+                    {" "}
+                    <FaArrowAltCircleLeft
+                      className="back-fontsize"
+                      style={{ color: "#212a50" }}
+                    />
+                  </button>
+                </div>
+
+                <div
+                  style={{
+                    color: "#fff",
+                    padding: ".5rem",
+                    background: "#212a50",
+                    borderRadius: "5px",
+                    width: "6rem",
+                  }}
+                >
+                  {" "}
+                  <Countdown
+                    onComplete={timerExpired}
+                    date={Date.now() + 1800000}
+                  />
+                </div>
               </div>
 
               <div
                 className=""
-                style={{ display: "flex", justifyContent: "space-between",marginTop:".5rem" }}
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  marginTop: ".5rem",
+                }}
               >
-                
                 <h5 className="" style={{ color: "#212a50" }}>
                   Online Assessment
                 </h5>
