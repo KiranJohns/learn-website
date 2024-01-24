@@ -134,7 +134,7 @@ const IndMyBundle = () => {
                     }}
                     className="btn btn-success"
                   >
-                    Start
+                    View
                   </span>
                 ) : (
                   <>
@@ -152,7 +152,7 @@ const IndMyBundle = () => {
                       }}
                       className="btn btn-success"
                     >
-                      Completed
+                      View
                     </a>
                   </>
                 )}
@@ -402,7 +402,7 @@ const IndMyBundle = () => {
                                     }}
                                     className="btn btn-success"
                                   >
-                                    Start
+                                    View
                                   </span>
                                 ) : (
                                   <>
@@ -415,7 +415,7 @@ const IndMyBundle = () => {
                                       }}
                                       className="btn btn-danger"
                                     >
-                                      Completed
+                                      View
                                     </a>
                                   </>
                                 )}
