@@ -130,7 +130,7 @@ const ManagerBundle = () => {
                       }
                     }}
                   >
-                    Start
+                    View
                   </button>
                 ) : (
                   <>
@@ -144,7 +144,7 @@ const ManagerBundle = () => {
                       }}
                       className="btn btn-success"
                     >
-                      Completed
+                      View
                     </a>
                   </>
                 )}
@@ -381,7 +381,7 @@ const ManagerBundle = () => {
                                       }
                                     }}
                                   >
-                                    Start
+                                    View
                                   </button>
                                 ) : (
                                   <>
@@ -394,7 +394,7 @@ const ManagerBundle = () => {
                                       }}
                                       className="btn btn-success"
                                     >
-                                      Completed
+                                      View
                                     </a>
                                   </>
                                 )}
