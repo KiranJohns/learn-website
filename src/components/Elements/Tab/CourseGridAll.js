@@ -35,7 +35,7 @@ export default () => {
   useState(() => {
     makeRequest("GET", "/coupon/get-offer-text")
       .then((res) => {
-        console.log("coupon ", res.data.response);
+        // console.log("coupon ", res.data.response);
         let text = res.data.response[0];
         if (text.image != "") {
           setImage(text.image);
@@ -44,7 +44,7 @@ export default () => {
           let highLightText = text.hight_light_text;
           let newText = offerText.replace(text.hight_light_text, "##$##");
           newText = newText.split("##");
-          console.log(newText);
+          // console.log(newText);
           setCoupon({ text: newText, highLight: highLightText });
         }
       })
@@ -64,6 +64,7 @@ export default () => {
 
     makeRequest("GET", `/course/get-course-by-limit/${limit}`)
       .then((res) => {
+        console.log(res.data.response)
         setCourse(res.data.response.courses);
         setCount(res.data.response.count);
       })
@@ -75,7 +76,7 @@ export default () => {
   useEffect(() => {
     if (categoryFilter) {
       setFilteredCourse(() => {
-        console.log(filteredCourse);
+        // console.log(filteredCourse);
         return course.filter(
           (item) => item.category.toLowerCase() === categoryFilter.toLowerCase()
         );
@@ -262,7 +263,7 @@ export default () => {
               >
                 {coupon.text &&
                   coupon.text.map((item) => {
-                    console.log(coupon.text);
+                    // console.log(coupon.text);
                     if (item == "$") {
                       return (
                         <span className="animated-text">

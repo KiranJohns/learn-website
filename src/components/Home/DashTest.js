@@ -107,18 +107,12 @@ class DashTest extends Component {
         name: "Attempts",
         hide: "sm",
         selector: (row) => (
-          <span
+          <a
             className="my-dashlink"
             href={`/learnCourse/examAttempts/?courseId=${row.id}&course_name=${(row.name ? row.name : row.Name)}`}
           >
-            {/* onClick={() => {
-            router.push({
-              pathname: `/learnCourse/examAttempts/?courseId=${row.id}`,
-              query: { name: (row.name ? row.name : row.Name) },
-            });
-          }} */}
             {row.attempts + "/20"}
-          </span>
+          </a>
         ),
         center: true,
       },
