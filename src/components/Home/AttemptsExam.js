@@ -10,6 +10,8 @@ import { ToastContainer, toast } from "react-toastify";
 import { jwtDecode } from "jwt-decode";
 import { FaEye } from "react-icons/fa";
 import { Spinner } from "react-bootstrap";
+import { TbDownload } from "react-icons/tb";
+import { TbDownloadOff } from "react-icons/tb";
 
 const customStyles = {
   headRow: {
@@ -176,11 +178,11 @@ const AttemptsExam = () => {
                 target="_blank"
                 href={row.certificate}
               >
-                <FaEye />
+                <TbDownload />
               </a>
             ) : (
-              <span className="btn btn-secondary">
-                <FaEye style={{ visibility: "hidden" }} />
+              <span className="btn btn-success">
+                <TbDownloadOff />
               </span>
             )}
           </>
@@ -330,11 +332,11 @@ const AttemptsExam = () => {
                 target="_blank"
                 href={item.certificate}
               >
-                <FaEye />
+                <TbDownload />
               </a>
             ) : (
-              <span className="btn btn-secondary">
-                <FaEye style={{ visibility: "hidden" }} />
+              <span className="btn btn-success">
+                <TbDownloadOff />
               </span>
             )}
                   </p>
