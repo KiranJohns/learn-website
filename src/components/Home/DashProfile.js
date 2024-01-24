@@ -8,6 +8,7 @@ import Container from "react-bootstrap/Container";
 import Image from "react-bootstrap/Image";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Backbutton from "./Backbutton";
 
 function DashProfile() {
   const inputRef = useRef(null);
@@ -72,15 +73,16 @@ function DashProfile() {
   }
 
   return (
-    <div className="">
+    <div style={{position:"relative"}} className="">
+    <Backbutton/>
       <h2
         style={{
-          padding: "1.5rem",
+          padding: "1.4rem",
           color: "#212450",
           display: "flex",
           justifyContent: "center",
           marginTop: "",
-          fontSize: 42,
+          fontSize: 36,
         }}
       >
         My Profile

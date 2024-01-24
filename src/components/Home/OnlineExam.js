@@ -4,6 +4,7 @@ import fetchData from "../../axios";
 import { useRouter } from "next/router";
 import Modal from "react-responsive-modal";
 import Countdown from "react-countdown";
+import { FaArrowAltCircleLeft } from "react-icons/fa";
 
 const OnlineExam = () => {
   const makeRequest = fetchData();
@@ -154,15 +155,29 @@ const OnlineExam = () => {
               </>
             </Modal>
             <div className="dash-shadow p-4 mt-2 col-md-12">
-              <Countdown
+             {/* <Countdown 
                 onComplete={timerExpired}
                 date={Date.now() + 1800000}
-              />
-              <div
+              /> */}
+                <div
                 className=""
                 style={{ display: "flex", justifyContent: "space-between" }}
               >
-                <h5 className="" style={{ color: "#212a5" }}>
+                
+                <div style={{position:'', marginLeft:".2rem",marginBottom:".4rem",marginTop:".3rem" , zIndex:"1001"}} className=""><button style={{background:"white"}} onClick={() => history.back()}> <FaArrowAltCircleLeft className="back-fontsize"  style={{color:"#212a50", }}/></button></div >
+          
+             <div style={{color:"#fff",padding:".5rem", background:"#212a50",borderRadius:"5px",width:"6rem"}}>  <Countdown 
+                onComplete={timerExpired}
+                date={Date.now() + 1800000}
+              /></div> 
+              </div>
+
+              <div
+                className=""
+                style={{ display: "flex", justifyContent: "space-between",marginTop:".5rem" }}
+              >
+                
+                <h5 className="" style={{ color: "#212a50" }}>
                   Online Assessment
                 </h5>
                 <h5>{router.query.courseName}</h5>

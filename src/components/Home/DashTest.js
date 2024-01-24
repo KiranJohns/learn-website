@@ -299,7 +299,7 @@ class DashTest extends Component {
           >
             <div className="ag-courses_item-comp " style={{ marginLeft: "" }}>
               <a
-                href="/bundle/all-bundles"
+                href="/company/mycourses"
                 className="ag-courses-item_link-comp"
               >
                 <div className="ag-courses-item_bg-comp"></div>
@@ -316,7 +316,7 @@ class DashTest extends Component {
                     marginTop: "1rem",
                   }}
                 >
-                  Buy Bundles
+                  My Courses
                 </div>
               </a>
             </div>
@@ -325,7 +325,7 @@ class DashTest extends Component {
               className="ag-courses_item-comp"
               style={{ marginLeft: ".5rem" }}
             >
-              <a href="/all-courses" className="ag-courses-item_link-comp">
+              <a href="/company/mybundle" className="ag-courses-item_link-comp">
                 <div className="ag-courses-item_bg-comp"></div>
                 <div
                   className="bi bi-book ag-courses-item_date-box-new"
@@ -340,7 +340,7 @@ class DashTest extends Component {
                     marginTop: "1rem",
                   }}
                 >
-                  Buy Courses
+                  My Bundles
                 </div>
               </a>
             </div>
@@ -382,7 +382,7 @@ class DashTest extends Component {
             }}
           >
             <div className="ag-courses_item-sec " style={{ marginLeft: "" }}>
-              <a href="/company/mycourses" className="ag-courses-item_link-sec">
+              <a href="/all-courses" className="ag-courses-item_link-sec">
                 <div className="ag-courses-item_bg-sec"></div>
                 <div
                   className="bi bi-book ag-courses-item_date-box-new"
@@ -397,7 +397,7 @@ class DashTest extends Component {
                     marginTop: "1rem",
                   }}
                 >
-                  My Courses
+                 Buy Courses
                 </div>
               </a>
             </div>
@@ -406,7 +406,7 @@ class DashTest extends Component {
               className="ag-courses_item-sec "
               style={{ marginLeft: "3.5rem" }}
             >
-              <a href="/company/mybundle" className="ag-courses-item_link-sec">
+              <a href="/bundle/all-bundles" className="ag-courses-item_link-sec">
                 <div className="ag-courses-item_bg-sec"></div>
                 <div
                   className="bi bi-stack ag-courses-item_date-box-new"
@@ -421,7 +421,7 @@ class DashTest extends Component {
                     marginTop: "1rem",
                   }}
                 >
-                  My Bundles
+               Buy Bundles
                 </div>
               </a>
             </div>

@@ -3,6 +3,7 @@ import fetchData from "../../axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { BsFillEyeFill, BsEyeSlashFill } from "react-icons/bs";
+import Backbutton from "./Backbutton";
 
 const DashCreate = () => {
   const [userData, setUserData] = useState({
@@ -58,7 +59,8 @@ const DashCreate = () => {
   };
 
   return (
-    <div className="">
+    <div style={{position:"relative"}} className="">
+      <Backbutton/>
       <ToastContainer
         position="top-right"
         autoClose={5000}
@@ -71,14 +73,14 @@ const DashCreate = () => {
         pauseOnHover
         theme="light"
       />
-      <div className="dash-shadow mt-20">
+      <div className="dash-shadow mt-15">
         <h2
           style={{
             padding: "1.5rem",
             color: "#212450",
             display: "flex",
             justifyContent: "center",
-            fontSize: 38,
+            fontSize: 37,
           }}
         >
           Create User

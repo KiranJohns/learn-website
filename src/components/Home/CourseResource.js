@@ -11,6 +11,7 @@ import { CiImageOn } from "react-icons/ci";
 import { CiVideoOn } from "react-icons/ci";
 import { FaRegFilePdf } from "react-icons/fa";
 import { BsFiletypeTxt } from "react-icons/bs";
+import { FaArrowAltCircleLeft } from "react-icons/fa";
 
 const CourseResource = () => {
   const [slides, setSlides] = useState([]);
@@ -79,8 +80,12 @@ const CourseResource = () => {
           borderRadius: ".4rem",
           flexDirection: "column",
           margin: "3rem 0rem",
+          position:"relative"
         }}
       >
+      
+      <span style={{position:'absolute', marginLeft:"1rem", marginTop:"1rem", zIndex:"1001"}} className=""><button style={{background:"white"}} onClick={() => history.back()}> <FaArrowAltCircleLeft className="back-fontsize"  style={{color:"#212a50", }}/></button></span >
+    
         <h4 style={{ padding: "1rem", textAlign: "center" }}>{course?.name}</h4>
         {/* course description */}
 

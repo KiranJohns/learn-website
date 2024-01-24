@@ -250,8 +250,8 @@ const ViewUser = () => {
                       value={"***************"}
                     /> */}
                     {/* <button>hi</button> */}
-                    <div class="input-group-append">
-                      <button class="btn btn-outline-secondary" style={{color: '#212A50', backgroundColor: 'white'}} onClick={changePassword} type="button">
+                    <div className="input-group-append">
+                      <button class="btn" style={{color: '#fff', backgroundColor: '#212A50'}} onClick={changePassword} type="button">
                         Change Password
                       </button>
                     </div>

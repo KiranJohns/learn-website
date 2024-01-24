@@ -245,7 +245,7 @@ function DashIndividual() {
           >
             <div className="ag-courses_item-comp " style={{ marginLeft: "" }}>
               <a
-                href="/bundle/all-bundles"
+                href="/individual/mycourses"
                 className="ag-courses-item_link-comp"
               >
                 <div className="ag-courses-item_bg-comp"></div>
@@ -262,7 +262,7 @@ function DashIndividual() {
                     marginTop: "1rem",
                   }}
                 >
-                  Buy Bundles
+                  My Courses
                 </div>
               </a>
             </div>
@@ -271,7 +271,7 @@ function DashIndividual() {
               className="ag-courses_item-comp"
               style={{ marginLeft: ".5rem" }}
             >
-              <a href="/all-courses" className="ag-courses-item_link-comp">
+              <a href="/individual/mybundles" className="ag-courses-item_link-comp">
                 <div className="ag-courses-item_bg-comp"></div>
                 <div
                   className="bi bi-book ag-courses-item_date-box-new"
@@ -286,7 +286,7 @@ function DashIndividual() {
                     marginTop: "1rem",
                   }}
                 >
-                  Buy Courses
+                  My Bundles
                 </div>
               </a>
             </div>
@@ -330,7 +330,7 @@ function DashIndividual() {
           >
             <div className="ag-courses_item-sec " style={{ marginLeft: "" }}>
               <a
-                href="/individual/mycourses"
+                href="/all-courses"
                 className="ag-courses-item_link-sec"
               >
                 <div className="ag-courses-item_bg-sec"></div>
@@ -347,7 +347,7 @@ function DashIndividual() {
                     marginTop: "1rem",
                   }}
                 >
-                  My Courses
+                  Buy Courses
                 </div>
               </a>
             </div>
@@ -361,7 +361,7 @@ function DashIndividual() {
               style={{ marginLeft: "2.5rem" }}
             >
               <a
-                href="/individual/mybundles"
+                href="/bundle/all-bundles"
                 className="ag-courses-item_link-sec"
               >
                 <div className="ag-courses-item_bg-sec"></div>
@@ -378,7 +378,7 @@ function DashIndividual() {
                     marginTop: "1rem",
                   }}
                 >
-                  My Bundles
+                  Buy Bundles
                 </div>
               </a>
             </div>

@@ -17,6 +17,7 @@ import Table from "react-bootstrap/Table";
 import { jwtDecode } from "jwt-decode";
 import Spinner from "react-bootstrap/Spinner";
 import { Suspense } from "react";
+import Backbutton from "./Backbutton";
 
 
 const customStyles = {
@@ -409,6 +410,7 @@ const CompAssignCourse = () => {
           style={{ position: "relative" }}
           className=" row g-3  min-vh-100  d-flex justify-content-center mt-20"
         >
+           <Backbutton/>
           <h2
             style={{
               color: "#212450",

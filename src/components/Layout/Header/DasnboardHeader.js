@@ -406,7 +406,7 @@ const DashHeader = () => {
                       <form action="">
                         <input
                           type="text"
-                          placeholder="Search..."
+                          placeholder="Search course..."
                           value={searchString}
                           onChange={handleSearch}
                         />

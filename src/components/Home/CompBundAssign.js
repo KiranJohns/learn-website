@@ -17,6 +17,8 @@ import { jwtDecode } from "jwt-decode";
 import { Suspense } from "react";
 import Spinner from "react-bootstrap/Spinner";
 
+import Backbutton from "./Backbutton";
+
 const customStyles = {
   headRow: {
     style: {
@@ -301,6 +303,7 @@ const CompAssignBund = () => {
           style={{ position: "relative" }}
           className=" row g-3  min-vh-100  d-flex justify-content-center mt-20"
         >
+           <Backbutton/>
           <h2
             style={{
               color: "#212450",
@@ -308,6 +311,7 @@ const CompAssignBund = () => {
               justifyContent: "center",
               position: "absolute",
               fontSize: 35,
+              marginTop: ".8rem",
             }}
           >
             Purchased Bundle

@@ -11,6 +11,8 @@ import { jwtDecode } from "jwt-decode";
 import { Suspense } from "react";
 import Spinner from "react-bootstrap/Spinner";
 import { useState, useEffect } from "react";
+import Backbutton from "./Backbutton";
+
 
 const customStyles = {
   headRow: {
@@ -278,6 +280,7 @@ const DashCourse = () => {
           style={{ position: "relative" }}
           className=" row g-3  min-vh-100  d-flex justify-content-center  mt-10"
         >
+           <Backbutton/>
           {/* <div  style={{  position:"relative" }}> */}
           <h2
             style={{
@@ -286,8 +289,10 @@ const DashCourse = () => {
               justifyContent: "center",
               position: "absolute",
               fontSize: 35,
+              marginTop: ".8rem",
             }}
           >
+            
             My Courses
           </h2>
           <div className="reacttable-hidden">
