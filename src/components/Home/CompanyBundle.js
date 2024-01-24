@@ -163,7 +163,7 @@ const CompanyBundle = () => {
                       }
                     }}
                   >
-                    Start
+                    View
                   </a>
                 ) : (
                   <>
@@ -180,7 +180,7 @@ const CompanyBundle = () => {
                       }}
                       className="btn btn-success"
                     >
-                      Completed
+                      View
                     </a>
                   </>
                 )}
@@ -442,7 +442,7 @@ const CompanyBundle = () => {
                                       }
                                     }}
                                   >
-                                    Start
+                                    View
                                   </a>
                                 ) : (
                                   <>
@@ -462,7 +462,7 @@ const CompanyBundle = () => {
                                         marginRight: ".4rem",
                                       }}
                                     >
-                                      Completed
+                                      View
                                     </a>
                                   </>
                                 )}
