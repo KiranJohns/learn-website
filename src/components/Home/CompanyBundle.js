@@ -8,6 +8,7 @@ import Button from "react-bootstrap/Button";
 import { Suspense } from "react";
 import Spinner from "react-bootstrap/Spinner";
 import { jwtDecode } from "jwt-decode";
+import { FaArrowAltCircleLeft } from "react-icons/fa";
 
 const customStyles = {
   headRow: {
@@ -195,6 +196,7 @@ const CompanyBundle = () => {
           style={{ position: "relative" }}
           className=" row g-3  min-vh-100  d-flex justify-content-center mt-20"
         >
+           <div style={{position:'absolute', marginLeft:"1.2rem", marginTop:".5rem", color:"#212a50"}} className=""><button onClick={() => history.back()}> <FaArrowAltCircleLeft className="back-fontsize"  style={{color:"#212a50" }}/></button></div>
           <h2
             style={{
               color: "#212450",

@@ -286,16 +286,16 @@ function NewInDash() {
                 }}
               >
                 <div
-                  style={{ margin: ".8rem", borderRadius: "8px",}}
+                  style={{ margin: ".8rem", borderRadius: "8px", }}
                   className={`list-group-item  ${
                     link.subLinks?.find((link) => link.link == router.pathname)
                       ? "activate-sidebar"
                       : router.pathname == link.link
                       ? "activate-sidebar"
                       : ""
-                  }  py-3 px-2`}
+                  }  py-3 px-2 `}
                 >
-                  <i className={`${link.icon} txttsml me-2 ml-50`}></i>
+                  <i className={`${link.icon} txttsml me-2  clast-test-ml`}></i>
                   <span className="txttsml ">
                     {" "}
                     &nbsp;{link.name}{" "}
