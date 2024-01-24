@@ -124,7 +124,7 @@ const ManageMyCourse = () => {
             row.name ? row.name : row.Name
           }`}
         >
-          {row.attempts + "/20"}
+          {row.attempts ? row.attempts + "/20" : "0/20"}
         </a>
       ),
       hide: 725,
