@@ -29,6 +29,7 @@ export default () => {
   const [searchText, setSearchText] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("");
   const [image, setImage] = useState("");
+  const [filter, setFilter] = useState(false);
 
   const [coupon, setCoupon] = useState({ text: "", highLight: "" });
 
@@ -65,7 +66,7 @@ export default () => {
 
     makeRequest("GET", `/course/get-course-by-limit/${limit}`)
       .then((res) => {
-        console.log(res.data.response)
+        console.log(res.data.response);
         setCourse(res.data.response.courses);
         // setCount(res.data.response.count);
       })
@@ -76,13 +77,24 @@ export default () => {
 
   useEffect(() => {
     if (categoryFilter) {
-      setFilteredCourse(() => {
-        // console.log(filteredCourse);
-        return course.filter(
-          (item) => item.category.toLowerCase() === categoryFilter.toLowerCase()
-        );
-      });
-    }
+      setFilter(true)
+      makeRequest("GET", "/course/get-all-course")
+        .then((res) => {
+          setFilteredCourse(() => {
+            // console.log(filteredCourse);
+            return res.data.response.filter((item) => {
+              console.log(item.category);
+              return (
+                item.category.toLowerCase() === categoryFilter.toLowerCase()
+              );
+            });
+          });
+          console.log(res);
+        })
+        .catch((err) => {});
+      } else {
+        setFilter(false)
+      }
   }, [categoryFilter]);
 
   function handleClick(val) {
@@ -92,7 +104,7 @@ export default () => {
   useEffect(() => {
     makeRequest("GET", `/course/get-course-by-limit/${count}`)
       .then((res) => {
-        console.log(res.data.response)
+        console.log(res.data.response);
         setCourse(res.data.response.courses);
         setCount(res.data.response.count);
       })
@@ -243,65 +255,65 @@ export default () => {
           </div>
           {/* offer text */}
           <div style={{ marginBottom: "1rem", marginTop: "1rem" }}>
-          {!image ? (
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                position: "relative",
-                background: "",
-                padding: ".5rem",
-              }}
-              className="col-12"
-            >
-              <marquee
+            {!image ? (
+              <div
                 style={{
-                  color: "#212a50",
-                  fontSize: "19px",
-                  fontWeight: "600",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  position: "relative",
+                  background: "",
+                  padding: ".5rem",
                 }}
-                scrollamount="10"
+                className="col-12"
               >
-                {coupon.text &&
-                  coupon.text.map((item) => {
-                    // console.log(coupon.text);
-                    if (item == "$") {
-                      return (
-                        <span className="animated-text">
-                          {coupon.highLight + " "}{" "}
-                        </span>
-                      );
-                    } else {
-                      return <span>{item + " "}</span>;
-                    }
-                  })}
-              </marquee>
-            </div>
-          ) : (
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                position: "relative",
-                background: "",
-                padding: ".5rem",
-              }}
-              className="col-12"
-            >
-              <marquee
+                <marquee
+                  style={{
+                    color: "#212a50",
+                    fontSize: "19px",
+                    fontWeight: "600",
+                  }}
+                  scrollamount="10"
+                >
+                  {coupon.text &&
+                    coupon.text.map((item) => {
+                      // console.log(coupon.text);
+                      if (item == "$") {
+                        return (
+                          <span className="animated-text">
+                            {coupon.highLight + " "}{" "}
+                          </span>
+                        );
+                      } else {
+                        return <span>{item + " "}</span>;
+                      }
+                    })}
+                </marquee>
+              </div>
+            ) : (
+              <div
                 style={{
-                  color: "#212a50",
-                  fontSize: "19px",
-                  fontWeight: "600",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  position: "relative",
+                  background: "",
+                  padding: ".5rem",
                 }}
-                scrollamount="10"
+                className="col-12"
               >
-                <img src={image} alt="" />
-              </marquee>
-            </div>
-          )}
+                <marquee
+                  style={{
+                    color: "#212a50",
+                    fontSize: "19px",
+                    fontWeight: "600",
+                  }}
+                  scrollamount="10"
+                >
+                  <img src={image} alt="" />
+                </marquee>
+              </div>
+            )}
             {/* <div
               style={{
                 display: "flex",
@@ -385,13 +397,13 @@ export default () => {
                 }
               })}
             </div>
-            <div className="d-flex justify-content-center">
+            {!filter && <div className="d-flex justify-content-center">
               <ResponsivePagination
                 current={selectedCount}
                 total={Math.ceil(count / 12)}
                 onPageChange={handleClick}
               />
-            </div>
+            </div>}
           </TabPanel>
         </div>
       </Tabs>
