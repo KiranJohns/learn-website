@@ -35,7 +35,7 @@ function CourseCard({ item }) {
   function getAllCourse() {
     makeRequest("GET", "/course/get-all-course")
       .then((res) => {
-        console.log(res.data.response);
+        // console.log(res.data.response);
         setCourse(res.data.response);
       })
       .catch((err) => {

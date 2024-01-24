@@ -37,8 +37,8 @@ export default () => {
       .then((res) => {
         // console.log("coupon ", res.data.response);
         let text = res.data.response[0];
-        if (text.image != "") {
-          setImage(text.image);
+        if (text?.image != "") {
+          setImage(text?.image);
         } else {
           let offerText = text.offer_text;
           let highLightText = text.hight_light_text;
@@ -58,15 +58,15 @@ export default () => {
       limit = 0;
     } else {
       setSelectedCount(limit);
-      limit = 12 * limit;
-      --limit;
+      limit = 12 * limit - 12;
     }
+    console.log(limit);
 
     makeRequest("GET", `/course/get-course-by-limit/${limit}`)
       .then((res) => {
         console.log(res.data.response)
         setCourse(res.data.response.courses);
-        setCount(res.data.response.count);
+        // setCount(res.data.response.count);
       })
       .catch((err) => {
         console.log(err);
@@ -91,6 +91,7 @@ export default () => {
   useEffect(() => {
     makeRequest("GET", `/course/get-course-by-limit/${count}`)
       .then((res) => {
+        console.log(res.data.response)
         setCourse(res.data.response.courses);
         setCount(res.data.response.count);
       })
