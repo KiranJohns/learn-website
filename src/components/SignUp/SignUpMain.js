@@ -183,6 +183,10 @@ function SignUpMain() {
           if (key == "type_of_account") {
             title = "type";
           }
+          if (key == "confirmPassword") {
+            toast.warn("Please confirm password");
+            return;
+          }
           toast.warn(`Please provide a valid ${title.replace("_", " ")}`);
           return;
         }
