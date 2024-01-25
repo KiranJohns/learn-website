@@ -454,7 +454,7 @@ const CompanyBundle = () => {
                                           handleStartBundle(item.id);
                                         }
                                       }}
-                                      className="btn btn-danger"
+                                      className="btn btn-success"
                                       style={{
                                         width: "6rem  !important",
                                         height: "35px",
