@@ -232,7 +232,7 @@ const OnlineExam = () => {
                     marginLeft: ".2rem",
                     marginBottom: ".4rem",
                     marginTop: ".3rem",
-                    zIndex: "1001",
+                    zIndex: "",
                   }}
                   className=""
                 >
