@@ -175,6 +175,15 @@ function SignUpMain() {
   const handleSignUp = async (e) => {
     console.log(timerInSec);
     setLoadingSignup(true);
+    function isValidEmail(email) {
+      const pattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+      return pattern.test(email);
+    }
+
+    // Example usage
+    if (!isValidEmail(data.email)) {
+      toast.warn("Please Check Your Email");
+    }
     try {
       e.persist();
       for (const key in initialValues) {
