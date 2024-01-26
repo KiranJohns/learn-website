@@ -44,7 +44,7 @@ const links = [
     subLinks: [
       {
         name: "My Bundles",
-        link:"/manager/myBundle"
+        link:"/manager/mybundles"
       },
       {
         name: "Buy Bundles",
@@ -69,7 +69,7 @@ const links = [
     subLinks: [
       {
         name: "My Courses",
-        link:"/manager/myCourses"
+        link:"/manager/mycourses"
       },
       {
         name: "Buy Courses",
