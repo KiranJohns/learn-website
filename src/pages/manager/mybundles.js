@@ -15,7 +15,7 @@ import { getToken, getUserType } from "../../axios";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import Sidebar from "../../components/Sidebar/SampleSidebar";
-import mybundle from "../company/mybundles";
+// import mybundle from "../company/mybundles";
 import DashHeader from "../../components/Layout/Header/DasnboardHeader";
 
 function myBundle() {

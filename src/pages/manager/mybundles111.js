@@ -6,7 +6,7 @@ import HeaderDashboard from "../../components/Layout/Header/HeaderDashboard";
 import DashMain from "../../components/Home/DashMain";
 import DashCourse from "../../components/Home/DashCourse";
 import Header from "../../components/Layout/Header/Header";
-import PurchaseBundle from "../../components/Home/ManagPurBundle";
+import ManagerBundle from "../../components/Home/ManageMyBundle";
 import NoSSR from "react-no-ssr";
 import DashTest from "../../components/Home/DashTest";
 import { Auth } from "../auth";
@@ -15,9 +15,10 @@ import { getToken, getUserType } from "../../axios";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import Sidebar from "../../components/Sidebar/SampleSidebar";
-import mybundle from "../company/mybundle";
+// import mybundle from "../company/mybundles";
+import DashHeader from "../../components/Layout/Header/DasnboardHeader";
 
-function PurBundle() {
+function myBundle() {
   const [logedIn, setlogedIn] = useState(() => {
     return getUserType();
   });
@@ -41,7 +42,7 @@ function PurBundle() {
             }}
           >
             <NoSSR>
-              <Header />
+              <DashHeader/>
             </NoSSR>
             <div
               className="container-fluid "
@@ -49,13 +50,13 @@ function PurBundle() {
             >
               <div className="row justify-content-md-center">
                 <div
-                  className="col-sm-12 col-md-12 col-lg-2 p-0"
+                  className="col-sm-12 col-md-12 col-lg-2 p-0 sidebar-hidden"
                   style={{ backgroundColor: "#212450" }}
                 >
                   <ManageBar />
                 </div>
-                <div className="col-sm col-md-9 bg-white">
-                  <PurchaseBundle/>
+                <div className="col-sm col-md-12 col-lg-11 col-xl-9  bg-white">
+                  <ManagerBundle />
                 </div>
               </div>
             </div>
@@ -66,4 +67,4 @@ function PurBundle() {
   );
 }
 
-export default PurBundle;
+export default myBundle;
