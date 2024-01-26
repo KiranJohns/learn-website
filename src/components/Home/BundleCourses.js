@@ -113,7 +113,14 @@ const BundleCour = () => {
     },
     {
       name: "Attempts",
-      selector: (row) => row?.attempts + "/" + 20,
+      selector: (row) => {
+        return <a
+          className="my-dashlink"
+          href={`/learnCourse/examAttempts/?bundleId=${router.query.id}&courseId=${row.id}&course_name=${(row.name ? row.name : row.Name)}`}
+        >
+          {(row.attempts ? row.attempts : 0) + "/20"}
+        </a>
+      },
       center: "true",
     },
     {

@@ -145,7 +145,6 @@ const BundleResource = () => {
             </div>
             {course &&
               course?.resource?.map((item, i) => {
-                console.log(item);
                 return (
                 <div style={{ margin: " 1rem .5rem" }}>
                   <p>

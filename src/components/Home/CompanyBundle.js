@@ -108,7 +108,6 @@ const CompanyBundle = () => {
     form.append("bundle_id", id);
     makeRequest("POST", "/bundle/start-bundle", form)
       .then((res) => {
-        console.log(res);
         location.href = `/learnCourse/bundleList/?id=${res.data.response.id}`;
       })
       .catch((err) => {

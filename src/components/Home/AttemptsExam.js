@@ -53,21 +53,39 @@ const AttemptsExam = () => {
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
     const courseId = searchParams.get("courseId");
+    const bundleId = searchParams.get("bundleId");
     const courseName = searchParams.get("course_name");
     setCourseName(courseName);
 
     setPending(true);
-    makeRequest("GET", `/on-going-course/get-attempts/${courseId}`)
-      .then((res) => {
-        setPending(false);
-        console.log(res.data.response);
-        setRecords(res.data.response.reverse());
-        setFilterRecords(res.data.response);
+    if (bundleId) {
+      makeRequest("POST", `/bundle/get-single-bundle-attempts`,{
+        course_id: courseId,
+        bundle_id: bundleId
       })
-      .catch((err) => {
-        setPending(false);
-        console.log(err);
-      });
+        .then((res) => {
+          setPending(false);
+          console.log(res.data.response);
+          setRecords(res.data.response.reverse());
+          setFilterRecords(res.data.response);
+        })
+        .catch((err) => {
+          setPending(false);
+          console.log(err);
+        });
+    } else {
+      makeRequest("GET", `/on-going-course/get-attempts/${courseId}`)
+        .then((res) => {
+          setPending(false);
+          console.log(res.data.response);
+          setRecords(res.data.response.reverse());
+          setFilterRecords(res.data.response);
+        })
+        .catch((err) => {
+          setPending(false);
+          console.log(err);
+        });
+    }
 
     getData();
   }, []);
@@ -139,7 +157,7 @@ const AttemptsExam = () => {
       name: "Date",
       center: true,
       selector: (row) => row.date,
-      width:"100px",
+      width: "100px",
       hide: 640,
     },
     {
@@ -168,7 +186,7 @@ const AttemptsExam = () => {
     },
     {
       name: "Action",
-      width:"90px",
+      width: "90px",
       selector: (row) => {
         return (
           <>
@@ -189,7 +207,6 @@ const AttemptsExam = () => {
         );
       },
       center: true,
-      
     },
   ];
 
@@ -246,7 +263,10 @@ const AttemptsExam = () => {
         >
           Exam Results
         </h2>
-        <div className="reacttable-hidden" style={{ padding: "", backgroundColor: "" }}>
+        <div
+          className="reacttable-hidden"
+          style={{ padding: "", backgroundColor: "" }}
+        >
           <div
             style={{ float: "right", marginBottom: "1.4rem" }}
             className="p-relative d-inline header__search searchbar-hidden3"
@@ -276,78 +296,78 @@ const AttemptsExam = () => {
         {pending && (
           <div
             className="no-record-hidden"
-            style={{ textAlign: "center", padding: "1rem", marginTop:"5rem" }}
+            style={{ textAlign: "center", padding: "1rem", marginTop: "5rem" }}
           >
             <Spinner animation="border" variant="primary" />
           </div>
         )}
-      <div style={{marginTop:'5rem'}}>
-        {records.length <= 0 && !pending && (
-          <h4
-            className="no-record-hidden"
-            style={{ textAlign: "center", padding: "1rem" }}
-          >
-            No records to display
-          </h4>
-        )}
-        {/* <div style={{ marginTop: "3rem" }}> */}
-        {records.map((item) => {
-          return (
-            <div
-              style={{
-                width: "100%",
-                display: "flex",
-                flexDirection: "column",
-                padding: ".5rem",
-              }}
+        <div style={{ marginTop: "5rem" }}>
+          {records.length <= 0 && !pending && (
+            <h4
+              className="no-record-hidden"
+              style={{ textAlign: "center", padding: "1rem" }}
             >
-              <div className="new-table-shadow new-table-hidden">
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                  }}
-                >
-                  <p
-                    style={{
-                      paddingTop: ".5rem",
-                      paddingLeft: ".4rem",
-                      color: "#212a50",
-                      fontWeight: "bold",
-                    }}
-                  >
-                    {courseName}
-                  </p>
-                  <p
-                    style={{
-                      color: "#212a50",
-                      marginRight: ".5rem",
-                      fontWeight: "500",
-                      paddingTop: ".5rem",
-                    }}
-                  >
-                    {item.certificate ? (
-              <a
-                className="btn btn-success"
-                target="_blank"
-                href={item.certificate}
+              No records to display
+            </h4>
+          )}
+          {/* <div style={{ marginTop: "3rem" }}> */}
+          {records.map((item) => {
+            return (
+              <div
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  flexDirection: "column",
+                  padding: ".5rem",
+                }}
               >
-                <TbDownload />
-              </a>
-            ) : (
-              <span className="btn btn-success">
-                <TbDownloadOff />
-              </span>
-            )}
-                  </p>
-                </div>
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                  }}
-                >
-                  {/* <p
+                <div className="new-table-shadow new-table-hidden">
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                    }}
+                  >
+                    <p
+                      style={{
+                        paddingTop: ".5rem",
+                        paddingLeft: ".4rem",
+                        color: "#212a50",
+                        fontWeight: "bold",
+                      }}
+                    >
+                      {courseName}
+                    </p>
+                    <p
+                      style={{
+                        color: "#212a50",
+                        marginRight: ".5rem",
+                        fontWeight: "500",
+                        paddingTop: ".5rem",
+                      }}
+                    >
+                      {item.certificate ? (
+                        <a
+                          className="btn btn-success"
+                          target="_blank"
+                          href={item.certificate}
+                        >
+                          <TbDownload />
+                        </a>
+                      ) : (
+                        <span className="btn btn-success">
+                          <TbDownloadOff />
+                        </span>
+                      )}
+                    </p>
+                  </div>
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                    }}
+                  >
+                    {/* <p
                         style={{
                           color: "green",
                           marginLeft: ".5rem",
@@ -357,32 +377,32 @@ const AttemptsExam = () => {
                         Course: {item?.course_count}
                         <a className="my-dashlink"></a>
                       </p> */}
-                  <p
+                    <p
+                      style={{
+                        color: "green",
+                        marginLeft: ".5rem",
+                        fontWeight: "500",
+                      }}
+                    >
+                      Date: {item?.date}
+                    </p>
+                    <p
+                      style={{
+                        color: "green",
+                        marginRight: ".5rem",
+                        fontWeight: "500",
+                      }}
+                    >
+                      Time: {item?.time}
+                    </p>
+                  </div>
+                  <div
                     style={{
-                      color: "green",
-                      marginLeft: ".5rem",
-                      fontWeight: "500",
+                      display: "flex",
+                      justifyContent: "space-between",
                     }}
                   >
-                   Date: {item?.date}
-                  </p>
-                  <p
-                    style={{
-                      color: "green",
-                      marginRight: ".5rem",
-                      fontWeight: "500",
-                    }}
-                  >
-                   Time: {item?.time}
-                  </p>
-                </div>
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                  }}
-                >
-                  {/* <p
+                    {/* <p
                         style={{
                           color: "green",
                           marginLeft: ".5rem",
@@ -392,31 +412,30 @@ const AttemptsExam = () => {
                         Course: {item?.course_count}
                         <a className="my-dashlink"></a>
                       </p> */}
-                  <p
-                    style={{
-                      color: "green",
-                      marginLeft: ".5rem",
-                      fontWeight: "500",
-                    }}
-                  >
-                   Status: {item?.status}
-                  </p>
-                  <p
-                    style={{
-                      color: "green",
-                      marginRight: ".5rem",
-                      fontWeight: "500",
-                    }}
-                  >
-                   Marks: {item?.percentage ? item?.percentage : 0}
-                  </p>
+                    <p
+                      style={{
+                        color: "green",
+                        marginLeft: ".5rem",
+                        fontWeight: "500",
+                      }}
+                    >
+                      Status: {item?.status}
+                    </p>
+                    <p
+                      style={{
+                        color: "green",
+                        marginRight: ".5rem",
+                        fontWeight: "500",
+                      }}
+                    >
+                      Marks: {item?.percentage ? item?.percentage : 0}
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
-
-          );
-        })}
-         </div>
+            );
+          })}
+        </div>
         {/* </div> */}
       </div>
     </div>

@@ -150,7 +150,7 @@ const DashCourse = () => {
           className="my-dashlink"
           href={`/learnCourse/examAttempts/?courseId=${row.id}&course_name=${(row.name ? row.name : row.Name)}`}
         >
-          {row.attempts + "/20"}
+          {row.attempts ? row.attempts : 0 + "/20"}
         </a>
       ),
       center: true,

@@ -63,7 +63,7 @@ function onlineExam() {
                   {getUserType() == "company" && <DashboardBar />}
                 </div>
                   <div className="col-sm col-md-12 col-lg-11 col-xl-9 bg-white">
-                    <OnlineExam/> {/* for modal */}
+                    <OnlineExam /> {/* for modal */}
                   </div>
                 </div>
               </div>

@@ -11,8 +11,6 @@ const NewResult = () => {
   const [exam, setExam] = useState([]);
   const [examResult, setExamResult] = useState(() => {
     let result = JSON.parse(localStorage.getItem("wrong-answers"));
-    console.log(result);
-    console.log(result);
     return result;
   });
   const [questionId, setQuestionId] = useState(null);
@@ -70,20 +68,17 @@ const NewResult = () => {
               <h4>You have scored {examResult?.per} marks</h4>
             </div>
 
-            <div
-              style={{ textAlign: "" }}
-              className="dash-shadow p-4 mt-4"
-            >
+            <div style={{ textAlign: "" }} className="dash-shadow p-4 mt-4">
               <h4>Wrong Answers</h4>
-             
-              {examResult?.questions?.length > 0 ?
-              examResult?.questions?.map((item, i) => (
-                <div className=" p-2 ">
-                  <p>
-                    {++i}. {item.question}
-                  </p> 
-                  <form action="button">
-                    {/* <div className="row">
+
+              {examResult?.questions?.length > 0 ? (
+                examResult?.questions?.map((item, i) => (
+                  <div className=" p-2 ">
+                    <p>
+                      {++i}. {item.question}
+                    </p>
+                    <form action="button">
+                      {/* <div className="row">
                       <div className="col-sm-12 col-md-6">
                         <span style={{ display: "flex", textWrap: "wrap" }}>
                           {" "}
@@ -103,23 +98,45 @@ const NewResult = () => {
                         </span>
                       </div>
                     </div> */}
-                  </form>
-                </div>
-              )):(<p style={{fontWeight:'700',color:"#000", marginTop:"1rem", marginLeft:".5rem"}}>None</p>)}
+                    </form>
+                  </div>
+                ))
+              ) : (
+                <p
+                  style={{
+                    fontWeight: "700",
+                    color: "#000",
+                    marginTop: "1rem",
+                    marginLeft: ".5rem",
+                  }}
+                >
+                  None
+                </p>
+              )}
             </div>
-  
-          
 
-              <div style={{textAlign:'center'}}>
-            <span 
-              className="btn btn-success mt-3 "
-              onClick={() => {
-                location.href = `/${getUserType()}/certificates`;
-                localStorage.removeItem("wrong-answers")
-              }}
-            >
-          Certificates 
-            </span>
+            <div style={{ textAlign: "center" }}>
+              {examResult?.per > 80 ? (
+                <span
+                  className="btn btn-success mt-3 "
+                  onClick={() => {
+                    location.href = `/${getUserType()}/certificates`;
+                    localStorage.removeItem("wrong-answers");
+                  }}
+                >
+                  Certificates
+                </span>
+              ) : (
+                <span
+                  className="btn btn-success mt-3 "
+                  onClick={() => {
+                    location.href = `/${getUserType()}/certificates`;
+                    localStorage.removeItem("wrong-answers");
+                  }}
+                >
+                  Certificates
+                </span>
+              )}
             </div>
           </div>
         </div>
