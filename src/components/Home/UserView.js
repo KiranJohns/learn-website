@@ -36,15 +36,17 @@ const ViewUser = () => {
   }, []);
 
   function changePassword() {
-    let url = '/auth/forgot-password'
-    mackRequest("POST",url,{
-      email: userData.email
-    }).then(res => {
-      toast.success(`Password reset link sent to the user's email`)
-      console.log(res);
-    }).catch(err => {
-      console.log(err);
+    let url = "/auth/forgot-password";
+    mackRequest("POST", url, {
+      email: userData.email,
     })
+      .then((res) => {
+        toast.success(`Password reset link sent to the user's email`);
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   const [showPassword, setShowPassword] = useState(false);
@@ -88,8 +90,8 @@ const ViewUser = () => {
   };
 
   return (
-    <div style={{position:"relative"}} className="">
-       <Backbutton/>
+    <div style={{ position: "relative" }} className="">
+      <Backbutton />
       <ToastContainer
         position="top-right"
         autoClose={5000}
@@ -172,17 +174,29 @@ const ViewUser = () => {
                     Type of User
                   </label>
                   <select
-                    style={{ background: "#f7fbff", textTransform: 'capitalize' }}
+                    style={{
+                      background: "#f7fbff",
+                      textTransform: "capitalize",
+                    }}
                     onChange={handleOnchange}
                     className="form-control border border-black"
                     id="exampleFormControlSelect1"
                     name="type_of_account"
                   >
-                    <option value={userData.type_of_account}>
+                    {/* <option value={userData.type_of_account}>
                       {userData.type_of_account}
-                    </option>
-                    <option value="individual">Individual</option>
-                    <option value="manager">Manager</option>
+                    </option> */}
+                    {userData.type_of_account == "individual" ? (
+                      <>
+                        <option value="individual">Individual</option>
+                        <option value="manager">Manager</option>
+                      </>
+                    ) : (
+                      <>
+                        <option value="manager">Manager</option>
+                        <option value="individual">Individual</option>
+                      </>
+                    )}
                   </select>
                 </div>
               </div>
@@ -253,7 +267,12 @@ const ViewUser = () => {
                     /> */}
                     {/* <button>hi</button> */}
                     <div className="input-group-append">
-                      <button class="btn" style={{color: '#fff', backgroundColor: '#212A50'}} onClick={changePassword} type="button">
+                      <button
+                        class="btn"
+                        style={{ color: "#fff", backgroundColor: "#212A50" }}
+                        onClick={changePassword}
+                        type="button"
+                      >
                         Change Password
                       </button>
                     </div>
