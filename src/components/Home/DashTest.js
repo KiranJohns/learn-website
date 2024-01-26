@@ -325,7 +325,7 @@ class DashTest extends Component {
               className="ag-courses_item-comp"
               style={{ marginLeft: ".5rem" }}
             >
-              <a href="/company/mybundle" className="ag-courses-item_link-comp">
+              <a href="/company/mybundles" className="ag-courses-item_link-comp">
                 <div className="ag-courses-item_bg-comp"></div>
                 <div
                   className="bi bi-book ag-courses-item_date-box-new"
