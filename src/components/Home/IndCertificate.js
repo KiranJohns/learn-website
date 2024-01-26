@@ -86,23 +86,25 @@ class IndCertificate extends Component {
         sortable: true,
         center: true,
 
-        minWidth: "250px",
+        minWidth: "270px",
       },
       {
         name: "Date",
         selector: (row) => row.date,
         center: true,
-        hide: "md",
+        // hide: "md",
+        width: "110px",
       },
       {
         name: "Percentage",
         selector: (row) => row.percentage,
         center: true,
-        hide: "sm",
+        // hide: 780,
       },
       {
         name: "Actions",
         center: true,
+        width: "100px",
         selector: (row) => (
           <a className="btn btn-success" target="_blank" href={row.image}>
             <FaEye />
@@ -278,12 +280,11 @@ class IndCertificate extends Component {
                             width: "100%",
                           }}
                         >
-                          <div className="new-table-shadow  new-table-hidden">
+                          <div className="new-table-shadow new-table-hidden">
                             <div
                               style={{
                                 display: "flex",
-                                justifyContent: "space-between",
-                               
+                                justifyContent: "space-between",                        
                               }}
                             >
                               <p
@@ -339,6 +340,7 @@ class IndCertificate extends Component {
                                 Date: {item?.date}
                               </p>
                             </div>
+                            
                           </div>
                         </div>
                       );

@@ -5,6 +5,7 @@ import Link from "next/link";
 import BasicExample from "../About/button1";
 import fetchData from "../../axios";
 import { FaEye } from "react-icons/fa";
+import Backbutton from "./Backbutton";
 
 const customStyles = {
   headRow: {
@@ -66,28 +67,35 @@ class ManageCertificate extends Component {
   render() {
     const columns = [
       {
-        name: "ID",
-        selector: (row) => row.id,
-        sortable: true,
+        name: "No",
+        selector: (row, idx) => ++idx,
+        center:true,
+        width:"80px",
+        hide:850,
       },
       {
         name: "Courses",
         selector: (row) => row.course_name,
-        sortable: true,
+        center:true,
       },
       {
         name: "Date",
-        selector: (row) => new Date(row.date).toLocaleDateString(),
+        selector: (row) => (row.date),
+        center:true,
+        width:"100px",
       },
       {
         name: "Percentage",
         selector: (row) => row.percentage,
+        center:true,
       },
       {
         name: "Actions",
+        center:true,
+        width:"100px",
         selector: (row) => (
           <a className="btn btn-success" target="_blank" href={row.image}>
-            view
+            View
           </a>
         ),
       },
@@ -97,6 +105,7 @@ class ManageCertificate extends Component {
       <div className="">
         <div className="dash-shadow">
           <div style={{position:"relative"}} className=" row g-3  min-vh-100  d-flex justify-content-center mt-20">
+          <Backbutton/>
             <h2
               style={{
                 color: "#212450",
@@ -168,7 +177,7 @@ class ManageCertificate extends Component {
                   }
                   customStyles={customStyles}
                   pagination
-                  selectableRows
+                  
                 />
               </div>
               {this.state.searchData
@@ -235,7 +244,7 @@ class ManageCertificate extends Component {
                           width: "100%",
                         }}
                       >
-                        <div className="new-table-shadow new-table-res new-table-hidden">
+                        <div className="new-table-shadow  new-table-hidden">
                           <div
                             style={{
                               display: "flex",
@@ -266,6 +275,41 @@ class ManageCertificate extends Component {
                               <FaEye />
                             </a>
                           </div>
+                          <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      {/* <p
+                        style={{
+                          color: "green",
+                          marginLeft: ".5rem",
+                          fontWeight: "500",
+                        }}
+                      >
+                        Course: {item.course_count}
+                        <a className="my-dashlink"></a>
+                      </p> */}
+                      <p
+                        style={{
+                          color: "green",
+                          marginLeft: ".5rem",
+                          fontWeight: "500",
+                        }}
+                      >
+                      Date: {item.date}
+                      </p>
+                      <p
+                        style={{
+                          color: "green",
+                          marginRight: ".5rem",
+                          fontWeight: "500",
+                        }}
+                      >
+                        Percentage: {item.percentage}
+                      </p>
+                    </div>
                         </div>
                       </div>
                     );

@@ -105,7 +105,7 @@ const CompMonthRep = () => {
               display: "flex",
               justifyContent: "center",
               position: "absolute",
-              fontSize: 35,
+              fontSize: 34,
             }}
           >
             Month Wise Report
