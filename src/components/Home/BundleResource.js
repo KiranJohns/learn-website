@@ -47,6 +47,7 @@ const BundleResource = () => {
   const router = useRouter();
   const makeRequest = fetchData();
   useEffect(() => {
+    localStorage.setItem('exam-from','bundle')
     const form = new FormData();
     form.append("course_id", router.query.course_id);
     form.append("bundleId", router.query.bundleId);

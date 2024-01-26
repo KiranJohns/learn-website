@@ -9,8 +9,12 @@ const NewResult = () => {
   const makeRequest = fetchData();
   const router = useRouter();
   const [exam, setExam] = useState([]);
+  const [examFrom, setExamFrom] = useState(() => localStorage.getItem('exam-from'))
+
   const [examResult, setExamResult] = useState(() => {
     let result = JSON.parse(localStorage.getItem("wrong-answers"));
+    let per = result?.per?.split(' ')
+    result['per'] = per[0]    
     return result;
   });
   const [questionId, setQuestionId] = useState(null);
@@ -65,7 +69,7 @@ const NewResult = () => {
               style={{ textAlign: "center" }}
               className="dash-shadow p-4 mt-4"
             >
-              <h4>You have scored {examResult?.per} marks</h4>
+              <h4>You have scored {examResult?.per} % marks</h4>
             </div>
 
             <div style={{ textAlign: "" }} className="dash-shadow p-4 mt-4">
@@ -130,11 +134,17 @@ const NewResult = () => {
                 <span
                   className="btn btn-success mt-3 "
                   onClick={() => {
-                    location.href = `/${getUserType()}/certificates`;
+                    let to = ''
+                    if(examFrom == 'course') {
+                      to = `/${getUserType()}/mycourses`
+                    } else {
+                      to = `/${getUserType()}/mybundles`
+                    }
+                    location.href = to;
                     localStorage.removeItem("wrong-answers");
                   }}
                 >
-                  Certificates
+                  {examFrom == 'course' ? 'My Course' : 'My Bundle'}
                 </span>
               )}
             </div>

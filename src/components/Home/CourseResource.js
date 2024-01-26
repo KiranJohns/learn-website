@@ -28,6 +28,7 @@ const CourseResource = () => {
   const router = useRouter();
   const makeRequest = fetchData();
   useEffect(() => {
+    localStorage.setItem('exam-from','course')
     makeRequest(
       "GET",
       `/on-going-course/get-on-going-course/${router.query.courseId}`
