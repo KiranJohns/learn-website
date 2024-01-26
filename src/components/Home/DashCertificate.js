@@ -5,6 +5,7 @@ import Link from "next/link";
 import BasicExample from "../About/button1";
 import fetchData from "../../axios";
 import { FaEye } from "react-icons/fa";
+import Backbutton from "./Backbutton";
 
 const customStyles = {
   headRow: {
@@ -70,7 +71,7 @@ class DashCertificate extends Component {
         selector: (row, idx) => idx + 1,
         center: true,
         hide: "md",
-        compact: true,
+      width:"82px"
       },
       {
         name: "Courses",
@@ -82,7 +83,8 @@ class DashCertificate extends Component {
         name: "Date",
         selector: (row) => row.date,
         center: true,
-        hide: "md",
+        // hide: "md",
+        width:"110px"
       },
       {
         name: "Percentage",
@@ -93,6 +95,7 @@ class DashCertificate extends Component {
       {
         name: "Actions",
         center: true,
+        width:"100px",
         selector: (row) => (
           <a className="btn btn-success" target="_blank" href={row.image}>
             <FaEye />
@@ -108,13 +111,14 @@ class DashCertificate extends Component {
             style={{ position: "relative" }}
             className=" row g-3  min-vh-100  d-flex justify-content-center mt-20"
           >
+             <Backbutton/>
             <h2
               style={{
                 color: "#212450",
                 display: "flex",
                 justifyContent: "center",
                 position: "absolute",
-                fontSize: 36,
+                fontSize: 35,
                 marginTop: "1.5rem",
               }}
             >
@@ -243,9 +247,10 @@ class DashCertificate extends Component {
                           display: "flex",
                           flexDirection: "column",
                           width: "100%",
+                          padding:".5rem"
                         }}
                       >
-                        <div className="new-table-shadow new-table-res new-table-hidden">
+                        <div className="new-table-shadow  new-table-hidden">
                           <div
                             style={{
                               display: "flex",
@@ -276,6 +281,41 @@ class DashCertificate extends Component {
                               <FaEye />
                             </a>
                           </div>
+                          <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      {/* <p
+                        style={{
+                          color: "green",
+                          marginLeft: ".5rem",
+                          fontWeight: "500",
+                        }}
+                      >
+                        Course: {item.course_count}
+                        <a className="my-dashlink"></a>
+                      </p> */} 
+                      <p
+                        style={{
+                          color: "green",
+                          marginLeft: ".5rem",
+                          fontWeight: "500",
+                        }}
+                      >
+                      Date: {item.date}
+                      </p>
+                      <p
+                        style={{
+                          color: "green",
+                          marginRight: ".5rem",
+                          fontWeight: "500",
+                        }}
+                      >
+                        Percentage: {item.percentage}
+                      </p>
+                    </div>
                         </div>
                       </div>
                     );
