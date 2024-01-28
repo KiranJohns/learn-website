@@ -106,7 +106,7 @@ class IndCertificate extends Component {
         center: true,
         width: "100px",
         selector: (row) => (
-          <a className="btn btn-success" target="_blank" href={row.image}>
+          <a title="View" className="btn btn-success" target="_blank" href={row.image}>
             <FaEye />
           </a>
         ),

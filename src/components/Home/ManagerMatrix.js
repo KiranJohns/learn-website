@@ -3,6 +3,7 @@ import Table from "react-bootstrap/Table";
 import fetchData from "../../axios";
 import { useEffect } from "react";
 import { useState } from "react";
+import { FaArrowAltCircleLeft } from "react-icons/fa";
 
 const ManCoursMatrix = () => {
   const matrixDataUser = [
@@ -272,6 +273,7 @@ const ManCoursMatrix = () => {
   return (
     <div className="row p-3">
       <div style={{ position: "relative" }} className="dash-neww ">
+      <span style={{position:'absolute',  marginTop:"1.3rem",marginLeft:".8rem" ,zIndex:"99"}} className="matrix-man-back"><button style={{background:"white",borderRadius:".7rem"}} onClick={() => history.back()}> <FaArrowAltCircleLeft className="back-fontsize"  style={{color:"#212a50", }}/></button></span >
       <div style={{ position: "absolute", }} className="manager-matrix">
           <span className="m-3" style={{ display: "flex" }}>
             <div

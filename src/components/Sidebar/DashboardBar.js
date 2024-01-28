@@ -351,7 +351,7 @@ function DashboardBar() {
                       : ""
                   }  py-3 px-2`}
                 >
-                  <i className={`${link.icon} txttsml me-2 ml-50`}></i>
+                  <i className={`${link.icon} txttsml me-2 clast-test-ml`}></i>
                   <span className="txttsml ">
                     {" "}
                     &nbsp;{link.name}{" "}
@@ -381,10 +381,10 @@ function DashboardBar() {
                       }}
                     >
                       <a
-                        className="list-group-items my-2"
+                        className="list-group-items my-2 sub-test-ml"
                         style={{
                           width: "max-content",
-                          marginLeft: "4.5rem",
+                          // marginLeft: "4.5rem",
                           padding: "0.3rem 1rem !important",
                           borderRadius: "5px",
                         }}
@@ -405,7 +405,7 @@ function DashboardBar() {
           style={{ margin: ".8rem", borderRadius: "8px",  }}
           className="list-group-item py-3 px-2 "
         >
-          <i  className="bi bi-box-arrow-left txttsml me-2 ml-50"></i>
+          <i  className="bi bi-box-arrow-left txttsml me-2 clast-test-ml"></i>
           <span className="txttsml">{"  "}&nbsp;Logout</span>
         </div>
 

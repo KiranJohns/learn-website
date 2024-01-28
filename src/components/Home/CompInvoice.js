@@ -94,10 +94,11 @@ const CompInvoice = () => {
       name: "Action",
       selector: (row) => (
         <Button
+        title="View"
           style={{ background: "#212a50", color: "white" }}
           variant="success btn-icon-xxs"
         >
-          <a target="_blank" href={row.img}>
+          <a target="_blank"  href={row.img}>
             <FaEye />
           </a>
         </Button>
@@ -128,7 +129,7 @@ const CompInvoice = () => {
           </h2>
           <div style={{ padding: "", backgroundColor: "" }}>
             <div
-              style={{ float: "right", marginBottom: ".7rem" }}
+              style={{ float: "right", marginBottom: ".7rem", zIndex:"99" }}
               className="p-relative d-inline header__search searchbar-hidden1"
             >
               <form action="">

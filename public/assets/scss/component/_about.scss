@@ -811,3 +811,28 @@ margin: 0 auto;
         
         }
        }
+
+       .matrix-back-hidden{
+           display: none;
+       }
+
+
+       @media screen and (max-width:864px) {
+        .matrix-back-hidden{
+          display: block;
+      }
+
+       }
+
+       .matrix-man-back{
+        display: none;
+    }
+
+
+    
+    @media screen and (max-width:800px) {
+      .matrix-man-back{
+        display: block;
+    }
+
+     }

@@ -85,7 +85,7 @@ const IndPurBundle = () => {
     {
       name: "Action",
       cell: () => (
-        <a href="https://test.learnforcare.co.uk/bundle/bundle-all">
+        <a title="View" href="https://test.learnforcare.co.uk/bundle/bundle-all">
           <Button style={{ background: "#212a50" }}>
             <FaEye />
           </Button>

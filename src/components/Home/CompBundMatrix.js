@@ -3,6 +3,8 @@ import Table from "react-bootstrap/Table";
 import Form from "react-bootstrap/Form";
 import fetchData from "../../axios";
 import { jwtDecode } from "jwt-decode";
+import { FaArrowAltCircleLeft } from "react-icons/fa";
+
 
 const MatrixBundComp = () => {
   const makeRequest = fetchData();
@@ -107,6 +109,7 @@ const MatrixBundComp = () => {
   return (
     <div className="row p-3">
       <div style={{ position: "relative" }} className="dash-neww bg-white">
+      <span style={{position:'absolute',  marginTop:".2rem", zIndex:"99"}} className="matrix-back-hidden"><button style={{background:"white",borderRadius:".7rem"}} onClick={() => history.back()}> <FaArrowAltCircleLeft className="back-fontsize"  style={{color:"#212a50", }}/></button></span >
       <div style={{ position: "absolute" }} className="matrix-hidden">
           <span className="m-3" style={{ display: "flex" }}>
             <div
@@ -150,7 +153,7 @@ const MatrixBundComp = () => {
         <div className="col-12 p-2 m-2">
           <div style={{ position: "relative" }}>
             <div className="matrix-head my-2 ">
-              <h4>Bundle Matrix</h4>
+              <h4 style={{ fontSize: "1.5rem" }}>Bundle Matrix</h4>
             </div>
 
             <div

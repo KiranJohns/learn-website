@@ -97,7 +97,7 @@ class DashCertificate extends Component {
         center: true,
         width:"100px",
         selector: (row) => (
-          <a className="btn btn-success" target="_blank" href={row.image}>
+          <a className="btn btn-success" title="View" target="_blank" href={row.image}>
             <FaEye />
           </a>
         ),

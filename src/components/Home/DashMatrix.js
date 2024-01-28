@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import Form from "react-bootstrap/Form";
 import { jwtDecode } from "jwt-decode";
+import { FaArrowAltCircleLeft } from "react-icons/fa";
 
 const ManCoursMatrix = () => {
   const matrixDataUser = [
@@ -292,6 +293,7 @@ const ManCoursMatrix = () => {
   return (
     <div className="row p-3">
       <div style={{ position: "relative" }} className="dash-neww bg-white">
+      <span style={{position:'absolute',  marginTop:".2rem", zIndex:"99"}} className="matrix-back-hidden"><button style={{background:"white"}} onClick={() => history.back()}> <FaArrowAltCircleLeft className="back-fontsize"  style={{color:"#212a50", }}/></button></span >
         <div style={{ position: "absolute" }} className="matrix-hidden">
           <span className="m-3" style={{ display: "flex" }}>
             <div

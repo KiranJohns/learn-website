@@ -262,7 +262,7 @@ class ManageCertificate extends Component {
                               {item.course_name}
                             </p>
                             {/* <button className="btn btn-success" style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}>View</button> */}
-                            <a
+                            <a 
                               style={{
                                 height: "35px",
                                 marginTop: "1rem",

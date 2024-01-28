@@ -205,7 +205,7 @@ function GetInTouch() {
                       <div className="contact__info-text">
                         <h4>Phone</h4>
                         <p>
-                          <a href="tel:+(426)-742-26-44">+(44)-2031483007</a>
+                          <a href="tel:+(426)-742-26-44">+(44)-2030051290</a>
                         </p>
                         {/* <p><a href="tel:+(224)-762-442-32">+(44) 762 442 32</a></p> */}
                       </div>

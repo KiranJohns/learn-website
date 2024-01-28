@@ -98,7 +98,7 @@ const Footer = () => {
                                        <li><Link href="/blog"><a>News & Blogs</a></Link></li>
                                        <li><Link href="/about"><a>FAQs</a></Link></li> */}
                                        <li><IoLocationOutline style={{marginBottom:'.2rem',margin:"4px 0px"}}/>Learn For Care, 124 City Road, <IoLocationOutline className='footer-hidden-icon'/>London, EC1V2NX</li>
-                                       <li><BsTelephone/> +44-2031483007</li>
+                                       <li><BsTelephone/>+44-2030051290</li>
                                        <li><Link href="mailto:info@learnforcare.co.uk"><a><AiOutlineMail/> <span style={{visibility:'hidden'}}>''</span>support@learnforcare.co.uk</a></Link></li>
                                     </ul>
                                  </div>

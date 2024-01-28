@@ -127,7 +127,7 @@ const ManageIndList = () => {
       center: true,
       cell: (row) => (
         <button
-          title={`${row.block ? "Unblock" : "block"}`}
+          title={`${row.block ? "Unblock" : "Block"}`}
           onClick={() => handleBlock(row.block, row.id)}
           className={row.block ? `btn btn-danger` : `btn btn-success`}
         >

@@ -105,19 +105,20 @@ const ManageMyCourse = () => {
       selector: (row) => row?.Name || row?.name,
       sortable: true,
       center: true,
-      width: "310px",
+      width: "260px",
     },
     {
       name: "validity",
       selector: (row) => row?.validity,
       center: true,
 
-      width: "110px",
+  
       // hide: "md",
     },
     {
       center: true,
       name: "Attempts",
+      
       selector: (row) => (
         <a
           className="my-dashlink"
@@ -128,11 +129,12 @@ const ManageMyCourse = () => {
           {row.attempts ? row.attempts + "/20" : "0/20"}
         </a>
       ),
-      hide: 725,
+      hide: 670,
     },
     {
       center: true,
       name: "Actions",
+     
       cell: (row) => {
         let validity = row.validity.split("/").reverse();
         let flag = false;
@@ -241,7 +243,7 @@ const ManageMyCourse = () => {
           </h2>
           <div
             className="reacttable-hidden"
-            style={{ padding: "", backgroundColor: "" }}
+            style={{ padding: "", backgroundColor: "",zIndex:"99" }}
           >
             <div
               style={{ float: "right", marginBottom: "1.4rem" }}
