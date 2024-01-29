@@ -79,7 +79,9 @@ const IndPurBundle = () => {
     },
     {
       name: "count",
-      selector: (row) => row.course_count,
+      selector: (row) => {
+        return row.fake_course_count
+      },
       center: true,
     },
     {

@@ -230,6 +230,14 @@ const BundleCour = () => {
               </form>
             </div>
             <DataTable
+            progressPending={pending}
+            progressComponent={
+              pending ? (
+                <div style={{ padding: "1rem" }}>
+                  <Spinner animation="border" variant="primary" />
+                </div>
+              ) : null
+            }
               noDataComponent={"No records to display"}
               columns={columns}
               data={
@@ -258,6 +266,7 @@ const BundleCour = () => {
                 <Spinner animation="border" variant="primary" />
               </div>
             )}
+          {(records.length <= 0 && !pending) && <h4 className="no-record-hidden" style={{textAlign: 'center',marginTop:"1rem",}}>No records to display</h4>}
           {searchData
             ? records
                 .filter((item) =>
