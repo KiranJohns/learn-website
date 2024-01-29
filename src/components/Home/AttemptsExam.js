@@ -12,6 +12,7 @@ import { FaEye } from "react-icons/fa";
 import { Spinner } from "react-bootstrap";
 import { TbDownload } from "react-icons/tb";
 import { TbDownloadOff } from "react-icons/tb";
+import Backbutton from "./Backbutton";
 
 const customStyles = {
   headRow: {
@@ -191,7 +192,7 @@ const AttemptsExam = () => {
         return (
           <>
             {row.certificate ? (
-              <a
+              <a title="Download"
                 className="btn btn-success"
                 target="_blank"
                 href={row.certificate}
@@ -199,7 +200,7 @@ const AttemptsExam = () => {
                 <TbDownload />
               </a>
             ) : (
-              <span className="btn btn-success">
+              <span title="No Download" className="btn btn-success">
                 <TbDownloadOff />
               </span>
             )}
@@ -251,6 +252,7 @@ const AttemptsExam = () => {
         style={{ position: "relative" }}
         className=" row g-3  min-vh-100  d-flex justify-content-center dash-shadow mt-10"
       >
+        <Backbutton/>
         <h2
           style={{
             color: "#212450",
@@ -258,7 +260,7 @@ const AttemptsExam = () => {
             justifyContent: "center",
             position: "absolute",
             fontSize: 36,
-            marginTop: "1.5rem",
+            marginTop: "1.2rem",
           }}
         >
           Exam Results
