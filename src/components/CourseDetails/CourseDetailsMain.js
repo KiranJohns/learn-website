@@ -160,7 +160,15 @@ function CourseDetailsMain() {
                         <TabPanel>
                           <div className="course__description mb-95 course-head-center">
                             <h3 className="course-head-center">Introduction</h3>
-                            <p className=" mb-45">{course?.description}</p>
+                            {course?.description && <p
+                                dangerouslySetInnerHTML={{
+                                  __html: course?.description?.replace(
+                                    /\n/g,
+                                    "</br>"
+                                  ),
+                                }}
+                              ></p>}
+                            {/* <p className=" mb-45">{course?.description}</p> */}
                             {course?.category == "Care Course" ? (
                               <>
                                 <div className="course__description-list mb-45 course-head-center">
@@ -187,7 +195,10 @@ function CourseDetailsMain() {
                                   </ul>
                                 </div>
                                 <div className="course__description-list mb-45 course-head-center">
-                                  {(course.objective_define || course?.objectives_point?.length >= 1) && <h4>Objectives</h4>}
+                                  {(course.objective_define ||
+                                    course?.objectives_point?.length >= 1) && (
+                                    <h4>Objectives</h4>
+                                  )}
                                   <ul style={{ listStyle: "initial" }}>
                                     {course?.objectives_point?.map((item) => {
                                       if (item == "") return null;
@@ -231,7 +242,9 @@ function CourseDetailsMain() {
                                       return (
                                         <li
                                           style={{
-                                            listStyle: course?.who_should_attend?.length > 1 && "inside",
+                                            listStyle:
+                                              course?.who_should_attend
+                                                ?.length > 1 && "inside",
                                             marginBottom: "1rem",
                                           }}
                                         >
@@ -242,7 +255,11 @@ function CourseDetailsMain() {
                                   </ul>
                                 </div>
                                 <div className="course__description-list mb-45">
-                                  {(course?.what_you_will_learn_point?.length >= 1 || course?.What_you_will_learn) && <h4>What you will learn?</h4>}
+                                  {(course?.what_you_will_learn_point?.length >=
+                                    1 ||
+                                    course?.What_you_will_learn) && (
+                                    <h4>What you will learn?</h4>
+                                  )}
                                   <ul>
                                     {course?.what_you_will_learn_point?.map(
                                       (item) => {
@@ -280,8 +297,8 @@ function CourseDetailsMain() {
                                 <li>
                                   Learners will have access to the present
                                   course for up to nine months from the date of
-                                  joining. There's no pressure to 
-                                  finish the course in a short time.
+                                  joining. There's no pressure to finish the
+                                  course in a short time.
                                 </li>
                               </ul>
                             </div>
@@ -293,7 +310,15 @@ function CourseDetailsMain() {
 
                             <div className="course__description-list mb-45">
                               <h4>Certificate</h4>
-                              <p>{course?.certificate}</p>
+                              {course?.certificate && <p
+                                dangerouslySetInnerHTML={{
+                                  __html: course?.certificate?.replace(
+                                    /\n/g,
+                                    "</br>"
+                                  ),
+                                }}
+                              ></p>}
+                              {/* <p>{course?.certificate}</p> */}
                             </div>
                           </div>
                         </TabPanel>
