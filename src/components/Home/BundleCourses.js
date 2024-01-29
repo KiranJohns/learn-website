@@ -11,6 +11,9 @@ import { ToastContainer, toast } from "react-toastify";
 import { useRouter } from "next/router";
 import { Button } from "react-bootstrap";
 import Spinner from "react-bootstrap/Spinner";
+import Backbutton from "./Backbutton";
+import { FaArrowAltCircleLeft } from "react-icons/fa";
+
 
 const customStyles = {
   headRow: {
@@ -193,8 +196,9 @@ const BundleCour = () => {
         pauseOnHover
         theme="light"
       />
-      <div className=" row g-3  min-vh-100  d-flex justify-content-center dash-shadow mt-10">
-        <div style={{ padding: "", backgroundColor: "" }}>
+      <div style={{position:"relative"}} className=" row g-3  min-vh-100  d-flex justify-content-center dash-shadow mt-10">
+        <div style={{ padding: "", backgroundColor: "",  }}>
+        <span style={{position:'absolute', marginLeft:".6rem", marginTop:".75rem", zIndex:"99"}} className=""><button style={{background:"white"}} onClick={() => history.back()}> <FaArrowAltCircleLeft className="back-fontsize"  style={{color:"#212a50", }}/></button></span >
           <h2
             className="dash-head-center"
             style={{

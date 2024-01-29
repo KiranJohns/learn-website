@@ -200,7 +200,7 @@ function CourseSidebar({ addToCart }) {
                     <i className="fas fa-book"></i>
                   </div>
                   <div className="course__video-info">
-                    <h5>
+                    <h5 style={{textTransform:"capitalize"}}>
                       {/* <span>Typ :</span>14 */}
                       {course?.course_type}
                     </h5>
@@ -211,7 +211,7 @@ function CourseSidebar({ addToCart }) {
                     <i className="fas fa-clock"></i>
                   </div>
                   <div className="course__video-info">
-                    <h5>{course?.duration}</h5>
+                    <h5 style={{textTransform:"capitalize"}}>{course?.duration}</h5>
                   </div>
                 </li>
                 <li className="d-flex align-items-center">
@@ -219,7 +219,7 @@ function CourseSidebar({ addToCart }) {
                     <i className="fas fa-user"></i>
                   </div>
                   <div className="course__video-info">
-                    <h5>{course?.course_level}</h5>
+                    <h5 style={{textTransform:"capitalize"}}>{course?.course_level}</h5>
                   </div>
                 </li>
                 <li className="d-flex align-items-center">
@@ -227,7 +227,7 @@ function CourseSidebar({ addToCart }) {
                     <i className="fas fa-globe"></i>
                   </div>
                   <div className="course__video-info">
-                    <h5>{course?.certificate_line}</h5>
+                    <h5 style={{textTransform:"capitalize"}}>{course?.certificate_line}</h5>
                     {/* <h5> Certificate of completion</h5> */}
                   </div>
                 </li>
