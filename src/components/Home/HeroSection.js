@@ -20,9 +20,9 @@ class Hero extends Component {
                                     <div className="hero__content p-relative z-index-1">
                                     <h3 className="hero__title">
                                         <span></span>
-                                        <span>Empowering </span>   
-                                         <span className="yellow-shapes">Caregivers<img src="assets/img/shape/yellow-bg.png" alt="yellow-shape"/> </span> 
-                                         through Education</h3>
+                                        <span>CQC </span>   
+                                         <span className="yellow-shapes">Complaint<img src="assets/img/shape/yellow-bg.png" alt="yellow-shape"/> </span> 
+                                         Care Courses</h3>
                                       
                                         <p>Unlocking Knowledge, Enhancing Compassion, and Improving Care</p>
                                         <Link href="/all-courses"><a className="e-btn">view all course</a></Link>
