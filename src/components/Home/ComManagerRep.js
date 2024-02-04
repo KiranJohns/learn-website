@@ -34,14 +34,12 @@ const customStyles = {
   },
 };
 
-const Export = ({ onExport }) => <Button onClick={(e) => onExport(e.target.value)}>Export</Button>;
-
 function convertArrayOfObjectsToCSV(array) {
 	let result;
 
 	const columnDelimiter = ',';
 	const lineDelimiter = '\n';
-	const keys = Object.keys(data[0]);
+	const keys = Object.keys(array[0]);
 
 	result = '';
 	result += keys.join(columnDelimiter);
@@ -99,7 +97,6 @@ const ManagerReport = () => {
     getData();
   }, []);
 
-  const actionsMemo = React.useMemo(() => <Export onExport={() => downloadCSV(data)} />, []);
 
   const getData = () => {
     setPending(true)
@@ -230,9 +227,9 @@ const ManagerReport = () => {
                   }
                   customStyles={customStyles}
                   pagination
-                  actions={actionsMemo}
                 />
-                <Export/>
+                {/* <Export onExport={downloadCSV} /> */}
+                <Button onClick={(e) => downloadCSV(records)}>Export</Button>
               </Suspense>
             </div>
 
