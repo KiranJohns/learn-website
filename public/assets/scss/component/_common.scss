@@ -2184,3 +2184,11 @@ p {
 .pr-200 {
 	padding-right: 200px
 }
+
+
+
+.container-new {
+	@media #{$xxxl} {
+		max-width: 1300px;
+	}
+}

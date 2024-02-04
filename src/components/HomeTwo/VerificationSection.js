@@ -26,12 +26,12 @@ const VerificationSection = () => {
         if (res.data.response.length >= 1) {
           setFlag(true)
           setMessage(
-            `"${userData.user_name}" Certificate Number "${userData.id}" valid`
+            `"${userData.user_name}" Certificate Number "${userData.id}" is valid`
             );
           } else {
           setFlag(false)
           setMessage(
-            `"${userData.user_name}" Certificate Number "${userData.id}" not valid`
+            `"${userData.user_name}" Certificate Number "${userData.id}" is not valid`
           );
         }
       })
@@ -53,6 +53,7 @@ const VerificationSection = () => {
           }}
         >
           {/* <h1 style={{color:"#212a50"}}>Certificate Verification</h1> */}
+          <h5 style={{color: flag ? 'green' : 'red',fontSize:"1.1rem"}}>{message && message}</h5>
           <div
             style={{
               boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
@@ -62,7 +63,7 @@ const VerificationSection = () => {
           >
             <form className="row g-3  d-flex justify-content-end  ">
               <div className="col-12">
-                <h5 style={{color: flag ? 'green' : 'red'}}>{message && message}</h5>
+                {/* <h5 style={{color: flag ? 'green' : 'red'}}>{message && message}</h5> */}
                 <div className="form-group p-2 mb-4">
                   <label
                     style={{
