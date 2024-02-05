@@ -68,7 +68,7 @@ class ManageCertificate extends Component {
     const columns = [
       {
         name: "No",
-        selector: (row, idx) => ++idx,
+        selector: (row, idx) => row.sl,
         center:true,
         width:"80px",
         hide:850,
