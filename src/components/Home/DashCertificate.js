@@ -68,7 +68,7 @@ class DashCertificate extends Component {
     const columns = [
       {
         name: "Sl No.",
-        selector: (row, idx) => row.sl,
+        selector: (row, idx) => row?.sl,
         center: true,
         hide: "md",
       width:"82px"

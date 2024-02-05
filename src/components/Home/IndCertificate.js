@@ -75,7 +75,7 @@ class IndCertificate extends Component {
     const columns = [
       {
         name: "SL No.",
-        selector: (row, idx) => row.sl,
+        selector: (row, idx) => row?.sl,
         center: true,
         hide: "md",
         width: "85px",
