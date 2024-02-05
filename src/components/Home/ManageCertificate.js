@@ -57,7 +57,7 @@ class ManageCertificate extends Component {
       .then((res) => {
         console.log(res.data);
         this.setState({
-          records: res.data.response,
+          records: res.data.response.reverse(),
           filterRecords: res.data,
         });
       })
