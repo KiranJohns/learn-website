@@ -11,7 +11,7 @@ import { FaUnlock } from "react-icons/fa";
 import { Suspense } from "react";
 import Spinner from "react-bootstrap/Spinner";
 import Backbutton from "./Backbutton";
-import { Button } from "react-bootstrap";
+import { FaFileCsv } from "react-icons/fa";
 
 const customStyles = {
   headRow: {
@@ -168,6 +168,7 @@ const ManagerReport = () => {
           className=" row g-3  min-vh-100  d-flex justify-content-center mt-20"
         >
           <Backbutton/>
+          
           <h2
             style={{
               color: "#212450",
@@ -184,7 +185,8 @@ const ManagerReport = () => {
             <div
               style={{
                 float: "right",
-                // marginBottom: "1.4rem",
+                marginBottom: ".7rem", 
+                zIndex:"99"
               }}
               className="p-relative d-inline header__search searchbar-hidden"
             >
@@ -201,7 +203,9 @@ const ManagerReport = () => {
                   <i className="fas fa-search"></i>
                 </button>
               </form>
+              
             </div>
+            
             <div className="reacttable-hidden">
               <Suspense fallback={<Loading />}>
                 <DataTable
@@ -229,7 +233,11 @@ const ManagerReport = () => {
                   pagination
                 />
                 {/* <Export onExport={downloadCSV} /> */}
-                <Button onClick={(e) => downloadCSV(records)}>Export</Button>
+                <div style={{display:"flex", justifyContent:"flex-end"}}>
+                  <div style={{marginRight:"1rem"}}>
+                <button className="btn btn-primary " title="Export" onClick={(e) => downloadCSV(records)}><FaFileCsv style={{fontSize:'1.3rem'}}/></button>
+                </div>
+              </div>
               </Suspense>
             </div>
 
