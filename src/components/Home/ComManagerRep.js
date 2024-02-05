@@ -35,54 +35,54 @@ const customStyles = {
 };
 
 function convertArrayOfObjectsToCSV(array) {
-	let result;
+  let result;
+  console.log(array);
 
-	const columnDelimiter = ',';
-	const lineDelimiter = '\n';
-	const keys = Object.keys(array[0]);
+  const columnDelimiter = ",";
+  const lineDelimiter = "\n";
+  const keys = Object.keys(array[0]);
 
-	result = '';
-	result += keys.join(columnDelimiter);
-	result += lineDelimiter;
+  result = "";
+  result += keys.join(columnDelimiter);
+  result += lineDelimiter;
 
-	array.forEach(item => {
-		let ctr = 0;
-		keys.forEach(key => {
-			if (ctr > 0) result += columnDelimiter;
+  array.forEach((item) => {
+    let ctr = 0;
+    keys.forEach((key) => {
+      if (ctr > 0) result += columnDelimiter;
 
-			result += item[key];
-			
-			ctr++;
-		});
-		result += lineDelimiter;
-	});
+      result += item[key];
 
-	return result;
+      ctr++;
+    });
+    result += lineDelimiter;
+  });
+
+  return result;
 }
 
 function downloadCSV(array) {
-	const link = document.createElement('a');
-	let csv = convertArrayOfObjectsToCSV(array);
-	if (csv == null) return;
+  const link = document.createElement("a");
+  let csv = convertArrayOfObjectsToCSV(array);
+  if (csv == null) return;
 
-	const filename = 'export.csv';
+  const filename = "export.csv";
 
-	if (!csv.match(/^data:text\/csv/i)) {
-		csv = `data:text/csv;charset=utf-8,${csv}`;
-	}
+  if (!csv.match(/^data:text\/csv/i)) {
+    csv = `data:text/csv;charset=utf-8,${csv}`;
+  }
 
-	link.setAttribute('href', encodeURI(csv));
-	link.setAttribute('download', filename);
-	link.click();
+  link.setAttribute("href", encodeURI(csv));
+  link.setAttribute("download", filename);
+  link.click();
 }
-
-
 
 const ManagerReport = () => {
   const [records, setRecords] = useState([]);
   const [filterRecords, setFilterRecords] = useState([]);
   const [searchString, setSearchString] = useState("");
   const [pending, setPending] = React.useState(true);
+  const [newRecords, setNewRecords] = useState([]);
 
   const makeRequest = fetchData();
 
@@ -97,13 +97,24 @@ const ManagerReport = () => {
     getData();
   }, []);
 
-
   const getData = () => {
-    setPending(true)
+    setPending(true);
     makeRequest("GET", "/info/get-all-manager-reports")
       .then((res) => {
         console.log(res.data.response);
         setRecords(res.data.response);
+        let arr = []
+        res.data.response.filter((item, idx) => {
+          arr.push({
+            Sl: ++idx,
+            ["First Name"]: item.first_name,
+            ["Last Name"]: item.last_name,
+            ["Course Count"]: item.course_count,
+            ["Bundle Count"]: item.bundle_count,
+            ["Individuals Count"]: item.individuals_count,
+          });
+        })
+        setNewRecords(arr);
         setFilterRecords(res.data);
         setPending(false);
       })
@@ -111,8 +122,6 @@ const ManagerReport = () => {
   };
 
   const handleBlock = (block, id) => {};
-
-
 
   const columns = [
     {
@@ -167,8 +176,8 @@ const ManagerReport = () => {
           style={{ position: "relative" }}
           className=" row g-3  min-vh-100  d-flex justify-content-center mt-20"
         >
-          <Backbutton/>
-          
+          <Backbutton />
+
           <h2
             style={{
               color: "#212450",
@@ -178,15 +187,14 @@ const ManagerReport = () => {
               fontSize: 35,
             }}
           >
-            
             Manager Report
           </h2>
           <div style={{ padding: "", backgroundColor: "" }}>
             <div
               style={{
                 float: "right",
-                marginBottom: ".7rem", 
-                zIndex:"99"
+                marginBottom: ".7rem",
+                zIndex: "99",
               }}
               className="p-relative d-inline header__search searchbar-hidden"
             >
@@ -203,9 +211,8 @@ const ManagerReport = () => {
                   <i className="fas fa-search"></i>
                 </button>
               </form>
-              
             </div>
-            
+
             <div className="reacttable-hidden">
               <Suspense fallback={<Loading />}>
                 <DataTable
@@ -233,24 +240,41 @@ const ManagerReport = () => {
                   pagination
                 />
                 {/* <Export onExport={downloadCSV} /> */}
-                <div style={{display:"flex", justifyContent:"flex-end"}}>
-                  <div style={{marginRight:"1rem"}}>
-                <button className="btn btn-primary " title="Export" onClick={(e) => downloadCSV(records)}><FaFileCsv style={{fontSize:'1.3rem'}}/></button>
+                <div style={{ display: "flex", justifyContent: "flex-end" }}>
+                  <div style={{ marginRight: "1rem" }}>
+                    <button
+                      className="btn btn-primary "
+                      title="Export"
+                      onClick={(e) => downloadCSV(newRecords)}
+                    >
+                      <FaFileCsv style={{ fontSize: "1.3rem" }} />
+                    </button>
+                  </div>
                 </div>
-              </div>
               </Suspense>
             </div>
 
             {pending && (
               <div
                 className="no-record-hidden"
-                style={{ textAlign: "center", padding: "1rem", marginTop: '4rem' }}
+                style={{
+                  textAlign: "center",
+                  padding: "1rem",
+                  marginTop: "4rem",
+                }}
               >
                 <Spinner animation="border" variant="primary" />
               </div>
             )}
 
-            {(records.length <= 0 && !pending) && <h4 className="no-record-hidden" style={{textAlign: 'center',marginTop:"5rem",}}>No records to display</h4>}
+            {records.length <= 0 && !pending && (
+              <h4
+                className="no-record-hidden"
+                style={{ textAlign: "center", marginTop: "5rem" }}
+              >
+                No records to display
+              </h4>
+            )}
             {records.map((item) => {
               return (
                 <div
@@ -258,7 +282,7 @@ const ManagerReport = () => {
                     width: "100%",
                     display: "flex",
                     flexDirection: "column",
-                    padding: ".5rem",                  
+                    padding: ".5rem",
                   }}
                 >
                   <div className="new-table-shadow new-table-hidden">
@@ -279,53 +303,49 @@ const ManagerReport = () => {
                         {/* Rahul */}
                         {item?.first_name + " " + item?.last_name}
                       </p>
-                      </div>
-                      <div
+                    </div>
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      <p
                         style={{
-                          display: "flex",
-                          justifyContent: "space-between",
+                          color: "green",
+                          marginLeft: ".5rem",
+                          fontWeight: "500",
                         }}
                       >
-                        <p
-                          style={{
-                            color: "green",
-                            marginLeft: ".5rem",
-                            fontWeight: "500",
-                          }}
-                        >
-                          Individuals: {item.individuals_count}
-                          <a className="my-dashlink"></a>
-                        </p>
-                        <p
-                          style={{
-                            color: "green",
-                            marginRight: ".5rem",
-                            fontWeight: "500",
-                          }}
-                        >
-                          Courses: {item.course_count}
-                        </p>
-                        <p
-                          style={{
-                            color: "green",
-                            marginRight: ".5rem",
-                            fontWeight: "500",
-                          }}
-                        >
-                          Bundles: {item.bundle_count}
-                        </p>
-                  
+                        Individuals: {item.individuals_count}
+                        <a className="my-dashlink"></a>
+                      </p>
+                      <p
+                        style={{
+                          color: "green",
+                          marginRight: ".5rem",
+                          fontWeight: "500",
+                        }}
+                      >
+                        Courses: {item.course_count}
+                      </p>
+                      <p
+                        style={{
+                          color: "green",
+                          marginRight: ".5rem",
+                          fontWeight: "500",
+                        }}
+                      >
+                        Bundles: {item.bundle_count}
+                      </p>
                     </div>
                   </div>
                 </div>
               );
             })}
+          </div>
 
-          </div>
-          
-          <div>
-        
-          </div>
+          <div></div>
         </div>{" "}
       </div>
     </div>
