@@ -16,10 +16,10 @@ const Footer = () => {
                   <div>
                      <div className="row px-4">
 
-                   
+                     
                         
-                        <div className="col-xxl-2 col-xl-2 col-lg-3 col-md-7 col-sm-7 col-xs-8 ">
-                           <div className="footer__widget mb-50">
+                        <div className="col-xxl-3 col-xl-3 col-lg-3 col-md-7 col-sm-7 col-xs-8 ">
+                           <div style={{width:"85%"}} className="footer__widget mb-50">
                               <div className="footer__widget-head mb-22">
                                  <div className="footer__logo">
                                     <Link href="/"><a><img className='w-75' src="/assets/img/logo/logo7.png" alt="img not found"/></a></Link>
@@ -41,7 +41,7 @@ const Footer = () => {
                            </div>
                         </div>
 
-                        <div  className="col-xxl-1 col-xl-2 col-lg-3 col-md-7 col-sm-7 col-xs-8 "></div>
+                       
                       
                         <div className="col-xxl-2 col-xl-2 col-lg-3 col-md-6 col-sm-6 col-xs-6">
                            <div className="footer__widget mb-50">
@@ -86,7 +86,7 @@ const Footer = () => {
                            </div>
                         </div>
 
-                        <div className="col-xxl-3 col-xl-2 col-lg-3 col-md-6 col-sm-6 col-xs-6">
+                        <div className="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6 col-xs-6">
                            <div className="footer__widget mb-50">
                               <div className="footer__widget-head mb-22">
                                  {/* <h3 style={{visibility:"hidden"}} className="footer__widget-title footer__widget-title-2">External Links</h3> */}
@@ -103,7 +103,7 @@ const Footer = () => {
 
                         
                         
-                        <div className="col-xxl-2 col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                        <div className="col-xxl-2 col-xl-2 col-lg-3 col-md-6 col-sm-6">
                            <div className="footer__widget mb-50">
                               <div className="footer__widget-head mb-22">
                                  <h3 className="footer__widget-title footer__widget-title-2">Contact</h3>
@@ -116,9 +116,9 @@ const Footer = () => {
                                        <li><Link href="/instructor"><a>Partners</a></Link></li>
                                        <li><Link href="/blog"><a>News & Blogs</a></Link></li>
                                        <li><Link href="/about"><a>FAQs</a></Link></li> */}
-                                       <li><IoLocationOutline style={{marginBottom:'.2rem',margin:"4px 0px"}}/>Learn For Care, 124 City Road, <IoLocationOutline className='footer-hidden-icon'/>London, EC1V2NX</li>
-                                       <li><BsTelephone/>+44-2030051290</li>
-                                       <li><Link href="mailto:info@learnforcare.co.uk"><a><AiOutlineMail/><span style={{visibility:'hidden'}}>''</span>support@learnforcare.co.uk</a></Link></li>
+                                       <li className='footer-font'><IoLocationOutline style={{marginBottom:'.2rem',margin:"4px 0px"}}/>Learn For Care, 124 City Road, <IoLocationOutline className='footer-hidden-icon'/>London, EC1V2NX</li>
+                                       <li className='footer-font'><BsTelephone/>+44-2030051290</li>
+                                       <li className='footer-font'><Link href="mailto:support@learnforcare.co.uk"><a><AiOutlineMail/><span style={{visibility:'hidden'}}>''</span>support@learnforcare.co.uk</a></Link></li>
                                     </ul>
                                  </div>
                               </div>
