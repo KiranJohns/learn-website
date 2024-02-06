@@ -28,6 +28,7 @@ const customStyles = {
 
 const CompTransaction = () => {
   const [records, setRecords] = useState([]);
+  const [newRecords, setNewRecords] = useState([]);
   const [filterRecords, setFilterRecords] = useState([]);
   const [pending, setPending] = React.useState(true);
   const [searchString, setSearchString] = React.useState("");
@@ -47,6 +48,18 @@ const CompTransaction = () => {
         let makeRequest = fetchData();
         const res = await makeRequest("GET", "/info/get-all-transactions");
         console.log(res);
+        let arr = []
+        res.data.response.map((item,idx) => {
+          arr.push({
+            "Sl No.": ++idx,
+            "User": item.first_name.concat(" ", item.last_name),
+            "Date": item.date,
+            "Time": item.time,
+            "Quantity": item.count,
+            "Amount": item.amount
+          })
+        })
+        setNewRecords(arr)
         setRecords(res.data.response.reverse());
         setFilterRecords(res.data);
         setPending(false);
@@ -163,7 +176,7 @@ const CompTransaction = () => {
                 noDataComponent={"No records to display"}
                 customStyles={customStyles}
               />
-               <DownloadCSV records={records}/>
+               <DownloadCSV records={newRecords}/>
             </div>
             <div style={{ marginTop: "4rem" }}>
               {records.length <= 0 && !pending && (
