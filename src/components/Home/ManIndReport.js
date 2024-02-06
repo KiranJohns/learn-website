@@ -6,6 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import fetchData from "../../axios";
 import Spinner from "react-bootstrap/Spinner";
 import Backbutton from "./Backbutton";
+import DownloadCSV from "../button/DownloadCSV";
 
 const customStyles = {
   headRow: {
@@ -156,6 +157,7 @@ const ManIndReport = () => {
               customStyles={customStyles}
               pagination
             />
+             <DownloadCSV records={records}/>
             </div>
             {(records.length <= 0 && !pending) && (
               <h4
