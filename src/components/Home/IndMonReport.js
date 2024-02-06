@@ -10,7 +10,6 @@ import Spinner from "react-bootstrap/Spinner";
 import Backbutton from "./Backbutton";
 import DownloadCSV from "../button/DownloadCSV";
 
-
 const customStyles = {
   headRow: {
     style: {
@@ -37,9 +36,10 @@ class IndMonthRep extends Component {
     super();
     this.state = {
       records: [],
+      newRecords: [],
       filterRecords: [],
       searchString: "",
-      pending: true
+      pending: true,
     };
   }
 
@@ -53,15 +53,26 @@ class IndMonthRep extends Component {
   componentDidMount() {
     this.setState({
       ...this.state,
-      pending: true
+      pending: true,
     });
     let makeRequest = fetchData();
     makeRequest("GET", "/info/get-all-transactions-by-month")
       .then((res) => {
+        let arr = [];
+        res.data.response.map((item, idx) => {
+          arr.push({
+            Sl: ++idx,
+            Year: item.year,
+            Month: getMonth(item.month),
+            Quantity: item.total_fake_count,
+            amount: item.total_amount
+          });
+        });
         this.setState({
           records: res.data.response.reverse(),
+          newRecords: arr,
           filterRecords: res.data,
-          pending: false
+          pending: false,
         });
       })
       .catch((err) => {
@@ -108,7 +119,7 @@ class IndMonthRep extends Component {
             style={{ position: "relative" }}
             className=" row g-3  min-vh-100  d-flex justify-content-center mt-20"
           >
-            <Backbutton/>
+            <Backbutton />
             <h2
               style={{
                 color: "#212450",
@@ -178,10 +189,10 @@ class IndMonthRep extends Component {
                   customStyles={customStyles}
                   pagination
                 />
-                 <DownloadCSV records={this.state.records}/>
+                <DownloadCSV records={this.state.newRecords} />
               </div>
 
-              {(this.state.records.length <= 0 && !this.state.pending) && (
+              {this.state.records.length <= 0 && !this.state.pending && (
                 <h4
                   className="no-record-hidden"
                   style={{ textAlign: "center", marginTop: "4.5rem" }}
