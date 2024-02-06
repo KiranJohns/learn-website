@@ -9,8 +9,6 @@ import Spinner from "react-bootstrap/Spinner";
 import { FaEye } from "react-icons/fa";
 import Backbutton from "./Backbutton";
 
-
-
 const customStyles = {
   headRow: {
     style: {
@@ -37,6 +35,7 @@ class Transaction extends Component {
     super();
     this.state = {
       records: [],
+      newRecords: [],
       filterRecords: [],
       searchString: "",
       isLoading: true,
@@ -54,16 +53,30 @@ class Transaction extends Component {
     console.clear();
     this.setState({
       ...this.state,
-      pending: true
-    })
+      pending: true,
+    });
     let makeRequest = fetchData();
     makeRequest("GET", "/info/get-all-transactions")
       .then((res) => {
         console.log(res);
+        const [newRecords, setNewRecords] = useState([]);
+        let arr = [];
+        res.data.response.map((item, idx) => {
+          arr.push({
+            Sl: ++idx,
+            User: item.first_name.concat(" ", item.last_name),
+            Date: item.date,
+            Time: item.time,
+            Quantity: item.count,
+            Amount: item.amount,
+          });
+        });
         this.setState({
           records: res.data.response.reverse(),
+          newRecords: arr,
           filterRecords: res.data,
-          pending: false
+          pending: false,
+          ...this.state
         });
       })
       .catch((err) => {
@@ -119,7 +132,7 @@ class Transaction extends Component {
             style={{ position: "relative" }}
             className=" row g-3  min-vh-100  d-flex justify-content-center mt-20"
           >
-             <Backbutton/>
+            <Backbutton />
             <h2
               style={{
                 color: "#212450",
@@ -190,7 +203,6 @@ class Transaction extends Component {
                 />
               </div>
 
-
               {this.state.records?.length <= 0 && !this.state.pending && (
                 <h4
                   className="no-record-hidden"
@@ -199,7 +211,7 @@ class Transaction extends Component {
                   No records to display
                 </h4>
               )}
-              
+
               {this.state.pending && (
                 <div
                   className="no-record-hidden"
