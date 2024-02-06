@@ -10,6 +10,7 @@ import Link from "next/link";
 import { Suspense } from "react";
 import Spinner from "react-bootstrap/Spinner";
 import Backbutton from "./Backbutton";
+import DownloadCSV from "../button/DownloadCSV";
 
 const customStyles = {
   headRow: {
@@ -164,6 +165,7 @@ const CWIndReport = () => {
                   pagination
                   persistTableHead={true}
                 />
+                 <DownloadCSV records={records}/>
               </Suspense>
             </div>
             <div>
