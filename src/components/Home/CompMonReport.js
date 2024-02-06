@@ -9,6 +9,7 @@ import { Suspense } from "react";
 import React, { useState, useEffect } from "react";
 import Spinner from "react-bootstrap/Spinner";
 import Backbutton from "./Backbutton";
+import DownloadCSV from "../button/DownloadCSV";
 
 const customStyles = {
   headRow: {
@@ -154,6 +155,7 @@ const CompMonthRep = () => {
                 noDataComponent={"No records to display"}
                 customStyles={customStyles}
               />
+                <DownloadCSV records={records}/>
             </div>
             {records.length <= 0 && !pending && (
               <h4
