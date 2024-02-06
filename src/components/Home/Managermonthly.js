@@ -5,6 +5,7 @@ import { getMonth } from "../../utils/month";
 import Button from "react-bootstrap/Button";
 import Spinner from "react-bootstrap/Spinner";
 import Backbutton from "./Backbutton";
+import DownloadCSV from "../button/DownloadCSV";
 
 const customStyles = {
   headRow: {
@@ -105,7 +106,7 @@ const ManageMonthRep = () => {
           </h2>
           <div style={{ padding: "", backgroundColor: "" }}>
             <div
-              style={{ float: "right", marginBottom: "1.4rem" }}
+              style={{ float: "right", marginBottom: "1.4rem",zIndex:"99" }}
               className="p-relative d-inline header__search searchbar-hidden3"
             >
               <form action="">
@@ -147,6 +148,7 @@ const ManageMonthRep = () => {
               customStyles={customStyles}
               pagination
             />
+              <DownloadCSV records={records}/>
             </div>
             {(records.length <= 0 && !pending) && (
               <h4

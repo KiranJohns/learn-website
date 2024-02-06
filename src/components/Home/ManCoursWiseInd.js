@@ -9,7 +9,7 @@ import BasicExample from "../About/button1";
 import Spinner from "react-bootstrap/Spinner";
 import Link from "next/link";
 import Backbutton from "./Backbutton";
-
+import DownloadCSV from "../button/DownloadCSV";
 
 
 const customStyles = {
@@ -105,7 +105,7 @@ const ManCWIndReport = () => {
           pauseOnHover
           theme="light"
         />
-        <div style={{ position: "relative" }} className=" row g-3  min-vh-100  d-flex justify-content-center mt-20">
+        <div style={{ position: "relative" }} className="row g-3  min-vh-100  d-flex justify-content-center mt-20 ">
         <Backbutton/>
           <h2
             style={{
@@ -119,7 +119,7 @@ const ManCWIndReport = () => {
            Course Wise Individual
           </h2>
           <div style={{ padding: "", backgroundColor: "" }}>
-            <div style={{ float: "right", marginBottom: "1.4rem" }} className="p-relative d-inline header__search searchbar-hidden3">
+            <div style={{ float: "right", marginBottom: "1.4rem", zIndex:"99" }} className="p-relative d-inline header__search searchbar-hidden3 ">
               <form action="">
                 <input
                   style={{ background: "#edeef3" }}
@@ -156,6 +156,7 @@ const ManCWIndReport = () => {
               pagination
               persistTableHead ={true}
             />
+              <DownloadCSV records={records}/>
             </div>
 
             {(records.length <= 0 && !pending) && (

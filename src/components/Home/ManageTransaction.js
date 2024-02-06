@@ -5,6 +5,7 @@ import Button from "react-bootstrap/Button";
 import Spinner from "react-bootstrap/Spinner";
 import fetchData from "../../axios";
 import Backbutton from "./Backbutton";
+import DownloadCSV from "../button/DownloadCSV";
 
 const customStyles = {
   headRow: {
@@ -156,6 +157,7 @@ const ManTransaction = () => {
               customStyles={customStyles}
               pagination
             />
+              <DownloadCSV records={records}/>
             </div>
 
             {(records.length <= 0 && !pending) && (
