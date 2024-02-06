@@ -10,7 +10,6 @@ import { FaEye } from "react-icons/fa";
 import Backbutton from "./Backbutton";
 import DownloadCSV from "../button/DownloadCSV";
 
-
 const customStyles = {
   headRow: {
     style: {
@@ -60,26 +59,30 @@ class Transaction extends Component {
     let makeRequest = fetchData();
     makeRequest("GET", "/info/get-all-transactions")
       .then((res) => {
-        console.log(res);
-        const [newRecords, setNewRecords] = useState([]);
-        let arr = [];
-        res.data.response.map((item, idx) => {
-          arr.push({
-            Sl: ++idx,
-            User: item.first_name.concat(" ", item.last_name),
-            Date: item.date,
-            Time: item.time,
-            Quantity: item.count,
-            Amount: item.amount,
+        try {
+          console.log(res);
+          let arr = [];
+          res.data.response.map((item, idx) => {
+            arr.push({
+              Sl: ++idx,
+              User: item.first_name.concat(" ", item.last_name),
+              Date: item.date,
+              Time: item.time,
+              Quantity: item.count,
+              Amount: item.amount,
+            });
           });
-        });
-        this.setState({
-          records: res.data.response.reverse(),
-          newRecords: arr,
-          filterRecords: res.data,
-          pending: false,
-          ...this.state
-        });
+          console.log(arr);
+          this.setState({
+            ...this.state,
+            records: res.data.response.reverse(),
+            newRecords: arr,
+            filterRecords: res.data,
+            pending: false,
+          });
+        } catch (error) {
+          console.log(error);
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -203,7 +206,7 @@ class Transaction extends Component {
                   customStyles={customStyles}
                   pagination
                 />
-                  <DownloadCSV records={this.state.records}/>
+                <DownloadCSV records={this.state.newRecords} />
               </div>
 
               {this.state.records?.length <= 0 && !this.state.pending && (
