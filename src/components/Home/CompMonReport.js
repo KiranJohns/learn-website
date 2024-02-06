@@ -34,6 +34,7 @@ const customStyles = {
 
 const CompMonthRep = () => {
   const [records, setRecords] = useState([]);
+  const [newRecords, setNewRecords] = useState([]);
   const [filterRecords, setFilterRecords] = useState([]);
   const [pending, setPending] = React.useState(true);
   const [searchString, setSearchString] = React.useState("");
@@ -54,7 +55,18 @@ const CompMonthRep = () => {
           "GET",
           "/info/get-all-transactions-by-month"
         );
+        let arr = []
+        res.data.response.map((item,idx) => {
+          arr.push({
+            "Sl No": ++idx,
+            year: item.year,
+            month: getMonth(item.month),
+            Quantity: item.total_fake_count,
+            amount: item.total_amount
+          })
+        })
         console.log(res);
+        setNewRecords(arr);
         setRecords(res.data.response);
         setFilterRecords(res.data);
         setPending(false);
@@ -155,7 +167,7 @@ const CompMonthRep = () => {
                 noDataComponent={"No records to display"}
                 customStyles={customStyles}
               />
-                <DownloadCSV records={records}/>
+                <DownloadCSV records={newRecords} />
             </div>
             {records.length <= 0 && !pending && (
               <h4
