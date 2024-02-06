@@ -35,6 +35,7 @@ const customStyles = {
 
 const CWIndReport = () => {
   const [records, setRecords] = useState([]);
+  const [newRecords, setNewRecords] = useState([]);
   const [filterRecords, setFilterRecords] = useState([]);
   const [searchString, setSearchString] = useState("");
   const [makeRequest, setMakeRequest] = useState(() => fetchData());
@@ -55,6 +56,16 @@ const CWIndReport = () => {
     makeRequest("GET", "/info/get-course-wise-individual-reports")
       .then((res) => {
         console.log(res.data.response);
+        let arr = []
+        res.data.response.map((item,id => {
+          arr.push({
+            "SL No.": ++idx,
+            "CODE": item.code,
+            "Course Name": item.course_name,
+            "Individuals Count": item.count,      
+          })
+        }))
+        setNewRecords(arr)
         setRecords(res.data.response);
         setFilterRecords(res.data);
         setPending(false);
@@ -165,7 +176,7 @@ const CWIndReport = () => {
                   pagination
                   persistTableHead={true}
                 />
-                 <DownloadCSV records={records}/>
+                 <DownloadCSV records={newRecords}/>
               </Suspense>
             </div>
             <div>
