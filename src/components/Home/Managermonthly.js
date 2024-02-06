@@ -33,6 +33,7 @@ const ManageMonthRep = () => {
   const [searchString, setSearchString] = useState("");
 
   const [filterRecords, setFilterRecords] = useState([]);
+  const [newRecords, setNewRecords] = useState([]);
 
   const [pending, setPending] = React.useState(true);
 
@@ -41,6 +42,17 @@ const ManageMonthRep = () => {
     makeRequest("GET", "/info/get-all-transactions-by-month")
       .then((res) => {
         console.log(res);
+        let arr = [];
+        res.data.response.map((item, idx) => {
+          arr.push({
+            Sl: ++idx,
+            Year: item.year,
+            Month: getMonth(item.month),
+            Quantity: item.total_fake_count,
+            Amount: item.total_amount,
+          });
+        });
+        setNewRecords(arr);
         setRecords(res.data.response.reverse());
         setFilterRecords(res.data);
         setPending(false);
@@ -59,11 +71,11 @@ const ManageMonthRep = () => {
 
   const columns = [
     {
-      name: "no",
+      name: "SL",
       selector: (row, idx) => ++idx,
       width: "80px",
       center: true,
-      hide:"sm",
+      hide: "sm",
     },
     {
       name: "year",
@@ -79,7 +91,7 @@ const ManageMonthRep = () => {
       name: "Quantity",
       selector: (row) => row.total_fake_count,
       center: true,
-      hide:"sm",
+      hide: "sm",
     },
     {
       name: "amount",
@@ -91,8 +103,11 @@ const ManageMonthRep = () => {
   return (
     <div className="">
       <div className="dash-shadow">
-        <div style={{position:'relative'}} className=" row g-3  min-vh-100  d-flex justify-content-center mt-20">
-        <Backbutton/>
+        <div
+          style={{ position: "relative" }}
+          className=" row g-3  min-vh-100  d-flex justify-content-center mt-20"
+        >
+          <Backbutton />
           <h2
             style={{
               color: "#212450",
@@ -106,7 +121,7 @@ const ManageMonthRep = () => {
           </h2>
           <div style={{ padding: "", backgroundColor: "" }}>
             <div
-              style={{ float: "right", marginBottom: "1.4rem",zIndex:"99" }}
+              style={{ float: "right", marginBottom: "1.4rem", zIndex: "99" }}
               className="p-relative d-inline header__search searchbar-hidden3"
             >
               <form action="">
@@ -124,33 +139,33 @@ const ManageMonthRep = () => {
               </form>
             </div>
             <div className="reacttable-hidden">
-            <DataTable
-              progressPending={pending}
-              progressComponent={
-                pending ? (
-                  <div style={{ padding: "1rem" }}>
-                    <Spinner animation="border" variant="primary" />
-                  </div>
-                ) : null
-              }
-              noDataComponent={"No records to display"}
-              persistTableHead={true}
-              columns={columns}
-              data={
-                searchString
-                  ? records.filter((item) =>
-                      getMonth(item.month)
-                        .toLowerCase()
-                        .startsWith(searchString.toLowerCase())
-                    )
-                  : records
-              }
-              customStyles={customStyles}
-              pagination
-            />
-              <DownloadCSV records={records}/>
+              <DataTable
+                progressPending={pending}
+                progressComponent={
+                  pending ? (
+                    <div style={{ padding: "1rem" }}>
+                      <Spinner animation="border" variant="primary" />
+                    </div>
+                  ) : null
+                }
+                noDataComponent={"No records to display"}
+                persistTableHead={true}
+                columns={columns}
+                data={
+                  searchString
+                    ? records.filter((item) =>
+                        getMonth(item.month)
+                          .toLowerCase()
+                          .startsWith(searchString.toLowerCase())
+                      )
+                    : records
+                }
+                customStyles={customStyles}
+                pagination
+              />
+              <DownloadCSV records={newRecords} />
             </div>
-            {(records.length <= 0 && !pending) && (
+            {records.length <= 0 && !pending && (
               <h4
                 className="no-record-hidden"
                 style={{ textAlign: "center", marginTop: "4.5rem" }}
@@ -170,53 +185,53 @@ const ManageMonthRep = () => {
                 <Spinner animation="border" variant="primary" />
               </div>
             )}
-            <div style={{marginTop:"3rem"}}>
-            {records.map((item) => {
-              return (
-                <div
-                  style={{
-                    width: "100%",
-                    display: "flex",
-                    flexDirection: "column",
-                    padding: ".5rem",
-                  }}
-                >
-                  <div className="new-table-shadow new-table-hidden">
-                    <div
-                      style={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                      }}
-                    >
-                      <p
+            <div style={{ marginTop: "3rem" }}>
+              {records.map((item) => {
+                return (
+                  <div
+                    style={{
+                      width: "100%",
+                      display: "flex",
+                      flexDirection: "column",
+                      padding: ".5rem",
+                    }}
+                  >
+                    <div className="new-table-shadow new-table-hidden">
+                      <div
                         style={{
-                          paddingTop: ".5rem",
-                          paddingLeft: ".4rem",
-                          color: "#212a50",
-                          fontWeight: "bold",
+                          display: "flex",
+                          justifyContent: "space-between",
                         }}
                       >
-                        {/* Rahul */}
-                       Year: {item.year}
-                      </p>
-                      <p
+                        <p
+                          style={{
+                            paddingTop: ".5rem",
+                            paddingLeft: ".4rem",
+                            color: "#212a50",
+                            fontWeight: "bold",
+                          }}
+                        >
+                          {/* Rahul */}
+                          Year: {item.year}
+                        </p>
+                        <p
+                          style={{
+                            color: "#212a50",
+                            marginRight: ".5rem",
+                            fontWeight: "500",
+                            paddingTop: ".5rem",
+                          }}
+                        >
+                          Month: {item.month}
+                        </p>
+                      </div>
+                      <div
                         style={{
-                          color: "#212a50",
-                          marginRight: ".5rem",
-                          fontWeight: "500", 
-                           paddingTop: ".5rem",
+                          display: "flex",
+                          justifyContent: "space-between",
                         }}
                       >
-                       Month: {item.month}
-                      </p>
-                    </div>
-                    <div
-                      style={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                      }}
-                    >
-                      {/* <p
+                        {/* <p
                         style={{
                           color: "green",
                           marginLeft: ".5rem",
@@ -226,31 +241,30 @@ const ManageMonthRep = () => {
                         Course: {item.course_count}
                         <a className="my-dashlink"></a>
                       </p> */}
-                      <p
-                        style={{
-                          color: "green",
-                          marginLeft: ".5rem",
-                          fontWeight: "500",
-                        }}
-                      >
-                       Quantity: {item.total_fake_count}
-                      </p>
-                      <p
-                        style={{
-                          color: "green",
-                          marginRight: ".5rem",
-                          fontWeight: "500",
-                        }}
-                      >
-                        Amount: {item.total_amount}
-                      </p>
+                        <p
+                          style={{
+                            color: "green",
+                            marginLeft: ".5rem",
+                            fontWeight: "500",
+                          }}
+                        >
+                          Quantity: {item.total_fake_count}
+                        </p>
+                        <p
+                          style={{
+                            color: "green",
+                            marginRight: ".5rem",
+                            fontWeight: "500",
+                          }}
+                        >
+                          Amount: {item.total_amount}
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })}
             </div>
-
           </div>
         </div>{" "}
       </div>
