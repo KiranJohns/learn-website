@@ -33,6 +33,7 @@ const ManTransaction = () => {
   const [filterRecords, setFilterRecords] = useState([]);
   const [searchString, setSearchString] = useState("");
   const [pending, setPending] = React.useState(true);
+  const [newRecords, setNewRecords] = useState([]);
 
   const handleFilter = (event) => {
     const newData = filterRecords.filter((row) =>
@@ -48,6 +49,18 @@ const ManTransaction = () => {
     makeRequest("GET", "/info/get-all-transactions")
       .then((res) => {
         console.log(res);
+        let arr = [];
+        res.data.response.map((item, idx) => {
+          arr.push({
+            Sl: ++idx,
+            User: item.first_name.concat(" ", item.last_name),
+            Date: item.date,
+            Time: item.time,
+            Quantity: item.count,
+            Amount: item.amount
+          });
+        });
+        setNewRecords(arr);
         setRecords(res.data.response.reverse());
         setFilterRecords(res.data);
         setPending(false);
@@ -63,14 +76,14 @@ const ManTransaction = () => {
       selector: (row, idx) => ++idx,
       center: true,
       width: "80px",
-      hide:"md",
+      hide: "md",
     },
     {
       name: "User",
       selector: (row, idx) => row.first_name.concat(" ", row.last_name),
       center: true,
       width: "250px",
-      hide:"sm",
+      hide: "sm",
     },
     {
       name: "Date",
@@ -82,13 +95,13 @@ const ManTransaction = () => {
       name: "Time",
       selector: (row) => row.time,
       center: true,
-      hide:"md",
+      hide: "md",
     },
     {
       name: "Quantity",
       selector: (row) => row.count,
       center: true,
-      hide:"sm",
+      hide: "sm",
     },
     {
       name: "Amount",
@@ -100,8 +113,11 @@ const ManTransaction = () => {
   return (
     <div className="">
       <div className="dash-shadow">
-        <div style={{position:'relative'}} className="row g-3  min-vh-100  d-flex justify-content-center mt-20">
-        <Backbutton/>
+        <div
+          style={{ position: "relative" }}
+          className="row g-3  min-vh-100  d-flex justify-content-center mt-20"
+        >
+          <Backbutton />
           <h2
             style={{
               color: "#212450",
@@ -133,34 +149,34 @@ const ManTransaction = () => {
               </form>
             </div>
             <div className="reacttable-hidden">
-            <DataTable
-              progressPending={pending}
-              progressComponent={
-                pending ? (
-                  <div style={{ padding: "1rem" }}>
-                    <Spinner animation="border" variant="primary" />
-                  </div>
-                ) : null
-              }
-              noDataComponent={"No records to display"}
-              persistTableHead={true}
-              columns={columns}
-              data={
-                searchString
-                  ? records.filter((item) =>
-                      item.first_name
-                        .toLowerCase()
-                        .startsWith(searchString.toLowerCase())
-                    )
-                  : records
-              }
-              customStyles={customStyles}
-              pagination
-            />
-              <DownloadCSV records={records}/>
+              <DataTable
+                progressPending={pending}
+                progressComponent={
+                  pending ? (
+                    <div style={{ padding: "1rem" }}>
+                      <Spinner animation="border" variant="primary" />
+                    </div>
+                  ) : null
+                }
+                noDataComponent={"No records to display"}
+                persistTableHead={true}
+                columns={columns}
+                data={
+                  searchString
+                    ? records.filter((item) =>
+                        item.first_name
+                          .toLowerCase()
+                          .startsWith(searchString.toLowerCase())
+                      )
+                    : records
+                }
+                customStyles={customStyles}
+                pagination
+              />
+              <DownloadCSV records={newRecords} />
             </div>
 
-            {(records.length <= 0 && !pending) && (
+            {records.length <= 0 && !pending && (
               <h4
                 className="no-record-hidden"
                 style={{ textAlign: "center", marginTop: "4.5rem" }}
@@ -180,54 +196,54 @@ const ManTransaction = () => {
                 <Spinner animation="border" variant="primary" />
               </div>
             )}
-            <div style={{marginTop:"3rem"}}>
-            {records.map((item) => {
-              return (
-                <div
-                  style={{
-                    width: "100%",
-                    display: "flex",
-                    flexDirection: "column",
-                    padding: ".5rem",
-                  }}
-                >
-                  <div className="new-table-shadow new-table-hidden">
-                    <div
-                      style={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                      }}
-                    >
-                      <p
+            <div style={{ marginTop: "3rem" }}>
+              {records.map((item) => {
+                return (
+                  <div
+                    style={{
+                      width: "100%",
+                      display: "flex",
+                      flexDirection: "column",
+                      padding: ".5rem",
+                    }}
+                  >
+                    <div className="new-table-shadow new-table-hidden">
+                      <div
                         style={{
-                          paddingTop: ".5rem",
-                          paddingLeft: ".4rem",
-                          color: "#212a50",
-                          fontWeight: "bold",
+                          display: "flex",
+                          justifyContent: "space-between",
                         }}
                       >
-                        {/* Rahul */}
-                        {item.first_name + " " + item.last_name}
-                      </p>
-                      <p
+                        <p
+                          style={{
+                            paddingTop: ".5rem",
+                            paddingLeft: ".4rem",
+                            color: "#212a50",
+                            fontWeight: "bold",
+                          }}
+                        >
+                          {/* Rahul */}
+                          {item.first_name + " " + item.last_name}
+                        </p>
+                        <p
+                          style={{
+                            color: "#212a50",
+                            marginRight: ".5rem",
+                            fontWeight: "500",
+                            paddingTop: ".5rem",
+                          }}
+                        >
+                          Date: {item.date}
+                          <a className=""></a>
+                        </p>
+                      </div>
+                      <div
                         style={{
-                          color: "#212a50",
-                          marginRight: ".5rem",
-                          fontWeight: "500",
-                          paddingTop: ".5rem",
+                          display: "flex",
+                          justifyContent: "space-between",
                         }}
                       >
-                        Date: {item.date}
-                        <a className=""></a>
-                      </p>
-                    </div>
-                    <div
-                      style={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                      }}
-                    >
-                      {/* <p
+                        {/* <p
                         style={{
                           color: "green",
                           marginLeft: ".5rem",
@@ -237,31 +253,30 @@ const ManTransaction = () => {
                        Time: {item.time}
                         <a className="my-dashlink"></a>
                       </p> */}
-                     <p
-                        style={{
-                          color: "green",
-                          marginLeft: ".5rem",
-                          fontWeight: "500",
-                        }} 
-                      >
-                        Quantity: {item.count}
-                      </p>
-                      <p
-                        style={{
-                          color: "green",
-                          marginRight: ".5rem",
-                          fontWeight: "500",
-                        }}
-                      >
-                        Amount: {item.amount}
-                      </p>
+                        <p
+                          style={{
+                            color: "green",
+                            marginLeft: ".5rem",
+                            fontWeight: "500",
+                          }}
+                        >
+                          Quantity: {item.count}
+                        </p>
+                        <p
+                          style={{
+                            color: "green",
+                            marginRight: ".5rem",
+                            fontWeight: "500",
+                          }}
+                        >
+                          Amount: {item.amount}
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })}
             </div>
-
           </div>
         </div>{" "}
       </div>
