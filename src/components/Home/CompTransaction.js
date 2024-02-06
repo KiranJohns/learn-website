@@ -3,6 +3,7 @@ import DataTable from "react-data-table-component";
 import fetchData from "../../axios";
 import Spinner from "react-bootstrap/Spinner";
 import Backbutton from "./Backbutton";
+import DownloadCSV from "../button/DownloadCSV";
 
 const customStyles = {
   headRow: {
@@ -162,6 +163,7 @@ const CompTransaction = () => {
                 noDataComponent={"No records to display"}
                 customStyles={customStyles}
               />
+               <DownloadCSV records={records}/>
             </div>
             <div style={{ marginTop: "4rem" }}>
               {records.length <= 0 && !pending && (
