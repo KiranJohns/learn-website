@@ -29,6 +29,7 @@ function DownloadCSV({records}) {
   }
 
   function saveCSV(array) {
+    if(array.length <= 0) return
     const link = document.createElement("a");
     let csv = convertArrayOfObjectsToCSV(array);
     if (csv == null) return;
