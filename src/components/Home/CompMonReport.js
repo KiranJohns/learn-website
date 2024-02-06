@@ -59,10 +59,10 @@ const CompMonthRep = () => {
         res.data.response.map((item,idx) => {
           arr.push({
             "Sl No": ++idx,
-            year: item.year,
-            month: getMonth(item.month),
+            Year: item.year,
+            Month: getMonth(item.month),
             Quantity: item.total_fake_count,
-            amount: item.total_amount
+            Amount: item.total_amount
           })
         })
         console.log(res);
