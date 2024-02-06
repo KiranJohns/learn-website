@@ -11,7 +11,6 @@ import Link from "next/link";
 import Backbutton from "./Backbutton";
 import DownloadCSV from "../button/DownloadCSV";
 
-
 const customStyles = {
   headRow: {
     style: {
@@ -39,6 +38,7 @@ const ManCWIndReport = () => {
   const [searchString, setSearchString] = useState("");
   const [makeRequest, setMakeRequest] = useState(() => fetchData());
   const [pending, setPending] = React.useState(true);
+  const [newRecords, setNewRecords] = useState([]);
 
   const handleFilter = (event) => {
     const newData = filterRecords.filter((row) =>
@@ -52,36 +52,45 @@ const ManCWIndReport = () => {
   }, []);
 
   const getData = () => {
-    setPending(true)
+    setPending(true);
     makeRequest("GET", "/info/get-course-wise-individual-manager-reports")
       .then((res) => {
         console.log(res.data.response);
+        let arr = [];
+        res.data.response.map((item, idx) => {
+          arr.push({
+            Sl: ++idx,
+            Code: item.code,
+            "Course Name": item.course_name,
+            "Individuals Count": item.count,
+          });
+        });
+        setNewRecords(arr);
         setRecords(res.data.response);
         setFilterRecords(res.data);
-        setPending(false)
+        setPending(false);
       })
       .catch((err) => console.log(err));
   };
 
   const columns = [
     {
-      name: "no",
-      selector: (row,id) => id,
-      width:"100px",
+      name: "SL",
+      selector: (row, id) => ++id,
+      width: "100px",
       center: true,
-      hide:"md",
+      hide: "md",
     },
     {
       name: "CODE",
-      selector: (row,id) => row.code,
-      hide:"sm",
+      selector: (row, id) => row.code,
+      hide: "sm",
       center: true,
     },
     {
       name: "Course Name",
       selector: (row) => row.course_name,
       center: true,
-
     },
     {
       name: "Individuals Count",
@@ -105,8 +114,11 @@ const ManCWIndReport = () => {
           pauseOnHover
           theme="light"
         />
-        <div style={{ position: "relative" }} className="row g-3  min-vh-100  d-flex justify-content-center mt-20 ">
-        <Backbutton/>
+        <div
+          style={{ position: "relative" }}
+          className="row g-3  min-vh-100  d-flex justify-content-center mt-20 "
+        >
+          <Backbutton />
           <h2
             style={{
               color: "#212450",
@@ -116,10 +128,13 @@ const ManCWIndReport = () => {
               fontSize: 31,
             }}
           >
-           Course Wise Individual
+            Course Wise Individual
           </h2>
           <div style={{ padding: "", backgroundColor: "" }}>
-            <div style={{ float: "right", marginBottom: "1.4rem", zIndex:"99" }} className="p-relative d-inline header__search searchbar-hidden3 ">
+            <div
+              style={{ float: "right", marginBottom: "1.4rem", zIndex: "99" }}
+              className="p-relative d-inline header__search searchbar-hidden3 "
+            >
               <form action="">
                 <input
                   style={{ background: "#edeef3" }}
@@ -135,99 +150,102 @@ const ManCWIndReport = () => {
               </form>
             </div>
             <div className="reacttable-hidden">
-            <DataTable
-             progressPending={pending}
-             progressComponent={
-               pending ? 
-               (<div style={{ padding: "1rem" }}>
-                 <Spinner animation="border" variant="primary" />
-               </div>) : (null)
-             }
-              noDataComponent={"No records to display"}
-              columns={columns}
-              data={
-                searchString
-                  ? records.filter((item) =>
-                      item.course_name.toLowerCase().startsWith(searchString.toLowerCase())
-                    )
-                  : records
-              }
-              customStyles={customStyles}
-              pagination
-              persistTableHead ={true}
-            />
-              <DownloadCSV records={records}/>
+              <DataTable
+                progressPending={pending}
+                progressComponent={
+                  pending ? (
+                    <div style={{ padding: "1rem" }}>
+                      <Spinner animation="border" variant="primary" />
+                    </div>
+                  ) : null
+                }
+                noDataComponent={"No records to display"}
+                columns={columns}
+                data={
+                  searchString
+                    ? records.filter((item) =>
+                        item.course_name
+                          .toLowerCase()
+                          .startsWith(searchString.toLowerCase())
+                      )
+                    : records
+                }
+                customStyles={customStyles}
+                pagination
+                persistTableHead={true}
+              />
+              <DownloadCSV records={newRecords} />
             </div>
 
-            {(records.length <= 0 && !pending) && (
-              <div style={{width:"100%",  }}>
-              <h4
-                className="no-record-hidden"
-                style={{ marginTop: "5rem", textAlign:"center" }}
-              >
-                No records to display
-              </h4>
+            {records.length <= 0 && !pending && (
+              <div style={{ width: "100%" }}>
+                <h4
+                  className="no-record-hidden"
+                  style={{ marginTop: "5rem", textAlign: "center" }}
+                >
+                  No records to display
+                </h4>
               </div>
             )}
-            <div style={{marginTop:"3rem"}}>
-            {pending && (
-              <div
-                className="no-record-hidden"
-                style={{
-                  textAlign: "center",
-                  padding: "1rem",
-                  marginTop: "4rem",
-                }}
-              >
-                <Spinner animation="border" variant="primary" />
-              </div>
-            )}
-            {records.map((item) => {
-              return (
+            <div style={{ marginTop: "3rem" }}>
+              {pending && (
                 <div
+                  className="no-record-hidden"
                   style={{
-                    width: "100%",
-                    display: "flex",
-                    flexDirection: "column",
-                    padding: ".5rem",
+                    textAlign: "center",
+                    padding: "1rem",
+                    marginTop: "4rem",
                   }}
                 >
-                  <div className="new-table-shadow new-table-hidden">
-                    <div
-                      style={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                      }}
-                    >
-                      <p
+                  <Spinner animation="border" variant="primary" />
+                </div>
+              )}
+              {records.map((item) => {
+                return (
+                  <div
+                    style={{
+                      width: "100%",
+                      display: "flex",
+                      flexDirection: "column",
+                      padding: ".5rem",
+                    }}
+                  >
+                    <div className="new-table-shadow new-table-hidden">
+                      <div
                         style={{
-                          paddingTop: ".5rem",
-                          paddingLeft: ".4rem",
-                          color: "#212a50",
-                          fontWeight: "bold",
+                          display: "flex",
+                          justifyContent: "space-between",
                         }}
                       >
-                        {/* Rahul */}
-                       Year: {item.year}
-                      </p>
-                      <p
+                        <p
+                          style={{
+                            paddingTop: ".5rem",
+                            paddingLeft: ".4rem",
+                            color: "#212a50",
+                            fontWeight: "bold",
+                          }}
+                        >
+                          {/* Rahul */}
+                          Year: {item.year}
+                        </p>
+                        <p
+                          style={{
+                            color: "#212a50",
+                            marginRight: ".5rem",
+                            fontWeight: "500",
+                            paddingTop: ".5rem",
+                          }}
+                        >
+                          Month: {item.month}
+                        </p>
+                      </div>
+                      <div
                         style={{
-                          color: "#212a50",
-                          marginRight: ".5rem",
-                          fontWeight: "500", 
-                           paddingTop: ".5rem",
+                          display: "flex",
+                          justifyContent: "space-between",
                         }}
                       >
-                       Month: {item.month}
-                      </p>
-                    </div>
-                    <div
-                      style={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                      }}
-                    >
-                      {/* <p
+                        {/* <p
                         style={{
                           color: "green",
                           marginLeft: ".5rem",
@@ -237,32 +255,30 @@ const ManCWIndReport = () => {
                         Course: {item.course_count}
                         <a className="my-dashlink"></a>
                       </p> */}
-                      <p
-                        style={{
-                          color: "green",
-                          marginLeft: ".5rem",
-                          fontWeight: "500",
-                        }}
-                      >
-                       Quantity: {item.total_fake_count}
-                      </p>
-                      <p
-                        style={{
-                          color: "green",
-                          marginRight: ".5rem",
-                          fontWeight: "500",
-                        }}
-                      >
-                        Amount: {item.total_amount}
-                      </p>
+                        <p
+                          style={{
+                            color: "green",
+                            marginLeft: ".5rem",
+                            fontWeight: "500",
+                          }}
+                        >
+                          Quantity: {item.total_fake_count}
+                        </p>
+                        <p
+                          style={{
+                            color: "green",
+                            marginRight: ".5rem",
+                            fontWeight: "500",
+                          }}
+                        >
+                          Amount: {item.total_amount}
+                        </p>
+                      </div>
                     </div>
-                    
                   </div>
-                </div>
-              );
-            })}
+                );
+              })}
             </div>
-
           </div>
         </div>{" "}
       </div>
