@@ -1,7 +1,7 @@
 import React from "react";
 import { FaDownload } from "react-icons/fa";
 
-function DownloadCSV() {
+function DownloadCSV(records) {
   function convertArrayOfObjectsToCSV(array) {
     let result;
 
@@ -49,7 +49,7 @@ function DownloadCSV() {
         <button
           className="btn btn-primary "
           title="Download Report"
-          onClick={(e) => saveCSV(newRecords)}
+          onClick={(e) => saveCSV(records)}
         >
           <FaDownload style={{ fontSize: ".9rem" }} />
         </button>
