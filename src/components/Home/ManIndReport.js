@@ -32,6 +32,7 @@ const customStyles = {
 const ManIndReport = () => {
   const [pending, setPending] = React.useState(true);
   const [records, setRecords] = useState([]);
+  const [newRecords, setNewRecords] = useState([]);
   const [filterRecords, setFilterRecords] = useState([]);
   const [searchString, setSearchString] = useState("");
 
@@ -49,18 +50,27 @@ const ManIndReport = () => {
   }, []);
 
   const getData = () => {
-    setPending(true)
+    setPending(true);
     makeRequest("GET", "/info/get-all-individual-report")
       .then((res) => {
         console.log(res.data.response);
+        let arr = [];
+        res.data.response.map((item, idx) => {
+          arr.push({
+            Sl: ++idx,
+            Name: item.first_name + " " + item.last_name,
+            "Courses Assigned": item.course_count,
+            "Bundles Assigned": item.bundle_count,
+            Certificates: item.certificates,
+          });
+        });
+        setNewRecords(arr);
         setRecords(res.data.response);
         setFilterRecords(res.data);
-       setPending(false)
+        setPending(false);
       })
       .catch((err) => console.log(err));
   };
-
-
 
   const columns = [
     {
@@ -73,20 +83,19 @@ const ManIndReport = () => {
       selector: (row) => row.course_count,
       sortable: true,
       center: true,
-      hide:"sm",
+      hide: "sm",
     },
     {
       name: "Bundles Assigned",
       selector: (row) => row.bundle_count,
       center: true,
-      hide:"sm",
+      hide: "sm",
     },
     {
       name: "Certificates",
       cell: (row) => row.certificates,
       center: true,
-    
-    }
+    },
   ];
 
   return (
@@ -104,8 +113,11 @@ const ManIndReport = () => {
           pauseOnHover
           theme="light"
         />
-        <div style={{ position: "relative" }} className=" row g-3  min-vh-100  d-flex justify-content-center mt-20">
-        <Backbutton/>
+        <div
+          style={{ position: "relative" }}
+          className=" row g-3  min-vh-100  d-flex justify-content-center mt-20"
+        >
+          <Backbutton />
           <h2
             style={{
               color: "#212450",
@@ -118,7 +130,10 @@ const ManIndReport = () => {
             Individual Report
           </h2>
           <div style={{ padding: "", backgroundColor: "" }}>
-            <div style={{ float: "right", marginBottom: "1.4rem" }} className="p-relative d-inline header__search searchbar-hidden2">
+            <div
+              style={{ float: "right", marginBottom: "1.4rem" }}
+              className="p-relative d-inline header__search searchbar-hidden2"
+            >
               <form action="">
                 <input
                   style={{ background: "#edeef3" }}
@@ -134,32 +149,33 @@ const ManIndReport = () => {
               </form>
             </div>
             <div className="reacttable-hidden">
-            <DataTable
-              progressPending={pending}
-              progressComponent={
-                pending ? 
-                (<div style={{ padding: "1rem" }}>
-                  <Spinner animation="border" variant="primary" />
-                </div>) : (null)
-              }
-           persistTableHead={true}
-              noDataComponent={"No records to display"}
-              columns={columns}
-              data={
-                searchString
-                  ? records.filter((item) =>
-                      item.first_name
-                        .toLowerCase()
-                        .startsWith(searchString.toLowerCase())
-                    )
-                  : records
-              }
-              customStyles={customStyles}
-              pagination
-            />
-             <DownloadCSV records={records}/>
+              <DataTable
+                progressPending={pending}
+                progressComponent={
+                  pending ? (
+                    <div style={{ padding: "1rem" }}>
+                      <Spinner animation="border" variant="primary" />
+                    </div>
+                  ) : null
+                }
+                persistTableHead={true}
+                noDataComponent={"No records to display"}
+                columns={columns}
+                data={
+                  searchString
+                    ? records.filter((item) =>
+                        item.first_name
+                          .toLowerCase()
+                          .startsWith(searchString.toLowerCase())
+                      )
+                    : records
+                }
+                customStyles={customStyles}
+                pagination
+              />
+              <DownloadCSV records={newRecords} />
             </div>
-            {(records.length <= 0 && !pending) && (
+            {records.length <= 0 && !pending && (
               <h4
                 className="no-record-hidden"
                 style={{ textAlign: "center", marginTop: "4.5rem" }}
@@ -180,78 +196,77 @@ const ManIndReport = () => {
                 <Spinner animation="border" variant="primary" />
               </div>
             )}
-            <div style={{marginTop:"3rem"}}>
-            {records.map((item) => {
-              return (
-                <div
-                  style={{
-                    width: "100%",
-                    display: "flex",
-                    flexDirection: "column",
-                    padding: ".5rem",
-                  }}
-                >
-                  <div className="new-table-shadow new-table-hidden">
-                    <div
-                      style={{
-                        display: "flex",
-                        justifyContent: "center",
-                      }}
-                    >
-                      <p
+            <div style={{ marginTop: "3rem" }}>
+              {records.map((item) => {
+                return (
+                  <div
+                    style={{
+                      width: "100%",
+                      display: "flex",
+                      flexDirection: "column",
+                      padding: ".5rem",
+                    }}
+                  >
+                    <div className="new-table-shadow new-table-hidden">
+                      <div
                         style={{
-                          paddingTop: ".5rem",
-                          paddingLeft: ".4rem",
-                          color: "#212a50",
-                          fontWeight: "bold",
+                          display: "flex",
+                          justifyContent: "center",
                         }}
                       >
-                        {/* Rahul */}
-                        {item.first_name + " " + item.last_name}
-                      </p>
-                    </div>
-                    <div
-                      style={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                      }}
-                    >
-                      <p
+                        <p
+                          style={{
+                            paddingTop: ".5rem",
+                            paddingLeft: ".4rem",
+                            color: "#212a50",
+                            fontWeight: "bold",
+                          }}
+                        >
+                          {/* Rahul */}
+                          {item.first_name + " " + item.last_name}
+                        </p>
+                      </div>
+                      <div
                         style={{
-                          color: "green",
-                          marginLeft: ".5rem",
-                          fontWeight: "500",
+                          display: "flex",
+                          justifyContent: "space-between",
                         }}
                       >
-                        Course: {item.course_count}
-                        <a className="my-dashlink"></a>
-                      </p>
-                      <p
-                        style={{
-                          color: "green",
-                          marginRight: ".5rem",
-                          fontWeight: "500",
-                        }}
-                      >
-                        Certificates: {item.certificates}
-                      </p>
-                      <p
-                        style={{
-                          color: "green",
-                          marginRight: ".5rem",
-                          fontWeight: "500",
-                        }}
-                      >
-                        Bundle: {item.bundle_count}
-                      </p>
+                        <p
+                          style={{
+                            color: "green",
+                            marginLeft: ".5rem",
+                            fontWeight: "500",
+                          }}
+                        >
+                          Course: {item.course_count}
+                          <a className="my-dashlink"></a>
+                        </p>
+                        <p
+                          style={{
+                            color: "green",
+                            marginRight: ".5rem",
+                            fontWeight: "500",
+                          }}
+                        >
+                          Certificates: {item.certificates}
+                        </p>
+                        <p
+                          style={{
+                            color: "green",
+                            marginRight: ".5rem",
+                            fontWeight: "500",
+                          }}
+                        >
+                          Bundle: {item.bundle_count}
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })}
             </div>
           </div>
-      
         </div>{" "}
       </div>
     </div>
