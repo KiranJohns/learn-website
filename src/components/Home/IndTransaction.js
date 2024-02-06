@@ -8,6 +8,8 @@ import Button from "react-bootstrap/Button";
 import Spinner from "react-bootstrap/Spinner";
 import { FaEye } from "react-icons/fa";
 import Backbutton from "./Backbutton";
+import DownloadCSV from "../button/DownloadCSV";
+
 
 const customStyles = {
   headRow: {
@@ -201,6 +203,7 @@ class Transaction extends Component {
                   customStyles={customStyles}
                   pagination
                 />
+                  <DownloadCSV records={this.state.records}/>
               </div>
 
               {this.state.records?.length <= 0 && !this.state.pending && (
