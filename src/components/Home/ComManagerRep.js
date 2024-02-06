@@ -12,6 +12,7 @@ import { Suspense } from "react";
 import Spinner from "react-bootstrap/Spinner";
 import Backbutton from "./Backbutton";
 import { FaFileCsv } from "react-icons/fa";
+import { FaDownload } from "react-icons/fa6";
 
 const customStyles = {
   headRow: {
@@ -241,13 +242,13 @@ const ManagerReport = () => {
                 />
                 {/* <Export onExport={downloadCSV} /> */}
                 <div style={{ display: "flex", justifyContent: "flex-end" }}>
-                  <div style={{ marginRight: "1rem" }}>
+                  <div style={{ marginRight: "1.5rem" }}>
                     <button
                       className="btn btn-primary "
-                      title="Export"
+                      title="Download Report"
                       onClick={(e) => downloadCSV(newRecords)}
                     >
-                      <FaFileCsv style={{ fontSize: "1.3rem" }} />
+                      <FaDownload style={{ fontSize: ".9rem" }} />
                     </button>
                   </div>
                 </div>
