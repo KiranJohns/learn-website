@@ -1,7 +1,7 @@
 import React from "react";
 import { FaDownload } from "react-icons/fa";
 
-function downloadCSV() {
+function DownloadCSV() {
   function convertArrayOfObjectsToCSV(array) {
     let result;
 
@@ -58,4 +58,4 @@ function downloadCSV() {
   );
 }
 
-export default downloadCSV;
+export default DownloadCSV;
