@@ -19,7 +19,9 @@ export default () => {
   const makeRequest = fetchData();
 
   useState(() => {
-    makeRequest("GET", "/course/get-all-course")
+    makeRequest("POST", "/course/get-showcase-course", {
+      ids: [25, 26, 40, 51, 54, 34, 24, 33],
+    })
       .then((res) => {
         console.log("course ", res.data.response);
         setCourse(res.data.response.slice(0, 8));
