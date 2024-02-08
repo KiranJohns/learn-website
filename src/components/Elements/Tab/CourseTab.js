@@ -15,16 +15,24 @@ export default () => {
   const [course, setCourse] = useState([]);
   const [image, setImage] = useState("");
   const [coupon, setCoupon] = useState({ text: "", highLight: "" });
-
+  let ids = [25, 26, 40, 51, 54, 34, 24, 33];
   const makeRequest = fetchData();
 
   useState(() => {
     makeRequest("POST", "/course/get-showcase-course", {
-      ids: [25, 26, 40, 51, 54, 34, 24, 33],
+      ids,
     })
       .then((res) => {
         console.log("course ", res.data.response);
-        setCourse(res.data.response.slice(0, 8));
+        let items = []
+        ids.map(id => {
+          res.data.response.map(item => {
+            if(item.id == id) {
+              items.push(item)
+            }
+          })
+        setCourse(items)
+        });
       })
       .catch((err) => {
         console.log(err);
