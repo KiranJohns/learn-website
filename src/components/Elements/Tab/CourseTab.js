@@ -24,15 +24,7 @@ export default () => {
     })
       .then((res) => {
         console.log("course ", res.data.response);
-        let items = []
-        ids.map(id => {
-          res.data.response.map(item => {
-            if(item.id == id) {
-              items.push(item)
-            }
-          })
-        setCourse(items)
-        });
+        setCourse(res.data.response)
       })
       .catch((err) => {
         console.log(err);
