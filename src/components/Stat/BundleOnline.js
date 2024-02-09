@@ -37,20 +37,22 @@ function BundleOnline({ name }) {
           <h1 style={{ marginBottom: "1rem" }}>Online Care Bundle</h1>
           <h1></h1>
           <p>
-            In our “Online Care Course – Bundle Package”, Learning Connect
-            offers 30+ CPD accredited online care courses, which staff can do at
-            their own pace. All courses also linked to requirements for
-            Regulated Qualifications Framework units.
+          Employees may complete more than thirty CPD-accredited online care courses at their
+speed with Learn for Care "Online Care Course – Bundle Package." The prerequisites for
+the units of the Regulated Qualifications Framework are also connected to all courses.
           </p>
           <p>
-            Company (Admin) can purchase as many as “Online Care Course – Bundle
-            Package” they want. There is no expiry date on the “Online Care
-            Course – Bundle Package” until unless it is assigned to the company
-            user (Individual) Or Company Manager. For instance, you purchased
-            500 “Online Care Course – Bundle Package” & assigned only 400
-            “Online Care Course – Bundle Package”. Still, you have 100 “Online
-            Care Course – Bundle Package” to assign anytime, anywhere. There is
-            no time restriction.
+          The "Online Care Course - Bundle Package" may be purchased by Company (Admin) in any
+quantity. The "Online Care Course - Bundle Package" has no expiration date unless the
+individual or company manager is designated as the recipient. Consider the scenario where
+you bought 500 "Online Care Course - Bundle Package" but were only given 400.
+Nevertheless, you may delegate your 100 "Online Care Course - Bundle Package" at any
+time, any place. There&#39;s no time limit.
+          </p>
+          <p>
+          The "Online Care Course - Bundle Package"; will be available to staff for a maximum of nine
+months after the date of assignment. During this period, there is no deadline for completing
+the course.
           </p>
         </div>
         <div className="col-md-2"></div>
