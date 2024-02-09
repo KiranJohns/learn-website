@@ -784,3 +784,26 @@
    justify-content: center;
      }
    }
+
+
+   .course-card-margin{
+    margin-bottom: 1.5rem;
+   }
+
+   @media screen and (max-width:767px) {
+    .course-card-margin{
+        margin-bottom: 0rem;
+       }
+   }
+
+   .course-card-text{
+    height: 6.2rem;
+   }
+
+
+   @media screen and (max-width:767px) {
+    .course-card-text{
+        height: 4rem;
+       }
+    
+   }
