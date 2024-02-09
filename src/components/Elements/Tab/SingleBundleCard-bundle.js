@@ -37,7 +37,7 @@ function SingleBundleCard({ item }) {
         location.href = "/course-child";
         break;
       case "bundle-Online":
-        location.href = "/course-online";
+        location.href = "/online-care-bundle";
         break;
       default:
         break;
