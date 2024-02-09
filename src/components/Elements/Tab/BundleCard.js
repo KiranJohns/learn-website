@@ -29,23 +29,23 @@ function BundleCard({ item }) {
         // location.href = "/course-grid";
         break;
       case "Mandatory Care Bundle":
-        router.push({pathname: "/bundle/mandatory-bundle",  query: { id } });
+        router.push({pathname: "/bundle/mandatory-care-bundle",  query: { id } });
         // location.href = "/course-mandatory";
         break;
       case "Specialised Care Bundle":
-        router.push({pathname: "/bundle/special-bundle",  query: { id } });
+        router.push({pathname: "/bundle/specialised-care-bundle",  query: { id } });
         // location.href = "/course-specialised";
         break;
       case "Recovery Care Bundle":
-        router.push({pathname: "/bundle/recovery-bundle",  query: { id } });
+        router.push({pathname: "/bundle/recovery-care-bundle",  query: { id } });
         // location.href = "/course-recovery";
         break;
       case "Child Care Bundle":
-        router.push({pathname: "/bundle/child-bundle", query: { id } });
+        router.push({pathname: "/bundle/child-care-bundle", query: { id } });
         // location.href = "/course-child";
         break;
       case "Online Care Bundle":
-        router.push({pathname: "/bundle/bundle-Online",  query: { id } });
+        router.push({pathname: "/bundle/online-care-bundle",  query: { id } });
         // location.href = "/course-online";
         break;
       default:

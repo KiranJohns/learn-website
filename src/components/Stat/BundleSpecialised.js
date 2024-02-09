@@ -37,18 +37,14 @@ function BundleSpecialised({ name }) {
           <h1 style={{ marginBottom: "1rem" }}>Specialised Care Bundle</h1>
           <h1></h1>
           <p style={{ textAlign: "center" }}>
-            When working within the care sector, it's crucial that the proper
-            care and support is afforded to each patient. Our choice of
-            Specialist Carer training courses can provide the skills and
-            knowledge necessary to complete a range of specialist tasks,
-            including the management of instances about conflict or challenging
-            behaviour.{" "}
+          It's imperative that every patient gets the appropriate attention and assistance when working in the care industry. Our selection of training programmes for Specialist Carers may provide participants with the abilities and know-how required to handle a variety of specialised duties, such as handling conflict or difficult conduct.
+Please get in touch with one of our training professionals if the specific course you're looking for isn't shown here.
           </p>
 
-          <p style={{ textAlign: "center" }}>
+          {/* <p style={{ textAlign: "center" }}>
             If the particular course that you're searching for isn't listed
             below, please do contact one amongst our training specialists.
-          </p>
+          </p> */}
 
           {/* <div style={{ display: "flex", justifyContent: "center" }}>
             <div

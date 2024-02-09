@@ -35,21 +35,12 @@ function BundleMan({ name }) {
           <h1 style={{ marginBottom: "1rem" }}>Mandatory Care Bundle</h1>
           <h1></h1>
           <p style={{ textAlign: "center" }}>
-            Health and social care workers require adequate induction training
-            and annual refresher training to ensure that they remain up so far
-            with recommended practice and regulatory requirements.
+          
           </p>
 
           <p style={{ textAlign: "center" }}>
-            Mandatory training needs for an organisation depends on the services
-            it provides, yet because the organisation’s type and size. All care
-            organisations have a liability to supply employees with Health &
-            Safety awareness training, together with fire Safety, Moving and
-            Handling of people training is additionally obligatory and if
-            workers are involved taking care of those who don't have mental
-            capacity then DoLS training will be mandatory. Additional mandatory
-            training requirements might include data Protection/Information
-            Governance, Risk assessments, Duty of care, etc...
+          To guarantee that they stay current with suggested practices and legal requirements, health and social care staff need to undergo sufficient induction training as well as yearly refresher training.
+An organization's requirement for mandatory training varies on the services it offers as well as the kind and scale of the organisation. All care organisations must provide their staff with Health and Safety awareness training, in addition to fire safety training. Moving and handling of persons training is also required, and DoLS training is required if workers are providing care for individuals who lack mental capacity. Risk assessments, duty of care, data protection/information governance, and other topics may require additional mandated training.
           </p>
           {/* <div style={{ display: "flex", justifyContent: "center" }}>
             <div

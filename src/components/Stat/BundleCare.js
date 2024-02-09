@@ -38,14 +38,8 @@ function BundleCare({ name }) {
           <h1 style={{ marginBottom: "1rem" }}>Care Certificate Bundle</h1>
           <h1></h1>
           <p>
-            The Care Certificate is delivered through our simple to use, online
-            Learning Management System (LMS) that records and evidences the
-            information needed for every of the fifteen standards. In addition,
-            we've created workbooks which offer guidance on what aspects of
-            every Care Certificate standard ought to be determined within the
-            workplace. This is far and away the foremost efficient and value
-            effective methodology to deliver the Care Certificate in your
-            organisation.
+          Embark on a transformative journey in the field of healthcare with our Comprehensive Care Certificate Training Program. This bundled course is meticulously designed to equip individuals with the essential skills and knowledge required to provide high-quality care and support to individuals in various healthcare settings.
+Our easy-to-use online Learning Management System (LMS) provides the Care Certificate by logging and providing the data required for each of the fifteen requirements.
           </p>
           {/* <div style={{ display: "flex", justifyContent: "center" }}>
             <div

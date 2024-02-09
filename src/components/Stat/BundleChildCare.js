@@ -37,11 +37,7 @@ function BundleChild({ name }) {
           <h1 style={{ marginBottom: "1rem" }}>Child Care Bundle</h1>
           <h1></h1>
           <p style={{textAlign:'center'}}>
-          The Child Care Courses are delivered through our simple to use, 
-          online Learning Management System (LMS) that records and evidences the information needed for every of the six standards. 
-          In addition, we've created workbooks which offer guidance on what aspects of every Child Care Courses standard ought to be determined 
-          within the workplace. This is far and away the foremost efficient and value effective methodology to deliver the Child Care Courses in 
-          your organisation.
+          Our user-friendly, online Learning Management System (LMS) is used to offer the Child Care Courses. It keeps track of and verifies the data required for each of the six criteria. Furthermore, we have developed workbooks that provide direction on what elements of each Child Care Courses requirement should be decided upon in the workplace. This approach is by far the most successful and economical way for your business to offer child care courses.
           </p>
           {/* <div style={{ display: "flex", justifyContent: "center" }}>
             <div
