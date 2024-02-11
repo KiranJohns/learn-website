@@ -28,17 +28,35 @@ function BundleChild({ name }) {
       .catch((err) => {
         console.log(err);
       });
-  },[])
-  function handleClick() {}
+  }, [])
+  function handleClick() { }
   return (
     <div className="container mt-100">
       <div className="row">
         <div className="col-xxl-5  col-xl-4 col-lg-4 col-md-4 col-sm-0 text-center">
           <h1 style={{ marginBottom: "1rem" }}>Child Care Bundle</h1>
           <h1></h1>
-          <p style={{textAlign:'center'}}>
-          Our user-friendly, online Learning Management System (LMS) is used to offer the Child Care Courses. It keeps track of and verifies the data required for each of the six criteria. Furthermore, we have developed workbooks that provide direction on what elements of each Child Care Courses requirement should be decided upon in the workplace. This approach is by far the most successful and economical way for your business to offer child care courses.
-          </p>
+          {/* <p style={{ textAlign: 'center' }}>
+            Our user-friendly, online Learning Management System (LMS) is used to offer the Child Care Courses. It keeps track of and verifies the data required for each of the six criteria. Furthermore, we have developed workbooks that provide direction on what elements of each Child Care Courses requirement should be decided upon in the workplace. This approach is by far the most successful and economical way for your business to offer child care courses.
+          </p> */}
+          {
+            bundle.map((item, index) => {
+              return (
+                <div key={index}>
+                    <p style={{ textAlign: 'center' }}  
+                    dangerouslySetInnerHTML={{
+                                  __html: item?.description?.replace(
+                                    /\n/g,
+                                    "</br>"
+                                  ),
+                                }}>
+                      
+                    </p>
+                </div>
+              );
+            })
+          }
+
           {/* <div style={{ display: "flex", justifyContent: "center" }}>
             <div
               className="course__more d-flex justify-content-around"
@@ -86,9 +104,9 @@ function BundleChild({ name }) {
             </div>
           </div> */}
         </div>
-         <div className="col-md-2"></div>
+        <div className="col-md-2"></div>
         {bundle[0] && <SingleBundleCard className="col-md-6" item={bundle[0]} />}
-    
+
       </div>
       <section className="course__area pt-50 pb-60 grey-bg">
         <Tabs variant="enclosed" id="react-tabs-276">

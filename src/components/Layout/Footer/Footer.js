@@ -10,7 +10,7 @@ import { AiOutlineMail } from "react-icons/ai";
 const Footer = () => {
 
     return (
-        <footer>
+        <footer style={{width:"100%", overflow:"hidden"}}> 
             <div className="footer__area grey-bg-2">
                <div className="footer__top pt-180 pb-40">
                   <div>
@@ -90,7 +90,7 @@ const Footer = () => {
                            <div className="footer__widget mb-50">
                               <div className="footer__widget-head mb-22">
                                  {/* <h3 style={{visibility:"hidden"}} className="footer__widget-title footer__widget-title-2">External Links</h3> */}
-                              </div>
+                            </div>
                               <div className="footer__widget-body">
                                  <div className="footer__link footer__link-2">
                                    
@@ -99,7 +99,7 @@ const Footer = () => {
                                  </div>
                               </div>
                            </div>
-                        </div>
+                        </div> 
 
                         
                         
