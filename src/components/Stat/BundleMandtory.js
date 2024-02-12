@@ -12,7 +12,7 @@ import { useRouter } from "next/router";
 
 function BundleMan({ name }) {
   const [fakeCount, setFakeCount] = useState(0);
-  const [bundle, setBundle] = useState({});
+  const [bundle, setBundle] = useState([]);
   const [course, setCourse] = useState([]);
   const route = useRouter()
   const makeRequest = fetchData();
@@ -38,10 +38,23 @@ function BundleMan({ name }) {
           
           </p>
 
-          <p style={{ textAlign: "center" }}>
-          To guarantee that they stay current with suggested practices and legal requirements, health and social care staff need to undergo sufficient induction training as well as yearly refresher training.
-An organization's requirement for mandatory training varies on the services it offers as well as the kind and scale of the organisation. All care organisations must provide their staff with Health and Safety awareness training, in addition to fire safety training. Moving and handling of persons training is also required, and DoLS training is required if workers are providing care for individuals who lack mental capacity. Risk assessments, duty of care, data protection/information governance, and other topics may require additional mandated training.
-          </p>
+          {
+            bundle.map((item, index) => {
+              return (
+                <div key={index}>
+                    <p style={{ textAlign: 'center' }}  
+                    dangerouslySetInnerHTML={{
+                                  __html: item?.description?.replace(
+                                    /\n/g,
+                                    "</br>"
+                                  ),
+                                }}>
+                      
+                    </p>
+                </div>
+              );
+            })
+          }
           {/* <div style={{ display: "flex", justifyContent: "center" }}>
             <div
               className="course__more d-flex justify-content-around"

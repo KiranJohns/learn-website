@@ -12,7 +12,7 @@ import { useRouter } from "next/router";
 
 function BundleOnline({ name }) {
   const [fakeCount, setFakeCount] = useState(0);
-  const [bundle, setBundle] = useState({});
+  const [bundle, setBundle] = useState([]);
   const [course, setCourse] = useState([]);
   const makeRequest = fetchData();
   const route = useRouter()
@@ -36,24 +36,23 @@ function BundleOnline({ name }) {
         <div className="col-xxl-5  col-xl-4 col-lg-4 col-md-4 col-sm-0 text-center">
           <h1 style={{ marginBottom: "1rem" }}>Online Care Bundle</h1>
           <h1></h1>
-          <p>
-          Employees may complete more than thirty CPD-accredited online care courses at their
-speed with Learn for Care "Online Care Course – Bundle Package." The prerequisites for
-the units of the Regulated Qualifications Framework are also connected to all courses.
-          </p>
-          <p>
-          The "Online Care Course - Bundle Package" may be purchased by Company (Admin) in any
-quantity. The "Online Care Course - Bundle Package" has no expiration date unless the
-individual or company manager is designated as the recipient. Consider the scenario where
-you bought 500 "Online Care Course - Bundle Package" but were only given 400.
-Nevertheless, you may delegate your 100 "Online Care Course - Bundle Package" at any
-time, any place. There&#39;s no time limit.
-          </p>
-          <p>
-          The "Online Care Course - Bundle Package"; will be available to staff for a maximum of nine
-months after the date of assignment. During this period, there is no deadline for completing
-the course.
-          </p>
+          {
+            bundle.map((item, index) => {
+              return (
+                <div key={index}>
+                    <p style={{ textAlign: 'center' }}  
+                    dangerouslySetInnerHTML={{
+                                  __html: item?.description?.replace(
+                                    /\n/g,
+                                    "</br>"
+                                  ),
+                                }}>
+                      
+                    </p>
+                </div>
+              );
+            })
+          }
         </div>
         <div className="col-md-2"></div>
 

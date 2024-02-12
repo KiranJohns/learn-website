@@ -37,10 +37,23 @@ function BundleCare({ name }) {
         <div className="col-xxl-5  col-xl-4 col-lg-4 col-md-4 col-sm-0 text-center">
           <h1 style={{ marginBottom: "1rem" }}>Care Certificate Bundle</h1>
           <h1></h1>
-          <p>
-          Embark on a transformative journey in the field of healthcare with our Comprehensive Care Certificate Training Program. This bundled course is meticulously designed to equip individuals with the essential skills and knowledge required to provide high-quality care and support to individuals in various healthcare settings.
-Our easy-to-use online Learning Management System (LMS) provides the Care Certificate by logging and providing the data required for each of the fifteen requirements.
-          </p>
+          {
+            bundle.map((item, index) => {
+              return (
+                <div key={index}>
+                    <p style={{ textAlign: 'center' }}  
+                    dangerouslySetInnerHTML={{
+                                  __html: item?.description?.replace(
+                                    /\n/g,
+                                    "</br>"
+                                  ),
+                                }}>
+                      
+                    </p>
+                </div>
+              );
+            })
+          }
           {/* <div style={{ display: "flex", justifyContent: "center" }}>
             <div
               className="course__more d-flex justify-content-around"
