@@ -819,7 +819,7 @@ const CompAssignCourse = () => {
                   className="d-block mr-10"
                   type="text"
                   placeholder="Search..."
-                  value={searchString}
+                  value={searchString} 
                   onChange={(e) => setSearchString(e.target.value)}
                 />
                 <button type="submit">
