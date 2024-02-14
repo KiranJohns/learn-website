@@ -197,7 +197,7 @@ const ManagerAssignCourse = () => {
     },
     {
       name: "count",
-      selector: (row) => row.course_count,
+      selector: (row) => (row.course_count <= 0) ? 0 : row.course_count,
       center: true,
     },
     {
@@ -709,7 +709,7 @@ const ManagerAssignCourse = () => {
                                 fontWeight: "500",
                               }}
                             >
-                             Count: {item.course_count}
+                             Count: {(item.course_count <= 0) ? 0 : item.course_count}
                             </p>
                           </div>
                         </div>

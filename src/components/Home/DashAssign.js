@@ -325,7 +325,7 @@ const CompAssignCourse = () => {
 
     {
       name: "Remaining No",
-      selector: (row) => row.course_count,
+      selector: (row) => row.course_count <= 0 ? 0 : row.course_count,
       center: true,
     },
     {
@@ -819,7 +819,7 @@ const CompAssignCourse = () => {
                   className="d-block mr-10"
                   type="text"
                   placeholder="Search..."
-                  value={searchString}
+                  value={searchString} 
                   onChange={(e) => setSearchString(e.target.value)}
                 />
                 <button type="submit">
@@ -1117,7 +1117,7 @@ const CompAssignCourse = () => {
                                 fontWeight: "500",
                               }}
                             >
-                              Remaning: {item.course_count}
+                              Remaining: {(item.course_count <= 0) ? 0 : item.course_count}
                             </p>
                           </div>
 
