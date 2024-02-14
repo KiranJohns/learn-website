@@ -12,7 +12,7 @@ import { useRouter } from "next/router";
 
 function BundleSpecialised({ name }) {
   const [fakeCount, setFakeCount] = useState(0);
-  const [bundle, setBundle] = useState({});
+  const [bundle, setBundle] = useState([]);
   const [course, setCourse] = useState([]);
   const makeRequest = fetchData();
   const route = useRouter()
@@ -36,11 +36,23 @@ function BundleSpecialised({ name }) {
         <div className="col-xxl-5  col-xl-4 col-lg-4 col-md-4 col-sm-0 text-center">
           <h1 style={{ marginBottom: "1rem" }}>Specialised Care Bundle</h1>
           <h1></h1>
-          <p style={{ textAlign: "center" }}>
-          It's imperative that every patient gets the appropriate attention and assistance when working in the care industry. Our selection of training programmes for Specialist Carers may provide participants with the abilities and know-how required to handle a variety of specialised duties, such as handling conflict or difficult conduct.
-Please get in touch with one of our training professionals if the specific course you're looking for isn't shown here.
-          </p>
-
+          {
+            bundle.map((item, index) => {
+              return (
+                <div key={index}>
+                    <p style={{ textAlign: 'center' }}  
+                    dangerouslySetInnerHTML={{
+                                  __html: item?.description?.replace(
+                                    /\n/g,
+                                    "</br>"
+                                  ),
+                                }}>
+                      
+                    </p>
+                </div>
+              );
+            })
+          }
           {/* <p style={{ textAlign: "center" }}>
             If the particular course that you're searching for isn't listed
             below, please do contact one amongst our training specialists.
