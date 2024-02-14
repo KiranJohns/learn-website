@@ -346,7 +346,7 @@ function SignUpMain() {
                       </button>
                     </div>
 
-                    <div className="mt-4">
+                    <div className="mt-4" style={{textAlign:'center', marginLeft:"1rem"}}>
                       {timerInSec <= 0 ? (
                         <>
                           <span>Didn't recieve? </span>

@@ -18,6 +18,7 @@ import { jwtDecode } from "jwt-decode";
 import Spinner from "react-bootstrap/Spinner";
 import { Suspense } from "react";
 import Backbutton from "./Backbutton";
+import { FaArrowAltCircleLeft } from "react-icons/fa";
 
 
 const customStyles = {
@@ -410,14 +411,13 @@ const CompAssignCourse = () => {
           style={{ position: "relative" }}
           className=" row g-3  min-vh-100  d-flex justify-content-center mt-20"
         >
-           <Backbutton/>
-          <h2
+            <span style={{position:'absolute', marginLeft:"1.25rem", marginTop:"1.2rem", zIndex:"99"}} className=""><button style={{background:"white"}} onClick={() => history.back()}> <FaArrowAltCircleLeft className="back-fontsize"  style={{color:"#212a50", }}/></button></span >
+          <h2 className="purchased-font"
             style={{
               color: "#212450",
               display: "flex",
               justifyContent: "center",
               position: "absolute",
-              fontSize: 35,
             }}
           >
             Purchased Courses

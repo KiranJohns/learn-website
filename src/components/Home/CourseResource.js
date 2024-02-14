@@ -85,9 +85,9 @@ const CourseResource = () => {
         }}
       >
       
-      <span style={{position:'absolute', marginLeft:"1rem", marginTop:"1rem", zIndex:"1001"}} className=""><button style={{background:"white"}} onClick={() => history.back()}> <FaArrowAltCircleLeft className="back-fontsize"  style={{color:"#212a50", }}/></button></span >
+      <span style={{position:'absolute', marginLeft:".5rem", marginTop:".88rem", zIndex:"1001", }} className=""><button style={{background:"white"}} onClick={() => history.back()}> <FaArrowAltCircleLeft className="back-fontsize1"  style={{color:"#212a50", }}/></button></span >
     
-        <h4 style={{ padding: "1rem", textAlign: "center" }}>{course?.name}</h4>
+        <h4 className="mx-4" style={{ padding: "1rem", textAlign: "center" }}>{course?.name}</h4>
         {/* course description */}
 
         <p style={{ padding: "1rem", textAlign: "center" }}>
