@@ -266,10 +266,8 @@ const OnlineExam = () => {
               </div>
 
               <div
-                className=""
+                className="exam-head"
                 style={{
-                  display: "flex",
-                  justifyContent: "space-between",
                   marginTop: ".5rem",
                 }}
               >

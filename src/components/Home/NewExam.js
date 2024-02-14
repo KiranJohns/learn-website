@@ -250,8 +250,8 @@ const NewExam = () => {
 
             <div className="dash-shadow p-4 mt-2 col-md-12">
               <div
-                className=""
-                style={{ display: "flex", justifyContent: "space-between" }}
+                className="exam-head"
+                style={{  }}
               >
                 <h5 className="" style={{ color: "#212a5" }}>
                   Online Assessment

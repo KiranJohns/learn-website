@@ -863,3 +863,38 @@ margin: 0 auto;
     }
 
      }
+
+     .imageSlider-font{
+      font-size: 33px;
+     }
+
+     @media screen and (max-width:450px) {
+      .imageSlider-font{
+      font-size: 25px;
+    }
+
+     }
+
+
+     .exam-head{   
+      display: flex;
+      justify-content: space-between;
+     }
+
+
+     @media screen and (max-width:460px) {
+      .exam-head{   
+        flex-direction: column;
+        // justify-content: center;
+       align-items: center;
+       }
+     }
+
+
+     @media screen and (max-width:460px) {
+      .results-head{  
+        display: flex; 
+        justify-content: center;
+       align-items: center;
+       }
+     }
