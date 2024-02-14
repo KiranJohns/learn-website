@@ -324,7 +324,7 @@ const CompAssignCourse = () => {
 
     {
       name: "Remaining No",
-      selector: (row) => row.course_count,
+      selector: (row) => row.course_count <= 0 ? 0 : row.course_count,
       center: true,
     },
     {
@@ -1117,7 +1117,7 @@ const CompAssignCourse = () => {
                                 fontWeight: "500",
                               }}
                             >
-                              Remaning: {item.course_count}
+                              Remaining: {(item.course_count <= 0) ? 0 : item.course_count}
                             </p>
                           </div>
 
