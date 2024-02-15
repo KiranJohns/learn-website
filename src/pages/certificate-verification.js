@@ -7,7 +7,6 @@ import NoSSR from 'react-no-ssr';
 import CertifiVeritication from '../components/About/CertificateVeri';
 
 
-
 const verification = () => {
   return (
     <React.Fragment>
