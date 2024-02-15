@@ -68,7 +68,7 @@ const DashCourse = () => {
         [
           ...onGoingCourse.data.response,
           ...assignedCourses.data.response.filter(
-            (item) => item?.owner == user?.id && item?.course_count == 1
+            (item) => item?.course_count == 1
           ),
         ].reverse()
       );
