@@ -55,13 +55,13 @@ const NewResult = () => {
           <div className="dash-shadow p-4 mt-4">
             <div className="dash-shadow p-4 mt-2 col-md-12">
               <div
-                className=""
-                style={{ display: "flex", justifyContent: "space-between" }}
+                className="exam-head"
+                // style={{ display: "flex", justifyContent: "space-between" }}
               >
                 <h5 className="" style={{ color: "#212a5" }}>
                   Result
                 </h5>
-                <h5>{examResult?.courseName}</h5>
+                <h5 className="" style={{marginLeft:"1rem",textAlign:"center"}}>{examResult?.courseName}</h5>
               </div>
             </div>
 

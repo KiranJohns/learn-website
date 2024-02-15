@@ -10,10 +10,10 @@ const slideStyless = {
 
 const rightArrowStyless = {
   position: "absolute",
-  top: "60%",
+  top: "52%",
   transform: "translate(0, -50%)",
   right: "0px",
-  fontSize: "33px",
+  // fontSize: "33px",
   color: "#0366fc",
   zIndex: 1,
   cursor: "pointer",
@@ -21,10 +21,10 @@ const rightArrowStyless = {
 
 const leftArrowStyless = {
   position: "absolute",
-  top: "60%",
+  top: "52%",
   transform: "translate(0, -50%)",
   left: "0px",
-  fontSize: "33px",
+  // fontSize: "33px",
   color: "#0366fc",
   zIndex: 1,
   cursor: "pointer",
@@ -76,10 +76,10 @@ const ImageSlider = ({ slides }) => {
    
     <div style={sliderStyless}>
       <div>
-        <div onClick={goToPrevious} style={leftArrowStyless}>
+        <div className="imageSlider-font" onClick={goToPrevious} style={leftArrowStyless}>
           ❰
         </div>
-        <div onClick={goToNext} style={rightArrowStyless}>
+        <div className="imageSlider-font" onClick={goToNext} style={rightArrowStyless}>
           ❱
         </div>
       </div>

@@ -250,13 +250,13 @@ const NewExam = () => {
 
             <div className="dash-shadow p-4 mt-2 col-md-12">
               <div
-                className=""
-                style={{ display: "flex", justifyContent: "space-between" }}
+                className="exam-head"
+                style={{  }}
               >
                 <h5 className="" style={{ color: "#212a5" }}>
                   Online Assessment
                 </h5>
-                <h5>{router.query.courseName}</h5>
+                <h5 style={{textAlign:'center'}}>{router.query.courseName}</h5>
               </div>
               <small style={{ color: "#212a50" }}>
                 After you completed the online assessment, you need to click on
