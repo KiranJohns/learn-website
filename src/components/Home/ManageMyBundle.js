@@ -6,7 +6,6 @@ import { Suspense } from "react";
 import { jwtDecode } from "jwt-decode";
 import Backbutton from "./Backbutton";
 
-
 const customStyles = {
   headRow: {
     style: {
@@ -43,7 +42,7 @@ const ManagerBundle = () => {
   const getData = async () => {
     console.clear();
     try {
-      setPending(true)
+      setPending(true);
       const onGoingRes = await makeRequest(
         "GET",
         "/bundle/get-on-going-bundles"
@@ -113,10 +112,13 @@ const ManagerBundle = () => {
       name: "Action",
       center: true,
       selector: (row) => {
-        let validity = row.validity.split("/").reverse();
+        let validity = row.validity.split("/");
+        validity = validity[1] + "/" + validity[0] + "/" + validity[2];
+        console.log(new Date() > new Date(validity));
+        console.log(new Date(validity));
         return (
           <>
-            {row.valid ? (
+            {new Date() < new Date(validity) ? (
               <>
                 {!row.progress || row?.progress <= 100 ? (
                   <button
@@ -169,7 +171,7 @@ const ManagerBundle = () => {
           style={{ position: "relative" }}
           className=" row g-3  min-vh-100  d-flex justify-content-center mt-20"
         >
-          <Backbutton/>
+          <Backbutton />
           <h2
             style={{
               color: "#212450",
@@ -229,18 +231,25 @@ const ManagerBundle = () => {
             />
           </div>
           {pending && (
-              <div
-                className="no-record-hidden"
-                style={{
-                  textAlign: "center",
-                  padding: "1rem",
-                  marginTop: "4rem",
-                }}
-              >
-                <Spinner animation="border" variant="primary" />
-              </div>
-            )}
-          {(records.length <= 0 && !pending) && <h4 className="no-record-hidden" style={{textAlign: 'center',marginTop:"5rem",}}>No records to display</h4>}
+            <div
+              className="no-record-hidden"
+              style={{
+                textAlign: "center",
+                padding: "1rem",
+                marginTop: "4rem",
+              }}
+            >
+              <Spinner animation="border" variant="primary" />
+            </div>
+          )}
+          {records.length <= 0 && !pending && (
+            <h4
+              className="no-record-hidden"
+              style={{ textAlign: "center", marginTop: "5rem" }}
+            >
+              No records to display
+            </h4>
+          )}
           <div style={{ marginTop: "3rem", paddingTop: "1rem" }}>
             {searchString
               ? records
@@ -257,7 +266,6 @@ const ManagerBundle = () => {
                           marginTop: "3rem",
                           display: "flex",
                           flexDirection: "column",
-                          
                         }}
                       >
                         <div className="new-table-shadow new-table-res new-table-hidden">
@@ -273,7 +281,6 @@ const ManagerBundle = () => {
                                 paddingLeft: ".4rem",
                                 color: "#212a50",
                                 fontWeight: "bold",
-                               
                               }}
                             >
                               {item.bundle_name || item.name}
@@ -340,10 +347,9 @@ const ManagerBundle = () => {
                   return (
                     <div
                       style={{
-                     
                         display: "flex",
                         flexDirection: "column",
-                        padding:".5rem"
+                        padding: ".5rem",
                       }}
                     >
                       <div className="new-table-shadow new-table-hidden">
@@ -421,12 +427,33 @@ const ManagerBundle = () => {
                           {/* <button className="btn btn-success" style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}>View</button> */}
                         </div>
 
-                        <div style={{ display: 'flex', justifyContent: "space-between" }}>
-                        <p style={{ color: 'green', marginLeft: ".5rem", fontWeight: "500" }}>Attempts:{" "}{item?.progress || 0}{"/20"}<a className="my-dashlink"></a></p>
-                        <p style={{ color: 'green', marginRight: ".5rem", fontWeight: "500" }}>Validity:{" "}{item?.validity}</p>
-                      </div>
-
-
+                        <div
+                          style={{
+                            display: "flex",
+                            justifyContent: "space-between",
+                          }}
+                        >
+                          <p
+                            style={{
+                              color: "green",
+                              marginLeft: ".5rem",
+                              fontWeight: "500",
+                            }}
+                          >
+                            Attempts: {item?.progress || 0}
+                            {"/20"}
+                            <a className="my-dashlink"></a>
+                          </p>
+                          <p
+                            style={{
+                              color: "green",
+                              marginRight: ".5rem",
+                              fontWeight: "500",
+                            }}
+                          >
+                            Validity: {item?.validity}
+                          </p>
+                        </div>
                       </div>
                     </div>
                   );

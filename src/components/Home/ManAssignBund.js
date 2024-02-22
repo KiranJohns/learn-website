@@ -68,18 +68,17 @@ const ManAssignBund = () => {
 
   const makeRequest = fetchData();
   function getData() {
-    setPending(true)
+    setPending(true);
     makeRequest("GET", "/info/get-purchased-bundles")
       .then((purchasedRes) => {
         makeRequest("GET", "/info/get-assigned-bundle")
           .then((res) => {
-            setPending(false)
+            setPending(false);
+            console.log(...purchasedRes.data.response, ...res.data.response);
             setRecords((prev) => {
               return [
                 ...purchasedRes.data.response,
-                ...res.data.response.filter(
-                  (item) => item.owner != user.id
-                ),
+                ...res.data.response.filter((item) => item.owner != user.id),
               ];
             });
             console.log(
@@ -259,7 +258,7 @@ const ManAssignBund = () => {
           style={{ position: "relative" }}
           className=" row g-3  min-vh-100  d-flex justify-content-center mt-20"
         >
-          <Backbutton/>
+          <Backbutton />
           <h2
             style={{
               color: "#212450",
@@ -514,17 +513,17 @@ const ManAssignBund = () => {
             </h4>
           )}
           {pending && (
-              <div
-                className="no-record-hidden"
-                style={{
-                  textAlign: "center",
-                  padding: "1rem",
-                  marginTop: "4rem",
-                }}
-              >
-                <Spinner animation="border" variant="primary" />
-              </div>
-            )}
+            <div
+              className="no-record-hidden"
+              style={{
+                textAlign: "center",
+                padding: "1rem",
+                marginTop: "4rem",
+              }}
+            >
+              <Spinner animation="border" variant="primary" />
+            </div>
+          )}
           <div style={{ marginTop: "2.7rem", paddingTop: "1rem" }}>
             {searchString
               ? records
