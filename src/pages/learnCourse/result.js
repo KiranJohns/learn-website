@@ -21,6 +21,12 @@ function result() {
 
   const router = useRouter();
 
+  history.pushState(null, null, '/learnCourse/result');
+  window.addEventListener('popstate', function(event) {
+    window.location.href = '/';
+  });
+  
+
 
   useEffect(() => {
     if (!routes.includes(logedIn)) {

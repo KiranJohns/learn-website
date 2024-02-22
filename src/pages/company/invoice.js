@@ -23,11 +23,7 @@ function Invoice() {
   //   history.pushState(null, null, '/company/dashboard');
   // });
 
-  history.pushState(null, null, '/company/invoice');
-  window.addEventListener('popstate', function(event) {
-    history.pushState(null, null, '/');
-  });
-  
+
 
   useEffect(() => {
     if (logedIn !== "company") {
