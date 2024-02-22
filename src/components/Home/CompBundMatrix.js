@@ -5,7 +5,6 @@ import fetchData from "../../axios";
 import { jwtDecode } from "jwt-decode";
 import { FaArrowAltCircleLeft } from "react-icons/fa";
 
-
 const MatrixBundComp = () => {
   const makeRequest = fetchData();
   const [courseName, setCourseName] = useState([]);
@@ -40,14 +39,14 @@ const MatrixBundComp = () => {
           color: "gray",
           progress: "",
         };
-        // console.log(res.data.response);
+        // console.log('matrix ',res.data.response);
         let users = res.data.response;
         let course_name = [];
         let user_name = [];
-        users.forEach((item) => {
+        let newUsers = users.map((item) => {
           let assigned = item.matrix_assigned.reverse();
           let enrolled = item.matrix.reverse();
-          console.log(assigned, enrolled);
+          // console.log(assigned, enrolled);
 
           user_name.push(item.first_name + " " + item.last_name);
 
@@ -77,30 +76,33 @@ const MatrixBundComp = () => {
             }
           });
 
-          item["course"] = courses;
+          // console.log('courses ',courses);
+          return { ...item, course: courses };
         });
 
         let tempCourses = [];
         course_name.forEach(() => {
           tempCourses.push(temp);
         });
-        console.log(users);
-
-        users.forEach((item) => {
-          let temp = [...tempCourses];
-          let course = item["course"];
-          course_name.forEach((name, idx) => {
-            course.forEach((c) => {
-              if (c.course_name === name) {
-                temp[idx] = c;
-              }
-            });
-          });
-          item["course"] = temp;
-        });
+        
+        // newUsers.forEach((item) => {
+        //   console.log('item ',item);
+        //   let temp = [...tempCourses];
+        //   let course = item["course"];
+        //   console.log();
+        //   course_name.forEach((name, idx) => {
+        //     course.forEach((c) => {
+        //       if (c.course_name === name) {
+        //         temp[idx] = c;
+        //       }
+        //     });
+        //   });
+        //   item["course"] = temp;
+        // });
+        console.log("users ", newUsers);
         setCourseName(course_name);
         setUserName(user_name);
-        setCourse(users);
+        setCourse(newUsers);
       })
       .catch((err) => {
         console.log(err);
@@ -109,8 +111,22 @@ const MatrixBundComp = () => {
   return (
     <div className="row p-3">
       <div style={{ position: "relative" }} className="dash-neww bg-white">
-      <span style={{position:'absolute',  marginTop:".2rem", zIndex:"99"}} className="matrix-back-hidden"><button style={{background:"white",borderRadius:".7rem"}} onClick={() => history.back()}> <FaArrowAltCircleLeft className="back-fontsize"  style={{color:"#212a50", }}/></button></span >
-      <div style={{ position: "absolute" }} className="matrix-hidden">
+        <span
+          style={{ position: "absolute", marginTop: ".2rem", zIndex: "99" }}
+          className="matrix-back-hidden"
+        >
+          <button
+            style={{ background: "white", borderRadius: ".7rem" }}
+            onClick={() => history.back()}
+          >
+            {" "}
+            <FaArrowAltCircleLeft
+              className="back-fontsize"
+              style={{ color: "#212a50" }}
+            />
+          </button>
+        </span>
+        <div style={{ position: "absolute" }} className="matrix-hidden">
           <span className="m-3" style={{ display: "flex" }}>
             <div
               style={{
@@ -122,7 +138,7 @@ const MatrixBundComp = () => {
               }}
               className="redd"
             >
-             Not Started
+              Not Started
             </div>
             <div
               style={{
@@ -169,7 +185,9 @@ const MatrixBundComp = () => {
                 style={{ border: ".1px solid #212a50" }}
                 aria-label="Default select example"
               >
-                <option value={user?.id}>{user?.first_name + " " + user?.last_name}</option>
+                <option value={user?.id}>
+                  {user?.first_name + " " + user?.last_name}
+                </option>
                 {managers.map((item) => (
                   <option value={item.id}>
                     {item.first_name + " " + item.last_name}
@@ -187,12 +205,10 @@ const MatrixBundComp = () => {
           >
             <thead>
               <tr style={{ textAlign: "center" }}>
-              <th
+                <th
                   style={{ background: "#212a50", color: "white" }}
                   colSpan={1}
-                >
-                  
-                </th>
+                ></th>
                 <th
                   style={{ background: "#212a50", color: "white" }}
                   colSpan={60}
@@ -252,7 +268,10 @@ const MatrixBundComp = () => {
                                 textAlign: "center",
                               }}
                             >
-                              {course?.color == "red" && "not started" || course?.color == "yellow" && "in progress" || course?.color == "green" && "finished" || course?.color == "gray" && "" }
+                              {(course?.color == "red" && "") ||
+                                (course?.color == "yellow" && "") ||
+                                (course?.color == "green" && "") ||
+                                (course?.color == "gray" && "")}
                             </td>
                           </>
                         );
@@ -266,7 +285,10 @@ const MatrixBundComp = () => {
                               textAlign: "center",
                             }}
                           >
-                            {course?.color == "red" && "not started" || course?.color == "yellow" && "in progress" || course?.color == "green" && "finished" || course?.color == "gray" && "" }
+                            {(course?.color == "red" && "") ||
+                              (course?.color == "yellow" && "") ||
+                              (course?.color == "green" && "") ||
+                              (course?.color == "gray" && "")}
                           </td>
                         );
                       }
