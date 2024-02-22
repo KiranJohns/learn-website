@@ -10,14 +10,13 @@ const ManBundMatrix = () => {
   const [userName, setUserName] = useState([]);
   const [course, setCourse] = useState([]);
 
-
   function removeDuplicates(arr) {
     return arr.filter((item, index) => arr.indexOf(item) === index);
   }
 
   useEffect(() => {
     console.clear();
-    makeRequest("GET", "/course/get-manager-matrix-bundle")
+    makeRequest("POST", "/course/get-manager-matrix-bundle")
       .then((res) => {
         let temp = {
           color: "gray",
@@ -59,7 +58,7 @@ const ManBundMatrix = () => {
             }
           });
 
-          item["course"] = courses;
+          return { ...item, course: courses };
 
           // delete item.matrix_assigned;
           // delete item.matrix;
@@ -69,33 +68,52 @@ const ManBundMatrix = () => {
         course_name.forEach(() => {
           tempCourses.push(temp);
         });
-        console.log(users);
 
-        users.forEach((item) => {
-          let temp = [...tempCourses];
-          let course = item["course"];
-          course_name.forEach((name, idx) => {
-            course.forEach((c) => {
-              if (c.bundle_name === name) {
-                temp[idx] = c;
-              }
-            });
-          });
-          item["course"] = temp;
-        });
+        // users.forEach((item) => {
+        //   let temp = [...tempCourses];
+        //   let course = item["course"];
+        //   course_name.forEach((name, idx) => {
+        //     course.forEach((c) => {
+        //       if (c.bundle_name === name) {
+        //         temp[idx] = c;
+        //       }
+        //     });
+        //   });
+        //   item["course"] = temp;
+        // });
         setCourseName(course_name);
         setUserName(user_name);
         setCourse(newUsers);
+        console.log("newUsers ", newUsers);
       })
       .catch((err) => {
-        console.log(err);
+        console.log("error ", err);
       });
   }, []);
   return (
     <div className="row p-3">
       <div style={{ position: "relative" }} className="dash-neww">
-      <span style={{position:'absolute',  marginTop:"1.3rem",marginLeft:".8rem" , zIndex:"99"}} className="matrix-man-back"><button style={{background:"white",borderRadius:".7rem"}} onClick={() => history.back()}> <FaArrowAltCircleLeft className="back-fontsize"  style={{color:"#212a50", }}/></button></span >
-      <div style={{ position: "absolute" }} className="manager-matrix">
+        <span
+          style={{
+            position: "absolute",
+            marginTop: "1.3rem",
+            marginLeft: ".8rem",
+            zIndex: "99",
+          }}
+          className="matrix-man-back"
+        >
+          <button
+            style={{ background: "white", borderRadius: ".7rem" }}
+            onClick={() => history.back()}
+          >
+            {" "}
+            <FaArrowAltCircleLeft
+              className="back-fontsize"
+              style={{ color: "#212a50" }}
+            />
+          </button>
+        </span>
+        <div style={{ position: "absolute" }} className="manager-matrix">
           <span className="m-3" style={{ display: "flex" }}>
             <div
               style={{
@@ -107,7 +125,7 @@ const ManBundMatrix = () => {
               }}
               className="redd"
             >
-             Not Started
+              Not Started
             </div>
             <div
               style={{
@@ -143,12 +161,10 @@ const ManBundMatrix = () => {
           <Table bordered variant="light">
             <thead>
               <tr style={{ textAlign: "center" }}>
-              <th
+                <th
                   style={{ background: "#212a50", color: "white" }}
                   colSpan={1}
-                >
-                 
-                </th>
+                ></th>
                 <th
                   style={{ background: "#212a50", color: "white" }}
                   colSpan={60}
@@ -208,7 +224,10 @@ const ManBundMatrix = () => {
                                 textAlign: "center",
                               }}
                             >
-                              {course?.color == "red" && "not started" || course?.color == "yellow" && "in progress" || course?.color == "green" && "finished" || course?.color == "gray" && "" }
+                              {(course?.color == "red" && "not started") ||
+                                (course?.color == "yellow" && "in progress") ||
+                                (course?.color == "green" && "finished") ||
+                                (course?.color == "gray" && "no bundle")}
                             </td>
                           </>
                         );
@@ -222,7 +241,10 @@ const ManBundMatrix = () => {
                               textAlign: "center",
                             }}
                           >
-                            {course?.color == "red" && "not started" || course?.color == "yellow" && "in progress" || course?.color == "green" && "finished" || course?.color == "gray" && "" }
+                            {(course?.color == "red" && "not started") ||
+                              (course?.color == "yellow" && "in progress") ||
+                              (course?.color == "green" && "finished") ||
+                              (course?.color == "gray" && "no bundle")}
                           </td>
                         );
                       }
