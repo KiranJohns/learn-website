@@ -76,11 +76,9 @@ const ManAssignBund = () => {
             setPending(false)
             setRecords((prev) => {
               return [
-                ...purchasedRes.data.response.filter(
-                  (item) => item.course_count >= 1
-                ),
+                ...purchasedRes.data.response,
                 ...res.data.response.filter(
-                  (item) => item.course_count >= 1 && item.owner != user.id
+                  (item) => item.owner != user.id
                 ),
               ];
             });

@@ -27,7 +27,7 @@ const ManBundMatrix = () => {
         let users = res.data.response;
         let course_name = [];
         let user_name = [];
-        users.forEach((item) => {
+        let newUsers = users.map((item) => {
           let assigned = item.matrix_assigned.reverse();
           let enrolled = item.matrix.reverse();
 
@@ -85,7 +85,7 @@ const ManBundMatrix = () => {
         });
         setCourseName(course_name);
         setUserName(user_name);
-        setCourse(users);
+        setCourse(newUsers);
       })
       .catch((err) => {
         console.log(err);
