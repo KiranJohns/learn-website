@@ -271,7 +271,7 @@ const MatrixBundComp = () => {
                               {(course?.color == "red" && "not started") ||
                                 (course?.color == "yellow" && "in progress") ||
                                 (course?.color == "green" && "finished") ||
-                                (course?.color == "gray" && "")}
+                                (course?.color == "gray" && "no bundle")}
                             </td>
                           </>
                         );
@@ -288,7 +288,7 @@ const MatrixBundComp = () => {
                             {(course?.color == "red" && "not started") ||
                               (course?.color == "yellow" && "in progress") ||
                               (course?.color == "green" && "finished") ||
-                              (course?.color == "gray" && "")}
+                              (course?.color == "gray" && "no bundle")}
                           </td>
                         );
                       }
