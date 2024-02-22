@@ -268,9 +268,9 @@ const MatrixBundComp = () => {
                                 textAlign: "center",
                               }}
                             >
-                              {(course?.color == "red" && "") ||
-                                (course?.color == "yellow" && "") ||
-                                (course?.color == "green" && "") ||
+                              {(course?.color == "red" && "not started") ||
+                                (course?.color == "yellow" && "in progress") ||
+                                (course?.color == "green" && "finished") ||
                                 (course?.color == "gray" && "")}
                             </td>
                           </>
@@ -285,9 +285,9 @@ const MatrixBundComp = () => {
                               textAlign: "center",
                             }}
                           >
-                            {(course?.color == "red" && "") ||
-                              (course?.color == "yellow" && "") ||
-                              (course?.color == "green" && "") ||
+                            {(course?.color == "red" && "not started") ||
+                              (course?.color == "yellow" && "in progress") ||
+                              (course?.color == "green" && "finished") ||
                               (course?.color == "gray" && "")}
                           </td>
                         );

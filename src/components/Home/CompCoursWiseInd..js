@@ -57,14 +57,14 @@ const CWIndReport = () => {
       .then((res) => {
         console.log(res.data.response);
         let arr = []
-        res.data.response.map((item,id => {
+        res.data.response.map((item,id) => {
           arr.push({
             "SL No.": ++idx,
             "CODE": item.code,
             "Course Name": item.course_name,
             "Individuals Count": item.count,      
           })
-        }))
+        })
         setNewRecords(arr)
         setRecords(res.data.response);
         setFilterRecords(res.data);
