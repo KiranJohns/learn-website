@@ -21,6 +21,7 @@ function result() {
 
   const router = useRouter();
 
+
   useEffect(() => {
     if (!routes.includes(logedIn)) {
       router.push("/sign-in");

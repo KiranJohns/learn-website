@@ -18,6 +18,17 @@ function Invoice() {
 
   const router = useRouter();
 
+  // history.pushState(null, null, '/company/dashboard');
+  // window.addEventListener('popstate', function(event) {
+  //   history.pushState(null, null, '/company/dashboard');
+  // });
+
+  history.pushState(null, null, '/company/invoice');
+  window.addEventListener('popstate', function(event) {
+    history.pushState(null, null, '/');
+  });
+  
+
   useEffect(() => {
     if (logedIn !== "company") {
       router.push("/sign-in");
