@@ -107,7 +107,7 @@ class IndMonthRep extends Component {
       },
       {
         name: "amount",
-        selector: (row) => row.total_amount,
+        selector: (row) => "£"+row.total_amount,
         center: true,
       },
     ];
@@ -120,13 +120,13 @@ class IndMonthRep extends Component {
             className=" row g-3  min-vh-100  d-flex justify-content-center mt-20"
           >
             <Backbutton />
-            <h2
+            <h2 className="dash-head-font"
               style={{
                 color: "#212450",
                 display: "flex",
                 justifyContent: "center",
                 position: "absolute",
-                fontSize: 35,
+                // fontSize: 35,
               }}
             >
               Month Wise Report
@@ -149,7 +149,7 @@ class IndMonthRep extends Component {
             />
           </div> */}
               <div
-                style={{ float: "right", marginBottom: "1.4rem" }}
+                style={{ float: "right", marginBottom: "1.4rem",zIndex:"99" }}
                 className="p-relative d-inline header__search searchbar-hidden2"
               >
                 <form action="">
@@ -284,7 +284,7 @@ class IndMonthRep extends Component {
                               fontWeight: "500",
                             }}
                           >
-                            Amount: {item.total_amount}
+                            Amount: {"£"}{item.total_amount}
                           </p>
                         </div>
                       </div>

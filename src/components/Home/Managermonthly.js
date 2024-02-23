@@ -95,7 +95,7 @@ const ManageMonthRep = () => {
     },
     {
       name: "amount",
-      selector: (row) => row.total_amount,
+      selector: (row) => "£"+row.total_amount,
       center: true,
     },
   ];
@@ -108,13 +108,13 @@ const ManageMonthRep = () => {
           className=" row g-3  min-vh-100  d-flex justify-content-center mt-20"
         >
           <Backbutton />
-          <h2
+          <h2 className="dash-head-font"
             style={{
               color: "#212450",
               display: "flex",
               justifyContent: "center",
               position: "absolute",
-              fontSize: 33,
+              // fontSize: 33,
             }}
           >
             Month Wise Report
@@ -257,7 +257,7 @@ const ManageMonthRep = () => {
                             fontWeight: "500",
                           }}
                         >
-                          Amount: {item.total_amount}
+                          Amount: {"£"}{item.total_amount}
                         </p>
                       </div>
                     </div>

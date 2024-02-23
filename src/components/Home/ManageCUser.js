@@ -109,6 +109,7 @@ const ManageCreateU = () => {
                     placeholder="Email"
                     name="email"
                     value={userData.email}
+                    autocomplete="off"
                   />
                 </div>
 
@@ -144,6 +145,7 @@ const ManageCreateU = () => {
                     name="password"
                     placeholder="Password"
                     value={userData.password}
+                    autocomplete="off"
                   />
                        <div
                           id="pasToggle"

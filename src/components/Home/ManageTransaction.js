@@ -105,7 +105,7 @@ const ManTransaction = () => {
     },
     {
       name: "Amount",
-      selector: (row) => row.amount,
+      selector: (row) => "£"+row.amount,
       center: true,
     },
   ];
@@ -118,20 +118,20 @@ const ManTransaction = () => {
           className="row g-3  min-vh-100  d-flex justify-content-center mt-20"
         >
           <Backbutton />
-          <h2
+          <h2 className="dash-head-font"
             style={{
               color: "#212450",
               display: "flex",
               justifyContent: "center",
               position: "absolute",
-              fontSize: 35,
+              // fontSize: 35,
             }}
           >
             Transaction Report
           </h2>
           <div style={{ padding: "", backgroundColor: "" }}>
             <div
-              style={{ float: "right", marginBottom: "1.4rem" }}
+              style={{ float: "right", marginBottom: "1.4rem",zIndex:"99" }}
               className="p-relative d-inline header__search searchbar-hidden2"
             >
               <form action="">
@@ -269,7 +269,7 @@ const ManTransaction = () => {
                             fontWeight: "500",
                           }}
                         >
-                          Amount: {item.amount}
+                          Amount: {"£"}{item.amount}
                         </p>
                       </div>
                     </div>

@@ -13,8 +13,19 @@ const NewResult = () => {
 
   const [examResult, setExamResult] = useState(() => {
     let result = JSON.parse(localStorage.getItem("wrong-answers"));
+    if (result === null)  {
+      result = {
+        courseName:'',
+   per:'',
+   questions:[],
+      }
+    };
     let per = result?.per?.split(' ')
-    result['per'] = per[0]    
+    if(per)  {   result['per'] = per[0] }
+    else {
+      result['per'] = 0;    
+    }
+    
     return result;
   });
   const [questionId, setQuestionId] = useState(null);

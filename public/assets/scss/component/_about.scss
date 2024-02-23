@@ -898,3 +898,24 @@ margin: 0 auto;
        align-items: center;
        }
      }
+
+     .dash-head-font{  
+      font-size: 34px;
+            }
+
+     @media screen and (max-width:460px) {
+      .dash-head-font{  
+     font-size: 28px;
+       }
+     }
+
+     
+     .dash-head-font1{  
+      font-size: 30px;
+            }
+
+     @media screen and (max-width:460px) {
+      .dash-head-font1{  
+     font-size: 20px;
+       }
+     }

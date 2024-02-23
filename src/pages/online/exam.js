@@ -22,6 +22,14 @@ function onlineExam() {
 
   const router = useRouter();
 
+  history.pushState(null, null, 'no-back-button');
+  window.addEventListener('popstate', function(event) {
+      // Navigate to the home page
+      window.location.href = '/';
+      // history.pushState(null, null, 'no-back-button');
+  });
+
+
   // window.history.
   // window.addEventListener('popstate', function (event) {
   //     event.preventDefault()

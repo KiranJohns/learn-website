@@ -19,13 +19,16 @@ function result() {
   });
   let routes = ["individual", "manager", "company"];
 
+  history.pushState(null, null, 'no-back-button');
+window.addEventListener('popstate', function(event) {
+    // Navigate to the home page
+    window.location.href = '/';
+});
+
   const router = useRouter();
 
-  history.pushState(null, null, '/learnCourse/result');
-  window.addEventListener('popstate', function(event) {
-    window.location.href = '/';
-  });
   
+
 
 
   useEffect(() => {
