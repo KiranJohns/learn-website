@@ -441,7 +441,7 @@ const ManCoursMatrix = () => {
                               {(course?.color == "red" && "Not Started") ||
                                 (course?.color == "yellow" && "In Progress") ||
                                 (course?.color == "green" && "Completed") ||
-                                (course?.color == "gray" && "")}
+                                (course?.color == "gray" && "No Course")}
                             </td>
                           </>
                         );
@@ -458,7 +458,7 @@ const ManCoursMatrix = () => {
                             {(course?.color == "red" && "Not Started") ||
                               (course?.color == "yellow" && "In Progress") ||
                               (course?.color == "green" && "Completed") ||
-                              (course?.color == "gray" && "")}
+                              (course?.color == "gray" && "No Course")}
                           </td>
                         );
                       }

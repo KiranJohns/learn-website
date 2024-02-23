@@ -237,31 +237,31 @@ const ManCoursMatrix = () => {
               });
             }
           });
-          
+
           item["course"] = courses;
 
           // delete item.matrix_assigned;
           // delete item.matrix;
         });
-        
-        let tempCourses = []
+
+        let tempCourses = [];
         course_name.forEach(() => {
           tempCourses.push(temp);
         });
         console.log(users);
-        
-        users.forEach((item => {
-          let temp = [...tempCourses]
-          let course = item['course']
-          course_name.forEach((name,idx) => {
-            course.forEach(c => {
+
+        users.forEach((item) => {
+          let temp = [...tempCourses];
+          let course = item["course"];
+          course_name.forEach((name, idx) => {
+            course.forEach((c) => {
               if (c.course_name === name) {
-                temp[idx] = c
+                temp[idx] = c;
               }
-            })
+            });
           });
-          item['course'] = temp
-        }))
+          item["course"] = temp;
+        });
         setCourseName(course_name);
         setUserName(user_name);
         setCourse(users);
@@ -273,8 +273,27 @@ const ManCoursMatrix = () => {
   return (
     <div className="row p-3">
       <div style={{ position: "relative" }} className="dash-neww ">
-      <span style={{position:'absolute',  marginTop:"1.3rem",marginLeft:".8rem" ,zIndex:"99"}} className="matrix-man-back"><button style={{background:"white",borderRadius:".7rem"}} onClick={() => history.back()}> <FaArrowAltCircleLeft className="back-fontsize"  style={{color:"#212a50", }}/></button></span >
-      <div style={{ position: "absolute", }} className="manager-matrix">
+        <span
+          style={{
+            position: "absolute",
+            marginTop: "1.3rem",
+            marginLeft: ".8rem",
+            zIndex: "99",
+          }}
+          className="matrix-man-back"
+        >
+          <button
+            style={{ background: "white", borderRadius: ".7rem" }}
+            onClick={() => history.back()}
+          >
+            {" "}
+            <FaArrowAltCircleLeft
+              className="back-fontsize"
+              style={{ color: "#212a50" }}
+            />
+          </button>
+        </span>
+        <div style={{ position: "absolute" }} className="manager-matrix">
           <span className="m-3" style={{ display: "flex" }}>
             <div
               style={{
@@ -286,7 +305,7 @@ const ManCoursMatrix = () => {
               }}
               className="redd"
             >
-             Not Started
+              Not Started
             </div>
             <div
               style={{
@@ -322,12 +341,10 @@ const ManCoursMatrix = () => {
           <Table bordered variant="light">
             <thead>
               <tr style={{ textAlign: "center" }}>
-              <th
+                <th
                   style={{ background: "#212a50", color: "white" }}
                   colSpan={1}
-                >
-              
-                </th>
+                ></th>
                 <th
                   style={{ background: "#212a50", color: "white" }}
                   colSpan={70}
@@ -387,7 +404,10 @@ const ManCoursMatrix = () => {
                                 textAlign: "center",
                               }}
                             >
-                             {course?.color == "red" && "Not Started" || course?.color == "yellow" && "In Progress" || course?.color == "green" && "Completed" || course?.color == "gray" && "" }
+                              {(course?.color == "red" && "Not Started") ||
+                                (course?.color == "yellow" && "In Progress") ||
+                                (course?.color == "green" && "Completed") ||
+                                (course?.color == "gray" && "No Course")}
                             </td>
                           </>
                         );
@@ -401,7 +421,10 @@ const ManCoursMatrix = () => {
                               textAlign: "center",
                             }}
                           >
-                           {course?.color == "red" && "Not Started" || course?.color == "yellow" && "In Progress" || course?.color == "green" && "Completed" || course?.color == "gray" && "" }
+                            {(course?.color == "red" && "Not Started") ||
+                              (course?.color == "yellow" && "In Progress") ||
+                              (course?.color == "green" && "Completed") ||
+                              (course?.color == "gray" && "No Course")}
                           </td>
                         );
                       }

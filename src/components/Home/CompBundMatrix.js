@@ -268,10 +268,10 @@ const MatrixBundComp = () => {
                                 textAlign: "center",
                               }}
                             >
-                              {(course?.color == "red" && "not started") ||
-                                (course?.color == "yellow" && "in progress") ||
-                                (course?.color == "green" && "finished") ||
-                                (course?.color == "gray" && "no bundle")}
+                              {(course?.color == "red" && "Not Started") ||
+                                (course?.color == "yellow" && "In Progress") ||
+                                (course?.color == "green" && "Finished") ||
+                                (course?.color == "gray" && "No Bundle")}
                             </td>
                           </>
                         );
@@ -285,10 +285,10 @@ const MatrixBundComp = () => {
                               textAlign: "center",
                             }}
                           >
-                            {(course?.color == "red" && "not started") ||
-                              (course?.color == "yellow" && "in progress") ||
-                              (course?.color == "green" && "finished") ||
-                              (course?.color == "gray" && "no bundle")}
+                            {(course?.color == "red" && "Not Started") ||
+                              (course?.color == "yellow" && "In Progress") ||
+                              (course?.color == "green" && "Finished") ||
+                              (course?.color == "gray" && "No Bundle")}
                           </td>
                         );
                       }
