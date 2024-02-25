@@ -39,26 +39,40 @@ const MatrixBundComp = () => {
           color: "gray",
           progress: "",
         };
-        // console.log('matrix ',res.data.response);
         let users = res.data.response;
         let course_name = [];
         let user_name = [];
+        let CNames = []
         let newUsers = users.map((item) => {
           let assigned = item.matrix_assigned.reverse();
           let enrolled = item.matrix.reverse();
-          // console.log(assigned, enrolled);
+          let allCourses = [...assigned, ...enrolled];
+          if (user.id == item.id) {
+            allCourses = [...enrolled];
+            assigned.forEach((assignItem) => {
+              if (assignItem.count >= 1) {
+                allCourses.push(assignItem);
+              }
+            });
+          }
 
           user_name.push(item.first_name + " " + item.last_name);
 
-          let allCourses = [...assigned, ...enrolled];
-
-          let CNames = allCourses.map((course) => {
-            return course.bundle_name;
+          allCourses.forEach((course) => {
+            course_name.push(course.bundle_name);
+            let flag = false;
+            CNames.forEach(item => {
+              if(item.name == course.bundle_name) {
+                item.count  += 1;
+                flag = true;
+              }
+            })
+            if(!flag) {
+              CNames.push({name: course.bundle_name, count: 1});
+            }
           });
 
-          let courses = [];
-
-          let newCName = [...removeDuplicates(CNames)];
+          let newCName = [];
 
           if (course_name.length < newCName.length) {
             course_name = newCName;
@@ -66,40 +80,39 @@ const MatrixBundComp = () => {
             course_name = newCName;
           }
 
-          allCourses.forEach((course) => {
-            if (!courses.find((i) => i?.course_name == course?.bundle_name)) {
-              course_name.forEach((item, id) => {
-                if (item == course?.bundle_name) {
-                  courses[id] = course;
-                }
-              });
-            }
-          });
-
-          // console.log('courses ',courses);
-          return { ...item, course: courses };
-        });
-
-        let tempCourses = [];
-        course_name.forEach(() => {
-          tempCourses.push(temp);
+          // console.log('courses ',allCourses);
+          return { ...item, course: allCourses };
         });
         
-        // newUsers.forEach((item) => {
-        //   console.log('item ',item);
-        //   let temp = [...tempCourses];
-        //   let course = item["course"];
-        //   console.log();
-        //   course_name.forEach((name, idx) => {
-        //     course.forEach((c) => {
-        //       if (c.course_name === name) {
-        //         temp[idx] = c;
-        //       }
-        //     });
-        //   });
-        //   item["course"] = temp;
-        // });
-        console.log("users ", newUsers);
+        course_name = []
+        CNames.forEach((item) => {
+          course_name = course_name.concat(Array(item.count).fill(item.name));
+        })
+
+        let courses = []
+        course_name.forEach(() => {
+          courses.push(temp)
+        })
+
+        newUsers.forEach((item) => {
+          let tempCourses = [...courses]
+          let course = [...item.course]
+          course_name.forEach((name,idx) => {
+            let flag = false;
+            course.forEach(c => {
+              if(name == c.bundle_name) {
+                tempCourses[idx] = c
+                flag = true;
+                return
+              }
+            })
+            if(flag) {
+              course.shift()
+            }
+          })
+          item.course = tempCourses;
+        })
+        console.log('courses ',newUsers);
         setCourseName(course_name);
         setUserName(user_name);
         setCourse(newUsers);
@@ -245,21 +258,21 @@ const MatrixBundComp = () => {
               {course.map((item, i) => {
                 return (
                   <tr>
+                    <td
+                      style={{
+                        padding: "0 0.5rem",
+                        color: "#fff",
+                        background: "#212a50",
+                        textAlign: "center",
+                        fontWeight: "bold",
+                      }}
+                    >
+                      {userName[i]}
+                    </td>
                     {item.course.map((course, idx) => {
                       if (idx == 0) {
                         return (
                           <>
-                            <td
-                              style={{
-                                padding: "0 0.5rem",
-                                color: "#fff",
-                                background: "#212a50",
-                                textAlign: "center",
-                                fontWeight: "bold",
-                              }}
-                            >
-                              {userName[i]}
-                            </td>
                             <td
                               style={{
                                 padding: "0 0.5rem",
