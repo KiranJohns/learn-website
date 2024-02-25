@@ -17,6 +17,13 @@ function exam() {
   });
   let routes = ["individual", "manager", "company"];
 
+  history.pushState(null, null, 'no-back-button');
+  window.addEventListener('popstate', function(event) {
+    // history.pushState(null, null, 'no-back-button');
+     
+      window.location.href = '/';
+  });
+
   const router = useRouter();
 
   useEffect(() => {

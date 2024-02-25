@@ -118,6 +118,7 @@ const DashCreate = () => {
                     placeholder="name@example.com"
                     name="email"
                     value={userData.email}
+                    autocomplete="off"
                   />
                 </div>
 
@@ -218,6 +219,7 @@ const DashCreate = () => {
                       name="password"
                       placeholder="Password"
                       value={userData.password}
+                      autocomplete="off"
                     />
                     <div
                       id="pasToggle"

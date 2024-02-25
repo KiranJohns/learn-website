@@ -102,7 +102,7 @@ const CompMonthRep = () => {
     },
     {
       name: "amount",
-      selector: (row) => row.total_amount,
+      selector: (row) =>"£ "+ row.total_amount,
       center: true,
     },
   ];
@@ -112,20 +112,20 @@ const CompMonthRep = () => {
       <div className="dash-shadow">
         <div style={{position:"relative"}} className=" row g-3  min-vh-100  d-flex justify-content-center mt-20">
         <Backbutton/>
-          <h2
+          <h2 className="dash-head-font"
             style={{
               color: "#212450",
               display: "flex",
               justifyContent: "center",
               position: "absolute",
-              fontSize: 34,
+              // fontSize: 34,
             }}
           >
             Month Wise Report
           </h2>
-          <div style={{ padding: "", backgroundColor: "" }}>
+          <div style={{ padding: "", backgroundColor: "",zIndex:"99" }}>
             <div
-              style={{ float: "right", marginBottom: "1.4rem" }}
+              style={{ float: "right", marginBottom: "1.4rem",zIndex:"99" }}
               className="p-relative d-inline header__search searchbar-hidden2"
             >
               <form action="">
@@ -261,7 +261,7 @@ const CompMonthRep = () => {
                           fontWeight: "500",
                         }}
                       >
-                        Amount: {item.total_amount}
+                        Amount: {"£"}{item.total_amount}
                       </p>
                     </div>
                   </div>
