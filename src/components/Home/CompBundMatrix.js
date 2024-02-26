@@ -53,6 +53,13 @@ const MatrixBundComp = () => {
                 allCourses.push(assignItem);
               }
             });
+          } else if (item.type_of_account != "individual") {
+            allCourses = [...enrolled];
+            assigned.forEach((assignItem) => {
+              if (assignItem.count >= 1 && assignItem.owner == item.id) {
+                allCourses.push(assignItem);
+              }
+            });
           }
 
           let CNames = [];
@@ -74,6 +81,7 @@ const MatrixBundComp = () => {
           let newCName = [];
           CNames.forEach((item) => {
             newCName = newCName.concat(Array(item.count).fill(item.name));
+            console.log('newCName ',newCName);
           });
 
           
@@ -108,7 +116,7 @@ const MatrixBundComp = () => {
           });
           item.course = tempCourses;
         });
-        // console.log('courses ',newUsers);
+        console.log('courses ',newUsers);
         setCourseName(course_name);
         setUserName(user_name);
         setCourse(newUsers);
