@@ -42,7 +42,6 @@ const MatrixBundComp = () => {
         let users = res.data.response;
         let course_name = [];
         let user_name = [];
-        let CNames = []
         let newUsers = users.map((item) => {
           let assigned = item.matrix_assigned.reverse();
           let enrolled = item.matrix.reverse();
@@ -54,64 +53,69 @@ const MatrixBundComp = () => {
                 allCourses.push(assignItem);
               }
             });
+          } else if (item.type_of_account != "individual") {
+            allCourses = [...enrolled];
+            assigned.forEach((assignItem) => {
+              if (assignItem.count >= 1 && assignItem.owner == item.id) {
+                allCourses.push(assignItem);
+              }
+            });
           }
 
+          let CNames = [];
           user_name.push(item.first_name + " " + item.last_name);
 
           allCourses.forEach((course) => {
-            course_name.push(course.bundle_name);
             let flag = false;
-            CNames.forEach(item => {
-              if(item.name == course.bundle_name) {
-                item.count  += 1;
+            CNames.forEach((item) => {
+              if (item.name == course.bundle_name) {
+                item.count += 1;
                 flag = true;
               }
-            })
-            if(!flag) {
-              CNames.push({name: course.bundle_name, count: 1});
+            });
+            if (!flag) {
+              CNames.push({ name: course.bundle_name, count: 1 });
             }
           });
 
           let newCName = [];
+          CNames.forEach((item) => {
+            newCName = newCName.concat(Array(item.count).fill(item.name));
+            console.log('newCName ',newCName);
+          });
 
+          
+          console.log(course_name, newCName);
           if (course_name.length < newCName.length) {
-            course_name = newCName;
-          } else if (course_name.length <= 0) {
             course_name = newCName;
           }
 
-          // console.log('courses ',allCourses);
           return { ...item, course: allCourses };
         });
-        
-        course_name = []
-        CNames.forEach((item) => {
-          course_name = course_name.concat(Array(item.count).fill(item.name));
-        })
 
-        let courses = []
+        let courses = [];
         course_name.forEach(() => {
-          courses.push(temp)
-        })
+          courses.push(temp);
+        });
 
         newUsers.forEach((item) => {
-          let tempCourses = [...courses]
-          let course = [...item.course]
-          course_name.forEach((name,idx) => {
+          let tempCourses = [...courses];
+          let course = [...item.course];
+          course_name.forEach((name, idx) => {
             let flag = false;
-            course.forEach(c => {
-              if(name == c.bundle_name) {
-                tempCourses[idx] = c
+            course.forEach((c) => {
+              if (name == c.bundle_name) {
+                tempCourses[idx] = c;
                 flag = true;
-                return
+                return;
               }
-            })
-            if(flag) {
-              course.shift()
+            });
+            if (flag) {
+              course.shift();
             }
-          })
+          });
           item.course = tempCourses;
-        })
+        });
         console.log('courses ',newUsers);
         setCourseName(course_name);
         setUserName(user_name);

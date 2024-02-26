@@ -268,7 +268,7 @@ const ManCoursMatrix = () => {
         course_name.forEach(() => {
           tempCourses.push(temp);
         });
-        console.log(users);
+        // console.log('users ',users);
 
         users.forEach((item) => {
           let temp = [...tempCourses];
