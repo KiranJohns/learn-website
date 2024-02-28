@@ -13,6 +13,7 @@ import Spinner from "react-bootstrap/Spinner";
 import Backbutton from "./Backbutton";
 import { FaFileCsv } from "react-icons/fa";
 import { FaDownload } from "react-icons/fa6";
+import { jwtDecode } from "jwt-decode";
 
 const customStyles = {
   headRow: {
@@ -94,29 +95,34 @@ const ComAssignedRep = () => {
     setRecords(newData);
   };
 
+  const [user, setUser] = useState(() => {
+    let token = localStorage.getItem(`learnforcare_access`);
+    return jwtDecode(token);
+  });
+
   useEffect(() => {
     getData();
   }, []);
 
   const getData = () => {
     setPending(true);
-    makeRequest("GET", "/info/get-all-manager-reports")
+    makeRequest("GET", `/course/assigned-items/${user.id}`)
       .then((res) => {
         console.log(res.data.response);
-        setRecords(res.data.response);
-        let arr = []
-        res.data.response.filter((item, idx) => {
-          arr.push({
-            Sl: ++idx,
-            ["First Name"]: item.first_name,
-            ["Last Name"]: item.last_name,
-            ["Course Count"]: item.course_count,
-            ["Bundle Count"]: item.bundle_count,
-            ["Individuals Count"]: item.individuals_count,
-          });
-        })
-        setNewRecords(arr);
-        setFilterRecords(res.data);
+        setRecords(res.data.response.result);
+        // let arr = []
+        // res.data.response.filter((item, idx) => {
+        //   arr.push({
+        //     Sl: ++idx,
+        //     ["First Name"]: item.first_name,
+        //     ["Last Name"]: item.last_name,
+        //     ["Course Count"]: item.course_count,
+        //     ["Bundle Count"]: item.bundle_count,
+        //     ["Individuals Count"]: item.individuals_count,
+        //   });
+        // })
+        // setNewRecords(arr);
+        // setFilterRecords(res.data);
         setPending(false);
       })
       .catch((err) => console.log(err));
@@ -134,26 +140,26 @@ const ComAssignedRep = () => {
     },
     {
       name: "Name",
-      selector: (row) => row.first_name + " " + row.last_name,
+      selector: (row) => row.user_name,
       maxWidth: "320px",
       center: true,
     },
     {
       name: "Courses Name",
-      selector: (row) => row.course_count,
+      selector: (row) => row.course_name,
       sortable: true,
       center: true,
       hide: 670,
     },
     {
       name: "Count",
-      selector: (row) => row.bundle_count,
+      selector: (row) => row.course_count,
       center: true,
       hide: 800,
     },
     {
       name: "Date",
-      cell: (row) => row.individuals_count,
+      cell: (row) => row.date,
       center: true,
     },
   ];
@@ -302,7 +308,7 @@ const ComAssignedRep = () => {
                         }}
                       >
                         {/* Rahul */}
-                        {item?.first_name + " " + item?.last_name}
+                        {item?.user_name}
                       </p>
                       
                     </div>
@@ -321,7 +327,7 @@ const ComAssignedRep = () => {
                         }}
                       >
                         {/* Rahul */}
-                        {"Care Bundle"}
+                        {item.course_name}
                       </p>
                       
                     </div>
@@ -338,7 +344,7 @@ const ComAssignedRep = () => {
                           fontWeight: "500",
                         }}
                       >
-                       Count: {item.individuals_count}
+                       Count: {item.course_count}
                         <a className="my-dashlink"></a>
                       </p>
                    
@@ -349,7 +355,7 @@ const ComAssignedRep = () => {
                           fontWeight: "500",
                         }}
                       >
-                       Date: {item.bundle_count}
+                       Date: {item.date}
                       </p>
                     </div>
                   </div>
