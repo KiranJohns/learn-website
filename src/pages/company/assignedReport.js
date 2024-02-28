@@ -8,7 +8,7 @@ import Header from "../../components/Layout/Header/Header";
 import NoSSR from "react-no-ssr";
 import { getUserType } from "../../axios";
 import { useRouter } from "next/router";
-import ManAssignedRep from "../../components/Home/ManAssignedRep";
+import ComAssignedRep from "../../components/Home/ComAssignedRep";
 import DashHeader from "../../components/Layout/Header/DasnboardHeader";
 
 function assignRep() {
@@ -48,7 +48,7 @@ function assignRep() {
                   <DashboardBar />
                 </div>
                 <div className="col-sm col-md-12 col-lg-11 col-xl-9 bg-white">
-                  <ManAssignedRep/>
+                  <ComAssignedRep/>
                 </div>
               </div>
             </div>
