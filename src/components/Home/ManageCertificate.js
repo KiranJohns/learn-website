@@ -74,6 +74,11 @@ class ManageCertificate extends Component {
         hide:850,
       },
       {
+        name: "User Name",
+        selector: (row) => row.user_name,
+        center:true,
+      },
+      {
         name: "Courses",
         selector: (row) => row.course_name,
         center:true,
