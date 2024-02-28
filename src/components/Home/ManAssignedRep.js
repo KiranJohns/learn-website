@@ -357,7 +357,6 @@ const ManAssignedRep = () => {
               );
             })}
           </div>
-
           <div></div>
         </div>{" "}
       </div>

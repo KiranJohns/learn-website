@@ -8,187 +8,6 @@ import { jwtDecode } from "jwt-decode";
 import { FaArrowAltCircleLeft } from "react-icons/fa";
 
 const ManCoursMatrix = () => {
-  const matrixDataUser = [
-    {
-      id: 1,
-      name: "Stark",
-    },
-    {
-      id: 2,
-      name: "Miles",
-    },
-    {
-      id: 3,
-      name: "Aloshy",
-    },
-    {
-      id: 4,
-      name: "Alba",
-    },
-  ];
-
-  const matrixDataCourse = [
-    [
-      {
-        id: 1,
-        userId: 1,
-        course: {
-          name: "some of the people",
-          color: "#ae0000",
-          progress: "0%",
-        },
-      },
-      {
-        id: 1,
-        userId: 1,
-        course: {
-          name: "of the people",
-          color: "#549C30",
-          progress: "100%",
-        },
-      },
-      {
-        id: 1,
-        userId: 1,
-        course: {
-          name: "by the people",
-          color: "#f7b500",
-          progress: "50%",
-        },
-      },
-      {
-        id: 1,
-        userId: 1,
-        course: {
-          name: "for the people",
-          color: "#549C30",
-          progress: "100%",
-        },
-      },
-    ],
-    [
-      {
-        id: 1,
-        userId: 2,
-        course: {
-          name: "by the people",
-          color: "#f7b500",
-          progress: "50%",
-        },
-      },
-      {
-        id: 2,
-        userId: 2,
-        course: {
-          name: "some of the people",
-          color: "#ae0000",
-          progress: "0%",
-        },
-      },
-      {
-        id: 3,
-        userId: 2,
-        course: {
-          name: "of the people",
-          color: "#549C30",
-          progress: "100%",
-        },
-      },
-      {
-        id: 4,
-        userId: 2,
-        course: {
-          name: "for the people",
-          color: "#f7b500",
-          progress: "50%",
-        },
-      },
-    ],
-    [
-      {
-        id: 1,
-        userId: 3,
-        course: {
-          name: "some of the people",
-          color: "#ae0000",
-          progress: "0%",
-        },
-      },
-      {
-        id: 1,
-        userId: 3,
-        course: {
-          name: "for the people",
-          color: "#f7b500",
-          progress: "50%",
-        },
-      },
-      {
-        id: 1,
-        userId: 3,
-        course: {
-          name: "of the people",
-          color: "#549C30",
-          progress: "100%",
-        },
-      },
-      {
-        id: 1,
-        userId: 3,
-        course: {
-          name: "by the people",
-          color: "#549C30",
-          progress: "100%",
-        },
-      },
-    ],
-    [
-      {
-        id: 1,
-        userId: 4,
-        course: {
-          name: "by the people",
-          color: "#f7b500",
-          progress: "50%",
-        },
-      },
-      {
-        id: 1,
-        userId: 4,
-        course: {
-          name: "some of the people",
-          color: "#ae0000",
-          progress: "0%",
-        },
-      },
-      {
-        id: 1,
-        userId: 4,
-        course: {
-          name: "of the people",
-          color: "#549C30",
-          progress: "100%",
-        },
-      },
-      {
-        id: 1,
-        userId: 4,
-        course: {
-          name: "for the people",
-          color: "#549C30",
-          progress: "100%",
-        },
-      },
-    ],
-  ];
-
-  // const courseName = [
-  //   "some of the people",
-  //   "by the people",
-  //   "of the people",
-  //   "for the people",
-  // ];
-
   const makeRequest = fetchData();
   const [courseName, setCourseName] = useState([]);
   const [userName, setUserName] = useState([]);
@@ -222,10 +41,10 @@ const ManCoursMatrix = () => {
           color: "gray",
           progress: "",
         };
-        // console.log(res.data.response);
         let users = res.data.response;
         let course_name = [];
         let user_name = [];
+        console.log(users);
         users.forEach((item) => {
           let assigned = item.matrix_assigned.reverse();
           let enrolled = item.matrix.reverse();
@@ -233,6 +52,7 @@ const ManCoursMatrix = () => {
           user_name.push(item.first_name + " " + item.last_name);
 
           let allCourses = [...assigned, ...enrolled];
+          console.log('allCourses ',allCourses);
 
           let CNames = allCourses.map((course) => {
             return course.course_name;
@@ -259,16 +79,12 @@ const ManCoursMatrix = () => {
           });
 
           item["course"] = courses;
-
-          // delete item.matrix_assigned;
-          // delete item.matrix;
         });
 
         let tempCourses = [];
         course_name.forEach(() => {
           tempCourses.push(temp);
         });
-        // console.log('users ',users);
 
         users.forEach((item) => {
           let temp = [...tempCourses];
@@ -293,7 +109,21 @@ const ManCoursMatrix = () => {
   return (
     <div className="row p-3">
       <div style={{ position: "relative" }} className="dash-neww bg-white">
-      <span style={{position:'absolute',  marginTop:".2rem", zIndex:"99"}} className="matrix-back-hidden"><button style={{background:"white"}} onClick={() => history.back()}> <FaArrowAltCircleLeft className="back-fontsize"  style={{color:"#212a50", }}/></button></span >
+        <span
+          style={{ position: "absolute", marginTop: ".2rem", zIndex: "99" }}
+          className="matrix-back-hidden"
+        >
+          <button
+            style={{ background: "white" }}
+            onClick={() => history.back()}
+          >
+            {" "}
+            <FaArrowAltCircleLeft
+              className="back-fontsize"
+              style={{ color: "#212a50" }}
+            />
+          </button>
+        </span>
         <div style={{ position: "absolute" }} className="matrix-hidden">
           <span className="m-3" style={{ display: "flex" }}>
             <div
@@ -373,12 +203,10 @@ const ManCoursMatrix = () => {
           >
             <thead>
               <tr style={{ textAlign: "center" }}>
-              <th
+                <th
                   style={{ background: "#212a50", color: "white" }}
                   colSpan={1}
-                >
-                
-                </th>
+                ></th>
                 <th
                   style={{ background: "#212a50", color: "white" }}
                   colSpan={60}

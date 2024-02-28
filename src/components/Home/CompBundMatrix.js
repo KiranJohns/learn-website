@@ -81,10 +81,9 @@ const MatrixBundComp = () => {
           let newCName = [];
           CNames.forEach((item) => {
             newCName = newCName.concat(Array(item.count).fill(item.name));
-            console.log('newCName ',newCName);
+            console.log("newCName ", newCName);
           });
 
-          
           console.log(course_name, newCName);
           if (course_name.length < newCName.length) {
             course_name = newCName;
@@ -116,7 +115,7 @@ const MatrixBundComp = () => {
           });
           item.course = tempCourses;
         });
-        console.log('courses ',newUsers);
+        console.log("courses ", newUsers);
         setCourseName(course_name);
         setUserName(user_name);
         setCourse(newUsers);
