@@ -13,12 +13,12 @@ const MatrixBundComp = () => {
   const [course, setCourse] = useState([]);
   const [managers, setManagers] = useState([]);
   const [individuals, setIndividuals] = useState([]);
-  const [individual, setIndividual] = useState(0);
   const [user, setUser] = useState(() => {
     let token = localStorage.getItem(`learnforcare_access`);
     return jwtDecode(token);
   });
-  const [manager, setManager] = useState(user.id);
+  const [individual, setIndividual] = useState(user.id);
+  const [manager, setManager] = useState(0);
 
   function removeDuplicates(arr) {
     return arr.filter((item, index) => arr.indexOf(item) === index);

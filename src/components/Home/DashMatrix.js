@@ -14,12 +14,12 @@ const ManCoursMatrix = () => {
   const [course, setCourse] = useState([]);
   const [managers, setManagers] = useState([]);
   const [individuals, setIndividuals] = useState([]);
-  const [individual, setIndividual] = useState(0);
   const [user, setUser] = useState(() => {
     let token = localStorage.getItem(`learnforcare_access`);
     return jwtDecode(token);
   });
-  const [manager, setManager] = useState(user.id);
+  const [individual, setIndividual] = useState(user.id);
+  const [manager, setManager] = useState(0);
 
   function removeDuplicates(arr) {
     return arr.filter((item, index) => arr.indexOf(item) === index);
@@ -38,13 +38,13 @@ const ManCoursMatrix = () => {
   useEffect(() => {
     makeRequest("GET", `/info/get-all-managers-created-by/${manager}`)
       .then((res) => {
-        console.log('individual ',res.data.response);
+        console.log("individual ", res.data.response);
         setIndividuals(res.data.response);
       })
       .catch((err) => {
         console.log(err);
       });
-  },[manager])
+  }, [manager]);
   useEffect(() => {
     const form = new FormData();
     form.append("manager_id", individual);
@@ -58,14 +58,23 @@ const ManCoursMatrix = () => {
         let course_name = [];
         let user_name = [];
         console.log(users);
-        users.forEach((item) => {
+        let newUsers = users.map((item) => {
           let assigned = item.matrix_assigned.reverse();
           let enrolled = item.matrix.reverse();
 
           user_name.push(item.first_name + " " + item.last_name);
 
           let allCourses = [...assigned, ...enrolled];
-          console.log('allCourses ',allCourses);
+
+          allCourses.forEach((item) => {
+            if (Number(item.progress) >= 80) {
+              console.log('green');
+              item["color"] = "green";
+            } else {
+              console.log('red');
+              item["color"] = "red";
+            }
+          });
 
           let CNames = allCourses.map((course) => {
             return course.course_name;
@@ -91,7 +100,8 @@ const ManCoursMatrix = () => {
             }
           });
 
-          item["course"] = courses;
+          // item["course"] = courses;
+          return { ...item, course: allCourses };
         });
 
         let tempCourses = [];
@@ -99,7 +109,7 @@ const ManCoursMatrix = () => {
           tempCourses.push(temp);
         });
 
-        users.forEach((item) => {
+        newUsers.forEach((item) => {
           let temp = [...tempCourses];
           let course = item["course"];
           course_name.forEach((name, idx) => {
@@ -113,7 +123,7 @@ const ManCoursMatrix = () => {
         });
         setCourseName(course_name);
         setUserName(user_name);
-        setCourse(users);
+        setCourse(newUsers);
       })
       .catch((err) => {
         console.log(err);
@@ -211,7 +221,7 @@ const ManCoursMatrix = () => {
                   setIndividual(e.target.value);
                 }}
                 size=""
-                style={{ border: ".1px solid #212a50", marginTop: '1rem' }}
+                style={{ border: ".1px solid #212a50", marginTop: "1rem" }}
                 aria-label="Default select example"
               >
                 <option value={user.id}>
