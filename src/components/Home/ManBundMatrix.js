@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import Table from "react-bootstrap/Table";
+import Form from "react-bootstrap/Form";
 import { useState } from "react";
 import { jwtDecode } from "jwt-decode";
 import { FaArrowAltCircleLeft } from "react-icons/fa";
@@ -19,10 +20,25 @@ const ManBundMatrix = () => {
     let token = localStorage.getItem(`learnforcare_access`);
     return jwtDecode(token);
   });
+  const [individual, setIndividual] = useState(user.id);
+  const [individuals, setIndividuals] = useState([]);
+
+  useEffect(() => {
+    makeRequest("GET", `/info/get-all-managers-created-by/${individual}`)
+      .then((res) => {
+        console.log('individual ',res.data.response);
+        setIndividuals(res.data.response);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  },[])
 
   useEffect(() => {
     console.clear();
-    makeRequest("POST", "/course/get-manager-matrix-bundle")
+    const form = new FormData();
+    form.append("manager_id", individual);
+    makeRequest("POST", "/course/get-single-manager-matrix-bundle",form)
       .then((res) => {
         let temp = {
           color: "gray",
@@ -175,7 +191,7 @@ const ManBundMatrix = () => {
       .catch((err) => {
         console.log("error ", err);
       });
-  }, []);
+  }, [individual]);
   return (
     <div className="row p-3">
       <div style={{ position: "relative" }} className="dash-neww">
@@ -244,6 +260,29 @@ const ManBundMatrix = () => {
             <h4>Bundle Matrix</h4>
           </div>
 
+          <div
+            style={{ position: "absolute", top: "0", right: "0" }}
+            className="col-4 p-1 m-"
+          >
+            <Form.Select
+              onChange={(e) => {
+                console.log(e.target.value);
+                setIndividual(e.target.value);
+              }}
+              size=""
+              style={{ border: ".1px solid #212a50" }}
+              aria-label="Default select example"
+            >
+              <option value={user?.id}>
+                {user?.first_name + " " + user?.last_name}
+              </option>
+              {individuals.map((item) => (
+                <option value={item.id}>
+                  {item.first_name + " " + item.last_name}
+                </option>
+              ))}
+            </Form.Select>
+          </div>
           <Table bordered variant="light">
             <thead>
               <tr style={{ textAlign: "center" }}>
