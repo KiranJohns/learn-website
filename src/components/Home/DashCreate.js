@@ -4,6 +4,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { BsFillEyeFill, BsEyeSlashFill } from "react-icons/bs";
 import Backbutton from "./Backbutton";
+import { validatePassword } from "../../utils/passwordvalidation";
 
 const DashCreate = () => {
   const [userData, setUserData] = useState({
@@ -39,23 +40,31 @@ const DashCreate = () => {
       url = "/info/create-manager";
     }
 
-    mackRequest("POST", url, {
-      ...userData,
-      phone: Number(userData.phone),
-    })
-      .then((res) => {
-        if (userData.user_type === "individual") {
-          toast.success("Individual Created");
-          location.href = "/company/showuser";
-        } else {
-          toast.success("Manager Created");
-          location.href = "/company/managers";
+    validatePassword(userData.password).then((res) => {
+      if (res.length <= 0) {
+          mackRequest("POST", url, {
+            ...userData,
+            phone: Number(userData.phone),
+          })
+            .then((res) => {
+              if (userData.user_type === "individual") {
+                toast.success("Individual Created");
+                location.href = "/company/showuser";
+              } else {
+                toast.success("Manager Created");
+                location.href = "/company/managers";
+              }
+            })
+            .catch((err) => {
+              console.log(err.data);
+              toast.error(err.data.data.response);
+            });
+      } else {
+        for (const iterator of res) {
+          toast.warn(iterator);
         }
-      })
-      .catch((err) => {
-        console.log(err.data);
-        toast.error(err.data.data.response);
-      });
+      }
+    });
   };
 
   return (
