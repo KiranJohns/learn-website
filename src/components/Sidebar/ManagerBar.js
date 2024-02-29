@@ -148,6 +148,10 @@ const links = [
         name: "Month Wise Report",
         link: "/manager/monthlyReport",
       },
+      {
+        name: "Assign Report",
+        link: "/manager/assignedReport",
+      },
     ],
   },
   // { name: "Show user", link: "/company/showuser", icon: "bi bi-person-check" },
