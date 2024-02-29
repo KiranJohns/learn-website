@@ -71,7 +71,7 @@ class DashCertificate extends Component {
         selector: (row, idx) => row?.sl,
         center: true,
         hide: "md",
-      width:"82px"
+        width: "82px",
       },
       {
         name: "Courses",
@@ -80,11 +80,16 @@ class DashCertificate extends Component {
         center: true,
       },
       {
+        name: "User Name",
+        selector: (row) => row.user_name,
+        center: true,
+      },
+      {
         name: "Date",
         selector: (row) => row.date,
         center: true,
         // hide: "md",
-        width:"110px"
+        width: "110px",
       },
       {
         name: "Percentage",
@@ -95,9 +100,14 @@ class DashCertificate extends Component {
       {
         name: "Actions",
         center: true,
-        width:"100px",
+        width: "100px",
         selector: (row) => (
-          <a className="btn btn-success" title="View" target="_blank" href={row.image}>
+          <a
+            className="btn btn-success"
+            title="View"
+            target="_blank"
+            href={row.image}
+          >
             <FaEye />
           </a>
         ),
@@ -111,7 +121,7 @@ class DashCertificate extends Component {
             style={{ position: "relative" }}
             className=" row g-3  min-vh-100  d-flex justify-content-center mt-20"
           >
-             <Backbutton/>
+            <Backbutton />
             <h2
               style={{
                 color: "#212450",
@@ -247,7 +257,7 @@ class DashCertificate extends Component {
                           display: "flex",
                           flexDirection: "column",
                           width: "100%",
-                          padding:".5rem"
+                          padding: ".5rem",
                         }}
                       >
                         <div className="new-table-shadow  new-table-hidden">
@@ -282,12 +292,12 @@ class DashCertificate extends Component {
                             </a>
                           </div>
                           <div
-                      style={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                      }}
-                    >
-                      {/* <p
+                            style={{
+                              display: "flex",
+                              justifyContent: "space-between",
+                            }}
+                          >
+                            {/* <p
                         style={{
                           color: "green",
                           marginLeft: ".5rem",
@@ -296,26 +306,26 @@ class DashCertificate extends Component {
                       >
                         Course: {item.course_count}
                         <a className="my-dashlink"></a>
-                      </p> */} 
-                      <p
-                        style={{
-                          color: "green",
-                          marginLeft: ".5rem",
-                          fontWeight: "500",
-                        }}
-                      >
-                      Date: {item.date}
-                      </p>
-                      <p
-                        style={{
-                          color: "green",
-                          marginRight: ".5rem",
-                          fontWeight: "500",
-                        }}
-                      >
-                        Percentage: {item.percentage}
-                      </p>
-                    </div>
+                      </p> */}
+                            <p
+                              style={{
+                                color: "green",
+                                marginLeft: ".5rem",
+                                fontWeight: "500",
+                              }}
+                            >
+                              Date: {item.date}
+                            </p>
+                            <p
+                              style={{
+                                color: "green",
+                                marginRight: ".5rem",
+                                fontWeight: "500",
+                              }}
+                            >
+                              Percentage: {item.percentage}
+                            </p>
+                          </div>
                         </div>
                       </div>
                     );
