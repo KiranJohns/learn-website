@@ -13,6 +13,8 @@ const ManCoursMatrix = () => {
   const [userName, setUserName] = useState([]);
   const [course, setCourse] = useState([]);
   const [managers, setManagers] = useState([]);
+  const [individuals, setIndividuals] = useState([]);
+  const [individual, setIndividual] = useState(0);
   const [user, setUser] = useState(() => {
     let token = localStorage.getItem(`learnforcare_access`);
     return jwtDecode(token);
@@ -32,10 +34,21 @@ const ManCoursMatrix = () => {
         console.log(err);
       });
   }, []);
+
+  useEffect(() => {
+    makeRequest("GET", `/info/get-all-managers-created-by/${manager}`)
+      .then((res) => {
+        console.log('individual ',res.data.response);
+        setIndividuals(res.data.response);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  },[manager])
   useEffect(() => {
     const form = new FormData();
-    form.append("manager_id", manager);
-    makeRequest("POST", "/course/get-manager-matrix-course", form)
+    form.append("manager_id", individual);
+    makeRequest("POST", "/course/get-single-manager-matrix-course", form)
       .then((res) => {
         let temp = {
           color: "gray",
@@ -105,7 +118,7 @@ const ManCoursMatrix = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, [manager]);
+  }, [individual]);
   return (
     <div className="row p-3">
       <div style={{ position: "relative" }} className="dash-neww bg-white">
@@ -192,11 +205,29 @@ const ManCoursMatrix = () => {
                   </option>
                 ))}
               </Form.Select>
+              <Form.Select
+                onChange={(e) => {
+                  console.log(e.target.value);
+                  setIndividual(e.target.value);
+                }}
+                size=""
+                style={{ border: ".1px solid #212a50", marginTop: '1rem' }}
+                aria-label="Default select example"
+              >
+                <option value={user.id}>
+                  {user.first_name + " " + user.last_name}
+                </option>
+                {individuals.map((item) => (
+                  <option value={item.id}>
+                    {item.first_name + " " + item.last_name}
+                  </option>
+                ))}
+              </Form.Select>
             </div>
           </div>
 
           <Table
-            style={{ marginTop: ".5rem" }}
+            style={{ marginTop: "4rem" }}
             responsive
             bordered
             variant="light"

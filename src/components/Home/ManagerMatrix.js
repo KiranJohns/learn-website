@@ -13,6 +13,17 @@ const ManCoursMatrix = () => {
   function removeDuplicates(arr) {
     return arr.filter((item, index) => arr.indexOf(item) === index);
   }
+  function countSpecificDuplicate(arr, target) {
+    let count = 0;
+    const counts = {};
+    arr.forEach((element) => {
+      counts[element] = (counts[element] || 0) + 1;
+      if (element === target && counts[element] === 2) {
+        count++;
+      }
+    });
+    return count;
+  }
   useEffect(() => {
     console.clear();
     makeRequest("POST", "/course/get-manager-matrix-course")
@@ -51,11 +62,20 @@ const ManCoursMatrix = () => {
             }
           });
 
-          console.log('CNames ', CNames);
-
           let newCName = [];
           CNames.forEach((item) => {
-            newCName = newCName.concat(Array(item.count).fill(item.name));
+            let dupCount = countSpecificDuplicate(course_name, item.name);
+            // console.log(course_name);
+            // console.log(count, item.name);
+            let count = 0
+            if(item.count > dupCount) {
+              count = item.count - dupCount
+            } else if (dupCount > item.count) {
+              count = dupCount - item.count
+            } else {
+              count = 1
+            }
+            newCName = newCName.concat(Array(count).fill(item.name));
           });
 
           newCName = removeDuplicates(newCName);
@@ -63,6 +83,7 @@ const ManCoursMatrix = () => {
           if (course_name.length < newCName.length) {
             course_name = newCName;
           }
+          console.log("course_name ", course_name);
 
           return { ...item, course: allCourses };
         });
