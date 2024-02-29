@@ -41,7 +41,7 @@ const DashCreate = () => {
     }
 
     validatePassword(userData.password).then((res) => {
-      if (res.length <= 0) {
+      if (res?.length <= 0) {
           mackRequest("POST", url, {
             ...userData,
             phone: Number(userData.phone),

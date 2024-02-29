@@ -35,7 +35,7 @@ const ManageCreateU = () => {
 
     // Example usage:
     validatePassword(userData.password).then((res) => {
-      if (res.length <= 0) {
+      if (res?.length <= 0) {
         mackRequest("POST", "/info/create-manager-individual", {
           ...userData,
           phone: Number(userData.phone),
