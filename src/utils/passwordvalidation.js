@@ -19,7 +19,7 @@ export function validatePassword(password) {
     }
 
     if (errors.length === 0) {
-      resolve();
+      resolve([]);
     } else {
       resolve(errors);
     }
