@@ -194,7 +194,7 @@ const ManAssignedRep = () => {
               fontSize: 35,
             }}
           >
-            Assigned Courses
+            Assign Report
           </h2>
           <div style={{ padding: "", backgroundColor: "" }}>
             <div

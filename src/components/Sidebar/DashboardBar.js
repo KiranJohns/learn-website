@@ -165,6 +165,10 @@ const links = [
         name: "Month Wise Report",
         link: "/company/monthlyReport",
       },
+      {
+        name: "Assign Report",
+        link: "/company/assignedReport",
+      },
   
     ],
   },
