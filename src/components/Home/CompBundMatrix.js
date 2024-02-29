@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import Table from "react-bootstrap/Table";
 import Form from "react-bootstrap/Form";
-import fetchData from "../../axios";
 import { jwtDecode } from "jwt-decode";
 import { FaArrowAltCircleLeft } from "react-icons/fa";
+
+import fetchData from "../../axios";
 
 const MatrixBundComp = () => {
   const makeRequest = fetchData();

@@ -1,8 +1,10 @@
 import React, { useEffect } from "react";
 import Table from "react-bootstrap/Table";
-import fetchData from "../../axios";
 import { useState } from "react";
+import { jwtDecode } from "jwt-decode";
 import { FaArrowAltCircleLeft } from "react-icons/fa";
+
+import fetchData from "../../axios";
 
 const ManBundMatrix = () => {
   const makeRequest = fetchData();
@@ -13,6 +15,10 @@ const ManBundMatrix = () => {
   function removeDuplicates(arr) {
     return arr.filter((item, index) => arr.indexOf(item) === index);
   }
+  const [user, setUser] = useState(() => {
+    let token = localStorage.getItem(`learnforcare_access`);
+    return jwtDecode(token);
+  });
 
   useEffect(() => {
     console.clear();
@@ -23,68 +29,148 @@ const ManBundMatrix = () => {
           progress: "",
         };
         // console.log(res.data.response);
+        // let users = res.data.response;
+        // let course_name = [];
+        // let user_name = [];
+        // let newUsers = users.map((item) => {
+        //   let assigned = item.matrix_assigned.reverse();
+        //   let enrolled = item.matrix.reverse();
+
+        //   user_name.push(item.first_name + " " + item.last_name);
+
+        //   let allCourses = [...assigned, ...enrolled];
+
+        //   let CNames = allCourses.map((course) => {
+        //     return course.bundle_name;
+        //   });
+
+        //   let courses = [];
+
+        //   let newCName = [...removeDuplicates(CNames)];
+
+        //   if (course_name.length < newCName.length) {
+        //     course_name = newCName;
+        //   } else if (course_name.length <= 0) {
+        //     course_name = newCName;
+        //   }
+
+        //   allCourses.forEach((course) => {
+        //     if (!courses.find((i) => i?.bundle_name == course?.bundle_name)) {
+        //       course_name.forEach((item, id) => {
+        //         if (item == course?.bundle_name) {
+        //           courses[id] = course;
+        //         }
+        //       });
+        //     }
+        //   });
+
+        //   return { ...item, course: courses };
+
+        //   // delete item.matrix_assigned;
+        //   // delete item.matrix;
+        // });
+
+        // let tempCourses = [];
+        // course_name.forEach(() => {
+        //   tempCourses.push(temp);
+        // });
+
+        // // users.forEach((item) => {
+        // //   let temp = [...tempCourses];
+        // //   let course = item["course"];
+        // //   course_name.forEach((name, idx) => {
+        // //     course.forEach((c) => {
+        // //       if (c.bundle_name === name) {
+        // //         temp[idx] = c;
+        // //       }
+        // //     });
+        // //   });
+        // //   item["course"] = temp;
+        // // });
+        // setCourseName(course_name);
+        // setUserName(user_name);
+        // setCourse(newUsers);
+        // console.log("newUsers ", newUsers);
         let users = res.data.response;
         let course_name = [];
         let user_name = [];
         let newUsers = users.map((item) => {
           let assigned = item.matrix_assigned.reverse();
           let enrolled = item.matrix.reverse();
-
-          user_name.push(item.first_name + " " + item.last_name);
-
           let allCourses = [...assigned, ...enrolled];
-
-          let CNames = allCourses.map((course) => {
-            return course.bundle_name;
-          });
-
-          let courses = [];
-
-          let newCName = [...removeDuplicates(CNames)];
-
-          if (course_name.length < newCName.length) {
-            course_name = newCName;
-          } else if (course_name.length <= 0) {
-            course_name = newCName;
+          if (user.id == item.id) {
+            allCourses = [...enrolled];
+            assigned.forEach((assignItem) => {
+              if (assignItem.count >= 1) {
+                allCourses.push(assignItem);
+              }
+            });
+          } else if (item.type_of_account != "individual") {
+            allCourses = [...enrolled];
+            assigned.forEach((assignItem) => {
+              if (assignItem.count >= 1 && assignItem.owner == item.id) {
+                allCourses.push(assignItem);
+              }
+            });
           }
 
+          let CNames = [];
+          user_name.push(item.first_name + " " + item.last_name);
+
           allCourses.forEach((course) => {
-            if (!courses.find((i) => i?.bundle_name == course?.bundle_name)) {
-              course_name.forEach((item, id) => {
-                if (item == course?.bundle_name) {
-                  courses[id] = course;
-                }
-              });
+            let flag = false;
+            CNames.forEach((item) => {
+              if (item.name == course.bundle_name) {
+                item.count += 1;
+                flag = true;
+              }
+            });
+            if (!flag) {
+              CNames.push({ name: course.bundle_name, count: 1 });
             }
           });
 
-          return { ...item, course: courses };
+          let newCName = [];
+          CNames.forEach((item) => {
+            newCName = newCName.concat(Array(item.count).fill(item.name));
+            console.log("newCName ", newCName);
+          });
 
-          // delete item.matrix_assigned;
-          // delete item.matrix;
+          console.log(course_name, newCName);
+          if (course_name.length < newCName.length) {
+            course_name = newCName;
+          }
+
+          return { ...item, course: allCourses };
         });
 
-        let tempCourses = [];
+        let courses = [];
         course_name.forEach(() => {
-          tempCourses.push(temp);
+          courses.push(temp);
         });
 
-        // users.forEach((item) => {
-        //   let temp = [...tempCourses];
-        //   let course = item["course"];
-        //   course_name.forEach((name, idx) => {
-        //     course.forEach((c) => {
-        //       if (c.bundle_name === name) {
-        //         temp[idx] = c;
-        //       }
-        //     });
-        //   });
-        //   item["course"] = temp;
-        // });
+        newUsers.forEach((item) => {
+          let tempCourses = [...courses];
+          let course = [...item.course];
+          course_name.forEach((name, idx) => {
+            let flag = false;
+            course.forEach((c) => {
+              if (name == c.bundle_name) {
+                tempCourses[idx] = c;
+                flag = true;
+                return;
+              }
+            });
+            if (flag) {
+              course.shift();
+            }
+          });
+          item.course = tempCourses;
+        });
+        console.log("courses ", newUsers);
         setCourseName(course_name);
         setUserName(user_name);
         setCourse(newUsers);
-        console.log("newUsers ", newUsers);
       })
       .catch((err) => {
         console.log("error ", err);
