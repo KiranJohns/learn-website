@@ -4,12 +4,21 @@ import fetchData from "../../axios";
 import { useEffect } from "react";
 import { useState } from "react";
 import { FaArrowAltCircleLeft } from "react-icons/fa";
+import { jwtDecode } from "jwt-decode";
+import Form from "react-bootstrap/Form";
 
 const ManCoursMatrix = () => {
   const makeRequest = fetchData();
   const [courseName, setCourseName] = useState([]);
   const [userName, setUserName] = useState([]);
   const [course, setCourse] = useState([]);
+  const [individuals, setIndividuals] = useState([]);
+
+  const [user, setUser] = useState(() => {
+    let token = localStorage.getItem(`learnforcare_access`);
+    return jwtDecode(token);
+  });
+  const [individual, setIndividual] = useState(user.id);
   function removeDuplicates(arr) {
     return arr.filter((item, index) => arr.indexOf(item) === index);
   }
@@ -25,8 +34,20 @@ const ManCoursMatrix = () => {
     return count;
   }
   useEffect(() => {
+    makeRequest("GET", `/info/get-all-managers-created-by/${user.id}`)
+      .then((res) => {
+        console.log("individual ", res.data.response);
+        setIndividuals(res.data.response);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+  useEffect(() => {
     console.clear();
-    makeRequest("POST", "/course/get-manager-matrix-course")
+    const form = new FormData();
+    form.append("manager_id", individual);
+    makeRequest("POST", "/course/get-single-manager-matrix-course", form)
       .then((res) => {
         let temp = {
           color: "gray",
@@ -43,73 +64,66 @@ const ManCoursMatrix = () => {
           let assigned = item.matrix_assigned.reverse();
           let enrolled = item.matrix.reverse();
 
-          let CNames = [];
+          // let CNames = [];
           user_name.push(item.first_name + " " + item.last_name);
 
           let allCourses = [...assigned, ...enrolled];
 
-          // console.log("allCourses ", allCourses);
-          allCourses.forEach((course) => {
-            let flag = false;
-            CNames.forEach((item) => {
-              if (item.name == course.course_name) {
-                item.count += 1;
-                flag = true;
-              }
-            });
-            if (!flag) {
-              CNames.push({ name: course.course_name, count: 1 });
-            }
-          });
-
-          let newCName = [];
-          CNames.forEach((item) => {
-            let dupCount = countSpecificDuplicate(course_name, item.name);
-            // console.log(course_name);
-            // console.log(count, item.name);
-            let count = 0
-            if(item.count > dupCount) {
-              count = item.count - dupCount
-            } else if (dupCount > item.count) {
-              count = dupCount - item.count
+          allCourses.forEach((item) => {
+            if (Number(item.progress) >= 80) {
+              console.log('green');
+              item["color"] = "green";
             } else {
-              count = 1
+              console.log('red');
+              item["color"] = "red";
             }
-            newCName = newCName.concat(Array(count).fill(item.name));
           });
 
-          newCName = removeDuplicates(newCName);
+          let CNames = allCourses.map((course) => {
+            return course.course_name;
+          });
+
+          let courses = [];
+
+          let newCName = [...removeDuplicates(CNames)];
 
           if (course_name.length < newCName.length) {
             course_name = newCName;
+          } else if (course_name.length <= 0) {
+            course_name = newCName;
           }
+
+          allCourses.forEach((course) => {
+            if (!courses.find((i) => i?.course_name == course?.course_name)) {
+              course_name.forEach((item, id) => {
+                if (item == course?.course_name) {
+                  courses[id] = course;
+                }
+              });
+            }
+          });
+
           console.log("course_name ", course_name);
 
           return { ...item, course: allCourses };
         });
 
-        let courses = [];
+        let tempCourses = [];
         course_name.forEach(() => {
-          courses.push(temp);
+          tempCourses.push(temp);
         });
 
         newUsers.forEach((item) => {
-          let tempCourses = [...courses];
-          let course = [...item.course];
+          let temp = [...tempCourses];
+          let course = item["course"];
           course_name.forEach((name, idx) => {
-            let flag = false;
             course.forEach((c) => {
-              if (name == c.bundle_name) {
-                tempCourses[idx] = c;
-                flag = true;
-                return;
+              if (c.course_name === name) {
+                temp[idx] = c;
               }
             });
-            if (flag) {
-              course.shift();
-            }
           });
-          item.course = tempCourses;
+          item["course"] = temp;
         });
         setCourseName(course_name);
         setUserName(user_name);
@@ -118,7 +132,7 @@ const ManCoursMatrix = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [individual]);
   return (
     <div className="row p-3">
       <div style={{ position: "relative" }} className="dash-neww ">
@@ -186,7 +200,29 @@ const ManCoursMatrix = () => {
           <div className="d-flex justify-content-center my-2 ">
             <h4>Course Matrix</h4>
           </div>
-
+          <div
+            style={{ position: "absolute", top: "0", right: "0" }}
+            className="col-4 p-1 m-"
+          >
+            <Form.Select
+              onChange={(e) => {
+                console.log(e.target.value);
+                setIndividual(e.target.value);
+              }}
+              size=""
+              style={{ border: ".1px solid #212a50" }}
+              aria-label="Default select example"
+            >
+              <option value={user.id}>
+                {user.first_name + " " + user.last_name}
+              </option>
+              {individuals.map((item) => (
+                <option value={item.id}>
+                  {item.first_name + " " + item.last_name}
+                </option>
+              ))}
+            </Form.Select>
+          </div>
           <Table bordered variant="light">
             <thead>
               <tr style={{ textAlign: "center" }}>

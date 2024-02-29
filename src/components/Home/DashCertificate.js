@@ -52,7 +52,7 @@ class DashCertificate extends Component {
 
   fetchData = () => {
     let makeRequest = fetchData();
-    console.log("ertyuiop");
+    // console.log("ertyuiop");
     makeRequest("GET", "/certificate/get-certificates")
       .then((res) => {
         console.log(res.data);
