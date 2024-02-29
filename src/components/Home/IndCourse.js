@@ -60,6 +60,7 @@ const IndCourse = () => {
       let onGoingCourseUrl = "/on-going-course/get-all-on-going-courses";
       let url1 = "/course/get-bought-course";
       let url2 = "/course/get-all-assigned-course";
+      
       Promise.all([
         makeRequest("GET", onGoingCourseUrl),
         makeRequest("GET", url1),
@@ -68,8 +69,8 @@ const IndCourse = () => {
         console.log(res[0].data.response, res[1].data.response);
         let arr = [
           ...res[0].data.response,
-          ...res[0].data.response.filter((item) => item?.course_count >= 1),
-          ...res[1].data.response.filter((item) => item?.course_count >= 1),
+          ...res[1].data.response,
+          ...res[2].data.response,
         ];
         console.log(res);
         setRecords(arr.reverse());

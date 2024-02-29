@@ -51,9 +51,9 @@ const IndCAvail = () => {
   const getData = () => {
     setPending(true)
     let url1 = "/course/get-all-bought-course";
+    // let url2 = "/course/get-all-assigned-course";
     Promise.all([makeRequest("GET", url1)]).then((res) => {
       let arr = [...res[0].data.response];
-      console.log(res);
       setRecords(() => {
         return arr.reverse();
       });

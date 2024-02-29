@@ -73,13 +73,13 @@ const ManageMyCourse = () => {
           "/on-going-course/get-all-on-going-courses"
         );
 
-        console.log(assignedRes.data.response, onGoingCourse.data.response);
         let newRes = [
           ...assignedRes.data.response.filter(
             (item) => item.owner == user.id && item.count >= 1
-          ),
-          ...onGoingCourse.data.response,
-        ];
+            ),
+            ...onGoingCourse.data.response,
+          ];
+          console.log(assignedRes.data.response, onGoingCourse.data.response);
 
         setRecords(newRes);
         setFilterRecords(newRes);

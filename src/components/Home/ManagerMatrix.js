@@ -25,65 +25,74 @@ const ManCoursMatrix = () => {
         let users = res.data.response;
         let course_name = [];
         let user_name = [];
-        users.forEach((item) => {
+
+        // console.log("users ", users);
+
+        let newUsers = users.map((item) => {
           let assigned = item.matrix_assigned.reverse();
           let enrolled = item.matrix.reverse();
 
+          let CNames = [];
           user_name.push(item.first_name + " " + item.last_name);
 
           let allCourses = [...assigned, ...enrolled];
 
-          let CNames = allCourses.map((course) => {
-            return course.course_name;
-          });
-
-          let courses = [];
-
-          let newCName = [...removeDuplicates(CNames)];
-
-          if (course_name.length < newCName.length) {
-            course_name = newCName;
-          } else if (course_name.length <= 0) {
-            course_name = newCName;
-          }
-
+          // console.log("allCourses ", allCourses);
           allCourses.forEach((course) => {
-            if (!courses.find((i) => i?.course_name == course?.course_name)) {
-              course_name.forEach((item, id) => {
-                if (item == course?.course_name) {
-                  courses[id] = course;
-                }
-              });
+            let flag = false;
+            CNames.forEach((item) => {
+              if (item.name == course.course_name) {
+                item.count += 1;
+                flag = true;
+              }
+            });
+            if (!flag) {
+              CNames.push({ name: course.course_name, count: 1 });
             }
           });
 
-          item["course"] = courses;
+          console.log('CNames ', CNames);
 
-          // delete item.matrix_assigned;
-          // delete item.matrix;
+          let newCName = [];
+          CNames.forEach((item) => {
+            newCName = newCName.concat(Array(item.count).fill(item.name));
+          });
+
+          newCName = removeDuplicates(newCName);
+
+          if (course_name.length < newCName.length) {
+            course_name = newCName;
+          }
+
+          return { ...item, course: allCourses };
         });
 
-        let tempCourses = [];
+        let courses = [];
         course_name.forEach(() => {
-          tempCourses.push(temp);
+          courses.push(temp);
         });
-        console.log(users);
 
-        users.forEach((item) => {
-          let temp = [...tempCourses];
-          let course = item["course"];
+        newUsers.forEach((item) => {
+          let tempCourses = [...courses];
+          let course = [...item.course];
           course_name.forEach((name, idx) => {
+            let flag = false;
             course.forEach((c) => {
-              if (c.course_name === name) {
-                temp[idx] = c;
+              if (name == c.bundle_name) {
+                tempCourses[idx] = c;
+                flag = true;
+                return;
               }
             });
+            if (flag) {
+              course.shift();
+            }
           });
-          item["course"] = temp;
+          item.course = tempCourses;
         });
         setCourseName(course_name);
         setUserName(user_name);
-        setCourse(users);
+        setCourse(newUsers);
       })
       .catch((err) => {
         console.log(err);
