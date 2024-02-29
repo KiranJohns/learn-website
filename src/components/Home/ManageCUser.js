@@ -4,7 +4,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { BsFillEyeFill, BsEyeSlashFill } from "react-icons/bs";
 import Backbutton from "./Backbutton";
-
+import { validatePassword } from "../../utils/passwordvalidation";
 
 const ManageCreateU = () => {
   const [userData, setUserData] = useState({
@@ -32,18 +32,28 @@ const ManageCreateU = () => {
 
   const handleSubmit = (e) => {
     e.persist();
-    mackRequest("POST", "/info/create-manager-individual", {
-      ...userData,
-      phone: Number(userData.phone),
-    })
-      .then((res) => {
-        toast.success("User Created");
-        location.href = '/manager/individuals'
-      })
-      .catch((err) => {
-        console.log(err.data);
-        toast.error(err.data.data.response);
-      });
+
+    // Example usage:
+    validatePassword(userData.password).then((res) => {
+      if (res.length <= 0) {
+        mackRequest("POST", "/info/create-manager-individual", {
+          ...userData,
+          phone: Number(userData.phone),
+        })
+          .then((res) => {
+            toast.success("User Created");
+            location.href = "/manager/individuals";
+          })
+          .catch((err) => {
+            console.log(err.data);
+            toast.error(err.data.data.response);
+          });
+      } else {
+        for (const iterator of res) {
+          toast.warn(iterator);
+        }
+      }
+    });
   };
 
   return (
@@ -60,8 +70,8 @@ const ManageCreateU = () => {
         pauseOnHover
         theme="light"
       />
-      <div style={{position:"relative"}} className="dash-shadow ">
-      <Backbutton/>
+      <div style={{ position: "relative" }} className="dash-shadow ">
+        <Backbutton />
         <h2
           style={{
             padding: "1rem",
@@ -69,7 +79,7 @@ const ManageCreateU = () => {
             display: "flex",
             justifyContent: "center",
             fontSize: 36,
-            marginTop:"4rem"
+            marginTop: "4rem",
           }}
         >
           Create User
@@ -94,8 +104,6 @@ const ManageCreateU = () => {
                   />
                 </div>
 
-             
-
                 <div className="form-group p-2 mb-4">
                   <label className="text-black" htmlFor="FormControlInput1">
                     Email
@@ -113,8 +121,6 @@ const ManageCreateU = () => {
                   />
                 </div>
 
-            
-
                 <div className="form-group p-2 mb-4">
                   <label className="text-black" htmlFor="FormControlInput1">
                     Country
@@ -130,43 +136,36 @@ const ManageCreateU = () => {
                     <option value="United Kingdom">United Kingdom</option>
                   </select>
                 </div>
-              
+
                 <div className="form-group p-2 mb-4">
                   <label className="text-black" htmlFor="FormControlInput1">
                     Password
                   </label>
-                  <div style={{position:"relative"}}>
-                  <input
-                    style={{ background: "#f7fbff" }}
-                    onChange={handleOnchange}
-                    type={showPassword ? "text" : "password"}
-                    className="form-control border border-black"
-                    id="password"
-                    name="password"
-                    placeholder="Password"
-                    value={userData.password}
-                    autocomplete="off"
-                  />
-                       <div
-                          id="pasToggle"
-                          style={{ cursor: "pointer" }}
-                          onClick={() => setShowPassword((prev) => !prev)}
-                        >
-                          {showPassword ? (
-                            <BsEyeSlashFill />
-                          ) : (
-                            <BsFillEyeFill />
-                          )}
-                        </div>
-                        </div>
+                  <div style={{ position: "relative" }}>
+                    <input
+                      style={{ background: "#f7fbff" }}
+                      onChange={handleOnchange}
+                      type={showPassword ? "text" : "password"}
+                      className="form-control border border-black"
+                      id="password"
+                      name="password"
+                      placeholder="Password"
+                      value={userData.password}
+                      autocomplete="off"
+                    />
+                    <div
+                      id="pasToggle"
+                      style={{ cursor: "pointer" }}
+                      onClick={() => setShowPassword((prev) => !prev)}
+                    >
+                      {showPassword ? <BsEyeSlashFill /> : <BsFillEyeFill />}
+                    </div>
+                  </div>
                 </div>
-
               </div>
 
-
               <div className="col-6">
-
-              <div className="form-group p-2 mb-4">
+                <div className="form-group p-2 mb-4">
                   <label className="text-black" htmlFor="FormControlInput1">
                     Last Name
                   </label>
@@ -213,8 +212,6 @@ const ManageCreateU = () => {
                     value={userData.city}
                   />
                 </div>
-
-
               </div>
             </div>
             <div className="form-group d-flex justify-content-center p-2 mb-4">
