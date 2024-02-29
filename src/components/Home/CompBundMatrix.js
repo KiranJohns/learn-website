@@ -12,6 +12,8 @@ const MatrixBundComp = () => {
   const [userName, setUserName] = useState([]);
   const [course, setCourse] = useState([]);
   const [managers, setManagers] = useState([]);
+  const [individuals, setIndividuals] = useState([]);
+  const [individual, setIndividual] = useState(0);
   const [user, setUser] = useState(() => {
     let token = localStorage.getItem(`learnforcare_access`);
     return jwtDecode(token);
@@ -32,9 +34,19 @@ const MatrixBundComp = () => {
       });
   }, []);
   useEffect(() => {
+    makeRequest("GET", `/info/get-all-managers-created-by/${manager}`)
+      .then((res) => {
+        console.log('individual ',res.data.response);
+        setIndividuals(res.data.response);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  },[manager])
+  useEffect(() => {
     const form = new FormData();
-    form.append("manager_id", manager);
-    makeRequest("POST", "/course/get-manager-matrix-bundle", form)
+    form.append("manager_id", individual);
+    makeRequest("POST", "/course/get-single-manager-matrix-bundle", form)
       .then((res) => {
         let temp = {
           color: "gray",
@@ -44,6 +56,7 @@ const MatrixBundComp = () => {
         let course_name = [];
         let user_name = [];
         let newUsers = users.map((item) => {
+          console.log(item);
           let assigned = item.matrix_assigned.reverse();
           let enrolled = item.matrix.reverse();
           let allCourses = [...assigned, ...enrolled];
@@ -62,6 +75,18 @@ const MatrixBundComp = () => {
               }
             });
           }
+
+          allCourses.map(item => {
+            if(item.progress > 0) {
+              item['color'] = 'yellow'
+            }
+            if(item.progress > 0) {
+              item['color'] = 'yellow'
+            }
+            if(item.progress > 100) {
+              item['color'] = 'green'
+            }
+          })
 
           let CNames = [];
           user_name.push(item.first_name + " " + item.last_name);
@@ -121,7 +146,7 @@ const MatrixBundComp = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, [manager]);
+  }, [individual]);
   return (
     <div className="row p-3">
       <div style={{ position: "relative" }} className="dash-neww bg-white">
@@ -208,11 +233,29 @@ const MatrixBundComp = () => {
                   </option>
                 ))}
               </Form.Select>
+              <Form.Select
+                onChange={(e) => {
+                  console.log(e.target.value);
+                  setIndividual(e.target.value);
+                }}
+                size=""
+                style={{ border: ".1px solid #212a50", marginTop: "1rem" }}
+                aria-label="Default select example"
+              >
+                <option value={user?.id}>
+                  {user?.first_name + " " + user?.last_name}
+                </option>
+                {individuals.map((item) => (
+                  <option value={item.id}>
+                    {item.first_name + " " + item.last_name}
+                  </option>
+                ))}
+              </Form.Select>
             </div>
           </div>
 
           <Table
-            style={{ marginTop: ".5rem" }}
+            style={{ marginTop: "4rem" }}
             responsive
             bordered
             variant="light"
