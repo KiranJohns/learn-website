@@ -38,6 +38,7 @@ const MatrixBundComp = () => {
       .then((res) => {
         console.log('individual ',res.data.response);
         setIndividuals(res.data.response);
+        setIndividual(res.data.response[0].id);
       })
       .catch((err) => {
         console.log(err);
