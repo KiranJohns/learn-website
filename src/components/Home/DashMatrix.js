@@ -19,7 +19,7 @@ const ManCoursMatrix = () => {
     return jwtDecode(token);
   });
   const [individual, setIndividual] = useState(user.id);
-  const [manager, setManager] = useState(0);
+  const [manager, setManager] = useState(user.id);
 
   function removeDuplicates(arr) {
     return arr.filter((item, index) => arr.indexOf(item) === index);
