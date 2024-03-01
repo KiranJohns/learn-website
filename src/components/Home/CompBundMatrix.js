@@ -242,9 +242,6 @@ const MatrixBundComp = () => {
                 style={{ border: ".1px solid #212a50", marginTop: "1rem" }}
                 aria-label="Default select example"
               >
-                <option value={user?.id}>
-                  {user?.first_name + " " + user?.last_name}
-                </option>
                 {individuals.map((item) => (
                   <option value={item.id}>
                     {item.first_name + " " + item.last_name}
