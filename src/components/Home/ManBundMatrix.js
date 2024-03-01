@@ -261,7 +261,7 @@ const ManBundMatrix = () => {
           </div>
 
           <div
-            style={{ position: "absolute", top: "0", right: "0" }}
+            style={{ position: "absolute", top: "0", right: "0", margin: "1rem" }}
             className="col-4 p-1 m-"
           >
             <Form.Select
