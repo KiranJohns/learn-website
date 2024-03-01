@@ -26,19 +26,19 @@ const ManBundMatrix = () => {
   useEffect(() => {
     makeRequest("GET", `/info/get-all-managers-created-by/${individual}`)
       .then((res) => {
-        console.log('individual ',res.data.response);
+        console.log("individual ", res.data.response);
         setIndividuals(res.data.response);
       })
       .catch((err) => {
         console.log(err);
       });
-  },[])
+  }, []);
 
   useEffect(() => {
     console.clear();
     const form = new FormData();
     form.append("manager_id", individual);
-    makeRequest("POST", "/course/get-single-manager-matrix-bundle",form)
+    makeRequest("POST", "/course/get-single-manager-matrix-bundle", form)
       .then((res) => {
         let temp = {
           color: "gray",
@@ -130,6 +130,18 @@ const ManBundMatrix = () => {
             });
           }
 
+          console.log('allCourses ',allCourses);
+          allCourses.forEach(item => {
+            if(item.progress == 0) {
+              item['color'] = "red"
+            } 
+            if (item.progress > 0) {
+              item['color'] = "yellow"
+            } 
+            if (item.progress === 100) {
+              item['color'] = "green"
+            }
+          })
           let CNames = [];
           user_name.push(item.first_name + " " + item.last_name);
 
@@ -149,10 +161,11 @@ const ManBundMatrix = () => {
           let newCName = [];
           CNames.forEach((item) => {
             newCName = newCName.concat(Array(item.count).fill(item.name));
-            console.log("newCName ", newCName);
+            // console.log("newCName ", newCName);
           });
 
-          console.log(course_name, newCName);
+          // console.log(course_name, newCName);
+          newCName = [...removeDuplicates(newCName)];
           if (course_name.length < newCName.length) {
             course_name = newCName;
           }
@@ -183,7 +196,7 @@ const ManBundMatrix = () => {
           });
           item.course = tempCourses;
         });
-        console.log("courses ", newUsers);
+        // console.log("courses ", newUsers);
         setCourseName(course_name);
         setUserName(user_name);
         setCourse(newUsers);
@@ -261,7 +274,12 @@ const ManBundMatrix = () => {
           </div>
 
           <div
-            style={{ position: "absolute", top: "0", right: "0", margin: "1rem" }}
+            style={{
+              position: "absolute",
+              top: "0",
+              right: "0",
+              margin: "1rem",
+            }}
             className="col-4 p-1 m-"
           >
             <Form.Select
