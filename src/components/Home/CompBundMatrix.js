@@ -78,13 +78,13 @@ const MatrixBundComp = () => {
           }
 
           allCourses.map(item => {
-            if(item.progress > 0) {
-              item['color'] = 'yellow'
+            if(item.progress == 0) {
+              item['color'] = 'red'
             }
             if(item.progress > 0) {
               item['color'] = 'yellow'
             }
-            if(item.progress > 100) {
+            if(item.progress == 100) {
               item['color'] = 'green'
             }
           })
