@@ -109,7 +109,7 @@ const ComAssignedRep = () => {
     makeRequest("GET", `/course/assigned-items/${user.id}`)
       .then((res) => {
         console.log(res.data.response);
-        setRecords(res.data.response.result);
+        setRecords(res.data.response.result.reverse());
         // let arr = []
         // res.data.response.filter((item, idx) => {
         //   arr.push({
