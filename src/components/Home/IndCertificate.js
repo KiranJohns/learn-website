@@ -96,8 +96,8 @@ class IndCertificate extends Component {
         width: "110px",
       },
       {
-        name: "Percentage",
-        selector: (row) => row.percentage,
+        name: "User Type",
+        selector: (row) => row.user_type,
         center: true,
         // hide: 780,
       },

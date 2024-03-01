@@ -90,8 +90,8 @@ class ManageCertificate extends Component {
         width:"100px",
       },
       {
-        name: "Percentage",
-        selector: (row) => row.percentage,
+        name: "User Type",
+        selector: (row) => row.user_type,
         center:true,
       },
       {
