@@ -285,7 +285,7 @@ const MatrixBundComp = () => {
                     background: "#212a50",
                   }}
                 >
-                  Individual
+                  User
                 </th>
                 {courseName?.map((item) => (
                   <th
