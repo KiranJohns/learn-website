@@ -227,6 +227,7 @@ const MatrixBundComp = () => {
                 style={{ border: ".1px solid #212a50" }}
                 aria-label="Default select example"
               >
+                <option>Select Manager</option>
                 <option value={user?.id}>
                   {user?.first_name + " " + user?.last_name}
                 </option>
@@ -245,6 +246,7 @@ const MatrixBundComp = () => {
                 style={{ border: ".1px solid #212a50", marginTop: "1rem" }}
                 aria-label="Default select example"
               >
+                <option>Select Individual</option>
                 {individuals.map((item) => (
                   <option value={item.id}>
                     {item.first_name + " " + item.last_name}

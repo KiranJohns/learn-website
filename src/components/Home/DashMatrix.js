@@ -207,7 +207,7 @@ const ManCoursMatrix = () => {
                 style={{ border: ".1px solid #212a50" }}
                 aria-label="Default select example"
               >
-                <option>Select Company</option>
+                <option>Select Manager</option>
                 <option value={user.id}>
                   {user.first_name + " " + user.last_name}
                 </option>
