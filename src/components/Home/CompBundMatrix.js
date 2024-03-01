@@ -110,6 +110,8 @@ const MatrixBundComp = () => {
             newCName = newCName.concat(Array(item.count).fill(item.name));
           });
 
+          newCName = removeDuplicates(newCName)
+
           if (course_name.length < newCName.length) {
             course_name = newCName;
           }
