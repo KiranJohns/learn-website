@@ -327,6 +327,7 @@ const CompAssignCourse = () => {
       name: "Remaining No",
       selector: (row) => row.course_count <= 0 ? 0 : row.course_count,
       center: true,
+      id:"val"
     },
     {
       name: "action",
@@ -855,6 +856,8 @@ const CompAssignCourse = () => {
                   }
                   customStyles={customStyles}
                   pagination
+                  defaultSortFieldId="val"
+                  defaultSortAsc= {false}
                 />
               </Suspense>
             </div>

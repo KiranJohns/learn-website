@@ -133,6 +133,7 @@ const CompanyBundle = () => {
       name: "validity",
       selector: (row) => row.validity,
       center: true,
+      id:"val"
     },
     {
       name: "Progress",
@@ -266,6 +267,8 @@ const CompanyBundle = () => {
                   customStyles={customStyles}
                   pagination
                   persistTableHead={true}
+                  defaultSortFieldId="val"
+                  defaultSortAsc= {false}
                 />
               </Suspense>
             </div>

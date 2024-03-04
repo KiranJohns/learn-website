@@ -122,6 +122,7 @@ const DashCourse = () => {
       });
   };
 
+
   const columns = [
     {
       name: "Sl No.",
@@ -142,6 +143,8 @@ const DashCourse = () => {
       center: true,
       selector: (row) => row.validity,
       hide: 750,
+      sortable: true,
+      id:"val"
     },
     {
       name: "Attempts",
@@ -341,6 +344,8 @@ const DashCourse = () => {
                 }
                 customStyles={customStyles}
                 pagination
+                defaultSortFieldId="val"
+                defaultSortAsc= {false}
               />
             </Suspense>
           </div>

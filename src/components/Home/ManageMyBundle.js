@@ -101,6 +101,7 @@ const ManagerBundle = () => {
       name: "validity",
       selector: (row) => row.validity,
       center: true,
+      id:"val"
     },
     {
       name: "Progress",
@@ -228,6 +229,8 @@ const ManagerBundle = () => {
               customStyles={customStyles}
               pagination
               persistTableHead={true}
+              defaultSortFieldId="val"
+              defaultSortAsc= {false}
             />
           </div>
           {pending && (
