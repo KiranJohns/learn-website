@@ -55,7 +55,7 @@ class DashCertificate extends Component {
     // console.log("ertyuiop");
     makeRequest("GET", "/certificate/get-certificates")
       .then((res) => {
-        console.log(res.data);
+        console.log(res.data.response);
         this.setState({
           records: res.data.response.reverse(),
           filterRecords: res.data,
@@ -92,8 +92,8 @@ class DashCertificate extends Component {
         width: "110px",
       },
       {
-        name: "Percentage",
-        selector: (row) => row.percentage,
+        name: "User Type",
+        selector: (row) => row.user_type,
         center: true,
         hide: "sm",
       },

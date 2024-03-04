@@ -59,7 +59,7 @@ const CWIndReport = () => {
         let arr = []
         res.data.response.map((item,id) => {
           arr.push({
-            "SL No.": ++idx,
+            "SL No.": ++id,
             "CODE": item.code,
             "Course Name": item.course_name,
             "Individuals Count": item.count,      
