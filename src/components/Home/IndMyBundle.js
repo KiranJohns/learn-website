@@ -104,6 +104,7 @@ const IndMyBundle = () => {
       name: "validity",
       center: true,
       selector: (row) => row.validity,
+      id:"val"
     },
     {
       name: "Progress",
@@ -234,6 +235,8 @@ const IndMyBundle = () => {
               customStyles={customStyles}
               pagination
               persistTableHead={true}
+              defaultSortFieldId="val"
+              defaultSortAsc= {false}
             />
           </div>
 

@@ -246,6 +246,7 @@ const CompAssignBund = () => {
       name: "Remaining",
       selector: (row) => row.course_count,
       center: true,
+      id:"val"
     },
     {
       name: "action",
@@ -726,6 +727,8 @@ const CompAssignBund = () => {
                   }
                   customStyles={customStyles}
                   pagination
+                  defaultSortFieldId="val"
+                  defaultSortAsc= {false}
                 />
               </Suspense>
             </div>

@@ -253,11 +253,31 @@ const MatrixBundComp = () => {
                   </option>
                 ))}
               </Form.Select>
+              
+              <Form.Select
+                onChange={(e) => {
+                  console.log(e.target.value);
+                  setIndividual(e.target.value);
+                }}
+                size=""
+                style={{ border: ".1px solid #212a50", marginTop: "1rem" }}
+                aria-label="Default select example"
+              >
+                <option>Select Bundle</option>
+                {/* {individuals.map((item) => (
+                  <option value={item.id}>
+                    {item.first_name + " " + item.last_name}
+                  </option>
+                ))} */}
+              </Form.Select>
+
+              
+
             </div>
           </div>
 
           <Table
-            style={{ marginTop: "4rem" }}
+            style={{ marginTop: "8rem" }}
             responsive
             bordered
             variant="light"

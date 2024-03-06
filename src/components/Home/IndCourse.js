@@ -136,6 +136,7 @@ const IndCourse = () => {
       name: "validity",
       center: true,
       selector: (row) => row.validity,
+      id:"val"
     },
     {
       name: "Action",
@@ -307,6 +308,8 @@ const IndCourse = () => {
               customStyles={customStyles}
               pagination
               persistTableHead={true}
+              defaultSortFieldId="val"
+              defaultSortAsc= {false}
             />
           </div>
           <div style={{ marginTop: "2rem" }}>

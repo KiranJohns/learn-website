@@ -18,11 +18,12 @@ class Hero extends Component {
                             <div className="row align-items-center">
                                 <div className="col-xxl-6 col-xl-6 col-lg-6 col-md-6">
                                     <div className="hero__content p-relative z-index-1">
-                                    <h3 className="hero__title">
+                                    <h1 className="hero__title">
                                         <span></span>
                                         <span>CQC </span>   
-                                         <span className="yellow-shapes">Complaint<img src="assets/img/shape/yellow-bg.png" alt="yellow-shape"/> </span> 
-                                         Care Courses</h3>
+                                         <span className="yellow-shapes">Complaint<img src="assets/img/shape/yellow-bg.png" alt=""/> </span> 
+                                         Care Courses</h1>
+                                         
                                       
                                         <p>Unlocking Knowledge, Enhancing Compassion, and Improving Care</p>
                                         <Link href="/all-courses"><a className="e-btn">view all course</a></Link>

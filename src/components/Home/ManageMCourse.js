@@ -111,8 +111,7 @@ const ManageMyCourse = () => {
       name: "validity",
       selector: (row) => row?.validity,
       center: true,
-
-  
+      id:"val"
       // hide: "md",
     },
     {
@@ -286,6 +285,8 @@ const ManageMyCourse = () => {
               customStyles={customStyles}
               pagination
               persistTableHead={true}
+              defaultSortFieldId="val"
+              defaultSortAsc= {false}
             />
           </div>
 
