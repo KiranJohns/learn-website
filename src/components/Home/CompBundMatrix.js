@@ -57,7 +57,7 @@ const MatrixBundComp = () => {
         let course_name = [];
         let user_name = [];
         let newUsers = users.map((item) => {
-          console.log(item);
+          console.log('item ',item);
           let assigned = item.matrix_assigned.reverse();
           let enrolled = item.matrix.reverse();
           let allCourses = [...assigned, ...enrolled];
