@@ -18,8 +18,8 @@ const ManCoursMatrix = () => {
     let token = localStorage.getItem(`learnforcare_access`);
     return jwtDecode(token);
   });
-  const [individual, setIndividual] = useState(user.id);
-  const [manager, setManager] = useState(user.id);
+  const [individual, setIndividual] = useState(0);
+  const [manager, setManager] = useState(0);
 
   function removeDuplicates(arr) {
     return arr.filter((item, index) => arr.indexOf(item) === index);
@@ -40,7 +40,6 @@ const ManCoursMatrix = () => {
       .then((res) => {
         console.log("individual ", res.data.response);
         setIndividuals(res.data.response);
-        setIndividual(res.data.response[0].id);
       })
       .catch((err) => {
         console.log(err);
