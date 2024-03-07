@@ -62,7 +62,7 @@ const ManagerBundle = () => {
 
       setRecords([
         ...resAssigned.data.response.filter(
-          (item) => item.course_count >= 1 && item.owner == user.id
+          (item) => item.owner == user.id
         ),
         ...onGoingBundles,
       ]);

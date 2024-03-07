@@ -93,7 +93,7 @@ const CompanyBundle = () => {
         })
         const newRes = [
           ...assignedRes.data.response
-            .filter((item) => item.course_count >= 1 && item.owner == user.id)
+            .filter((item) => item.owner == user.id)
             .reverse(),
           ...onGoingBundles,
         ];
