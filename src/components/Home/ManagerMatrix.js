@@ -18,7 +18,7 @@ const ManCoursMatrix = () => {
     let token = localStorage.getItem(`learnforcare_access`);
     return jwtDecode(token);
   });
-  const [individual, setIndividual] = useState(user.id);
+  const [individual, setIndividual] = useState(0);
   function removeDuplicates(arr) {
     return arr.filter((item, index) => arr.indexOf(item) === index);
   }
@@ -213,6 +213,7 @@ const ManCoursMatrix = () => {
               style={{ border: ".1px solid #212a50" }}
               aria-label="Default select example"
             >
+              <option>Select Individual</option>
               {individuals.map((item) => (
                 <option value={item.id}>
                   {item.first_name + " " + item.last_name}
