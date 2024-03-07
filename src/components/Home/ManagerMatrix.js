@@ -221,7 +221,7 @@ const ManCoursMatrix = () => {
               ))}
             </Form.Select>
           </div>
-          <Table bordered variant="light">
+          <Table responsive bordered variant="light">
             <thead>
               <tr style={{ textAlign: "center" }}>
                 <th
