@@ -72,6 +72,14 @@ const IndCourse = () => {
           ...res[1].data.response,
           ...res[2].data.response,
         ];
+        function compareDates(a, b) {
+          var dateA = new Date(a?.validity?.split("/")?.reverse()?.join("/"));
+          var dateB = new Date(b?.validity?.split("/")?.reverse()?.join("/"));
+          return dateA - dateB;
+        }
+        
+        // Sort the array of objects
+        arr.sort(compareDates);
         console.log(res);
         setRecords(arr.reverse());
         setFilterRecords(arr.reverse());

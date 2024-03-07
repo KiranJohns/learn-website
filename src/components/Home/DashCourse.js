@@ -13,7 +13,6 @@ import Spinner from "react-bootstrap/Spinner";
 import { useState, useEffect } from "react";
 import Backbutton from "./Backbutton";
 
-
 const customStyles = {
   headRow: {
     style: {
@@ -64,16 +63,23 @@ const DashCourse = () => {
       ]);
       setPending(false);
       console.log(assignedCourses.data.response, onGoingCourse.data.response);
-      setRecords(
-        [
-          ...onGoingCourse.data.response,
-          ...assignedCourses.data.response.filter(
-            (item) => item?.course_count == 1
-          ),
-        ].reverse()
-      );
+      let data = [
+        ...onGoingCourse.data.response,
+        ...assignedCourses.data.response.filter(
+          (item) => item?.course_count == 1
+        ),
+      ]
+      function compareDates(a, b) {
+        var dateA = new Date(a.validity.split("/").reverse().join("/"));
+        var dateB = new Date(b.validity.split("/").reverse().join("/"));
+        return dateA - dateB;
+      }
+      
+      // Sort the array of objects
+      data.sort(compareDates);
       setFilterRecords(assignedCourses.data);
-
+      
+      setRecords(data.reverse());
       // Uncomment the following block if "get-all-sub-users" endpoint is needed
       // const subUsersRes = await makeRequest("GET", "/info/get-all-sub-users");
       // setSubUsers(subUsersRes.data.response);
@@ -122,7 +128,6 @@ const DashCourse = () => {
       });
   };
 
-
   const columns = [
     {
       name: "Sl No.",
@@ -144,14 +149,16 @@ const DashCourse = () => {
       selector: (row) => row.validity,
       hide: 750,
       sortable: true,
-      id:"val"
+      id: "val",
     },
     {
       name: "Attempts",
       selector: (row) => (
         <a
           className="my-dashlink"
-          href={`/learnCourse/examAttempts/?courseId=${row.id}&course_name=${(row.name ? row.name : row.Name)}`}
+          href={`/learnCourse/examAttempts/?courseId=${row.id}&course_name=${
+            row.name ? row.name : row.Name
+          }`}
         >
           {(row?.attempts ? row?.attempts : 0) + "/20"}
         </a>
@@ -283,7 +290,7 @@ const DashCourse = () => {
           style={{ position: "relative" }}
           className=" row g-3  min-vh-100  d-flex justify-content-center  mt-10"
         >
-           <Backbutton/>
+          <Backbutton />
           {/* <div  style={{  position:"relative" }}> */}
           <h2
             style={{
@@ -295,7 +302,6 @@ const DashCourse = () => {
               marginTop: ".8rem",
             }}
           >
-            
             My Courses
           </h2>
           <div className="reacttable-hidden">
@@ -345,7 +351,7 @@ const DashCourse = () => {
                 customStyles={customStyles}
                 pagination
                 defaultSortFieldId="val"
-                defaultSortAsc= {false}
+                defaultSortAsc={false}
               />
             </Suspense>
           </div>
@@ -568,7 +574,7 @@ const DashCourse = () => {
                               paddingLeft: ".4rem",
                               color: "#212a50",
                               fontWeight: "bold",
-                              marginRight:".44rem"
+                              marginRight: ".44rem",
                             }}
                           >
                             {item?.name}

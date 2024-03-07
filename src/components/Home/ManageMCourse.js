@@ -76,10 +76,19 @@ const ManageMyCourse = () => {
         let newRes = [
           ...assignedRes.data.response.filter(
             (item) => item.owner == user.id && item.count >= 1
-            ),
-            ...onGoingCourse.data.response,
-          ];
-          console.log(assignedRes.data.response, onGoingCourse.data.response);
+          ),
+          ...onGoingCourse.data.response,
+        ];
+
+        function compareDates(a, b) {
+          var dateA = new Date(a.validity.split("/").reverse().join("/"));
+          var dateB = new Date(b.validity.split("/").reverse().join("/"));
+          return dateA - dateB;
+        }
+        
+        // Sort the array of objects
+        newRes.sort(compareDates);
+        console.log(assignedRes.data.response, onGoingCourse.data.response);
 
         setRecords(newRes);
         setFilterRecords(newRes);
@@ -111,13 +120,13 @@ const ManageMyCourse = () => {
       name: "validity",
       selector: (row) => row?.validity,
       center: true,
-      id:"val"
+      id: "val",
       // hide: "md",
     },
     {
       center: true,
       name: "Attempts",
-      
+
       selector: (row) => (
         <a
           className="my-dashlink"
@@ -133,7 +142,7 @@ const ManageMyCourse = () => {
     {
       center: true,
       name: "Actions",
-     
+
       cell: (row) => {
         let validity = row.validity.split("/").reverse();
         let flag = false;
@@ -228,7 +237,7 @@ const ManageMyCourse = () => {
           style={{ position: "relative" }}
           className=" row g-3  min-vh-100  d-flex justify-content-center mt-20"
         >
-          <Backbutton/>
+          <Backbutton />
           <h2
             style={{
               color: "#212450",
@@ -242,7 +251,7 @@ const ManageMyCourse = () => {
           </h2>
           <div
             className="reacttable-hidden"
-            style={{ padding: "", backgroundColor: "",zIndex:"99" }}
+            style={{ padding: "", backgroundColor: "", zIndex: "99" }}
           >
             <div
               style={{ float: "right", marginBottom: "1.4rem" }}
@@ -286,7 +295,7 @@ const ManageMyCourse = () => {
               pagination
               persistTableHead={true}
               defaultSortFieldId="val"
-              defaultSortAsc= {false}
+              defaultSortAsc={false}
             />
           </div>
 
