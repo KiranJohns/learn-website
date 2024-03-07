@@ -22,7 +22,9 @@ const ManBundMatrix = () => {
   });
   const [individual, setIndividual] = useState(user.id);
   const [individuals, setIndividuals] = useState([]);
-
+  const [allBundles, setAllBundles] = useState([]);
+  const [myBundles, setMyBundles] = useState([]);
+  const [selectedBundle, setSelectedBundle] = useState(0);
   useEffect(() => {
     makeRequest("GET", `/info/get-all-managers-created-by/${individual}`)
       .then((res) => {
@@ -32,179 +34,127 @@ const ManBundMatrix = () => {
       .catch((err) => {
         console.log(err);
       });
+    makeRequest("GET", "/bundle/get-all-bundles")
+      .then((res) => {
+        setAllBundles(res.data.response);
+        setSelectedBundle(res.data.response[0].id);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
 
   useEffect(() => {
-    console.clear();
     const form = new FormData();
     form.append("manager_id", individual);
     makeRequest("POST", "/course/get-single-manager-matrix-bundle", form)
-      .then((res) => {
-        let temp = {
-          color: "gray",
-          progress: "",
-        };
-        // console.log(res.data.response);
-        // let users = res.data.response;
-        // let course_name = [];
-        // let user_name = [];
-        // let newUsers = users.map((item) => {
-        //   let assigned = item.matrix_assigned.reverse();
-        //   let enrolled = item.matrix.reverse();
+      .then(async (res) => {
+        let response = res.data.response[0];
 
-        //   user_name.push(item.first_name + " " + item.last_name);
-
-        //   let allCourses = [...assigned, ...enrolled];
-
-        //   let CNames = allCourses.map((course) => {
-        //     return course.bundle_name;
-        //   });
-
-        //   let courses = [];
-
-        //   let newCName = [...removeDuplicates(CNames)];
-
-        //   if (course_name.length < newCName.length) {
-        //     course_name = newCName;
-        //   } else if (course_name.length <= 0) {
-        //     course_name = newCName;
-        //   }
-
-        //   allCourses.forEach((course) => {
-        //     if (!courses.find((i) => i?.bundle_name == course?.bundle_name)) {
-        //       course_name.forEach((item, id) => {
-        //         if (item == course?.bundle_name) {
-        //           courses[id] = course;
-        //         }
-        //       });
-        //     }
-        //   });
-
-        //   return { ...item, course: courses };
-
-        //   // delete item.matrix_assigned;
-        //   // delete item.matrix;
-        // });
-
-        // let tempCourses = [];
-        // course_name.forEach(() => {
-        //   tempCourses.push(temp);
-        // });
-
-        // // users.forEach((item) => {
-        // //   let temp = [...tempCourses];
-        // //   let course = item["course"];
-        // //   course_name.forEach((name, idx) => {
-        // //     course.forEach((c) => {
-        // //       if (c.bundle_name === name) {
-        // //         temp[idx] = c;
-        // //       }
-        // //     });
-        // //   });
-        // //   item["course"] = temp;
-        // // });
-        // setCourseName(course_name);
-        // setUserName(user_name);
-        // setCourse(newUsers);
-        // console.log("newUsers ", newUsers);
-        let users = res.data.response;
-        let course_name = [];
-        let user_name = [];
-        let newUsers = users.map((item) => {
-          let assigned = item.matrix_assigned.reverse();
-          let enrolled = item.matrix.reverse();
-          let allCourses = [...assigned, ...enrolled];
-          if (user.id == item.id) {
-            allCourses = [...enrolled];
-            assigned.forEach((assignItem) => {
-              if (assignItem.count >= 1) {
-                allCourses.push(assignItem);
-              }
-            });
-          } else if (item.type_of_account != "individual") {
-            allCourses = [...enrolled];
-            assigned.forEach((assignItem) => {
-              if (assignItem.count >= 1 && assignItem.owner == item.id) {
-                allCourses.push(assignItem);
-              }
-            });
-          }
-
-          console.log('allCourses ',allCourses);
-          allCourses.forEach(item => {
-            if(item.progress == 0) {
-              item['color'] = "red"
-            } 
-            if (item.progress > 0) {
-              item['color'] = "yellow"
-            } 
-            if (item.progress === 100) {
-              item['color'] = "green"
+        let assigned = response.matrix_assigned.reverse();
+        let enrolled = response.matrix.reverse();
+        let allCourses = [...assigned, ...enrolled];
+        if (
+          response.id == user.id ||
+          response.type_of_account != "individual"
+        ) {
+          allCourses = [...enrolled];
+          assigned.forEach((assignItem) => {
+            if (assignItem.count >= 1 && assignItem.owner == response.id) {
+              allCourses.push({
+                ...assignItem,
+                all_courses: "[]",
+                finished_course: "[]",
+                on_going_course: "[]",
+                unfinished_course: "[]",
+                from_assigned: true,
+              });
             }
+          });
+        }
+
+        let c = [];
+        allBundles.map((item) => {
+          return allCourses.map((x) => {
+            if ((x.course_id || x.bundle_id) == item.id) {
+              c.push({
+                ...item,
+                all_courses: x.all_courses,
+                finished_course: x.finished_course,
+                on_going_course: x.on_going_course,
+                unfinished_course: x.from_assigned ? JSON.parse(item.courses || "[]") : x.unfinished_course,
+              });
+            }
+          });
+        });
+
+        let courses = await Promise.all(
+          c.map(async (item) => {
+            let res = await makeRequest(
+              "GET",
+              `/bundle/get-bundle-courses/${item.id}`
+            );
+            item["crs"] = res.data.response.allCourses;
+            console.log(res.data.response.allCourses);
+            if(item?.from_assigned) {
+              item.unfinished_course = res.data.response.allCourses.filter(item => item.id)
+            }
+            return item;
           })
-          let CNames = [];
-          user_name.push(item.first_name + " " + item.last_name);
+        );
 
-          allCourses.forEach((course) => {
-            let flag = false;
-            CNames.forEach((item) => {
-              if (item.name == course.bundle_name) {
-                item.count += 1;
-                flag = true;
-              }
-            });
-            if (!flag) {
-              CNames.push({ name: course.bundle_name, count: 1 });
-            }
-          });
-
-          let newCName = [];
-          CNames.forEach((item) => {
-            newCName = newCName.concat(Array(item.count).fill(item.name));
-            // console.log("newCName ", newCName);
-          });
-
-          // console.log(course_name, newCName);
-          newCName = [...removeDuplicates(newCName)];
-          if (course_name.length < newCName.length) {
-            course_name = newCName;
-          }
-
-          return { ...item, course: allCourses };
-        });
-
-        let courses = [];
-        course_name.forEach(() => {
-          courses.push(temp);
-        });
-
-        newUsers.forEach((item) => {
-          let tempCourses = [...courses];
-          let course = [...item.course];
-          course_name.forEach((name, idx) => {
-            let flag = false;
-            course.forEach((c) => {
-              if (name == c.bundle_name) {
-                tempCourses[idx] = c;
-                flag = true;
-                return;
-              }
-            });
-            if (flag) {
-              course.shift();
-            }
-          });
-          item.course = tempCourses;
-        });
-        // console.log("courses ", newUsers);
-        setCourseName(course_name);
-        setUserName(user_name);
-        setCourse(newUsers);
+        setMyBundles(courses);
+        setSelectedBundle(courses[0]?.id);
+        setUserName(response.first_name + " " + response.last_name);
       })
       .catch((err) => {
-        console.log("error ", err);
+        console.log(err);
       });
   }, [individual]);
+
+  useEffect(() => {
+    let bundle = myBundles.find((item) => item.id == selectedBundle);
+    let courses = bundle?.crs || [];
+    let on_going_course = JSON.parse(bundle?.on_going_course || "[]");
+    let finished_course = JSON.parse(bundle?.finished_course || "[]");
+    let unfinished_course = JSON.parse(bundle?.unfinished_course || "[]");
+
+    // console.log('all_courses ',JSON.parse(bundle?.all_courses || "[]"));
+    console.log("on_going_course ", on_going_course);
+    console.log("finished_course ", finished_course);
+    console.log("unfinished_course ", unfinished_course);
+
+    setCourse(() => {
+      let course = [];
+      let courseName = [];
+      on_going_course.forEach((item) => {
+        course.push({ color: "yellow" });
+        courses.find((course) => {
+          if (course.id == item) {
+            courseName.push(course.name);
+          }
+        });
+      });
+      finished_course.forEach((item) => {
+        course.push({ color: "green" });
+        courses.find((course) => {
+          if (course.id == item) {
+            courseName.push(course.name);
+          }
+        });
+      });
+      unfinished_course.forEach((item) => {
+        course.push({ color: "red" });
+        courses.find((course) => {
+          if (course.id == item) {
+            courseName.push(course.name);
+          }
+        });
+      });
+      setCourseName(courseName);
+      return course;
+    });
+  }, [selectedBundle]);
   return (
     <div className="row p-3">
       <div style={{ position: "relative" }} className="dash-neww">
@@ -297,8 +247,22 @@ const ManBundMatrix = () => {
                 </option>
               ))}
             </Form.Select>
+            <Form.Select
+              onChange={(e) => {
+                setSelectedBundle(e.target.value);
+              }}
+              size=""
+              defaultChecked={selectedBundle?.name}
+              style={{ border: ".1px solid #212a50", marginTop: "1rem" }}
+              aria-label="Default select example"
+            >
+              {myBundles.length <= 0 && <option>No Bundle</option>}
+              {myBundles.map((item) => {
+                return <option value={item.id}>{item?.name}</option>;
+              })}
+            </Form.Select>
           </div>
-          <Table bordered variant="light">
+          <Table bordered variant="light" style={{ marginTop: "5rem" }}>
             <thead>
               <tr style={{ textAlign: "center" }}>
                 <th
@@ -338,60 +302,56 @@ const ManBundMatrix = () => {
               </tr>
             </thead>
             <tbody>
-              {course.map((item, i) => {
-                return (
-                  <tr>
-                    {item.course.map((course, idx) => {
-                      if (idx == 0) {
-                        return (
-                          <>
-                            <td
-                              style={{
-                                padding: "0 0.5rem",
-                                color: "#212450",
-                                background: "white",
-                                textAlign: "center",
-                                fontWeight: "bold",
-                              }}
-                            >
-                              {userName[i]}
-                            </td>
-                            <td
-                              style={{
-                                padding: "0 0.5rem",
-                                color: "#3a3b3c",
-                                backgroundColor: course?.color,
-                                textAlign: "center",
-                              }}
-                            >
-                              {(course?.color == "red" && "Not Started") ||
-                                (course?.color == "yellow" && "In Progress") ||
-                                (course?.color == "green" && "Finished") ||
-                                (course?.color == "gray" && "No Bundle")}
-                            </td>
-                          </>
-                        );
-                      } else {
-                        return (
-                          <td
-                            style={{
-                              padding: "0 0.5rem",
-                              color: "#3a3b3c",
-                              backgroundColor: course.color,
-                              textAlign: "center",
-                            }}
-                          >
-                            {(course?.color == "red" && "Not Started") ||
-                              (course?.color == "yellow" && "In Progress") ||
-                              (course?.color == "green" && "Finished") ||
-                              (course?.color == "gray" && "No Bundle")}
-                          </td>
-                        );
-                      }
-                    })}
-                  </tr>
-                );
-              })}
+              <tr>
+                {course.map((item, i) => {
+                  if (i === 0) {
+                    return (
+                      <React.Fragment key={i}>
+                        <td
+                          style={{
+                            padding: "0 0.5rem",
+                            color: "#fff",
+                            background: "#212a50",
+                            textAlign: "center",
+                            fontWeight: "bold",
+                          }}
+                        >
+                          {userName}
+                        </td>
+                        <td
+                          style={{
+                            padding: "0 0.5rem",
+                            color: "#3a3b3c",
+                            backgroundColor: item?.color,
+                            textAlign: "center",
+                          }}
+                        >
+                          {(item?.color === "red" && "Not Started") ||
+                            (item?.color === "yellow" && "In Progress") ||
+                            (item?.color === "green" && "Finished") ||
+                            (item?.color === "gray" && "No Bundle")}
+                        </td>
+                      </React.Fragment>
+                    );
+                  } else {
+                    return (
+                      <td
+                        style={{
+                          padding: "0 0.5rem",
+                          color: "#3a3b3c",
+                          backgroundColor: item?.color,
+                          textAlign: "center",
+                        }}
+                      >
+                        {(item?.color === "red" && "Not Started") ||
+                          (item?.color === "yellow" && "In Progress") ||
+                          (item?.color === "green" && "Finished") ||
+                          (item?.color === "gray" && "No Bundle")}
+                      </td>
+                    );
+                  }
+                })}
+              </tr>
             </tbody>
           </Table>
         </div>
