@@ -50,22 +50,39 @@ const ManagerBundle = () => {
       let resAssigned = await makeRequest("GET", "/info/get-assigned-bundle");
       let onGoingBundles = onGoingRes.data.response;
       console.log("onGoingBundles1 ", onGoingBundles);
-      onGoingBundles = onGoingBundles.map(item => {
+      onGoingBundles = onGoingBundles.map((item) => {
         const { all_courses, finished_course, on_going_course } = item;
-        let pers1 = ((JSON.parse(finished_course)?.length || 0) / JSON.parse(all_courses)?.length) * 100;
-        let pers2 = ((JSON.parse(on_going_course)?.length || 0) / JSON.parse(all_courses)?.length) * 100;
-        pers2 = Math.round(pers2 / 2)
+        let pers1 =
+          ((JSON.parse(finished_course)?.length || 0) /
+            JSON.parse(all_courses)?.length) *
+          100;
+        let pers2 =
+          ((JSON.parse(on_going_course)?.length || 0) /
+            JSON.parse(all_courses)?.length) *
+          100;
+        pers2 = Math.round(pers2 / 2);
         console.log(pers1 + pers2);
-        item["progress"] = pers1 + pers2
-        return item; 
-      })
+        item["progress"] = pers1 + pers2;
+        return item;
+      });
 
-      setRecords([
+      let newRes = [
         ...resAssigned.data.response.filter(
-          (item) => item.owner == user.id
+          (item) => item.course_count >= 1 && item.owner == user.id
         ),
         ...onGoingBundles,
-      ]);
+      ];
+
+      function compareDates(a, b) {
+        var dateA = new Date(a.validity.split("/").reverse().join("/"));
+        var dateB = new Date(b.validity.split("/").reverse().join("/"));
+        return dateA - dateB;
+      }
+
+      // Sort the array of objects
+      newRes.sort(compareDates);
+
+      setRecords(newRes.reverse());
       setFilterRecords(resAssigned.data);
       setPending(false);
     } catch (err) {

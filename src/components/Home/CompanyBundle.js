@@ -93,12 +93,21 @@ const CompanyBundle = () => {
         })
         const newRes = [
           ...assignedRes.data.response
-            .filter((item) => item.owner == user.id)
+            .filter((item) => item.course_count >= 1 && item.owner == user.id)
             .reverse(),
           ...onGoingBundles,
         ];
-        console.log(assignedRes.data.response, onGoingRes.data.response);
-        setRecords(newRes);
+
+        function compareDates(a, b) {
+          var dateA = new Date(a.validity.split("/").reverse().join("/"));
+          var dateB = new Date(b.validity.split("/").reverse().join("/"));
+          return dateA - dateB;
+        }
+        
+        // Sort the array of objects
+        newRes.sort(compareDates);
+
+        setRecords(newRes.reverse());
         // setFilterRecords(assignedRes.data); // Assuming this is correct, please double-check
         setPending(false);
       } catch (err) {

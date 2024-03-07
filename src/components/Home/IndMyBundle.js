@@ -56,7 +56,7 @@ const IndMyBundle = () => {
   };
 
   useEffect(() => {
-    setPending(true)
+    setPending(true);
     let makeRequest = fetchData();
     makeRequest("GET", "/info/get-purchased-bundles")
       .then((res) => {
@@ -72,17 +72,40 @@ const IndMyBundle = () => {
                 // console.log(result);
                 result = result.filter((item) => item?.course_count >= 1);
 
-                let onGoingBundles = onGoingRes.data.response
-                onGoingBundles = onGoingBundles.map(item => {
-                  const { all_courses, finished_course, on_going_course } = item;
-                  let pers1 = ((JSON.parse(finished_course)?.length || 0) / JSON.parse(all_courses)?.length) * 100;
-                  let pers2 = ((JSON.parse(on_going_course)?.length || 0) / JSON.parse(all_courses)?.length) * 100;
-                  pers2 = Math.round(pers2 / 2)
+                let onGoingBundles = onGoingRes.data.response;
+                onGoingBundles = onGoingBundles.map((item) => {
+                  const { all_courses, finished_course, on_going_course } =
+                    item;
+                  let pers1 =
+                    ((JSON.parse(finished_course)?.length || 0) /
+                      JSON.parse(all_courses)?.length) *
+                    100;
+                  let pers2 =
+                    ((JSON.parse(on_going_course)?.length || 0) /
+                      JSON.parse(all_courses)?.length) *
+                    100;
+                  pers2 = Math.round(pers2 / 2);
                   console.log(pers1 + pers2);
-                  item["progress"] = pers1 + pers2
-                  return item; 
-                })
-                setRecords([...result, ...onGoingBundles]);
+                  item["progress"] = pers1 + pers2;
+                  return item;
+                });
+
+                let newRes = [...result, ...onGoingBundles];
+
+                function compareDates(a, b) {
+                  var dateA = new Date(
+                    a.validity.split("/").reverse().join("/")
+                  );
+                  var dateB = new Date(
+                    b.validity.split("/").reverse().join("/")
+                  );
+                  return dateA - dateB;
+                }
+
+                // Sort the array of objects
+                newRes.sort(compareDates);
+
+                setRecords(newRes.reverse());
                 setFilterRecords(res.data);
                 setPending(false);
               })
@@ -115,7 +138,7 @@ const IndMyBundle = () => {
       name: "validity",
       center: true,
       selector: (row) => row.validity,
-      id:"val"
+      id: "val",
     },
     {
       name: "Progress",
@@ -189,7 +212,7 @@ const IndMyBundle = () => {
           style={{ position: "relative" }}
           className=" row g-3  min-vh-100  d-flex justify-content-center mt-20"
         >
-       <Backbutton/>
+          <Backbutton />
           <h2
             style={{
               color: "#212450",
@@ -247,12 +270,12 @@ const IndMyBundle = () => {
               pagination
               persistTableHead={true}
               defaultSortFieldId="val"
-              defaultSortAsc= {false}
+              defaultSortAsc={false}
             />
           </div>
 
           <div style={{ marginTop: "4rem" }}>
-          {pending && (
+            {pending && (
               <div
                 className="no-record-hidden"
                 style={{
@@ -264,7 +287,14 @@ const IndMyBundle = () => {
                 <Spinner animation="border" variant="primary" />
               </div>
             )}
-          {(records.length <= 0 && !pending) && <h4 className="no-record-hidden" style={{textAlign: 'center',marginTop:"1rem",}}>No records to display</h4>}
+            {records.length <= 0 && !pending && (
+              <h4
+                className="no-record-hidden"
+                style={{ textAlign: "center", marginTop: "1rem" }}
+              >
+                No records to display
+              </h4>
+            )}
             {searchString
               ? records
                   .filter((item) =>
@@ -324,7 +354,6 @@ const IndMyBundle = () => {
                                         height: "35px",
                                         marginTop: "1rem",
                                         marginRight: ".4rem",
-
                                       }}
                                       className="btn btn-success"
                                     >
@@ -370,9 +399,8 @@ const IndMyBundle = () => {
                   return (
                     <div
                       style={{
-                      
                         marginTop: ".2rem",
-                        padding:".5rem"
+                        padding: ".5rem",
                       }}
                     >
                       <div className="new-table-shadow  new-table-hidden">
@@ -452,11 +480,32 @@ const IndMyBundle = () => {
                           </>
                           {/* <button className="btn btn-success" style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}>View</button> */}
                         </div>
-                        <div style={{ display: 'flex', justifyContent: "space-between" }}>
-                        <p style={{ color: 'green', marginLeft: ".5rem", fontWeight: "500" }}>Progress:{" "}{item?.progress || 0}%<a className="my-dashlink"></a></p>
-                        <p style={{ color: 'green', marginRight: ".5rem", fontWeight: "500" }}>Validity:{" "}{item?.validity}</p>
-                      </div>
-
+                        <div
+                          style={{
+                            display: "flex",
+                            justifyContent: "space-between",
+                          }}
+                        >
+                          <p
+                            style={{
+                              color: "green",
+                              marginLeft: ".5rem",
+                              fontWeight: "500",
+                            }}
+                          >
+                            Progress: {item?.progress || 0}%
+                            <a className="my-dashlink"></a>
+                          </p>
+                          <p
+                            style={{
+                              color: "green",
+                              marginRight: ".5rem",
+                              fontWeight: "500",
+                            }}
+                          >
+                            Validity: {item?.validity}
+                          </p>
+                        </div>
                       </div>
                     </div>
                   );

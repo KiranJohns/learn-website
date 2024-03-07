@@ -295,6 +295,7 @@ const ManBundMatrix = () => {
                       padding: "0 0.5rem",
                       color: "#fff",
                       background: "#212a50",
+                      textWrap: "nowrap"
                     }}
                   >
                     {item}
