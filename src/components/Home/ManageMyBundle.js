@@ -48,12 +48,23 @@ const ManagerBundle = () => {
         "/bundle/get-on-going-bundles"
       );
       let resAssigned = await makeRequest("GET", "/info/get-assigned-bundle");
+      let onGoingBundles = onGoingRes.data.response;
+      console.log("onGoingBundles1 ", onGoingBundles);
+      onGoingBundles = onGoingBundles.map(item => {
+        const { all_courses, finished_course, on_going_course } = item;
+        let pers1 = ((JSON.parse(finished_course)?.length || 0) / JSON.parse(all_courses)?.length) * 100;
+        let pers2 = ((JSON.parse(on_going_course)?.length || 0) / JSON.parse(all_courses)?.length) * 100;
+        pers2 = Math.round(pers2 / 2)
+        console.log(pers1 + pers2);
+        item["progress"] = pers1 + pers2
+        return item; 
+      })
 
       setRecords([
         ...resAssigned.data.response.filter(
           (item) => item.course_count >= 1 && item.owner == user.id
         ),
-        ...onGoingRes.data.response,
+        ...onGoingBundles,
       ]);
       setFilterRecords(resAssigned.data);
       setPending(false);
@@ -101,7 +112,7 @@ const ManagerBundle = () => {
       name: "validity",
       selector: (row) => row.validity,
       center: true,
-      id:"val"
+      id: "val",
     },
     {
       name: "Progress",
@@ -230,7 +241,7 @@ const ManagerBundle = () => {
               pagination
               persistTableHead={true}
               defaultSortFieldId="val"
-              defaultSortAsc= {false}
+              defaultSortAsc={false}
             />
           </div>
           {pending && (

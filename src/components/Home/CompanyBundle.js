@@ -82,11 +82,20 @@ const CompanyBundle = () => {
           "/info/get-assigned-bundles-for-company"
         );
         console.clear();
+        let onGoingBundles = onGoingRes.data.response
+        console.log('onGoingBundles ',onGoingBundles);
+        onGoingBundles.map(item => {
+          const { all_courses, finished_course, on_going_course } = item;
+          let pers1 = ((JSON.parse(finished_course)?.length || 0) / JSON.parse(all_courses)?.length) * 100;
+          let pers2 = ((JSON.parse(on_going_course)?.length || 0) / JSON.parse(all_courses)?.length) * 100;
+          pers2 = Math.round(pers2 / 2)
+          item["progress"] = pers1 + pers2
+        })
         const newRes = [
           ...assignedRes.data.response
             .filter((item) => item.course_count >= 1 && item.owner == user.id)
             .reverse(),
-          ...onGoingRes.data.response,
+          ...onGoingBundles,
         ];
         console.log(assignedRes.data.response, onGoingRes.data.response);
         setRecords(newRes);

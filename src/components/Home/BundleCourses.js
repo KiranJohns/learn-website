@@ -76,7 +76,6 @@ const BundleCour = () => {
           console.log(res.data.response);
           setData(res.data.response.bundle[0]);
           setPending(false)
-          // location.href = `/individual/bundleCourses/?id=${res.data.response.id}`;
         })
         .catch((err) => {
           console.log(err);

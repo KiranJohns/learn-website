@@ -68,10 +68,21 @@ const IndMyBundle = () => {
                   ...res.data.response,
                   ...resAssigned.data.response,
                 ];
-                console.log(onGoingRes.data.response);
+                // console.log(onGoingRes.data.response);
+                // console.log(result);
                 result = result.filter((item) => item?.course_count >= 1);
-                console.log(result);
-                setRecords([...result, ...onGoingRes.data.response]);
+
+                let onGoingBundles = onGoingRes.data.response
+                onGoingBundles = onGoingBundles.map(item => {
+                  const { all_courses, finished_course, on_going_course } = item;
+                  let pers1 = ((JSON.parse(finished_course)?.length || 0) / JSON.parse(all_courses)?.length) * 100;
+                  let pers2 = ((JSON.parse(on_going_course)?.length || 0) / JSON.parse(all_courses)?.length) * 100;
+                  pers2 = Math.round(pers2 / 2)
+                  console.log(pers1 + pers2);
+                  item["progress"] = pers1 + pers2
+                  return item; 
+                })
+                setRecords([...result, ...onGoingBundles]);
                 setFilterRecords(res.data);
                 setPending(false);
               })
