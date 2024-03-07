@@ -79,6 +79,7 @@ const MatrixBundComp = () => {
                 finished_course: "[]",
                 on_going_course: "[]",
                 unfinished_course: "[]",
+                from_assigned: true,
               });
             }
           });
@@ -94,6 +95,7 @@ const MatrixBundComp = () => {
                 finished_course: x.finished_course,
                 on_going_course: x.on_going_course,
                 unfinished_course: x.unfinished_course,
+                unfinished_course: x.from_assigned ? JSON.parse(item.courses || "[]") : x.unfinished_course,
               });
             }
           });

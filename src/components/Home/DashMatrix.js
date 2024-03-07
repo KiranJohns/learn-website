@@ -199,7 +199,6 @@ const ManCoursMatrix = () => {
             >
               <Form.Select
                 onChange={(e) => {
-                  console.log(e.target.value);
                   setManager(e.target.value);
                 }}
                 size=""
