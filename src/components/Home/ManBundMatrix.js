@@ -104,7 +104,7 @@ const ManBundMatrix = () => {
         );
 
         setMyBundles(courses);
-        setSelectedBundle(courses[0]?.id);
+        // setSelectedBundle(courses[0]?.id);
         setUserName(response.first_name + " " + response.last_name);
       })
       .catch((err) => {
@@ -241,6 +241,7 @@ const ManBundMatrix = () => {
               style={{ border: ".1px solid #212a50" }}
               aria-label="Default select example"
             >
+              <option>Select Individual</option>
               {individuals.map((item) => (
                 <option value={item.id}>
                   {item.first_name + " " + item.last_name}
@@ -256,7 +257,7 @@ const ManBundMatrix = () => {
               style={{ border: ".1px solid #212a50", marginTop: "1rem" }}
               aria-label="Default select example"
             >
-              {myBundles.length <= 0 && <option>No Bundle</option>}
+              <option>Select Bundle</option>
               {myBundles.map((item) => {
                 return <option value={item.id}>{item?.name}</option>;
               })}
