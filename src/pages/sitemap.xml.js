@@ -1,14 +1,14 @@
-const EXTERNAL_DATA_URL = 'https://jsonplaceholder.typicode.com/posts';
+const EXTERNAL_DATA_URL = 'https://www.learnforcare.co.uk';
 
 function generateSiteMap(posts) {
   return `<?xml version="1.0" encoding="UTF-8"?>
    <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
      <!--We manually set the two URLs we know already-->
      <url>
-       <loc>https://jsonplaceholder.typicode.com</loc>
+       <loc>https://www.learnforcare.co.uk/</loc>
      </url>
      <url>
-       <loc>https://jsonplaceholder.typicode.com/guide</loc>
+       <loc>https://www.learnforcare.co.uk/guide</loc>
      </url>
      ${posts
        .map(({ id }) => {
