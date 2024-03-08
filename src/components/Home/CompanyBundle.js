@@ -285,8 +285,8 @@ const CompanyBundle = () => {
                   customStyles={customStyles}
                   pagination
                   persistTableHead={true}
-                  defaultSortFieldId="val"
-                  defaultSortAsc= {false}
+                  // defaultSortFieldId="val"
+                  // defaultSortAsc= {false}
                 />
               </Suspense>
             </div>

@@ -350,8 +350,8 @@ const DashCourse = () => {
                 }
                 customStyles={customStyles}
                 pagination
-                defaultSortFieldId="val"
-                defaultSortAsc={false}
+                // defaultSortFieldId="val"
+                // defaultSortAsc={false}
               />
             </Suspense>
           </div>
