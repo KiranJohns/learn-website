@@ -82,7 +82,7 @@ const ManagerBundle = () => {
       // Sort the array of objects
       newRes.sort(compareDates);
 
-      setRecords(newRes.reverse());
+      setRecords(newRes);
       setFilterRecords(resAssigned.data);
       setPending(false);
     } catch (err) {

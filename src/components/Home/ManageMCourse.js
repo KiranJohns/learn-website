@@ -90,7 +90,7 @@ const ManageMyCourse = () => {
         newRes.sort(compareDates);
         console.log(assignedRes.data.response, onGoingCourse.data.response);
 
-        setRecords(newRes.reverse());
+        setRecords(newRes);
         setFilterRecords(newRes);
         setPending(false);
       } catch (err) {

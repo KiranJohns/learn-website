@@ -93,7 +93,7 @@ const ManagerAssignCourse = () => {
         
         // Sort the array of objects
         newRes.sort(compareDates);
-        setRecords(newRes.reverse());
+        setRecords(newRes);
         setPending(false);
       })
       .catch((err) => {

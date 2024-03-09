@@ -87,7 +87,7 @@ const ManAssignBund = () => {
               ...res.data.response.filter((item) => item.owner != user.id),
             ]
             data.sort(compareDates);
-            setRecords(data.reverse());
+            setRecords(data);
           })
           .catch((err) => {
             console.log(err);
