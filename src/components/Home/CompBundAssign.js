@@ -93,6 +93,11 @@ const CompAssignBund = () => {
         console.log(err);
       });
   }
+  function compareDates(a, b) {
+    var dateA = a.validity.split("/").reverse().join("/");
+    var dateB = b.validity.split("/").reverse().join("/");
+    return dateB.localeCompare(dateA); // Reverse the comparison
+  }
 
   async function getData() {
     let purchasedRes = await makeRequest("GET", "/info/get-purchased-bundles");
@@ -105,10 +110,10 @@ const CompAssignBund = () => {
       .then((res) => {
         let newRes = [...res[0].data.response, ...res[1].data.response]
           .filter((item) => item.owner != user.id)
-          .reverse();
+          newRes.sort(compareDates);
         // console.log(res[0].data.response,
         //   res[1].data.response);
-        setRecords(newRes);
+        setRecords(newRes.reduce());
         setPending(false);
       })
       .catch((err) => {

@@ -48,12 +48,19 @@ const IndCAvail = () => {
     getData();
   }, []);
 
+  function compareDates(a, b) {
+    var dateA = a.validity.split("/").reverse().join("/");
+    var dateB = b.validity.split("/").reverse().join("/");
+    return dateB.localeCompare(dateA); // Reverse the comparison
+  }
+
   const getData = () => {
     setPending(true)
     let url1 = "/course/get-all-bought-course";
     // let url2 = "/course/get-all-assigned-course";
     Promise.all([makeRequest("GET", url1)]).then((res) => {
       let arr = [...res[0].data.response];
+      arr.sort(compareDates)
       setRecords(() => {
         return arr.reverse();
       });

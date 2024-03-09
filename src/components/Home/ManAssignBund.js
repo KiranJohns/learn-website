@@ -69,9 +69,9 @@ const ManAssignBund = () => {
   const makeRequest = fetchData();
   function getData() {
     function compareDates(a, b) {
-      var dateA = new Date(a.validity.split("/").reverse().join("/"));
-      var dateB = new Date(b.validity.split("/").reverse().join("/"));
-      return dateA - dateB;
+      var dateA = a.validity.split("/").reverse().join("/");
+      var dateB = b.validity.split("/").reverse().join("/");
+      return dateB.localeCompare(dateA); // Reverse the comparison
     }
     
     // Sort the array of objects

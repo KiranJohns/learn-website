@@ -60,7 +60,7 @@ const IndCourse = () => {
       let onGoingCourseUrl = "/on-going-course/get-all-on-going-courses";
       let url1 = "/course/get-bought-course";
       let url2 = "/course/get-all-assigned-course";
-      
+
       Promise.all([
         makeRequest("GET", onGoingCourseUrl),
         makeRequest("GET", url1),
@@ -73,11 +73,11 @@ const IndCourse = () => {
           ...res[2].data.response,
         ];
         function compareDates(a, b) {
-          var dateA = new Date(a?.validity?.split("/")?.reverse()?.join("/"));
-          var dateB = new Date(b?.validity?.split("/")?.reverse()?.join("/"));
-          return dateA - dateB;
+          var dateA = a.validity.split("/").reverse().join("/");
+          var dateB = b.validity.split("/").reverse().join("/");
+          return dateB.localeCompare(dateA); // Reverse the comparison
         }
-        
+
         // Sort the array of objects
         arr.sort(compareDates);
         console.log(res);
@@ -132,9 +132,11 @@ const IndCourse = () => {
       selector: (row) => (
         <a
           className="my-dashlink"
-          href={`/learnCourse/examAttempts/?courseId=${row.id}&course_name=${(row.name ? row.name : row.Name)}`}
+          href={`/learnCourse/examAttempts/?courseId=${row.id}&course_name=${
+            row.name ? row.name : row.Name
+          }`}
         >
-          {row.attempts ? row.attempts + "/20": "0/20" }
+          {row.attempts ? row.attempts + "/20" : "0/20"}
         </a>
       ),
       hide: "md",
@@ -144,7 +146,7 @@ const IndCourse = () => {
       name: "validity",
       center: true,
       selector: (row) => row.validity,
-      id:"val"
+      id: "val",
     },
     {
       name: "Action",
@@ -257,7 +259,7 @@ const IndCourse = () => {
         style={{ position: "relative" }}
         className=" row g-3  min-vh-100  d-flex justify-content-center dash-shadow mt-10"
       >
-        <Backbutton/>
+        <Backbutton />
         <h2
           className=""
           style={{
@@ -317,7 +319,7 @@ const IndCourse = () => {
               pagination
               persistTableHead={true}
               defaultSortFieldId="val"
-              defaultSortAsc= {false}
+              defaultSortAsc={false}
             />
           </div>
           <div style={{ marginTop: "2rem" }}>
@@ -616,12 +618,39 @@ const IndCourse = () => {
                           </>
                           {/* <button className="btn btn-success" style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}>View</button> */}
                         </div>
-                      
-                        <div style={{ display: 'flex', justifyContent: "space-between" }}>
-                        <p style={{ color: '#0d6efd', marginLeft: ".5rem", fontWeight: "500" }}>Validity:{" "} {item?.validity}</p>
-                        <p style={{ color: '#0d6efd', marginRight: ".5rem", fontWeight: "500" }}>Attempts:{" "}<a href={`/learnCourse/examAttempts/?courseId=${item?.id}`} className="my-dashlink">{item?.attempts || 0}</a>{"/20"}</p>   
-                      </div>
 
+                        <div
+                          style={{
+                            display: "flex",
+                            justifyContent: "space-between",
+                          }}
+                        >
+                          <p
+                            style={{
+                              color: "#0d6efd",
+                              marginLeft: ".5rem",
+                              fontWeight: "500",
+                            }}
+                          >
+                            Validity: {item?.validity}
+                          </p>
+                          <p
+                            style={{
+                              color: "#0d6efd",
+                              marginRight: ".5rem",
+                              fontWeight: "500",
+                            }}
+                          >
+                            Attempts:{" "}
+                            <a
+                              href={`/learnCourse/examAttempts/?courseId=${item?.id}`}
+                              className="my-dashlink"
+                            >
+                              {item?.attempts || 0}
+                            </a>
+                            {"/20"}
+                          </p>
+                        </div>
                       </div>
                     </div>
                   );

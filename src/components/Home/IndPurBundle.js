@@ -41,14 +41,22 @@ const IndPurBundle = () => {
     );
     setRecords(newData);
   };
+  function compareDates(a, b) {
+    var dateA = a.validity.split("/").reverse().join("/");
+    var dateB = b.validity.split("/").reverse().join("/");
+    return dateB.localeCompare(dateA); // Reverse the comparison
+  }
 
+  // Sort the array of objects
   useEffect(() => {
     setPending(true);
     let makeRequest = fetchData();
     makeRequest("GET", "/info/get-purchased-bundles")
       .then((res) => {
         console.log(res);
-        setRecords(res.data.response);
+        let data = res.data.response;
+        data.sort(compareDates);
+        setRecords(data.reverse());
         setFilterRecords(res.data);
         setPending(false);
       })
@@ -80,14 +88,17 @@ const IndPurBundle = () => {
     {
       name: "count",
       selector: (row) => {
-        return row.fake_course_count
+        return row.fake_course_count;
       },
       center: true,
     },
     {
       name: "Action",
       cell: () => (
-        <a title="View" href="https://test.learnforcare.co.uk/bundle/bundle-all">
+        <a
+          title="View"
+          href="https://test.learnforcare.co.uk/bundle/bundle-all"
+        >
           <Button style={{ background: "#212a50" }}>
             <FaEye />
           </Button>
@@ -104,7 +115,7 @@ const IndPurBundle = () => {
           style={{ position: "relative" }}
           className=" row g-3  min-vh-100  d-flex justify-content-center mt-20"
         >
-          <Backbutton/>
+          <Backbutton />
           <h2
             style={{
               color: "#212450",

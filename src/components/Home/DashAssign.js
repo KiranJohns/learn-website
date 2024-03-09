@@ -84,12 +84,17 @@ const CompAssignCourse = () => {
     getData();
   }, []);
 
+  function compareDates(a, b) {
+    var dateA = a.validity.split("/").reverse().join("/");
+    var dateB = b.validity.split("/").reverse().join("/");
+    return dateB.localeCompare(dateA); // Reverse the comparison
+  }
   async function getData() {
     console.clear();
     setPending(true)
     let assignedRes = await makeRequest(
       "GET",
-      "/course/get-all-assigned-course"
+      "/course/get-all-assigned-course" 
     );
     let purchasedRes = await makeRequest("GET", "/course/get-bought-course");
     Promise.all([purchasedRes, assignedRes])
@@ -106,6 +111,7 @@ const CompAssignCourse = () => {
             (item) => item?.owner != user.id
           ),
         ];
+        resArr.sort(compareDates)
         let resArr = newRes?.reverse();
         // console.log(res[0].data.response, res[1].data.response);
         setRecords(resArr);

@@ -9,7 +9,7 @@ import { Suspense } from "react";
 import Spinner from "react-bootstrap/Spinner";
 import { jwtDecode } from "jwt-decode";
 import { FaArrowAltCircleLeft } from "react-icons/fa";
-import { useRouter } from 'next/router';
+import { useRouter } from "next/router";
 import Backbutton from "./Backbutton";
 
 const customStyles = {
@@ -46,7 +46,6 @@ const CompanyBundle = () => {
   const [refresh, setRefresh] = useState(0);
   const [pending, setPending] = useState(true);
   const router = useRouter();
- 
 
   const [user, setUser] = useState(() => {
     let token = localStorage.getItem(`learnforcare_access`);
@@ -55,7 +54,7 @@ const CompanyBundle = () => {
 
   const handleGoBack = () => {
     router.back();
-  }
+  };
 
   const handleFilter = useCallback(
     (event) => {
@@ -82,15 +81,21 @@ const CompanyBundle = () => {
           "/info/get-assigned-bundles-for-company"
         );
         console.clear();
-        let onGoingBundles = onGoingRes.data.response
-        console.log('onGoingBundles ',onGoingBundles);
-        onGoingBundles.map(item => {
+        let onGoingBundles = onGoingRes.data.response;
+        console.log("onGoingBundles ", onGoingBundles);
+        onGoingBundles.map((item) => {
           const { all_courses, finished_course, on_going_course } = item;
-          let pers1 = ((JSON.parse(finished_course)?.length || 0) / JSON.parse(all_courses)?.length) * 100;
-          let pers2 = ((JSON.parse(on_going_course)?.length || 0) / JSON.parse(all_courses)?.length) * 100;
-          pers2 = Math.round(pers2 / 2)
-          item["progress"] = pers1 + pers2
-        })
+          let pers1 =
+            ((JSON.parse(finished_course)?.length || 0) /
+              JSON.parse(all_courses)?.length) *
+            100;
+          let pers2 =
+            ((JSON.parse(on_going_course)?.length || 0) /
+              JSON.parse(all_courses)?.length) *
+            100;
+          pers2 = Math.round(pers2 / 2);
+          item["progress"] = pers1 + pers2;
+        });
         const newRes = [
           ...assignedRes.data.response
             .filter((item) => item.course_count >= 1 && item.owner == user.id)
@@ -99,11 +104,11 @@ const CompanyBundle = () => {
         ];
 
         function compareDates(a, b) {
-          var dateA = new Date(a.validity.split("/").reverse().join("/"));
-          var dateB = new Date(b.validity.split("/").reverse().join("/"));
-          return dateA - dateB;
+          var dateA = a.validity.split("/").reverse().join("/");
+          var dateB = b.validity.split("/").reverse().join("/");
+          return dateB.localeCompare(dateA); // Reverse the comparison
         }
-        
+
         // Sort the array of objects
         newRes.sort(compareDates);
 
@@ -151,7 +156,7 @@ const CompanyBundle = () => {
       name: "validity",
       selector: (row) => row.validity,
       center: true,
-      id:"val"
+      id: "val",
     },
     {
       name: "Progress",
@@ -222,9 +227,8 @@ const CompanyBundle = () => {
           style={{ position: "relative" }}
           className=" row g-3  min-vh-100  d-flex justify-content-center mt-20"
         >
-   
-           <Backbutton/>
- 
+          <Backbutton />
+
           <h2
             style={{
               color: "#212450",
@@ -290,7 +294,7 @@ const CompanyBundle = () => {
                 />
               </Suspense>
             </div>
-            
+
             {pending && (
               <div
                 className="no-record-hidden"
@@ -301,8 +305,8 @@ const CompanyBundle = () => {
             )}
             {records.length <= 0 && !pending && (
               <h4
-              className="no-record-hidden"
-              style={{ textAlign: "center", marginTop: "5rem" }}
+                className="no-record-hidden"
+                style={{ textAlign: "center", marginTop: "5rem" }}
               >
                 No records to display
               </h4>
