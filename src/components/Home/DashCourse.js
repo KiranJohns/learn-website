@@ -68,21 +68,18 @@ const DashCourse = () => {
         ...assignedCourses.data.response.filter(
           (item) => item?.course_count == 1
         ),
-      ]
+      ];
       function compareDates(a, b) {
-        var dateA = new Date(a.validity.split("/").reverse().join("/"));
-        var dateB = new Date(b.validity.split("/").reverse().join("/"));
-        return dateA - dateB;
+        var dateA = a.validity.split("/").reverse().join("/");
+        var dateB = b.validity.split("/").reverse().join("/");
+        return dateB.localeCompare(dateA); // Reverse the comparison
       }
-      
+
       // Sort the array of objects
       data.sort(compareDates);
       setFilterRecords(assignedCourses.data);
-      
+
       setRecords(data.reverse());
-      // Uncomment the following block if "get-all-sub-users" endpoint is needed
-      // const subUsersRes = await makeRequest("GET", "/info/get-all-sub-users");
-      // setSubUsers(subUsersRes.data.response);
     } catch (error) {
       console.log(error);
     }

@@ -96,14 +96,14 @@ const CompAssignCourse = () => {
       .then((res) => {
         console.log(pending);
         setPending(false);
-        console.log(res[0].data.response);
-        console.log(res[1].data.response);
+        // console.log(res[0].data.response);
+        console.log('response ',res[1].data.response);
         // let today = res[1].data.response.date.split("-");
         // setDate(`${today[1]}-${today[0]}-${today[2]}`);
         let newRes = [
           ...res[0].data.response,
           ...res[1].data.response.filter(
-            (item) => item?.course_count != 1
+            (item) => item?.owner != user.id
           ),
         ];
         let resArr = newRes?.reverse();
