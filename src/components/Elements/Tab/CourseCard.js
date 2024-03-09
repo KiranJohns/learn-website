@@ -117,7 +117,7 @@ function CourseCard({ item }) {
     <div key={item.id} className="col-xxl-3 col-xl-3 col-lg-3 col-md-4">
       <div className="course__item white-bg mb-30 fix">
         <div className="course__thumb w-img p-relative fix">
-          <Link href={`/course/${item.id}`}>
+          <Link href={`/course/${item.name}`}>
             <a>
               <img src={item.thumbnail} alt="img not found" />
             </a>
@@ -130,7 +130,7 @@ function CourseCard({ item }) {
         </div>
         <div   className="course__content">
           <h3 style={{height:'1.8rem', }} className="homee__title course-card-margin " title={item.name}>
-            <Link  href={`/course/${item.id}`}>
+            <Link  href={`/course/${item.name}`}>
               <a>{item.name}</a>
               {/* <a>{item.name.slice(0, 20) + "..."}</a> */}
             </Link>
@@ -140,7 +140,7 @@ function CourseCard({ item }) {
                                  <img src="assets/img/course/teacher/teacher-5.jpg" alt="img not found"/>
                               </div> */}
             <h6 className="course-card-mt">
-              <Link  href={`/course/${item.id}`}>
+              <Link  href={`/course/${item.name}`}>
                 <a>{item.description.slice(0, 141) + ".."}</a>
               </Link>
             </h6>
