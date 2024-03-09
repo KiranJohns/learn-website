@@ -103,7 +103,7 @@ const CompAssignCourse = () => {
         let newRes = [
           ...res[0].data.response,
           ...res[1].data.response.filter(
-            (item) => item?.course_count != 1
+            (item) =>item?.owner != user.id 
           ),
         ];
         let resArr = newRes?.reverse();

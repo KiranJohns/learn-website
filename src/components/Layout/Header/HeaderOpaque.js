@@ -11,6 +11,7 @@ import Dropdown from "react-bootstrap/Dropdown";
 import { FaArrowAltCircleLeft } from "react-icons/fa";
 
 const HeaderOpaque = (props) => {
+  const { pageTitle } = props;
   const [menuOpen, setMenuOpen] = useState(false);
   const [shopOpen, setShopOpen] = useState(false);
   const [searchProduct, setSearchProduct] = useState([]);
@@ -147,7 +148,7 @@ const HeaderOpaque = (props) => {
   return (
     <React.Fragment>
       <Head>
-        <title>Learn for care</title>
+        <title>{ pageTitle ? pageTitle : 'Learn For Care'}</title>
         <link
           href="https://fonts.googleapis.com/css2?family=Hind:wght@300;400;500;600;700&display=swap"
           rel="stylesheet"
