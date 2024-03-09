@@ -111,8 +111,8 @@ const CompAssignCourse = () => {
             (item) => item?.owner != user.id
           ),
         ];
-        resArr.sort(compareDates)
-        let resArr = newRes?.reverse();
+        newRes.sort(compareDates)
+        let resArr = newRes;
         // console.log(res[0].data.response, res[1].data.response);
         setRecords(resArr);
       })

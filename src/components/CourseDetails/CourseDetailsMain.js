@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { Component, useEffect, useState } from "react";
 import Cta from "../Home/CtaSection";
 import dynamic from "next/dynamic";
 const Tabs = dynamic(
@@ -32,6 +32,10 @@ function CourseDetailsMain() {
   const {
     query: { slug },
   } = useRouter();
+
+  // useEffect(() => {
+  //   "get-all-course"
+  // },[])
 
   function getCartItem() {
     makeRequest("GET", "/cart/get")
