@@ -6,6 +6,7 @@ import HeaderThree from '../components/Layout/Header/HeaderStyleThree';
 import Header from '../components/Layout/Header/Header';
 import HeaderOpaque from '../components/Layout/Header/HeaderOpaque';
 import NoSSR from 'react-no-ssr';
+import Head from "next/head";
 
 const CourseAll = () => {
   
@@ -13,7 +14,8 @@ const CourseAll = () => {
   return (
     <React.Fragment>
       <NoSSR>
-        <HeaderOpaque />
+        <HeaderOpaque pageTitle="All courses"/>
+        
       </NoSSR>
       <CourseAllMain />
       <Footer />

@@ -10,7 +10,7 @@ import fetchData, { getUserType } from "../../../axios";
 import Dropdown from "react-bootstrap/Dropdown";
 import { FaArrowAltCircleLeft } from "react-icons/fa";
 
-const HeaderOpaque = () => {
+const HeaderOpaque = (props) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [shopOpen, setShopOpen] = useState(false);
   const [searchProduct, setSearchProduct] = useState([]);
