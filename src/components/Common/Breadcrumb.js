@@ -9,7 +9,7 @@ const Breadcrumb = (props) => {
                <div className="row">
                   <div className="col-xxl-12">
                      <div className="page__title-wrapper mt-110">
-                        <h3 className="page__title">{ pageTitle ? pageTitle : 'Blog'}</h3>                         
+                        <h1 className="page__title">{ pageTitle ? pageTitle : 'Blog'}</h1>                         
                         <nav aria-label="breadcrumb">
                            {/* <ol className="breadcrumb">
                               <li className="breadcrumb-item"><Link href="/" as="/"><a>Home</a></Link></li>

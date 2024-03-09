@@ -13,7 +13,7 @@ class CourseAllMain extends Component {
 	            {/* breadcrumb-start */}
 				<Breadcrumb pageTitle="All courses"/>
 				{/* breadcrumb-end */}
-
+                
                 {/* course tab-start */}
 				<CourseGridAll/>
 				{/* course tab-end */}

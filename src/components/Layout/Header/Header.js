@@ -173,6 +173,17 @@ const Header = () => {
             type="image/<generated>"
             sizes="<generated>"
           />
+               <script async src="https://www.googletagmanager.com/gtag/js?id=G-TQH488CVJ5"></script>
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-TQH488CVJ5');
+          `,
+        }}
+      />
         </Head>
       
         <header>

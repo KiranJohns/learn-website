@@ -13,7 +13,7 @@ class ServiceBundle extends Component {
                <div className="row">
                   <div className="col-xxl-6 offset-xxl-3 col-xl-6 offset-xl-3">
                      <div className="section__title-wrapper section-padding mb-60 text-center">
-                        <h2 className="section__title">Course <span className="yellow-bg">bundles<img src="assets/img/shape/yellow-bg-2.png" alt="img not found" /></span> from Learn for Care</h2>
+                        <h1 className="section__title">Course <span className="yellow-bg">bundles<img src="assets/img/shape/yellow-bg-2.png" alt="img not found" /></span> from Learn for Care</h1>
                         {/* <p>You don't have to struggle alone, you've got our assistance and help.</p> */}
                      </div>
                   </div>

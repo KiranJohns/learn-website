@@ -263,7 +263,7 @@ const ManBundMatrix = () => {
               })}
             </Form.Select>
           </div>
-          <Table bordered variant="light" style={{ marginTop: "5rem" }}>
+          <Table bordered responsive variant="light" style={{ marginTop: "5rem" }}>
             <thead>
               <tr style={{ textAlign: "center" }}>
                 <th
