@@ -83,7 +83,7 @@ const ManagerAssignCourse = () => {
         let newRes = [
           ...res[0].data.response,
           ...res[1].data.response.filter((item) => item.owner != user.id),
-        ]
+        ];
         console.log(newRes);
         function compareDates(a, b) {
           var dateA = a.validity.split("/").reverse().join("/");

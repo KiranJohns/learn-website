@@ -108,7 +108,11 @@ const CompAssignCourse = () => {
         let newRes = [
           ...res[0].data.response,
           ...res[1].data.response.filter(
+<<<<<<< HEAD
             (item) => item?.owner != user.id
+=======
+            (item) =>item?.owner != user.id 
+>>>>>>> 038cdddcd92845b9b8deb9eff1014d51757563cb
           ),
         ];
         resArr.sort(compareDates)
