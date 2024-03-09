@@ -318,8 +318,8 @@ const IndCourse = () => {
               customStyles={customStyles}
               pagination
               persistTableHead={true}
-              defaultSortFieldId="val"
-              defaultSortAsc={false}
+              // defaultSortFieldId="val"
+              // defaultSortAsc={false}
             />
           </div>
           <div style={{ marginTop: "2rem" }}>
