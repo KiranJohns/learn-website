@@ -68,6 +68,13 @@ const ManAssignBund = () => {
 
   const makeRequest = fetchData();
   function getData() {
+    function compareDates(a, b) {
+      var dateA = new Date(a.validity.split("/").reverse().join("/"));
+      var dateB = new Date(b.validity.split("/").reverse().join("/"));
+      return dateA - dateB;
+    }
+    
+    // Sort the array of objects
     setPending(true);
     makeRequest("GET", "/info/get-purchased-bundles")
       .then((purchasedRes) => {
@@ -75,19 +82,12 @@ const ManAssignBund = () => {
           .then((res) => {
             setPending(false);
             console.log(...purchasedRes.data.response, ...res.data.response);
-            setRecords((prev) => {
-              return [
-                ...purchasedRes.data.response,
-                ...res.data.response.filter((item) => item.owner != user.id),
-              ];
-            });
-            console.log(
-              purchasedRes.data.response,
-              res.data.response.filter(
-                (item) => item.course_count >= 1 && item.owner != user.id
-              )
-            );
-            // setPending(false);
+            let data = [
+              ...purchasedRes.data.response,
+              ...res.data.response.filter((item) => item.owner != user.id),
+            ]
+            data.sort(compareDates);
+            setRecords(data.reverse());
           })
           .catch((err) => {
             console.log(err);

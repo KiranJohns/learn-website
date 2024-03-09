@@ -75,7 +75,7 @@ const ManageMyCourse = () => {
 
         let newRes = [
           ...assignedRes.data.response.filter(
-            (item) => item.owner == user.id && item.count >= 1
+            (item) => item.owner == user.id
           ),
           ...onGoingCourse.data.response,
         ];
@@ -90,7 +90,7 @@ const ManageMyCourse = () => {
         newRes.sort(compareDates);
         console.log(assignedRes.data.response, onGoingCourse.data.response);
 
-        setRecords(newRes);
+        setRecords(newRes.reverse());
         setFilterRecords(newRes);
         setPending(false);
       } catch (err) {
@@ -294,8 +294,6 @@ const ManageMyCourse = () => {
               customStyles={customStyles}
               pagination
               persistTableHead={true}
-              defaultSortFieldId="val"
-              defaultSortAsc={false}
             />
           </div>
 

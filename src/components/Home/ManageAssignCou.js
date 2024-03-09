@@ -85,7 +85,15 @@ const ManagerAssignCourse = () => {
           ...res[1].data.response.filter((item) => item.owner != user.id),
         ]
         console.log(newRes);
-        setRecords(newRes);
+        function compareDates(a, b) {
+          var dateA = new Date(a.validity.split("/").reverse().join("/"));
+          var dateB = new Date(b.validity.split("/").reverse().join("/"));
+          return dateA - dateB;
+        }
+        
+        // Sort the array of objects
+        newRes.sort(compareDates);
+        setRecords(newRes.reverse());
         setPending(false);
       })
       .catch((err) => {
