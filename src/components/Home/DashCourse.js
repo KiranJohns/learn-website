@@ -79,7 +79,7 @@ const DashCourse = () => {
       data.sort(compareDates);
       setFilterRecords(assignedCourses.data);
 
-      setRecords(data.reverse());
+      setRecords(data);
     } catch (error) {
       console.log(error);
     }
