@@ -81,8 +81,8 @@ const IndCourse = () => {
         // Sort the array of objects
         arr.sort(compareDates);
         console.log(res);
-        setRecords(arr.reverse());
-        setFilterRecords(arr.reverse());
+        setRecords(arr);
+        setFilterRecords(arr);
         setPending(false);
       });
     } catch (error) {

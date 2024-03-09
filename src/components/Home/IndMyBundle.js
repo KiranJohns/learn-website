@@ -265,8 +265,6 @@ const IndMyBundle = () => {
               customStyles={customStyles}
               pagination
               persistTableHead={true}
-              defaultSortFieldId="val"
-              defaultSortAsc={false}
             />
           </div>
 
