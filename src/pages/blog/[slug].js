@@ -5,16 +5,15 @@ import BlogDetailsMain from "../../components/BlogDetails/BlogDetailsMain";
 import Footer from "../../components/Layout/Footer/Footer";
 import HeaderOpaque from "../../components/Layout/Header/HeaderOpaque";
 import ShareButton from "react-share/lib/ShareButton";
-import NoSSR from 'react-no-ssr';
+import NoSSR from "react-no-ssr";
 import FooterPad from "../../components/Layout/Footer/FooterLess";
 import Cta from "../../components/Home/CtaSection";
 
 class BlogDetailss extends React.Component {
-
   static async getInitialProps({ query }) {
-    const {slug} = query;
-    return { slug }
-}
+    const { slug } = query;
+    return { slug };
+  }
 
   constructor(props) {
     super(props);
@@ -24,16 +23,15 @@ class BlogDetailss extends React.Component {
     return (
       <React.Fragment>
         <NoSSR>
-        <HeaderOpaque />
+          <HeaderOpaque />
         </NoSSR>
-        <main >
+        <main>
           {/* Blog Main */}
           <BlogDetailsMain slug={this.props.slug} />
           {/* Blog Main End */}
-        
         </main>
-      
-        <Footer/>
+
+        <Footer />
       </React.Fragment>
     );
   }
@@ -41,7 +39,7 @@ class BlogDetailss extends React.Component {
 
 export default BlogDetailss;
 
-BlogDetailss.getInitialProps = async ({query}) => {
-  const {slug} = query;
-  return {slug}
-}
+BlogDetailss.getInitialProps = async ({ query }) => {
+  const { slug } = query;
+  return { slug };
+};

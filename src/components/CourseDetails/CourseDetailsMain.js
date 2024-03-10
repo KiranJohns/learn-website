@@ -86,7 +86,6 @@ function CourseDetailsMain() {
 
   const makeRequest = fetchData();
   const [course, setCourse] = useState(() => {
-    // log
     makeRequest("GET", `/course/get-single-course-by-id/${slug.replace("_"," ")}`)
       .then((res) => {
         let course = res.data.response[0];
