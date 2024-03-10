@@ -281,8 +281,8 @@ const NewExam = () => {
                   <form action="button">
                     {item.options.map((option, i) => (
                       <div className="row">
-                        <div className="col-sm-12 col-md-6">
-                          <span style={{ display: "flex", textWrap: "wrap" }}>
+                        <div className="col-sm-12 col-md-8 col-lg-12">
+                          <span className="exam-opt-wrap" style={{ display: "flex" }}>
                             {" "}
                             <Form.Check
                               type="radio"

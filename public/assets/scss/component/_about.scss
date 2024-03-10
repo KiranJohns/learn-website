@@ -919,3 +919,15 @@ margin: 0 auto;
      font-size: 20px;
        }
      }
+
+
+     .exam-opt-wrap{
+      text-wrap: nowrap;
+     }
+
+     @media screen and (max-width:995px) {
+      .exam-opt-wrap{
+        text-wrap: wrap;
+       }
+  
+     }

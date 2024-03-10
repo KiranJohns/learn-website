@@ -14,7 +14,7 @@ class BundleAll extends React.Component {
         return (
             <React.Fragment>
             <NoSSR>
-            <HeaderOpaque/>
+            <HeaderOpaque pageTitle="CPD approved, Healthcare courses, mandatory training, buccal, Sova"/>
             </NoSSR>
             <CourseBundle/>
             <Footer />

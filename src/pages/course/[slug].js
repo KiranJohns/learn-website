@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import  { Component } from 'react';
 import Footer from "../../components/Layout/Footer/Footer";
 import CourseDetailsMain from "../../components/CourseDetails/CourseDetailsMain";
 import HeaderFour from "../../components/Layout/Header/HeaderStyleFour";
@@ -48,12 +49,13 @@ const CourseDetails = () => {
     //   return false;
     // }
   });
+  console.log(course);
   return (
     <>
       {course.length !== 0 ? (
         <>
           <NoSSR>
-            <Header />
+            <Header pageTitle={slug.replace("_"," ")}/>
           </NoSSR>
           <CourseDetailsMain />
         </>

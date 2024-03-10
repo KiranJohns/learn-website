@@ -112,7 +112,7 @@ const CompanyBundle = () => {
         // Sort the array of objects
         newRes.sort(compareDates);
 
-        setRecords(newRes.reverse());
+        setRecords(newRes);
         // setFilterRecords(assignedRes.data); // Assuming this is correct, please double-check
         setPending(false);
       } catch (err) {

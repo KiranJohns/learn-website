@@ -14,7 +14,7 @@ const CourseAll = () => {
   return (
     <React.Fragment>
       <NoSSR>
-        <HeaderOpaque pageTitle="All courses"/>
+        <HeaderOpaque pageTitle="Care courses online, Elderly care training, wrap, Pediatric, Sova"/>
         
       </NoSSR>
       <CourseAllMain />

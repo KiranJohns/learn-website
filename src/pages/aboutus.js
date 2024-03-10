@@ -16,7 +16,7 @@ class AboutPage extends React.Component {
         return (
             <React.Fragment>
             <NoSSR>
-            <HeaderOpaque/>
+            <HeaderOpaque pageTitle="Dementia care courses,online care course, Care certificate courses"/>
             </NoSSR>
             <AboutMain />
             <Footer />

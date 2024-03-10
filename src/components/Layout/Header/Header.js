@@ -14,8 +14,11 @@ import fetchData, { getUserType } from "../../../axios";
 import store from "../../../redux/store";
 import { IoArrowBackOutline } from "react-icons/io5";
 import { FaArrowAltCircleLeft } from "react-icons/fa";
+import { seoData } from "../../../sample-data/descripton";
 
-const Header = () => {
+const Header = (props) => {
+  const { pageTitle } = props;
+  
   const [menuOpen, setMenuOpen] = useState(false);
   const [shopOpen, setShopOpen] = useState(false);
   // const [paths, setPaths] = useState([
@@ -37,6 +40,12 @@ const Header = () => {
   const [searchString, setSearchString] = useState("");
   const [course, setCourse] = useState([]);
   let logedIn = null;
+  
+
+
+  let data = seoData.find(item => item.name.toLowerCase() == pageTitle.toLowerCase())
+  console.log(pageTitle, data);
+
   if (typeof window == "object") {
     logedIn = localStorage.getItem("learnforcare_access");
   }
@@ -162,11 +171,12 @@ const Header = () => {
     <NoSSR>
       <React.Fragment>
         <Head>
-          <title>Learn for care</title>
+        <title>{ pageTitle ? data?.head : 'Learn For Care'}</title>
           <link
             href="https://fonts.googleapis.com/css2?family=Hind:wght@300;400;500;600;700&display=swap"
             rel="stylesheet"
           />
+          <meta name="description" content={data?.description}></meta>
           <link
             rel="icon"
             href="/assets/img/favicon.png"
