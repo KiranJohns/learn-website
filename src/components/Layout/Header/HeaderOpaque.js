@@ -33,7 +33,7 @@ const HeaderOpaque = (props) => {
     location.pathname = "/";
   };
 
-  console.log(pageTitle);
+  console.log(props?.pageTitle, props?.descr);
 
   function handleSearch(e) {
     e.persist();
@@ -150,11 +150,12 @@ const HeaderOpaque = (props) => {
   return (
     <React.Fragment>
       <Head>
-        <title>{ pageTitle ? pageTitle : 'Learn For Care'}</title>
+        <title>{ props?.pageTitle ? props?.pageTitle : "Learn For Care"}</title>
         <link
           href="https://fonts.googleapis.com/css2?family=Hind:wght@300;400;500;600;700&display=swap"
           rel="stylesheet"
         />
+          <meta name="description" content={props?.descr ? props?.descr: "Learn for Care CQC Complaint online care courses wrap training buccal"}></meta>
         <link
           rel="icon"
           href="assets/img/favicon.png"

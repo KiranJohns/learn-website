@@ -23,7 +23,7 @@ class BlogDetailss extends React.Component {
     return (
       <React.Fragment>
         <NoSSR>
-          <HeaderOpaque />
+          <HeaderOpaque pageTitle="Care course, online care course, Childcare, Mental health care courses" descr="Mental health care courses, Healthcare courses, Care certificate courses, online care course, Dementia care, bundle courses, company purchase, blog on care"/>
         </NoSSR>
         <main>
           {/* Blog Main */}

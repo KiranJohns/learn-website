@@ -44,7 +44,7 @@ const Header = (props) => {
 
 
   let data = seoData.find(item => item?.name?.toLowerCase() == pageTitle?.toLowerCase())
-  console.log(pageTitle, data);
+  console.log(props?.pageTitle, props?.descr);
 
   if (typeof window == "object") {
     logedIn = localStorage.getItem("learnforcare_access");
@@ -171,12 +171,12 @@ const Header = (props) => {
     <NoSSR>
       <React.Fragment>
         <Head>
-        <title>{ pageTitle ? data?.head : 'Learn For Care'}</title>
+        <title>{ data?.head ? data?.head : props?.pageTitle}</title>
           <link
             href="https://fonts.googleapis.com/css2?family=Hind:wght@300;400;500;600;700&display=swap"
             rel="stylesheet"
           />
-          <meta name="description" content={data?.description}></meta>
+          <meta name="description" content={data?.description ? data?.description: props?.descr}></meta>
           <link
             rel="icon"
             href="/assets/img/favicon.png"

@@ -15,7 +15,7 @@ class SpecialBundle extends React.Component {
         return (
             <React.Fragment>
             <NoSSR>
-            <HeaderOpaque  pageTitle="Specialised CareBundle, Mental health care, Companies of care"/>
+            <HeaderOpaque  pageTitle="Specialised CareBundle, Mental health care, Companies of care" descr="Specialised Care Bundle, health care, child care, social care, companies for care course, care bundle, care and treatment, elderly care, mental health"/>
             </NoSSR>
             <SpecialisedBundle/>
             <Footer />

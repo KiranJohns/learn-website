@@ -19,7 +19,7 @@ class Index extends React.Component {
         return (
             <React.Fragment>
             <NoSSR>
-            <Header pageTitle="Learn for Care CQC Complaint online care courses wrap training buccal"/>
+            <Header pageTitle="Learn for Care CQC Complaint online care courses wrap training buccal" descr="CQC Complaint Care courses. CPD Courses Paediatric First Aid, Wellness Recovery Action Plan (WRAP), Mental Capacity Act and DoLS, Epilepsy and Buccal Midazolam"/>
             </NoSSR>        
             <HomeMain />
             <Footer />

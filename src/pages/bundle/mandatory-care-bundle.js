@@ -15,7 +15,7 @@ class MandateBundle extends React.Component {
         return (
             <React.Fragment>
             <NoSSR>
-            <HeaderOpaque pageTitle="Mandatory Care Bundle, Mental Capacity Act & DoLS,Training Course"/>
+            <HeaderOpaque pageTitle="Mandatory Care Bundle, Mental Capacity Act & DoLS,Training Course" descr="Mandatory Care Bundle, care certificate bundles, Health and Safety, Safeguarding Children, Care Certificate, mandatory courses, training courses, Role in Care"/>
             </NoSSR>
             <MandatoryBundle/>
             <Footer />
