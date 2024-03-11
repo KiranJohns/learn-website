@@ -43,7 +43,7 @@ const Header = (props) => {
   
 
 
-  let data = seoData.find(item => item.name.toLowerCase() == pageTitle.toLowerCase())
+  let data = seoData.find(item => item?.name?.toLowerCase() == pageTitle?.toLowerCase())
   console.log(pageTitle, data);
 
   if (typeof window == "object") {
