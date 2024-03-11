@@ -44,7 +44,6 @@ const Header = (props) => {
 
 
   let data = seoData.find(item => item?.name?.toLowerCase() == pageTitle?.toLowerCase())
-  console.log(data?.head, data?.description);
 
   if (typeof window == "object") {
     logedIn = localStorage.getItem("learnforcare_access");
@@ -68,7 +67,6 @@ const Header = (props) => {
       let bundlesCart = [];
       let localCart =
         JSON.parse(localStorage.getItem("learnfrocarecart")) || [];
-      console.log(localCart);
       if (localCart) {
         localCart?.forEach((item) => {
           if (item.item_type == "course") {
@@ -78,7 +76,6 @@ const Header = (props) => {
           }
         });
 
-        console.log(courseCart, bundlesCart);
 
         const courseData = new FormData();
         courseData.append("course", JSON.stringify(courseCart));
@@ -95,10 +92,8 @@ const Header = (props) => {
           .then((res) => {
             getCartItem();
             localStorage.removeItem("learnfrocarecart");
-            console.log(res);
           })
           .catch((err) => {
-            console.log(err);
           });
       }
     }
@@ -122,7 +117,6 @@ const Header = (props) => {
             type: "SET_CART",
           });
         }
-        console.log(err);
       });
   }
   useEffect(() => {
@@ -136,7 +130,6 @@ const Header = (props) => {
         setCourse(res.data.response);
       })
       .catch((err) => {
-        console.log(err);
       });
   }
 

@@ -113,7 +113,6 @@ function CourseSidebar({ addToCart }) {
     makeRequest("GET", `/course/get-single-course-by-id/${slug.replace("_"," ")}`)
       .then((res) => {
         setCourse(res.data.response[0]);
-        console.log(res.data.response[0]);
       })
       .catch((err) => {
         console.log(err);

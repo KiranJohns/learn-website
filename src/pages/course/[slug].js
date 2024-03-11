@@ -35,21 +35,26 @@ const CourseDetails = () => {
   const {
     query: { slug },
   } = useRouter();
-  console.log("slug ", slug);
   const makeRequest = fetchData();
   const [course, setCourse] = useState(null);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
+    console.log('slug ',slug.replace("_", " "));
+    let name = slug.split("_").join(" ")
+    console.log('name ',name);
     setLoading(true);
     makeRequest(
       "GET",
-      `/course/get-single-course-by-id/${slug.replace("_", " ")}`
+      `/course/get-single-course-by-id/${name}`
     )
       .then((res) => {
+        console.log('res ',res.data.response);
         setCourse(res.data.response);
         setLoading(false);
       })
       .catch((err) => {
+        console.log('err ');
+        console.log(err);
         setCourse([]);
         setLoading(false);
       });
@@ -65,7 +70,7 @@ const CourseDetails = () => {
       ) : (
         <>
         <NoSSR>
-          <Header pageTitle={slug.replace("_", " ")} />
+          <Header pageTitle={slug.split("_").join(" ")} />
         </NoSSR>
         <CourseDetailsMain />
       </>
@@ -84,7 +89,7 @@ const CourseDetails = () => {
 // const makeRequest = fetchData();
 
 // let res = await axios.get(
-//   `/course/get-single-course-by-id/${slug.replace("_", " ")}`
+//   `/course/get-single-course-by-id/${slug.split("_").join(" ")} />)}`
 // );
 // let course = res?.data?.response[0];
 

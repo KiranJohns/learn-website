@@ -86,7 +86,7 @@ function CourseDetailsMain() {
 
   const makeRequest = fetchData();
   const [course, setCourse] = useState(() => {
-    makeRequest("GET", `/course/get-single-course-by-id/${slug.replace("_"," ")}`)
+    makeRequest("GET", `/course/get-single-course-by-id/${slug.split("_").join(" ")}`)
       .then((res) => {
         let course = res.data.response[0];
         course.aims = course.aims.filter((item) => item != "");
@@ -99,12 +99,10 @@ function CourseDetailsMain() {
         course.what_you_will_learn_point =
           course.what_you_will_learn_point.filter((item) => item != "");
         setCourse(course);
-        console.log(res.data.response[0]);
       })
       .catch((err) => {
         console.log(err);
       });
-    return products.find((item) => item.id == slug) || {};
   });
 
   return (
