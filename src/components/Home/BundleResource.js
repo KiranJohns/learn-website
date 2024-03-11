@@ -111,6 +111,7 @@ const BundleResource = () => {
               config={{ file: { attributes: { controlsList: "nodownload" } } }}
               className="course-player"
               controls
+              controlsList="nodownload"
               src={course?.video}
             ></video>
           </div>

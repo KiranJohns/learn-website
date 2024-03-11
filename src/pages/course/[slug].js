@@ -8,6 +8,7 @@ import { useRouter } from "next/router";
 import NoSSR from "react-no-ssr";
 import fetchData from "../../axios";
 import axios from "axios";
+import ErrorMain from "../../components/Error/ErrorMain";
 
 // class CourseDetails extends React.Component {
 //   static getInitialProps({ store }) {}
@@ -56,15 +57,18 @@ const CourseDetails = () => {
   console.log("course ", course);
   return (
     <>
-      {!loading && course?.length !== 0 ? (
+      {!loading && course?.length == 0 ? (
         <>
-          <NoSSR>
-            <Header pageTitle={slug.replace("_", " ")} />
-          </NoSSR>
-          <CourseDetailsMain />
+        <ErrorMain/>
         </>
+    
       ) : (
-        "not valid name"
+        <>
+        <NoSSR>
+          <Header pageTitle={slug.replace("_", " ")} />
+        </NoSSR>
+        <CourseDetailsMain />
+      </>
       )}
     </>
   );

@@ -34,6 +34,9 @@ const coursepage = () => {
 
   // }, []);
 
+  history.pushState(null, null, 'no-back-course');
+
+
   useEffect(() => {
     if (!routes.includes(logedIn)) {
       router.push("/sign-in");
