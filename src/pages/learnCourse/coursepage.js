@@ -34,7 +34,7 @@ const coursepage = () => {
 
   // }, []);
 
-  history.pushState(null, null, 'no-back-course');
+  // history.pushState(null, null, 'no-back-course');
 
 
   useEffect(() => {

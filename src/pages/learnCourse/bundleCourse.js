@@ -19,7 +19,7 @@ import DashHeader from "../../components/Layout/Header/DasnboardHeader";
 
 const bundlecourse = () => {
 
-  history.pushState(null, null, 'no-back-course');
+  // history.pushState(null, null, 'no-back-course');
   
   // const [logedIn, setlogedIn] = useState(() => {
   //     return getUserType();
