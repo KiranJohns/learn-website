@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import  { Component } from 'react';
+import React, { useEffect, useState } from "react";
+import { Component } from "react";
 import Footer from "../../components/Layout/Footer/Footer";
 import CourseDetailsMain from "../../components/CourseDetails/CourseDetailsMain";
 import HeaderFour from "../../components/Layout/Header/HeaderStyleFour";
@@ -36,26 +36,30 @@ const CourseDetails = () => {
   } = useRouter();
   console.log("slug ", slug);
   const makeRequest = fetchData();
-  const [course, setCourse] = useState(async () => {
-    let res = await makeRequest(
+  const [course, setCourse] = useState(null);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    setLoading(true);
+    makeRequest(
       "GET",
       `/course/get-single-course-by-id/${slug.replace("_", " ")}`
-    );
-    return res?.data?.response
-    // console.log("res ", res.data.response.length >= 1);
-    // if (res.data.response.length >= 1) {
-    //   return true;
-    // } else {
-    //   return false;
-    // }
-  });
-  console.log(course);
+    )
+      .then((res) => {
+        setCourse(res.data.response);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setCourse([]);
+        setLoading(false);
+      });
+  }, []);
+  console.log("course ", course);
   return (
     <>
-      {course.length !== 0 ? (
+      {!loading && course?.length !== 0 ? (
         <>
           <NoSSR>
-            <Header pageTitle={slug.replace("_"," ")}/>
+            <Header pageTitle={slug.replace("_", " ")} />
           </NoSSR>
           <CourseDetailsMain />
         </>
