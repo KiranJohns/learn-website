@@ -62,7 +62,7 @@ const IndCAvail = () => {
       let arr = [...res[0].data.response];
       arr.sort(compareDates)
       setRecords(() => {
-        return arr.reverse();
+        return arr;
       });
       setPending(false);
     });

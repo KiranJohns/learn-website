@@ -56,7 +56,7 @@ const IndPurBundle = () => {
         console.log(res);
         let data = res.data.response;
         data.sort(compareDates);
-        setRecords(data.reverse());
+        setRecords(data);
         setFilterRecords(res.data);
         setPending(false);
       })
