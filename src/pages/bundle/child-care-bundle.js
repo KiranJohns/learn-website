@@ -15,7 +15,7 @@ class ChildBundle extends React.Component {
         return (
             <React.Fragment>
             <NoSSR>
-            <HeaderOpaque/>
+            <HeaderOpaque pageTitle="Child Care Bundle, pediatric care, safeguarding children training"/>
             </NoSSR>
             <ChildCBundle/>
             <Footer />

@@ -33,6 +33,8 @@ const HeaderOpaque = (props) => {
     location.pathname = "/";
   };
 
+  console.log(pageTitle);
+
   function handleSearch(e) {
     e.persist();
     setSearchString(() => e.target?.value);

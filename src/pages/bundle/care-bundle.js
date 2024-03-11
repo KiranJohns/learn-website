@@ -15,7 +15,7 @@ class CareBundle extends React.Component {
         return (
             <React.Fragment>
             <NoSSR>
-            <HeaderOpaque/>
+            <HeaderOpaque pageTitle="Care Bundle, Care course training, CPD approved courses"/>
             </NoSSR>
             <CourseCareBundle/>
             <Footer />

@@ -15,7 +15,7 @@ class RecoveryBundle extends React.Component {
         return (
             <React.Fragment>
             <NoSSR>
-            <HeaderOpaque/>
+            <HeaderOpaque pageTitle="Recovery Care Bundle, WRAP training, Care certificate course"/>
             </NoSSR>
             <RecoverBundle/>
             <Footer />
