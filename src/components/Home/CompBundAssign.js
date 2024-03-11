@@ -113,7 +113,7 @@ const CompAssignBund = () => {
           newRes.sort(compareDates);
         // console.log(res[0].data.response,
         //   res[1].data.response);
-        setRecords(newRes.reduce());
+        setRecords(newRes);
         setPending(false);
       })
       .catch((err) => {
