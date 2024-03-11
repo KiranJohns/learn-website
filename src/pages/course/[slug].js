@@ -39,41 +39,39 @@ const CourseDetails = () => {
   const [course, setCourse] = useState(null);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    console.log('slug ',slug.replace("_", " "));
-    let name = slug.split("_").join(" ")
-    console.log('name ',name);
+    console.log("slug ", slug.replace("_", " "));
+    let name = slug.split("_").join(" ");
+    console.log("name ", name);
     setLoading(true);
-    makeRequest(
-      "GET",
-      `/course/get-single-course-by-id/${name}`
-    )
+    makeRequest("GET", `/course/get-single-course-by-id/${name}`)
       .then((res) => {
-        console.log('res ',res.data.response);
-        setCourse(res.data.response);
+        console.log("res ", res.data.response);
+        let state = res.data.response.length <= 0 ? false : true;
+        console.log("state ", state);
+        setCourse(state);
         setLoading(false);
       })
       .catch((err) => {
-        console.log('err ');
+        console.log("err ");
         console.log(err);
-        setCourse([]);
+        setCourse(false);
         setLoading(false);
       });
   }, []);
   console.log("course ", course);
   return (
     <>
-      {!loading && course?.length == 0 ? (
+      {!loading && !course ? (
         <>
-        <ErrorMain/>
+          <ErrorMain />
         </>
-    
       ) : (
         <>
-        <NoSSR>
-          <Header pageTitle={slug.split("_").join(" ")} />
-        </NoSSR>
-        <CourseDetailsMain />
-      </>
+          <NoSSR>
+            <Header pageTitle={slug.split("_").join(" ")} />
+          </NoSSR>
+          <CourseDetailsMain />
+        </>
       )}
     </>
   );

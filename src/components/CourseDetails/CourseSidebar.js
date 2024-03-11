@@ -110,7 +110,7 @@ function CourseSidebar({ addToCart }) {
       });
   }
   const [course, setCourse] = useState(() => {
-    makeRequest("GET", `/course/get-single-course-by-id/${slug.replace("_"," ")}`)
+    makeRequest("GET", `/course/get-single-course-by-id/${slug.split("_").join(" ")}`)
       .then((res) => {
         setCourse(res.data.response[0]);
       })
