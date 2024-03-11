@@ -44,7 +44,7 @@ const Header = (props) => {
 
 
   let data = seoData.find(item => item?.name?.toLowerCase() == pageTitle?.toLowerCase())
-  console.log(props?.pageTitle, props?.descr);
+  console.log(data?.head, data?.description);
 
   if (typeof window == "object") {
     logedIn = localStorage.getItem("learnforcare_access");
