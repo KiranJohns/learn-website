@@ -19,25 +19,26 @@ function SingleBundleCard({ item }) {
     "bundle-Online": "course-online",
   });
 
-  function goTo(route) {
+  function navigate(route) {
+    console.log(route);
     switch (route) {
-      case "care-bundle":
-        location.href = "/course-grid";
+      case "/care-certificate-courses":
+        location.href = "/bundle/care-bundle";
         break;
-      case "mandatory-bundle":
-        location.href = "/course-mandatory";
+      case "/mandatory-care-courses":
+        location.href = "/bundle/mandatory-care-bundle";
         break;
-      case "special-bundle":
-        location.href = "/course-specialised";
+      case "/specialised-care-courses":
+        location.href = "/bundle/specialised-care-bundle";
         break;
-      case "recovery-bundle":
-        location.href = "/course-recovery";
+      case "/recovery-care-courses":
+        location.href = "/bundle/recovery-care-bundle";
         break;
-      case "child-bundle":
-        location.href = "/course-child";
+      case "/child-care-courses":
+        location.href = "/bundle/child-care-bundle";
         break;
-      case "bundle-Online":
-        location.href = "/online-care-bundle";
+      case "/bundle-Online":
+        location.href = "/bundle/online-care-bundle";
         break;
       default:
         break;
@@ -158,7 +159,7 @@ function SingleBundleCard({ item }) {
         <div className="course__thumb w-img p-relative fix">
           <span
             onClick={() => {
-              window.location.reload()
+              navigate(location.pathname)
             }}
           >
             <a>
@@ -174,7 +175,7 @@ function SingleBundleCard({ item }) {
         <div className="course__content">
           <h3 style={{cursor: 'pointer'}} className="homee__title" title={item.name}>
             <span onClick={() => {
-              window.location.reload()
+              navigate(location.pathname)
             }}>
               <a>{item.name}</a>
               {/* <a>{item.name.slice(0, 20) + "..."}</a> */}
@@ -187,7 +188,7 @@ function SingleBundleCard({ item }) {
             <h6>
               <span style={{cursor: 'pointer'}}
                 onClick={() => {
-                  window.location.reload()
+                  navigate(location.pathname)
                 }}
               >
                 <a>{item?.description?.slice(0, 150) + "..."}</a>
@@ -229,7 +230,6 @@ function SingleBundleCard({ item }) {
             <button
               className="btn btn-primary btn-sm mb-2 d-flex justify-content-between align-items-center"
               type="button"
-              // class=""
               style={{ outline: "none", border: "none" }}
               onClick={() => handleClick()}
             >
