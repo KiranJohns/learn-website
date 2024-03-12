@@ -99,12 +99,9 @@ const CompAssignCourse = () => {
     let purchasedRes = await makeRequest("GET", "/course/get-bought-course");
     Promise.all([purchasedRes, assignedRes])
       .then((res) => {
-        console.log(pending);
+        console.log(res[0].data.response,res[1].data.response);
         setPending(false);
-        // console.log(res[0].data.response);
         console.log('response ',res[1].data.response);
-        // let today = res[1].data.response.date.split("-");
-        // setDate(`${today[1]}-${today[0]}-${today[2]}`);
         let newRes = [
           ...res[0].data.response,
           ...res[1].data.response.filter(
@@ -113,7 +110,6 @@ const CompAssignCourse = () => {
         ];
         newRes.sort(compareDates)
         let resArr = newRes;
-        // console.log(res[0].data.response, res[1].data.response);
         setRecords(resArr);
       })
       .catch((err) => {
