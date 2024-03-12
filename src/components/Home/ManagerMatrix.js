@@ -140,12 +140,12 @@ const ManCoursMatrix = () => {
   }, [individual]);
   return (
     <div className="row p-3">
-      <div style={{ position: "relative" }} className="dash-neww ">
+      <div style={{ position: "relative" }} className="dash-neww bg-white">
         <span
           style={{
             position: "absolute",
-            marginTop: "1.3rem",
-            marginLeft: ".8rem",
+            marginTop: ".2rem",
+           
             zIndex: "99",
           }}
           className="matrix-man-back"
@@ -202,8 +202,10 @@ const ManCoursMatrix = () => {
           </span>
         </div>
         <div className="col-12 p-2 m-2">
-          <div className="d-flex justify-content-center my-2 ">
-            <h4>Course Matrix</h4>
+        <div style={{ position: "relative" }}>
+            <div className="matrix-head my-2 ">
+              <h4 style={{ fontSize: "1.5rem" }}>Course Matrix</h4>
+            </div>
           </div>
           <div
             style={{ position: "absolute", top: "0", right: "0", margin: "1rem" }}
