@@ -70,7 +70,7 @@ class IndMonthRep extends Component {
         });
         this.setState({
           records: res.data.response.reverse(),
-          newRecords: arr,
+          newRecords: arr.reverse(),
           filterRecords: res.data,
           pending: false,
         });
