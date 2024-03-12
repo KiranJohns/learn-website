@@ -67,13 +67,17 @@ const ManCoursMatrix = () => {
           let allCourses = [...assigned, ...enrolled];
 
           allCourses.forEach((item) => {
-            if (Number(item.progress) >= 80) {
-              console.log('green');
-              item["color"] = "green";
-            } else {
-              console.log('red');
+            // console.log(item.course_name, item.progress);
+            console.log(item);
+            if (Number(item.progress) <= 0) {
               item["color"] = "red";
             }
+            if (Number(item.progress) > 0) {
+              item["color"] = "yellow";
+            }
+            if (Number(item.progress) >= 80) {
+              item["color"] = "green";
+            } 
           });
 
           let CNames = allCourses.map((course) => {
@@ -100,7 +104,6 @@ const ManCoursMatrix = () => {
             }
           });
 
-          // item["course"] = courses;
           return { ...item, course: allCourses };
         });
 
@@ -121,6 +124,7 @@ const ManCoursMatrix = () => {
           });
           item["course"] = temp;
         });
+        console.log('newUsers ',newUsers);
         setCourseName(course_name);
         setUserName(user_name);
         setCourse(newUsers);
