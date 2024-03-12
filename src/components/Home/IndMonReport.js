@@ -284,7 +284,7 @@ class IndMonthRep extends Component {
                               fontWeight: "500",
                             }}
                           >
-                            Amount: {"£"}{item.total_amount}
+                            Amount: {"£"}{Number(item.total_amount).toFixed(2)}
                           </p>
                         </div>
                       </div>

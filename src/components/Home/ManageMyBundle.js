@@ -49,7 +49,7 @@ const ManagerBundle = () => {
       );
       let resAssigned = await makeRequest("GET", "/info/get-assigned-bundle");
       let onGoingBundles = onGoingRes.data.response;
-      console.log("onGoingBundles1 ", onGoingBundles);
+     
       onGoingBundles = onGoingBundles.map((item) => {
         const { all_courses, finished_course, on_going_course } = item;
         let pers1 =
@@ -72,6 +72,7 @@ const ManagerBundle = () => {
         ),
         ...onGoingBundles,
       ];
+      console.log("sdsd "+newRes);
 
       function compareDates(a, b) {
         var dateA = a.validity.split("/").reverse().join("/");
