@@ -186,7 +186,7 @@ class BlogDetailsMain extends Component {
                   ))}
               </div>
             
-              <div className="col-xl-3 col-lg-4 ">
+              <div className="col-xl-3 col-lg-4 blog-ml">
                 <div className="blog-box-shadow p-2">
                   <div
                     style={{ display: "flex", justifyContent: "center" }}
