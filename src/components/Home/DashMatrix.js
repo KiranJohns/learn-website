@@ -67,8 +67,6 @@ const ManCoursMatrix = () => {
           let allCourses = [...assigned, ...enrolled];
 
           allCourses.forEach((item) => {
-            // console.log(item.course_name, item.progress);
-            console.log(item);
             if (Number(item.progress) <= 0) {
               item["color"] = "red";
             }

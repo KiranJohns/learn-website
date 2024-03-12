@@ -71,15 +71,12 @@ const ManCoursMatrix = () => {
 
           allCourses.forEach((item) => {
             if(Number(item.progress) > 0) {
-              console.log('yellow');
               item["color"] = "yellow";
             }
             if (Number(item.progress) >= 80) {
-              console.log('green');
               item["color"] = "green";
             } 
             if(Number(item.progress) <= 0) {
-              console.log('red');
               item["color"] = "red";
             }
           });
