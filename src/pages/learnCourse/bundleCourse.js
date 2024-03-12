@@ -10,72 +10,79 @@ import NoSSR from "react-no-ssr";
 import ManagerBar from "../../components/Sidebar/ManagerBar";
 import DashboardBar from "../../components/Sidebar/DashboardBar";
 import NewInDash from "../../components/Sidebar/BarDummy";
-import { getToken, getUserType } from "../../axios";
+import fetchData, { getToken, getUserType } from "../../axios";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import DashHeader from "../../components/Layout/Header/DasnboardHeader";
-
+import ErrorMain from "../../components/Error/ErrorMain";
 
 const bundlecourse = () => {
+  const router = useRouter();
+  const makeRequest = fetchData();
 
-  // history.pushState(null, null, 'no-back-course');
-  
-  // const [logedIn, setlogedIn] = useState(() => {
-  //     return getUserType();
-  //   });
-  //   let routes = ["individual"]
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  //   const router = useRouter();
+  useEffect(() => {
+    setLoading(true);
+    const form = new FormData();
+    form.append("course_id", router.query.course_id);
+    form.append("bundleId", router.query.bundleId);
+    makeRequest("POST", `/bundle/get-course/`, form)
+      .then((res) => {
+        if (res.data.response.length <= 0) {
+          setData(false);
+        } else {
+          setData(true);
+        }
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        setData(false);
+        setLoading(false);
+      });
+  }, []);
 
-  //   useEffect(() => {
-  //     if (!routes.includes(logedIn)) {
-  //       router.push("/sign-in");
-  //     }
-  //   }, []);
-  // useEffect(() => {
-
-  //   document.onkeydown = () => {
-  //     return false;
-  //   }
-
-  //   window.addEventListener("contextmenu", e => e.preventDefault());
-
-  // }, []);
   return (
     <>
-      {/* {routes.includes(logedIn) && ( */}
-      <React.Fragment>
-        <main
-          className="p-1"
-          style={{
-            backgroundImage: "linear-gradient(to right, #EDEEF3, #EDEEF3)",
-          }}
-        >
-          <NoSSR>
-            <DashHeader/>
-          </NoSSR>
-          <div
-            className="container-fluid"
-            style={{ borderRadius: "22px", marginTop: "120px" }}
+      {!loading && (
+        <React.Fragment>
+          <main
+            className="p-1"
+            style={{
+              backgroundImage: "linear-gradient(to right, #EDEEF3, #EDEEF3)",
+            }}
           >
-            <div className="row justify-content-md-center">
+            <NoSSR>
+              <DashHeader />
+            </NoSSR>
+            {data ? (
               <div
-                className="col-sm-12 col-md-12 col-lg-2 p-0 sidebar-hidden"
-                style={{ backgroundColor: "#212450" }}
+                className="container-fluid"
+                style={{ borderRadius: "22px", marginTop: "120px" }}
               >
-                {getUserType() == "individual" && <NewInDash />}
-                {getUserType() == "manager" && <ManagerBar />}
-                {getUserType() == "company" && <DashboardBar />}
+                <div className="row justify-content-md-center">
+                  <div
+                    className="col-sm-12 col-md-12 col-lg-2 p-0 sidebar-hidden"
+                    style={{ backgroundColor: "#212450" }}
+                  >
+                    {getUserType() == "individual" && <NewInDash />}
+                    {getUserType() == "manager" && <ManagerBar />}
+                    {getUserType() == "company" && <DashboardBar />}
+                  </div>
+                  <div className="col-sm col-md-12 col-lg-11 col-xl-9 bg-white">
+                    <BundleResource />
+                  </div>
+                </div>
               </div>
-              <div className="col-sm col-md-12 col-lg-11 col-xl-9 bg-white">
-                <BundleResource />
-              </div>
-            </div>
-          </div>
-        </main>
-      </React.Fragment>
-      {/* )}  */}
+            ) : (
+              <ErrorMain />
+            )}
+          </main>
+        </React.Fragment>
+      )}
     </>
   );
 };
