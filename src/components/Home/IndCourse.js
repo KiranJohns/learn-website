@@ -171,10 +171,7 @@ const IndCourse = () => {
                       >
                         <a
                           style={{
-                            width: "7rem",
-                            height: "35px",
-                            marginTop: "1rem",
-                            marginRight: ".4rem",
+                            width: "7rem"
                           }}
                           className="btn btn-success"
                         >
@@ -189,10 +186,7 @@ const IndCourse = () => {
                       >
                         <a
                           style={{
-                            width: "7rem",
-                            height: "35px",
-                            marginTop: "1rem",
-                            marginRight: ".4rem",
+                            width: "7rem"
                           }}
                           className="btn btn-success"
                         >
@@ -413,10 +407,9 @@ const IndCourse = () => {
                                         >
                                           <a
                                             style={{
-                                              width: "7rem",
                                               height: "35px",
-                                              marginTop: "1rem",
-                                              marginRight: ".4rem",
+                                        marginTop: "1rem",
+                                        marginRight: ".4rem",
                                             }}
                                             className="btn btn-success"
                                           >
@@ -529,10 +522,9 @@ const IndCourse = () => {
                                       >
                                         <a
                                           style={{
-                                            width: "7rem",
                                             height: "35px",
-                                            marginTop: "1rem",
-                                            marginRight: ".4rem",
+                                        marginTop: "1rem",
+                                        marginRight: ".4rem",
                                           }}
                                           className="btn btn-success"
                                         >
@@ -547,7 +539,6 @@ const IndCourse = () => {
                                       >
                                         <a
                                           style={{
-                                            width: "7rem",
                                             height: "35px",
                                             marginTop: "1rem",
                                             marginRight: ".4rem",
@@ -592,9 +583,8 @@ const IndCourse = () => {
                                     }}
                                     style={{
                                       height: "35px",
-                                      marginTop: "1rem",
-                                      marginRight: ".4rem",
-                                      width: "6rem !important",
+                                        marginTop: "1rem",
+                                        marginRight: ".4rem",
                                     }}
                                     className="btn btn-success"
                                   >
@@ -609,7 +599,6 @@ const IndCourse = () => {
                                   height: "35px",
                                   marginTop: "1rem",
                                   marginRight: ".4rem",
-                                  width: "6rem !important",
                                 }}
                               >
                                 Expired

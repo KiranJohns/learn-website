@@ -107,7 +107,7 @@ class IndMonthRep extends Component {
       },
       {
         name: "amount",
-        selector: (row) => "£"+row.total_amount,
+        selector: (row) => "£"+Number(row.total_amount).toFixed(2),
         center: true,
       },
     ];
