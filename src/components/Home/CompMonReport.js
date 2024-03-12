@@ -68,7 +68,7 @@ const CompMonthRep = () => {
         })
         console.log(res);
         setNewRecords(arr);
-        setRecords(res.data.response);
+        setRecords(res.data.response.reverse());
         setFilterRecords(res.data);
         setPending(false);
       } catch (err) {
