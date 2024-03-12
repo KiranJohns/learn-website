@@ -68,8 +68,6 @@ const IndMyBundle = () => {
                   ...res.data.response,
                   ...resAssigned.data.response,
                 ];
-                // console.log(onGoingRes.data.response);
-                // console.log(result);
                 result = result.filter((item) => item?.course_count >= 1);
 
                 let onGoingBundles = onGoingRes.data.response;

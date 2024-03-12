@@ -10,50 +10,26 @@ import fetchData from "../../axios";
 import axios from "axios";
 import ErrorMain from "../../components/Error/ErrorMain";
 
-// class CourseDetails extends React.Component {
-//   static getInitialProps({ store }) {}
-
-//   constructor(props) {
-//     super(props);
-//   }
-
-//   render() {
-//     return (
-//       <React.Fragment>
-//         <NoSSR>
-//         <Header />
-//         </NoSSR>
-//         <CourseDetailsMain />
-//         {/* <Footer /> */}
-//       </React.Fragment>
-//     );
-//   }
-// }
-// import React, { useEffect } from 'react';
-
 const CourseDetails = () => {
   const {
     query: { slug },
   } = useRouter();
   const makeRequest = fetchData();
-  const [course, setCourse] = useState(null);
+  const [course, setCourse] = useState(false);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    console.log("slug ", slug.replace("_", " "));
     let name = slug.split("_").join(" ");
-    console.log("name ", name);
     setLoading(true);
     makeRequest("GET", `/course/get-single-course-by-id/${name}`)
       .then((res) => {
-        console.log("res ", res.data.response);
-        let state = res.data.response.length <= 0 ? false : true;
-        console.log("state ", state);
-        setCourse(state);
+        if (res.data.response.length <= 0) {
+          setCourse(false);
+        } else {
+          setCourse(true);
+        }
         setLoading(false);
       })
       .catch((err) => {
-        console.log("err ");
-        console.log(err);
         setCourse(false);
         setLoading(false);
       });
@@ -61,50 +37,24 @@ const CourseDetails = () => {
   console.log("course ", course);
   return (
     <>
-      {!loading && !course ? (
+      <NoSSR>
+        <Header pageTitle={slug.split("_").join(" ")} />
+      </NoSSR>
+      {!loading && (
         <>
-          <ErrorMain />
-        </>
-      ) : (
-        <>
-          <NoSSR>
-            <Header pageTitle={slug.split("_").join(" ")} />
-          </NoSSR>
-          <CourseDetailsMain />
+          {!course ? (
+            <>
+              <ErrorMain />
+            </>
+          ) : (
+            <>
+              <CourseDetailsMain />
+            </>
+          )}
         </>
       )}
     </>
   );
 };
-
-// export async function getServerSideProps(context) {
-// Accessing query parameters or other context data
-// const { params, query, resolvedUrl } = context;
-
-// For demonstration, let's assume you want to pass the slug as a prop
-// const slug = params.slug; // Assuming you have a dynamic route with a slug parameter
-
-// const makeRequest = fetchData();
-
-// let res = await axios.get(
-//   `/course/get-single-course-by-id/${slug.split("_").join(" ")} />)}`
-// );
-// let course = res?.data?.response[0];
-
-// // You can perform any additional logic based on the context if needed
-// if (course) {
-//   return {
-//     props: {
-//       slug: slug,
-//     },
-//   };
-// } else {
-//   // If you want to handle a not found scenario, you can do it like this
-//   return {
-//     notFound: true,
-//   };
-// }
-
-// }
 
 export default CourseDetails;
