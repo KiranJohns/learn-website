@@ -99,7 +99,7 @@ const IndMyBundle = () => {
                 // Sort the array of objects
                 newRes.sort(compareDates);
 
-                setRecords(newRes.reverse());
+                setRecords(newRes);
                 setFilterRecords(res.data);
                 setPending(false);
               })

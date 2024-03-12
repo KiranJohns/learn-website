@@ -97,7 +97,7 @@ const IndPurBundle = () => {
       cell: () => (
         <a
           title="View"
-          href="https://test.learnforcare.co.uk/bundle/bundle-all"
+          href="https://www.learnforcare.co.uk/bundle/all-bundles"
         >
           <Button style={{ background: "#212a50" }}>
             <FaEye />
@@ -251,7 +251,7 @@ const IndPurBundle = () => {
                                 marginTop: "1rem",
                                 marginRight: ".4rem",
                               }}
-                              href="https://test.learnforcare.co.uk/bundle/bundle-all"
+                              href="https://www.learnforcare.co.uk/bundle/all-bundles"
                             >
                               <Button style={{ background: "#212a50" }}>
                                 <FaEye />
@@ -296,7 +296,7 @@ const IndPurBundle = () => {
                               marginTop: "1rem",
                               marginRight: ".4rem",
                             }}
-                            href="https://test.learnforcare.co.uk/bundle/bundle-all"
+                            href="https://www.learnforcare.co.uk/bundle/all-bundles"
                           >
                             <Button style={{ background: "#212a50" }}>
                               <FaEye />

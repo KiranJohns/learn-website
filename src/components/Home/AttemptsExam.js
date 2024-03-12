@@ -51,6 +51,17 @@ const AttemptsExam = () => {
 
   const makeRequest = fetchData();
 
+  function compareDates(a, b) {
+    var dateA = a.date.split("/").reverse().join("/");
+    var dateB = b.date.split("/").reverse().join("/");
+    return dateB.localeCompare(dateA); // Reverse the comparison
+  }
+
+  // Sort the array of objects
+  
+ 
+
+
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
     const courseId = searchParams.get("courseId");
@@ -60,6 +71,7 @@ const AttemptsExam = () => {
 
     setPending(true);
     if (bundleId) {
+      console.log('bundle');
       makeRequest("POST", `/bundle/get-single-bundle-attempts`,{
         course_id: courseId,
         bundle_id: bundleId
@@ -75,11 +87,14 @@ const AttemptsExam = () => {
           console.log(err);
         });
     } else {
+      console.log('course');
       makeRequest("GET", `/on-going-course/get-attempts/${courseId}`)
         .then((res) => {
           setPending(false);
           console.log(res.data.response);
-          setRecords(res.data.response.reverse());
+          let data = res.data.response;
+          data.sort(compareDates);
+          setRecords(data);
           setFilterRecords(res.data.response);
         })
         .catch((err) => {

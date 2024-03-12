@@ -160,7 +160,7 @@ const CompanyBundle = () => {
     },
     {
       name: "Progress",
-      selector: (row) => (row?.progress || 0) + "%",
+      selector: (row) => (Math.round(row?.progress) || 0) + "%",
       center: true,
       hide: "md",
     },

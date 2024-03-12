@@ -618,7 +618,7 @@ const ManAssignBund = () => {
                   let flag = false;
                   let title = "Expired";
                   let validity = item.validity.split("/").reverse();
-                  if (item.valid) {
+                  if (new Date(validity) > new Date()) {
                     flag = true;
                   } else {
                     flag = false;

@@ -98,7 +98,7 @@ const IndCAvail = () => {
       name: "Actions",
       center: true,
       cell: (row) => (
-        <a title="Vew" href={`https://learnforcare.co.uk/course/${row.course_id}`}>
+        <a title="Vew" href={`https://learnforcare.co.uk/course/${row.Name.split(" ").join("_")}`}>
           <Button style={{ background: "#212a50", color: "#fff" }} variant="">
             <FaEye />
           </Button>
@@ -201,7 +201,7 @@ const IndCAvail = () => {
                       <div className="new-table-shadow new-table-res new-table-hidden">
                         <div style={{display:'flex',justifyContent:'space-between'}}>
                           <p style={{paddingTop:"1.5rem",paddingLeft:".4rem", color:'#212a50', fontWeight:'bold',}}>{item?.Name}</p>
-                          <a style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}} href="https://test.learnforcare.co.uk/course-all">
+                          <a style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}} href={`https://learnforcare.co.uk/course/${item.Name.split(" ").join("_")}`}>
                             <Button style={{ background: "#212a50", color: "#fff" }} variant="">
                               <FaEye />
                             </Button>
@@ -218,7 +218,7 @@ const IndCAvail = () => {
                     <div className="new-table-shadow  new-table-hidden">
                       <div style={{display:'flex',justifyContent:'space-between'}}>
                         <p style={{paddingTop:"1.5rem",paddingLeft:".4rem", color:'#212a50', fontWeight:'bold',}}>{item?.Name}</p>
-                        <a style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}} href="https://test.learnforcare.co.uk/course-all">
+                        <a style={{height:'35px',marginTop:"1rem", marginRight:'.4rem'}}  href={`https://learnforcare.co.uk/course/${item.Name.split(" ").join("_")}`}>
                           <Button style={{ background: "#212a50", color: "#fff" }} variant="">
                             <FaEye />
                           </Button>
