@@ -17,7 +17,7 @@ class Cart extends React.Component {
         return (
             <React.Fragment>
             <NoSSR>
-            <HeaderOpaque />
+            <HeaderOpaque pageTitle="Cart"/>
             </NoSSR>
             <MyCart />
             <Footer />

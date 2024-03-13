@@ -29,14 +29,14 @@ export const seoData= [
         head:"Standard 5 Work in a Person Centred Way, online care Certificate",
       },
       {
-        name:"Care Certificate, Standard 6 Communication",
+        name:"Standard 6 Communication",
         description: "Care Certificate, Standard 6 Communication, forms of Communication, health and social care, positive culture of trust, Communicating for Safety Standard",
         head:"Standard 6 Communication, Talking, forms of Communication, care",
         key:"Standard, Communication, Aims"
       },
       {
           name :"Standard 7 Privacy and Dignity",
-        description : "Standard 7 Privacy and Dignity, Care Certificate, self-care, THE CARE CERTIFICATE WORKBOOK,  health care, social care, mental health awareness, online training",
+        description : "Standard 7 Privacy and Dignity, Care Certificate, self-care, health care, social care, mental health awareness, online training",
         head :"Standard 7 Privacy and Dignity, care certificate, online training"
       },
       {
@@ -54,13 +54,13 @@ export const seoData= [
       {
         name:"Standard 10 Safeguarding Adults",
         description: "Standard 10 Safeguarding Adults, health care  and social care sectors, mental health & social care, mental awareness course, elderly care",
-        head:"Standard 10 Safeguarding Adults, vulnerable adults, Care Certificate",
+        head:"Standard 10 Safeguarding Adults, vulnerable, Care Certificate",
         key:"Safeguarding, Adults"
       },
       {
         name:"Standard 11 Safeguarding Children",
         description : "Standard 11 Safeguarding Children, mental and health care, care course, care certificate course, child or young, safeguarding of children, child abuse",
-        head:"Standard 11 Safeguarding Children, child care, dsiabled child care"
+        head:"Standard 11 Safeguarding Children, child care, dsiabled"
       },
       {
         name:"Standard 12 Basic Life Support",
@@ -69,8 +69,8 @@ export const seoData= [
         key:"Standard, Life, Basic, Support"
       },
       {
-        name:"Standard 13 Health and Safety, safety at work, safety and well-being",
-        description: "CPD approved, Online care Certificate course, Supporting independence and managing risk, flammable items, linguistic appropriateness, safety at work",
+        name:"Standard 13 Health and Safety",
+        description: "CPD approved, Online care Certificate course, Supporting independence and managing risk, linguistic appropriateness, safety at work",
         head:"Standard 13 Health and Safety, safety at work, safety and well-being",
         key:"Safety, Aims, Objectives"
       },
@@ -104,7 +104,7 @@ export const seoData= [
       {
         name:"Medication Administration",
         description: "Medication Administration, Training Program, administration of medication, medical health and safety course, CPD Accredited course for Healthcare",
-        head:"Medication Administration, Training, administration of medication",
+        head:"Medication, Training, administration of medication",
         key:"Medicaton, med administration training, CPD"
       },
       {
@@ -120,7 +120,7 @@ export const seoData= [
       {
         name:"Fire Awareness",
         description: "Fire Awareness, Fire safety awareness,  fire safety training, hazards at workplace, preventive measures, fire hazards, Workplace Fire Safety, Fire prevention",
-        head:"Fire Awareness, manage fire systems, fire safety training, hazards"
+        head:"Fire Awareness, manage fire systems, safety training, hazards"
       },
       {
         name:"Health and safety at work",
@@ -152,7 +152,7 @@ export const seoData= [
       {
         name:"Dementia Awareness",
         description: "Dementia Awareness, health care and social care courses, Specialised Care Courses, Elderly dementia care course, elderly care, Care staff, dementia care",
-        head:"Dementia Awareness, raise awareness, understanding of dementia care"
+        head:"Dementia Awareness, raise, understanding of dementia care"
       },
       {
         name:"Diabetes Awareness",
@@ -212,7 +212,7 @@ export const seoData= [
       },
       {
         name:"Wellness Recovery Action Plan",
-        description: "Wellness Recovery Action Plan, WRAP, online training, wellness tool, wellness & recovery, psychiatric symptoms, empower individuals, personalized wellness plans",
+        description: "Wellness Recovery Action Plan, WRAP, online training, wellness & recovery, psychiatric symptoms, empower individuals, personalized wellness plans",
         head:"Wellness Action Plan, Online social care courses,  Health and Wellness"
       },
       {

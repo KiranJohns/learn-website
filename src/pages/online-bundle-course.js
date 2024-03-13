@@ -16,7 +16,7 @@ const OnlineCourses = () => {
   return (
     <React.Fragment>
       <NoSSR>
-        <HeaderOpaque />
+        <HeaderOpaque pageTitle="Online care bundle"/>
       </NoSSR>
       <CourseGridOnline />
       <Footer />
