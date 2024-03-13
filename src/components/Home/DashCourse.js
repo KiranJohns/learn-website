@@ -66,7 +66,7 @@ const DashCourse = () => {
       let data = [
         ...onGoingCourse.data.response,
         ...assignedCourses.data.response.filter(
-          (item) => item?.course_count == 1
+          (item) => item?.owner == user.id && item.course_count == 1
         ),
       ];
       function compareDates(a, b) {

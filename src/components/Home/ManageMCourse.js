@@ -75,7 +75,7 @@ const ManageMyCourse = () => {
 
         let newRes = [
           ...assignedRes.data.response.filter(
-            (item) => item.owner == user.id
+            (item) => item.owner == user.id && item.course_count == 1
           ),
           ...onGoingCourse.data.response,
         ];
