@@ -131,7 +131,7 @@ class BlogDetailsMain extends Component {
                         <img src={article.img} alt={article.heading} />
                       </div>
                       <div className="blog__text mb-40">
-                        <h3>{article.header}</h3>
+                        <h1>{article.header}</h1>
                         <p>
                           {JSON.parse(article.tags).map((tag) => (
                             <span
