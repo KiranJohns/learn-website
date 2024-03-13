@@ -155,13 +155,15 @@ const HeaderOpaque = (props) => {
           href="https://fonts.googleapis.com/css2?family=Hind:wght@300;400;500;600;700&display=swap"
           rel="stylesheet"
         />
-          <meta name="description" content={props?.descr ? props?.descr: "Learn for Care CQC Complaint online care courses wrap training buccal"}></meta>
+          <meta name="description" content={props?.descr ? props?.descr : "Learn for Care CQC Complaint online care courses wrap training buccal"}></meta>
+          <meta name="keywords" content={props?.key ? props?.key :"Buccal, Standard, Basic, Support, CPD" } />
         <link
           rel="icon"
           href="assets/img/favicon.png"
           type="image/<generated>"
           sizes="<generated>"
         />
+         
       </Head>
       <header>
         <div id="header-sticky" className="header__area  header__padding">

@@ -2,32 +2,37 @@ export const seoData= [
     {
      name:"Standard 1 understand your role",
      description: "Standard 1 understand your role, Care Certificate, Social care worker, Learning disabilities, Autism, Physical disabilities, Mental health, Support workers",
-     head:"Standard 1 Understand your role, health care, childcare, CPD certified"
+     head:"Standard 1 Understand your role, health care, childcare, CPD certified",
+     key:"Understand role Standard"
     },
     {
         name:"Standard 2 Your personal development",
         description: "Standard 3 Duty of care, Promoting wellbeing, safety and well being, moral and legal responsibility, care dilemmas,  Essential safety responsibilities",
-        head:"Standard 2 Your personal Development, Social & health care, training"
+        head:"Standard 2 Your personal Development, Social & health care, training",
+        key:"Standard care certificate, personal"
     },
       {
         name:"Standard 3 Duty of care",
         description: "Standard 2 Your personal development, Care Certificate, The Care Certificate Workbook, Health and social care",
-        head:"Standard 3 Duty Of Care, Care, Safety & well being, care & support"
+        head:"Standard 3 Duty Of Care, Care, Safety & well being, care & support",
+        key:"care, certificate, standard, Duty"
       },
       {
         name:"Standard 4 Equality and Diversity",
         description: "Standard 4 Equality and Diversity, Elderly care, children with disabilities, care givers, child care, elderly care, online care certificate course",
-        head:"Standard 4 Equality and Diversity, healthcare and social care sectors"
+        head:"Standard 4 Equality and Diversity, healthcare and social care sectors",
+        key:"Equality, Diversity, Standard"
       },
       {
         name:"Standard 5 Work in a Person Centred Way",
         description: "Standard 5 Work in a Person Centred Way, Person-centred planning, Centre of the care planning process, Care Certificate",
-        head:"Standard 5 Work in a Person Centred Way, online care Certificate"
+        head:"Standard 5 Work in a Person Centred Way, online care Certificate",
       },
       {
         name:"Care Certificate, Standard 6 Communication",
         description: "Care Certificate, Standard 6 Communication, forms of Communication, health and social care, positive culture of trust, Communicating for Safety Standard",
-        "head":"Standard 6 Communication, Talking, forms of Communication, care"
+        head:"Standard 6 Communication, Talking, forms of Communication, care",
+        key:"Standard, Communication, Aims"
       },
       {
           name :"Standard 7 Privacy and Dignity",
@@ -37,17 +42,20 @@ export const seoData= [
       {
         name :"Standard 8 Fluids and Nutrition",
         description: "Standard 8 Fluids and Nutrition, health and well-being, nutrition and hydration, principles of hydration, nutrition and food safety, health care",
-        head: "Standard 8 Fluids and Nutrition, food safety, health and well-being"
+        head: "Standard 8 Fluids and Nutrition, food safety, health and well-being",
+        key:"Nutrition, Fluids, food"
       },
       {
         name:"Standard 9 Mental Health Dementia and Learning Disabilities",
         description: "Standard 9 Mental Health Dementia and Learning Disabilities, mental health conditions, care workers, mental ill-health, mentally disabled child",
-        head:"Standard 9 Mental Health Dementia & Learning Disabilities, Health care"
+        head:"Standard 9 Mental Health Dementia & Learning Disabilities, Health care",
+        key:"Standard, Mental, Dementia, Learning"
       },
       {
         name:"Standard 10 Safeguarding Adults",
         description: "Standard 10 Safeguarding Adults, health care  and social care sectors, mental health & social care, mental awareness course, elderly care",
-        head:"Standard 10 Safeguarding Adults, vulnerable adults, Care Certificate"
+        head:"Standard 10 Safeguarding Adults, vulnerable adults, Care Certificate",
+        key:"Safeguarding, Adults"
       },
       {
         name:"Standard 11 Safeguarding Children",
@@ -57,12 +65,14 @@ export const seoData= [
       {
         name:"Standard 12 Basic Life Support",
         description: "Standard 12 Basic Life Support, basic life support, basic life, Care Certificate, Cardiac Life Support, cardiopulmonary resuscitation (CPR) ",
-        head:"Standard 12 Basic Life Support, Care Certificate, Cardiac Life Support"
+        head:"Standard 12 Basic Life Support, Care Certificate, Cardiac Life Support",
+        key:"Standard, Life, Basic, Support"
       },
       {
         name:"Standard 13 Health and Safety, safety at work, safety and well-being",
         description: "CPD approved, Online care Certificate course, Supporting independence and managing risk, flammable items, linguistic appropriateness, safety at work",
-        head:"Standard 13 Health and Safety, safety at work, safety and well-being"
+        head:"Standard 13 Health and Safety, safety at work, safety and well-being",
+        key:"Safety, Aims, Objectives"
       },
       {
         name:"Standard 14 Handling Information",
@@ -82,22 +92,25 @@ export const seoData= [
       {
         name:"Moving and handling",
         description: "Moving and handling course, requirements and risks, duty of care, knowledge, skills, strategies, equipment for all trainees, healthcare and social care",
-        head:"Moving and handling, elderly care, Health & Social Care, Care training"
+        head:"Moving and handling, elderly care, Health & Social Care, Care training",
+        key:"moving and handling course"
       },
       {
         name:"Mental Capacity Act and DoLS",
         description: "Mental Capacity Act and DoLS, Deprivation of Liberty Safeguards (DoLS), mental capacity, deprivation of liberty, online training course",
-        head:"Mental Capacity Act & DoLS, Deprivation of Liberty Safeguards"
+        head:"Mental Capacity Act & DoLS, Deprivation of Liberty Safeguards",
+        key:"Act, Mental, Capacity, DoLS"
       },
       {
         name:"Medication Administration",
         description: "Medication Administration, Training Program, administration of medication, medical health and safety course, CPD Accredited course for Healthcare",
-        head:"Medication Administration, Training, administration of medication"
+        head:"Medication Administration, Training, administration of medication",
+        key:"Medicaton, med administration training, CPD"
       },
       {
         name:"Whistleblowing",
         description: "Whistleblowing, Training, online learning, recognise wrongdoing, suspected misconduct, illegal acts,  learners and companies, whistle-blowers' rights ",
-        head:"Whistleblowing, Training Course, misconduct, Training Course"
+        head:"Whistleblowing, Training Course, misconduct, Training Course",
       },
       {
         name:"Coshh",
@@ -127,12 +140,14 @@ export const seoData= [
       {
         name:"Risk Assessment",
         description: "Risk Assessment courses, Risk Management, Natural Disaster, care health, social care, onlince care certificate course, e-Learning exercises",
-        head:"Risk Assessment, Health & Safety course, workplace safety, hazards"
+        head:"Risk Assessment, Health & Safety course, workplace safety, hazards",
+        key:"Risk, e-learning, safety"
       },
       {
         name:"The General Data Protection Regulation GDPR",
         description: "The General Data Protection Regulation GDPR course, legitimate certification bodies, GDPR Training course, handles personal data,  data protection, privacy",
-        head:"GDPR ( General Data Protection Regulation), general data protection"
+        head:"GDPR ( General Data Protection Regulation), general data protection",
+        key:"Protection, Data, General, GDPR"
       },
       {
         name:"Dementia Awareness",
@@ -162,7 +177,8 @@ export const seoData= [
       {
         name:"Epilepsy and Buccal Midazolam",
         description: "Epilepsy and Buccal Midazolam, managing epilepsy, administering buccal midazolam, emergency medications, eldery care, child care, health care, social care",
-        head:"Epilepsy & Buccal Midazolam, Epilepsy and seizure management"
+        head:"Epilepsy & Buccal Midazolam, Epilepsy and seizure management",
+        key:"Buccal, Epilepsy, Midazolam"
       },
       {
         name:"Working with people with Learning disabilities",
@@ -217,12 +233,13 @@ export const seoData= [
       {
         name:"Safeguarding Children with Disabilities",
         description: "Safeguarding Children with Disabilities, health care, child care, developmental disabilities,  special educational needs, abuse and neglect, Online training",
-        head:"Children-Disabilities, Children-Learning Difficulties and Disabilities"
+        head:"Children-Disabilities, Children-Learning Difficulties and Disabilities",
+        key:"Disabilities, Children, Safeguarding"
       },
       {
         name:"Child Sexual Exploitation Awareness",
         description: "Child Sexual Exploitation Awareness, risks presented to children, Child Sexual Exploitation, awareness, online care course, CPD approved, child care",
-        head:"Child Exploitation, Child Sexual Exploitation, abuse or exploitation"
+        head:"Child Exploitation, Child Sexual Exploitation, abuse or exploitation",
       },
       {
         name:"ADHD Awareness",
@@ -232,7 +249,8 @@ export const seoData= [
       {
         name:"Paediatric First Aid",
         description: "Paediatric First Aid,  pediatric care, child care, online pediatric care, First Aid skills, accidents and emergencies, online training, CQC Complaint course",
-        head:"Paediatric First Aid, pediatric care, child care, online care course"
+        head:"Paediatric First Aid, pediatric care, child care, online care course",
+        key:"Aid, First, Paediatric"
       },
   ]
 
