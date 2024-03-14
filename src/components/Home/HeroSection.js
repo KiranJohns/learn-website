@@ -21,7 +21,7 @@ class Hero extends Component {
                                     <h1 className="hero__title">
                                         <span></span>
                                         <span>CQC </span>   
-                                         <span className="yellow-shapes">Complaint<img src="assets/img/shape/yellow-bg.png" alt=""/> </span> 
+                                         <span className="yellow-shapes">Complaint<img src="assets/img/shape/yellow-bg.png" alt=" "/> </span> 
                                          Care Courses</h1>
                                          
                                       
