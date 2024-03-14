@@ -19,7 +19,7 @@ class CourseChild extends React.Component {
         return (
             <React.Fragment>
             <NoSSR>
-            <HeaderOpaque pageTitle="Child care courses"/>
+            <HeaderOpaque pageTitle="Child care courses" descr="CPD approved Care Child care courses"/>
             </NoSSR>
             <CourseGridChild />
             <Footer />

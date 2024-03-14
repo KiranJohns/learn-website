@@ -18,7 +18,7 @@ class CourseMandatory extends React.Component {
         return (
             <React.Fragment>
           <NoSSR>
-            <HeaderOpaque pageTitle="Mandatory care courses"/>
+            <HeaderOpaque pageTitle="Mandatory care courses" descr="CPD approved Care Mandatory care courses"/>
             </NoSSR>
             <CourseGridMandatory />
             <Footer />

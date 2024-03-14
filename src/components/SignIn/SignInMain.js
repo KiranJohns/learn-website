@@ -246,10 +246,10 @@ function SignInMain() {
           <div className="row">
             <div className="col-xxl-8 offset-xxl-2 col-xl-8 offset-xl-2">
               <div className="section__title-wrapper text-center mb-55">
-                <h2 className="section__title ">
+                <h1 className="section__title ">
                   Sign in
                   <br />{" "}
-                </h2>
+                </h1>
                 <p>
                   Don't have an account ?
                   <Link href="/sign-up">

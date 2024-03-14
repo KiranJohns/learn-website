@@ -378,7 +378,7 @@ function SignUpMain() {
           <div className="row">
             <div className="col-xxl-8 offset-xxl-2 col-xl-8 offset-xl-2">
               <div className="section__title-wrapper text-center mb-25 mt-25">
-                <h2 className="">Sign up</h2>
+                <h1 className="">Sign up</h1>
               </div>
             </div>
           </div>

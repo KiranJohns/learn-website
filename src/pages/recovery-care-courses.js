@@ -20,7 +20,7 @@ class CourseRecover extends React.Component {
         return (
             <React.Fragment>
             <NoSSR>
-            <HeaderOpaque pageTitle="Recovery care courses"/>
+            <HeaderOpaque pageTitle="Recovery care courses" descr="CPD approved Care Recovery care courses"/>
             </NoSSR>
             <CourseGridRecovery />
             <Footer />
