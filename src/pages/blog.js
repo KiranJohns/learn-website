@@ -21,7 +21,7 @@ class Blog extends React.Component {
           <HeaderOpaque pageTitle="Care course, online, Childcare, Mental health"/>
         </NoSSR>
         <BlogMain />
-        <Cta />
+        {/* <Cta /> */}
         <Footer />
       </React.Fragment>
     );

@@ -730,15 +730,15 @@ const MyCart = () => {
                         className="d-flex justify-content-between w-100"
                       >
                         Subtotal
-                        <h4>
+                        <p>
                           <span
                             className="discount-font"
-                            style={{ color: "#212a50" }}
+                            style={{ color: "#212a50", fontWeight:"700" }}
                           >
                             £ {parseFloat(totalPrice).toFixed(2)}
                           </span>
                           {/* {couponData && <span style={{textDecoration:"line-through",color:`${couponData ? 'red' : 'green'}` }}>£ {totalPrice}</span>} */}
-                        </h4>
+                        </p>
                       </li>
 
                       <li
@@ -746,15 +746,15 @@ const MyCart = () => {
                         className="d-flex justify-content-between w-100"
                       >
                         Discount
-                        <h4>
+                        <p>
                           <span
                             className="discount-font"
-                            style={{ color: "#212a50" }}
+                            style={{ color: "#212a50", fontWeight:"700" }}
                           >
                             £ {offerPrice ? parseFloat(offer).toFixed(2) : 0}
                           </span>
                           {/* {couponData && <span style={{textDecoration:"line-through",color:`${couponData ? 'red' : 'green'}` }}>£ {totalPrice}</span>} */}
-                        </h4>
+                        </p>
                       </li>
                     </ul>
                     <ul>
@@ -763,10 +763,10 @@ const MyCart = () => {
                         className="d-flex  justify-content-between w-100"
                       >
                         Grand Total
-                        <h4>
+                        <p>
                           <span
                             className="grand-total-f"
-                            style={{ color: "#212a50", fontSize: "1.2rem" }}
+                            style={{ color: "#212a50", fontSize: "1.2rem", fontWeight:"700" }}
                           >
                             £{" "}
                             {offerPrice
@@ -774,7 +774,7 @@ const MyCart = () => {
                               : parseFloat(totalPrice).toFixed(2)}
                           </span>
                           {/* {couponData && <span style={{textDecoration:"line-through",color:`${couponData ? 'red' : 'green'}` }}>£ {totalPrice}</span>} */}
-                        </h4>
+                        </p>
                       </li>
                     </ul>
                     <Link href="/checkout">

@@ -40,9 +40,9 @@ class Cta extends Component {
                   <div className="cta__content">
                     <a href={`/blog/${Number(this.state.id || 1)}`}>
                       <a className="">
-                        <h3 className="text-white" style={{ textOverflow: "ellipsis" }}>
+                        <h4 className="text-white" style={{ textOverflow: "ellipsis" }}>
                           {this.state.blog && this.state.blog.header?.slice(0, 85)}
-                        </h3>
+                        </h4>
                       </a>
                     </a>
                   </div>

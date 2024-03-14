@@ -305,7 +305,7 @@ const HeaderOpaque = (props) => {
                             </li>
                             <li>
                               <Link href="/bundle/online-care-bundle">
-                                <a>Online Care Bundle </a>
+                                <a>Online Care Bundle</a>
                               </Link>
                             </li>
                           </ul>

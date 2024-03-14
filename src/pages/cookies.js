@@ -17,7 +17,7 @@ class CookiesPage extends React.Component {
         return (
             <React.Fragment>
             <NoSSR>
-            <HeaderOpaque/>
+            <HeaderOpaque pageTitle="Cookie policy of learn For Care" descr="Learn how me manage cookies"/>
             </NoSSR>
             <Cookies />
             <div className='mt-10'>
