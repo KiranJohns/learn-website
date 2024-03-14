@@ -34,7 +34,7 @@ function BundleOnline({ name }) {
     <div className="container mt-100">
       <div className="row">
         <div className="col-xxl-5  col-xl-4 col-lg-4 col-md-4 col-sm-0 text-center">
-          <h2 style={{ marginBottom: "1rem" }}>Online Care Bundle</h2>
+        <p style={{ marginBottom: "1rem", fontWeight:"700", fontSize:"1.6rem",  }}>Online Care Bundle</p>
          
           {
             bundle.map((item, index) => {

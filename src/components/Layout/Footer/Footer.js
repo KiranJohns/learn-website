@@ -30,10 +30,10 @@ const Footer = () => {
 
                                  <div className="footer__social">
                                     <ul>
-                                       <li ><a href="#"><FaFacebookF style={{fontSize:"1.5rem"}}/></a></li>
-                                       <li><a href="#" className="tw"><FaXTwitter style={{fontSize:"1.5rem"}}/></a></li>
-                                       <li><a href="#" className="pin"><BsInstagram style={{fontSize:"1.5rem"}}/></a></li>
-                                       <li><a href="#" className="lin1"><FaLinkedinIn style={{fontSize:"1.5rem"}}/></a></li>
+                                       <li ><a href="https://www.facebook.com/learnforcare" target="_blank"><FaFacebookF style={{fontSize:"1.5rem"}}/></a></li>
+                                       <li><a href="https://twitter.com/LearnforCare" className="tw" target="_blank"><FaXTwitter style={{fontSize:"1.5rem"}}/></a></li>
+                                       <li><a href="https://www.instagram.com/learnforcare?igsh=MXJhdzB3ajN6dnloZw==" target="_blank" className="pin"><BsInstagram style={{fontSize:"1.5rem"}}/></a></li>
+                                       <li><a href="https://www.linkedin.com/company/learn-for-care/about/?viewAsMember=true" target="_blank" className="lin1"><FaLinkedinIn style={{fontSize:"1.5rem"}}/></a></li>
                            {/* <FontAwesomeIcon icon="fab fa-instagram" /> */}
                                     </ul>
                                  </div>

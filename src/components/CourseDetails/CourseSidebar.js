@@ -234,12 +234,12 @@ function CourseSidebar({ addToCart }) {
             </div>
             <div className="course__payment mb-35">
               <h3>Payment:</h3>
-              <a href="#">
+          
                 <img
                   src="/assets/img/course/payment/payment-1.png"
                   alt="img not found"
                 />
-              </a>
+             
             </div>
             <div className="course__enroll-btn">
               <div className="course__more d-flex justify-content-between">
