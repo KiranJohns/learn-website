@@ -7,7 +7,7 @@ import Header from '../../components/Layout/Header/Header';
 const error = () => {
   return (
     <React.Fragment>
-            <Header />
+            <Header pageTitle="404 Error: Page Not Found" descr=""/>
             <ErrorMain />
             <Footer />
             </React.Fragment>

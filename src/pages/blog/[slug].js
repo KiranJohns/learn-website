@@ -51,8 +51,8 @@ const BlogDetailss = () => {
         <React.Fragment>
           <NoSSR>
             <HeaderOpaque
-              pageTitle="Care course, online care course, Childcare, Mental health care courses"
-              descr="Mental health care courses, Healthcare courses, Care certificate courses, online care course, Dementia care, bundle courses, company purchase, blog on care"
+              pageTitle={course ? "Care course, online care course, Childcare, Mental health care courses" : "404 Error: Page Not Found"}
+              descr={course ? "Mental health care courses, Healthcare courses, Care certificate courses, online care course, Dementia care, bundle courses, company purchase, blog on care" : ""}
             />
           </NoSSR>
           <main>

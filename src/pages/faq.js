@@ -17,7 +17,7 @@ class FaqPage extends React.Component {
         return (
             <React.Fragment>
             <NoSSR>
-            <HeaderOpaque/>
+            <HeaderOpaque pageTitle="Frequently asked questions by our customers" descr="Care courses online CPD Courses Sova training,Wellness Recovery Action Plan (WRAP), Care course, Online care course, care mandatory training, Sova,buccal"/>
             </NoSSR>
             <Faq />
             <div className='mt-10'>

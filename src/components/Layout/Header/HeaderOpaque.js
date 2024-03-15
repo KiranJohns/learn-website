@@ -156,7 +156,7 @@ const HeaderOpaque = (props) => {
           rel="stylesheet"
         />
           <meta name="description" content={props?.descr ? props?.descr : ""}></meta>
-          <meta name="keywords" content={props?.key ? props?.key :"" } />
+          <meta name="keywords" content={props?.key ? props?.key : "" } />
         <link
           rel="icon"
           href="assets/img/favicon.png"

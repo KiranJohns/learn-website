@@ -233,7 +233,7 @@ function CourseSidebar({ addToCart }) {
               </ul>
             </div>
             <div className="course__payment mb-35">
-              <h3>Payment:</h3>
+              <h6 style={{fontSize:"25px"}}>Payment:</h6>
           
                 <img
                   src="/assets/img/course/payment/payment-1.png"

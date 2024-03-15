@@ -252,5 +252,11 @@ export const seoData= [
         head:"Paediatric First Aid, pediatric care, child care, online care course",
         key:"Aid, First, Paediatric"
       },
+      {
+        name:"404",
+        description: "",
+        head:"404 Error: Page Not Found",
+       key:""
+      },
   ]
 
