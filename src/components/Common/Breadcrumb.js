@@ -3,6 +3,7 @@ import Link from 'next/link';
 
 const Breadcrumb = (props) => {
    const { pageTitle } = props;
+   console.log(props.pageTitle);
      return (
          <section className="page__title-area page__title-height page__title-overlay d-flex align-items-center" style={{ backgroundImage:`url(${'/assets/img/page-title/head.jpg'})`}}>
             <div className="container">

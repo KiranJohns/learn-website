@@ -170,6 +170,7 @@ const Header = (props) => {
             rel="stylesheet"
           />
           <meta name="description" content={data?.description ? data?.description : props?.descr}></meta>
+          <meta name="keywords" content={props?.key ? props?.key : data?.key} />
           <link
             rel="icon"
             href="/assets/img/favicon.png"

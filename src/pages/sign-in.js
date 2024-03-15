@@ -25,7 +25,7 @@ function SignIn() {
       {!logedIn && (
         <>
           <NoSSR>
-            <Header />
+            <Header pageTitle="Sign In to learn for care" descr="Sign in to access your account" key="Sign In"/>
           </NoSSR>
           <NoSSR>
             <SignInMain />

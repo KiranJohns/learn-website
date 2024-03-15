@@ -17,7 +17,7 @@ class SignIn extends React.Component {
     return (
       <React.Fragment>
         <NoSSR>
-          <Header />
+          <Header pageTitle="Sign Up to start learning" descr="Welcome to Learn For Care"/>
         </NoSSR>
         <NoSSR>
           <SignUpMain />

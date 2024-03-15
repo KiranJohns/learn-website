@@ -144,7 +144,7 @@ function CourseDetailsMain() {
               <div className="col-xxl-8 col-xl-8 col-lg-8 mb-0">
                 <div className="course__wrapper">
                   <div className="page__title-content mb-25">
-                    <h5 className="page__title-3">{course?.name}</h5>
+                    <h1 className="page__title-3">{course?.name}</h1>
                   </div>
                   <div className="course__img w-img mb-30">
                     <img src={course?.thumbnail} alt="img not found" />

@@ -21,7 +21,7 @@ class Faq extends Component {
         return (
             <main>
 	            {/* breadcrumb-start */}
-				<Breadcrumb pageTitle="FAQ" />
+				<Breadcrumb pageTitle="Frequently Asked Questions" />
 				{/* breadcrumb-end */}
                 
                

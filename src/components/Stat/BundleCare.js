@@ -35,8 +35,8 @@ function BundleCare({ name }) {
     <div className="container mt-100">
       <div className="row">
         <div className="col-xxl-5  col-xl-4 col-lg-4 col-md-4 col-sm-0 text-center">
-          <h1 style={{ marginBottom: "1rem" }}>Care Certificate Bundle</h1>
-          <h1></h1>
+          <p style={{ marginBottom: "1rem", fontWeight:"700", fontSize:"1.6rem",  }}>Care Certificate Bundle</p>
+          
           {
             bundle.map((item, index) => {
               return (

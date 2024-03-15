@@ -17,9 +17,9 @@ class TermsPage extends React.Component {
         return (
             <React.Fragment>
             <NoSSR>
-            <HeaderOpaque/>
+            <HeaderOpaque pageTitle="Terms and Conditions" descr="Learn For Care Terms and Conditions" key="Conditions Terms Complaint learnforcare"/>
             </NoSSR>
-            <Terms/>
+            <Terms />
             <div className='mt-10'>
             <Footer />
             </div>

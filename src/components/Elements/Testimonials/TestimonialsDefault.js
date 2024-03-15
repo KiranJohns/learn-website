@@ -73,7 +73,7 @@ class Testimonial extends Component {
                             </div>
                             </div>
                         </SwiperSlide>
-                        <SwiperSlide>
+                        {/* <SwiperSlide>
                             <div className="testimonial__item text-center swiper-slide">
                             <div className="testimonial__thumb">
                                 <img src="assets/img/testimonial/test-1.webp" alt="img not found"/>
@@ -88,7 +88,7 @@ class Testimonial extends Component {
                                 </div>
                             </div>
                             </div>
-                        </SwiperSlide>
+                        </SwiperSlide> */}
                         </Swiper>
                      </div>
                   </div>

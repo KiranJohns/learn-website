@@ -16,7 +16,7 @@ class Failed extends React.Component {
     return (
       <React.Fragment>
         <NoSSR>
-          <HeaderOpaque />
+          <HeaderOpaque pageTitle="Payment Error"/>
         </NoSSR>
 
         <FailedLayout />

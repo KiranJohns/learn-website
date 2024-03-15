@@ -53,7 +53,7 @@ const VerificationSection = () => {
           }}
         >
           {/* <h1 style={{color:"#212a50"}}>Certificate Verification</h1> */}
-          <h5 style={{color: flag ? 'green' : 'red',fontSize:"1.1rem"}}>{message && message}</h5>
+          <p style={{color: flag ? 'green' : 'red',fontSize:"1.1rem"}}>{message && message}</p>
           <div
             style={{
               boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",

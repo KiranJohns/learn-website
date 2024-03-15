@@ -67,7 +67,7 @@ const Success = () => {
               </NoSSR> */}
             <NoSSR>
               <div className="behind-content-background">
-                <HeaderOpaque />
+                <HeaderOpaque pageTitle="Payment Success"/>
               </div>
             </NoSSR>
 

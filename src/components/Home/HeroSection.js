@@ -21,7 +21,7 @@ class Hero extends Component {
                                     <h1 className="hero__title">
                                         <span></span>
                                         <span>CQC </span>   
-                                         <span className="yellow-shapes">Complaint<img src="assets/img/shape/yellow-bg.png" alt=""/> </span> 
+                                         <span className="yellow-shapes">Complaint<img src="assets/img/shape/yellow-bg.png" alt=" "/> </span> 
                                          Care Courses</h1>
                                          
                                       
@@ -40,8 +40,7 @@ class Hero extends Component {
                                         <img src="assets/img/hero/Home1.webp" alt="img not found"/>
                                         {/* <img src="https://images.pexels.com/photos/5088181/pexels-photo-5088181.jpeg?auto=compress&cs=tinysrgb&w=600" alt="not found" /> */}
                                         <div className="hero__quote hero__quote-animation">
-                                            <span style={{fontWeight:"bold", color:"#212a50"}}>Nurturing Knowledge, Elevating<br/>Compassion in Caregiving</span>
-                                            <h4></h4>
+                                            <span style={{fontWeight:"bold", color:"#212a50"}}>Nurturing Knowledge, Elevating<br/>Compassion in Caregiving</span>                                           
                                         </div>
                                     </div>
                                     <div className="hero-image-cen hero__thumb-sm mt-50 d-none d-xl-block">

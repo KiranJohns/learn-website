@@ -18,7 +18,7 @@ class CourseGrid extends React.Component {
         return (
             <React.Fragment>
             <NoSSR>
-            <HeaderOpaque />
+            <HeaderOpaque pageTitle="Care Certificate Courses" descr="CPD approved Care Certificate Courses"/>
             </NoSSR>
             <CourseGridMain />
             <Footer />

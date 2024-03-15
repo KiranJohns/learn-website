@@ -18,10 +18,10 @@ class Blog extends React.Component {
     return (
       <React.Fragment>
         <NoSSR>
-          <HeaderOpaque pageTitle="Care course, online care course, Childcare, Mental health care courses"/>
+          <HeaderOpaque pageTitle="Care course, online, Childcare, Mental health"/>
         </NoSSR>
         <BlogMain />
-        <Cta />
+        {/* <Cta /> */}
         <Footer />
       </React.Fragment>
     );

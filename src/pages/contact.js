@@ -17,7 +17,7 @@ class Contact extends React.Component {
         return (
             <React.Fragment>
              <NoSSR>
-            <HeaderOpaque />
+            <HeaderOpaque pageTitle="Contact Us"/>
             </NoSSR>
             <ContactMain />
             <Footer />

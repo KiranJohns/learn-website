@@ -16,7 +16,7 @@ class ErrorMain extends Component {
                                     {/* <img src="assets/img/error/error.png" alt="img not found"/> */}
                                     </div>
                                     <div className="error__content">
-                                    <h3 className="error__title">Page Not Found!</h3>
+                                    <h1 className="error__title">Page Not Found!</h1>
                                     <p>Please try searching for some other page.</p>
                                     <Link href="/"><a className="e-btn e-btn-3 e-btn-4">Back To Home</a></Link>
                                     </div>

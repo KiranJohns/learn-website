@@ -34,8 +34,8 @@ function BundleChild({ name }) {
     <div className="container mt-100">
       <div className="row">
         <div className="col-xxl-5  col-xl-4 col-lg-4 col-md-4 col-sm-0 text-center">
-          <h1 style={{ marginBottom: "1rem" }}>Child Care Bundle</h1>
-          <h1></h1>
+        <p style={{ marginBottom: "1rem", fontWeight:"700", fontSize:"1.6rem",  }}>Child Care Bundle</p>
+       
           {/* <p style={{ textAlign: 'center' }}>
             Our user-friendly, online Learning Management System (LMS) is used to offer the Child Care Courses. It keeps track of and verifies the data required for each of the six criteria. Furthermore, we have developed workbooks that provide direction on what elements of each Child Care Courses requirement should be decided upon in the workplace. This approach is by far the most successful and economical way for your business to offer child care courses.
           </p> */}

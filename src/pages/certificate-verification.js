@@ -11,7 +11,7 @@ const verification = () => {
   return (
     <React.Fragment>
     <NoSSR>
-    <HeaderOpaque />
+    <HeaderOpaque  pageTitle="Certificate Verification"/>
     </NoSSR>
     <CertifiVeritication/>
     <div className='mt-10'>
