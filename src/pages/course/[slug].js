@@ -17,8 +17,12 @@ const CourseDetails = () => {
   const makeRequest = fetchData();
   const [course, setCourse] = useState(false);
   const [loading, setLoading] = useState(true);
-  useEffect(() => {
-    let name = slug.split("_").join(" ");
+  // useEffect(() => {
+
+  // })
+  function getData() {
+    let name = slug?.split("_")?.join(" ") || "";
+    name = name.replace(/_/g, " ");
     setLoading(true);
     makeRequest("GET", `/course/get-single-course-by-id/${name}`)
       .then((res) => {
@@ -33,8 +37,19 @@ const CourseDetails = () => {
         setCourse(false);
         setLoading(false);
       });
+  }
+  useEffect(() => {
+    console.log('pathname ',location.pathname.includes(encodeURIComponent("%20")));
+    console.log('pathname ',location.pathname.includes("%20"));
+    console.log('pathname ',location.pathname);
+    if (location.pathname.includes("%20")) {
+      setCourse(false);
+      setLoading(false);
+      return;
+    } else {
+      getData();
+    }
   }, []);
-  console.log("course ", course);
   return (
     <>
       <NoSSR>
