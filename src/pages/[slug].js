@@ -15,7 +15,7 @@ class Error extends React.Component {
     render() {
         return (
             <React.Fragment>
-            <Header />
+            <Header pageTitle="404 Error: Page Not Found"/>
             <ErrorMain />
             <Footer />
             </React.Fragment>

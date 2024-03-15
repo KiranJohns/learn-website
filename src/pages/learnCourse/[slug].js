@@ -15,7 +15,7 @@ const Errors = () => {
   
     return (
         <React.Fragment>
-        <Header />
+        <Header pageTitle="404 Error: Page Not Found" descr=""/>
         <ErrorMain />
         <Footer />
         </React.Fragment>
