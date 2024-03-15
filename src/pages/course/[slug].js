@@ -53,7 +53,7 @@ const CourseDetails = () => {
   return (
     <>
       <NoSSR>
-        <Header pageTitle={course ? slug.split("_").join(" ") :"404"} />
+        <Header pageTitle={!loading ? (course ? slug.split("_").join(" ") :"404") : ""} />
       </NoSSR>
       {!loading && (
         <>
