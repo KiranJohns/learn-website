@@ -161,7 +161,7 @@ function CourseDetailsMain() {
                       <div className="tab-contents">
                         <TabPanel>
                           <div className="course__description mb-95 course-head-center">
-                            <h3 className="course-head-center">Introduction</h3>
+                            <h2 style={{fontSize:"26px"}} className="course-head-center">Introduction</h2>
                             {course?.description && <p
                                 dangerouslySetInnerHTML={{
                                   __html: course?.description?.replace(
@@ -174,7 +174,7 @@ function CourseDetailsMain() {
                             {course?.category == "Care Course" ? (
                               <>
                                 <div className="course__description-list mb-45 course-head-center">
-                                  {course?.aims?.length != 0 && <h4>Aims</h4>}
+                                  {course?.aims?.length != 0 && <h2 style={{fontSize:"26px"}}>Aims</h2>}
                                   <ul
                                     className=" mb-45"
                                     style={{ listStyle: "initial" }}
@@ -199,7 +199,7 @@ function CourseDetailsMain() {
                                 <div className="course__description-list mb-45 course-head-center">
                                   {(course.objective_define ||
                                     course?.objectives_point?.length >= 1) && (
-                                    <h4>Objectives</h4>
+                                    <h3 style={{fontSize:"26px"}}>Objectives</h3>
                                   )}
                                   <ul style={{ listStyle: "initial" }}>
                                     {course?.objectives_point?.map((item) => {
@@ -233,7 +233,7 @@ function CourseDetailsMain() {
                                 {" "}
                                 <div className="course__description-list mb-45">
                                   {course?.who_should_attend?.length != 0 && (
-                                    <h4>Who should attend?</h4>
+                                    <h3 style={{fontSize:"26px"}}>Who should attend?</h3>
                                   )}
                                   <ul
                                     className=" mb-45"
@@ -260,7 +260,7 @@ function CourseDetailsMain() {
                                   {(course?.what_you_will_learn_point?.length >=
                                     1 ||
                                     course?.What_you_will_learn) && (
-                                    <h4>What you will learn?</h4>
+                                    <h3 style={{fontSize:"26px"}}>What you will learn?</h3>
                                   )}
                                   <ul>
                                     {course?.what_you_will_learn_point?.map(
@@ -306,12 +306,12 @@ function CourseDetailsMain() {
                             </div>
 
                             <div className="course__description-list mb-45">
-                              <h4>Assessment</h4>
+                              <h4 style={{fontSize:"26px"}}>Assessment</h4>
                               <p>{course?.assessment}</p>
                             </div>
 
                             <div className="course__description-list mb-45">
-                              <h4>Certificate</h4>
+                              <h4 style={{fontSize:"26px"}}>Certificate</h4>
                               {course?.certificate && <p
                                 dangerouslySetInnerHTML={{
                                   __html: course?.certificate?.replace(
