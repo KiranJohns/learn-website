@@ -17,9 +17,12 @@ const BlogDetailss = () => {
   const makeRequest = fetchData();
   const [course, setCourse] = useState(false);
   const [loading, setLoading] = useState(true);
-  useEffect(() => {
+  function getData() {
+    let name = slug?.split("_")?.join(" ") || "";
+    name = name.replace(/_/g, " ");
     setLoading(true);
-    makeRequest("GET", `/blog/get-blog-by-id/${slug}`)
+    setLoading(true);
+    makeRequest("GET", `/blog/get-blog-by-id/${name}`)
       .then((res) => {
         if (res.data.response.length <= 0) {
           setCourse(false);
@@ -27,11 +30,20 @@ const BlogDetailss = () => {
           setCourse(true);
         }
         setLoading(false);
-      })
+      }) 
       .catch((err) => {
         setCourse(false);
         setLoading(false);
       });
+  }
+  useEffect(() => {
+    if (location.pathname.includes("%20")) {
+      setCourse(false);
+      setLoading(false);
+      return;
+    } else {
+      getData();
+    }
   }, []);
   return (
     <>

@@ -39,9 +39,6 @@ const CourseDetails = () => {
       });
   }
   useEffect(() => {
-    console.log('pathname ',location.pathname.includes(encodeURIComponent("%20")));
-    console.log('pathname ',location.pathname.includes("%20"));
-    console.log('pathname ',location.pathname);
     if (location.pathname.includes("%20")) {
       setCourse(false);
       setLoading(false);
