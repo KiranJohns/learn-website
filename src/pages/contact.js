@@ -17,7 +17,7 @@ class Contact extends React.Component {
         return (
             <React.Fragment>
              <NoSSR>
-            <HeaderOpaque pageTitle="Contact Us: Learn For Care" descr="Get in touch with us for any inquiries, feedback, or assistance you may need. Our dedicated team is here to help address your questions promptly and provide the support you require."/>
+            <HeaderOpaque pageTitle="Contact Us: Learn For Care" descr="Get in touch with us for any inquiries, feedback, or assistance you may need. Our dedicated team is here to help address your questions."/>
             </NoSSR>
             <ContactMain />
             <Footer />

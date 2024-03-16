@@ -52,7 +52,7 @@ class Cta extends Component {
                   <div className="cta__more d-md-flex justify-content-end mb-4  p-relative z-index-1">
                     <Link href="/blog">
                       <a className="e-btn e-btn-primary">
-                        More Blogs <FaAngleDoubleRight />
+                       More Blogs <FaAngleDoubleRight />
                       </a>
                     </Link>
                   </div>

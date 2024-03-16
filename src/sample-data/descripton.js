@@ -26,7 +26,7 @@ export const seoData= [
       {
         name:"Standard 5 Work in a Person Centred Way",
         description: "Standard 5 Work in a Person Centred Way, Person-centred planning, Centre of the care planning process, Care Certificate",
-        head:"Standard 5 Work in a Person Centred Way, online care Certificate",
+        head:"Standard 5 Work in a Person Centred Way, Certificate Course",
       },
       {
         name:"Standard 6 Communication",
@@ -115,7 +115,7 @@ export const seoData= [
       {
         name:"Coshh",
         description: "Coshh training, harmful substances, health risks, Substances Hazardous to Health Regulations, ill health, hazardous substances, health care, Risk Assessment",
-        head:"Coshh, Risk Assessment, harmful substances, training and awareness"
+        head:"Coshh, Risk Assessment, Harmful Substances, Awareness"
       },
       {
         name:"Fire Awareness",
@@ -208,7 +208,7 @@ export const seoData= [
       {
         name:"E safety",
         description: "E Safety course, CPD certified course, online safety training, safety regulations,safety skills, online cae certificate, online training,care and health",
-        head:"E Safety, online safety training"
+        head:"E-Safety Course: Protecting Online Users from Digital Threats"
       },
       {
         name:"Wellness Recovery Action Plan",
@@ -218,11 +218,11 @@ export const seoData= [
       {
         name:"Recovery Promoting Relationship",
         description: "Elderly care course, Online care Certificate course, Self-Assessment Tool, Relationship, effective recovery, promoting recovery-orientated practice",
-        head:"Recovery Relationship, Recovery care course training"
+        head:"Recovery Relationship, Care Course Training"
       },
       {
         name:"Child Safeguarding",
-        description: "Child Safeguarding, child care, voluntary activities, signs and indicators of abuse, child is at risk of abuse, Food Safety, CPD approved course, legal responsibilities,  ",
+        description: "Child Safeguarding, child care, voluntary activities, signs of abuse, child is at risk of abuse, Food Safety, CPD approved course, legal responsibilities,  ",
         head:"Child Safeguarding, protection, online training"
       },
       {
@@ -239,7 +239,7 @@ export const seoData= [
       {
         name:"Child Sexual Exploitation Awareness",
         description: "Child Sexual Exploitation Awareness, risks presented to children, Child Sexual Exploitation, awareness, online care course, CPD approved, child care",
-        head:"Child Exploitation, Child Sexual abuse",
+        head:"Child Sexual Exploitation Awareness and Protection",
       },
       {
         name:"ADHD Awareness",

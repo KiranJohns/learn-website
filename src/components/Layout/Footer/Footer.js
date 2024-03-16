@@ -26,7 +26,7 @@ const Footer = () => {
                                  </div>
                               </div>
                               <div className="footer__widget-body footer__widget-body-2">
-                                 <p>Enriching lives with unwavering dedication to care services.</p>
+                                 <h5 style={{fontSize:"1rem", color:"#53545B", fontWeight:"400"}}>Enriching lives with unwavering dedication to care services.</h5>
 
                                  <div className="footer__social">
                                     <ul>

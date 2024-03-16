@@ -139,10 +139,10 @@ function CourseCard({ item }) {
             {/* <div className="course__teacher-thumb mr-15">
                                  <img src="assets/img/course/teacher/teacher-5.jpg" alt="img not found"/>
                               </div> */}
-            <h6 className="course-card-mt">
-              <Link  href={`/course/${item.name.split(" ").join("_")}`}>
-                <a>{item.description.slice(0, 141) + ".."}</a>
-              </Link>
+            <h6 className="course-card-mt" >
+              {/* <Link  href={`/course/${item.name.split(" ").join("_")}`}> */}
+                {item.description.slice(0, 141) + ".."}
+              {/* </Link> */}
             </h6>
           </div>
         </div>
