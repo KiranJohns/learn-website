@@ -762,7 +762,7 @@ const MyCart = () => {
                         style={{ marginTop: ".4rem" }}
                         className="d-flex  justify-content-between w-100"
                       >
-                        Grand Total
+                      <h2 style={{fontSize:"1rem", fontWeight:"400", color:"#6F7172"}}>Grand Total</h2>
                         <p>
                           <span
                             className="grand-total-f"

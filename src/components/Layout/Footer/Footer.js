@@ -46,7 +46,7 @@ const Footer = () => {
                         <div className="col-xxl-2 col-xl-2 col-lg-3 col-md-6 col-sm-6 col-xs-6">
                            <div className="footer__widget mb-50">
                               <div className="footer__widget-head mb-22">
-                                 <h3 className="footer__widget-title footer__widget-title-2">Links</h3>
+                                 <h2 className="footer__widget-title footer__widget-title-2">Links</h2>
                               </div>
                               <div className="footer__widget-body">
                                  <div className="footer__link footer__link-2">

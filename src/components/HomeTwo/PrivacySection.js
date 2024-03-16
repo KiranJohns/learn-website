@@ -12,7 +12,7 @@ class PrivacySection extends Component {
                     <p>Last Updated: 15/01/2024</p>
                     <br />
 
-                    <p style={{ fontWeight: 'bold' }}>1. Introduction</p>
+                    <h2 style={{ fontWeight: '700', fontSize:"1rem", color:"#6D6E75" }}>1. Introduction</h2>
                     <p>Welcome to Learn For Care. We are committed to protecting your privacy and ensuring the security
                         of your personal information. This Privacy Policy explains how we collect, use, disclose, and
                         safeguard your data when you use our Learning Management System website. By accessing and

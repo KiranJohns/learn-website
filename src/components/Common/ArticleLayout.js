@@ -16,9 +16,9 @@ const ArticleLayout = ({ post }) => {
           </Link>
         </div>
         <div className="blog__content">
-          <h3 className="blog__title" style={{marginBottom: '1rem'}}>
+          <h2 className="blog__title" style={{marginBottom: '1rem'}}>
             <Link href={`/blog/${post.id}`}>{post.header.slice(0, 50) + "..."}</Link>
-          </h3>      
+          </h2>      
           <div className="blog__meta d-flex flex-column justify-content-between">
             <div style={{marginBottom: '1rem'}}  className="blog__date d-flex align-items-center justify-content-between">
               

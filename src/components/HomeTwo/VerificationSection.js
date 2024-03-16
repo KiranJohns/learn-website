@@ -66,15 +66,15 @@ const VerificationSection = () => {
                 {/* <h5 style={{color: flag ? 'green' : 'red'}}>{message && message}</h5> */}
                 <div className="form-group p-2 mb-4">
                   <label
-                    style={{
-                      color: "#212a50",
-                      fontSize: "1.1rem",
-                      fontWeight: "bold",
-                    }}
+                   
                     className=""
                     htmlFor="FormControlInput1"
                   >
-                    Enter Full Name
+                    <h2  style={{
+                      color: "#212a50",
+                      fontSize: "1.1rem",
+                      fontWeight: "bold",
+                    }}>Enter Full Name</h2>
                   </label>
                   <input
                     style={{ background: "#f7fbff" }}
@@ -97,7 +97,12 @@ const VerificationSection = () => {
                     }}
                     htmlFor="FormControlInput1"
                   >
-                    Enter Certificate Number
+                      <h2  style={{
+                      color: "#212a50",
+                      fontSize: "1.1rem",
+                      fontWeight: "bold",
+                    }}>
+                    Enter Certificate Number</h2>
                   </label>
                   <input
                     style={{ background: "#f7fbff" }}

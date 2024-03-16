@@ -387,11 +387,11 @@ function SignUpMain() {
               <div className="sign__wrapper white-bg">
                 <div className="sign__header mb-35">
                   <div className="sign__in text-center">
-                    <p>
+                    <h2 style={{fontSize:"16px", fontWeight:"400", color:"#7A797F"}}>
                       {" "}
                       <span>........</span> Create an account
                       <span> ........</span>{" "}
-                    </p>
+                    </h2>
                   </div>
                 </div>
                 <div className="sign__form">

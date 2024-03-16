@@ -18,7 +18,7 @@ class Blog extends React.Component {
     return (
       <React.Fragment>
         <NoSSR>
-          <HeaderOpaque pageTitle="Care course, online, Childcare, Mental health"/>
+          <HeaderOpaque pageTitle="Care course, online, Childcare, Mental health" descr="Legal responsibilities, food environment, food safety, child is at risk of abuse, health and safety at work"/>
         </NoSSR>
         <BlogMain />
         {/* <Cta /> */}

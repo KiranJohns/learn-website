@@ -17,7 +17,7 @@ class Cart extends React.Component {
         return (
             <React.Fragment>
             <NoSSR>
-            <HeaderOpaque pageTitle="Cart"/>
+            <HeaderOpaque pageTitle="Cart: Learn For Care" descr="Checkout all the courses in your cart here"/>
             </NoSSR>
             <MyCart />
             <Footer />

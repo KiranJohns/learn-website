@@ -19,7 +19,7 @@ class CourseSpecial extends React.Component {
         return (
             <React.Fragment>
                 <NoSSR>
-                    <HeaderOpaque  pageTitle="Specialised care courses" />
+                    <HeaderOpaque  pageTitle="Specialised care courses" descr="Dementia Awareness, Diabetes, Nutrition and Diet, End of Life Care, Food Safety, Working with people with Learning disabilities"/>
                 </NoSSR>
                 <CourseGridSpecialised />
                 <Footer />

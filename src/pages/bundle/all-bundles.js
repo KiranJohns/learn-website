@@ -14,7 +14,7 @@ class BundleAll extends React.Component {
         return (
             <React.Fragment>
             <NoSSR>
-            <HeaderOpaque pageTitle="CPD approved, Healthcare courses, mandatory training, buccal, Sova" descr="Elderly care and Childcare course , online care course, Caregiver training, bundle courses, company purchase, Care course, Online care course, pediatric care"/>
+            <HeaderOpaque pageTitle="CPD approved, Healthcare courses, mandatory, buccal" descr="Elderly care and Childcare course , online care course, Caregiver training, bundle courses, company purchase, Care course, Online care course, pediatric care"/>
             </NoSSR>
             <CourseBundle/>
             <Footer />

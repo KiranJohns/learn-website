@@ -173,14 +173,14 @@ function SingleBundleCard({ item }) {
                       </div> */}
         </div>
         <div className="course__content">
-          <h3 style={{cursor: 'pointer'}} className="homee__title" title={item.name}>
+          <h2 style={{cursor: 'pointer'}} className="homee__title" title={item.name}>
             <span onClick={() => {
               navigate(location.pathname)
             }}>
               <a>{item.name}</a>
               {/* <a>{item.name.slice(0, 20) + "..."}</a> */}
             </span>
-          </h3>
+          </h2>
           <div className="course__teacher d-flex align-items-center">
             {/* <div className="course__teacher-thumb mr-15">
                                  <img src="assets/img/course/teacher/teacher-5.jpg" alt="img not found"/>

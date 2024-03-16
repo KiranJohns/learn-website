@@ -16,7 +16,7 @@ class CareOnline extends React.Component {
         return (
             <React.Fragment>
             <NoSSR>
-            <HeaderOpaque pageTitle="Online Care Bundle, Child care, Social Care, Health care online training" desc="Online care Certificate course, health care  and social care sectors, mental health & child care, mental awareness course, elderly care"/>
+            <HeaderOpaque pageTitle="Online Care Bundle, Child care, Social Care, Health care online training" descr="Online care Certificate course, health care  and social care sectors, mental health & child care, mental awareness course, elderly care"/>
             </NoSSR>
             <OnlineBundle/>
             <Footer />

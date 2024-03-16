@@ -8,9 +8,9 @@ class FaqSection extends Component {
         return (
             <section className="about__area pt-90 pb-45">
                 <div className="container">
-                    <p>
+                    <h2 style={{fontSize:"16px", color:"#6D6E75", fontWeight:"400"}}>
                         1. What is the Learn for Care Online Course about?
-                    </p>
+                    </h2>
                     <p>The Care Online Course is a comprehensive program designed to provide valuable insights, skills, and
                         knowledge related to caregiving. Whether you&#39;re caring for a family member, or friend, or pursuing a
                         professional career in caregiving, this course covers various aspects of providing effective and

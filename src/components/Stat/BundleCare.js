@@ -116,7 +116,7 @@ function BundleCare({ name }) {
                 <div className="section__title-wrapper mb-60"></div>
               </div>
             </div>
-
+          
             <TabPanel>
               <div className="row">
                 {course &&

@@ -155,8 +155,8 @@ const HeaderOpaque = (props) => {
           href="https://fonts.googleapis.com/css2?family=Hind:wght@300;400;500;600;700&display=swap"
           rel="stylesheet"
         />
-          <meta name="description" content={props?.descr ? props?.descr : ""}></meta>
-          <meta name="keywords" content={props?.key ? props?.key : "" } />
+          <meta name="description" content={props?.descr ? props?.descr : " "}></meta>
+          <meta name="keywords" content={props?.key ? props?.key : " " } />
         <link
           rel="icon"
           href="assets/img/favicon.png"

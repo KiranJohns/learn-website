@@ -250,12 +250,12 @@ function SignInMain() {
                   Sign in
                   <br />{" "}
                 </h1>
-                <p>
+                <h2 style={{fontSize:"1rem", color:"#53545B", fontWeight:"500"}}>
                   Don't have an account ?
                   <Link href="/sign-up">
                     <a className="text-primary"> Sign Up </a>
                   </Link>
-                </p>
+                </h2>
               </div>
             </div>
           </div>
