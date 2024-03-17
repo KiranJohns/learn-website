@@ -1,14 +1,13 @@
-import React from 'react';
-import ErrorMain from '../../components/Error/ErrorMain';
-import Footer from '../../components/Layout/Footer/Footer';
-import Header from '../../components/Layout/Header/Header';
+import React from 'react'
+import ErrorMain from '../components/Error/ErrorMain';
+import Footer from '../components/Layout/Footer/Footer';
+import Header from '../components/Layout/Header/Header';
 import Head from "next/head";
 
+const NotFound = () => {
 
-
-const Error = () => {
   return (
-    <React.Fragment>
+      <React.Fragment>
          <Head>
     <meta name="robots" content="noindex,nofollow" />
           </Head>
@@ -19,4 +18,4 @@ const Error = () => {
   )
 }
 
-export default Error
+export default NotFound

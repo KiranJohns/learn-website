@@ -119,7 +119,7 @@ function CourseCard({ item }) {
         <div className="course__thumb w-img p-relative fix">
           <Link href={`/course/${item.name.split(" ").join("_")}`}>
             <a>
-              <img src={item.thumbnail} alt="img not found" />
+              <img src={item.thumbnail} alt="Course Image" />
             </a>
           </Link>
           {/* <div className="course__tag">
