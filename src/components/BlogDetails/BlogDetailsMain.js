@@ -56,9 +56,11 @@ class BlogDetailsMain extends Component {
         console.log(err);
       });
 
-    makeRequest("GET", `/blog/get-blog-by-id/${this.props.slug}`)
+    let name = location.href?.split("/blog/")[1];
+    name = name?.split("_")?.join(" ") || "";
+
+    makeRequest("GET", `/blog/get-blog-by-name/${name}`)
       .then((res) => {
-        console.log(res);
         this.setState((prev) => {
           return {
             ...prev,
@@ -67,7 +69,7 @@ class BlogDetailsMain extends Component {
         });
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
     this.getDetails();
     ReactGA.initialize("UA-168056874-1", { alwaysSendToDefaultTracker: true });
@@ -115,9 +117,11 @@ class BlogDetailsMain extends Component {
           ))}
 
         {this.state.allBlogs &&
-          this.state.allBlogs.slice(0,10).map((article, num) => (
-            <Breadcrumb key={num} pageTitle={article.title} />
-          ))}
+          this.state.allBlogs
+            .slice(0, 10)
+            .map((article, num) => (
+              <Breadcrumb key={num} pageTitle={article.title} />
+            ))}
 
         <section className="blog__area pt-120 pb-30 pl-60 pr-60">
           <div className="container-fluid">
@@ -161,7 +165,7 @@ class BlogDetailsMain extends Component {
                           />{" "}
                           {article.date}
                         </p>
-                        <p style={{ display: "block", float: "right", }}>
+                        <p style={{ display: "block", float: "right" }}>
                           <FaUser
                             style={{
                               fontSize: ".9rem",
@@ -177,7 +181,6 @@ class BlogDetailsMain extends Component {
                             __html: article.content.replace(/\n/g, "</br>"),
                           }}
                         ></p>
-                      
                       </div>
 
                       <div className="blog__line"></div>
@@ -185,7 +188,7 @@ class BlogDetailsMain extends Component {
                     </div>
                   ))}
               </div>
-            
+
               <div className="col-xl-3 col-lg-4 blog-ml">
                 <div className="blog-box-shadow p-2">
                   <div
@@ -200,49 +203,49 @@ class BlogDetailsMain extends Component {
                         console.log(blog);
                         return (
                           <>
-                          <div className="blog-center-new">
-                            <div
-                              style={{
-                                margin: "0",
-                                display: "flex",
-                                alignItems: "center",
-                              }}
-                              key={idx}
-                            >
-                              <div style={{}}>
-                                <img
-                                  style={{
-                                    height: "fit-content",
-                                    width: "5.2rem",
-                                    padding: "0 0.3rem",
-                                    marginRight: "1rem",
-                                    borderRadius: ".45rem",
-                                  }}
-                                  src={blog.img}
-                                  alt=""
-                                />
-                              </div>
-                              <div className="info">
-                                <div
-                                  className="heading"
-                                  style={{ marginTop: "0.2rem" }}
-                                >
-                                  <a href={`/blog/${blog.id}`}>
-                                    <h4 title={blog.header}>
-                                      {blog.header.slice(0, 20) + "..."}
-                                    </h4>
-                                  </a>
+                            <div className="blog-center-new">
+                              <div
+                                style={{
+                                  margin: "0",
+                                  display: "flex",
+                                  alignItems: "center",
+                                }}
+                                key={idx}
+                              >
+                                <div style={{}}>
+                                  <img
+                                    style={{
+                                      height: "fit-content",
+                                      width: "5.2rem",
+                                      padding: "0 0.3rem",
+                                      marginRight: "1rem",
+                                      borderRadius: ".45rem",
+                                    }}
+                                    src={blog.img}
+                                    alt=""
+                                  />
                                 </div>
-                                <div
-                                  style={{ lineHeight: "1rem" }}
-                                  className="content"
-                                >
-                                  <small style={{ lineHeight: "0.1rem" }}>
-                                    {blog.content.slice(0, 63) + "..."}
-                                  </small>
+                                <div className="info">
+                                  <div
+                                    className="heading"
+                                    style={{ marginTop: "0.2rem" }}
+                                  >
+                                    <a href={`/blog/${blog.id}`}>
+                                      <h4 title={blog.header}>
+                                        {blog.header.slice(0, 20) + "..."}
+                                      </h4>
+                                    </a>
+                                  </div>
+                                  <div
+                                    style={{ lineHeight: "1rem" }}
+                                    className="content"
+                                  >
+                                    <small style={{ lineHeight: "0.1rem" }}>
+                                      {blog.content.slice(0, 63) + "..."}
+                                    </small>
+                                  </div>
                                 </div>
                               </div>
-                            </div>
                             </div>
                             <div style={{ marginTop: "1.7rem" }}></div>
                           </>

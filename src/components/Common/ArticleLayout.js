@@ -11,13 +11,13 @@ const ArticleLayout = ({ post }) => {
     <div className="blog__wrapper">
       <div className="blog__item white-bg mb-30 transition-3 fix">
         <div className="blog__thumb w-img fix" style={{height: '15rem'}}>
-          <Link href={`/blog/${post.id}`}>
+          <Link href={`/blog/${post.header.split(" ").join("_")}`}>
             <img src={post.img} alt="blog image" />
           </Link>
         </div>
         <div className="blog__content">
           <h2 className="blog__title" style={{marginBottom: '1rem'}}>
-            <Link href={`/blog/${post.id}`}>{post.header.slice(0, 50) + "..."}</Link>
+            <Link href={`/blog/${post.header.split(" ").join("_")}`}>{post.header.slice(0, 50) + "..."}</Link>
           </h2>      
           <div className="blog__meta d-flex flex-column justify-content-between">
             <div style={{marginBottom: '1rem'}}  className="blog__date d-flex align-items-center justify-content-between">

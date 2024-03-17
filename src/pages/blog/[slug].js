@@ -18,11 +18,11 @@ const BlogDetailss = () => {
   const [course, setCourse] = useState(false);
   const [loading, setLoading] = useState(true);
   function getData() {
-    let name = slug?.split("_")?.join(" ") || "";
-    name = name.replace(/_/g, " ");
+    let name = location.href?.split("/blog/")[1];
+    name = name?.split("_")?.join(" ") || "";
     setLoading(true);
     setLoading(true);
-    makeRequest("GET", `/blog/get-blog-by-id/${name}`)
+    makeRequest("GET", `/blog/get-blog-by-name/${name}`)
       .then((res) => {
         if (res.data.response.length <= 0) {
           setCourse(false);
