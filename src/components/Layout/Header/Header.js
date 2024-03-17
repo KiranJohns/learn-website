@@ -269,7 +269,7 @@ const Header = (props) => {
                                        </ul> */}
                           </li>
                           <li className="has-dropdown ">
-                            <Link href="all-courses">
+                            <Link href="/all-courses">
                               <a>Courses</a>
                             </Link>
                             <ul className="submenu">
