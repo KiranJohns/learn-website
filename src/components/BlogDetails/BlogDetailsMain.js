@@ -132,7 +132,7 @@ class BlogDetailsMain extends Component {
                     <div key={num} className="blog__wrapper">
                       {/* <BlogDesc /> */}
                       <div className="blog__img w-img mb-45">
-                        <img src={article.img} alt={article.heading} />
+                        <img src={article.img} alt="Blog Image" />
                       </div>
                       <div className="blog__text mb-40">
                         <h2>{article.header}</h2>
