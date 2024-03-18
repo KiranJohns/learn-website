@@ -135,7 +135,7 @@ class BlogDetailsMain extends Component {
                         <img src={article.img} alt={article.heading} />
                       </div>
                       <div className="blog__text mb-40">
-                        <h1>{article.header}</h1>
+                        <h2>{article.header}</h2>
                         <p>
                           {JSON.parse(article.tags).map((tag) => (
                             <span
@@ -195,7 +195,7 @@ class BlogDetailsMain extends Component {
                     style={{ display: "flex", justifyContent: "center" }}
                     className="heading"
                   >
-                    <h2>Recent Blogs</h2>
+                    <h3 style={{fontSize:"2rem"}}>Recent Blogs</h3>
                   </div>
                   <div className="blogs" style={{ marginTop: ".5rem" }}>
                     {this.state.recentBlogs &&
@@ -222,7 +222,7 @@ class BlogDetailsMain extends Component {
                                       borderRadius: ".45rem",
                                     }}
                                     src={blog.img}
-                                    alt=""
+                                    alt="Blog Image"
                                   />
                                 </div>
                                 <div className="info">

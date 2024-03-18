@@ -12,7 +12,7 @@ import fetchData from "../../axios";
 import ErrorMain from "../../components/Error/ErrorMain";
 
 const BlogDetailss = () => {
-  let Conname;
+  let Conname, Passtitle;
   const {
     query: { slug },
   } = useRouter();
@@ -49,7 +49,7 @@ const BlogDetailss = () => {
   }, []);
   function NameCon(){
     Conname = location.href?.split("/blog/")[1];
-   
+    Passtitle = Conname?.split("_")?.join(" ") || "";
   }
   NameCon();
 
@@ -62,8 +62,8 @@ const BlogDetailss = () => {
             <link rel="canonical" href={`https://learnforcare.co.uk/blog/${Conname}`}/>
             </Head>
             <HeaderOpaque
-              pageTitle={course ? "Care course, online care course, Childcare, Mental health care courses" : "404 Error: Page Not Found"}
-              descr={course ? "Mental health care courses, Healthcare courses, Care certificate courses, online care course, Dementia care, bundle courses, company purchase, blog on care" : ""}
+              pageTitle={course ? `${Passtitle}` : "404 Error: Page Not Found"}
+              descr={course ? `Mental health care courses, Healthcare courses, ${Passtitle}` : ""}
             />
           </NoSSR>
           <main>

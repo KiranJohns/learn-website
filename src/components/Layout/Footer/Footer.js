@@ -94,7 +94,7 @@ const Footer = () => {
                               <div className="footer__widget-body">
                                  <div className="footer__link footer__link-2">
                                    
-                                 <Link href="/"><a><img className='w-75' src="/assets/img/logo/cpd.png" alt="img not found"/></a></Link>
+                                 <Link href="/"><a><img className='w-75' src="/assets/img/logo/cpd.png" alt="CPD Image"/></a></Link>
                                    
                                  </div>
                               </div>
