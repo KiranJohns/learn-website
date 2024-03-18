@@ -58,11 +58,11 @@ const BlogDetailss = () => {
       {!loading && (
         <React.Fragment>
           <NoSSR>
-            <Head>
+            {/* <Head>
             <link rel="canonical" href={`https://learnforcare.co.uk/blog/${Conname}`}/>
-            </Head>
+            </Head> */}
             <HeaderOpaque
-              pageTitle={course ? `${Passtitle}` : "404 Error: Page Not Found"}
+              pageTitle={ course ? `${Passtitle}` : "404 Error: Page Not Found"}
               descr={course ? `Mental health care courses, Healthcare courses, ${Passtitle}` : ""}
             />
           </NoSSR>

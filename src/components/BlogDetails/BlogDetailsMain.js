@@ -98,20 +98,20 @@ class BlogDetailsMain extends Component {
         {this.state.allBlogs &&
           this.state.allBlogs.map((article, num) => (
             <Head key={num}>
-              <title>{article.title}</title>
+              {/* <title>{article.title}</title>
               <meta name={article.title} />
               <meta
                 name="og:title"
                 property="og:title"
                 content={article.title}
-              ></meta>
-              <meta
+              ></meta> */}
+              {/* <meta
                 name="og:description"
                 property="og:description"
                 content={article.text}
-              ></meta>
-              <meta name="twitter:card" content={article.title}></meta>
-              <link rel="canonical" href={"/" + article.url}></link>
+              ></meta> */}
+              {/* <meta name="twitter:card" content={article.title}></meta> */}
+              {/* <link rel="canonical" href={"/" + article.url}></link> */}
               <meta property="og:image" content={article.image} />
             </Head>
           ))}
@@ -230,7 +230,7 @@ class BlogDetailsMain extends Component {
                                     className="heading"
                                     style={{ marginTop: "0.2rem" }}
                                   >
-                                    <a href={`/blog/${blog.id}`}>
+                                    <a href={`/blog/${blog.header.split(" ").join("_")}`}>
                                       <h4 title={blog.header}>
                                         {blog.header.slice(0, 20) + "..."}
                                       </h4>
