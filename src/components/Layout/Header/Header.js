@@ -465,7 +465,7 @@ const Header = (props) => {
                           <ul class="list-group w-100">
                             {searchProduct.length > 0 ? (
                               searchProduct?.map((item) => (
-                                <a href={`/course/${item.id}`}>
+                                <a href={`/course/${item.name.split(" ").join("_")}`}>
                                   <li class="list-group-item w-100 bg-white text-black">
                                     {item.name}
                                   </li>
