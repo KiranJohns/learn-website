@@ -98,20 +98,20 @@ class BlogDetailsMain extends Component {
         {this.state.allBlogs &&
           this.state.allBlogs.map((article, num) => (
             <Head key={num}>
-              <title>{article.title}</title>
+              {/* <title>{article.title}</title>
               <meta name={article.title} />
               <meta
                 name="og:title"
                 property="og:title"
                 content={article.title}
-              ></meta>
-              <meta
+              ></meta> */}
+              {/* <meta
                 name="og:description"
                 property="og:description"
                 content={article.text}
-              ></meta>
-              <meta name="twitter:card" content={article.title}></meta>
-              <link rel="canonical" href={"/" + article.url}></link>
+              ></meta> */}
+              {/* <meta name="twitter:card" content={article.title}></meta> */}
+              {/* <link rel="canonical" href={"/" + article.url}></link> */}
               <meta property="og:image" content={article.image} />
             </Head>
           ))}
@@ -132,10 +132,10 @@ class BlogDetailsMain extends Component {
                     <div key={num} className="blog__wrapper">
                       {/* <BlogDesc /> */}
                       <div className="blog__img w-img mb-45">
-                        <img src={article.img} alt={article.heading} />
+                        <img src={article.img} alt="Blog Image" />
                       </div>
                       <div className="blog__text mb-40">
-                        <h1>{article.header}</h1>
+                        <h2>{article.header}</h2>
                         <p>
                           {JSON.parse(article.tags).map((tag) => (
                             <span
@@ -195,7 +195,7 @@ class BlogDetailsMain extends Component {
                     style={{ display: "flex", justifyContent: "center" }}
                     className="heading"
                   >
-                    <h2>Recent Blogs</h2>
+                    <h3 style={{fontSize:"2rem"}}>Recent Blogs</h3>
                   </div>
                   <div className="blogs" style={{ marginTop: ".5rem" }}>
                     {this.state.recentBlogs &&
@@ -222,7 +222,7 @@ class BlogDetailsMain extends Component {
                                       borderRadius: ".45rem",
                                     }}
                                     src={blog.img}
-                                    alt=""
+                                    alt="Blog Image"
                                   />
                                 </div>
                                 <div className="info">
@@ -230,7 +230,7 @@ class BlogDetailsMain extends Component {
                                     className="heading"
                                     style={{ marginTop: "0.2rem" }}
                                   >
-                                    <a href={`/blog/${blog.id}`}>
+                                    <a href={`/blog/${blog.header.split(" ").join("_")}`}>
                                       <h4 title={blog.header}>
                                         {blog.header.slice(0, 20) + "..."}
                                       </h4>

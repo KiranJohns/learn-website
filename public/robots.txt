@@ -1,0 +1,5 @@
+
+User-agent: *
+Allow: /
+Sitemap: https://learnforcare.co.uk/sitemap.xml
+

@@ -3,6 +3,7 @@ import BlogDetailsMain from "../../components/BlogDetails/BlogDetailsMain";
 import Footer from "../../components/Layout/Footer/Footer";
 import HeaderOpaque from "../../components/Layout/Header/HeaderOpaque";
 import ShareButton from "react-share/lib/ShareButton";
+import Head from "next/head";
 import NoSSR from "react-no-ssr";
 import FooterPad from "../../components/Layout/Footer/FooterLess";
 import Cta from "../../components/Home/CtaSection";
@@ -11,6 +12,7 @@ import fetchData from "../../axios";
 import ErrorMain from "../../components/Error/ErrorMain";
 
 const BlogDetailss = () => {
+  let Conname, Passtitle;
   const {
     query: { slug },
   } = useRouter();
@@ -45,14 +47,23 @@ const BlogDetailss = () => {
       getData();
     }
   }, []);
+  function NameCon(){
+    Conname = location.href?.split("/blog/")[1];
+    Passtitle = Conname?.split("_")?.join(" ") || "";
+  }
+  NameCon();
+
   return (
     <>
       {!loading && (
         <React.Fragment>
           <NoSSR>
+            {/* <Head>
+            <link rel="canonical" href={`https://learnforcare.co.uk/blog/${Conname}`}/>
+            </Head> */}
             <HeaderOpaque
-              pageTitle={course ? "Care course, online care course, Childcare, Mental health care courses" : "404 Error: Page Not Found"}
-              descr={course ? "Mental health care courses, Healthcare courses, Care certificate courses, online care course, Dementia care, bundle courses, company purchase, blog on care" : ""}
+              pageTitle={ course ? `${Passtitle}` : "404 Error: Page Not Found"}
+              descr={course ? `Mental health care courses, Healthcare courses, ${Passtitle}` : ""}
             />
           </NoSSR>
           <main>

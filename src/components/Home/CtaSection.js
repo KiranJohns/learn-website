@@ -38,7 +38,7 @@ class Cta extends Component {
                 </div>
                 <div className="col-xxl-7 col-xl-7 col-lg-8 col-md-8">
                   <div className="cta__content">
-                    <a href={`/blog/${Number(this.state.id || 1)}`}>
+                  <a href={`/blog/${this.state.blog.header && this.state.blog.header.split(" ").join("_")}`}>
                       <a className="">
                         <h4 className="text-white" style={{ textOverflow: "ellipsis" }}>
                           {this.state.blog && this.state.blog.header?.slice(0, 85)}
